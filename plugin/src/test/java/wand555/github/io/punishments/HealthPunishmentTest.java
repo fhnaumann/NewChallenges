@@ -47,6 +47,7 @@ public class HealthPunishmentTest {
         JsonNode schemaRoot = new ObjectMapper().readTree(new File("src/test/resources/challenges_schema.json"));
         mapper = new Mapper(plugin, bundle, schemaRoot);
         context = new Context(plugin, bundle, schemaRoot, new ChallengeManager());
+        System.out.println("creating context: " + context);
     }
 
     @AfterEach
@@ -153,6 +154,7 @@ public class HealthPunishmentTest {
 
     @Test
     public void testHealthPunishmentModel2JSON() {
+        System.out.println("context is: " + context);
         HealthPunishment healthPunishment = new HealthPunishment(context, Punishment.Affects.ALL, 5, false);
         HealthPunishmentConfig generatedHealthPunishment = healthPunishment.toGeneratedJSONClass();
         assertEquals(new HealthPunishmentConfig(HealthPunishmentConfig.Affects.ALL, 5, false), generatedHealthPunishment);
