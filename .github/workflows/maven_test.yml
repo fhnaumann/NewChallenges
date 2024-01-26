@@ -30,11 +30,11 @@ jobs:
         cache: maven
     
     - name: Build with Maven
-      working-directory: /plugin
+      working-directory: plugin
       run: mvn -B -DskipTests package --file pom.xml
       
     - name: Test
-      working-directory: /plugin
+      working-directory: plugin
       run: mvn -B -Dmaven.test.failure.ignore=true test
       
     - name: Report
