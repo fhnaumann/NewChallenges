@@ -47,7 +47,7 @@ export interface RandomEffectPunishmentConfig extends BasePunishmentConfig {
     /**
      * The number of effects that are applied at once.
      * 
-     * @minmum 1
+     * @minimum 1
      * @maximum 10
      * @default 1
      * @TJS-type integer

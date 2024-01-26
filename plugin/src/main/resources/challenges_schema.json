@@ -297,6 +297,7 @@
                     "default": 1,
                     "description": "The number of effects that are applied at once.",
                     "maximum": 10,
+                    "minimum": 1,
                     "type": "integer"
                 },
                 "randomizeEffectsAtOnce": {

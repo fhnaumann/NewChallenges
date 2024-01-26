@@ -23,6 +23,8 @@ import { defineProps } from 'vue'
 import { useConfigStore, useDefaultConfigStore } from '@/main';
 import type { NoBlockBreakRuleConfig, RuleName, RulesConfig, BaseRuleConfig } from '../model/rules';
 import type { RuleView } from '../view/rules';
+import { useValidator } from '../validator';
+import type { Model } from '../model/model';
 
 const props = defineProps({
   rule: {
@@ -33,11 +35,24 @@ const props = defineProps({
 
 const store = useConfigStore().model
 const defaultConfig = useDefaultConfigStore()
+const validator = useValidator()
+
 function addDefaultSectionToConfig() {
+
+    const { valid, messages } = validator.isValid(store, (copy) => {
+      addSection(copy)
+    })
+    if(valid) {
+      addSection(store)
+    }
     console.log("added default section to", props.rule.id)
-    store.rules.enabledRules[props.rule.id] = defaultConfig.rules.enabledRules[props.rule.id as keyof BaseRuleConfig]
+    
     //store.rules[props.rule.id] = props.rule.defaultSection
 
     
+}
+
+function addSection(model: Model) {
+  model.rules.enabledRules[props.rule.id] = defaultConfig.rules.enabledRules[props.rule.id as keyof BaseRuleConfig]
 }
 </script>

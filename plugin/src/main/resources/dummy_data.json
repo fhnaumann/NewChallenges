@@ -1,14 +1,17 @@
 {
   "rules": {
     "enabledRules": {
-      "noBlockBreak": {
+      "noDeath": {
         "punishments": {
-          "healthPunishment": {
-            "affects": "All",
-            "heartsLost": 1,
-            "randomizeHeartsLost": false
+          "deathPunishment": {
+          
           }
         }
+      }
+    },
+    "enabledGlobalPunishments": {
+      "deathPunishment": {
+
       }
     }
   }

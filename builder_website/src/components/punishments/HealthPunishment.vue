@@ -48,8 +48,8 @@ watch(heartsLost, (newHeartsLost) => {
 })
 const randomizeHeartsLost = ref(defaultRandomizeHeartsLost)
 watch(randomizeHeartsLost, (isRandomizeHeartsLost) => {
-        heartsLost.value = 1 // reset hearts lost, since it will be disabled now
-        randomizeHeartsLost.value = isRandomizeHeartsLost
+        heartsLost.value = defaultHeartsLost // reset hearts lost, since it will be disabled now
+        //randomizeHeartsLost.value = isRandomizeHeartsLost
         getPunishmentBasePath(config.model, props).healthPunishment!.randomizeHeartsLost = isRandomizeHeartsLost
 })
 

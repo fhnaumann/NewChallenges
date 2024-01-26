@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col overflow-y-auto w-[32rem] h-96 max-h-96" v-if="isGlobal !== undefined">
+    <div class="flex flex-col overflow-y-auto w-[40rem] h-96 max-h-96" v-if="isGlobal !== undefined">
         <div class="shrink-0 flex justify-center items-center">
             <h1 v-if="isGlobal === true" class="text-3xl">Global Punishments</h1>
             <h1 v-else class="text-3xl">Local Punishments for {{ rulesView.allrules[currentRule as RuleName].label }}</h1>
@@ -7,7 +7,8 @@
         <div class="shrink-0 flex flex-col space-y-4 mx-2">
             <div v-for="punishment in allPunishmentsView" :key="punishment.id" >
                 <HealthPunishment v-if="punishment.id === 'healthPunishment'" :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule" />
-                <DefaultPunishment v-else :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule" :assign-when-created="{affects: 'All'}"/>
+                <RandomEffectPunishment v-else-if="punishment.id === 'randomEffectPunishment'" :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule"/>
+                <DefaultPunishment v-else :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule" :assign-when-created="{affects: 'All'}" />
                 
             </div>
         </div>
@@ -24,6 +25,7 @@ import type { PunishmentView } from '../view/punishments';
 import DefaultPunishment from './DefaultPunishment.vue';
 import type { BaseRuleConfig, PunishableRuleConfig, RuleName } from '../model/rules';
 import HealthPunishment from './HealthPunishment.vue';
+import RandomEffectPunishment from './RandomEffectPunishment.vue';
 
 const config = useConfigStore().model
 const rulesView = useRulesViewStore()
@@ -74,7 +76,7 @@ function getRuleConfig(): PunishableRuleConfig {
 
 
 const allPunishments: PunishmentName[] = [
-    'endPunishment', 'healthPunishment'
+    'endPunishment', 'healthPunishment', 'deathPunishment', 'randomEffectPunishment', 'randomItemPunishment'
 ]
 const allPunishmentsView: PunishmentView[] = allPunishments.map(punishmentName => punishmentsViewStore.allpunishments[punishmentName as PunishmentName])
 

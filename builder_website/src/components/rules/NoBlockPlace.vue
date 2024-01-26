@@ -19,7 +19,7 @@
             <img
               class="w-6"
               :alt="slotProps.option"
-              :src="'/img/' + slotProps.option.image + '.png'"
+              :src="'/rendered_items/' + slotProps.option.image + '.png'"
               @error="$event.target.src = 'unknown.png'"
             />
             <div>{{ slotProps.option.label }}</div>
@@ -47,7 +47,7 @@
         <img
           class="w-6"
           :alt="item.code"
-          :src="'/img/' + item.image + '.png'"
+          :src="'/rendered_items/' + item.image + '.png'"
           @error="$event.target.src = 'unknown.png'"
         />
         <p>{{ item.label }}</p>
@@ -61,7 +61,7 @@ import DefaultPunishableRule from './DefaultPunishableRule.vue'
 import MultiSelect from 'primevue/multiselect'
 import Sidebar from 'primevue/sidebar'
 import { ref, defineComponent, toRef, toRaw, computed } from 'vue'
-import matList from '../../assets/placeableBlocks.csv?raw'
+import matList from '../../assets/items.csv?raw'
 import PunishmentSettingsInRule from '../punishments/PunishmentSettingsInRule.vue'
 import {
   useConfigStore,

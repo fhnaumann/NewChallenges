@@ -8,15 +8,11 @@ import './assets/tailwind.css'
 import Tooltip from 'primevue/tooltip';
 import { defineStore } from 'pinia'
 import type { Model } from './components/model/model'
-import type { NoBlockBreakRule } from './components/model/rules'
-import type { RuleName } from './components/model/rules'
-import type { MobGoal } from './components/model/goals'
 import type { RulesView } from './components/view/rules'
-import modelSchema from '../test-output-schema.json'
+import modelSchema from '../challenges_schema.json'
 import type { PunishmentsView } from './components/view/punishments'
 import type { GoalsView } from './components/view/goals'
 import ConfirmationService from 'primevue/confirmationservice';
-import { useValidator } from './components/validator'
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -142,6 +138,21 @@ const punishmentsView: PunishmentsView = {
         healthPunishment: {
             id: 'healthPunishment',
             label: 'Health',
+            description: 'TODO'
+        },
+        deathPunishment: {
+            id: 'deathPunishment',
+            label: 'Death',
+            description: 'TODO'
+        },
+        randomEffectPunishment: {
+            id: 'randomEffectPunishment',
+            label: 'Random Effect',
+            description: 'TODO'
+        },
+        randomItemPunishment: {
+            id: 'randomItemPunishment',
+            label: 'Random Item',
             description: 'TODO'
         }
     }

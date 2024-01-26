@@ -3,8 +3,8 @@
         <div class="flex justify-between" v-if="punishable">
             <div class="flex items-center space-x-2">
                 <Checkbox :model-value="punishable.active.value" @input="(newActive) => updateIfValid(newActive)" :binary="true"
-                    input-id="0" />
-                <label for="0" class="ml-2">{{ punishmentView.label }}</label>
+                    :input-id="props.punishmentView.id" />
+                <label :for="props.punishmentView.id" class="ml-2">{{ punishmentView.label }}</label>
             </div>
             <div class="flex items-center space-x-2">
                 <p v-tooltip="{ value: 'Who the punishment applies to, if violated', showDelay: 500, hideDelay: 250}">Affected:</p>
