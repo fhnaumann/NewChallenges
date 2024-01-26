@@ -22,7 +22,7 @@ public abstract class Goal {
     public abstract void onComplete();
 
     protected final void notifyManager() {
-        ChallengeManager.getInstance().onGoalCompleted();
+        context.challengeManager().onGoalCompleted();
     }
 
     public boolean isComplete() {

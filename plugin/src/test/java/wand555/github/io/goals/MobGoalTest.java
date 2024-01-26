@@ -16,6 +16,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.goals.Collect;
@@ -51,7 +52,8 @@ public class MobGoalTest {
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
         mapper = new Mapper(plugin, bundle, schemaRoot);
-        context = new Context(plugin, bundle, schemaRoot);
+        ChallengeManager manager = mock(ChallengeManager.class);
+        context = new Context(plugin, bundle, schemaRoot, manager);
     }
 
     @AfterEach

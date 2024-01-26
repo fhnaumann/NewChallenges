@@ -13,13 +13,16 @@ import java.util.logging.Level;
 
 public class ChallengeManager {
 
-    private static ChallengeManager instance;
 
     private @NotNull List<Rule> rules;
     private @NotNull List<Goal> goals;
 
     private GameState gameState;
 
+
+    public ChallengeManager() {
+
+    }
 
     public void start() {
         if(rules.isEmpty()) {
@@ -49,7 +52,6 @@ public class ChallengeManager {
     }
 
     public void onGoalCompleted() {
-        Challenges.getPlugin(Challenges.class).getLogger().info("goal completed triggered");
         if(!isRunning()) {
             throw new RuntimeException("Goal completed while challenge is not running!");
         }
@@ -59,7 +61,6 @@ public class ChallengeManager {
     }
 
     private void endChallenge() {
-        Challenges.getPlugin(Challenges.class).getLogger().info("ending");
         Bukkit.getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
     }
 
@@ -73,13 +74,6 @@ public class ChallengeManager {
 
     public void setGoals(@NotNull List<Goal> goals) {
         this.goals = goals;
-    }
-
-    public static ChallengeManager getInstance() {
-        if(instance == null) {
-            instance = new ChallengeManager();
-        }
-        return instance;
     }
 
     private enum GameState {

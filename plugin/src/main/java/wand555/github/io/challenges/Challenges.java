@@ -106,9 +106,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             ResourceBundle rulesBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
             NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(this, rulesBundle, Set.of());
             try {
+
+                ChallengeManager challengeManager = new ChallengeManager();
+
                 JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-                MobGoal mobGoal = new MobGoal(new Context(this, bundle, schemaRoot), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
-                ChallengeManager challengeManager = ChallengeManager.getInstance();
+                MobGoal mobGoal = new MobGoal(new Context(this, bundle, schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
+
                 challengeManager.setRules(List.of(noBlockBreakRule));
                 challengeManager.setGoals(List.of(mobGoal));
                 sender.sendMessage("starting...");

@@ -26,7 +26,6 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
         super(context, complete);
         this.toKill = toKill;
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
-        Challenges.getPlugin(Challenges.class).getLogger().info("registering event");
     }
 
     public Map<EntityType, Collect> getToKill() {
@@ -54,8 +53,6 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
     @EventHandler
     public void onMobDeath(EntityDeathEvent event) {
         Player killer = event.getEntity().getKiller();
-        Challenges.getPlugin(Challenges.class).getLogger().log(Level.ALL, "entity death event");
-        System.out.println(killer);
         if(killer == null) {
             return;
         }

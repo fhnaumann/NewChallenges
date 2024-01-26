@@ -32,6 +32,7 @@ import static org.mockito.Mockito.*;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class NoBlockBreakRuleTest {
 
@@ -183,6 +184,9 @@ public class NoBlockBreakRuleTest {
     public void testNoBlockBreakRuleModel2JSON() {
         Set<Material> exemptions = Set.of(Material.STONE, Material.DIRT);
         NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(plugin, bundle, exemptions);
-        assertEquals(new NoBlockBreakRuleConfig(List.of("STONE", "DIRT"), new PunishmentsConfig()), noBlockBreakRule.toGeneratedJSONClass());
+        // funky behaviour:
+        // When comparing NoBlockBreakRuleConfig, it internally compares the two exemption lists.
+        // But #toGeneratedJSONClass converts from a set to a list, therefore any ordering is lost, hence it is always being sorted.
+        assertEquals(new NoBlockBreakRuleConfig(Stream.of("STONE", "DIRT").sorted().toList(), new PunishmentsConfig()), noBlockBreakRule.toGeneratedJSONClass());
     }
 }

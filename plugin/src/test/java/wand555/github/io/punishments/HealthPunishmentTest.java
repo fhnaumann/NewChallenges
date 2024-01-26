@@ -24,6 +24,7 @@ import wand555.github.io.challenges.rules.PunishableRule;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -43,9 +44,9 @@ public class HealthPunishmentTest {
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-        JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
+        JsonNode schemaRoot = new ObjectMapper().readTree(new File("src/test/resources/challenges_schema.json"));
         mapper = new Mapper(plugin, bundle, schemaRoot);
-        context = new Context(plugin, bundle, schemaRoot);
+        context = new Context(plugin, bundle, schemaRoot, new ChallengeManager());
     }
 
     @AfterEach

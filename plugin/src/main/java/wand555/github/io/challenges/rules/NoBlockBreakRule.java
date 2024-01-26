@@ -83,7 +83,7 @@ public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlock
     @Override
     public NoBlockBreakRuleConfig toGeneratedJSONClass() {
         return new NoBlockBreakRuleConfig(
-                exemptions.stream().map(Enum::toString).toList(),
+                exemptions.stream().map(Enum::toString).sorted().toList(), // always sort when moving from set to list
                 toPunishmentsConfig()
         );
     }

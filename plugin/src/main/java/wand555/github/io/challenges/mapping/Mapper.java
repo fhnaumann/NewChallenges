@@ -38,10 +38,13 @@ public class Mapper {
     ResourceBundle ruleResourceBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
     private JsonNode schemaRoot;
 
+    private ChallengeManager challengeManager;
+
     public Mapper(Challenges plugin, ResourceBundle ruleResourceBundle, JsonNode schemaRoot) {
         this.plugin = plugin;
         this.ruleResourceBundle = ruleResourceBundle;
         this.schemaRoot = schemaRoot;
+        this.challengeManager = new ChallengeManager();
     }
 
     public ChallengeManager mapToGeneratedClasses(String json) throws JsonProcessingException {
@@ -62,9 +65,6 @@ public class Mapper {
         }
 
         List<Goal> goals = mapToGoals(jsonInstance.getGoals());
-
-
-        ChallengeManager challengeManager = ChallengeManager.getInstance();
         challengeManager.setRules(rules);
         challengeManager.setGoals(goals);
         return challengeManager;
@@ -78,7 +78,7 @@ public class Mapper {
         if(goalsConfig.getMobGoal() != null) {
             MobGoalConfig mobGoalConfig = goalsConfig.getMobGoal();
             goals.add(new MobGoal(
-                    new Context(plugin, null, schemaRoot),
+                    new Context(plugin, null, schemaRoot, challengeManager),
                     str2Collectable(mobGoalConfig.getMobs().getAdditionalProperties(), EntityType.class)
             ));
         }
@@ -162,7 +162,7 @@ public class Mapper {
         if(punishmentsConfig.getHealthPunishment() != null) {
             HealthPunishmentConfig healthPunishmentConfig = punishmentsConfig.getHealthPunishment();
             punishments.add(new HealthPunishment(
-                    new Context(plugin, null, schemaRoot),
+                    new Context(plugin, null, schemaRoot, challengeManager), //TODO: load bundle
                     Punishment.Affects.fromJSONString(healthPunishmentConfig.getAffects().value()),
                     healthPunishmentConfig.getHeartsLost(),
                     healthPunishmentConfig.getRandomizeHeartsLost()
