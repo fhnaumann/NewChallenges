@@ -34,7 +34,7 @@ jobs:
       
     - name: Test
       working-directory: plugin
-      run: mvn -B -Dmaven.test.failure.ignore=true test
+      run: mvn -B test
       
     - name: Report
       uses: dorny/test-reporter@v1
