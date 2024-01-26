@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noBlockBreak": {
+        "punishments": {
+          "healthPunishment": {
+            "affects": "All",
+            "heartsLost": 1,
+            "randomizeHeartsLost": false
+          }
+        }
+      }
+    }
+  }
+}

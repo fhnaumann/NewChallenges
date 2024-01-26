@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="punishments.xsd" />
+
+  <!-- Types shared between rules-->
+  <xs:complexType name="ExemptionsType">
+    <xs:sequence>
+      <xs:element name="exemption" maxOccurs="unbounded" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Rules -->
+  <xs:complexType name="NoBlockBreakRuleType">
+    <xs:sequence>
+      <xs:element name="punishments" type="PunishmentsType" minOccurs="0"/>
+      <xs:element name="exemptions" type="ExemptionsType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoBlockPlaceRuleType">
+    <xs:sequence>
+      <xs:element name="punishments" type="PunishmentsType" minOccurs="0"/>
+      <xs:element name="exemptions" type="ExemptionsType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoCraftingRuleType">
+    <xs:sequence>
+      <xs:element name="punishments" type="PunishmentsType" minOccurs="0"/>
+      <xs:element name="exemptions" type="ExemptionsType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoDamageRuleType">
+    <xs:sequence>
+      <xs:element name="punishments" type="PunishmentsType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoDeathRuleType">
+    <xs:sequence>
+      <xs:element name="punishments" type="PunishmentsType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoRegenerationRuleType">
+    <xs:sequence>
+      <xs:element name="disableAllRegeneration" type="xs:boolean" default="false"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- RandomDrops rule-->
+  <xs:complexType name="materialRandomizations">
+    <xs:sequence>
+      <xs:element name="randomize" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="from" type="xs:string" use="required"/>
+          <xs:attribute name="to" type="xs:string" use="required"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RandomDropsRuleType">
+    <xs:sequence>
+      <xs:element name="materialRandomizations" type="materialRandomizations" minOccurs="0"/>
+      <xs:element name="randomBlockDrops" type="xs:boolean" default="true" minOccurs="0"/>
+      <xs:element name="randomMobDrops" type="xs:boolean" default="true" minOccurs="0"/>
+      <xs:element name="randomCraftingDrops" type="xs:boolean" default="true" minOccurs="0"/>
+      <xs:element name="randomFurnaceDrops" type="xs:boolean" default="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Object that contains all rules -->
+  <xs:complexType name="RulesType">
+    <xs:sequence>
+      <xs:element name="NoBlockBreak" type="NoBlockBreakRuleType" minOccurs="0"/>
+      <xs:element name="NoBlockPlace" type="NoBlockPlaceRuleType" minOccurs="0"/>
+      <xs:element name="NoCrafting" type="NoCraftingRuleType" minOccurs="0"/>
+      <xs:element name="NoDamage" type="NoDamageRuleType" minOccurs="0"/>
+      <xs:element name="NoDeath" type="NoDeathRuleType" minOccurs="0"/>
+      <xs:element name="RandomDrops" type="RandomDropsRuleType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,999 @@
+STONE,stone,Stone
+GRANITE,granite,Granite
+POLISHED_GRANITE,polished_granite,Polished Granite
+DIORITE,diorite,Diorite
+POLISHED_DIORITE,polished_diorite,Polished Diorite
+ANDESITE,andesite,Andesite
+POLISHED_ANDESITE,polished_andesite,Polished Andesite
+DEEPSLATE,deepslate,Deepslate
+COBBLED_DEEPSLATE,cobbled_deepslate,Cobbled Deepslate
+POLISHED_DEEPSLATE,polished_deepslate,Polished Deepslate
+CALCITE,calcite,Calcite
+TUFF,tuff,Tuff
+DRIPSTONE_BLOCK,dripstone_block,Dripstone Block
+GRASS_BLOCK,grass_block,Grass Block
+DIRT,dirt,Dirt
+COARSE_DIRT,coarse_dirt,Coarse Dirt
+PODZOL,podzol,Podzol
+ROOTED_DIRT,rooted_dirt,Rooted Dirt
+MUD,mud,Mud
+CRIMSON_NYLIUM,crimson_nylium,Crimson Nylium
+WARPED_NYLIUM,warped_nylium,Warped Nylium
+COBBLESTONE,cobblestone,Cobblestone
+OAK_PLANKS,oak_planks,Oak Planks
+SPRUCE_PLANKS,spruce_planks,Spruce Planks
+BIRCH_PLANKS,birch_planks,Birch Planks
+JUNGLE_PLANKS,jungle_planks,Jungle Planks
+ACACIA_PLANKS,acacia_planks,Acacia Planks
+CHERRY_PLANKS,cherry_planks,Cherry Planks
+DARK_OAK_PLANKS,dark_oak_planks,Dark Oak Planks
+MANGROVE_PLANKS,mangrove_planks,Mangrove Planks
+BAMBOO_PLANKS,bamboo_planks,Bamboo Planks
+CRIMSON_PLANKS,crimson_planks,Crimson Planks
+WARPED_PLANKS,warped_planks,Warped Planks
+BAMBOO_MOSAIC,bamboo_mosaic,Bamboo Mosaic
+OAK_SAPLING,oak_sapling,Oak Sapling
+SPRUCE_SAPLING,spruce_sapling,Spruce Sapling
+BIRCH_SAPLING,birch_sapling,Birch Sapling
+JUNGLE_SAPLING,jungle_sapling,Jungle Sapling
+ACACIA_SAPLING,acacia_sapling,Acacia Sapling
+CHERRY_SAPLING,cherry_sapling,Cherry Sapling
+DARK_OAK_SAPLING,dark_oak_sapling,Dark Oak Sapling
+MANGROVE_PROPAGULE,mangrove_propagule,Mangrove Propagule
+BEDROCK,bedrock,Bedrock
+SAND,sand,Sand
+SUSPICIOUS_SAND,suspicious_sand,Suspicious Sand
+SUSPICIOUS_GRAVEL,suspicious_gravel,Suspicious Gravel
+RED_SAND,red_sand,Red Sand
+GRAVEL,gravel,Gravel
+COAL_ORE,coal_ore,Coal Ore
+DEEPSLATE_COAL_ORE,deepslate_coal_ore,Deepslate Coal Ore
+IRON_ORE,iron_ore,Iron Ore
+DEEPSLATE_IRON_ORE,deepslate_iron_ore,Deepslate Iron Ore
+COPPER_ORE,copper_ore,Copper Ore
+DEEPSLATE_COPPER_ORE,deepslate_copper_ore,Deepslate Copper Ore
+GOLD_ORE,gold_ore,Gold Ore
+DEEPSLATE_GOLD_ORE,deepslate_gold_ore,Deepslate Gold Ore
+REDSTONE_ORE,redstone_ore,Redstone Ore
+DEEPSLATE_REDSTONE_ORE,deepslate_redstone_ore,Deepslate Redstone Ore
+EMERALD_ORE,emerald_ore,Emerald Ore
+DEEPSLATE_EMERALD_ORE,deepslate_emerald_ore,Deepslate Emerald Ore
+LAPIS_ORE,lapis_ore,Lapis Ore
+DEEPSLATE_LAPIS_ORE,deepslate_lapis_ore,Deepslate Lapis Ore
+DIAMOND_ORE,diamond_ore,Diamond Ore
+DEEPSLATE_DIAMOND_ORE,deepslate_diamond_ore,Deepslate Diamond Ore
+NETHER_GOLD_ORE,nether_gold_ore,Nether Gold Ore
+NETHER_QUARTZ_ORE,nether_quartz_ore,Nether Quartz Ore
+ANCIENT_DEBRIS,ancient_debris,Ancient Debris
+COAL_BLOCK,coal_block,Coal Block
+RAW_IRON_BLOCK,raw_iron_block,Raw Iron Block
+RAW_COPPER_BLOCK,raw_copper_block,Raw Copper Block
+RAW_GOLD_BLOCK,raw_gold_block,Raw Gold Block
+AMETHYST_BLOCK,amethyst_block,Amethyst Block
+BUDDING_AMETHYST,budding_amethyst,Budding Amethyst
+IRON_BLOCK,iron_block,Iron Block
+COPPER_BLOCK,copper_block,Copper Block
+GOLD_BLOCK,gold_block,Gold Block
+DIAMOND_BLOCK,diamond_block,Diamond Block
+NETHERITE_BLOCK,netherite_block,Netherite Block
+EXPOSED_COPPER,exposed_copper,Exposed Copper
+WEATHERED_COPPER,weathered_copper,Weathered Copper
+OXIDIZED_COPPER,oxidized_copper,Oxidized Copper
+CUT_COPPER,cut_copper,Cut Copper
+EXPOSED_CUT_COPPER,exposed_cut_copper,Exposed Cut Copper
+WEATHERED_CUT_COPPER,weathered_cut_copper,Weathered Cut Copper
+OXIDIZED_CUT_COPPER,oxidized_cut_copper,Oxidized Cut Copper
+CUT_COPPER_STAIRS,cut_copper_stairs,Cut Copper Stairs
+EXPOSED_CUT_COPPER_STAIRS,exposed_cut_copper_stairs,Exposed Cut Copper Stairs
+WEATHERED_CUT_COPPER_STAIRS,weathered_cut_copper_stairs,Weathered Cut Copper Stairs
+OXIDIZED_CUT_COPPER_STAIRS,oxidized_cut_copper_stairs,Oxidized Cut Copper Stairs
+CUT_COPPER_SLAB,cut_copper_slab,Cut Copper Slab
+EXPOSED_CUT_COPPER_SLAB,exposed_cut_copper_slab,Exposed Cut Copper Slab
+WEATHERED_CUT_COPPER_SLAB,weathered_cut_copper_slab,Weathered Cut Copper Slab
+OXIDIZED_CUT_COPPER_SLAB,oxidized_cut_copper_slab,Oxidized Cut Copper Slab
+WAXED_COPPER_BLOCK,waxed_copper_block,Waxed Copper Block
+WAXED_EXPOSED_COPPER,waxed_exposed_copper,Waxed Exposed Copper
+WAXED_WEATHERED_COPPER,waxed_weathered_copper,Waxed Weathered Copper
+WAXED_OXIDIZED_COPPER,waxed_oxidized_copper,Waxed Oxidized Copper
+WAXED_CUT_COPPER,waxed_cut_copper,Waxed Cut Copper
+WAXED_EXPOSED_CUT_COPPER,waxed_exposed_cut_copper,Waxed Exposed Cut Copper
+WAXED_WEATHERED_CUT_COPPER,waxed_weathered_cut_copper,Waxed Weathered Cut Copper
+WAXED_OXIDIZED_CUT_COPPER,waxed_oxidized_cut_copper,Waxed Oxidized Cut Copper
+WAXED_CUT_COPPER_STAIRS,waxed_cut_copper_stairs,Waxed Cut Copper Stairs
+WAXED_EXPOSED_CUT_COPPER_STAIRS,waxed_exposed_cut_copper_stairs,Waxed Exposed Cut Copper Stairs
+WAXED_WEATHERED_CUT_COPPER_STAIRS,waxed_weathered_cut_copper_stairs,Waxed Weathered Cut Copper Stairs
+WAXED_OXIDIZED_CUT_COPPER_STAIRS,waxed_oxidized_cut_copper_stairs,Waxed Oxidized Cut Copper Stairs
+WAXED_CUT_COPPER_SLAB,waxed_cut_copper_slab,Waxed Cut Copper Slab
+WAXED_EXPOSED_CUT_COPPER_SLAB,waxed_exposed_cut_copper_slab,Waxed Exposed Cut Copper Slab
+WAXED_WEATHERED_CUT_COPPER_SLAB,waxed_weathered_cut_copper_slab,Waxed Weathered Cut Copper Slab
+WAXED_OXIDIZED_CUT_COPPER_SLAB,waxed_oxidized_cut_copper_slab,Waxed Oxidized Cut Copper Slab
+OAK_LOG,oak_log,Oak Log
+SPRUCE_LOG,spruce_log,Spruce Log
+BIRCH_LOG,birch_log,Birch Log
+JUNGLE_LOG,jungle_log,Jungle Log
+ACACIA_LOG,acacia_log,Acacia Log
+CHERRY_LOG,cherry_log,Cherry Log
+DARK_OAK_LOG,dark_oak_log,Dark Oak Log
+MANGROVE_LOG,mangrove_log,Mangrove Log
+MANGROVE_ROOTS,mangrove_roots,Mangrove Roots
+MUDDY_MANGROVE_ROOTS,muddy_mangrove_roots,Muddy Mangrove Roots
+CRIMSON_STEM,crimson_stem,Crimson Stem
+WARPED_STEM,warped_stem,Warped Stem
+BAMBOO_BLOCK,bamboo_block,Bamboo Block
+STRIPPED_OAK_LOG,stripped_oak_log,Stripped Oak Log
+STRIPPED_SPRUCE_LOG,stripped_spruce_log,Stripped Spruce Log
+STRIPPED_BIRCH_LOG,stripped_birch_log,Stripped Birch Log
+STRIPPED_JUNGLE_LOG,stripped_jungle_log,Stripped Jungle Log
+STRIPPED_ACACIA_LOG,stripped_acacia_log,Stripped Acacia Log
+STRIPPED_CHERRY_LOG,stripped_cherry_log,Stripped Cherry Log
+STRIPPED_DARK_OAK_LOG,stripped_dark_oak_log,Stripped Dark Oak Log
+STRIPPED_MANGROVE_LOG,stripped_mangrove_log,Stripped Mangrove Log
+STRIPPED_CRIMSON_STEM,stripped_crimson_stem,Stripped Crimson Stem
+STRIPPED_WARPED_STEM,stripped_warped_stem,Stripped Warped Stem
+STRIPPED_OAK_WOOD,stripped_oak_wood,Stripped Oak Wood
+STRIPPED_SPRUCE_WOOD,stripped_spruce_wood,Stripped Spruce Wood
+STRIPPED_BIRCH_WOOD,stripped_birch_wood,Stripped Birch Wood
+STRIPPED_JUNGLE_WOOD,stripped_jungle_wood,Stripped Jungle Wood
+STRIPPED_ACACIA_WOOD,stripped_acacia_wood,Stripped Acacia Wood
+STRIPPED_CHERRY_WOOD,stripped_cherry_wood,Stripped Cherry Wood
+STRIPPED_DARK_OAK_WOOD,stripped_dark_oak_wood,Stripped Dark Oak Wood
+STRIPPED_MANGROVE_WOOD,stripped_mangrove_wood,Stripped Mangrove Wood
+STRIPPED_CRIMSON_HYPHAE,stripped_crimson_hyphae,Stripped Crimson Hyphae
+STRIPPED_WARPED_HYPHAE,stripped_warped_hyphae,Stripped Warped Hyphae
+STRIPPED_BAMBOO_BLOCK,stripped_bamboo_block,Stripped Bamboo Block
+OAK_WOOD,oak_wood,Oak Wood
+SPRUCE_WOOD,spruce_wood,Spruce Wood
+BIRCH_WOOD,birch_wood,Birch Wood
+JUNGLE_WOOD,jungle_wood,Jungle Wood
+ACACIA_WOOD,acacia_wood,Acacia Wood
+CHERRY_WOOD,cherry_wood,Cherry Wood
+DARK_OAK_WOOD,dark_oak_wood,Dark Oak Wood
+MANGROVE_WOOD,mangrove_wood,Mangrove Wood
+CRIMSON_HYPHAE,crimson_hyphae,Crimson Hyphae
+WARPED_HYPHAE,warped_hyphae,Warped Hyphae
+OAK_LEAVES,oak_leaves,Oak Leaves
+SPRUCE_LEAVES,spruce_leaves,Spruce Leaves
+BIRCH_LEAVES,birch_leaves,Birch Leaves
+JUNGLE_LEAVES,jungle_leaves,Jungle Leaves
+ACACIA_LEAVES,acacia_leaves,Acacia Leaves
+CHERRY_LEAVES,cherry_leaves,Cherry Leaves
+DARK_OAK_LEAVES,dark_oak_leaves,Dark Oak Leaves
+MANGROVE_LEAVES,mangrove_leaves,Mangrove Leaves
+AZALEA_LEAVES,azalea_leaves,Azalea Leaves
+FLOWERING_AZALEA_LEAVES,flowering_azalea_leaves,Flowering Azalea Leaves
+SPONGE,sponge,Sponge
+WET_SPONGE,wet_sponge,Wet Sponge
+GLASS,glass,Glass
+TINTED_GLASS,tinted_glass,Tinted Glass
+LAPIS_BLOCK,lapis_block,Lapis Block
+SANDSTONE,sandstone,Sandstone
+CHISELED_SANDSTONE,chiseled_sandstone,Chiseled Sandstone
+CUT_SANDSTONE,cut_sandstone,Cut Sandstone
+COBWEB,cobweb,Cobweb
+GRASS,grass,Grass
+FERN,fern,Fern
+AZALEA,azalea,Azalea
+FLOWERING_AZALEA,flowering_azalea,Flowering Azalea
+DEAD_BUSH,dead_bush,Dead Bush
+SEAGRASS,seagrass,Seagrass
+SEA_PICKLE,sea_pickle,Sea Pickle
+WHITE_WOOL,white_wool,White Wool
+ORANGE_WOOL,orange_wool,Orange Wool
+MAGENTA_WOOL,magenta_wool,Magenta Wool
+LIGHT_BLUE_WOOL,light_blue_wool,Light Blue Wool
+YELLOW_WOOL,yellow_wool,Yellow Wool
+LIME_WOOL,lime_wool,Lime Wool
+PINK_WOOL,pink_wool,Pink Wool
+GRAY_WOOL,gray_wool,Gray Wool
+LIGHT_GRAY_WOOL,light_gray_wool,Light Gray Wool
+CYAN_WOOL,cyan_wool,Cyan Wool
+PURPLE_WOOL,purple_wool,Purple Wool
+BLUE_WOOL,blue_wool,Blue Wool
+BROWN_WOOL,brown_wool,Brown Wool
+GREEN_WOOL,green_wool,Green Wool
+RED_WOOL,red_wool,Red Wool
+BLACK_WOOL,black_wool,Black Wool
+DANDELION,dandelion,Dandelion
+POPPY,poppy,Poppy
+BLUE_ORCHID,blue_orchid,Blue Orchid
+ALLIUM,allium,Allium
+AZURE_BLUET,azure_bluet,Azure Bluet
+RED_TULIP,red_tulip,Red Tulip
+ORANGE_TULIP,orange_tulip,Orange Tulip
+WHITE_TULIP,white_tulip,White Tulip
+PINK_TULIP,pink_tulip,Pink Tulip
+OXEYE_DAISY,oxeye_daisy,Oxeye Daisy
+CORNFLOWER,cornflower,Cornflower
+LILY_OF_THE_VALLEY,lily_of_the_valley,Lily Of The Valley
+WITHER_ROSE,wither_rose,Wither Rose
+TORCHFLOWER,torchflower,Torchflower
+PITCHER_PLANT,pitcher_plant,Pitcher Plant
+SPORE_BLOSSOM,spore_blossom,Spore Blossom
+BROWN_MUSHROOM,brown_mushroom,Brown Mushroom
+RED_MUSHROOM,red_mushroom,Red Mushroom
+CRIMSON_FUNGUS,crimson_fungus,Crimson Fungus
+WARPED_FUNGUS,warped_fungus,Warped Fungus
+CRIMSON_ROOTS,crimson_roots,Crimson Roots
+WARPED_ROOTS,warped_roots,Warped Roots
+NETHER_SPROUTS,nether_sprouts,Nether Sprouts
+WEEPING_VINES,weeping_vines,Weeping Vines
+TWISTING_VINES,twisting_vines,Twisting Vines
+SUGAR_CANE,sugar_cane,Sugar Cane
+KELP,kelp,Kelp
+MOSS_CARPET,moss_carpet,Moss Carpet
+PINK_PETALS,pink_petals,Pink Petals
+MOSS_BLOCK,moss_block,Moss Block
+HANGING_ROOTS,hanging_roots,Hanging Roots
+BIG_DRIPLEAF,big_dripleaf,Big Dripleaf
+SMALL_DRIPLEAF,small_dripleaf,Small Dripleaf
+BAMBOO,bamboo,Bamboo
+OAK_SLAB,oak_slab,Oak Slab
+SPRUCE_SLAB,spruce_slab,Spruce Slab
+BIRCH_SLAB,birch_slab,Birch Slab
+JUNGLE_SLAB,jungle_slab,Jungle Slab
+ACACIA_SLAB,acacia_slab,Acacia Slab
+CHERRY_SLAB,cherry_slab,Cherry Slab
+DARK_OAK_SLAB,dark_oak_slab,Dark Oak Slab
+MANGROVE_SLAB,mangrove_slab,Mangrove Slab
+BAMBOO_SLAB,bamboo_slab,Bamboo Slab
+BAMBOO_MOSAIC_SLAB,bamboo_mosaic_slab,Bamboo Mosaic Slab
+CRIMSON_SLAB,crimson_slab,Crimson Slab
+WARPED_SLAB,warped_slab,Warped Slab
+STONE_SLAB,stone_slab,Stone Slab
+SMOOTH_STONE_SLAB,smooth_stone_slab,Smooth Stone Slab
+SANDSTONE_SLAB,sandstone_slab,Sandstone Slab
+CUT_SANDSTONE_SLAB,cut_sandstone_slab,Cut Sandstone Slab
+PETRIFIED_OAK_SLAB,petrified_oak_slab,Petrified Oak Slab
+COBBLESTONE_SLAB,cobblestone_slab,Cobblestone Slab
+BRICK_SLAB,brick_slab,Brick Slab
+STONE_BRICK_SLAB,stone_brick_slab,Stone Brick Slab
+MUD_BRICK_SLAB,mud_brick_slab,Mud Brick Slab
+NETHER_BRICK_SLAB,nether_brick_slab,Nether Brick Slab
+QUARTZ_SLAB,quartz_slab,Quartz Slab
+RED_SANDSTONE_SLAB,red_sandstone_slab,Red Sandstone Slab
+CUT_RED_SANDSTONE_SLAB,cut_red_sandstone_slab,Cut Red Sandstone Slab
+PURPUR_SLAB,purpur_slab,Purpur Slab
+PRISMARINE_SLAB,prismarine_slab,Prismarine Slab
+PRISMARINE_BRICK_SLAB,prismarine_brick_slab,Prismarine Brick Slab
+DARK_PRISMARINE_SLAB,dark_prismarine_slab,Dark Prismarine Slab
+SMOOTH_QUARTZ,smooth_quartz,Smooth Quartz
+SMOOTH_RED_SANDSTONE,smooth_red_sandstone,Smooth Red Sandstone
+SMOOTH_SANDSTONE,smooth_sandstone,Smooth Sandstone
+SMOOTH_STONE,smooth_stone,Smooth Stone
+BRICKS,bricks,Bricks
+BOOKSHELF,bookshelf,Bookshelf
+CHISELED_BOOKSHELF,chiseled_bookshelf,Chiseled Bookshelf
+DECORATED_POT,decorated_pot,Decorated Pot
+MOSSY_COBBLESTONE,mossy_cobblestone,Mossy Cobblestone
+OBSIDIAN,obsidian,Obsidian
+TORCH,torch,Torch
+END_ROD,end_rod,End Rod
+CHORUS_PLANT,chorus_plant,Chorus Plant
+CHORUS_FLOWER,chorus_flower,Chorus Flower
+PURPUR_BLOCK,purpur_block,Purpur Block
+PURPUR_PILLAR,purpur_pillar,Purpur Pillar
+PURPUR_STAIRS,purpur_stairs,Purpur Stairs
+SPAWNER,spawner,Spawner
+CHEST,chest,Chest
+CRAFTING_TABLE,crafting_table,Crafting Table
+FARMLAND,farmland,Farmland
+FURNACE,furnace,Furnace
+LADDER,ladder,Ladder
+COBBLESTONE_STAIRS,cobblestone_stairs,Cobblestone Stairs
+SNOW,snow,Snow
+ICE,ice,Ice
+SNOW_BLOCK,snow_block,Snow Block
+CACTUS,cactus,Cactus
+CLAY,clay,Clay
+JUKEBOX,jukebox,Jukebox
+OAK_FENCE,oak_fence,Oak Fence
+SPRUCE_FENCE,spruce_fence,Spruce Fence
+BIRCH_FENCE,birch_fence,Birch Fence
+JUNGLE_FENCE,jungle_fence,Jungle Fence
+ACACIA_FENCE,acacia_fence,Acacia Fence
+CHERRY_FENCE,cherry_fence,Cherry Fence
+DARK_OAK_FENCE,dark_oak_fence,Dark Oak Fence
+MANGROVE_FENCE,mangrove_fence,Mangrove Fence
+BAMBOO_FENCE,bamboo_fence,Bamboo Fence
+CRIMSON_FENCE,crimson_fence,Crimson Fence
+WARPED_FENCE,warped_fence,Warped Fence
+PUMPKIN,pumpkin,Pumpkin
+CARVED_PUMPKIN,carved_pumpkin,Carved Pumpkin
+JACK_O_LANTERN,jack_o_lantern,Jack O Lantern
+NETHERRACK,netherrack,Netherrack
+SOUL_SAND,soul_sand,Soul Sand
+SOUL_SOIL,soul_soil,Soul Soil
+BASALT,basalt,Basalt
+POLISHED_BASALT,polished_basalt,Polished Basalt
+SMOOTH_BASALT,smooth_basalt,Smooth Basalt
+SOUL_TORCH,soul_torch,Soul Torch
+GLOWSTONE,glowstone,Glowstone
+INFESTED_STONE,infested_stone,Infested Stone
+INFESTED_COBBLESTONE,infested_cobblestone,Infested Cobblestone
+INFESTED_STONE_BRICKS,infested_stone_bricks,Infested Stone Bricks
+INFESTED_MOSSY_STONE_BRICKS,infested_mossy_stone_bricks,Infested Mossy Stone Bricks
+INFESTED_CRACKED_STONE_BRICKS,infested_cracked_stone_bricks,Infested Cracked Stone Bricks
+INFESTED_CHISELED_STONE_BRICKS,infested_chiseled_stone_bricks,Infested Chiseled Stone Bricks
+INFESTED_DEEPSLATE,infested_deepslate,Infested Deepslate
+STONE_BRICKS,stone_bricks,Stone Bricks
+MOSSY_STONE_BRICKS,mossy_stone_bricks,Mossy Stone Bricks
+CRACKED_STONE_BRICKS,cracked_stone_bricks,Cracked Stone Bricks
+CHISELED_STONE_BRICKS,chiseled_stone_bricks,Chiseled Stone Bricks
+PACKED_MUD,packed_mud,Packed Mud
+MUD_BRICKS,mud_bricks,Mud Bricks
+DEEPSLATE_BRICKS,deepslate_bricks,Deepslate Bricks
+CRACKED_DEEPSLATE_BRICKS,cracked_deepslate_bricks,Cracked Deepslate Bricks
+DEEPSLATE_TILES,deepslate_tiles,Deepslate Tiles
+CRACKED_DEEPSLATE_TILES,cracked_deepslate_tiles,Cracked Deepslate Tiles
+CHISELED_DEEPSLATE,chiseled_deepslate,Chiseled Deepslate
+REINFORCED_DEEPSLATE,reinforced_deepslate,Reinforced Deepslate
+BROWN_MUSHROOM_BLOCK,brown_mushroom_block,Brown Mushroom Block
+RED_MUSHROOM_BLOCK,red_mushroom_block,Red Mushroom Block
+MUSHROOM_STEM,mushroom_stem,Mushroom Stem
+IRON_BARS,iron_bars,Iron Bars
+CHAIN,chain,Chain
+GLASS_PANE,glass_pane,Glass Pane
+MELON,melon,Melon
+VINE,vine,Vine
+GLOW_LICHEN,glow_lichen,Glow Lichen
+BRICK_STAIRS,brick_stairs,Brick Stairs
+STONE_BRICK_STAIRS,stone_brick_stairs,Stone Brick Stairs
+MUD_BRICK_STAIRS,mud_brick_stairs,Mud Brick Stairs
+MYCELIUM,mycelium,Mycelium
+LILY_PAD,lily_pad,Lily Pad
+NETHER_BRICKS,nether_bricks,Nether Bricks
+CRACKED_NETHER_BRICKS,cracked_nether_bricks,Cracked Nether Bricks
+CHISELED_NETHER_BRICKS,chiseled_nether_bricks,Chiseled Nether Bricks
+NETHER_BRICK_FENCE,nether_brick_fence,Nether Brick Fence
+NETHER_BRICK_STAIRS,nether_brick_stairs,Nether Brick Stairs
+SCULK,sculk,Sculk
+SCULK_VEIN,sculk_vein,Sculk Vein
+SCULK_CATALYST,sculk_catalyst,Sculk Catalyst
+SCULK_SHRIEKER,sculk_shrieker,Sculk Shrieker
+ENCHANTING_TABLE,enchanting_table,Enchanting Table
+END_PORTAL_FRAME,end_portal_frame,End Portal Frame
+END_STONE,end_stone,End Stone
+END_STONE_BRICKS,end_stone_bricks,End Stone Bricks
+DRAGON_EGG,dragon_egg,Dragon Egg
+SANDSTONE_STAIRS,sandstone_stairs,Sandstone Stairs
+ENDER_CHEST,ender_chest,Ender Chest
+EMERALD_BLOCK,emerald_block,Emerald Block
+OAK_STAIRS,oak_stairs,Oak Stairs
+SPRUCE_STAIRS,spruce_stairs,Spruce Stairs
+BIRCH_STAIRS,birch_stairs,Birch Stairs
+JUNGLE_STAIRS,jungle_stairs,Jungle Stairs
+ACACIA_STAIRS,acacia_stairs,Acacia Stairs
+CHERRY_STAIRS,cherry_stairs,Cherry Stairs
+DARK_OAK_STAIRS,dark_oak_stairs,Dark Oak Stairs
+MANGROVE_STAIRS,mangrove_stairs,Mangrove Stairs
+BAMBOO_STAIRS,bamboo_stairs,Bamboo Stairs
+BAMBOO_MOSAIC_STAIRS,bamboo_mosaic_stairs,Bamboo Mosaic Stairs
+CRIMSON_STAIRS,crimson_stairs,Crimson Stairs
+WARPED_STAIRS,warped_stairs,Warped Stairs
+COMMAND_BLOCK,command_block,Command Block
+BEACON,beacon,Beacon
+COBBLESTONE_WALL,cobblestone_wall,Cobblestone Wall
+MOSSY_COBBLESTONE_WALL,mossy_cobblestone_wall,Mossy Cobblestone Wall
+BRICK_WALL,brick_wall,Brick Wall
+PRISMARINE_WALL,prismarine_wall,Prismarine Wall
+RED_SANDSTONE_WALL,red_sandstone_wall,Red Sandstone Wall
+MOSSY_STONE_BRICK_WALL,mossy_stone_brick_wall,Mossy Stone Brick Wall
+GRANITE_WALL,granite_wall,Granite Wall
+STONE_BRICK_WALL,stone_brick_wall,Stone Brick Wall
+MUD_BRICK_WALL,mud_brick_wall,Mud Brick Wall
+NETHER_BRICK_WALL,nether_brick_wall,Nether Brick Wall
+ANDESITE_WALL,andesite_wall,Andesite Wall
+RED_NETHER_BRICK_WALL,red_nether_brick_wall,Red Nether Brick Wall
+SANDSTONE_WALL,sandstone_wall,Sandstone Wall
+END_STONE_BRICK_WALL,end_stone_brick_wall,End Stone Brick Wall
+DIORITE_WALL,diorite_wall,Diorite Wall
+BLACKSTONE_WALL,blackstone_wall,Blackstone Wall
+POLISHED_BLACKSTONE_WALL,polished_blackstone_wall,Polished Blackstone Wall
+POLISHED_BLACKSTONE_BRICK_WALL,polished_blackstone_brick_wall,Polished Blackstone Brick Wall
+COBBLED_DEEPSLATE_WALL,cobbled_deepslate_wall,Cobbled Deepslate Wall
+POLISHED_DEEPSLATE_WALL,polished_deepslate_wall,Polished Deepslate Wall
+DEEPSLATE_BRICK_WALL,deepslate_brick_wall,Deepslate Brick Wall
+DEEPSLATE_TILE_WALL,deepslate_tile_wall,Deepslate Tile Wall
+ANVIL,anvil,Anvil
+CHIPPED_ANVIL,chipped_anvil,Chipped Anvil
+DAMAGED_ANVIL,damaged_anvil,Damaged Anvil
+CHISELED_QUARTZ_BLOCK,chiseled_quartz_block,Chiseled Quartz Block
+QUARTZ_BLOCK,quartz_block,Quartz Block
+QUARTZ_BRICKS,quartz_bricks,Quartz Bricks
+QUARTZ_PILLAR,quartz_pillar,Quartz Pillar
+QUARTZ_STAIRS,quartz_stairs,Quartz Stairs
+WHITE_TERRACOTTA,white_terracotta,White Terracotta
+ORANGE_TERRACOTTA,orange_terracotta,Orange Terracotta
+MAGENTA_TERRACOTTA,magenta_terracotta,Magenta Terracotta
+LIGHT_BLUE_TERRACOTTA,light_blue_terracotta,Light Blue Terracotta
+YELLOW_TERRACOTTA,yellow_terracotta,Yellow Terracotta
+LIME_TERRACOTTA,lime_terracotta,Lime Terracotta
+PINK_TERRACOTTA,pink_terracotta,Pink Terracotta
+GRAY_TERRACOTTA,gray_terracotta,Gray Terracotta
+LIGHT_GRAY_TERRACOTTA,light_gray_terracotta,Light Gray Terracotta
+CYAN_TERRACOTTA,cyan_terracotta,Cyan Terracotta
+PURPLE_TERRACOTTA,purple_terracotta,Purple Terracotta
+BLUE_TERRACOTTA,blue_terracotta,Blue Terracotta
+BROWN_TERRACOTTA,brown_terracotta,Brown Terracotta
+GREEN_TERRACOTTA,green_terracotta,Green Terracotta
+RED_TERRACOTTA,red_terracotta,Red Terracotta
+BLACK_TERRACOTTA,black_terracotta,Black Terracotta
+LIGHT,light,Light
+HAY_BLOCK,hay_block,Hay Block
+WHITE_CARPET,white_carpet,White Carpet
+ORANGE_CARPET,orange_carpet,Orange Carpet
+MAGENTA_CARPET,magenta_carpet,Magenta Carpet
+LIGHT_BLUE_CARPET,light_blue_carpet,Light Blue Carpet
+YELLOW_CARPET,yellow_carpet,Yellow Carpet
+LIME_CARPET,lime_carpet,Lime Carpet
+PINK_CARPET,pink_carpet,Pink Carpet
+GRAY_CARPET,gray_carpet,Gray Carpet
+LIGHT_GRAY_CARPET,light_gray_carpet,Light Gray Carpet
+CYAN_CARPET,cyan_carpet,Cyan Carpet
+PURPLE_CARPET,purple_carpet,Purple Carpet
+BLUE_CARPET,blue_carpet,Blue Carpet
+BROWN_CARPET,brown_carpet,Brown Carpet
+GREEN_CARPET,green_carpet,Green Carpet
+RED_CARPET,red_carpet,Red Carpet
+BLACK_CARPET,black_carpet,Black Carpet
+TERRACOTTA,terracotta,Terracotta
+PACKED_ICE,packed_ice,Packed Ice
+DIRT_PATH,dirt_path,Dirt Path
+SUNFLOWER,sunflower,Sunflower
+LILAC,lilac,Lilac
+ROSE_BUSH,rose_bush,Rose Bush
+PEONY,peony,Peony
+TALL_GRASS,tall_grass,Tall Grass
+LARGE_FERN,large_fern,Large Fern
+WHITE_STAINED_GLASS,white_stained_glass,White Stained Glass
+ORANGE_STAINED_GLASS,orange_stained_glass,Orange Stained Glass
+MAGENTA_STAINED_GLASS,magenta_stained_glass,Magenta Stained Glass
+LIGHT_BLUE_STAINED_GLASS,light_blue_stained_glass,Light Blue Stained Glass
+YELLOW_STAINED_GLASS,yellow_stained_glass,Yellow Stained Glass
+LIME_STAINED_GLASS,lime_stained_glass,Lime Stained Glass
+PINK_STAINED_GLASS,pink_stained_glass,Pink Stained Glass
+GRAY_STAINED_GLASS,gray_stained_glass,Gray Stained Glass
+LIGHT_GRAY_STAINED_GLASS,light_gray_stained_glass,Light Gray Stained Glass
+CYAN_STAINED_GLASS,cyan_stained_glass,Cyan Stained Glass
+PURPLE_STAINED_GLASS,purple_stained_glass,Purple Stained Glass
+BLUE_STAINED_GLASS,blue_stained_glass,Blue Stained Glass
+BROWN_STAINED_GLASS,brown_stained_glass,Brown Stained Glass
+GREEN_STAINED_GLASS,green_stained_glass,Green Stained Glass
+RED_STAINED_GLASS,red_stained_glass,Red Stained Glass
+BLACK_STAINED_GLASS,black_stained_glass,Black Stained Glass
+WHITE_STAINED_GLASS_PANE,white_stained_glass_pane,White Stained Glass Pane
+ORANGE_STAINED_GLASS_PANE,orange_stained_glass_pane,Orange Stained Glass Pane
+MAGENTA_STAINED_GLASS_PANE,magenta_stained_glass_pane,Magenta Stained Glass Pane
+LIGHT_BLUE_STAINED_GLASS_PANE,light_blue_stained_glass_pane,Light Blue Stained Glass Pane
+YELLOW_STAINED_GLASS_PANE,yellow_stained_glass_pane,Yellow Stained Glass Pane
+LIME_STAINED_GLASS_PANE,lime_stained_glass_pane,Lime Stained Glass Pane
+PINK_STAINED_GLASS_PANE,pink_stained_glass_pane,Pink Stained Glass Pane
+GRAY_STAINED_GLASS_PANE,gray_stained_glass_pane,Gray Stained Glass Pane
+LIGHT_GRAY_STAINED_GLASS_PANE,light_gray_stained_glass_pane,Light Gray Stained Glass Pane
+CYAN_STAINED_GLASS_PANE,cyan_stained_glass_pane,Cyan Stained Glass Pane
+PURPLE_STAINED_GLASS_PANE,purple_stained_glass_pane,Purple Stained Glass Pane
+BLUE_STAINED_GLASS_PANE,blue_stained_glass_pane,Blue Stained Glass Pane
+BROWN_STAINED_GLASS_PANE,brown_stained_glass_pane,Brown Stained Glass Pane
+GREEN_STAINED_GLASS_PANE,green_stained_glass_pane,Green Stained Glass Pane
+RED_STAINED_GLASS_PANE,red_stained_glass_pane,Red Stained Glass Pane
+BLACK_STAINED_GLASS_PANE,black_stained_glass_pane,Black Stained Glass Pane
+PRISMARINE,prismarine,Prismarine
+PRISMARINE_BRICKS,prismarine_bricks,Prismarine Bricks
+DARK_PRISMARINE,dark_prismarine,Dark Prismarine
+PRISMARINE_STAIRS,prismarine_stairs,Prismarine Stairs
+PRISMARINE_BRICK_STAIRS,prismarine_brick_stairs,Prismarine Brick Stairs
+DARK_PRISMARINE_STAIRS,dark_prismarine_stairs,Dark Prismarine Stairs
+SEA_LANTERN,sea_lantern,Sea Lantern
+RED_SANDSTONE,red_sandstone,Red Sandstone
+CHISELED_RED_SANDSTONE,chiseled_red_sandstone,Chiseled Red Sandstone
+CUT_RED_SANDSTONE,cut_red_sandstone,Cut Red Sandstone
+RED_SANDSTONE_STAIRS,red_sandstone_stairs,Red Sandstone Stairs
+REPEATING_COMMAND_BLOCK,repeating_command_block,Repeating Command Block
+CHAIN_COMMAND_BLOCK,chain_command_block,Chain Command Block
+MAGMA_BLOCK,magma_block,Magma Block
+NETHER_WART_BLOCK,nether_wart_block,Nether Wart Block
+WARPED_WART_BLOCK,warped_wart_block,Warped Wart Block
+RED_NETHER_BRICKS,red_nether_bricks,Red Nether Bricks
+BONE_BLOCK,bone_block,Bone Block
+STRUCTURE_VOID,structure_void,Structure Void
+SHULKER_BOX,shulker_box,Shulker Box
+WHITE_SHULKER_BOX,white_shulker_box,White Shulker Box
+ORANGE_SHULKER_BOX,orange_shulker_box,Orange Shulker Box
+MAGENTA_SHULKER_BOX,magenta_shulker_box,Magenta Shulker Box
+LIGHT_BLUE_SHULKER_BOX,light_blue_shulker_box,Light Blue Shulker Box
+YELLOW_SHULKER_BOX,yellow_shulker_box,Yellow Shulker Box
+LIME_SHULKER_BOX,lime_shulker_box,Lime Shulker Box
+PINK_SHULKER_BOX,pink_shulker_box,Pink Shulker Box
+GRAY_SHULKER_BOX,gray_shulker_box,Gray Shulker Box
+LIGHT_GRAY_SHULKER_BOX,light_gray_shulker_box,Light Gray Shulker Box
+CYAN_SHULKER_BOX,cyan_shulker_box,Cyan Shulker Box
+PURPLE_SHULKER_BOX,purple_shulker_box,Purple Shulker Box
+BLUE_SHULKER_BOX,blue_shulker_box,Blue Shulker Box
+BROWN_SHULKER_BOX,brown_shulker_box,Brown Shulker Box
+GREEN_SHULKER_BOX,green_shulker_box,Green Shulker Box
+RED_SHULKER_BOX,red_shulker_box,Red Shulker Box
+BLACK_SHULKER_BOX,black_shulker_box,Black Shulker Box
+WHITE_GLAZED_TERRACOTTA,white_glazed_terracotta,White Glazed Terracotta
+ORANGE_GLAZED_TERRACOTTA,orange_glazed_terracotta,Orange Glazed Terracotta
+MAGENTA_GLAZED_TERRACOTTA,magenta_glazed_terracotta,Magenta Glazed Terracotta
+LIGHT_BLUE_GLAZED_TERRACOTTA,light_blue_glazed_terracotta,Light Blue Glazed Terracotta
+YELLOW_GLAZED_TERRACOTTA,yellow_glazed_terracotta,Yellow Glazed Terracotta
+LIME_GLAZED_TERRACOTTA,lime_glazed_terracotta,Lime Glazed Terracotta
+PINK_GLAZED_TERRACOTTA,pink_glazed_terracotta,Pink Glazed Terracotta
+GRAY_GLAZED_TERRACOTTA,gray_glazed_terracotta,Gray Glazed Terracotta
+LIGHT_GRAY_GLAZED_TERRACOTTA,light_gray_glazed_terracotta,Light Gray Glazed Terracotta
+CYAN_GLAZED_TERRACOTTA,cyan_glazed_terracotta,Cyan Glazed Terracotta
+PURPLE_GLAZED_TERRACOTTA,purple_glazed_terracotta,Purple Glazed Terracotta
+BLUE_GLAZED_TERRACOTTA,blue_glazed_terracotta,Blue Glazed Terracotta
+BROWN_GLAZED_TERRACOTTA,brown_glazed_terracotta,Brown Glazed Terracotta
+GREEN_GLAZED_TERRACOTTA,green_glazed_terracotta,Green Glazed Terracotta
+RED_GLAZED_TERRACOTTA,red_glazed_terracotta,Red Glazed Terracotta
+BLACK_GLAZED_TERRACOTTA,black_glazed_terracotta,Black Glazed Terracotta
+WHITE_CONCRETE,white_concrete,White Concrete
+ORANGE_CONCRETE,orange_concrete,Orange Concrete
+MAGENTA_CONCRETE,magenta_concrete,Magenta Concrete
+LIGHT_BLUE_CONCRETE,light_blue_concrete,Light Blue Concrete
+YELLOW_CONCRETE,yellow_concrete,Yellow Concrete
+LIME_CONCRETE,lime_concrete,Lime Concrete
+PINK_CONCRETE,pink_concrete,Pink Concrete
+GRAY_CONCRETE,gray_concrete,Gray Concrete
+LIGHT_GRAY_CONCRETE,light_gray_concrete,Light Gray Concrete
+CYAN_CONCRETE,cyan_concrete,Cyan Concrete
+PURPLE_CONCRETE,purple_concrete,Purple Concrete
+BLUE_CONCRETE,blue_concrete,Blue Concrete
+BROWN_CONCRETE,brown_concrete,Brown Concrete
+GREEN_CONCRETE,green_concrete,Green Concrete
+RED_CONCRETE,red_concrete,Red Concrete
+BLACK_CONCRETE,black_concrete,Black Concrete
+WHITE_CONCRETE_POWDER,white_concrete_powder,White Concrete Powder
+ORANGE_CONCRETE_POWDER,orange_concrete_powder,Orange Concrete Powder
+MAGENTA_CONCRETE_POWDER,magenta_concrete_powder,Magenta Concrete Powder
+LIGHT_BLUE_CONCRETE_POWDER,light_blue_concrete_powder,Light Blue Concrete Powder
+YELLOW_CONCRETE_POWDER,yellow_concrete_powder,Yellow Concrete Powder
+LIME_CONCRETE_POWDER,lime_concrete_powder,Lime Concrete Powder
+PINK_CONCRETE_POWDER,pink_concrete_powder,Pink Concrete Powder
+GRAY_CONCRETE_POWDER,gray_concrete_powder,Gray Concrete Powder
+LIGHT_GRAY_CONCRETE_POWDER,light_gray_concrete_powder,Light Gray Concrete Powder
+CYAN_CONCRETE_POWDER,cyan_concrete_powder,Cyan Concrete Powder
+PURPLE_CONCRETE_POWDER,purple_concrete_powder,Purple Concrete Powder
+BLUE_CONCRETE_POWDER,blue_concrete_powder,Blue Concrete Powder
+BROWN_CONCRETE_POWDER,brown_concrete_powder,Brown Concrete Powder
+GREEN_CONCRETE_POWDER,green_concrete_powder,Green Concrete Powder
+RED_CONCRETE_POWDER,red_concrete_powder,Red Concrete Powder
+BLACK_CONCRETE_POWDER,black_concrete_powder,Black Concrete Powder
+TURTLE_EGG,turtle_egg,Turtle Egg
+SNIFFER_EGG,sniffer_egg,Sniffer Egg
+DEAD_TUBE_CORAL_BLOCK,dead_tube_coral_block,Dead Tube Coral Block
+DEAD_BRAIN_CORAL_BLOCK,dead_brain_coral_block,Dead Brain Coral Block
+DEAD_BUBBLE_CORAL_BLOCK,dead_bubble_coral_block,Dead Bubble Coral Block
+DEAD_FIRE_CORAL_BLOCK,dead_fire_coral_block,Dead Fire Coral Block
+DEAD_HORN_CORAL_BLOCK,dead_horn_coral_block,Dead Horn Coral Block
+TUBE_CORAL_BLOCK,tube_coral_block,Tube Coral Block
+BRAIN_CORAL_BLOCK,brain_coral_block,Brain Coral Block
+BUBBLE_CORAL_BLOCK,bubble_coral_block,Bubble Coral Block
+FIRE_CORAL_BLOCK,fire_coral_block,Fire Coral Block
+HORN_CORAL_BLOCK,horn_coral_block,Horn Coral Block
+TUBE_CORAL,tube_coral,Tube Coral
+BRAIN_CORAL,brain_coral,Brain Coral
+BUBBLE_CORAL,bubble_coral,Bubble Coral
+FIRE_CORAL,fire_coral,Fire Coral
+HORN_CORAL,horn_coral,Horn Coral
+DEAD_BRAIN_CORAL,dead_brain_coral,Dead Brain Coral
+DEAD_BUBBLE_CORAL,dead_bubble_coral,Dead Bubble Coral
+DEAD_FIRE_CORAL,dead_fire_coral,Dead Fire Coral
+DEAD_HORN_CORAL,dead_horn_coral,Dead Horn Coral
+DEAD_TUBE_CORAL,dead_tube_coral,Dead Tube Coral
+TUBE_CORAL_FAN,tube_coral_fan,Tube Coral Fan
+BRAIN_CORAL_FAN,brain_coral_fan,Brain Coral Fan
+BUBBLE_CORAL_FAN,bubble_coral_fan,Bubble Coral Fan
+FIRE_CORAL_FAN,fire_coral_fan,Fire Coral Fan
+HORN_CORAL_FAN,horn_coral_fan,Horn Coral Fan
+DEAD_TUBE_CORAL_FAN,dead_tube_coral_fan,Dead Tube Coral Fan
+DEAD_BRAIN_CORAL_FAN,dead_brain_coral_fan,Dead Brain Coral Fan
+DEAD_BUBBLE_CORAL_FAN,dead_bubble_coral_fan,Dead Bubble Coral Fan
+DEAD_FIRE_CORAL_FAN,dead_fire_coral_fan,Dead Fire Coral Fan
+DEAD_HORN_CORAL_FAN,dead_horn_coral_fan,Dead Horn Coral Fan
+BLUE_ICE,blue_ice,Blue Ice
+CONDUIT,conduit,Conduit
+POLISHED_GRANITE_STAIRS,polished_granite_stairs,Polished Granite Stairs
+SMOOTH_RED_SANDSTONE_STAIRS,smooth_red_sandstone_stairs,Smooth Red Sandstone Stairs
+MOSSY_STONE_BRICK_STAIRS,mossy_stone_brick_stairs,Mossy Stone Brick Stairs
+POLISHED_DIORITE_STAIRS,polished_diorite_stairs,Polished Diorite Stairs
+MOSSY_COBBLESTONE_STAIRS,mossy_cobblestone_stairs,Mossy Cobblestone Stairs
+END_STONE_BRICK_STAIRS,end_stone_brick_stairs,End Stone Brick Stairs
+STONE_STAIRS,stone_stairs,Stone Stairs
+SMOOTH_SANDSTONE_STAIRS,smooth_sandstone_stairs,Smooth Sandstone Stairs
+SMOOTH_QUARTZ_STAIRS,smooth_quartz_stairs,Smooth Quartz Stairs
+GRANITE_STAIRS,granite_stairs,Granite Stairs
+ANDESITE_STAIRS,andesite_stairs,Andesite Stairs
+RED_NETHER_BRICK_STAIRS,red_nether_brick_stairs,Red Nether Brick Stairs
+POLISHED_ANDESITE_STAIRS,polished_andesite_stairs,Polished Andesite Stairs
+DIORITE_STAIRS,diorite_stairs,Diorite Stairs
+COBBLED_DEEPSLATE_STAIRS,cobbled_deepslate_stairs,Cobbled Deepslate Stairs
+POLISHED_DEEPSLATE_STAIRS,polished_deepslate_stairs,Polished Deepslate Stairs
+DEEPSLATE_BRICK_STAIRS,deepslate_brick_stairs,Deepslate Brick Stairs
+DEEPSLATE_TILE_STAIRS,deepslate_tile_stairs,Deepslate Tile Stairs
+POLISHED_GRANITE_SLAB,polished_granite_slab,Polished Granite Slab
+SMOOTH_RED_SANDSTONE_SLAB,smooth_red_sandstone_slab,Smooth Red Sandstone Slab
+MOSSY_STONE_BRICK_SLAB,mossy_stone_brick_slab,Mossy Stone Brick Slab
+POLISHED_DIORITE_SLAB,polished_diorite_slab,Polished Diorite Slab
+MOSSY_COBBLESTONE_SLAB,mossy_cobblestone_slab,Mossy Cobblestone Slab
+END_STONE_BRICK_SLAB,end_stone_brick_slab,End Stone Brick Slab
+SMOOTH_SANDSTONE_SLAB,smooth_sandstone_slab,Smooth Sandstone Slab
+SMOOTH_QUARTZ_SLAB,smooth_quartz_slab,Smooth Quartz Slab
+GRANITE_SLAB,granite_slab,Granite Slab
+ANDESITE_SLAB,andesite_slab,Andesite Slab
+RED_NETHER_BRICK_SLAB,red_nether_brick_slab,Red Nether Brick Slab
+POLISHED_ANDESITE_SLAB,polished_andesite_slab,Polished Andesite Slab
+DIORITE_SLAB,diorite_slab,Diorite Slab
+COBBLED_DEEPSLATE_SLAB,cobbled_deepslate_slab,Cobbled Deepslate Slab
+POLISHED_DEEPSLATE_SLAB,polished_deepslate_slab,Polished Deepslate Slab
+DEEPSLATE_BRICK_SLAB,deepslate_brick_slab,Deepslate Brick Slab
+DEEPSLATE_TILE_SLAB,deepslate_tile_slab,Deepslate Tile Slab
+SCAFFOLDING,scaffolding,Scaffolding
+REDSTONE_TORCH,redstone_torch,Redstone Torch
+REDSTONE_BLOCK,redstone_block,Redstone Block
+REPEATER,repeater,Repeater
+COMPARATOR,comparator,Comparator
+PISTON,piston,Piston
+STICKY_PISTON,sticky_piston,Sticky Piston
+SLIME_BLOCK,slime_block,Slime Block
+HONEY_BLOCK,honey_block,Honey Block
+OBSERVER,observer,Observer
+HOPPER,hopper,Hopper
+DISPENSER,dispenser,Dispenser
+DROPPER,dropper,Dropper
+LECTERN,lectern,Lectern
+TARGET,target,Target
+LEVER,lever,Lever
+LIGHTNING_ROD,lightning_rod,Lightning Rod
+DAYLIGHT_DETECTOR,daylight_detector,Daylight Detector
+SCULK_SENSOR,sculk_sensor,Sculk Sensor
+CALIBRATED_SCULK_SENSOR,calibrated_sculk_sensor,Calibrated Sculk Sensor
+TRIPWIRE_HOOK,tripwire_hook,Tripwire Hook
+TRAPPED_CHEST,trapped_chest,Trapped Chest
+TNT,tnt,Tnt
+REDSTONE_LAMP,redstone_lamp,Redstone Lamp
+NOTE_BLOCK,note_block,Note Block
+STONE_BUTTON,stone_button,Stone Button
+POLISHED_BLACKSTONE_BUTTON,polished_blackstone_button,Polished Blackstone Button
+OAK_BUTTON,oak_button,Oak Button
+SPRUCE_BUTTON,spruce_button,Spruce Button
+BIRCH_BUTTON,birch_button,Birch Button
+JUNGLE_BUTTON,jungle_button,Jungle Button
+ACACIA_BUTTON,acacia_button,Acacia Button
+CHERRY_BUTTON,cherry_button,Cherry Button
+DARK_OAK_BUTTON,dark_oak_button,Dark Oak Button
+MANGROVE_BUTTON,mangrove_button,Mangrove Button
+BAMBOO_BUTTON,bamboo_button,Bamboo Button
+CRIMSON_BUTTON,crimson_button,Crimson Button
+WARPED_BUTTON,warped_button,Warped Button
+STONE_PRESSURE_PLATE,stone_pressure_plate,Stone Pressure Plate
+POLISHED_BLACKSTONE_PRESSURE_PLATE,polished_blackstone_pressure_plate,Polished Blackstone Pressure Plate
+LIGHT_WEIGHTED_PRESSURE_PLATE,light_weighted_pressure_plate,Light Weighted Pressure Plate
+HEAVY_WEIGHTED_PRESSURE_PLATE,heavy_weighted_pressure_plate,Heavy Weighted Pressure Plate
+OAK_PRESSURE_PLATE,oak_pressure_plate,Oak Pressure Plate
+SPRUCE_PRESSURE_PLATE,spruce_pressure_plate,Spruce Pressure Plate
+BIRCH_PRESSURE_PLATE,birch_pressure_plate,Birch Pressure Plate
+JUNGLE_PRESSURE_PLATE,jungle_pressure_plate,Jungle Pressure Plate
+ACACIA_PRESSURE_PLATE,acacia_pressure_plate,Acacia Pressure Plate
+CHERRY_PRESSURE_PLATE,cherry_pressure_plate,Cherry Pressure Plate
+DARK_OAK_PRESSURE_PLATE,dark_oak_pressure_plate,Dark Oak Pressure Plate
+MANGROVE_PRESSURE_PLATE,mangrove_pressure_plate,Mangrove Pressure Plate
+BAMBOO_PRESSURE_PLATE,bamboo_pressure_plate,Bamboo Pressure Plate
+CRIMSON_PRESSURE_PLATE,crimson_pressure_plate,Crimson Pressure Plate
+WARPED_PRESSURE_PLATE,warped_pressure_plate,Warped Pressure Plate
+IRON_DOOR,iron_door,Iron Door
+OAK_DOOR,oak_door,Oak Door
+SPRUCE_DOOR,spruce_door,Spruce Door
+BIRCH_DOOR,birch_door,Birch Door
+JUNGLE_DOOR,jungle_door,Jungle Door
+ACACIA_DOOR,acacia_door,Acacia Door
+CHERRY_DOOR,cherry_door,Cherry Door
+DARK_OAK_DOOR,dark_oak_door,Dark Oak Door
+MANGROVE_DOOR,mangrove_door,Mangrove Door
+BAMBOO_DOOR,bamboo_door,Bamboo Door
+CRIMSON_DOOR,crimson_door,Crimson Door
+WARPED_DOOR,warped_door,Warped Door
+IRON_TRAPDOOR,iron_trapdoor,Iron Trapdoor
+OAK_TRAPDOOR,oak_trapdoor,Oak Trapdoor
+SPRUCE_TRAPDOOR,spruce_trapdoor,Spruce Trapdoor
+BIRCH_TRAPDOOR,birch_trapdoor,Birch Trapdoor
+JUNGLE_TRAPDOOR,jungle_trapdoor,Jungle Trapdoor
+ACACIA_TRAPDOOR,acacia_trapdoor,Acacia Trapdoor
+CHERRY_TRAPDOOR,cherry_trapdoor,Cherry Trapdoor
+DARK_OAK_TRAPDOOR,dark_oak_trapdoor,Dark Oak Trapdoor
+MANGROVE_TRAPDOOR,mangrove_trapdoor,Mangrove Trapdoor
+BAMBOO_TRAPDOOR,bamboo_trapdoor,Bamboo Trapdoor
+CRIMSON_TRAPDOOR,crimson_trapdoor,Crimson Trapdoor
+WARPED_TRAPDOOR,warped_trapdoor,Warped Trapdoor
+OAK_FENCE_GATE,oak_fence_gate,Oak Fence Gate
+SPRUCE_FENCE_GATE,spruce_fence_gate,Spruce Fence Gate
+BIRCH_FENCE_GATE,birch_fence_gate,Birch Fence Gate
+JUNGLE_FENCE_GATE,jungle_fence_gate,Jungle Fence Gate
+ACACIA_FENCE_GATE,acacia_fence_gate,Acacia Fence Gate
+CHERRY_FENCE_GATE,cherry_fence_gate,Cherry Fence Gate
+DARK_OAK_FENCE_GATE,dark_oak_fence_gate,Dark Oak Fence Gate
+MANGROVE_FENCE_GATE,mangrove_fence_gate,Mangrove Fence Gate
+BAMBOO_FENCE_GATE,bamboo_fence_gate,Bamboo Fence Gate
+CRIMSON_FENCE_GATE,crimson_fence_gate,Crimson Fence Gate
+WARPED_FENCE_GATE,warped_fence_gate,Warped Fence Gate
+POWERED_RAIL,powered_rail,Powered Rail
+DETECTOR_RAIL,detector_rail,Detector Rail
+RAIL,rail,Rail
+ACTIVATOR_RAIL,activator_rail,Activator Rail
+STRUCTURE_BLOCK,structure_block,Structure Block
+JIGSAW,jigsaw,Jigsaw
+WHEAT,wheat,Wheat
+OAK_SIGN,oak_sign,Oak Sign
+SPRUCE_SIGN,spruce_sign,Spruce Sign
+BIRCH_SIGN,birch_sign,Birch Sign
+JUNGLE_SIGN,jungle_sign,Jungle Sign
+ACACIA_SIGN,acacia_sign,Acacia Sign
+CHERRY_SIGN,cherry_sign,Cherry Sign
+DARK_OAK_SIGN,dark_oak_sign,Dark Oak Sign
+MANGROVE_SIGN,mangrove_sign,Mangrove Sign
+BAMBOO_SIGN,bamboo_sign,Bamboo Sign
+CRIMSON_SIGN,crimson_sign,Crimson Sign
+WARPED_SIGN,warped_sign,Warped Sign
+OAK_HANGING_SIGN,oak_hanging_sign,Oak Hanging Sign
+SPRUCE_HANGING_SIGN,spruce_hanging_sign,Spruce Hanging Sign
+BIRCH_HANGING_SIGN,birch_hanging_sign,Birch Hanging Sign
+JUNGLE_HANGING_SIGN,jungle_hanging_sign,Jungle Hanging Sign
+ACACIA_HANGING_SIGN,acacia_hanging_sign,Acacia Hanging Sign
+CHERRY_HANGING_SIGN,cherry_hanging_sign,Cherry Hanging Sign
+DARK_OAK_HANGING_SIGN,dark_oak_hanging_sign,Dark Oak Hanging Sign
+MANGROVE_HANGING_SIGN,mangrove_hanging_sign,Mangrove Hanging Sign
+BAMBOO_HANGING_SIGN,bamboo_hanging_sign,Bamboo Hanging Sign
+CRIMSON_HANGING_SIGN,crimson_hanging_sign,Crimson Hanging Sign
+WARPED_HANGING_SIGN,warped_hanging_sign,Warped Hanging Sign
+DRIED_KELP_BLOCK,dried_kelp_block,Dried Kelp Block
+CAKE,cake,Cake
+WHITE_BED,white_bed,White Bed
+ORANGE_BED,orange_bed,Orange Bed
+MAGENTA_BED,magenta_bed,Magenta Bed
+LIGHT_BLUE_BED,light_blue_bed,Light Blue Bed
+YELLOW_BED,yellow_bed,Yellow Bed
+LIME_BED,lime_bed,Lime Bed
+PINK_BED,pink_bed,Pink Bed
+GRAY_BED,gray_bed,Gray Bed
+LIGHT_GRAY_BED,light_gray_bed,Light Gray Bed
+CYAN_BED,cyan_bed,Cyan Bed
+PURPLE_BED,purple_bed,Purple Bed
+BLUE_BED,blue_bed,Blue Bed
+BROWN_BED,brown_bed,Brown Bed
+GREEN_BED,green_bed,Green Bed
+RED_BED,red_bed,Red Bed
+BLACK_BED,black_bed,Black Bed
+NETHER_WART,nether_wart,Nether Wart
+BREWING_STAND,brewing_stand,Brewing Stand
+CAULDRON,cauldron,Cauldron
+FLOWER_POT,flower_pot,Flower Pot
+SKELETON_SKULL,skeleton_skull,Skeleton Skull
+WITHER_SKELETON_SKULL,wither_skeleton_skull,Wither Skeleton Skull
+PLAYER_HEAD,player_head,Player Head
+ZOMBIE_HEAD,zombie_head,Zombie Head
+CREEPER_HEAD,creeper_head,Creeper Head
+DRAGON_HEAD,dragon_head,Dragon Head
+PIGLIN_HEAD,piglin_head,Piglin Head
+WHITE_BANNER,white_banner,White Banner
+ORANGE_BANNER,orange_banner,Orange Banner
+MAGENTA_BANNER,magenta_banner,Magenta Banner
+LIGHT_BLUE_BANNER,light_blue_banner,Light Blue Banner
+YELLOW_BANNER,yellow_banner,Yellow Banner
+LIME_BANNER,lime_banner,Lime Banner
+PINK_BANNER,pink_banner,Pink Banner
+GRAY_BANNER,gray_banner,Gray Banner
+LIGHT_GRAY_BANNER,light_gray_banner,Light Gray Banner
+CYAN_BANNER,cyan_banner,Cyan Banner
+PURPLE_BANNER,purple_banner,Purple Banner
+BLUE_BANNER,blue_banner,Blue Banner
+BROWN_BANNER,brown_banner,Brown Banner
+GREEN_BANNER,green_banner,Green Banner
+RED_BANNER,red_banner,Red Banner
+BLACK_BANNER,black_banner,Black Banner
+LOOM,loom,Loom
+COMPOSTER,composter,Composter
+BARREL,barrel,Barrel
+SMOKER,smoker,Smoker
+BLAST_FURNACE,blast_furnace,Blast Furnace
+CARTOGRAPHY_TABLE,cartography_table,Cartography Table
+FLETCHING_TABLE,fletching_table,Fletching Table
+GRINDSTONE,grindstone,Grindstone
+SMITHING_TABLE,smithing_table,Smithing Table
+STONECUTTER,stonecutter,Stonecutter
+BELL,bell,Bell
+LANTERN,lantern,Lantern
+SOUL_LANTERN,soul_lantern,Soul Lantern
+CAMPFIRE,campfire,Campfire
+SOUL_CAMPFIRE,soul_campfire,Soul Campfire
+SHROOMLIGHT,shroomlight,Shroomlight
+BEE_NEST,bee_nest,Bee Nest
+BEEHIVE,beehive,Beehive
+HONEYCOMB_BLOCK,honeycomb_block,Honeycomb Block
+LODESTONE,lodestone,Lodestone
+CRYING_OBSIDIAN,crying_obsidian,Crying Obsidian
+BLACKSTONE,blackstone,Blackstone
+BLACKSTONE_SLAB,blackstone_slab,Blackstone Slab
+BLACKSTONE_STAIRS,blackstone_stairs,Blackstone Stairs
+GILDED_BLACKSTONE,gilded_blackstone,Gilded Blackstone
+POLISHED_BLACKSTONE,polished_blackstone,Polished Blackstone
+POLISHED_BLACKSTONE_SLAB,polished_blackstone_slab,Polished Blackstone Slab
+POLISHED_BLACKSTONE_STAIRS,polished_blackstone_stairs,Polished Blackstone Stairs
+CHISELED_POLISHED_BLACKSTONE,chiseled_polished_blackstone,Chiseled Polished Blackstone
+POLISHED_BLACKSTONE_BRICKS,polished_blackstone_bricks,Polished Blackstone Bricks
+POLISHED_BLACKSTONE_BRICK_SLAB,polished_blackstone_brick_slab,Polished Blackstone Brick Slab
+POLISHED_BLACKSTONE_BRICK_STAIRS,polished_blackstone_brick_stairs,Polished Blackstone Brick Stairs
+CRACKED_POLISHED_BLACKSTONE_BRICKS,cracked_polished_blackstone_bricks,Cracked Polished Blackstone Bricks
+RESPAWN_ANCHOR,respawn_anchor,Respawn Anchor
+CANDLE,candle,Candle
+WHITE_CANDLE,white_candle,White Candle
+ORANGE_CANDLE,orange_candle,Orange Candle
+MAGENTA_CANDLE,magenta_candle,Magenta Candle
+LIGHT_BLUE_CANDLE,light_blue_candle,Light Blue Candle
+YELLOW_CANDLE,yellow_candle,Yellow Candle
+LIME_CANDLE,lime_candle,Lime Candle
+PINK_CANDLE,pink_candle,Pink Candle
+GRAY_CANDLE,gray_candle,Gray Candle
+LIGHT_GRAY_CANDLE,light_gray_candle,Light Gray Candle
+CYAN_CANDLE,cyan_candle,Cyan Candle
+PURPLE_CANDLE,purple_candle,Purple Candle
+BLUE_CANDLE,blue_candle,Blue Candle
+BROWN_CANDLE,brown_candle,Brown Candle
+GREEN_CANDLE,green_candle,Green Candle
+RED_CANDLE,red_candle,Red Candle
+BLACK_CANDLE,black_candle,Black Candle
+SMALL_AMETHYST_BUD,small_amethyst_bud,Small Amethyst Bud
+MEDIUM_AMETHYST_BUD,medium_amethyst_bud,Medium Amethyst Bud
+LARGE_AMETHYST_BUD,large_amethyst_bud,Large Amethyst Bud
+AMETHYST_CLUSTER,amethyst_cluster,Amethyst Cluster
+POINTED_DRIPSTONE,pointed_dripstone,Pointed Dripstone
+OCHRE_FROGLIGHT,ochre_froglight,Ochre Froglight
+VERDANT_FROGLIGHT,verdant_froglight,Verdant Froglight
+PEARLESCENT_FROGLIGHT,pearlescent_froglight,Pearlescent Froglight
+FROGSPAWN,frogspawn,Frogspawn
+WATER,water,Water
+LAVA,lava,Lava
+TALL_SEAGRASS,tall_seagrass,Tall Seagrass
+PISTON_HEAD,piston_head,Piston Head
+MOVING_PISTON,moving_piston,Moving Piston
+WALL_TORCH,wall_torch,Wall Torch
+FIRE,fire,Fire
+SOUL_FIRE,soul_fire,Soul Fire
+REDSTONE_WIRE,redstone_wire,Redstone Wire
+OAK_WALL_SIGN,oak_wall_sign,Oak Wall Sign
+SPRUCE_WALL_SIGN,spruce_wall_sign,Spruce Wall Sign
+BIRCH_WALL_SIGN,birch_wall_sign,Birch Wall Sign
+ACACIA_WALL_SIGN,acacia_wall_sign,Acacia Wall Sign
+CHERRY_WALL_SIGN,cherry_wall_sign,Cherry Wall Sign
+JUNGLE_WALL_SIGN,jungle_wall_sign,Jungle Wall Sign
+DARK_OAK_WALL_SIGN,dark_oak_wall_sign,Dark Oak Wall Sign
+MANGROVE_WALL_SIGN,mangrove_wall_sign,Mangrove Wall Sign
+BAMBOO_WALL_SIGN,bamboo_wall_sign,Bamboo Wall Sign
+OAK_WALL_HANGING_SIGN,oak_wall_hanging_sign,Oak Wall Hanging Sign
+SPRUCE_WALL_HANGING_SIGN,spruce_wall_hanging_sign,Spruce Wall Hanging Sign
+BIRCH_WALL_HANGING_SIGN,birch_wall_hanging_sign,Birch Wall Hanging Sign
+ACACIA_WALL_HANGING_SIGN,acacia_wall_hanging_sign,Acacia Wall Hanging Sign
+CHERRY_WALL_HANGING_SIGN,cherry_wall_hanging_sign,Cherry Wall Hanging Sign
+JUNGLE_WALL_HANGING_SIGN,jungle_wall_hanging_sign,Jungle Wall Hanging Sign
+DARK_OAK_WALL_HANGING_SIGN,dark_oak_wall_hanging_sign,Dark Oak Wall Hanging Sign
+MANGROVE_WALL_HANGING_SIGN,mangrove_wall_hanging_sign,Mangrove Wall Hanging Sign
+CRIMSON_WALL_HANGING_SIGN,crimson_wall_hanging_sign,Crimson Wall Hanging Sign
+WARPED_WALL_HANGING_SIGN,warped_wall_hanging_sign,Warped Wall Hanging Sign
+BAMBOO_WALL_HANGING_SIGN,bamboo_wall_hanging_sign,Bamboo Wall Hanging Sign
+REDSTONE_WALL_TORCH,redstone_wall_torch,Redstone Wall Torch
+SOUL_WALL_TORCH,soul_wall_torch,Soul Wall Torch
+NETHER_PORTAL,nether_portal,Nether Portal
+ATTACHED_PUMPKIN_STEM,attached_pumpkin_stem,Attached Pumpkin Stem
+ATTACHED_MELON_STEM,attached_melon_stem,Attached Melon Stem
+PUMPKIN_STEM,pumpkin_stem,Pumpkin Stem
+MELON_STEM,melon_stem,Melon Stem
+WATER_CAULDRON,water_cauldron,Water Cauldron
+LAVA_CAULDRON,lava_cauldron,Lava Cauldron
+POWDER_SNOW_CAULDRON,powder_snow_cauldron,Powder Snow Cauldron
+END_PORTAL,end_portal,End Portal
+COCOA,cocoa,Cocoa
+TRIPWIRE,tripwire,Tripwire
+POTTED_TORCHFLOWER,potted_torchflower,Potted Torchflower
+POTTED_OAK_SAPLING,potted_oak_sapling,Potted Oak Sapling
+POTTED_SPRUCE_SAPLING,potted_spruce_sapling,Potted Spruce Sapling
+POTTED_BIRCH_SAPLING,potted_birch_sapling,Potted Birch Sapling
+POTTED_JUNGLE_SAPLING,potted_jungle_sapling,Potted Jungle Sapling
+POTTED_ACACIA_SAPLING,potted_acacia_sapling,Potted Acacia Sapling
+POTTED_CHERRY_SAPLING,potted_cherry_sapling,Potted Cherry Sapling
+POTTED_DARK_OAK_SAPLING,potted_dark_oak_sapling,Potted Dark Oak Sapling
+POTTED_MANGROVE_PROPAGULE,potted_mangrove_propagule,Potted Mangrove Propagule
+POTTED_FERN,potted_fern,Potted Fern
+POTTED_DANDELION,potted_dandelion,Potted Dandelion
+POTTED_POPPY,potted_poppy,Potted Poppy
+POTTED_BLUE_ORCHID,potted_blue_orchid,Potted Blue Orchid
+POTTED_ALLIUM,potted_allium,Potted Allium
+POTTED_AZURE_BLUET,potted_azure_bluet,Potted Azure Bluet
+POTTED_RED_TULIP,potted_red_tulip,Potted Red Tulip
+POTTED_ORANGE_TULIP,potted_orange_tulip,Potted Orange Tulip
+POTTED_WHITE_TULIP,potted_white_tulip,Potted White Tulip
+POTTED_PINK_TULIP,potted_pink_tulip,Potted Pink Tulip
+POTTED_OXEYE_DAISY,potted_oxeye_daisy,Potted Oxeye Daisy
+POTTED_CORNFLOWER,potted_cornflower,Potted Cornflower
+POTTED_LILY_OF_THE_VALLEY,potted_lily_of_the_valley,Potted Lily Of The Valley
+POTTED_WITHER_ROSE,potted_wither_rose,Potted Wither Rose
+POTTED_RED_MUSHROOM,potted_red_mushroom,Potted Red Mushroom
+POTTED_BROWN_MUSHROOM,potted_brown_mushroom,Potted Brown Mushroom
+POTTED_DEAD_BUSH,potted_dead_bush,Potted Dead Bush
+POTTED_CACTUS,potted_cactus,Potted Cactus
+CARROTS,carrots,Carrots
+POTATOES,potatoes,Potatoes
+SKELETON_WALL_SKULL,skeleton_wall_skull,Skeleton Wall Skull
+WITHER_SKELETON_WALL_SKULL,wither_skeleton_wall_skull,Wither Skeleton Wall Skull
+ZOMBIE_WALL_HEAD,zombie_wall_head,Zombie Wall Head
+PLAYER_WALL_HEAD,player_wall_head,Player Wall Head
+CREEPER_WALL_HEAD,creeper_wall_head,Creeper Wall Head
+DRAGON_WALL_HEAD,dragon_wall_head,Dragon Wall Head
+PIGLIN_WALL_HEAD,piglin_wall_head,Piglin Wall Head
+WHITE_WALL_BANNER,white_wall_banner,White Wall Banner
+ORANGE_WALL_BANNER,orange_wall_banner,Orange Wall Banner
+MAGENTA_WALL_BANNER,magenta_wall_banner,Magenta Wall Banner
+LIGHT_BLUE_WALL_BANNER,light_blue_wall_banner,Light Blue Wall Banner
+YELLOW_WALL_BANNER,yellow_wall_banner,Yellow Wall Banner
+LIME_WALL_BANNER,lime_wall_banner,Lime Wall Banner
+PINK_WALL_BANNER,pink_wall_banner,Pink Wall Banner
+GRAY_WALL_BANNER,gray_wall_banner,Gray Wall Banner
+LIGHT_GRAY_WALL_BANNER,light_gray_wall_banner,Light Gray Wall Banner
+CYAN_WALL_BANNER,cyan_wall_banner,Cyan Wall Banner
+PURPLE_WALL_BANNER,purple_wall_banner,Purple Wall Banner
+BLUE_WALL_BANNER,blue_wall_banner,Blue Wall Banner
+BROWN_WALL_BANNER,brown_wall_banner,Brown Wall Banner
+GREEN_WALL_BANNER,green_wall_banner,Green Wall Banner
+RED_WALL_BANNER,red_wall_banner,Red Wall Banner
+BLACK_WALL_BANNER,black_wall_banner,Black Wall Banner
+TORCHFLOWER_CROP,torchflower_crop,Torchflower Crop
+PITCHER_CROP,pitcher_crop,Pitcher Crop
+BEETROOTS,beetroots,Beetroots
+END_GATEWAY,end_gateway,End Gateway
+FROSTED_ICE,frosted_ice,Frosted Ice
+KELP_PLANT,kelp_plant,Kelp Plant
+DEAD_TUBE_CORAL_WALL_FAN,dead_tube_coral_wall_fan,Dead Tube Coral Wall Fan
+DEAD_BRAIN_CORAL_WALL_FAN,dead_brain_coral_wall_fan,Dead Brain Coral Wall Fan
+DEAD_BUBBLE_CORAL_WALL_FAN,dead_bubble_coral_wall_fan,Dead Bubble Coral Wall Fan
+DEAD_FIRE_CORAL_WALL_FAN,dead_fire_coral_wall_fan,Dead Fire Coral Wall Fan
+DEAD_HORN_CORAL_WALL_FAN,dead_horn_coral_wall_fan,Dead Horn Coral Wall Fan
+TUBE_CORAL_WALL_FAN,tube_coral_wall_fan,Tube Coral Wall Fan
+BRAIN_CORAL_WALL_FAN,brain_coral_wall_fan,Brain Coral Wall Fan
+BUBBLE_CORAL_WALL_FAN,bubble_coral_wall_fan,Bubble Coral Wall Fan
+FIRE_CORAL_WALL_FAN,fire_coral_wall_fan,Fire Coral Wall Fan
+HORN_CORAL_WALL_FAN,horn_coral_wall_fan,Horn Coral Wall Fan
+BAMBOO_SAPLING,bamboo_sapling,Bamboo Sapling
+POTTED_BAMBOO,potted_bamboo,Potted Bamboo
+BUBBLE_COLUMN,bubble_column,Bubble Column
+SWEET_BERRY_BUSH,sweet_berry_bush,Sweet Berry Bush
+WEEPING_VINES_PLANT,weeping_vines_plant,Weeping Vines Plant
+TWISTING_VINES_PLANT,twisting_vines_plant,Twisting Vines Plant
+CRIMSON_WALL_SIGN,crimson_wall_sign,Crimson Wall Sign
+WARPED_WALL_SIGN,warped_wall_sign,Warped Wall Sign
+POTTED_CRIMSON_FUNGUS,potted_crimson_fungus,Potted Crimson Fungus
+POTTED_WARPED_FUNGUS,potted_warped_fungus,Potted Warped Fungus
+POTTED_CRIMSON_ROOTS,potted_crimson_roots,Potted Crimson Roots
+POTTED_WARPED_ROOTS,potted_warped_roots,Potted Warped Roots
+CANDLE_CAKE,candle_cake,Candle Cake
+WHITE_CANDLE_CAKE,white_candle_cake,White Candle Cake
+ORANGE_CANDLE_CAKE,orange_candle_cake,Orange Candle Cake
+MAGENTA_CANDLE_CAKE,magenta_candle_cake,Magenta Candle Cake
+LIGHT_BLUE_CANDLE_CAKE,light_blue_candle_cake,Light Blue Candle Cake
+YELLOW_CANDLE_CAKE,yellow_candle_cake,Yellow Candle Cake
+LIME_CANDLE_CAKE,lime_candle_cake,Lime Candle Cake
+PINK_CANDLE_CAKE,pink_candle_cake,Pink Candle Cake
+GRAY_CANDLE_CAKE,gray_candle_cake,Gray Candle Cake
+LIGHT_GRAY_CANDLE_CAKE,light_gray_candle_cake,Light Gray Candle Cake
+CYAN_CANDLE_CAKE,cyan_candle_cake,Cyan Candle Cake
+PURPLE_CANDLE_CAKE,purple_candle_cake,Purple Candle Cake
+BLUE_CANDLE_CAKE,blue_candle_cake,Blue Candle Cake
+BROWN_CANDLE_CAKE,brown_candle_cake,Brown Candle Cake
+GREEN_CANDLE_CAKE,green_candle_cake,Green Candle Cake
+RED_CANDLE_CAKE,red_candle_cake,Red Candle Cake
+BLACK_CANDLE_CAKE,black_candle_cake,Black Candle Cake
+POWDER_SNOW,powder_snow,Powder Snow
+CAVE_VINES,cave_vines,Cave Vines
+CAVE_VINES_PLANT,cave_vines_plant,Cave Vines Plant
+BIG_DRIPLEAF_STEM,big_dripleaf_stem,Big Dripleaf Stem
+POTTED_AZALEA_BUSH,potted_azalea_bush,Potted Azalea Bush
+POTTED_FLOWERING_AZALEA_BUSH,potted_flowering_azalea_bush,Potted Flowering Azalea Bush

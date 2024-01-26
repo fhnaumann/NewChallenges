@@ -1,0 +1,7 @@
+name: Challenges
+version: '${project.version}'
+main: wand555.github.io.challenges.Challenges
+api-version: 1.20
+commands:
+  test:
+    description: abc

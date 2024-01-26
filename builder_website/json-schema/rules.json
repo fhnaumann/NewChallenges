@@ -1,0 +1,290 @@
+{
+  "$defs": {
+    "DeathPunishment": {
+      "additionalProperties": false,
+      "properties": {},
+      "title": "DeathPunishment",
+      "type": "object"
+    },
+    "EndPunishment": {
+      "additionalProperties": false,
+      "properties": {},
+      "title": "EndPunishment",
+      "type": "object"
+    },
+    "HealthPunishment": {
+      "additionalProperties": false,
+      "properties": {
+        "amountLost": {
+          "default": 1,
+          "maximum": 10,
+          "minimum": 1,
+          "title": "Amountlost",
+          "type": "integer"
+        }
+      },
+      "title": "HealthPunishment",
+      "type": "object"
+    },
+    "NoBlockBreakRule": {
+      "additionalProperties": false,
+      "properties": {
+        "punishments": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Punishments"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "exemptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Exemptions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "exemptions"
+      ],
+      "title": "NoBlockBreakRule",
+      "type": "object"
+    },
+    "NoBlockPlaceRule": {
+      "additionalProperties": false,
+      "properties": {
+        "punishments": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Punishments"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "exemptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Exemptions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "exemptions"
+      ],
+      "title": "NoBlockPlaceRule",
+      "type": "object"
+    },
+    "NoCraftingRule": {
+      "additionalProperties": false,
+      "properties": {
+        "punishments": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Punishments"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "exemptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Exemptions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "exemptions"
+      ],
+      "title": "NoCraftingRule",
+      "type": "object"
+    },
+    "NoDamageRule": {
+      "additionalProperties": false,
+      "properties": {
+        "punishments": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Punishments"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "NoDamageRule",
+      "type": "object"
+    },
+    "NoDeathRule": {
+      "additionalProperties": false,
+      "properties": {
+        "punishments": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Punishments"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "NoDeathRule",
+      "type": "object"
+    },
+    "NoRegenerationRule": {
+      "additionalProperties": false,
+      "properties": {
+        "disableAllRegeneration": {
+          "title": "Disableallregeneration",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "disableAllRegeneration"
+      ],
+      "title": "NoRegenerationRule",
+      "type": "object"
+    },
+    "Punishments": {
+      "additionalProperties": false,
+      "properties": {
+        "End": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EndPunishment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "Death": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeathPunishment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "Health": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HealthPunishment"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Punishments",
+      "type": "object"
+    },
+    "Rules": {
+      "additionalProperties": false,
+      "properties": {
+        "NoBlockBreak": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NoBlockBreakRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "NoBlockPlace": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NoBlockPlaceRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "NoCrafting": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NoCraftingRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "NoRegeneration": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NoRegenerationRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "NoDamage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NoDamageRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "NoDeath": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NoDeathRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Rules",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "rules": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rules"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "Model",
+  "type": "object"
+}
