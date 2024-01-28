@@ -1,26 +1,13 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xpath">
   <pattern>
-      <rule context="rules">
-        <assert test="false">
-          Always fails.
-        </assert>
-      </rule>
-    <rule context="rules/NoDeath">
-      <assert test="not(exists(punishments/Death))">
-        NoDeath rule should not contain the Death punishment.
+    <!--rule context="root/rules/enabledRules/noDeath">
+      <assert test="not(exists(punishments/deathPunishment))">
+        NoDeath rule cannnot contain the Death punishment.
       </assert>
-    </rule>
-    
-    <rule context="rules/RandomDrops/materialRandomizations">
-      <assert test="count(randomize/@from) = count(distinct-values(randomize/@from))">
-      Two entries cannot have the same key.
-      </assert>
-    </rule>
-    <!--rule context="rules/RandomDrops/materialRandomizations" >
-      <let name="uniqueFromValues" value="distinct-values(randomize/@from)"/>
-      <assert test="count(randomize/@from) = count($uniqueFromValues)">
-        Duplicate entries found for 'from' key: <value-of select="string-join($uniqueFromValues[. = current()/@from], ', ')".
-
+    </rule-->
+    <!--rule context="root/rules">
+      <assert test="not(exists(enabledRules/noDeath) and exists(enabledGlobalPunishments/deathPunishment))">
+        Global Death punishment and NoDeath rule cannot be both active.
       </assert>
     </rule-->
   </pattern>

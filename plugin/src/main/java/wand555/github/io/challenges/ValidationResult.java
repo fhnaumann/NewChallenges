@@ -15,6 +15,10 @@ public class ValidationResult {
         this.initialException = initialException;
     }
 
+    public boolean isValid() {
+        return valid;
+    }
+
     public String asFormattedString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Provided configuration is valid? ").append(this.valid);

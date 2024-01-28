@@ -1,17 +1,26 @@
 {
   "rules": {
     "enabledRules": {
-      "noDeath": {
+      "noBlockBreak": {
+        "exemptions": ["STONE"],
         "punishments": {
-          "deathPunishment": {
-          
+          "healthPunishment": {
+            "heartsLost": 1
           }
         }
       }
     },
     "enabledGlobalPunishments": {
-      "deathPunishment": {
 
+    }
+  },
+  "goals": {
+    "mobGoal": {
+      "mobs": {
+        "PIG": {
+          "amountNeeded": 2,
+          "currentAmount": 0
+        }
       }
     }
   }

@@ -43,18 +43,18 @@ import java.util.Set;
 public class Main {
 
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException {
+    //public static void main(String[] args, File file, Challenges plugin) {
         try {
             String json = Files.readString(Paths.get(Main.class.getResource("/dummy_data.json").toURI()));
+            //String json = Files.readString(file.toPath());
             InputStream stream = Main.class.getResourceAsStream("/test-output-schema.json");
             SchematronResourcePure schematronResourcePure = SchematronResourcePure.fromInputStream("abc", Main.class.getResourceAsStream("/constraints.sch"));
+            //SchematronResourcePure schematronResourcePure = SchematronResourcePure.fromInputStream("abc", new FileInputStream(new File(plugin.getDataFolder(), "constraints.sch")));
             Validator validator = new Validator();
             ValidationResult result = validator.validate(json, stream, schematronResourcePure);
             System.out.println(result.asFormattedString());
         } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,21 +1,13 @@
 package wand555.github.io.challenges;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.miniplaceholders.api.Expansion;
-import io.github.miniplaceholders.api.MiniPlaceholders;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.ComponentBuilder;
-import net.kyori.adventure.text.TranslatableComponent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.Tag;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.kyori.adventure.translation.GlobalTranslator;
 import net.kyori.adventure.translation.TranslationRegistry;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -31,32 +23,32 @@ import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.generated.TestOutputSchema;
 import wand555.github.io.challenges.goals.Collect;
 import wand555.github.io.challenges.goals.MobGoal;
+import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.rules.NoBlockBreakRule;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
-import java.util.logging.Level;
 
 public class Challenges extends JavaPlugin implements CommandExecutor {
 
-    public static JsonNode root;
-
     @Override
     public void onEnable() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            root = mapper.readTree(Challenges.class.getResource("/test-output-schema.json"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        Bukkit.getLogger().info(getDataFolder().exists() + "");
+        System.out.println(getDataFolder().exists());
+        if(!getDataFolder().exists()) {
+            boolean created = getDataFolder().mkdir();
+            System.out.println("PL FOLDER CREATED?" + created);
         }
+
+
 
         // Plugin startup logic
         getCommand("test").setExecutor(this);
+        getCommand("load").setExecutor(this);
 
         Expansion.Builder builder = Expansion.builder("challenges");
         builder.globalPlaceholder("player", (argumentQueue, context) -> {
@@ -81,6 +73,18 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if(command.getName().equalsIgnoreCase("load")) {
+            File file = new File(getDataFolder(), "data.json");
+            if(!file.exists()) {
+
+            }
+            try {
+                ChallengeManager challengeManager = FileManager.readFromFile(file, this);
+            } catch (LoadValidationException e) {
+                throw new RuntimeException(e);
+            }
+            //Main.main(null, file, this);
+        }
         if(command.getName().equalsIgnoreCase("test")) {
 
             TranslationRegistry registry = TranslationRegistry.create(Key.key("namespace:value"));

@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.json.JSONObject;
 import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
+import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.goals.Collect;
 import wand555.github.io.challenges.goals.Goal;
@@ -23,38 +23,32 @@ import wand555.github.io.challenges.rules.PunishableRule;
 import wand555.github.io.challenges.rules.Rule;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
-import java.net.URL;
 import java.util.*;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Mapper {
+public class ModelMapper {
 
     private static final Predicate<Material> VALID_BLOCKS = material -> material.isBlock() && !material.isLegacy() && !material.isAir() && material != Material.BARRIER;
 
     private Challenges plugin;
-    ResourceBundle ruleResourceBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
     private JsonNode schemaRoot;
+
+    private ResourceBundleContext resourceBundleContext;
 
     private ChallengeManager challengeManager;
 
-    public Mapper(Challenges plugin, ResourceBundle ruleResourceBundle, JsonNode schemaRoot) {
+    public ModelMapper(Challenges plugin, ResourceBundleContext resourceBundleContext, JsonNode schemaRoot) {
         this.plugin = plugin;
-        this.ruleResourceBundle = ruleResourceBundle;
         this.schemaRoot = schemaRoot;
+        this.resourceBundleContext = resourceBundleContext;
         this.challengeManager = new ChallengeManager();
     }
 
-    public ChallengeManager mapToGeneratedClasses(String json) throws JsonProcessingException {
+    public ChallengeManager map2ModelClasses(TestOutputSchema json) throws JsonProcessingException {
 
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        TestOutputSchema jsonInstance = objectMapper.readValue(json, TestOutputSchema.class);
-
-        List<Rule> rules = mapToRules(jsonInstance.getRules().getEnabledRules());
-        List<Punishment> globalPunishments = mapToPunishments(jsonInstance.getRules().getEnabledGlobalPunishments());
+        List<Rule> rules = mapToRules(json.getRules().getEnabledRules());
+        List<Punishment> globalPunishments = mapToPunishments(json.getRules().getEnabledGlobalPunishments());
         if(!globalPunishments.isEmpty()) {
             rules.stream()
                     .filter(rule -> rule instanceof PunishableRule)
@@ -64,7 +58,7 @@ public class Mapper {
                     });
         }
 
-        List<Goal> goals = mapToGoals(jsonInstance.getGoals());
+        List<Goal> goals = mapToGoals(json.getGoals());
         challengeManager.setRules(rules);
         challengeManager.setGoals(goals);
         return challengeManager;
@@ -113,7 +107,7 @@ public class Mapper {
             NoBlockBreakRuleConfig noBlockBreakRuleConfig = enabledRulesConfig.getNoBlockBreak();
             rules.add(new NoBlockBreakRule(
                     plugin,
-                    ruleResourceBundle,
+                    resourceBundleContext.ruleResourceBundle(),
                     mapToPunishments(noBlockBreakRuleConfig.getPunishments()),
                     new HashSet<>(str2Mat(noBlockBreakRuleConfig.getExemptions(), VALID_BLOCKS))
                     )
@@ -123,7 +117,7 @@ public class Mapper {
             NoBlockPlaceRuleConfig noBlockPlaceRuleConfig = enabledRulesConfig.getNoBlockPlace();
             rules.add(new NoBlockPlaceRule(
                     plugin,
-                    ruleResourceBundle,
+                    resourceBundleContext.ruleResourceBundle(),
                     mapToPunishments(noBlockPlaceRuleConfig.getPunishments()),
                     new HashSet<>(str2Mat(noBlockPlaceRuleConfig.getExemptions(), VALID_BLOCKS))
                     )

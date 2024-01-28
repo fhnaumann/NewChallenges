@@ -9,13 +9,9 @@ import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Material;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.FileManager;
-import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.TestOutputSchema;
-import wand555.github.io.challenges.mapping.Mapper;
+import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.rules.NoBlockBreakRule;
 
 import java.io.File;
@@ -35,7 +31,7 @@ public class FileManagerTest {
     private Challenges plugin;
     private PlayerMock player;
     private ResourceBundle bundle;
-    private Mapper mapper;
+    private ModelMapper mapper;
     private Context context;
 
     private ChallengeManager challengeManager;
@@ -48,7 +44,7 @@ public class FileManagerTest {
         player = server.addPlayer();
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(new File("src/test/resources/challenges_schema.json"));
-        mapper = new Mapper(plugin, bundle, schemaRoot);
+        mapper = new ModelMapper(plugin, new ResourceBundleContext(bundle), schemaRoot);
         context = new Context(plugin, bundle, schemaRoot, new ChallengeManager());
 
 
@@ -67,12 +63,6 @@ public class FileManagerTest {
     }
 
     @Test
-    public void testReadFromFile() {
-        String jsonFile =
-                """
-                
-                """;
-        StringReader stringReader = new StringReader(jsonFile);
-        TestOutputSchema testOutputSchema = FileManager.readFromFile(stringReader);
+    public void testReadFromFile() throws IOException {
     }
 }

@@ -62,12 +62,14 @@ public class Validator {
     private Validator validateAgainstSchematron(String json, SchematronResourcePure schematronResourcePure) {
 
         String xml = XML.toString(new JSONObject(json), "root");
-
         try {
             IPSErrorHandler errorHandler = new CollectingPSErrorHandler();
             schematronResourcePure.setErrorHandler(errorHandler);
             Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
+
             SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);
+
+
             List<Object> failedAsserts = schematronOutputType.getActivePatternAndFiredRuleAndFailedAssert();
             System.out.println(failedAsserts.size());
             ICommonsList<SVRLFailedAssert> svrlFailedAsserts = SVRLHelper.getAllFailedAssertions(schematronOutputType);
@@ -75,6 +77,8 @@ public class Validator {
             addSchematronViolationsToBuilder(svrlFailedAsserts);
         } catch (Exception e) {
             builder.setInitialException(e);
+            throw new RuntimeException(e);
+
         }
         return this;
     }
