@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.punishments.Punishment;
@@ -86,5 +87,10 @@ public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlock
                 exemptions.stream().map(Enum::toString).sorted().toList(), // always sort when moving from set to list
                 toPunishmentsConfig()
         );
+    }
+
+    @Override
+    public void addToGeneratedConfig(EnabledRules config) {
+        config.setNoBlockBreak(toGeneratedJSONClass());
     }
 }

@@ -39,7 +39,7 @@ public abstract class PunishableRule extends Rule {
 
     protected final PunishmentsConfig toPunishmentsConfig() {
         PunishmentsConfig punishmentsConfig = new PunishmentsConfig();
-        punishments.forEach(punishment -> punishment.addToGeneratedPunishmentsConfig(punishmentsConfig));
+        punishments.forEach(punishment -> punishment.addToGeneratedConfig(punishmentsConfig));
         return punishmentsConfig;
     }
 

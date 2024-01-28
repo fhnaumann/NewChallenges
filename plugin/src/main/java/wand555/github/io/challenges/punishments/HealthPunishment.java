@@ -47,8 +47,7 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         }
     }
 
-    @Override
-    public void addToGeneratedPunishmentsConfig(PunishmentsConfig generatedPunishmentsConfig) {
+    public void addToGeneratedConfig(PunishmentsConfig generatedPunishmentsConfig) {
         generatedPunishmentsConfig.setHealthPunishment(toGeneratedJSONClass());
     }
 

@@ -1,13 +1,14 @@
 package wand555.github.io.challenges.punishments;
 
 import org.bukkit.entity.Player;
+import wand555.github.io.challenges.JSONConfigGroup;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.rules.PunishableRule;
 
 import java.util.Objects;
 
-public abstract class Punishment {
+public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig> {
 
     private final Affects affects;
 
@@ -16,15 +17,6 @@ public abstract class Punishment {
     }
 
     public abstract void enforcePunishment(Player causer);
-
-    /**
-     * During the model -> generated json classes mapping, every {@link wand555.github.io.challenges.rules.PunishableRule}
-     * requires a {@link PunishmentsConfig}. This method's sole purpose is to "ask" each concrete punishment implementation
-     * where to put it in the punishments config.
-     *
-     * @param generatedPunishmentsConfig where to put "itself" in the obj.
-     */
-    public abstract void addToGeneratedPunishmentsConfig(PunishmentsConfig generatedPunishmentsConfig);
 
     public Affects getAffects() {
         return affects;

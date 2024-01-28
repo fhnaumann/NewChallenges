@@ -1,11 +1,9 @@
 package wand555.github.io.challenges.goals;
 
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.generated.GoalsConfig;
 
-public abstract class Goal {
+public abstract class Goal implements JSONConfigGroup<GoalsConfig> {
 
     protected final Context context;
     private boolean complete;

@@ -22,8 +22,7 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
 
     }
 
-    @Override
-    public void addToGeneratedPunishmentsConfig(PunishmentsConfig generatedPunishmentsConfig) {
+    public void addToGeneratedConfig(PunishmentsConfig generatedPunishmentsConfig) {
         generatedPunishmentsConfig.setRandomEffectPunishment(toGeneratedJSONClass());
     }
 
