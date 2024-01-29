@@ -165,14 +165,6 @@ export const usePunishmentsViewStore = defineStore('punishmentsView', {
 const normalModel: Model = {
     rules: {
         enabledRules: {
-            noBlockBreak: {
-                exemptions: [],
-                punishments: {
-                    endPunishment: {
-                        affects: 'All'
-                    }
-                }
-            }
         },
         enabledGlobalPunishments: {}
     },

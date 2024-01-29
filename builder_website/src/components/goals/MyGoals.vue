@@ -7,11 +7,11 @@
         <Button
           @click="showGoalSelection"
           class="cursor-pointer w-full h-20 bg-gray-600 py-1 rounded text-2xl text-white "
-          >Add new goal</Button
-        >
+          label="Add new goal"
+          />
         </div>
   
-        <div class="flex">
+        <div class="flex mt-4">
           <ScrollPanel style="width: 100%; height: 610px">
             <Accordion
               :active-index="0"
@@ -56,6 +56,7 @@
   <script setup lang="ts">
   import { useActivatableRule } from '../activatableRule.js'
   import ScrollPanel from 'primevue/scrollpanel'
+  import Button from 'primevue/button'
   import Accordion from 'primevue/accordion'
   import AccordionTab from 'primevue/accordiontab'
   import { defineComponent, ref, defineAsyncComponent, computed, watch } from 'vue'

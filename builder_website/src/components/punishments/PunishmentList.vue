@@ -8,6 +8,7 @@
             <div v-for="punishment in allPunishmentsView" :key="punishment.id" >
                 <HealthPunishment v-if="punishment.id === 'healthPunishment'" :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule" />
                 <RandomEffectPunishment v-else-if="punishment.id === 'randomEffectPunishment'" :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule"/>
+                <RandomItemPunishment v-else-if="punishment.id === 'randomItemPunishment'" :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule"/>
                 <DefaultPunishment v-else :punishment-view="punishment" :global="isGlobal" :rule-name="currentRule" :assign-when-created="{affects: 'All'}" />
                 
             </div>
@@ -26,6 +27,7 @@ import DefaultPunishment from './DefaultPunishment.vue';
 import type { BaseRuleConfig, PunishableRuleConfig, RuleName } from '../model/rules';
 import HealthPunishment from './HealthPunishment.vue';
 import RandomEffectPunishment from './RandomEffectPunishment.vue';
+import RandomItemPunishment from './RandomItemPunishment.vue';
 
 const config = useConfigStore().model
 const rulesView = useRulesViewStore()

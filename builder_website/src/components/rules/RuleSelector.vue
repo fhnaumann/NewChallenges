@@ -1,8 +1,8 @@
 <template>
     <div class="w-[32rem] h-[40rem] mt-2">
         <div>
-        <input type="text" placeholder="Search" v-model="searchable.searchFieldValue.value">
-    </div>
+            <InputText class="w-full" type="text" placeholder="Search" v-model="searchable.searchFieldValue.value" />
+        </div>
     <div class="card">
         <DataView :value="searchable.getPartialMatches()" paginator :rows="3">
             <template #list="slotProps">
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import DataView from 'primevue/dataview';
+import InputText from 'primevue/inputtext';
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';
 import { ref, inject, defineComponent } from 'vue';
 import RuleSelectionEntry from './RuleSelectionEntry.vue';

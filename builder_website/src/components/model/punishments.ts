@@ -67,7 +67,7 @@ export interface RandomItemPunishmentConfig extends BasePunishmentConfig {
      * The number of items that are removed from the players inventory at once.
      * Inventory includes armor slots and the off-hand slot.
      * 
-     * @mininum 1
+     * @minimum 1
      * @maximum 10
      * @default 1
      * @TSJ-type integer

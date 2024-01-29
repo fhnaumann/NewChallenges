@@ -26,10 +26,8 @@
       </div>
 
       <div class="flex mt-4">
-        <p v-if="Object.keys(activeRules).length === 0" class="w-[32rem]">No rules selected</p>
-        <ScrollPanel v-else style="width: 100%; height: 610px">
+        <ScrollPanel style="width: 100%; height: 610px">
           <Accordion
-            class="border-2 border-black rounded-sm"
             :active-index="0"
             :pt="{
               root: {
