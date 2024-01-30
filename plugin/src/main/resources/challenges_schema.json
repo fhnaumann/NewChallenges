@@ -330,6 +330,7 @@
                     "default": 1,
                     "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
                     "maximum": 10,
+                    "minimum": 1,
                     "type": "number"
                 },
                 "randomizeItemsRemovedAtOnce": {

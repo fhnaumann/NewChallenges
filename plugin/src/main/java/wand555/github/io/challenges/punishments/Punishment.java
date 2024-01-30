@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.punishments;
 
 import org.bukkit.entity.Player;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.JSONConfigGroup;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
@@ -10,9 +11,11 @@ import java.util.Objects;
 
 public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig> {
 
+    protected final Context context;
     private final Affects affects;
 
-    public Punishment(Affects affects) {
+    public Punishment(Context context, Affects affects) {
+        this.context = context;
         this.affects = affects;
     }
 
@@ -20,6 +23,10 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig> {
 
     public Affects getAffects() {
         return affects;
+    }
+
+    protected static final <E extends Enum<E>> Affects map(E affectEnum) {
+        return Punishment.Affects.fromJSONString(affectEnum.toString());
     }
 
     @Override

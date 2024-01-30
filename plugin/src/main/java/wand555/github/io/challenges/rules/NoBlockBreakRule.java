@@ -1,34 +1,40 @@
 package wand555.github.io.challenges.rules;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.audience.Audiences;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.ComponentInterpolator;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.punishments.Punishment;
 
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlockBreakRuleConfig>, Listener {
 
-    private Set<Material> exemptions;
+    private final Set<Material> exemptions;
 
-    public NoBlockBreakRule(Challenges plugin, ResourceBundle ruleResourceBundle, Set<Material> exemptions) {
-        this(plugin, ruleResourceBundle, List.of(), exemptions);
-    }
-
-    public NoBlockBreakRule(Challenges plugin, ResourceBundle ruleResourceBundle, List<Punishment> punishments, Set<Material> exemptions) {
-        super(plugin, ruleResourceBundle, punishments);
-        this.exemptions = exemptions;
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    public NoBlockBreakRule(Context context, NoBlockBreakRuleConfig config) {
+        super(context, ModelMapper.mapToPunishments(context, config.getPunishments()));
+        this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), ModelMapper.VALID_BLOCKS));
+        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @EventHandler
@@ -38,23 +44,17 @@ public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlock
         if(exemptions.contains(broken)) {
             return;
         }
-        System.out.println(Component.translatable(String.format("block.minecraft.%s", broken.toString().toLowerCase())));
-        //plugin.getServer().broadcast(Component.text("ABC"));
-        String raw = rulesResourceBundle.getString("noblockbreak.violation");
-        Component ruleViolatedMsg = MiniMessage.miniMessage().deserialize(
-                raw,
-                Placeholder.component("block", Component.translatable(String.format("block.minecraft.%s", broken.toString().toLowerCase())))
+        Component toSend = ComponentInterpolator.interpolate(
+                context.plugin(),
+                context.resourceBundleContext().ruleResourceBundle(),
+                "noblockbreak.violation",
+                Map.of(
+                        "player", Component.text(player.getName()),
+                        "block", Component.translatable(String.format("block.minecraft.%s", broken.toString().toLowerCase()))
+                )
         );
-        Component oneLine = MiniMessage.miniMessage().deserialize("<lang:block.minecraft.dirt> was broken");
-        Component nested = MiniMessage.miniMessage().deserialize("<dirt> was broken", Placeholder.component("dirt", Component.translatable("block.minecraft.dirt")));
-        //Component nested = Component.translatable("block.minecraft.dirt").append(Component.text(" was broken"));
-        Component nested2 = MiniMessage.miniMessage().deserialize(
-                "<lang:block.minecraft.dirt> was broken"
-        );
-        Component serialized = MiniMessage.miniMessage().deserialize(MiniMessage.miniMessage().serialize(nested));
-        plugin.getServer().broadcast(oneLine);
+        context.plugin().getServer().broadcast(toSend);
         enforcePunishments(player);
-
     }
 
     @Override
@@ -69,16 +69,6 @@ public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlock
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), exemptions);
-    }
-
-    @Override
-    public String toString() {
-        return "NoBlockBreakRule{" +
-                "exemptions=" + exemptions +
-                ", punishments=" + punishments +
-                ", plugin=" + plugin +
-                ", rulesResourceBundle=" + rulesResourceBundle +
-                '}';
     }
 
     @Override

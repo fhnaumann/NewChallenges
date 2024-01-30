@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.miniplaceholders.api.Expansion;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.Tag;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
@@ -37,11 +38,16 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info(getDataFolder().exists() + "");
-        System.out.println(getDataFolder().exists());
+        /*
+         * #8846f2 Only [Challenges]
+         * #c9526c Only [Punishment]
+         * #ffc54d Only [Rules]
+         *
+         * #fceaff default text
+         * #64baaa highlight in text
+         */
         if(!getDataFolder().exists()) {
             boolean created = getDataFolder().mkdir();
-            System.out.println("PL FOLDER CREATED?" + created);
         }
 
 
@@ -92,6 +98,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             registry.registerAll(Locale.US, bundle, true);
             GlobalTranslator.translator().addSource(registry);
 
+
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
             Component bundleTranslated = Component.translatable("some.translation.key");
 
             /**
@@ -108,14 +116,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
             sender.sendMessage(translated);
             ResourceBundle rulesBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-            NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(this, rulesBundle, Set.of());
             sender.sendMessage("ABC");
             try {
 
                 ChallengeManager challengeManager = new ChallengeManager();
 
                 JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-                MobGoal mobGoal = new MobGoal(new Context(this, bundle, schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
+                MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
                 Player player = (Player) sender;
                 mobGoal.openCollectedInv(player);
             } catch (IOException e) {

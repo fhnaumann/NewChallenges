@@ -54,6 +54,7 @@ public class CollectedInventoryTest {
     public void testInitialOpen() {
         int collectedItems = 5;
         fillNTimes(collectedItems);
+        collectedInventory.show(player1);
         Inventory openInv = player1.getOpenInventory().getTopInventory();
         assertEquals(collectedItems, nonEmptyCollectableSize(openInv));
     }

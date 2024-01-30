@@ -3,6 +3,7 @@ package wand555.github.io.challenges.rules;
 
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
@@ -10,6 +11,7 @@ import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.RandomEffectPunishment;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import java.util.List;
@@ -24,12 +26,12 @@ public abstract class PunishableRule extends Rule {
     protected @NotNull List<Punishment> punishments;
 
 
-    public PunishableRule(Challenges plugin, ResourceBundle ruleResourceBundle) {
-        this(plugin, ruleResourceBundle, List.of());
+    public PunishableRule(Context context) {
+        this(context, List.of());
     }
 
-    public PunishableRule(Challenges plugin, ResourceBundle ruleResourceBundle, @NotNull List<Punishment> punishments) {
-        super(plugin, ruleResourceBundle);
+    public PunishableRule(Context context, @NotNull List<Punishment> punishments) {
+        super(context);
         this.punishments = punishments;
     }
 
@@ -37,7 +39,10 @@ public abstract class PunishableRule extends Rule {
         getPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
     }
 
-    protected final PunishmentsConfig toPunishmentsConfig() {
+    protected final @Nullable PunishmentsConfig toPunishmentsConfig() {
+        if(punishments.isEmpty()) {
+            return null;
+        }
         PunishmentsConfig punishmentsConfig = new PunishmentsConfig();
         punishments.forEach(punishment -> punishment.addToGeneratedConfig(punishmentsConfig));
         return punishmentsConfig;
@@ -62,14 +67,5 @@ public abstract class PunishableRule extends Rule {
     @Override
     public int hashCode() {
         return Objects.hash(punishments);
-    }
-
-    @Override
-    public String toString() {
-        return "PunishableRule{" +
-                "punishments=" + punishments +
-                ", plugin=" + plugin +
-                ", rulesResourceBundle=" + rulesResourceBundle +
-                '}';
     }
 }

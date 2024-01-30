@@ -49,9 +49,11 @@ public class MobGoalTest {
         toBeBroken = player.getWorld().getBlockAt(0, 0, 0);
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-        mapper = new ModelMapper(plugin, new ResourceBundleContext(bundle), schemaRoot);
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, bundle, schemaRoot, manager);
+        context = new Context(plugin, new ResourceBundleContext(bundle, null), schemaRoot, manager); //TODO load correct bundle
+        mapper = new ModelMapper(context);
+
+
     }
 
     @AfterEach

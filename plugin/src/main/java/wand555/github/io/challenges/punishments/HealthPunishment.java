@@ -1,14 +1,18 @@
 package wand555.github.io.challenges.punishments;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.ComponentInterpolator;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,10 +23,10 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
 
     private final int minimumHeartsLost, maximumHeartsLost;
 
-    public HealthPunishment(Context context, Affects affects, int heartsLost, boolean randomizeHeartsLost) {
-        super(affects);
-        this.heartsLost = heartsLost;
-        this.randomizeHeartsLost = randomizeHeartsLost;
+    public HealthPunishment(Context context, HealthPunishmentConfig config) {
+        super(context, map(config.getAffects()));
+        this.heartsLost = config.getHeartsLost();
+        this.randomizeHeartsLost = config.getRandomizeHeartsLost();
         String path = "/definitions/HealthPunishmentConfig/properties/heartsLost";
         JsonNode heartsLostNode = context.schemaRoot().at(path);
         if(heartsLostNode.isMissingNode() || heartsLostNode.path("minimum").isMissingNode() || heartsLostNode.path("maximum").isMissingNode()) {
@@ -35,18 +39,34 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     @Override
     public void enforcePunishment(Player causer) {
         int damageAmount = getCalculatedHeartsLost();
+
+        String key = "";
+        Map<String, Component> placeholders = new HashMap<>();
+        placeholders.put("amount", Component.text(Integer.toString(damageAmount)));
         switch(getAffects()) {
             case CAUSER -> {
                 causer.damage(damageAmount);
+                key = "health.enforced.causer";
+                placeholders.put("player", Component.text(causer.getName()));
+
             }
             case ALL -> {
                 Bukkit.getOnlinePlayers().forEach(player -> {
                     player.damage(damageAmount);
                 });
+                key = "health.enforced.all";
             }
         }
+        Component toSend = ComponentInterpolator.interpolate(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                key,
+                placeholders
+        );
+        context.plugin().getServer().broadcast(toSend);
     }
 
+    @Override
     public void addToGeneratedConfig(PunishmentsConfig generatedPunishmentsConfig) {
         generatedPunishmentsConfig.setHealthPunishment(toGeneratedJSONClass());
     }

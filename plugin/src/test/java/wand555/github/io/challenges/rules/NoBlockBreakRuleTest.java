@@ -16,13 +16,16 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.generated.TestOutputSchema;
 import wand555.github.io.challenges.mapping.ModelMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,6 +37,9 @@ import java.util.stream.Stream;
 
 public class NoBlockBreakRuleTest {
 
+    private static ResourceBundleContext resourceBundleContext;
+    private static JsonNode schemaRoot;
+
     private ServerMock server;
     private Challenges plugin;
 
@@ -42,23 +48,27 @@ public class NoBlockBreakRuleTest {
     private PlayerMock player;
     private Block toBeBroken;
 
-    private ResourceBundle bundle;
+    private Context context;
 
-    private ModelMapper mapper;
+
+
+    @BeforeAll
+    public static void setUpIOData() throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
+        resourceBundleContext = mock(ResourceBundleContext.class);
+        when(resourceBundleContext.ruleResourceBundle()).thenReturn(bundle);
+        schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
+    }
 
     @BeforeEach
-    public void setUp() throws IOException {
+    public void setUp() {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
-        Set<Material> exemptions = Set.of(
-                Material.STONE
-        );
         player = server.addPlayer("dummy");
         toBeBroken = player.getWorld().getBlockAt(0, 0, 0);
-        bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-        rule = spy(new NoBlockBreakRule(plugin, bundle, exemptions));
-        JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-        mapper = new ModelMapper(plugin, new ResourceBundleContext(bundle), schemaRoot);
+        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager());
+        rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of(Material.STONE.toString()), null)));
+
     }
 
     @AfterEach
@@ -78,23 +88,11 @@ public class NoBlockBreakRuleTest {
         toBeBroken.setType(Material.DIRT);
         rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
         verify(rule, times(1)).enforcePunishments(any(Player.class));
-        Component oneLine = MiniMessage.miniMessage().deserialize(
-                "<lang:block.minecraft.dirt> was broken"
-        );
-        //Component expected = MiniMessage.miniMessage().deserialize();
-        //player.assertSaid(MiniMessage.miniMessage().serialize(oneLine));
-        //player.assertSaid("abc");
-        Component nested = MiniMessage.miniMessage().deserialize("<dirt> was broken", Placeholder.component("dirt", Component.translatable("block.minecraft.dirt")));
-        //Component nested = Component.translatable("block.minecraft.dirt").append(Component.text(" was broken"));
-        Component oneLine2 = MiniMessage.miniMessage().deserialize(
-                "<lang:block.minecraft.dirt> was broken"
-        );
-        //Assertions.assertEquals(MiniMessage.miniMessage().serialize(nested), MiniMessage.miniMessage().serialize(oneLine2));
     }
 
     @Test
     public void testEmptyNoBlockBreakRuleJSON2Model() throws JsonProcessingException {
-        String emptyNoBlockBreak =
+        String emptyNoBlockBreakJSON =
                 """
                 {
                   "rules": {
@@ -105,16 +103,20 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(plugin, bundle, Set.of());
-        //assertDoesNotThrow(() -> mapper.map2ModelClasses(emptyNoBlockBreak));
-        //ChallengeManager challengeManager = mapper.map2ModelClasses(emptyNoBlockBreak);
-        //assertEquals(1, challengeManager.getRules().size());
-        //assertEquals(noBlockBreakRule, challengeManager.getRules().get(0));
+        TestOutputSchema testOutputSchema = new ObjectMapper().readValue(emptyNoBlockBreakJSON, TestOutputSchema.class);
+        NoBlockBreakRuleConfig emptyNoBlockBreakRuleConfig = testOutputSchema.getRules().getEnabledRules().getNoBlockBreak();
+
+        assertTrue(emptyNoBlockBreakRuleConfig.getExemptions().isEmpty());
+
+        NoBlockBreakRule emptyNoBlockBreakRule = new NoBlockBreakRule(context, emptyNoBlockBreakRuleConfig);
+        ModelMapper.map2ModelClasses(context, testOutputSchema);
+
+        assertEquals(emptyNoBlockBreakRule, context.challengeManager().getRules().get(0));
     }
 
     @Test
     public void testComplexNoBlockBreakRuleJSON2Model() throws JsonProcessingException {
-        String complexNoBlockBreak =
+        String complexNoBlockBreakJSON =
                 """
                 {
                   "rules": {
@@ -126,15 +128,21 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(plugin, bundle, Set.of(Material.STONE, Material.DIRT));
-        //assertDoesNotThrow(() -> mapper.map2ModelClasses(complexNoBlockBreak));
-        //ChallengeManager challengeManager = mapper.map2ModelClasses(complexNoBlockBreak);
-        //assertEquals(1, challengeManager.getRules().size());
-        //assertEquals(noBlockBreakRule, challengeManager.getRules().get(0));
+        TestOutputSchema testOutputSchema = new ObjectMapper().readValue(complexNoBlockBreakJSON, TestOutputSchema.class);
+        NoBlockBreakRuleConfig complexNoBlockBreakRuleConfig = testOutputSchema.getRules().getEnabledRules().getNoBlockBreak();
+
+        assertEquals(List.of("STONE", "DIRT"), complexNoBlockBreakRuleConfig.getExemptions());
+
+        NoBlockBreakRule compelxNoBlockBreakRule = new NoBlockBreakRule(context, complexNoBlockBreakRuleConfig);
+        ModelMapper.map2ModelClasses(context, testOutputSchema);
+
+        assertEquals(compelxNoBlockBreakRule, context.challengeManager().getRules().get(0));
     }
 
     @Test
     public void testInvalidExemptionsJSON2Model() {
+        ObjectMapper objectMapper = new ObjectMapper();
+
         String additionalPropertyJSON =
                 """
                 {
@@ -147,7 +155,7 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        //assertThrows(JsonMappingException.class, () -> mapper.map2ModelClasses(additionalPropertyJSON));
+        assertThrows(JsonMappingException.class, () -> objectMapper.readValue(additionalPropertyJSON, TestOutputSchema.class));
 
         String invalidStringInExemptionListJSON =
                 """
@@ -161,7 +169,10 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        //assertThrows(RuntimeException.class, () -> mapper.map2ModelClasses(invalidStringInExemptionListJSON));
+        assertThrows(RuntimeException.class, () -> {
+            TestOutputSchema testOutputSchema = objectMapper.readValue(invalidStringInExemptionListJSON, TestOutputSchema.class);
+            ModelMapper.map2ModelClasses(context, testOutputSchema);
+        });
 
         String invalidMaterialInExemptionListJSON =
                 """
@@ -175,16 +186,19 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        //assertThrows(RuntimeException.class, () -> mapper.map2ModelClasses(invalidMaterialInExemptionListJSON));
+        assertThrows(RuntimeException.class, () -> {
+            TestOutputSchema testOutputSchema = objectMapper.readValue(invalidMaterialInExemptionListJSON, TestOutputSchema.class);
+            ModelMapper.map2ModelClasses(context, testOutputSchema);
+        });
     }
 
     @Test
     public void testNoBlockBreakRuleModel2JSON() {
-        Set<Material> exemptions = Set.of(Material.STONE, Material.DIRT);
-        NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(plugin, bundle, exemptions);
-        // funky behaviour:
         // When comparing NoBlockBreakRuleConfig, it internally compares the two exemption lists.
         // But #toGeneratedJSONClass converts from a set to a list, therefore any ordering is lost, hence it is always being sorted.
-        assertEquals(new NoBlockBreakRuleConfig(Stream.of("STONE", "DIRT").sorted().toList(), new PunishmentsConfig()), noBlockBreakRule.toGeneratedJSONClass());
+        List<String> exemptions = Stream.of("STONE", "DIRT").sorted().toList();
+        NoBlockBreakRuleConfig config = new NoBlockBreakRuleConfig(exemptions, null);
+        NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(context, config);
+        assertEquals(config, noBlockBreakRule.toGeneratedJSONClass());
     }
 }

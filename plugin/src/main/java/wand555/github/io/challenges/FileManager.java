@@ -5,12 +5,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helger.schematron.pure.SchematronResourcePure;
+import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.json.JSONTokener;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class FileManager {
 
@@ -54,10 +57,19 @@ public class FileManager {
             TestOutputSchema testOutputSchema = null;
             try {
                 testOutputSchema = objectMapper.readValue(json, TestOutputSchema.class);
-                ResourceBundleContext resourceBundleContext = new ResourceBundleContext(null);
-                ModelMapper modelMapper = new ModelMapper(plugin, resourceBundleContext, schemaRoot);
-                ChallengeManager challengeManager = modelMapper.map2ModelClasses(testOutputSchema);
-                return challengeManager;
+
+                Context context = new Context.Builder()
+                        .withPlugin(plugin)
+                        .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
+                        .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
+                        .withSchemaRoot(schemaRoot)
+                        .withChallengeManager(new ChallengeManager())
+                        .build();
+
+                ModelMapper.map2ModelClasses(context, testOutputSchema);
+
+
+                return context.challengeManager();
             } catch (JsonProcessingException e) {
                 // should never happen because it was validated first.
                 throw new RuntimeException(e);

@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.punishments;
 
 import org.bukkit.entity.Player;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
@@ -11,10 +12,10 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     private final int effectsAtOnce;
     private final boolean randomizeEffectsAtOnce;
 
-    public RandomEffectPunishment(Affects affects, int effectsAtOnce, boolean randomizeEffectsAtOnce) {
-        super(affects);
-        this.effectsAtOnce = effectsAtOnce;
-        this.randomizeEffectsAtOnce = randomizeEffectsAtOnce;
+    public RandomEffectPunishment(Context context, RandomEffectPunishmentConfig config) {
+        super(context, map(config.getAffects()));
+        this.effectsAtOnce = config.getEffectsAtOnce();
+        this.randomizeEffectsAtOnce = config.getRandomizeEffectsAtOnce();
     }
 
     @Override
