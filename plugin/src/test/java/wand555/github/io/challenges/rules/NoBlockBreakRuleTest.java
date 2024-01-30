@@ -66,7 +66,7 @@ public class NoBlockBreakRuleTest {
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer("dummy");
         toBeBroken = player.getWorld().getBlockAt(0, 0, 0);
-        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager());
+        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager(plugin));
         rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of(Material.STONE.toString()), null)));
 
     }

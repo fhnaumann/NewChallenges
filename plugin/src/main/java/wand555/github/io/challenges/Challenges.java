@@ -42,6 +42,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
          * #8846f2 Only [Challenges]
          * #c9526c Only [Punishment]
          * #ffc54d Only [Rules]
+         * #3abeaa Only [Goals]
          *
          * #fceaff default text
          * #64baaa highlight in text
@@ -49,27 +50,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         if(!getDataFolder().exists()) {
             boolean created = getDataFolder().mkdir();
         }
-
-
-
-        // Plugin startup logic
-        getCommand("test").setExecutor(this);
-        getCommand("load").setExecutor(this);
-
-        Expansion.Builder builder = Expansion.builder("challenges");
-        builder.globalPlaceholder("player", (argumentQueue, context) -> {
-            String playerName = argumentQueue.popOr("argument missing").value();
-            return Tag.selfClosingInserting(Component.text(playerName));
-        });
-        builder.audiencePlaceholder("player2", (audience, queue, ctx) -> {
-            return Tag.selfClosingInserting(Component.text(((Player) audience).getName()));
-        });
-
-        Expansion expansion = builder.build();
-        if(!expansion.registered()) {
-            expansion.register();
-        }
-
     }
 
     @Override
@@ -80,12 +60,14 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(command.getName().equalsIgnoreCase("load")) {
+
             File file = new File(getDataFolder(), "data.json");
             if(!file.exists()) {
 
             }
             try {
                 ChallengeManager challengeManager = FileManager.readFromFile(file, this);
+                challengeManager.start();
             } catch (LoadValidationException e) {
                 throw new RuntimeException(e);
             }
@@ -119,10 +101,10 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             sender.sendMessage("ABC");
             try {
 
-                ChallengeManager challengeManager = new ChallengeManager();
+                ChallengeManager challengeManager = new ChallengeManager(this);
 
                 JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-                MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
+                MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
                 Player player = (Player) sender;
                 mobGoal.openCollectedInv(player);
             } catch (IOException e) {

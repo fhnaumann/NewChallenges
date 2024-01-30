@@ -26,6 +26,11 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withGoalResourceBundle(ResourceBundle goalResourceBundle) {
+            resourceBundleContextBuilder.withGoalResourceBundle(goalResourceBundle);
+            return this;
+        }
+
         public Builder withPunishmentResourceBundle(ResourceBundle punishmentResourceBundle) {
             resourceBundleContextBuilder.withPunishmentResourceBundle(punishmentResourceBundle);
             return this;

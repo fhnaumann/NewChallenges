@@ -5,6 +5,9 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
+import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -12,17 +15,20 @@ import java.util.logging.Level;
 
 public class ComponentInterpolator {
 
+    public static Component interpolate(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
+        return interpolate(plugin, bundle, key, Map.of());
+    }
     @NotNull
     public static Component interpolate(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders) {
         Objects.requireNonNull(bundle);
         Objects.requireNonNull(key);
         Objects.requireNonNull(placeholders);
 
-        String rawText = getFromBundle(plugin, bundle, key);
+        String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
 
-        String prefixColor = getFromBundle(plugin, bundle, "chat.color.prefix");
-        String defaultColor = getFromBundle(plugin, bundle, "chat.color.default");
-        String highlightColor = getFromBundle(plugin, bundle, "chat.color.highlight");
+        String prefixColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");
+        String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
+        String highlightColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight");
 
         TagResolver.Single[] mappedPlaceholders = mapPlaceHolders(placeholders, highlightColor);
 
@@ -41,7 +47,7 @@ public class ComponentInterpolator {
             return Component.empty();
         }
         String baseName = split[0];
-        String baseDisplayName = getFromBundle(plugin, bundle, String.format("%s.name", baseName));
+        String baseDisplayName = ResourceBundleHelper.getFromBundle(plugin, bundle, String.format("%s.name", baseName));
         return Component.text(String.format("[%s]: ", baseDisplayName), TextColor.fromHexString(prefixColor));
     }
 
@@ -54,20 +60,23 @@ public class ComponentInterpolator {
                 .toArray(TagResolver.Single[]::new);
     }
 
-    private static String getFromBundle(@NotNull Challenges plugin, ResourceBundle bundle, String key) {
-        try {
-            return bundle.getString(key);
-        } catch (MissingResourceException e) {
-            // log to ingame
-            String msg = String.format("Key '%s' is not found in resource bundle '%s'.", key, bundle.getBaseBundleName());
-            plugin.getServer().getLogger().warning(msg);
-            plugin.getServer().getLogger().log(Level.WARNING, msg, e);
-        } catch (ClassCastException e) {
-            // log to ingame
-            String msg = String.format("Key '%s' is not a valid string in resource bundle '%s'.", key, bundle.getBaseBundleName());
-            plugin.getServer().getLogger().warning(msg);
-            plugin.getServer().getLogger().log(Level.WARNING, msg, e);
+
+    public static <E extends Enum<E>> Component translate(E enumToTranslate) {
+        String prefix = null;
+        if(enumToTranslate instanceof Material material) {
+            if(material.isBlock()) {
+                prefix = "block";
+            }
+            else if (material.isItem()) {
+                prefix = "item";
+            }
         }
-        return "";
+        else if(enumToTranslate instanceof EntityType) {
+            prefix = "entity";
+        }
+        if(prefix == null) {
+            throw new RuntimeException(String.format("Failed to map enum %s to translatable component!", enumToTranslate));
+        }
+        return Component.translatable(String.format("%s.minecraft.%s", prefix, enumToTranslate.toString().toLowerCase()));
     }
 }

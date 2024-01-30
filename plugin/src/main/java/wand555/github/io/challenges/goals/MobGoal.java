@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.goals;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -7,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.ComponentInterpolator;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
@@ -14,6 +16,7 @@ import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.inventory.CollectedItemStack;
+import wand555.github.io.challenges.utils.ActionHelper;
 
 import java.util.Map;
 import java.util.logging.Level;
@@ -31,10 +34,6 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
         super(context, complete);
         this.toKill = toKill;
         this.collectedInventory = new CollectedInventory(context.plugin());
-        for(int i=0; i<100; i++) {
-            collectedInventory.addCollectedItemStack(new CollectedItemStack(Material.STONE, i+"", i));
-        }
-
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
@@ -49,7 +48,18 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
     @Override
     public void onComplete() {
         setComplete(true);
-        // TODO: display messages
+
+        Component toSend = ComponentInterpolator.interpolate(
+                context.plugin(),
+                context.resourceBundleContext().goalResourceBundle(),
+                "mobgoal.all.reached.message"
+        );
+        ActionHelper.sendAndPlaySound(
+                context.plugin(),
+                toSend,
+                context.resourceBundleContext().goalResourceBundle(),
+                "mobgoal.all.reached.sound"
+        );
 
         notifyManager();
     }
@@ -74,10 +84,44 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
     }
 
     private void newEntityKilled(Player killer, EntityType killed) {
-        getToKill().computeIfPresent(killed, (entityType, collect) -> {
+        Collect updatedCollect = getToKill().computeIfPresent(killed, (entityType, collect) -> {
             collect.setCurrentAmount(collect.getCurrentAmount()+1);
             return collect;
         });
+        Component toSend = null;
+        String soundInBundleKey = null;
+        if(updatedCollect.isComplete()) {
+            toSend = ComponentInterpolator.interpolate(
+                    context.plugin(),
+                    context.resourceBundleContext().goalResourceBundle(),
+                    "mobgoal.single.reached.message",
+                    Map.of(
+                            "entity", ComponentInterpolator.translate(killed)
+                    )
+            );
+            soundInBundleKey = "mobgoal.single.reached.sound";
+        }
+        else {
+            toSend = ComponentInterpolator.interpolate(
+                    context.plugin(),
+                    context.resourceBundleContext().goalResourceBundle(),
+                    "mobgoal.single.step.message",
+                    Map.of(
+                            "player", Component.text(killer.getName()),
+                            "entity", ComponentInterpolator.translate(killed),
+                            "amount", Component.text(updatedCollect.getCurrentAmount()),
+                            "total_amount", Component.text(updatedCollect.getAmountNeeded())
+                    )
+            );
+            soundInBundleKey = "mobgoal.single.step.sound";
+        }
+        ActionHelper.sendAndPlaySound(
+                context.plugin(),
+                toSend,
+                context.resourceBundleContext().goalResourceBundle(),
+                soundInBundleKey
+        );
+
         if(determineComplete()) {
             onComplete();
         }
@@ -89,6 +133,6 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
 
     @Override
     public void addToGeneratedConfig(GoalsConfig config) {
-
+        config.setMobGoal(toGeneratedJSONClass());
     }
 }

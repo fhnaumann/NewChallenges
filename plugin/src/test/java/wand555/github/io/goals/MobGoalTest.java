@@ -50,7 +50,7 @@ public class MobGoalTest {
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, new ResourceBundleContext(bundle, null), schemaRoot, manager); //TODO load correct bundle
+        context = new Context(plugin, new ResourceBundleContext(bundle, null, null), schemaRoot, manager); //TODO load correct bundle
         mapper = new ModelMapper(context);
 
 

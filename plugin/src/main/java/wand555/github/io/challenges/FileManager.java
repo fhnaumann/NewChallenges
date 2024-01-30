@@ -61,9 +61,10 @@ public class FileManager {
                 Context context = new Context.Builder()
                         .withPlugin(plugin)
                         .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
+                        .withGoalResourceBundle(ResourceBundle.getBundle("goals", Locale.US, UTF8ResourceBundleControl.get()))
                         .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
                         .withSchemaRoot(schemaRoot)
-                        .withChallengeManager(new ChallengeManager())
+                        .withChallengeManager(new ChallengeManager(plugin))
                         .build();
 
                 ModelMapper.map2ModelClasses(context, testOutputSchema);

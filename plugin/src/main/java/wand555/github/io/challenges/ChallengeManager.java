@@ -13,6 +13,7 @@ import java.util.logging.Level;
 
 public class ChallengeManager {
 
+    private @NotNull Challenges plugin;
 
     private @NotNull List<Rule> rules;
     private @NotNull List<Goal> goals;
@@ -20,8 +21,8 @@ public class ChallengeManager {
     private GameState gameState;
 
 
-    public ChallengeManager() {
-
+    public ChallengeManager(@NotNull Challenges plugin) {
+        this.plugin = plugin;
     }
 
     public void start() {
@@ -32,6 +33,7 @@ public class ChallengeManager {
             throw new RuntimeException("No goals specified!");
         }
         gameState = GameState.RUNNING;
+
         Challenges.getPlugin(Challenges.class).getLogger().info("starting");
     }
 

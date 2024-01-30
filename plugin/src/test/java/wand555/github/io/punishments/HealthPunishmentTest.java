@@ -53,7 +53,7 @@ public class HealthPunishmentTest {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
-        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager());
+        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager(plugin));
     }
 
     @AfterEach
