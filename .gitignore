@@ -15,3 +15,4 @@ plugin/logs/
 plugin/server/
 plugin/target/
 plugin/Challenges.iml
+plugin/src/main/resources/rendered_items
