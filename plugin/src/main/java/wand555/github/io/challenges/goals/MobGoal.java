@@ -1,11 +1,16 @@
 package wand555.github.io.challenges.goals;
 
+import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import wand555.github.io.challenges.BossBarDisplay;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
@@ -14,14 +19,14 @@ import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.utils.ActionHelper;
-import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
 import java.util.Map;
 
-public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
+public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDisplay, Listener {
 
     private final Map<EntityType, Collect> toKill;
     private final CollectedInventory collectedInventory;
+    private final BossBar bossBar;
 
     public MobGoal(Context context, Map<EntityType, Collect> toKill) {
         this(context, false, toKill);
@@ -31,7 +36,14 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
         super(context, complete);
         this.toKill = toKill;
         this.collectedInventory = new CollectedInventory(context.plugin());
+        this.bossBar = createBossBar();
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
+
+
+        // TODO: remove
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            player.showBossBar(createBossBar());
+        });
     }
 
     public void openCollectedInv(Player player) {
@@ -164,5 +176,20 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
             entities = entities.append(entityCollectInfo).appendNewline();
         }
         return mobGoalName.append(entities);
+    }
+
+    @Override
+    public BossBar createBossBar() {
+        BossBar bossBar = BossBar.bossBar(Component.text("This is a test: \uE000!"), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS);
+        return bossBar;
+    }
+
+    private void refreshBossBar(EntityType entityType, Collect collect) {
+
+    }
+
+    @Override
+    public BossBarPriority getBossBarPriority() {
+        return BossBarPriority.INFO;
     }
 }

@@ -45,6 +45,11 @@ public class Main {
 
     public static void main(String[] args) throws URISyntaxException {
     //public static void main(String[] args, File file, Challenges plugin) {
+
+
+
+
+        /*
         try {
             String json = Files.readString(Paths.get(Main.class.getResource("/dummy_data.json").toURI()));
             //String json = Files.readString(file.toPath());
@@ -57,6 +62,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+         */
     }
 
     public static void validateAgainstJSONSchema() {

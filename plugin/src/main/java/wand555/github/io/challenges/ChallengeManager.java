@@ -1,5 +1,6 @@
 package wand555.github.io.challenges;
 
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -105,7 +106,7 @@ public class ChallengeManager implements StatusInfo {
         }
         Component total = ruleComponent.append(goalComponent);
         context.plugin().getLogger().info(MiniMessage.miniMessage().serialize(total));
-        return total;
+        return total.append(Component.text("\uE000"));
     }
 
     private enum GameState {

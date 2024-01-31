@@ -115,16 +115,26 @@ public class ModelMapper {
         return rules;
     }
 
+    @Nullable
+    public static Material str2Mat(@NotNull String matAsString, @NotNull Predicate<Material> additionalConstraints) {
+        Material matched = Material.matchMaterial(matAsString);
+        if(matched == null || !additionalConstraints.test(matched)) {
+            throw new RuntimeException();
+        }
+        return matched;
+    }
+
     @NotNull
     public static Collection<Material> str2Mat(@NotNull Collection<String> matsAsStrings, @NotNull Predicate<Material> additionalConstraints) {
         List<String> failedToMap = new ArrayList<>();
         List<Material> mapped = matsAsStrings.stream()
                 .map(s -> {
-                    Material matched = Material.matchMaterial(s);
-                    if(matched == null || !additionalConstraints.test(matched)) {
+                    try {
+                        return str2Mat(s, additionalConstraints);
+                    } catch (RuntimeException e) {
                         failedToMap.add(s);
+                        return null;
                     }
-                    return matched;
                 })
                 .toList();
         if(!failedToMap.isEmpty()) {

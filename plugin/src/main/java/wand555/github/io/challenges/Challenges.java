@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.*;
 
@@ -53,6 +54,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
         getCommand("load").setExecutor(this);
         getCommand("status").setExecutor(this);
+
     }
 
     @Override
@@ -65,6 +67,9 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(command.getName().equalsIgnoreCase("load")) {
+
+
+
 
             File file = new File(getDataFolder(), "data.json");
             if(!file.exists()) {
