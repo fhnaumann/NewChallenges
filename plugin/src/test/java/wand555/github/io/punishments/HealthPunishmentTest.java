@@ -42,7 +42,7 @@ public class HealthPunishmentTest {
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get());
+        ResourceBundle bundle = ResourceBundle.getBundle("punishments", Locale.ENGLISH, UTF8ResourceBundleControl.get());
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.punishmentResourceBundle()).thenReturn(bundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
@@ -53,7 +53,9 @@ public class HealthPunishmentTest {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
-        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager(plugin));
+        ChallengeManager challengeManager = new ChallengeManager();
+        context = new Context(plugin, resourceBundleContext, schemaRoot, challengeManager);
+        challengeManager.setContext(context);
     }
 
     @AfterEach

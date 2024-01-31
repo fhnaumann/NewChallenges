@@ -1,31 +1,19 @@
 package wand555.github.io.challenges.rules;
 
-import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.audience.Audiences;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.ComponentInterpolator;
+import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
-import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mapping.ModelMapper;
-import wand555.github.io.challenges.punishments.Punishment;
 
 import java.util.*;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlockBreakRuleConfig>, Listener {
 
@@ -44,7 +32,7 @@ public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlock
         if(exemptions.contains(broken)) {
             return;
         }
-        Component toSend = ComponentInterpolator.interpolate(
+        Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().ruleResourceBundle(),
                 "noblockbreak.violation",
@@ -82,5 +70,32 @@ public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlock
     @Override
     public void addToGeneratedConfig(EnabledRules config) {
         config.setNoBlockBreak(toGeneratedJSONClass());
+    }
+
+    @Override
+    public Component getCurrentStatus() {
+        Component noBlockBreakRuleName = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().ruleResourceBundle(),
+                "noblockbreak.name",
+                false
+        ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(), context.resourceBundleContext().ruleResourceBundle()));
+        return noBlockBreakRuleName
+                .appendNewline()
+                .appendSpace()
+                .appendSpace()
+                .appendSpace()
+                .appendSpace()
+                .append(
+                ComponentUtil.formatChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().ruleResourceBundle(),
+                        "noblockbreak.statusinfo",
+                        Map.of(
+                                "exemptions", ComponentUtil.translate(exemptions)
+                        ),
+                        false
+                )
+        );
     }
 }

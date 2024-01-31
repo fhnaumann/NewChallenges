@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.ComponentInterpolator;
+import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
@@ -57,7 +56,7 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
                 key = "health.enforced.all";
             }
         }
-        Component toSend = ComponentInterpolator.interpolate(
+        Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
                 key,
@@ -99,5 +98,26 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
                 heartsLost,
                 randomizeHeartsLost
         );
+    }
+
+    @Override
+    public Component getCurrentStatus() {
+        return ComponentUtil.formatChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().punishmentResourceBundle(),
+                        "health.name"
+                )
+                .append(Component.text(": "))
+                .append(
+                ComponentUtil.formatChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().ruleResourceBundle(),
+                    "health.statusinfo",
+                    Map.of(
+                            "affects", Component.text(getAffects().getValue()),
+                            "amount", Component.text(heartsLost)
+                    )
+                )
+                );
     }
 }

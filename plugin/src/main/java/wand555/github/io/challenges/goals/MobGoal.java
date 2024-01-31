@@ -1,25 +1,22 @@
 package wand555.github.io.challenges.goals;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.ComponentInterpolator;
+import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
-import wand555.github.io.challenges.inventory.CollectedItemStack;
 import wand555.github.io.challenges.utils.ActionHelper;
+import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
 import java.util.Map;
-import java.util.logging.Level;
 
 public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
 
@@ -49,7 +46,7 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
     public void onComplete() {
         setComplete(true);
 
-        Component toSend = ComponentInterpolator.interpolate(
+        Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().goalResourceBundle(),
                 "mobgoal.all.reached.message"
@@ -91,24 +88,24 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
         Component toSend = null;
         String soundInBundleKey = null;
         if(updatedCollect.isComplete()) {
-            toSend = ComponentInterpolator.interpolate(
+            toSend = ComponentUtil.formatChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().goalResourceBundle(),
                     "mobgoal.single.reached.message",
                     Map.of(
-                            "entity", ComponentInterpolator.translate(killed)
+                            "entity", ComponentUtil.translate(killed)
                     )
             );
             soundInBundleKey = "mobgoal.single.reached.sound";
         }
         else {
-            toSend = ComponentInterpolator.interpolate(
+            toSend = ComponentUtil.formatChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().goalResourceBundle(),
                     "mobgoal.single.step.message",
                     Map.of(
                             "player", Component.text(killer.getName()),
-                            "entity", ComponentInterpolator.translate(killed),
+                            "entity", ComponentUtil.translate(killed),
                             "amount", Component.text(updatedCollect.getCurrentAmount()),
                             "total_amount", Component.text(updatedCollect.getAmountNeeded())
                     )
@@ -134,5 +131,38 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, Listener {
     @Override
     public void addToGeneratedConfig(GoalsConfig config) {
         config.setMobGoal(toGeneratedJSONClass());
+    }
+
+    @Override
+    public Component getCurrentStatus() {
+        Component mobGoalName = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().goalResourceBundle(),
+                "mobgoal.name",
+                false
+        ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(), context.resourceBundleContext().goalResourceBundle()));
+        Component entities = Component.empty().appendNewline();
+        for (Map.Entry<EntityType, Collect> entry : toKill.entrySet()) {
+            EntityType entityType = entry.getKey();
+            Collect collect = entry.getValue();
+            Component entityCollectInfo = Component.empty()
+                    .appendSpace()
+                    .appendSpace()
+                    .appendSpace()
+                    .appendSpace()
+                    .append(ComponentUtil.formatChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().goalResourceBundle(),
+                    "mobgoal.statusinfo.mob",
+                    Map.of(
+                            "entity", ComponentUtil.translate(entityType),
+                            "amount", Component.text(collect.getCurrentAmount()),
+                            "total_amount", Component.text(collect.getAmountNeeded())
+                    ),
+                    false
+            ));
+            entities = entities.append(entityCollectInfo).appendNewline();
+        }
+        return mobGoalName.append(entities);
     }
 }

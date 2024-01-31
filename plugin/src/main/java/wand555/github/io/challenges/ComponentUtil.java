@@ -11,15 +11,29 @@ import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
-import java.util.logging.Level;
 
-public class ComponentInterpolator {
+public class ComponentUtil {
 
-    public static Component interpolate(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
-        return interpolate(plugin, bundle, key, Map.of());
+    public static final Component COLON = Component.text(":");
+
+    public static TextColor getPrefixColor(@NotNull Challenges plugin, ResourceBundle bundle) {
+        String hexColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");
+        return TextColor.fromHexString(hexColor);
+    }
+
+    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, boolean prefix) {
+        return formatChatMessage(plugin, bundle, key, Map.of(), prefix);
+    }
+
+    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders) {
+        return formatChatMessage(plugin, bundle, key, placeholders, true);
+    }
+
+    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
+        return formatChatMessage(plugin, bundle, key, Map.of());
     }
     @NotNull
-    public static Component interpolate(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders) {
+    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix) {
         Objects.requireNonNull(bundle);
         Objects.requireNonNull(key);
         Objects.requireNonNull(placeholders);
@@ -34,9 +48,13 @@ public class ComponentInterpolator {
 
         Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(rawText, mappedPlaceholders);
 
-        Component baseName = getBaseName(plugin, bundle, key, prefixColor);
-        Component result = baseName.append(mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor)));
-        return result;
+        if(prefix) {
+            Component baseName = getBaseName(plugin, bundle, key, prefixColor);
+            return baseName.append(mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor)));
+        }
+        else {
+            return mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor));
+        }
     }
 
     private static Component getBaseName(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull String prefixColor) {
@@ -60,6 +78,9 @@ public class ComponentInterpolator {
                 .toArray(TagResolver.Single[]::new);
     }
 
+    public static  <E extends Enum<E>> Component translate(Collection<E> enumCollectionToTranslate) {
+        return enumCollectionToTranslate.stream().map(ComponentUtil::translate).reduce(Component.empty(), Component::append);
+    }
 
     public static <E extends Enum<E>> Component translate(E enumToTranslate) {
         String prefix = null;

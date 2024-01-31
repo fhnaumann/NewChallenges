@@ -12,6 +12,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.ChallengeManager;
@@ -31,6 +32,8 @@ import java.util.*;
 
 public class MobGoalTest {
 
+    private static ResourceBundleContext resourceBundleContext;
+
     private ServerMock server;
     private Challenges plugin;
 
@@ -41,16 +44,23 @@ public class MobGoalTest {
     private ModelMapper mapper;
     private Context context;
 
+    @BeforeAll
+    public static void setUpIOData() {
+        ResourceBundle goalResourceBundle = ResourceBundle.getBundle("goals", Locale.ENGLISH, UTF8ResourceBundleControl.get());
+        resourceBundleContext = mock(ResourceBundleContext.class);
+        when(resourceBundleContext.goalResourceBundle()).thenReturn(goalResourceBundle);
+    }
+
     @BeforeEach
     public void setUp() throws IOException {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer("dummy");
         toBeBroken = player.getWorld().getBlockAt(0, 0, 0);
-        bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
+
         JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null), schemaRoot, manager); //TODO load correct bundle
+        context = new Context(plugin, resourceBundleContext, schemaRoot, manager); //TODO load correct bundle
         mapper = new ModelMapper(context);
 
 

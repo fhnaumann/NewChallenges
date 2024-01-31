@@ -42,7 +42,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
          * #8846f2 Only [Challenges]
          * #c9526c Only [Punishment]
          * #ffc54d Only [Rules]
-         * #3abeaa Only [Goals]
+         * #008e6e Only [Goals]
          *
          * #fceaff default text
          * #64baaa highlight in text
@@ -50,12 +50,17 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         if(!getDataFolder().exists()) {
             boolean created = getDataFolder().mkdir();
         }
+
+        getCommand("load").setExecutor(this);
+        getCommand("status").setExecutor(this);
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
     }
+
+    private ChallengeManager manager;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -66,12 +71,15 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
             }
             try {
-                ChallengeManager challengeManager = FileManager.readFromFile(file, this);
-                challengeManager.start();
+                manager = FileManager.readFromFile(file, this);
+                manager.start();
             } catch (LoadValidationException e) {
                 throw new RuntimeException(e);
             }
             //Main.main(null, file, this);
+        }
+        else if(command.getName().equalsIgnoreCase("status")) {
+            sender.sendMessage(manager.getCurrentStatus());
         }
         if(command.getName().equalsIgnoreCase("test")) {
 
@@ -101,7 +109,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             sender.sendMessage("ABC");
             try {
 
-                ChallengeManager challengeManager = new ChallengeManager(this);
+                ChallengeManager challengeManager = new ChallengeManager();
 
                 JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
                 MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));

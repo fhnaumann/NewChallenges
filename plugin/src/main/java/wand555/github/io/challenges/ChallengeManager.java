@@ -1,19 +1,19 @@
 package wand555.github.io.challenges;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import wand555.github.io.challenges.goals.Goal;
 import wand555.github.io.challenges.rules.Rule;
 
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
 
-public class ChallengeManager {
+public class ChallengeManager implements StatusInfo {
 
-    private @NotNull Challenges plugin;
+    private @NotNull Context context;
 
     private @NotNull List<Rule> rules;
     private @NotNull List<Goal> goals;
@@ -21,8 +21,11 @@ public class ChallengeManager {
     private GameState gameState;
 
 
-    public ChallengeManager(@NotNull Challenges plugin) {
-        this.plugin = plugin;
+    public ChallengeManager() {
+    }
+
+    public void setContext(@NotNull Context context) {
+        this.context = context;
     }
 
     public void start() {
@@ -62,7 +65,7 @@ public class ChallengeManager {
         }
     }
 
-    private void endChallenge() {
+    public void endChallenge() {
         Bukkit.getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
     }
 
@@ -76,6 +79,33 @@ public class ChallengeManager {
 
     public void setGoals(@NotNull List<Goal> goals) {
         this.goals = goals;
+    }
+
+    @Override
+    public Component getCurrentStatus() {
+        Component empty = Component.empty();
+        Component ruleComponent = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().ruleResourceBundle(),
+                "statusinfo.name",
+                false
+        ).append(ComponentUtil.COLON).appendNewline();
+
+        for (Rule rule : rules) {
+            ruleComponent = ruleComponent.appendSpace().appendSpace().append(rule.getCurrentStatus()).appendNewline();
+        }
+        Component goalComponent = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().goalResourceBundle(),
+                "statusinfo.name",
+                false
+        ).append(ComponentUtil.COLON).appendNewline();
+        for (Goal goal : goals) {
+            goalComponent = goalComponent.appendSpace().appendSpace().append(goal.getCurrentStatus()).appendNewline();
+        }
+        Component total = ruleComponent.append(goalComponent);
+        context.plugin().getLogger().info(MiniMessage.miniMessage().serialize(total));
+        return total;
     }
 
     private enum GameState {

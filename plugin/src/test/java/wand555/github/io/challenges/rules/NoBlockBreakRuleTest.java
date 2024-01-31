@@ -54,7 +54,7 @@ public class NoBlockBreakRuleTest {
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
+        ResourceBundle bundle = ResourceBundle.getBundle("rules", Locale.ENGLISH, UTF8ResourceBundleControl.get());
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.ruleResourceBundle()).thenReturn(bundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
@@ -66,7 +66,9 @@ public class NoBlockBreakRuleTest {
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer("dummy");
         toBeBroken = player.getWorld().getBlockAt(0, 0, 0);
-        context = new Context(plugin, resourceBundleContext, schemaRoot, new ChallengeManager(plugin));
+        ChallengeManager challengeManager = new ChallengeManager();
+        context = new Context(plugin, resourceBundleContext, schemaRoot, challengeManager);
+        challengeManager.setContext(context);
         rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of(Material.STONE.toString()), null)));
 
     }

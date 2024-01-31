@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.punishments;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
@@ -34,5 +35,10 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
                 effectsAtOnce,
                 randomizeEffectsAtOnce
         );
+    }
+
+    @Override
+    public Component getCurrentStatus() {
+        return null;
     }
 }

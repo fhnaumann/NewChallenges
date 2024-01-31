@@ -3,7 +3,7 @@ package wand555.github.io.challenges.goals;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.GoalsConfig;
 
-public abstract class Goal implements JSONConfigGroup<GoalsConfig> {
+public abstract class Goal implements JSONConfigGroup<GoalsConfig>, StatusInfo {
 
     protected final Context context;
     private boolean complete;

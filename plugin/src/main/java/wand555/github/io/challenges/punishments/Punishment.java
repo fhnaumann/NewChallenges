@@ -3,13 +3,14 @@ package wand555.github.io.challenges.punishments;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.JSONConfigGroup;
+import wand555.github.io.challenges.StatusInfo;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.rules.PunishableRule;
 
 import java.util.Objects;
 
-public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig> {
+public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, StatusInfo {
 
     protected final Context context;
     private final Affects affects;
