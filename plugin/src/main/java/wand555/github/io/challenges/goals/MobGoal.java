@@ -3,6 +3,7 @@ package wand555.github.io.challenges.goals;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.EntityType;
@@ -19,6 +20,7 @@ import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.utils.ActionHelper;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;
 
@@ -180,7 +182,10 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
 
     @Override
     public BossBar createBossBar() {
-        BossBar bossBar = BossBar.bossBar(Component.text("This is a test: \uE000!"), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS);
+        Component carrotUnicode = ResourcePackHelper.getMaterialUnicodeMapping(Material.CARROT);
+        String manual = "\ue441";
+        // new String(Character.toChars(58433)), new String(Character.toChars(0xe441))
+        BossBar bossBar = BossBar.bossBar(Component.text("DUMMY TEST").append(carrotUnicode), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS);
         return bossBar;
     }
 

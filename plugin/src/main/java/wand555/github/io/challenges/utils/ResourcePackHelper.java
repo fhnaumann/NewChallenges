@@ -1,25 +1,94 @@
 package wand555.github.io.challenges.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Keyed;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.mapping.ModelMapper;
 
+import javax.annotation.Nullable;
+import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class ResourcePackHelper {
 
-    public static final Map<Material, String> UNICODE_MAPPING = loadUnicodeMappingsFromFile();
+    private static final Map<Material, String> MATERIAL_UNICODE_MAPPING = fillMatUnicodeMappings();
+    public static final Map<EntityType, String> ENTITY_UNICODE_MAPPING = fillEntityUnicodeMappings();
 
-    private static Map<Material, String> loadUnicodeMappingsFromFile() {
+    private static int unicodeCounter = 0xe000;
+
+    public static Component getMaterialUnicodeMapping(Material from) {
+        String unicode = MATERIAL_UNICODE_MAPPING.get(from);
+        if(unicode != null) {
+            return Component.text(unicode);
+        }
+        else {
+            return EnumConverterHelper.enum2Comp(from, true);
+        }
+    }
+
+    public static JSONObject createFontDefaultJSON() {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray providers = new JSONArray();
+        for(Map.Entry<Material, String> entry : MATERIAL_UNICODE_MAPPING.entrySet()) {
+            JSONObject providerEntry = createProviderEntry(entry.getKey(), entry.getValue(), null);
+            providers.put(providerEntry);
+        }
+        for(Map.Entry<EntityType, String> entry : ENTITY_UNICODE_MAPPING.entrySet()) {
+            JSONObject providerEntry = createProviderEntry(entry.getKey(), entry.getValue(), "challenges");
+            providers.put(providerEntry);
+        }
+        jsonObject.put("providers", providers);
+        return jsonObject;
+    }
+
+    private static <T extends Keyed> JSONObject createProviderEntry(T key, String unicode, @Nullable String customNameSpace) {
+        JSONObject providerEntry = new JSONObject();
+
+        System.out.println(unicode);
+
+        String fileName = (customNameSpace == null ? key.key().asString() : customNameSpace + ":" + key.key().value()) + ".png";
+        providerEntry.put("file", fileName);
+        JSONArray chars = new JSONArray();
+        chars.put(Integer.toHexString(Integer.parseInt(unicode)));
+        providerEntry.put("chars", chars);
+        providerEntry.put("height", 10);
+        providerEntry.put("ascent", 8);
+        providerEntry.put("type", "bitmap");
+
+        return providerEntry;
+    }
+
+    private static Map<Material, String> fillMatUnicodeMappings() {
         Map<Material, String> map = new HashMap<>();
-        try(Scanner scanner = new Scanner(Challenges.class.getResourceAsStream("unicode_mapping.csv"))) {
+        try(Scanner scanner = new Scanner(Challenges.class.getResourceAsStream("/material_unicode_mapping.csv"), "UTF-8")) {
+            scanner.nextLine(); // skip first row
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] split = line.split(",");
-                map.put(ModelMapper.str2Mat(split[0], material -> true), split[1]);
+                //String unescapedUnicode = split[1].replace("'", "");
+                String hexConvertedUnicode = new String(Character.toChars(Integer.parseInt(split[1])));
+                map.put(EnumConverterHelper.str2Enum(split[0], Material.class), hexConvertedUnicode);
             }
+        }
+        return map;
+    }
+
+    private static Map<EntityType, String> fillEntityUnicodeMappings() {
+        Map<EntityType, String> map = new HashMap<>();
+        List<EntityType> entityTypes = Stream.of(EntityType.values()).filter(entityType -> entityType != EntityType.UNKNOWN).toList();
+        for(int i=0; i<entityTypes.size(); i++) {
+            unicodeCounter += i;
+            map.put(entityTypes.get(i), Character.toString(unicodeCounter));
         }
         return map;
     }

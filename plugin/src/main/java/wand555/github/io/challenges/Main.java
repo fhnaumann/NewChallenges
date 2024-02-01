@@ -27,6 +27,7 @@ import org.json.XML;
 import wand555.github.io.challenges.generated.DeathPunishmentConfig;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.TestOutputSchema;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -43,10 +44,14 @@ import java.util.Set;
 public class Main {
 
 
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args) throws IOException {
     //public static void main(String[] args, File file, Challenges plugin) {
-
-
+        JSONObject fontDefaultJSON = ResourcePackHelper.createFontDefaultJSON();
+        File file = new File("default.json");
+        //new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(file, fontDefaultJSON);
+        try( BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+           writer.write(fontDefaultJSON.toString(4));
+        }
 
 
         /*
