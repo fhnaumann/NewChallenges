@@ -27,10 +27,7 @@ import wand555.github.io.challenges.goals.MobGoal;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.rules.NoBlockBreakRule;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.*;
@@ -53,6 +50,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         }
 
         getCommand("load").setExecutor(this);
+        getCommand("save").setExecutor(this);
         getCommand("status").setExecutor(this);
 
     }
@@ -82,6 +80,14 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
                 throw new RuntimeException(e);
             }
             //Main.main(null, file, this);
+        }
+        else if (command.getName().equalsIgnoreCase("save")) {
+            File file = new File(getDataFolder(), "data.json");
+            try {
+                FileManager.writeToFile(manager, new FileWriter(file));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if(command.getName().equalsIgnoreCase("status")) {
             sender.sendMessage(manager.getCurrentStatus());

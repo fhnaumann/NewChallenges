@@ -30,7 +30,7 @@ public class FileManager {
         TestOutputSchema testOutputSchema = new TestOutputSchema(goalsConfig, rulesConfig);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writeValue(writer, testOutputSchema);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, testOutputSchema);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
