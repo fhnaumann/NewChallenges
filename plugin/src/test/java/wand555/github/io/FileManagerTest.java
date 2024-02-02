@@ -11,7 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.generated.TestOutputSchema;
+import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.rules.NoBlockBreakRule;
 

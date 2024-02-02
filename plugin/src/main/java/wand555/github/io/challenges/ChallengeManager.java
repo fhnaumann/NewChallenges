@@ -86,6 +86,10 @@ public class ChallengeManager implements StatusInfo {
         this.goals = goals;
     }
 
+    public long getTime() {
+        return timerRunnable.getTimer();
+    }
+
     @Override
     public Component getCurrentStatus() {
         Component empty = Component.empty();

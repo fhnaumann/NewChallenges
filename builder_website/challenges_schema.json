@@ -358,6 +358,12 @@
         },
         "rules": {
             "$ref": "#/definitions/RulesConfig"
+        },
+        "timer": {
+            "default": 0,
+            "description": "The time (in seconds) that has passed since the challenge was started.",
+            "minimum": 0,
+            "type": "integer"
         }
     },
     "type": "object"

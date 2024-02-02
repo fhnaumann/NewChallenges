@@ -21,7 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import wand555.github.io.challenges.generated.TestOutputSchema;
+import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.goals.Collect;
 import wand555.github.io.challenges.goals.MobGoal;
 import wand555.github.io.challenges.mapping.ModelMapper;

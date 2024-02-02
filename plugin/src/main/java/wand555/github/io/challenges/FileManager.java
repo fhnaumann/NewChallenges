@@ -26,11 +26,12 @@ public class FileManager {
         GoalsConfig goalsConfig = new GoalsConfig();
         challengeManager.getGoals().forEach(goal -> goal.addToGeneratedConfig(goalsConfig));
 
-
-        TestOutputSchema testOutputSchema = new TestOutputSchema(goalsConfig, rulesConfig);
+        // casting time from long to int could be problematic...
+        // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
+        ChallengesSchema ChallengesSchema = new ChallengesSchema(goalsConfig, rulesConfig, (int) challengeManager.getTime());
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, testOutputSchema);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, ChallengesSchema);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -57,9 +58,9 @@ public class FileManager {
         ValidationResult validationResult = validator.validate(json);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
-            TestOutputSchema testOutputSchema = null;
+            ChallengesSchema ChallengesSchema = null;
             try {
-                testOutputSchema = objectMapper.readValue(json, TestOutputSchema.class);
+                ChallengesSchema = objectMapper.readValue(json, ChallengesSchema.class);
 
                 Context context = new Context.Builder()
                         .withPlugin(plugin)
@@ -71,7 +72,7 @@ public class FileManager {
                         .withChallengeManager(new ChallengeManager())
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
-                ModelMapper.map2ModelClasses(context, testOutputSchema);
+                ModelMapper.map2ModelClasses(context, ChallengesSchema);
 
 
                 return context.challengeManager();

@@ -26,7 +26,7 @@ import org.json.JSONTokener;
 import org.json.XML;
 import wand555.github.io.challenges.generated.DeathPunishmentConfig;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
-import wand555.github.io.challenges.generated.TestOutputSchema;
+import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.xml.transform.Source;

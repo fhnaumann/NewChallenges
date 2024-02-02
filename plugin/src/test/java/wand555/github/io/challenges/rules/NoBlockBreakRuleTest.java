@@ -25,7 +25,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
-import wand555.github.io.challenges.generated.TestOutputSchema;
+import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.mapping.ModelMapper;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -105,13 +105,13 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        TestOutputSchema testOutputSchema = new ObjectMapper().readValue(emptyNoBlockBreakJSON, TestOutputSchema.class);
-        NoBlockBreakRuleConfig emptyNoBlockBreakRuleConfig = testOutputSchema.getRules().getEnabledRules().getNoBlockBreak();
+        ChallengesSchema ChallengesSchema = new ObjectMapper().readValue(emptyNoBlockBreakJSON, ChallengesSchema.class);
+        NoBlockBreakRuleConfig emptyNoBlockBreakRuleConfig = ChallengesSchema.getRules().getEnabledRules().getNoBlockBreak();
 
         assertTrue(emptyNoBlockBreakRuleConfig.getExemptions().isEmpty());
 
         NoBlockBreakRule emptyNoBlockBreakRule = new NoBlockBreakRule(context, emptyNoBlockBreakRuleConfig);
-        ModelMapper.map2ModelClasses(context, testOutputSchema);
+        ModelMapper.map2ModelClasses(context, ChallengesSchema);
 
         assertEquals(emptyNoBlockBreakRule, context.challengeManager().getRules().get(0));
     }
@@ -130,13 +130,13 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        TestOutputSchema testOutputSchema = new ObjectMapper().readValue(complexNoBlockBreakJSON, TestOutputSchema.class);
-        NoBlockBreakRuleConfig complexNoBlockBreakRuleConfig = testOutputSchema.getRules().getEnabledRules().getNoBlockBreak();
+        ChallengesSchema ChallengesSchema = new ObjectMapper().readValue(complexNoBlockBreakJSON, ChallengesSchema.class);
+        NoBlockBreakRuleConfig complexNoBlockBreakRuleConfig = ChallengesSchema.getRules().getEnabledRules().getNoBlockBreak();
 
         assertEquals(List.of("STONE", "DIRT"), complexNoBlockBreakRuleConfig.getExemptions());
 
         NoBlockBreakRule compelxNoBlockBreakRule = new NoBlockBreakRule(context, complexNoBlockBreakRuleConfig);
-        ModelMapper.map2ModelClasses(context, testOutputSchema);
+        ModelMapper.map2ModelClasses(context, ChallengesSchema);
 
         assertEquals(compelxNoBlockBreakRule, context.challengeManager().getRules().get(0));
     }
@@ -157,7 +157,7 @@ public class NoBlockBreakRuleTest {
                   }
                 }
                 """;
-        assertThrows(JsonMappingException.class, () -> objectMapper.readValue(additionalPropertyJSON, TestOutputSchema.class));
+        assertThrows(JsonMappingException.class, () -> objectMapper.readValue(additionalPropertyJSON, ChallengesSchema.class));
 
         String invalidStringInExemptionListJSON =
                 """
@@ -172,8 +172,8 @@ public class NoBlockBreakRuleTest {
                 }
                 """;
         assertThrows(RuntimeException.class, () -> {
-            TestOutputSchema testOutputSchema = objectMapper.readValue(invalidStringInExemptionListJSON, TestOutputSchema.class);
-            ModelMapper.map2ModelClasses(context, testOutputSchema);
+            ChallengesSchema ChallengesSchema = objectMapper.readValue(invalidStringInExemptionListJSON, ChallengesSchema.class);
+            ModelMapper.map2ModelClasses(context, ChallengesSchema);
         });
 
         String invalidMaterialInExemptionListJSON =
@@ -189,8 +189,8 @@ public class NoBlockBreakRuleTest {
                 }
                 """;
         assertThrows(RuntimeException.class, () -> {
-            TestOutputSchema testOutputSchema = objectMapper.readValue(invalidMaterialInExemptionListJSON, TestOutputSchema.class);
-            ModelMapper.map2ModelClasses(context, testOutputSchema);
+            ChallengesSchema ChallengesSchema = objectMapper.readValue(invalidMaterialInExemptionListJSON, ChallengesSchema.class);
+            ModelMapper.map2ModelClasses(context, ChallengesSchema);
         });
     }
 

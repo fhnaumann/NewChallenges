@@ -73,7 +73,7 @@
             <artifactId>jsonschema2pojo-maven-plugin</artifactId>
             <version>1.2.1</version>
             <configuration>
-                <sourceDirectory>${basedir}/src/main/resources/test-output-schema.json</sourceDirectory>
+                <sourceDirectory>${basedir}/src/main/resources/challenges_schema.json</sourceDirectory>
                 <targetPackage>wand555.github.io.challenges.generated</targetPackage>
                 <includeJsr303Annotations>true</includeJsr303Annotations>
                 <includeJsr305Annotations>true</includeJsr305Annotations>

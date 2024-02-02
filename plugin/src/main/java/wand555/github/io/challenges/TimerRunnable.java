@@ -21,6 +21,7 @@ public class TimerRunnable implements Consumer<BukkitTask> {
 
     public TimerRunnable(Context context) {
         this.context = context;
+        timer = context.schemaRoot().at("/definitions/Model/properties/timer").asLong(0L);
     }
 
     public void start() {
@@ -41,6 +42,7 @@ public class TimerRunnable implements Consumer<BukkitTask> {
     }
 
 
-
-
+    public long getTimer() {
+        return timer;
+    }
 }

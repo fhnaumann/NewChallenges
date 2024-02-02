@@ -7,6 +7,15 @@ import type { RulesConfig } from "./rules"
 
 export interface Model {
     rules?: RulesConfig,
-    goals?: GoalsConfig
+    goals?: GoalsConfig,
+
+    /**
+     * The time (in seconds) that has passed since the challenge was started.
+     * 
+     * @minimum 0
+     * @default 0 
+     * @TJS-type integer
+     */
+    timer?: number
 }
 

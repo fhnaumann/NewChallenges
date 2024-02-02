@@ -46,7 +46,7 @@ public class ModelMapper {
         this.context = context;
     }
 
-    public static void map2ModelClasses(Context context, TestOutputSchema json) {
+    public static void map2ModelClasses(Context context, ChallengesSchema json) {
 
         List<Rule> rules = mapToRules(context, json.getRules().getEnabledRules());
         List<Punishment> globalPunishments = mapToPunishments(context, json.getRules().getEnabledGlobalPunishments());
