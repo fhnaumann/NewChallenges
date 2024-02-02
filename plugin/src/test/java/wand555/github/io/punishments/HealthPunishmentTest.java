@@ -21,6 +21,9 @@ import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.rules.PunishableRule;
+import wand555.github.io.challenges.validation.ValidationResult;
+import wand555.github.io.challenges.validation.Validator;
+import wand555.github.io.challenges.validation.Violation;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,6 +38,8 @@ public class HealthPunishmentTest {
     private static ResourceBundleContext resourceBundleContext;
     private static JsonNode schemaRoot;
 
+    private static Validator validator;
+
     private ServerMock server;
     private Challenges plugin;
     private PlayerMock player;
@@ -46,6 +51,11 @@ public class HealthPunishmentTest {
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.punishmentResourceBundle()).thenReturn(bundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
+
+        validator = new Validator(
+                HealthPunishmentTest.class.getResourceAsStream("/challenges_schema.json"),
+                new File(HealthPunishmentTest.class.getResource("/constraints.sch").getFile())
+        );
     }
 
     @BeforeEach
@@ -118,16 +128,9 @@ public class HealthPunishmentTest {
         assertNotEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), thirdPlayer.getHealth(), 1e-3);
     }
 
-    /**
-     * Tests if an empty health punishment json object is correctly parsed into {@link HealthPunishment}.
-     * Punishments cannot exist on their own, they have to be within a rule.
-     * Therefore, a single {@link wand555.github.io.challenges.rules.NoBlockBreakRule} is used so the health punishment may exist.
-     *
-     * @throws JsonProcessingException never
-     */
     @Test
-    public void testEmptyHealthPunishmentJSON2Model() throws JsonProcessingException {
-/*        String emptyHealthPunishment =
+    public void testEmptyHealthPunishmentValidator() throws JsonProcessingException {
+        String emptyHealthPunishment =
                 """
                 {
                   "rules": {
@@ -135,7 +138,7 @@ public class HealthPunishmentTest {
                       "noBlockBreak": {
                         "punishments": {
                           "healthPunishment": {
-                           
+                            
                           }
                         }
                       }
@@ -143,15 +146,54 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        HealthPunishmentConfig defaultHealthPunishmentValues = new HealthPunishmentConfig();
-        HealthPunishment healthPunishment = new HealthPunishment(context, Punishment.Affects.fromJSONString(defaultHealthPunishmentValues.getAffects().value()), defaultHealthPunishmentValues.getHeartsLost(), defaultHealthPunishmentValues.getRandomizeHeartsLost());
-        //assertDoesNotThrow(() -> mapper.map2ModelClasses(emptyHealthPunishment));
-        //ChallengeManager challengeManager = mapper.map2ModelClasses(emptyHealthPunishment);
-        //assertEquals(healthPunishment, ((PunishableRule)challengeManager.getRules().get(0)).getPunishments().get(0));*/
+        ValidationResult result = validator.validate(emptyHealthPunishment);
+        assertTrue(result.isValid());
     }
 
     @Test
-    public void testComplexHealthPunishmentJSON2Model() throws JsonProcessingException {
+    public void testHealthAmount() {
+        String validHealthAmountHealthPunishment =
+                """
+                {
+                  "rules": {
+                    "enabledRules": {
+                      "noBlockBreak": {
+                        "punishments": {
+                          "healthPunishment": {
+                            "heartsLost": 2
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                """;
+        ValidationResult result = validator.validate(validHealthAmountHealthPunishment);
+        assertTrue(result.isValid());
+
+        String invalidHealthAmountHealthPunishment =
+                """
+                {
+                  "rules": {
+                    "enabledRules": {
+                      "noBlockBreak": {
+                        "punishments": {
+                          "healthPunishment": {
+                            "heartsLost": 25
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                """;
+        result = validator.validate(invalidHealthAmountHealthPunishment);
+        assertFalse(result.isValid());
+        assertEquals(1, result.getViolations().size());
+    }
+
+    @Test
+    public void testComplexHealthPunishment1() throws JsonProcessingException {
         String complexHealthPunishment =
                 """
                 {
@@ -160,9 +202,8 @@ public class HealthPunishmentTest {
                       "noBlockBreak": {
                         "punishments": {
                           "healthPunishment": {
-                            "affects": "Causer",
-                            "heartsLost": 5,
-                            "randomizeHeartsLost": false
+                            "heartsLost": 2,
+                            "randomizeHeartsLost": true
                           }
                         }
                       }
@@ -170,19 +211,36 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        //HealthPunishment healthPunishment = new HealthPunishment(context, Punishment.Affects.CAUSER, 5, false);
-        //assertDoesNotThrow(() -> mapper.map2ModelClasses(complexHealthPunishment));
-        //ChallengeManager challengeManager = mapper.map2ModelClasses(complexHealthPunishment);
-        //HealthPunishment actual = (HealthPunishment) ((PunishableRule)challengeManager.getRules().get(0)).getPunishments().get(0);
-        //assertEquals(healthPunishment, actual);
+        ValidationResult result = validator.validate(complexHealthPunishment);
+        assertTrue(result.isValid());
+        assertEquals(1, result.getViolations().size());
+        assertEquals(Violation.Level.WARNING, result.getViolations().get(0).getLevel());
     }
 
     @Test
-    public void testHealthPunishmentModel2JSON() {
-/*        System.out.println("context is: " + context);
-        HealthPunishment healthPunishment = new HealthPunishment(context, Punishment.Affects.ALL, 5, false);
-        HealthPunishmentConfig generatedHealthPunishment = healthPunishment.toGeneratedJSONClass();
-        assertEquals(new HealthPunishmentConfig(HealthPunishmentConfig.Affects.ALL, 5, false), generatedHealthPunishment);
-    */
+    public void testComplexHealthPunishment2() {
+        String complexHealthPunishment =
+                """
+                {
+                  "rules": {
+                    "enabledRules": {
+                      "noBlockBreak": {
+                        "punishments": {
+                          "healthPunishment": {
+                            "heartsLost": 25,
+                            "randomizeHeartsLost": true,
+                            "affects": "Causer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                """;
+        ValidationResult result = validator.validate(complexHealthPunishment);
+        assertFalse(result.isValid());
+        assertEquals(2, result.getViolations().size());
+        assertEquals(1, result.getViolations().stream().filter(violation -> violation.getLevel() == Violation.Level.ERROR).count());
+        assertEquals(1, result.getViolations().stream().filter(violation -> violation.getLevel() == Violation.Level.WARNING).count());
     }
 }

@@ -2,24 +2,12 @@
   "rules": {
     "enabledRules": {
       "noBlockBreak": {
-        "exemptions": ["STONE"],
         "punishments": {
           "healthPunishment": {
-            "heartsLost": 1
+            "heartsLost": 25,
+            "randomizeHeartsLost": true,
+            "affects": "Causer"
           }
-        }
-      }
-    },
-    "enabledGlobalPunishments": {
-
-    }
-  },
-  "goals": {
-    "mobGoal": {
-      "mobs": {
-        "PIG": {
-          "amountNeeded": 2,
-          "currentAmount": 0
         }
       }
     }

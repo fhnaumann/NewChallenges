@@ -78,7 +78,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             try {
                 manager = FileManager.readFromFile(file, this);
                 manager.start();
-            } catch (LoadValidationException e) {
+            } catch (LoadValidationException | IOException e) {
                 throw new RuntimeException(e);
             }
             //Main.main(null, file, this);

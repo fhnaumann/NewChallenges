@@ -1,16 +1,17 @@
 package wand555.github.io.challenges;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helger.schematron.pure.SchematronResourcePure;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
-import org.json.JSONTokener;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.validation.ValidationResult;
+import wand555.github.io.challenges.validation.Validator;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -35,23 +36,24 @@ public class FileManager {
         }
     }
 
-    public static ChallengeManager readFromFile(File file, Challenges plugin) throws LoadValidationException {
+    public static ChallengeManager readFromFile(File file, Challenges plugin) throws LoadValidationException, IOException {
         String json = null;
         try {
             json = Files.readString(file.toPath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Validator validator = new Validator();
         InputStream schemaStream = Challenges.class.getResourceAsStream("/test-output-schema.json");
+        URL schematronStream = Main.class.getResource("/constraints.sch");
+        Validator validator = new Validator(schemaStream, new File(schematronStream.getFile()));
+
         JsonNode schemaRoot = null;
         try {
             schemaRoot = new ObjectMapper().readTree(schemaStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        SchematronResourcePure schematronResourcePure = SchematronResourcePure.fromInputStream("abc", Main.class.getResourceAsStream("/constraints.sch"));
-        ValidationResult validationResult = validator.validate(json, Challenges.class.getResourceAsStream("/test-output-schema.json"), schematronResourcePure);
+        ValidationResult validationResult = validator.validate(json);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
             TestOutputSchema testOutputSchema = null;

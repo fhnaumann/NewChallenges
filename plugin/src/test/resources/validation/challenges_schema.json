@@ -186,6 +186,8 @@
             "defaultProperties": [],
             "properties": {
                 "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },
@@ -195,9 +197,6 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
-            "required": [
-                "exemptions"
-            ],
             "type": "object"
         },
         "NoBlockPlaceRuleConfig": {
@@ -205,6 +204,8 @@
             "defaultProperties": [],
             "properties": {
                 "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },
@@ -214,9 +215,6 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
-            "required": [
-                "exemptions"
-            ],
             "type": "object"
         },
         "NoCraftingRuleConfig": {
@@ -224,6 +222,8 @@
             "defaultProperties": [],
             "properties": {
                 "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },
@@ -233,9 +233,6 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
-            "required": [
-                "exemptions"
-            ],
             "type": "object"
         },
         "NoDamageRuleConfig": {
@@ -297,6 +294,7 @@
                     "default": 1,
                     "description": "The number of effects that are applied at once.",
                     "maximum": 10,
+                    "minimum": 1,
                     "type": "integer"
                 },
                 "randomizeEffectsAtOnce": {
@@ -329,6 +327,7 @@
                     "default": 1,
                     "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
                     "maximum": 10,
+                    "minimum": 1,
                     "type": "number"
                 },
                 "randomizeItemsRemovedAtOnce": {
@@ -350,10 +349,6 @@
                     "$ref": "#/definitions/EnabledRules"
                 }
             },
-            "required": [
-                "enabledGlobalPunishments",
-                "enabledRules"
-            ],
             "type": "object"
         }
     },
@@ -365,10 +360,6 @@
             "$ref": "#/definitions/RulesConfig"
         }
     },
-    "required": [
-        "goals",
-        "rules"
-    ],
     "type": "object"
 }
 

@@ -1,7 +1,13 @@
-package wand555.github.io.challenges;
+package wand555.github.io.challenges.validation;
+
+import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ValidationResult {
 
@@ -19,18 +25,41 @@ public class ValidationResult {
         return valid;
     }
 
+    public List<Violation> getViolations() {
+        return ImmutableList.copyOf(violations);
+    }
+
     public String asFormattedString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Provided configuration is valid? ").append(this.valid);
-        if(valid) {
+        // may have violations that are warnings
+        if(getViolations().isEmpty()) {
            return builder.toString();
         }
+
         builder.append(System.lineSeparator());
-        builder.append("Violations:").append(System.lineSeparator());
-        violations.forEach(violation -> {
-            builder.append("Where: ").append(violation.getWhere()).append(System.lineSeparator())
-                    .append("Message: ").append(violation.getMessage()).append(System.lineSeparator());
-        });
+        Map<Violation.Level, List<Violation>> groupedByLevel = getViolations().stream()
+                .collect(Collectors.groupingBy(
+                        Violation::getLevel
+                ));
+        List<Violation> warnings = groupedByLevel.get(Violation.Level.WARNING);
+        if(warnings != null && !warnings.isEmpty()) {
+            builder.append("Warnings:").append(System.lineSeparator());
+            warnings.forEach(violation -> {
+                builder.append("  Where: ").append(violation.getWhere()).append(System.lineSeparator())
+                        .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
+            });
+        }
+
+        List<Violation> errors = groupedByLevel.get(Violation.Level.ERROR);
+        if(errors != null && !errors.isEmpty()) {
+            builder.append("Violations:").append(System.lineSeparator());
+            errors.forEach(violation -> {
+                builder.append("  Where: ").append(violation.getWhere()).append(System.lineSeparator())
+                        .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
+            });
+        }
+
         if(initialException != null) {
             builder.append("Additional exception: ").append(initialException);
         }
@@ -66,7 +95,9 @@ public class ValidationResult {
         }
 
         public ValidationResultBuilder addViolation(Violation violation) {
-            setValid(false);
+            if(violation.getLevel() == Violation.Level.ERROR) {
+                setValid(false);
+            }
             violations.add(violation);
             return this;
         }

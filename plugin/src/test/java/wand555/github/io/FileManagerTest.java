@@ -44,7 +44,7 @@ public class FileManagerTest {
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-        JsonNode schemaRoot = new ObjectMapper().readTree(new File("src/test/resources/challenges_schema.json"));
+        JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
         context = new Context(plugin, new ResourceBundleContext(bundle, null, null), schemaRoot, new ChallengeManager());
         mapper = new ModelMapper(context);
 
