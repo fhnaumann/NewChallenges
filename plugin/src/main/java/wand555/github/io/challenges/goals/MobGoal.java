@@ -43,7 +43,7 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
 
 
         // TODO: remove
-        Bukkit.getOnlinePlayers().forEach(player -> {
+        context.plugin().getServer().getOnlinePlayers().forEach(player -> {
             player.showBossBar(bossBar);
         });
     }
