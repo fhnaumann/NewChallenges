@@ -44,6 +44,16 @@ public class Validator {
         schematronResourcePure.setErrorHandler(errorHandler);
     }
 
+    public Validator(InputStream jsonSchemaStream, InputStream schematronInputStream) throws IOException {
+        this.jsonSchema = new JSONObject(new JSONTokener(jsonSchemaStream));
+        jsonSchemaStream.close();
+        this.schematronResourcePure = SchematronResourcePure.fromInputStream("ignored", schematronInputStream);
+        //this.schematronResourcePure = SchematronResourcePure.fromFile(Challenges.class.getResource("/constraints.sch").getFile());
+        IPSErrorHandler errorHandler = new CollectingPSErrorHandler();
+        schematronResourcePure.setErrorHandler(errorHandler);
+    }
+
+
     public ValidationResult validate(String json) {
         builder = new ValidationResult.ValidationResultBuilder();
         return validateAgainstJSONSchema(json)
@@ -81,8 +91,10 @@ public class Validator {
         try {
             //this.schematronResourcePure = SchematronResourcePure.fromFile(Challenges.class.getResource("/constraints.sch").getFile());
             //schematronResourcePure = SchematronResourcePure.fromFile(new File("src/main/resources/constraints.sch"));
-            //schematronResourcePure = SchematronResourcePure.fromInputStream("abc", Main.class.getResourceAsStream("/constraints.sch"));
-
+            var test = Challenges.class.getResource("/constraints.sch");
+            System.out.println(test);
+            //schematronResourcePure = SchematronResourcePure.fromFile(new File(test.getFile()));
+            //schematronResourcePure = SchematronResourcePure.fromInputStream("ignored", Challenges.class.getResourceAsStream("/constraints.sch"));
             Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
 
             SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);

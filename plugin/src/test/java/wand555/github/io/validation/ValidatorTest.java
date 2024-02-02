@@ -26,7 +26,8 @@ public class ValidatorTest {
         System.out.println(tets);
         validator = new Validator(
                 ValidatorTest.class.getResourceAsStream("/challenges_schema.json"),
-                new File(tets.getFile())
+                //new File(ValidatorTest.class.getResource("/constraints.sch").getFile())
+                ValidatorTest.class.getResourceAsStream("/constraints.sch")
         );
     }
 

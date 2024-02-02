@@ -6,7 +6,7 @@ import type { RulesConfig } from "./rules"
 // NOTE: Any class that exports an interface may not import any other file (except for other interfaces)!
 
 export interface Model {
-    rules: RulesConfig,
-    goals: GoalsConfig
+    rules?: RulesConfig,
+    goals?: GoalsConfig
 }
 

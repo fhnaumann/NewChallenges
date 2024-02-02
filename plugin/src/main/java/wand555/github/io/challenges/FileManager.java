@@ -43,13 +43,14 @@ public class FileManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        InputStream schemaStream = Challenges.class.getResourceAsStream("/test-output-schema.json");
+        InputStream schemaStream = Main.class.getResourceAsStream("/challenges_schema.json");
         URL schematronStream = Main.class.getResource("/constraints.sch");
-        Validator validator = new Validator(schemaStream, new File(schematronStream.getFile()));
+        System.out.println(schematronStream);
+        Validator validator = new Validator(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
 
         JsonNode schemaRoot = null;
         try {
-            schemaRoot = new ObjectMapper().readTree(schemaStream);
+            schemaRoot = new ObjectMapper().readTree(Main.class.getResourceAsStream("/challenges_schema.json"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

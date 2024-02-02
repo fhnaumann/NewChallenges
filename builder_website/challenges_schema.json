@@ -186,6 +186,8 @@
             "defaultProperties": [],
             "properties": {
                 "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },
@@ -195,9 +197,6 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
-            "required": [
-                "exemptions"
-            ],
             "type": "object"
         },
         "NoBlockPlaceRuleConfig": {
@@ -205,6 +204,8 @@
             "defaultProperties": [],
             "properties": {
                 "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },
@@ -214,9 +215,6 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
-            "required": [
-                "exemptions"
-            ],
             "type": "object"
         },
         "NoCraftingRuleConfig": {
@@ -224,6 +222,8 @@
             "defaultProperties": [],
             "properties": {
                 "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },
@@ -233,9 +233,6 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
-            "required": [
-                "exemptions"
-            ],
             "type": "object"
         },
         "NoDamageRuleConfig": {
@@ -352,10 +349,6 @@
                     "$ref": "#/definitions/EnabledRules"
                 }
             },
-            "required": [
-                "enabledGlobalPunishments",
-                "enabledRules"
-            ],
             "type": "object"
         }
     },
@@ -367,10 +360,6 @@
             "$ref": "#/definitions/RulesConfig"
         }
     },
-    "required": [
-        "goals",
-        "rules"
-    ],
     "type": "object"
 }
 

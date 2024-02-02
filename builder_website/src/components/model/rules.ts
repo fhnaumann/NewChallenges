@@ -4,8 +4,8 @@ import type { PunishmentsConfig } from "./punishments"
 export type RuleName = keyof EnabledRules
 
 export interface RulesConfig {
-    enabledRules: EnabledRules,
-    enabledGlobalPunishments: PunishmentsConfig
+    enabledRules?: EnabledRules,
+    enabledGlobalPunishments?: PunishmentsConfig
 }
 export interface EnabledRules {
     noBlockBreak?: NoBlockBreakRuleConfig,
@@ -23,13 +23,25 @@ export interface PunishableRuleConfig extends BaseRuleConfig {
     punishments?: PunishmentsConfig
 }
 export interface NoBlockBreakRuleConfig extends PunishableRuleConfig {
-    exemptions: string[]
+    /**
+     * List of materials that are exempted from the rule.
+     * @default []
+     */
+    exemptions?: string[]
 }
 export interface NoBlockPlaceRuleConfig extends PunishableRuleConfig {
-    exemptions: string[]
+    /**
+     * List of materials that are exempted from the rule.
+     * @default []
+     */
+    exemptions?: string[]
 }
 export interface NoCraftingRuleConfig extends PunishableRuleConfig {
-    exemptions: string[]
+    /**
+     * List of materials that are exempted from the rule.
+     * @default []
+     */
+    exemptions?: string[]
 }
 export interface NoDamageRuleConfig extends PunishableRuleConfig {
 
