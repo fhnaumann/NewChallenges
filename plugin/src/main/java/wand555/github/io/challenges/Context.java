@@ -36,6 +36,11 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withMiscResourceBundle(ResourceBundle miscResourceBundle) {
+            resourceBundleContextBuilder.withMiscResourceBundle(miscResourceBundle);
+            return this;
+        }
+
         public Builder withSchemaRoot(JsonNode schemaRoot) {
             this.schemaRoot = schemaRoot;
             return this;

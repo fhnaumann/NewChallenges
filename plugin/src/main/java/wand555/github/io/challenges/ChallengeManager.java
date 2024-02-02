@@ -21,6 +21,8 @@ public class ChallengeManager implements StatusInfo {
 
     private GameState gameState;
 
+    private TimerRunnable timerRunnable;
+
 
     public ChallengeManager() {
     }
@@ -39,6 +41,8 @@ public class ChallengeManager implements StatusInfo {
         gameState = GameState.RUNNING;
 
         Challenges.getPlugin(Challenges.class).getLogger().info("starting");
+        timerRunnable = new TimerRunnable(context);
+        timerRunnable.start();
     }
 
     public boolean isRunning() {

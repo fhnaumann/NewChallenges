@@ -45,7 +45,7 @@ public class FileManagerTest {
         player = server.addPlayer();
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null), schemaRoot, new ChallengeManager());
+        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null), schemaRoot, new ChallengeManager());
         mapper = new ModelMapper(context);
 
 

@@ -123,7 +123,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
                 ChallengeManager challengeManager = new ChallengeManager();
 
                 JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-                MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
+                MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null, null, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
                 Player player = (Player) sender;
                 mobGoal.openCollectedInv(player);
             } catch (IOException e) {

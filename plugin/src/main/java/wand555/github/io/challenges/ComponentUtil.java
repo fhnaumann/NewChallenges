@@ -8,13 +8,62 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.utils.ResourceBundleHelper;
+import wand555.github.io.challenges.utils.TimerUtil;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ComponentUtil {
 
     public static final Component COLON = Component.text(":");
+
+    private static Map<String, Component> time2Placeholders(Map<TimerUtil.TimeParts, String> mappedTime) {
+        Map<String, Component> placeholders = new HashMap<>();
+        if(mappedTime.containsKey(TimerUtil.TimeParts.DAYS)) {
+            placeholders.put("days", Component.text(mappedTime.get(TimerUtil.TimeParts.DAYS)));
+        }
+        if(mappedTime.containsKey(TimerUtil.TimeParts.HOURS)) {
+            placeholders.put("hours", Component.text(mappedTime.get(TimerUtil.TimeParts.HOURS)));
+        }
+        if(mappedTime.containsKey(TimerUtil.TimeParts.MINUTES)) {
+            placeholders.put("minutes", Component.text(mappedTime.get(TimerUtil.TimeParts.MINUTES)));
+        }
+        placeholders.put("seconds", Component.text(mappedTime.get(TimerUtil.TimeParts.SECONDS)));
+        return placeholders;
+    }
+
+    public static Component formatTimer(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<TimerUtil.TimeParts, String> mappedTime) {
+        String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
+
+        String[] split = rawText.split(" ");
+        Map<String, Component> placeholders = new HashMap<>();
+        if(mappedTime.containsKey(TimerUtil.TimeParts.DAYS)) {
+            placeholders.put("days", Component.text(mappedTime.get(TimerUtil.TimeParts.DAYS)));
+        }
+        else {
+            split[0] = null;
+        }
+        if(mappedTime.containsKey(TimerUtil.TimeParts.HOURS)) {
+            placeholders.put("hours", Component.text(mappedTime.get(TimerUtil.TimeParts.HOURS)));
+        }
+        else {
+            split[1] = null;
+        }
+        if(mappedTime.containsKey(TimerUtil.TimeParts.MINUTES)) {
+            placeholders.put("minutes", Component.text(mappedTime.get(TimerUtil.TimeParts.MINUTES)));
+        }
+        else {
+            split[2] = null;
+        }
+        placeholders.put("seconds", Component.text(mappedTime.get(TimerUtil.TimeParts.SECONDS)));
+
+        String removedUnneededPlaceholders = Arrays.stream(split).filter(Objects::nonNull).collect(Collectors.joining(" "));
+        TagResolver.Single[] mappedPlaceholders = mapPlaceHolders(placeholders, ""); // no highlight color
+        Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(removedUnneededPlaceholders, mappedPlaceholders);
+        return mappedPlaceHolderComponent;
+    }
 
     public static TextColor getPrefixColor(@NotNull Challenges plugin, ResourceBundle bundle) {
         String hexColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");

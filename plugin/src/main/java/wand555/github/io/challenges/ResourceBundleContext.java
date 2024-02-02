@@ -4,10 +4,10 @@ import wand555.github.io.challenges.punishments.Punishment;
 
 import java.util.ResourceBundle;
 
-public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceBundle goalResourceBundle, ResourceBundle punishmentResourceBundle) {
+public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceBundle goalResourceBundle, ResourceBundle punishmentResourceBundle, ResourceBundle miscResourceBundle) {
 
     public static final class Builder {
-        private ResourceBundle ruleResourceBundle, goalResourceBundle, punishmentResourceBundle;
+        private ResourceBundle ruleResourceBundle, goalResourceBundle, punishmentResourceBundle, miscResourceBundle;
 
         public Builder() {}
 
@@ -26,8 +26,13 @@ public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceB
             return this;
         }
 
+        public Builder withMiscResourceBundle(ResourceBundle miscResourceBundle) {
+            this.miscResourceBundle = miscResourceBundle;
+            return this;
+        }
+
         public ResourceBundleContext build() {
-            return new ResourceBundleContext(ruleResourceBundle, goalResourceBundle, punishmentResourceBundle);
+            return new ResourceBundleContext(ruleResourceBundle, goalResourceBundle, punishmentResourceBundle, miscResourceBundle);
         }
 
     }
