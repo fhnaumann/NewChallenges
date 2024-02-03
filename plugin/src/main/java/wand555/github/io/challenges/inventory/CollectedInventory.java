@@ -29,9 +29,6 @@ public class CollectedInventory implements Listener {
     public static final int PREV_PAGE_IDX = MAX_INV_SIZE - 9;
     public static final int NEXT_PAGE_IX = MAX_INV_SIZE - 1;
 
-    private Map<Integer, Inventory> paginatedInventories;
-    private Map<Player, Integer> currentPageMap;
-
     private Map<Player, InvPage> openInventories;
 
     private final List<CollectedItemStack> collectedItemStacks;
@@ -40,8 +37,6 @@ public class CollectedInventory implements Listener {
 
     public CollectedInventory(Challenges plugin) {
         this.collectedItemStacks = new ArrayList<>();
-        this.paginatedInventories = new HashMap<>();
-        this.currentPageMap = new HashMap<>();
         this.openInventories = new HashMap<>();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -96,6 +91,9 @@ public class CollectedInventory implements Listener {
             return;
         }
         if(!(event.getWhoClicked() instanceof Player player)) {
+            return;
+        }
+        if(openInventories.values().stream().noneMatch(invPage -> invPage.inventory().equals(event.getClickedInventory()))) {
             return;
         }
         int currentPage = openInventories.get(player).page;

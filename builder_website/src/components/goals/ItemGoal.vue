@@ -64,11 +64,11 @@ watch(collectAllItems, (newCollectAllItems) => {
     if(newCollectAllItems) {
         collectAllBlocks.value = false
     }
-    model.goals.itemGoal!.allItems = newCollectAllItems
+    model.goals!.itemGoal!.allItems = newCollectAllItems
 })
 const collectAllBlocks = ref<boolean>(defaultAllBlocks)
 watch(collectAllBlocks, (newCollectAllBlocks) => {
-    model.goals.itemGoal!.allBlocks = newCollectAllBlocks
+    model.goals!.itemGoal!.allBlocks = newCollectAllBlocks
 })
 
 collectAllItems.value = defaultAllItems;
@@ -78,7 +78,7 @@ function updateSelectedData(currentlySelectedData: string | undefined, newSelect
         return
     }
     const { valid, messages } = validator.isValid(model, (copy) => {
-        copy.goals.itemGoal!.items[newSelectedData] = {
+        copy.goals!.itemGoal!.items[newSelectedData] = {
             amountNeeded: 1
         }
     })
@@ -91,6 +91,6 @@ function updateSelectedData(currentlySelectedData: string | undefined, newSelect
 }
 
 function updateSelectedDataAmount(currentlySelectedData: string, newAmount: number) {
-    model.goals.itemGoal!.items[currentlySelectedData].amount = newAmount
+    model.goals.itemGoal!.items[currentlySelectedData].currentAmount = newAmount
 }
 </script>

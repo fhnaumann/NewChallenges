@@ -11,6 +11,7 @@ import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.goals.Collect;
 import wand555.github.io.challenges.goals.Goal;
+import wand555.github.io.challenges.goals.ItemGoal;
 import wand555.github.io.challenges.goals.MobGoal;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 
 public class ModelMapper {
 
+    public static final Predicate<Material> VALID_ITEMS = material -> material.isItem() && !material.isLegacy() && !material.isAir() && material != Material.BARRIER;
     public static final Predicate<Material> VALID_BLOCKS = material -> material.isBlock() && !material.isLegacy() && !material.isAir() && material != Material.BARRIER;
 
     private Challenges plugin;
@@ -76,10 +78,13 @@ public class ModelMapper {
                     str2Collectable(mobGoalConfig.getMobs().getAdditionalProperties(), EntityType.class)
             ));
         }
+        if(goalsConfig.getItemGoal() != null) {
+            goals.add(new ItemGoal(context, goalsConfig.getItemGoal()));
+        }
         return goals;
     }
 
-    private static <T extends Enum<T>> Map<T, Collect> str2Collectable(Map<String, CollectableDataConfig> collectables, Class<T> enumType) {
+    public static <T extends Enum<T>> Map<T, Collect> str2Collectable(Map<String, CollectableDataConfig> collectables, Class<T> enumType) {
         List<String> failedToMap = new ArrayList<>();
         Map<T, Collect> mapped = collectables.entrySet().stream()
                 .map(entry -> {

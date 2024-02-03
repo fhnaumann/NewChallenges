@@ -65,6 +65,19 @@ public class ComponentUtil {
         return mappedPlaceHolderComponent;
     }
 
+    public static Component formatBossBarMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholdersWithHighlightColor, @NotNull Map<String, Component> placeholdersNoHighlightColor) {
+        String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
+
+        String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
+        String highlightColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight");
+
+        TagResolver.Single[] mappedPlaceholdersWithHighlightColor = mapPlaceHolders(placeholdersWithHighlightColor, highlightColor);
+        TagResolver.Single[] mappedPlaceholdersNoHighlightColor = mapPlaceHolders(placeholdersNoHighlightColor, "");
+        TagResolver.Single[] placeholders = Stream.of(mappedPlaceholdersWithHighlightColor, mappedPlaceholdersNoHighlightColor).flatMap(Stream::of).toArray(TagResolver.Single[]::new);
+        Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(rawText, placeholders);
+        return mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor));
+    }
+
     public static TextColor getPrefixColor(@NotNull Challenges plugin, ResourceBundle bundle) {
         String hexColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");
         return TextColor.fromHexString(hexColor);

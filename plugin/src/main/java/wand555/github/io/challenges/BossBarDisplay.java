@@ -1,14 +1,25 @@
 package wand555.github.io.challenges;
 
 import net.kyori.adventure.bossbar.BossBar;
+import org.bukkit.entity.Player;
+
+import java.util.Collection;
 
 public interface BossBarDisplay {
 
-    BossBar createBossBar();
+    public BossBar createBossBar();
 
+    public BossBar getBossBar();
 
+    public BossBarPriority getBossBarPriority();
 
-    BossBarPriority getBossBarPriority();
+    default void showBossBar(Player player) {
+        player.showBossBar(getBossBar());
+    }
+
+    default void showBossBar(Collection<? extends Player> players) {
+        players.forEach(this::showBossBar);
+    }
 
     enum BossBarPriority {
         INFO(0),

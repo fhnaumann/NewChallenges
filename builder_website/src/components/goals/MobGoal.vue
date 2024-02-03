@@ -35,7 +35,7 @@ import CollectableGoalEntryPlaceholder from './CollectableGoalEntryPlaceholder.v
 import { useConfigStore, useDefaultConfigStore, useGoalsViewStore, useJSONSchemaConfigStore } from '@/main';
 import { useCollectableGoal } from '../collectableGoal';
 import type { DataRow } from '../loadableDataRow';
-import type { CollectableEntryConfig, GoalName, MobGoalEntryConfig } from '../model/goals';
+import type { CollectableDataConfig, CollectableEntryConfig, GoalName } from '../model/goals';
 import { toRaw } from 'vue';
 import DefaultGoal from './DefaultGoal.vue';
 import type { GoalView } from '../view/goals';
@@ -51,13 +51,16 @@ const validator = useValidator()
 // IMPORTANT TO CLEAR THE CONFIG
 // For some reason deleting the entire goal does not delete "something", which
 // prevents the config from being wiped, therefore manually clearing it here
-store.goals.mobGoal = structuredClone(toRaw(defaultConfig.goals.mobGoal))
+store.goals!.mobGoal = structuredClone(toRaw(defaultConfig.goals!.mobGoal))
+
+
 const defaultSelectedMobs: CollectableEntryConfig = JSONSchemaConfig.MobGoalConfig.properties.mobs.default
 
 const collectableGoal = useCollectableGoal("mobGoal" as GoalName, "mobs", mobList)
 
 const allMobs: DataRow[] = collectableGoal.fullData
 const selectedMobs: CollectableEntryConfig = collectableGoal.selectedCollectableData
+selectedMobs.value = defaultSelectedMobs
 // selectedMobs.value["ENDER_DRAGON"] = {amount: 1}
 // collectableGoal.addDataRow(undefined, allMobs.find((mob: DataRow) => mob.code === "ENDER_DRAGON"))
 
@@ -73,22 +76,23 @@ function updateSelectedData(currentlySelectedData: string | undefined, newSelect
     // the number selected for each mob is unknown, but should not really matter for validation
     //collectableGoal.addDataRow(entry, newSelectedData)
     const { valid, messages } = validator.isValid(store, (copy) => {
-        copy.goals.mobGoal!.mobs[newSelectedData] = {
+        copy.goals!.mobGoal!.mobs[newSelectedData] = {
             amountNeeded: 1 // use default value and not the actual value, because I don't have easy access to the actual number (for now)
         }
     })
     console.log("is valid?", valid)
     if (valid) {
         console.log("assigning new selected mob", newSelectedData)
-        delete selectedMobs.value[currentlySelectedData]
-        selectedMobs.value[newSelectedData] = {
-            amount: 1 // use default value and not the actual value, because I don't have easy access to the actual number (for now)
-        }
+        delete selectedMobs.value[currentlySelectedData! as keyof CollectableDataConfig]
+        const temp_default_value = {
+            amountNeeded: 1 // use default value and not the actual value, because I don't have easy access to the actual number (for now)
+        } as CollectableDataConfig
+        selectedMobs.value[newSelectedData as keyof CollectableDataConfig] = temp_default_value
     }
 }
 
 function updateSelectedDataAmount(currentlySelectedData: string, newAmount: number) {
-    store.goals.mobGoal!.mobs[currentlySelectedData].amount = newAmount
+    store.goals!.mobGoal!.mobs[currentlySelectedData].amountNeeded = newAmount
 }
 
 defineComponent({

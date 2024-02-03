@@ -23,7 +23,7 @@ export interface CollectableDataConfig {
      * @default 1
      * @TJS-type integer
      */
-    amountNeeded: number
+    amountNeeded?: number
 
     /**
      * The amount that is currently collected.
@@ -31,7 +31,7 @@ export interface CollectableDataConfig {
      * @default 0
      * @TJS-type integer
      */
-    currentAmount: number
+    currentAmount?: number
 }
 export interface CollectableEntryConfig {
     [collectableName: string]: CollectableDataConfig
@@ -40,7 +40,7 @@ export interface MobGoalConfig extends BaseGoalConfig {
     /**
      * The mobs that need to be killed to beat this goal.
      * 
-     * @default {"ENDER_DRAGON": {"amount": 1}}
+     * @default {"ENDER_DRAGON": {"amountNeeded": 1}}
      */
     mobs: CollectableEntryConfig
 }

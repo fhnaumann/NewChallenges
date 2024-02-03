@@ -22,9 +22,10 @@ import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDisplay, Listener {
+public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Listener {
 
     private final Map<EntityType, Collect> toKill;
     private final CollectedInventory collectedInventory;
@@ -46,10 +47,6 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
         context.plugin().getServer().getOnlinePlayers().forEach(player -> {
             player.showBossBar(bossBar);
         });
-    }
-
-    public void openCollectedInv(Player player) {
-        collectedInventory.show(player);
     }
 
     public Map<EntityType, Collect> getToKill() {
@@ -189,6 +186,11 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
         return bossBar;
     }
 
+    @Override
+    public BossBar getBossBar() {
+        return bossBar;
+    }
+
     private void refreshBossBar(EntityType entityType, Collect collect) {
 
     }
@@ -196,5 +198,10 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
     @Override
     public BossBarPriority getBossBarPriority() {
         return BossBarPriority.INFO;
+    }
+
+    @Override
+    public @NotNull CollectedInventory getCollectedInventory() {
+        return collectedInventory;
     }
 }

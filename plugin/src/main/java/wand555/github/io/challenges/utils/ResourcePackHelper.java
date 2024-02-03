@@ -29,7 +29,7 @@ public class ResourcePackHelper {
     public static Component getMaterialUnicodeMapping(Material from) {
         String unicode = MATERIAL_UNICODE_MAPPING.get(from);
         if(unicode != null) {
-            return Component.text(unicode);
+            return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from, true)).append(Component.text(")")));
         }
         else {
             return EnumConverterHelper.enum2Comp(from, true);
