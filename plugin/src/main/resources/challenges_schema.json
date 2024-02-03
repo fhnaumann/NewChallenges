@@ -1,11 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": false,
-    "defaultProperties": [],
     "definitions": {
         "CollectableDataConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "amountNeeded": {
                     "default": 1,
@@ -20,22 +18,16 @@
                     "type": "integer"
                 }
             },
-            "required": [
-                "amountNeeded",
-                "currentAmount"
-            ],
             "type": "object"
         },
         "CollectableEntryConfig": {
             "additionalProperties": {
                 "$ref": "#/definitions/CollectableDataConfig"
             },
-            "defaultProperties": [],
             "type": "object"
         },
         "DeathPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -51,7 +43,6 @@
         },
         "EnabledRules": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
@@ -73,7 +64,6 @@
         },
         "EndPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -89,7 +79,6 @@
         },
         "GoalsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "itemGoal": {
                     "$ref": "#/definitions/ItemGoalConfig"
@@ -102,7 +91,6 @@
         },
         "HealthPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -130,7 +118,6 @@
         },
         "ItemGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "allBlocks": {
                     "default": false,
@@ -159,7 +146,6 @@
         },
         "MobGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "complete": {
                     "default": false,
@@ -170,7 +156,7 @@
                     "$ref": "#/definitions/CollectableEntryConfig",
                     "default": {
                         "ENDER_DRAGON": {
-                            "amount": 1
+                            "amountNeeded": 1
                         }
                     },
                     "description": "The mobs that need to be killed to beat this goal."
@@ -183,7 +169,6 @@
         },
         "NoBlockBreakRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -201,7 +186,6 @@
         },
         "NoBlockPlaceRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -219,7 +203,6 @@
         },
         "NoCraftingRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -237,7 +220,6 @@
         },
         "NoDamageRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -247,7 +229,6 @@
         },
         "NoDeathRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -257,7 +238,6 @@
         },
         "PunishmentsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "deathPunishment": {
                     "$ref": "#/definitions/DeathPunishmentConfig"
@@ -279,7 +259,6 @@
         },
         "RandomEffectPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -307,7 +286,6 @@
         },
         "RandomItemPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -340,7 +318,6 @@
         },
         "RulesConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "enabledGlobalPunishments": {
                     "$ref": "#/definitions/PunishmentsConfig"

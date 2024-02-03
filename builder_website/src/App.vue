@@ -15,7 +15,7 @@
           </div>
       </div>
       <div class="flex justify-center">
-          <Button @click="showSettingsFile = true"
+          <Button @click="validateConsistency()"
               class="text-3xl w-full mx-10 my-5 border-4 rounded-md bg-green-500">Generate settings file</Button>
       </div>
       <DynamicDialog />
@@ -54,6 +54,10 @@ import Dialog from 'primevue/dialog';
 import MyGoals from './components/goals/MyGoals.vue';
 import { ref, onBeforeUpdate } from "vue"
 import { useConfigStore } from './main';
+import Ajv from 'ajv'
+import challengesSchema from '@/assets/challenges_schema.json';
+
+const ajv = new Ajv({allErrors: true, strict: true})
 
 const store = useConfigStore()
 const toast = useToast()
@@ -63,6 +67,22 @@ const showSettingsFile = ref(false)
 onBeforeUpdate(() => {
   console.log("BEFORE UPDATE", store)
 })
+
+function validateConsistency() {
+    const isValid = ajv.validate(challengesSchema, store.model)
+    const validate = ajv.compile(challengesSchema)
+    if(validate(store.model)) {
+        const x = 3
+    }
+    else {
+        console.log(validate.errors)
+    }
+    if(!isValid) {
+        console.error("TERRIBLE ERROR!!!")
+        return
+    }
+    showSettingsFile.value = true
+}
 
 async function copyToClibboard() {
   try {

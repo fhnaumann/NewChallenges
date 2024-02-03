@@ -9,7 +9,7 @@ import Tooltip from 'primevue/tooltip';
 import { defineStore } from 'pinia'
 import type { Model } from './components/model/model'
 import type { RulesView } from './components/view/rules'
-import modelSchema from '../challenges_schema.json'
+import modelSchema from './assets/challenges_schema.json'
 import type { PunishmentsView } from './components/view/punishments'
 import type { GoalsView } from './components/view/goals'
 import ConfirmationService from 'primevue/confirmationservice';
