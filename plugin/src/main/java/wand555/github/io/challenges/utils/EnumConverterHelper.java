@@ -6,36 +6,37 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.translation.Translatable;
-import org.bukkit.Keyed;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Registry;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class EnumConverterHelper {
 
-    public static <E extends  Enum<E> & Keyed & Translatable> Component enum2Comp(E e, boolean translate) {
-        return enum2Comp(e, null, translate);
+    public static <E extends Enum<E> & Translatable> Component translateEnum(E e) {
+        return Component.translatable(e.translationKey());
     }
 
     public static <E extends  Enum<E> & Keyed & Translatable> Component enum2Comp(E e, TextColor enumTextColor, boolean translate) {
         if(translate) {
-            return Component.translatable(e.translationKey()).color(enumTextColor);
+            return translateEnum(e).color(enumTextColor);
         }
         else {
             return Component.text(enum2Str(e, false)).color(enumTextColor);
         }
     }
+
+    public static <E extends  Enum<E> & Keyed & Translatable> Component enum2Comp(E e, boolean translate) {
+        return enum2Comp(e, null, translate);
+    }
+
+
 
     public static <E extends Enum<E> & Keyed & Translatable> Component enum2Comp(Collection<E> enumCollection, TextColor enumTextColor, Component prefix, Component suffix, Component delimiter, boolean translate) {
         Component component = Component.empty().append(prefix);

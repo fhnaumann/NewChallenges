@@ -25,7 +25,7 @@ import wand555.github.io.challenges.utils.ResourcePackHelper;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Listener {
+public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Skippable, Listener {
 
     private final Map<EntityType, Collect> toKill;
     private final CollectedInventory collectedInventory;
@@ -203,5 +203,20 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
     @Override
     public @NotNull CollectedInventory getCollectedInventory() {
         return collectedInventory;
+    }
+
+    @Override
+    public String getBaseCommand() {
+        return "mobgoal";
+    }
+
+    @Override
+    public void onShowInvProgressCommand() {
+
+    }
+
+    @Override
+    public void onSkip() {
+
     }
 }

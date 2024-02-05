@@ -32,7 +32,7 @@ public class ResourcePackHelper {
             return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from, true)).append(Component.text(")")));
         }
         else {
-            return EnumConverterHelper.enum2Comp(from, true);
+            return EnumConverterHelper.enum2Comp(from, null, true);
         }
     }
 

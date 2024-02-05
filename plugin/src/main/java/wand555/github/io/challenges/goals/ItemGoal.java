@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.goals;
 
+import com.destroystokyo.paper.event.player.PlayerRecipeBookClickEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.Key;
@@ -7,13 +8,18 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerRecipeDiscoverEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -33,6 +39,7 @@ import wand555.github.io.challenges.utils.ResourcePackHelper;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -40,7 +47,7 @@ import java.util.stream.Stream;
 
 import static wand555.github.io.challenges.goals.NewItemCollect.*;
 
-public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarDisplay, InvProgress, Listener {
+public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarDisplay, InvProgress, Skippable, Listener {
 
     private final Map<Material, Collect> toCollect;
     private final boolean allItems;
@@ -62,6 +69,7 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
         }
         this.allItems = config.getAllItems();
         this.allBlocks = config.getAllBlocks();
+
         if(this.allItems) {
             this.toCollect = Stream.of(Material.values()).filter(ModelMapper.VALID_ITEMS).collect(Collectors.toMap(
                     Function.identity(),
@@ -161,45 +169,31 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
         if(!(event.getEntity() instanceof Player player)) {
             return;
         }
+        if(event.isCancelled()) {
+            return;
+        }
         newItemCollected(player, event.getItem().getItemStack());
     }
 
     @EventHandler
-    public void test(CraftItemEvent event) {
-        if(event.getCurrentItem() == null || event.getCurrentItem().isEmpty()) {
-            return;
-        }
-        if(!(event.getWhoClicked() instanceof Player player)) {
-            return;
-        }
-        if(!event.isShiftClick()) {
-            return;
-        }
-
-
-
-
-        /*
-        for(ItemStack craftingComponentItemStack : craftingInventory.getMatrix()) {
-            if(craftingComponentItemStack == null) {
-                continue;
-            }
-            if(craftingComponentItemStack.getAmount() <= leastIngredient) {
-                craftingComponentItemStack.setType(Material.AIR);
-            }
-            else {
-                craftingComponentItemStack.setAmount(leastIngredient);
-            }
-
-        }*/
-
-        //newItemCollected(player, event.getCurrentItem());
+    public void onRecipeBookClick(PlayerRecipeBookClickEvent event) {
+        event.setCancelled(true);
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().goalResourceBundle(),
+                "itemgoal.recipebook.disabled",
+                true
+        );
+        event.getPlayer().sendMessage(toSend);
     }
+
     @EventHandler
     public void onItemCollectedThroughInventory(InventoryClickEvent event) {
+        //Bukkit.broadcastMessage("discovered globally? " + Bukkit.addRecipe(shapelessRecipe));
+
         Bukkit.broadcastMessage("current item: " + (event.getCurrentItem() != null ? event.getCurrentItem().getType().toString() : "null"));
         Bukkit.broadcastMessage("cursor item: " + event.getCursor().getType());
-        Bukkit.broadcastMessage("inv:" + (event.getClickedInventory() != null ? event.getClickedInventory().getType() : "null"));
+        //Bukkit.broadcastMessage("inv:" + (event.getClickedInventory() != null ? event.getClickedInventory().getType() : "null"));
 
         if(!context.challengeManager().isRunning()) {
             return;
@@ -208,20 +202,6 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
             return;
         }
 
-        // player has an item on their cursor and placed it (somewhere) in the inventory
-        if(event.getCursor().getType() != Material.AIR) {
-
-        }
-
-        player.getOpenInventory().getSlotType(event.getSlot());
-        Map<InventoryType, NewItemCollect> newItemSlot = new HashMap<>();
-        newItemSlot.put(InventoryType.ANVIL, NEVER); // cannot store persistent items
-        newItemSlot.put(InventoryType.BARREL, ALL);
-        newItemSlot.put(InventoryType.BEACON, NEVER); // cannot store persistent items
-        newItemSlot.put(InventoryType.BLAST_FURNACE, slots(2)); // furnace has result always in slot 2
-        newItemSlot.put(InventoryType.BREWING, slots(0,1,2));
-        newItemSlot.put(InventoryType.CARTOGRAPHY, NEVER);
-
         if(event.getCurrentItem() == null || event.getCurrentItem().getType().isAir()) {
             return;
         }
@@ -229,45 +209,20 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
         if(event.getClickedInventory() == null) {
             return;
         }
-        /*
-        InventoryType inventoryType = event.getClickedInventory().getType();
-        boolean clickedInSlotThatMayContainNewItems = newItemSlot.get(inventoryType).matches(event.getSlot());
-        if(!clickedInSlotThatMayContainNewItems) {
-            return;
-        }
-        ItemStack newItem = event.getClickedInventory().getItem(event.getSlot());
-        if(newItem == null) {
-            return;
-        }*/
+        // If a player clicked in the result slot of a crafting inventory (3x3 or 2x2)
         if(event.getClickedInventory() instanceof CraftingInventory craftingInventory && event.getSlot() == 0) {
-            // handle shift clicksd
+            // handle shift clicks
             if(event.isShiftClick()) {
                 Bukkit.broadcastMessage("shift click: " + currentItem.getType() + currentItem.getAmount());
                 int totalResultAmount = getTotalResultAmount(craftingInventory, currentItem);
                 int leastIngredientAmount = getLeastIngredientAmount(craftingInventory);
                 ItemStack[] craftingMatrix = craftingInventory.getMatrix();
-                ItemStack[] fakeMatrix = new ItemStack[craftingMatrix.length];
-
-                for(int i=0; i<fakeMatrix.length; i++) {
-                    if(craftingMatrix[i] == null || craftingMatrix[i].isEmpty()) {
-                        continue;
-                    }
-                    ItemStack itemInMatrix = craftingMatrix[i];
-                    //itemInMatrix.setAmount(Math.abs(leastIngredientAmount - itemInMatrix.getAmount()) + 1);
-                    int amount = itemInMatrix.getAmount() - leastIngredientAmount + 1;
-                    itemInMatrix.setAmount(amount);
-                    fakeMatrix[i] = itemInMatrix;
-
-                }
+                ItemStack[] fakeMatrix = createFakeMatrix(craftingMatrix, leastIngredientAmount);
                 craftingInventory.setMatrix(fakeMatrix);
 
                 ItemStack fakeResult = new ItemStack(currentItem.getType(), totalResultAmount);
                 newItemCollected(player, fakeResult);
                 craftingInventory.setResult(fakeResult);
-
-                //craftingInventory.setMatrix();
-                //craftingInventory.clear();
-
             }
             else {
                 newItemCollected(player, event.getCurrentItem());
@@ -275,44 +230,34 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
 
         }
         else {
+            // if a player right clicks (selects half of the current stack amount), then all items from that stack
+            // will be marked, but that's a minor bug.
             newItemCollected(player, event.getCurrentItem());
+
         }
+    }
 
-
+    private ItemStack[] createFakeMatrix(ItemStack[] craftingMatrix, int leastIngredientAmount) {
         /*
-        if(event.getCurrentItem() != null && event.getCurrentItem().getType() != Material.AIR && event.getClickedInventory().getType() != InventoryType.PLAYER) {
-            if(event.getClickedInventory() instanceof CraftingInventory craftingInventory) {
-                if(craftingInventory.getResult() != null && craftingInventory.getResult().getType() != Material.AIR) {
-                    // result is (by looking at the internal code) always slot 0 in this inventory
-                    if(event.getRawSlot() == 0) {
-                        Bukkit.broadcastMessage("new item crafting slot: " + event.getCurrentItem().getType());
-                        markItemStack(event.getCurrentItem());
-                    }
-
-                }
+        Reduce the items in the crafting matrix as if the shift click already happened.
+        This is done by subtracting the leastIngredientAmount from every itemstack in the matrix. +1 has to
+        be added because the shift click has to be possible exactly once.
+        In a nutshell we always reduce a shift click to only be able to complete the recipe exactly once.
+        A shift click which completes a recipe exactly once (due to the sparsity of the itemstacks in the matrix)
+        behaves exactly the same as a single left/right click + directly moving the itemstack into a slot in the
+        players inventory.
+         */
+        ItemStack[] fakeMatrix = new ItemStack[craftingMatrix.length];
+        for(int i=0; i<fakeMatrix.length; i++) {
+            if(craftingMatrix[i] == null || craftingMatrix[i].isEmpty()) {
+                continue;
             }
-            else if(event.getClickedInventory() instanceof FurnaceInventory furnaceInventory) {
-                if(furnaceInventory.getResult() != null && furnaceInventory.getResult().getType() != Material.AIR) {
-                    // result is (by looking at the internal code) always slot 2 in this inventory
-                    if(event.getRawSlot() == 2) {
-                        Bukkit.broadcastMessage("new item furnace slot: " + event.getCurrentItem().getType());
-                        markItemStack(event.getCurrentItem());
-                    }
-
-                }
-            }
-            else {
-                Bukkit.broadcastMessage("new item: " + event.getCurrentItem().getType());
-                markItemStack(event.getCurrentItem());
-            }
-
-        }*/
-        /*
-        Inventory inv = event.getWhoClicked().getInventory();
-        Arrays.stream(inv.getContents())
-                .filter(itemStack -> itemStack != null && !itemStack.getType().isAir())
-                .forEach(itemStack -> newItemCollected(player, itemStack));
-                */
+            ItemStack itemInMatrix = craftingMatrix[i];
+            int amount = itemInMatrix.getAmount() - leastIngredientAmount + 1;
+            itemInMatrix.setAmount(amount);
+            fakeMatrix[i] = itemInMatrix;
+        }
+        return fakeMatrix;
     }
 
 
@@ -339,6 +284,7 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
     }
 
     private void newItemCollected(Player collector, ItemStack collected) {
+        Bukkit.broadcastMessage("new item collected: " + collected.getType() + collected.getAmount());
         if(!isMarked(collected)) {
             Bukkit.broadcastMessage("marking new itemstack: " + collected.getType() + collected.getAmount());
             markItemStack(collected);
@@ -431,5 +377,20 @@ public class ItemGoal extends Goal implements Storable<ItemGoalConfig>, BossBarD
     @Override
     public @NotNull CollectedInventory getCollectedInventory() {
         return collectedInventory;
+    }
+
+    @Override
+    public String getBaseCommand() {
+        return "itemgoal";
+    }
+
+    @Override
+    public void onShowInvProgressCommand() {
+
+    }
+
+    @Override
+    public void onSkip() {
+
     }
 }

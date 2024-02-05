@@ -14,11 +14,14 @@ import net.kyori.adventure.translation.TranslationRegistry;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.generated.ChallengesSchema;
@@ -52,7 +55,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         getCommand("load").setExecutor(this);
         getCommand("save").setExecutor(this);
         getCommand("status").setExecutor(this);
-
     }
 
     @Override
@@ -92,16 +94,31 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         else if(command.getName().equalsIgnoreCase("status")) {
             sender.sendMessage(manager.getCurrentStatus());
         }
+        // command for skipping
+        else if(command.getName().equalsIgnoreCase("skip")) {
+
+        }
         if(command.getName().equalsIgnoreCase("test")) {
+            Bukkit.broadcast(Component.text("123"));
+            Bukkit.broadcast(Component.translatable("minecraft.mineable.axe"));
+            Bukkit.broadcast(Component.translatable("item.minecraft.carrot"));
 
-            TranslationRegistry registry = TranslationRegistry.create(Key.key("namespace:value"));
-            ResourceBundle bundle = ResourceBundle.getBundle("test", Locale.US, UTF8ResourceBundleControl.get());
-            registry.registerAll(Locale.US, bundle, true);
-            GlobalTranslator.translator().addSource(registry);
+            Bukkit.clearRecipes();
 
 
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-            Component bundleTranslated = Component.translatable("some.translation.key");
+            NamespacedKey recipeKey = new NamespacedKey(this, "testrecipe");
+            ItemStack itemStack = new ItemStack(Material.CARROT);
+            //markItemStack(itemStack);
+            ShapelessRecipe shapelessRecipe = new ShapelessRecipe(recipeKey, itemStack);
+            ItemStack ingredient = new ItemStack(Material.APPLE);
+            //markItemStack(ingredient);
+            shapelessRecipe.addIngredient(ingredient);
+
+            Player player = ((Player) sender);
+            boolean discovered = player.discoverRecipe(recipeKey);
+            Bukkit.broadcastMessage("discovered? " + discovered);
+            Bukkit.broadcastMessage("globally discovered" + Bukkit.addRecipe(shapelessRecipe));
+            player.getDiscoveredRecipes().stream().filter(namespacedKey -> !namespacedKey.getNamespace().equals("minecraft")).forEach(namespacedKey -> Bukkit.broadcastMessage(namespacedKey.asString()));
 
             /**
              *
@@ -110,25 +127,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
              * Mob prefix: entity.minecraft.XXX
              *
              */
-
-            Component translated = MiniMessage.miniMessage().deserialize(
-                    bundle.getString("some.translation.key"),
-                    Placeholder.component("player", Component.translatable(String.format("block.minecraft.%s", Material.DIRT.toString().toLowerCase()))));
-
-            sender.sendMessage(translated);
-            ResourceBundle rulesBundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-            sender.sendMessage("ABC");
-            try {
-
-                ChallengeManager challengeManager = new ChallengeManager();
-
-                JsonNode schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-                MobGoal mobGoal = new MobGoal(new Context(this, new ResourceBundleContext(bundle, null, null, null), schemaRoot, challengeManager), new HashMap<>(Map.of(EntityType.PIG, new Collect(2))));
-                Player player = (Player) sender;
-                mobGoal.openCollectedInv(player);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
 
         }
