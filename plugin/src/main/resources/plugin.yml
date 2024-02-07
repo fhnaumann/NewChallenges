@@ -11,3 +11,7 @@ commands:
     description: abc
   status:
     description: abc
+libraries:
+  - com.github.erosb:everit-json-schema:1.14.4
+  - com.fasterxml.jackson.core:jackson-databind:2.16.1
+  - com.helger.schematron:ph-schematron-pure:7.1.3

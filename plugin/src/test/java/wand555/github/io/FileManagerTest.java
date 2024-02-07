@@ -6,26 +6,20 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
-import org.bukkit.Material;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.mapping.ModelMapper;
-import wand555.github.io.challenges.rules.NoBlockBreakRule;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 public class FileManagerTest {
 
     private ServerMock server;

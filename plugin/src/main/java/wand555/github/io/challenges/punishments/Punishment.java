@@ -4,9 +4,7 @@ import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.JSONConfigGroup;
 import wand555.github.io.challenges.StatusInfo;
-import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
-import wand555.github.io.challenges.rules.PunishableRule;
 
 import java.util.Objects;
 

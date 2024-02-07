@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.rules;
+package wand555.github.io.challenges.criteria.rules.noblockbreak;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
@@ -7,14 +7,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,9 +20,10 @@ import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
-import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
+import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -57,7 +54,7 @@ public class NoBlockBreakRuleTest {
         ResourceBundle bundle = ResourceBundle.getBundle("rules", Locale.ENGLISH, UTF8ResourceBundleControl.get());
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.ruleResourceBundle()).thenReturn(bundle);
-        schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
+        schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
     }
 
     @BeforeEach
@@ -79,17 +76,30 @@ public class NoBlockBreakRuleTest {
     }
 
     @Test
+    public void testNoBlockBreakTriggerCheck() {
+        assertTrue(rule.triggerCheck().applies(new BlockBreakData(Material.DIRT, player)));
+        assertFalse(rule.triggerCheck().applies(new BlockBreakData(Material.STONE, player)));
+    }
+
+    @Test
+    public void testNoBlockBreakTrigger() {
+        rule.trigger().actOnTriggered(new BlockBreakData(Material.DIRT, player));
+        verify(rule, times(1)).enforcePunishments(any(Player.class));
+    }
+
+    @Test
     public void testIsInExemptionsOnBlockBreakEvent() {
         toBeBroken.setType(Material.STONE);
-        rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
-        verify(rule, never()).enforcePunishments(any(Player.class));
+        player.simulateBlockBreak(toBeBroken);
+        //rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
+        //verify(rule, never()).enforcePunishments(any(Player.class));
     }
 
     @Test
     public void testIsNotInExemptionsOnBlockBreakEvent() {
         toBeBroken.setType(Material.DIRT);
-        rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
-        verify(rule, times(1)).enforcePunishments(any(Player.class));
+        //rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
+        //verify(rule, times(1)).enforcePunishments(any(Player.class));
     }
 
     @Test

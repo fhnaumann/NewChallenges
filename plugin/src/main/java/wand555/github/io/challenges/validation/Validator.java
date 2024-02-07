@@ -95,14 +95,13 @@ public class Validator {
             System.out.println(test);
             //schematronResourcePure = SchematronResourcePure.fromFile(new File(test.getFile()));
             //schematronResourcePure = SchematronResourcePure.fromInputStream("ignored", Challenges.class.getResourceAsStream("/constraints.sch"));
-            Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
+Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
 
-            SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);
+SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);
 
 
-            List<Object> failedAsserts = schematronOutputType.getActivePatternAndFiredRuleAndFailedAssert();
-            System.out.println(failedAsserts.size());
-            ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(schematronOutputType);
+List<Object> failedAsserts = schematronOutputType.getActivePatternAndFiredRuleAndFailedAssert();
+ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(schematronOutputType);
             addSchematronViolationsToBuilder(svrlFailedAsserts);
         } catch (Exception e) {
             builder.setInitialException(e);

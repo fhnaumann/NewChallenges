@@ -134,6 +134,11 @@
                     "description": "If the goal is completed.",
                     "type": "boolean"
                 },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected items have to be collected in a specific (randomized) order",
+                    "type": "boolean"
+                },
                 "items": {
                     "$ref": "#/definitions/CollectableEntryConfig",
                     "description": "The items that need to be collected to beat this goal."
@@ -150,6 +155,11 @@
                 "complete": {
                     "default": false,
                     "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected mobs have to be killed in a specific (randomized) order",
                     "type": "boolean"
                 },
                 "mobs": {

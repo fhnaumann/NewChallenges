@@ -1,48 +1,45 @@
-package wand555.github.io.challenges.rules;
+package wand555.github.io.challenges.criteria.rules.noblockbreak;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import wand555.github.io.challenges.ComponentUtil;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.criteria.Triggable;
+import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
+import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.criteria.rules.PunishableRule;
 
 import java.util.*;
 
-public class NoBlockBreakRule extends PunishableRule implements Storable<NoBlockBreakRuleConfig>, Listener {
+public class NoBlockBreakRule extends PunishableRule implements Triggable<BlockBreakData>, Storable<NoBlockBreakRuleConfig> {
+
+    private final BlockBreakType blockBreakType;
+    private final NoBlockBreakMessageHelper messageHelper;
 
     private final Set<Material> exemptions;
 
     public NoBlockBreakRule(Context context, NoBlockBreakRuleConfig config) {
         super(context, ModelMapper.mapToPunishments(context, config.getPunishments()));
         this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), ModelMapper.VALID_BLOCKS));
-        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
+
+        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
+        context.plugin().getServer().getPluginManager().registerEvents(blockBreakType, context.plugin());
+        this.messageHelper = new NoBlockBreakMessageHelper(context);
     }
 
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
-        Player player = event.getPlayer();
-        Material broken = event.getBlock().getType();
-        if(exemptions.contains(broken)) {
-            return;
-        }
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().ruleResourceBundle(),
-                "noblockbreak.violation",
-                Map.of(
-                        "player", Component.text(player.getName()),
-                        "block", Component.translatable(String.format("block.minecraft.%s", broken.toString().toLowerCase()))
-                )
-        );
-        context.plugin().getServer().broadcast(toSend);
-        enforcePunishments(player);
+    @Override
+    public TriggerCheck<BlockBreakData> triggerCheck() {
+        return data -> !exemptions.contains(data.broken());
+    }
+
+    @Override
+    public Trigger<BlockBreakData> trigger() {
+        return data -> {
+            messageHelper.sendViolationAction(data);
+            enforcePunishments(data.player());
+        };
     }
 
     @Override

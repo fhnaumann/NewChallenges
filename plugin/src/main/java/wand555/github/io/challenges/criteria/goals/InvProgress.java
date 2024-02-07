@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.goals;
+package wand555.github.io.challenges.criteria.goals;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,12 +1,11 @@
 package wand555.github.io.challenges;
 
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import wand555.github.io.challenges.goals.Goal;
-import wand555.github.io.challenges.rules.Rule;
+import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.rules.Rule;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -17,7 +16,7 @@ public class ChallengeManager implements StatusInfo {
     private @NotNull Context context;
 
     private @NotNull List<Rule> rules;
-    private @NotNull List<Goal> goals;
+    private @NotNull List<BaseGoal> goals;
 
     private GameState gameState;
 
@@ -36,7 +35,7 @@ public class ChallengeManager implements StatusInfo {
             throw new RuntimeException("No rules specified!");
         }
         if(goals.isEmpty()) {
-            throw new RuntimeException("No goals specified!");
+            //throw new RuntimeException("No goals specified!");
         }
         gameState = GameState.RUNNING;
 
@@ -78,14 +77,14 @@ public class ChallengeManager implements StatusInfo {
     }
 
     public boolean allGoalsCompleted() {
-        return goals.stream().allMatch(Goal::isComplete);
+        return goals.stream().allMatch(BaseGoal::isComplete);
     }
 
-    public @NotNull List<Goal> getGoals() {
+    public @NotNull List<BaseGoal> getGoals() {
         return goals;
     }
 
-    public void setGoals(@NotNull List<Goal> goals) {
+    public void setGoals(@NotNull List<BaseGoal> goals) {
         this.goals = goals;
     }
 
@@ -112,7 +111,7 @@ public class ChallengeManager implements StatusInfo {
                 "statusinfo.name",
                 false
         ).append(ComponentUtil.COLON).appendNewline();
-        for (Goal goal : goals) {
+        for (BaseGoal goal : goals) {
             goalComponent = goalComponent.appendSpace().appendSpace().append(goal.getCurrentStatus()).appendNewline();
         }
         Component total = ruleComponent.append(goalComponent);

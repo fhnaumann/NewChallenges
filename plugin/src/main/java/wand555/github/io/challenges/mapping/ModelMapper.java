@@ -1,6 +1,5 @@
 package wand555.github.io.challenges.mapping;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -8,17 +7,17 @@ import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.generated.*;
-import wand555.github.io.challenges.goals.Collect;
-import wand555.github.io.challenges.goals.Goal;
-import wand555.github.io.challenges.goals.ItemGoal;
-import wand555.github.io.challenges.goals.MobGoal;
+import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.RandomEffectPunishment;
-import wand555.github.io.challenges.rules.NoBlockBreakRule;
-import wand555.github.io.challenges.rules.PunishableRule;
-import wand555.github.io.challenges.rules.Rule;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
+import wand555.github.io.challenges.criteria.rules.PunishableRule;
+import wand555.github.io.challenges.criteria.rules.Rule;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
@@ -61,13 +60,13 @@ public class ModelMapper {
                     });
         }
 
-        List<Goal> goals = mapToGoals(context, json.getGoals());
+        List<BaseGoal> goals = mapToGoals(context, json.getGoals());
         context.challengeManager().setRules(rules);
         context.challengeManager().setGoals(goals);
     }
 
-    private static List<Goal> mapToGoals(Context context, GoalsConfig goalsConfig) {
-        List<Goal> goals = new ArrayList<>();
+    private static List<BaseGoal> mapToGoals(Context context, GoalsConfig goalsConfig) {
+        List<BaseGoal> goals = new ArrayList<>();
         if(goalsConfig == null) {
             return goals;
         }

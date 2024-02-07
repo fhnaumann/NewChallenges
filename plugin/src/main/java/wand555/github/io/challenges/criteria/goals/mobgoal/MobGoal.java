@@ -1,31 +1,35 @@
-package wand555.github.io.challenges.goals;
+package wand555.github.io.challenges.criteria.goals.mobgoal;
 
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import wand555.github.io.challenges.BossBarDisplay;
-import wand555.github.io.challenges.ComponentUtil;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.criteria.Triggable;
+import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.InvProgress;
+import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
+import wand555.github.io.challenges.types.mob.MobData;
+import wand555.github.io.challenges.types.mob.MobType;
 import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Skippable, Listener {
+public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Skippable {
+
+    private final MobType mobType;
+    private final MobGoalMessageHelper messageHelper;
 
     private final Map<EntityType, Collect> toKill;
     private final CollectedInventory collectedInventory;
@@ -40,13 +44,10 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
         this.toKill = toKill;
         this.collectedInventory = new CollectedInventory(context.plugin());
         this.bossBar = createBossBar();
-        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
 
-
-        // TODO: remove
-        context.plugin().getServer().getOnlinePlayers().forEach(player -> {
-            player.showBossBar(bossBar);
-        });
+        this.mobType = new MobType(context, triggerCheck(), trigger());
+        context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
+        this.messageHelper = new MobGoalMessageHelper(context);
     }
 
     public Map<EntityType, Collect> getToKill() {
@@ -56,19 +57,7 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
     @Override
     public void onComplete() {
         setComplete(true);
-
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.all.reached.message"
-        );
-        ActionHelper.sendAndPlaySound(
-                context.plugin(),
-                toSend,
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.all.reached.sound"
-        );
-
+        messageHelper.sendAllReachedAction();
         notifyManager();
     }
 
@@ -78,64 +67,29 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
         toKill.forEach((entityType, collect) -> collectableEntryConfig.setAdditionalProperty(entityType.toString(), collect.toGeneratedJSONClass()));
         return new MobGoalConfig(
                 isComplete(),
+                null, // TODO change constructor and set value here
                 collectableEntryConfig
         );
     }
 
-    @EventHandler
-    public void onMobDeath(EntityDeathEvent event) {
-        Player killer = event.getEntity().getKiller();
-        if(killer == null) {
-            return;
-        }
-        newEntityKilled(killer, event.getEntityType());
-    }
-
-    private void newEntityKilled(Player killer, EntityType killed) {
-        Collect updatedCollect = getToKill().computeIfPresent(killed, (entityType, collect) -> {
+    private void newEntityKilled(MobData data) {
+        Collect updatedCollect = getToKill().computeIfPresent(data.entityInteractedWith(), (entityType, collect) -> {
             collect.setCurrentAmount(collect.getCurrentAmount()+1);
             return collect;
         });
-        Component toSend = null;
-        String soundInBundleKey = null;
         if(updatedCollect.isComplete()) {
-            toSend = ComponentUtil.formatChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().goalResourceBundle(),
-                    "mobgoal.single.reached.message",
-                    Map.of(
-                            "entity", ComponentUtil.translate(killed)
-                    )
-            );
-            soundInBundleKey = "mobgoal.single.reached.sound";
+            messageHelper.sendSingleReachedAction(data, updatedCollect);
         }
         else {
-            toSend = ComponentUtil.formatChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().goalResourceBundle(),
-                    "mobgoal.single.step.message",
-                    Map.of(
-                            "player", Component.text(killer.getName()),
-                            "entity", ComponentUtil.translate(killed),
-                            "amount", Component.text(updatedCollect.getCurrentAmount()),
-                            "total_amount", Component.text(updatedCollect.getAmountNeeded())
-                    )
-            );
-            soundInBundleKey = "mobgoal.single.step.sound";
+            messageHelper.sendSingleStepAction(data, updatedCollect);
         }
-        ActionHelper.sendAndPlaySound(
-                context.plugin(),
-                toSend,
-                context.resourceBundleContext().goalResourceBundle(),
-                soundInBundleKey
-        );
 
         if(determineComplete()) {
             onComplete();
         }
     }
 
-    private boolean determineComplete() {
+    public boolean determineComplete() {
         return toKill.values().stream().allMatch(Collect::isComplete);
     }
 
@@ -218,5 +172,15 @@ public class MobGoal extends Goal implements Storable<MobGoalConfig>, BossBarDis
     @Override
     public void onSkip() {
 
+    }
+
+    @Override
+    public TriggerCheck<MobData> triggerCheck() {
+        return data -> getToKill().containsKey(data.entityInteractedWith());
+    }
+
+    @Override
+    public Trigger<MobData> trigger() {
+        return this::newEntityKilled;
     }
 }

@@ -1,25 +1,16 @@
-package wand555.github.io.challenges.rules;
+package wand555.github.io.challenges.criteria.rules;
 
 
 import org.bukkit.entity.Player;
-import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.Storable;
-import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
-import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
-import wand555.github.io.challenges.punishments.RandomEffectPunishment;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public abstract class PunishableRule extends Rule {
 

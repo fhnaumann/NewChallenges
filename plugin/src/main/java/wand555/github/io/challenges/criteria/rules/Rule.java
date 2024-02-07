@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.rules;
+package wand555.github.io.challenges.criteria.rules;
 
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
