@@ -7,7 +7,7 @@ typescript-json-schema src/components/model/model.ts Model > src/assets/$schema_
 cd ..
 echo "Typescript -> JSON Schema DONE!"
 echo "Copying into maven resource folder..."
-cp builder_website/$schema_file_name plugin/src/main/resources
+cp builder_website/src/assets/$schema_file_name plugin/src/main/resources
 echo "Copying into maven resource folder DONE!"
 echo "JSON Schema -> Java classes..."
 cd plugin

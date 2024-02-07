@@ -17,5 +17,11 @@
         Value of 'heartsLost' will be ignored because 'randomizeHeartsLost' is set to true.
       </report>
     </rule>
+
+    <rule context="root/goals/itemGoal">
+      <assert test="items/* and (allItems='true' or allBlocks='true')">
+        If 'allItems' or 'allBlocks' is selected, then no specific items may be selected.
+      </assert>
+    </rule>
   </pattern>
 </schema>

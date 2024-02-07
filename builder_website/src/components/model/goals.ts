@@ -43,6 +43,13 @@ export interface MobGoalConfig extends BaseGoalConfig {
      * @default {"ENDER_DRAGON": {"amountNeeded": 1}}
      */
     mobs: CollectableEntryConfig
+
+    /**
+     * If true, all selected mobs have to be killed in a specific (randomized) order
+     * 
+     * @default false
+     */
+    fixedOrder?: boolean
 }
 
 export interface ItemGoalConfig extends BaseGoalConfig {
@@ -66,4 +73,11 @@ export interface ItemGoalConfig extends BaseGoalConfig {
      * @default false
      */
     allBlocks?: boolean
+
+    /**
+     * If true, all selected items have to be collected in a specific (randomized) order
+     * 
+     * @default false
+     */
+    fixedOrder?: boolean
 }
