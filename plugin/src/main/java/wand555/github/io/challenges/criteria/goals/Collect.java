@@ -3,6 +3,8 @@ package wand555.github.io.challenges.criteria.goals;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableDataConfig;
 
+import java.util.Objects;
+
 public class Collect implements Storable<CollectableDataConfig> {
 
     private final int amountNeeded;
@@ -36,5 +38,18 @@ public class Collect implements Storable<CollectableDataConfig> {
     @Override
     public CollectableDataConfig toGeneratedJSONClass() {
         return new CollectableDataConfig(amountNeeded, currentAmount);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Collect collect = (Collect) o;
+        return amountNeeded == collect.amountNeeded && currentAmount == collect.currentAmount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amountNeeded, currentAmount);
     }
 }

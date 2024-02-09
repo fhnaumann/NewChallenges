@@ -1,12 +1,17 @@
 package wand555.github.io.challenges;
 
+import com.google.common.base.Preconditions;
+import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.translation.Translatable;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -14,6 +19,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class Challenges extends JavaPlugin implements CommandExecutor {
 
@@ -83,23 +90,51 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             Bukkit.broadcast(Component.translatable("minecraft.mineable.axe"));
             Bukkit.broadcast(Component.translatable("item.minecraft.carrot"));
 
-            Bukkit.clearRecipes();
+            List<String> translations = new ArrayList<>(Stream.of(
+                    Arrays.stream(Material.values())
+                            .filter(material -> !material.isLegacy())
+                            .filter(Material::isBlock)
+                            //.filter(material -> !Objects.equals(material.translationKey(), getBlockTranslationKey(material))) // comment out to get everything
+                            .map(material -> String.format("%s, %s", material.translationKey(), getBlockTranslationKey(material)))
+                            .toList(),
+                    Arrays.stream(Material.values())
+                            .filter(material -> !material.isLegacy())
+                            .filter(Material::isItem)
+                            //.filter(material -> !Objects.equals(material.translationKey(), getItemTranslationKey(material))) // comment out to get everything
+                            .map(material -> String.format("%s, %s", material.translationKey(), getItemTranslationKey(material)))
+                            .toList(),
+                    Arrays.stream(EntityType.values())
+                            .filter(entityType -> entityType.getName() != null)
+                            .filter(entityType -> entityType != EntityType.UNKNOWN)
+                            //.filter(entityType -> !entityType.translationKey().equals(formatTranslatable("entity", entityType))) // comment out to get everything
+                            .map(entityType -> String.format("%s,%s", entityType.translationKey(), getTranslationKey(entityType)))
+                            .toList(),
+                    Arrays.stream(Material.values())
+                            .filter(material -> !material.isLegacy())
+                            .filter(Material::isItem)
+                            .map(ItemStack::new)
+                            //.filter(itemStack -> !Objects.equals(itemStack.translationKey(), getTranslationKey(itemStack))) // comment out to get everything
+                            .map(itemStack -> String.format("%s,%s", itemStack.translationKey(), getTranslationKey(itemStack)))
+                            .toList()
+            ).flatMap(Collection::stream).toList());
+            translations.
+                    add(0, "native, mocked");
+            try {
+                FileWriter writer = new FileWriter(new File(getDataFolder(), "translations.csv"));
+                for (String s : translations) {
+                    writer.write(s + System.lineSeparator());
+                }
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
-
-            NamespacedKey recipeKey = new NamespacedKey(this, "testrecipe");
-            ItemStack itemStack = new ItemStack(Material.CARROT);
-            //markItemStack(itemStack);
-            ShapelessRecipe shapelessRecipe = new ShapelessRecipe(recipeKey, itemStack);
-            ItemStack ingredient = new ItemStack(Material.APPLE);
-            //markItemStack(ingredient);
-            shapelessRecipe.addIngredient(ingredient);
-
-            Player player = ((Player) sender);
-            boolean discovered = player.discoverRecipe(recipeKey);
-            Bukkit.broadcastMessage("discovered? " + discovered);
-            Bukkit.broadcastMessage("globally discovered" + Bukkit.addRecipe(shapelessRecipe));
-            player.getDiscoveredRecipes().stream().filter(namespacedKey -> !namespacedKey.getNamespace().equals("minecraft")).forEach(namespacedKey -> Bukkit.broadcastMessage(namespacedKey.asString()));
-
+            Bukkit.broadcastMessage(Bukkit.getUnsafe().getTranslationKey(new ItemStack(Material.POTION)));
+            Bukkit.broadcastMessage(Material.POTION.translationKey());
+            Bukkit.broadcastMessage(Material.ACACIA_WALL_SIGN.translationKey());
+            Bukkit.broadcastMessage(Material.ACACIA_WALL_HANGING_SIGN.translationKey());
+            Bukkit.broadcastMessage(Tag.WALL_HANGING_SIGNS.key().asString());
+            Bukkit.broadcastMessage(Tag.WALL_SIGNS.key().asString());
             /**
              *
              * Block prefix: block.minecraft.XXX
@@ -111,5 +146,111 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
         }
         return true;
+    }
+
+    /**
+     * Gets the translation key for a {@link Material} that {@link Material#isBlock() is a block}.
+     * @param material the material to translate
+     * @return a string of the structure "block.{@literal <namespace>}.{@literal <material>}" (e.g. "block.minecraft.stone"), or null if not a block.
+     */
+    public String getBlockTranslationKey(Material material)
+    {
+        if(!material.isBlock()) {
+            return null;
+        }
+        // edge cases: WHEAT and NETHER_WART are blocks, but still use the "item" prefix
+        if(material == Material.WHEAT || material == Material.NETHER_WART) {
+            return formatTranslatable("item", material);
+        }
+        return formatTranslatable("block", material);
+    }
+
+    /**
+     * Gets the translation key for a {@link Material} that {@link Material#isItem() is an item}.
+     * @param material the material to translate
+     * @return a string of the structure "item.{@literal <namespace>}.{@literal <material>}" (e.g. "item.minecraft.carrot"), or null if not an item.
+     */
+    public String getItemTranslationKey(Material material)
+    {
+        if(!material.isItem()) {
+            return null;
+        }
+        // edge cases: WHEAT and NETHER_WART are blocks, but still use the "item" prefix (therefore this check has to be done BEFORE the isBlock check below)
+        if(material == Material.WHEAT || material == Material.NETHER_WART) {
+            return formatTranslatable("item", material);
+        }
+        // edge case: If a translation key from an item is requested from anything that is also a block, the block translation key is always returned
+        // e.g: Material#STONE is a block (but also an obtainable item in the inventory). However, the translation key is always "block.minecraft.stone".
+        if(material.isBlock()) {
+            return formatTranslatable("block", material);
+        }
+        return formatTranslatable("item", material);
+    }
+
+    /**
+     * Gets the translation key for an {@link EntityType}. Throws an error for custom entities.
+     * @param type the entity to translate
+     * @return a string of the structure "item.{@literal <namespace>}.{@literal <entity_type>}" (e.g. "entity.minecraft.pig").
+     */
+    public String getTranslationKey(EntityType type)
+    {
+        Preconditions.checkArgument(type.getName() != null, "Invalid name of EntityType %s for translation key", type);
+        Arrays.stream(EntityType.values())
+                .filter(entityType ->type.getName().equals(entityType.getName()))
+                .findFirst()
+                .orElseThrow();
+        return formatTranslatable("entity", type);
+    }
+
+    /**
+     * Gets the translation key for a {@link ItemStack} that {@link Material#isItem() is an item}.
+     * @param itemStack the itemstack to translate
+     * @return a string of the structure "item.{@literal <namespace>}.{@literal <material>}" (e.g. "item.minecraft.carrot"), or null if not an item.
+     */
+    public String getTranslationKey(ItemStack itemStack)
+    {
+        if(itemStack.getType().isItem()) {
+            Material material = itemStack.getType();
+            if(!material.isItem()) {
+                return null;
+            }
+            // edge cases: WHEAT and NETHER_WART are blocks, but still use the "item" prefix (therefore this check has to be done BEFORE the isBlock check below)
+            if(material == Material.WHEAT || material == Material.NETHER_WART) {
+                return formatTranslatable("item", material);
+            }
+            // edge case: If a translation key from an item is requested from anything that is also a block, the block translation key is always returned
+            // e.g: Material#STONE is a block (but also an obtainable item in the inventory). However, the translation key is always "block.minecraft.stone".
+            if(material.isBlock()) {
+                return formatTranslatable("block", material);
+            }
+            return formatTranslatable("item", material, true);
+        }
+        else if(itemStack.getType().isBlock()) {
+            return getBlockTranslationKey(itemStack.getType());
+        }
+        else {
+            return null;
+        }
+    }
+
+    private <T extends Keyed & Translatable> String formatTranslatable(String prefix, T translatable, boolean fromItemStack)
+    {
+        // enforcing Translatable is not necessary, but translating only makes sense when the object is really translatable by design.
+        String value = translatable.key().value();
+        if(translatable instanceof Material material) {
+            if(Tag.WALL_HANGING_SIGNS.isTagged(material) || Tag.WALL_SIGNS.isTagged(material) || value.endsWith("wall_banner") || value.endsWith("wall_torch") || value.endsWith("wall_skull") || value.endsWith("wall_head")) {
+                value = value.replace("wall_", "");
+            }
+            final Set<Material> EMPTY_EFFECTS = Set.of(Material.POTION, Material.SPLASH_POTION, Material.TIPPED_ARROW, Material.LINGERING_POTION);
+            if(fromItemStack && EMPTY_EFFECTS.contains(material)) {
+                value += ".effect.empty";
+            }
+        }
+        return String.format("%s.%s.%s", prefix, translatable.key().namespace(), value);
+    }
+
+    private <T extends Keyed & Translatable> String formatTranslatable(String prefix, T translatable)
+    {
+        return formatTranslatable(prefix, translatable, false);
     }
 }

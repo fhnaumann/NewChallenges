@@ -9,6 +9,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
+import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
@@ -74,7 +75,8 @@ public class ModelMapper {
             MobGoalConfig mobGoalConfig = goalsConfig.getMobGoal();
             goals.add(new MobGoal(
                     context,
-                    str2Collectable(mobGoalConfig.getMobs().getAdditionalProperties(), EntityType.class)
+                    mobGoalConfig,
+                    new MobGoalMessageHelper(context)
             ));
         }
         if(goalsConfig.getItemGoal() != null) {

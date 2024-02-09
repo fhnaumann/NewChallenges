@@ -18,6 +18,7 @@ import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
+import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
 import wand555.github.io.challenges.utils.ActionHelper;
@@ -35,19 +36,15 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
     private final CollectedInventory collectedInventory;
     private final BossBar bossBar;
 
-    public MobGoal(Context context, Map<EntityType, Collect> toKill) {
-        this(context, false, toKill);
-    }
-
-    public MobGoal(Context context, boolean complete, Map<EntityType, Collect> toKill) {
-        super(context, complete);
-        this.toKill = toKill;
+    public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
+        super(context, config.getComplete());
+        this.toKill = ModelMapper.str2Collectable(config.getMobs().getAdditionalProperties(), EntityType.class);
         this.collectedInventory = new CollectedInventory(context.plugin());
         this.bossBar = createBossBar();
 
         this.mobType = new MobType(context, triggerCheck(), trigger());
         context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
-        this.messageHelper = new MobGoalMessageHelper(context);
+        this.messageHelper = messageHelper;
     }
 
     public Map<EntityType, Collect> getToKill() {

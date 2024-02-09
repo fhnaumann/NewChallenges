@@ -1,0 +1,12 @@
+{
+  "mobs": {
+    "PIG": {
+      "currentAmount": 0,
+      "amountNeeded": 2
+    },
+    "WITHER_SKELETON": {
+      "currentAmount": 1,
+      "amountNeeded": 3
+    }
+  }
+}

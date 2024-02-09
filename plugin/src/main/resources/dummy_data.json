@@ -1,13 +1,14 @@
 {
-  "rules": {
-    "enabledRules": {
-      "noBlockBreak": {
-        "punishments": {
-          "healthPunishment": {
-            "heartsLost": 25,
-            "randomizeHeartsLost": true,
-            "affects": "Causer"
-          }
+  "goals": {
+    "mobGoal": {
+      "mobs": {
+        "PIG": {
+          "currentAmount": 0,
+          "amountNeeded": 2
+        },
+        "WITHER_SKELETON": {
+          "currentAmount": 1,
+          "amountNeeded": 3
         }
       }
     }

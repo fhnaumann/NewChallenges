@@ -20,7 +20,12 @@ import java.util.stream.Collectors;
 public class EnumConverterHelper {
 
     public static <E extends Enum<E> & Translatable> Component translateEnum(E e) {
-        return Component.translatable(e.translationKey());
+        // TODO: remove try-catch, it is only here to catch MockBukkit#UnimplementedOperationException when testing
+        try {
+            return Component.translatable(e.translationKey());
+        } catch (Exception exception) {
+            return Component.empty();
+        }
     }
 
     public static <E extends  Enum<E> & Keyed & Translatable> Component enum2Comp(E e, TextColor enumTextColor, boolean translate) {
