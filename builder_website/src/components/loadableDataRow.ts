@@ -1,5 +1,6 @@
 import { computed, defineComponent, ref, toRefs, watch } from "vue";
 import type { Model } from "./model/model";
+import materials from '../assets/materials.json'
 
 /**
  * A "data row" containing the necessary information for a "single point of information".
@@ -14,43 +15,22 @@ export interface DataRow {
     code: string;
     
     /** The path to the associated image. */
-    image: string;
-    /** The label that is displayed to the user. */
-    label: string;
+    img_name: string;
+    /** The minecraft translation key that is used to get the actual display label from a language json file. */
+    translation_key: string;
+
+}
+
+export interface MaterialDataRow extends DataRow {
     /** Whether this element is considered an item (by Spigot's 'Material#isItem' method). */
-    isItem: boolean;
+    is_item: boolean;
     /** Whether this element is considered a block (by Spigot's 'Material#isBlock' method). */
-    isBlock: boolean;
+    is_block: boolean;
 }
 
 export type Getter = (model: Model) => DataRow[]
 export type Setter = (model: Model, value: DataRow[]) => void
 
-export function useLoadableDataRow(rawLoadedDataFile: string) {
-    /**
-     * Contains every row exactly once. Essentially an in-memory copy of the rawLoadedDataFile
-     */
-    const fullData: readonly DataRow[] = loadData(rawLoadedDataFile).sort((a, b) => a.label.localeCompare(b.label))
-    /**
-     * Contains the data rows that are currently selected
-     */
-    const selectedData = ref<DataRow[]>([])
-    /*const selectedData = computed<DataRow[]>(() => {
-        console.log("triggered read")
-        return getSelectedData(model)
-    })*/
-
-    function loadData(rawLoadedDataFile: string): DataRow[] {
-        return rawLoadedDataFile.split("\r\n").map((entry: string) => {
-            const splitted: string[] = entry.split(",")
-            return {
-                code: splitted[0],
-                image: splitted[1],
-                label: splitted[2],
-                isItem: splitted[3] === 'true',
-                isBlock: splitted[4] === 'true'
-            }
-        })
-    }
-    return {fullData, selectedData}
-}
+export const allMaterialData: MaterialDataRow[] = materials.data;
+export const allBlockMaterialData: MaterialDataRow[] = materials.data.filter(mat => mat.is_block)
+export const allItemMaterialData: MaterialDataRow[] = materials.data.filter(mat => mat.is_item)

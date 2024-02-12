@@ -14,6 +14,7 @@ import type { PunishmentsView } from './components/view/punishments'
 import type { GoalsView } from './components/view/goals'
 import ConfirmationService from 'primevue/confirmationservice';
 
+
 const pinia = createPinia()
 const app = createApp(App)
 
@@ -26,6 +27,19 @@ app.use(ToastService)
 app.directive('tooltip', Tooltip);
 
 export const toast = app.config.globalProperties.$toast
+
+export const useAllMaterialDataStore = defineStore('allMaterialDataConfig', {
+    state: () => (materials.data)
+})
+
+export const useBlockMaterialDataStore = defineStore('blockMaterialDataConfig', {
+    state: () => (materials.data.filter((mat) => mat.is_block))
+})
+
+export const useItemMaterialDataStore = defineStore('itemMaterialDataConfig', {
+    state: () => (materials.data.filter((mat) => mat.is_item))
+})
+
 
 export const useJSONSchemaConfigStore = defineStore('JSONSchemaConfig', {
     state: () => (modelSchema.definitions)
@@ -111,6 +125,7 @@ export const useRulesViewStore = defineStore('rulesView', {
 
 const goalsView: GoalsView = {
     allgoals: {
+        /*
         mobGoal: {
             id: 'mobGoal',
             description: 'TODO MobGoal',
@@ -120,6 +135,11 @@ const goalsView: GoalsView = {
             id: 'itemGoal',
             description: 'TODO ItemGoal',
             label: 'ItemGoal'
+        },*/
+        blockbreakGoal: {
+            id: 'blockbreakGoal',
+            description: 'TODO blockbreak goal',
+            label: 'BlockBreakGoal'
         }
     }
 }

@@ -57,7 +57,7 @@ import { useConfigStore } from './main';
 import Ajv from 'ajv'
 import challengesSchema from '@/assets/challenges_schema.json';
 
-const ajv = new Ajv({allErrors: true, strict: true})
+const ajv = new Ajv({allErrors: true, strict: 'log'})
 
 const store = useConfigStore()
 const toast = useToast()

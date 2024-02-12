@@ -1,87 +1,118 @@
 import { useActivatableGoal } from "./activatableGoal";
-import { computed, ref, toRefs, watch } from "vue";
+import { computed, ref, toRaw, toRefs, watch } from "vue";
 import { useConfigStore } from '@/main';
 //import { DataRow, useLoadableDataRow } from "./loadableDataRow";
 import type { DataRow } from "./loadableDataRow";
-import { useLoadableDataRow } from "./loadableDataRow";
-import type { CollectableEntryConfig, GoalName } from "./model/goals";
+import type { BaseGoalConfig, CollectableDataConfig, CollectableEntryConfig, GoalName, GoalPathSplitKey, GoalsConfig } from "./model/goals";
 import type { RandomEffectPunishmentConfig } from "./model/punishments";
+import type { Model } from "./model/model";
+import { useValidator } from "./validator";
+
+export interface AccessOperation {
+    getSelectedData: (model: Model) => CollectableEntryConfig[],
+    setSelectedData: (model: Model, newSelectedData: CollectableEntryConfig[]) => void,
+    getSelectAllData: (model: Model) => boolean,
+    setSelectAllData: (model: Model, newSelectAllData: boolean) => void
+}
+
+export function useCollectableGoal(accessOperation: AccessOperation, allData: DataRow[], defaultSelectedData: CollectableEntryConfig[], defaultSelectAllData: boolean) {
+    const model = useConfigStore().model
+    const validator = useValidator()
+
+    const selectedData = ref<CollectableEntryConfig[]>([])
+    watch(selectedData, newSelectedData => {
+        console.log("triggered watch", newSelectedData)
+        accessOperation.setSelectedData(model, newSelectedData)
+    }, {deep: true})
+
+    selectedData.value = structuredClone(toRaw(defaultSelectedData))
 
 
-export function useCollectableGoal(goalName: GoalName, pathSplit: string, rawLoadedDataFile: string) {
-
-    const store = useConfigStore().model
-
-    const {fullData, selectedData} = useLoadableDataRow(rawLoadedDataFile)
-
-    const selectedCollectableData = ref<CollectableEntryConfig>(fromSelectedDataToInitialCollectableData(selectedData.value))
-    watch(selectedCollectableData, (newSelectedCollectableData) => {
-        console.log("watching selected collectable data triggered", newSelectedCollectableData)
-        store.goals[goalName][pathSplit] = newSelectedCollectableData
-    }, {
-        deep: true
+    const selectAllData = ref<boolean>(false)
+    watch(selectAllData, newSelectAllData => {
+        accessOperation.setSelectAllData(model, newSelectAllData)
     })
 
+    selectAllData.value = defaultSelectAllData
 
-    function fromSelectedDataToInitialCollectableData(selectedData: DataRow[]): CollectableEntryConfig {
-        const resultObj: CollectableEntryConfig = {}
-        selectedData.forEach(row => {
-            resultObj[row.code] = {
-                amountNeeded: 10
-            }
-        })
-        return resultObj
-    }
-
-
-    const defaultObject: Object = {amount: 1} as const
-
-    function addDataRow(currentlySelectedData: DataRow | undefined, newSelectedData: DataRow) {
+    function updateSelectedData(currentlySelectedData: string | undefined, newSelectedData: string): void {
         if(currentlySelectedData === newSelectedData) {
-            // The user has clicked the same item that was already selected -> do nothing
             return
         }
-        if(currentlySelectedData !== undefined) {
-            // delete config part, since it's a different variable now
-            delete store.goals[goalName][pathSplit][currentlySelectedData.code]
 
-            store.goals[goalName][pathSplit][newSelectedData.code] = structuredClone(defaultObject)
-            // replace the old selected mob with the new one in the list
-            const previousSelectedDataIndex = selectedData.value.indexOf(currentlySelectedData)
-            //selectedData.value.splice(previousSelectedDataIndex, 1, newSelectedData)
-            selectedData.value[previousSelectedDataIndex] = newSelectedData
+        const newlyAdded: CollectableEntryConfig = {
+            collectableName: newSelectedData
+        }
 
-            console.log("after replacing: ", selectedData.value)
+        const { valid, messages } = validator.isValid(model, (copy) => {
+            accessOperation.getSelectedData(copy).push(newlyAdded)
+        })
+        if(valid) {
+            pushOrOverrideNewlyAdded(currentlySelectedData, newlyAdded)
+        }
+    }
+
+    function updateSelectedDataSpecificAmount(currentlySelectedData: string, newAmount: number): void {
+        const entries: CollectableEntryConfig[] = accessOperation.getSelectedData(model)
+        const idx = entries.findIndex((entry: CollectableEntryConfig) => entry.collectableName === currentlySelectedData)
+        if(idx === -1) {
+            throw Error(`Failed to retrieve ${currentlySelectedData} from ${entries} when setting the amount.`)
+        }
+        const collectableData: CollectableDataConfig | undefined =  entries[idx].collectableData
+        if(collectableData === undefined) {
+            entries[idx].collectableData = {
+                amountNeeded: newAmount
+            }
         }
         else {
-            console.log(store.goals)
-            console.log(goalName)
-            // store.goals[goalName].mobs = {} //TODO remove
-            store.goals[goalName][pathSplit][newSelectedData.code] = structuredClone(defaultObject)
-            selectedData.value.push(newSelectedData)
+            collectableData.amountNeeded = newAmount
         }
-        // add new config part with default object
-
-
-
     }
 
-    function setCollectAmount(selectedData: DataRow, amount: number) {
-        //const existingAmount = store.goals[goalName][pathSplit][selectedData.code].amountNeeded
-
-        store.goals[goalName][pathSplit][selectedData.code].amountNeeded = amount
+    function deleteDataRow(toDelete: DataRow): void {
+        const entries: CollectableEntryConfig[] = accessOperation.getSelectedData(model)
+        const idx = entries.findIndex((entry: CollectableEntryConfig) => entry.collectableName === toDelete.code)
+        if(idx === -1) {
+            throw Error(`Failed to retrieve ${toDelete.code} from ${entries} when setting the amount.`)
+        }
+        entries.splice(idx, 1)
     }
 
-    function deleteDataRow(dataRowToDelete: string) {
-        console.log("to delete", dataRowToDelete)
-        // delete store.goals[goalName][pathSplit][dataRowToDelete]
-        delete selectedCollectableData.value[dataRowToDelete]
+    function pushOrOverrideNewlyAdded(currentlySelectedData: string | undefined, newlyAdded: CollectableEntryConfig): void {
+        const idx = selectedData.value.findIndex((entry: CollectableEntryConfig) => entry.collectableName === currentlySelectedData)
+        if(idx === -1) {
+            selectedData.value.push(newlyAdded)
+        }
+        else {
+            selectedData.value[idx] = newlyAdded
+        }
     }
 
-    function transferDataFromPlaceHolderToNewInstance(newSelectedData: DataRow) {
-        addDataRow(undefined, newSelectedData)
+    function collectableEntryConfig2DataRow(source: DataRow[], entryConfig: CollectableEntryConfig): DataRow {
+        const found = source.find((dataRow: DataRow) => dataRow.code === entryConfig.collectableName)
+        if(found === undefined) {
+            throw Error(`Failed to map ${found} to DataRow, because no matching code can be found. Source is: ${source}`)
+        }
+        return found
     }
 
-    return { fullData, selectedCollectableData, addDataRow, setCollectAmount, deleteDataRow, transferDataFromPlaceHolderToNewInstance, ...useActivatableGoal(goalName) }
+    function collectableEntryConfig2Code(source: CollectableEntryConfig[]): string[] {
+        return source.map((element: CollectableEntryConfig) => element.collectableName)
+    }
+
+    function copyExclude(source: DataRow[], excluding: CollectableEntryConfig[]): DataRow[] {
+        return source.filter((dataRow: DataRow) => !collectableEntryConfig2Code(excluding).includes(dataRow.code))
+    }
+
+    return {
+        selectedData,
+        selectAllData,
+        updateSelectedData,
+        updateSelectedDataSpecificAmount,
+        deleteDataRow,
+        collectableEntryConfig2Code,
+        collectableEntryConfig2DataRow,
+        copyExclude
+    }
 
 }

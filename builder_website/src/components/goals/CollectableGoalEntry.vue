@@ -1,24 +1,24 @@
 <template>
     <div class="flex flex-row items-center space-x-4 h-12">
         <p>{{ collectablePrefix }}</p>
-            <Dropdown v-model="newSelectedMob" :options="possibleData" option-label="label"
+            <Dropdown v-model="newSelectedMob" :options="possibleData" option-label="label" :disabled="disabled"
                 display="chip" :virtual-scroller-options="{ itemSize: 44 }" filter class="w-full md:w-80">
                 <template #value="slotProps">
                     <div v-if="slotProps.value" class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="'/rendered_items/' + img + '.png'" :alt="slotProps.value" @error="$event.target.src = 'unknown.png'">
-                        <div>{{ label }}</div>
+                        <img class="w-6" :src="'/rendered_items/' + slotProps.value.img_name + '.png'" :alt="slotProps.value" @error="$event.target.src = 'unknown.png'">
+                        <div>{{ slotProps.value.translation_key }}</div>
                     </div>
                 </template>
                 <template #option="slotProps">
                     <div class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="'/rendered_items/' + img + '.png'" :alt="slotProps.option" @error="$event.target.src = 'unknown.png'">
-                        <div>{{ slotProps.option.label }}</div>
+                        <img class="w-6" :src="'/rendered_items/' + slotProps.option.img_name + '.png'" :alt="slotProps.option" @error="$event.target.src = 'unknown.png'">
+                        <div>{{ slotProps.option.translation_key }}</div>
                     </div>
                 </template>
             </Dropdown>
             <p>{{ amountPrefix }}</p>
-            <InputNumber v-model="kills" showButtons :min="1" :max="100" :step="1" inputStyle="width:32px" />
-            <Button v-if="selectedData" label="Delete" @click="$emit('deleteEntry', selectedData)" />
+            <InputNumber v-model="kills" showButtons :min="1" :max="100" :step="1" :disabled="disabled" inputStyle="width:32px" />
+            <Button v-if="selectedData" label="Delete" @click="$emit('deleteEntry', selectedData)" :disabled="disabled" />
     </div>
 </template>
 
@@ -28,31 +28,35 @@ import InputNumber from 'primevue/inputnumber';
 import Button from 'primevue/button';
 import { ref, defineComponent, toRef, watch, computed } from 'vue'
 import { useConfigStore } from '@/main';
+import { type DataRow } from '../loadableDataRow';
 
-
-const props = defineProps({
-    selectedData: String,
-    label: String,
-    img: String,
-    possibleData: [],
-    collectablePrefix: String,
-    amountPrefix: String
-})
+const props = defineProps<{
+    selectedData: DataRow,
+    possibleData: DataRow[],
+    collectablePrefix: string,
+    amountPrefix: string,
+    disabled: boolean
+}>()
+console.log(props.selectedData)
 const newSelectedMob = computed({
     get: () => props.selectedData,
-    set: (newValue) =>  emit('update:selectedData', newValue)
+    set: (newValue) =>  emit('updateSelectedData', newValue)
 })
 const store = useConfigStore().model
 
 const kills = ref(1)
 
 watch(kills, (newKills) => {
-    emit('update:valueForAmount', newKills)
+    emit('updateValueForAmount', newKills)
     //store.goals.MobGoal.settings.mobs[props.selectedData.code].amountNeeded = newKills
 })
 
-const emit = defineEmits(["deleteEntry", "update:selectedData", "update:valueForAmount"])
-
+// const emit = defineEmits(["deleteEntry", "update:selectedData", "update:valueForAmount"])
+const emit = defineEmits<{
+    updateSelectedData: [newSelectedData: DataRow]
+    updateValueForAmount: [newAmount: number]
+    deleteEntry: [dataRowToDelete: DataRow]
+}>()
 defineComponent({
     Dropdown,
     InputNumber,

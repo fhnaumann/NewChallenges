@@ -69,7 +69,7 @@ import {
   useRulesViewStore,
 } from '@/main'
 import type { RuleView } from '../view/rules'
-import { useLoadableDataRow, type DataRow } from '../loadableDataRow'
+import { type DataRow } from '../loadableDataRow'
 import { watch } from 'vue'
 import { useValidator } from '../validator'
 import type { Model } from '../model/model'

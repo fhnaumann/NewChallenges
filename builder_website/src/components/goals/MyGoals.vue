@@ -45,6 +45,7 @@
                   v-if="activeGoal.id === 'mobGoal'"
                 />
                 <ItemGoalVue v-if="activeGoal.id === 'itemGoal'"/>
+                <BlockBreakGoal v-if="activeGoal.id === 'blockbreakGoal'" />
               </AccordionTab>
             </Accordion>
           </ScrollPanel>
@@ -76,6 +77,7 @@ import type DefaultGoalVue from './DefaultGoal.vue'
 import MobGoalVue from './MobGoal.vue'
 import GoalSelector from './GoalSelector.vue'
 import ItemGoalVue from './ItemGoal.vue'
+import BlockBreakGoal from './BlockBreakGoal.vue'
   
   // const GoalSelector = defineAsyncComponent(() => import('./GoalSelector.vue'))
   const config = useConfigStore().model

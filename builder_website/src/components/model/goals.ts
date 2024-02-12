@@ -1,11 +1,16 @@
+import type { BlockBreakGoalConfig } from "./blockbreak"
+
 export type GoalName = keyof GoalsConfig
+
+export type GoalPathSplitKey = keyof (MobGoalConfig & ItemGoalConfig & BlockBreakGoalConfig)
 
 export interface GoalsConfig {
     mobGoal?: MobGoalConfig
     itemGoal?: ItemGoalConfig
+    blockbreakGoal?: BlockBreakGoalConfig
 }
 
-interface BaseGoalConfig {
+export interface BaseGoalConfig {
 
     /**
      * If the goal is completed.
@@ -14,6 +19,16 @@ interface BaseGoalConfig {
      */
     complete?: boolean
 }
+
+export interface Orderable {
+    /**
+     * If true, all selected elements have to be collected/killed in a specific order.
+     * 
+     * @default false
+     */
+    fixedOrder?: boolean
+}
+
 export interface CollectableDataConfig {
     /**
      * The amount that needs to be collected.
@@ -34,29 +49,31 @@ export interface CollectableDataConfig {
     currentAmount?: number
 }
 export interface CollectableEntryConfig {
-    [collectableName: string]: CollectableDataConfig
+    /**
+     * The name of the collectable. This could, for example, be "PIG" (entity), "STONE" (material).
+     */
+    collectableName: string
+    /**
+     * The data that is meant to be collected for this specific collectable
+     * 
+     * @default {}
+     */
+    collectableData?: CollectableDataConfig
 }
-export interface MobGoalConfig extends BaseGoalConfig {
+export interface MobGoalConfig extends BaseGoalConfig, Orderable {
     /**
      * The mobs that need to be killed to beat this goal.
      * 
-     * @default {"ENDER_DRAGON": {"amountNeeded": 1}}
+     * @default ["collectableName": "ENDER_DRAGON", "collectableData": {"amountNeeded": 1}]
      */
-    mobs: CollectableEntryConfig
-
-    /**
-     * If true, all selected mobs have to be killed in a specific (randomized) order
-     * 
-     * @default false
-     */
-    fixedOrder?: boolean
+    mobs?: CollectableEntryConfig[]
 }
 
-export interface ItemGoalConfig extends BaseGoalConfig {
+export interface ItemGoalConfig extends BaseGoalConfig, Orderable {
     /**
      * The items that need to be collected to beat this goal.
      */
-    items: CollectableEntryConfig
+    items?: CollectableEntryConfig
 
     /**
      * If true, all items have to be collected.
@@ -73,11 +90,4 @@ export interface ItemGoalConfig extends BaseGoalConfig {
      * @default false
      */
     allBlocks?: boolean
-
-    /**
-     * If true, all selected items have to be collected in a specific (randomized) order
-     * 
-     * @default false
-     */
-    fixedOrder?: boolean
 }
