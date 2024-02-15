@@ -27,6 +27,10 @@
                     <Checkbox v-model="collectable.selectAllData.value" input-id="selectAllBlockMats" binary/>
                     <label for="selectAllBlockMats" class="ml-2">Break all blocks once</label>
                 </div>
+                <div>
+                    <Checkbox v-model="fixedOrder" input-id="fixedOrderBlockMats" binary/>
+                    <label for="fixedOrderBlockMats" class="ml-2">Fixed random order</label>
+                </div>
             </div>
         </div>
     </DefaultGoal>
@@ -68,5 +72,12 @@ const collectable = useCollectableGoal(
     JSONSchemaConfig.BlockBreakGoalConfig.properties.allBlocks.default
 )
 
+const defaultFixedOrder = JSONSchemaConfig.BlockBreakGoalConfig.properties.fixedOrder.default
+
+const fixedOrder = ref<boolean>(false)
+watch(fixedOrder, newFixedOrder => {
+    store.goals!.blockbreakGoal!.fixedOrder! = newFixedOrder
+})
+fixedOrder.value = defaultFixedOrder
 
 </script>

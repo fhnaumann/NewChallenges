@@ -6,14 +6,14 @@
                 @update:modelValue="$emit('transferDataFromPlaceHolderToNewInstance', selectedData!); selectedData=undefined">
                 <template #value="slotProps">
                     <div v-if="slotProps.value" class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="'/rendered_items/' + slotProps.value.img_name + '.png'" :alt="slotProps.value" @error="$event.target!.src = 'unknown.png'">
-                        <div>{{ slotProps.value.translation_key }}</div>
+                        <img class="w-6" :src="'/rendered_items/' + slotProps.value.img_name" :alt="slotProps.value" @error="$event.target!.src = 'unknown.png'">
+                        <div>{{ translation.translate(slotProps.value.translation_key) }}</div>
                     </div>
                 </template>
                 <template #option="slotProps">
                     <div class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="'/rendered_items/' + slotProps.option.img_name + '.png'" :alt="slotProps.option" @error="$event.target!.src = 'unknown.png'">
-                        <div>{{ slotProps.option.translation_key }}</div>
+                        <img class="w-6" :src="'/rendered_items/' + slotProps.option.img_name" :alt="slotProps.option" @error="$event.target!.src = 'unknown.png'">
+                        <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
                     </div>
                 </template>
             </Dropdown>
@@ -29,6 +29,7 @@ import Button from 'primevue/button';
 import { ref, defineComponent, toRef, watch } from 'vue'
 import { useConfigStore } from '@/main';
 import type { DataRow } from '../loadableDataRow';
+import { useTranslation } from '../language';
 
 //const props = defineProps(['possibleMobs', 'collectablePrefix', 'amountPrefix', 'placeHolderText'])
 const props = defineProps<{
@@ -38,6 +39,9 @@ const props = defineProps<{
     placeHolderText: string
     disabled: boolean
 }>()
+
+const translation = useTranslation()
+
 const selectedData = ref<DataRow>()
 const kills = 0
 // defineEmits(["transferDataFromPlaceHolderToNewInstance"])

@@ -107,9 +107,6 @@ watch(config.rules, (newRules) => {
 
   function deleteActiveGoal(goalName: GoalName): void {
     delete config.goals[goalName]
-    activeGoalReferences.forEach(reference => {
-      (reference.value! as any).cleanupFunc
-    })
   }
   
   function showGoalSelection() {
