@@ -16,56 +16,15 @@ public class MobGoalMessageHelper extends GoalMessageHelper<MobData> {
     }
 
     @Override
-    public void sendSingleStepAction(MobData data, Collect collect) {
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.single.step.message",
-                Map.of(
-                        "player", Component.text(data.player().getName()),
-                        "entity", ComponentUtil.translate(data.entityInteractedWith()),
-                        "amount", Component.text(collect.getCurrentAmount()),
-                        "total_amount", Component.text(collect.getAmountNeeded())
-                )
-        );
-        ActionHelper.sendAndPlaySound(
-                context.plugin(),
-                toSend,
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.single.step.sound"
-        );
+    protected String getGoalNameInResourceBundle() {
+        return "mobgoal";
     }
 
     @Override
-    public void sendSingleReachedAction(MobData data, Collect collect) {
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.single.reached.message",
-                Map.of(
-                        "entity", ComponentUtil.translate(data.entityInteractedWith())
-                )
-        );
-        ActionHelper.sendAndPlaySound(
-                context.plugin(),
-                toSend,
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.single.reached.sound"
-        );
-    }
-
-    @Override
-    public void sendAllReachedAction() {
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.all.reached.message"
-        );
-        ActionHelper.sendAndPlaySound(
-                context.plugin(),
-                toSend,
-                context.resourceBundleContext().goalResourceBundle(),
-                "mobgoal.all.reached.sound"
+    protected Map<String, Component> additionalPlaceholders(MobData data) {
+        return Map.of(
+                "player", Component.text(data.player().getName()),
+                "entity", ComponentUtil.translate(data.entityInteractedWith())
         );
     }
 }

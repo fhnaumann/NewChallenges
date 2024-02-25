@@ -10,6 +10,8 @@ import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
+import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.generated.*;
@@ -85,6 +87,9 @@ public class ModelMapper {
         }
         if(goalsConfig.getItemGoal() != null) {
             goals.add(new ItemGoal(context, goalsConfig.getItemGoal()));
+        }
+        if(goalsConfig.getBlockbreakGoal() != null) {
+            goals.add(new BlockBreakGoal(context, goalsConfig.getBlockbreakGoal(), new BlockBreakGoalMessageHelper(context)));
         }
         return goals;
     }

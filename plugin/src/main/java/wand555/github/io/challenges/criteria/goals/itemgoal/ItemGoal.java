@@ -32,20 +32,14 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<ItemGoalConfig>, BossBarDisplay, InvProgress, Skippable {
+public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<ItemGoalConfig>, BossBarDisplay, InvProgress, Skippable {
 
     private final ItemType itemType;
-    private final ItemGoalMessageHelper messageHelper;
-
-    private final GoalCollector<Material> goalCollector;
-    private final boolean fixedOrder;
     private final BossBar bossBar;
     private final CollectedInventory collectedInventory;
 
-    private final NamespacedKey markedKey;
-
     public ItemGoal(Context context, ItemGoalConfig config) {
-        super(context, config.getComplete());
+        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getItems(), Material.class, new ItemGoalMessageHelper(context));
         JsonNode amountNeeded = context.schemaRoot().at("/definitions/CollectableDataConfig/properties/amountNeeded/default");
         if(amountNeeded.isMissingNode()) {
             throw new RuntimeException();
@@ -54,26 +48,10 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
         if(currentAmount.isMissingNode()) {
             throw new RuntimeException();
         }
-
-        if(config.getFixedOrder() && !config.getShuffled()) {
-            Collections.shuffle(config.getItems());
-        }
-
-        this.fixedOrder = config.getFixedOrder();
-        this.goalCollector = new GoalCollector<>(context, config.getItems(), Material.class);
-
         this.bossBar = createBossBar();
         this.collectedInventory = new CollectedInventory(context.plugin());
 
-        this.markedKey = new NamespacedKey(context.plugin(), "marked");
-
         this.itemType = new ItemType(context, triggerCheck(), trigger());
-        this.messageHelper = new ItemGoalMessageHelper(context);
-    }
-
-    @Override
-    public boolean determineComplete() {
-        return goalCollector.isComplete();
     }
 
     @Override
@@ -142,38 +120,6 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
         );
     }
 
-    private void newItemCollected(ItemData data) {
-        Collect updatedCollect = getToCollect().computeIfPresent(data.itemStackInteractedWith().getType(), (material, collect) -> {
-            // don't overshoot the total amount, because the player might have picked up more items (in the stack) that they needed
-            int newCurrentAmount = Math.min(collect.getCurrentAmount()+data.itemStackInteractedWith().getAmount(), collect.getAmountNeeded());
-            collect.setCurrentAmount(newCurrentAmount);
-            return collect;
-        });
-        if(updatedCollect.isComplete()) {
-            messageHelper.sendSingleReachedAction(data, updatedCollect);
-        }
-        else {
-            messageHelper.sendSingleStepAction(data, updatedCollect);
-        }
-        refreshBossBar(data.itemStackInteractedWith().getType(), updatedCollect);
-
-        if(determineComplete()) {
-            onComplete();
-        }
-    }
-
-
-
-
-    @Override
-    public void onComplete() {
-        setComplete(true);
-
-        messageHelper.sendAllReachedAction();
-
-        notifyManager();
-    }
-
     public Map<Material, Collect> getToCollect() {
         return goalCollector.getToCollect();
     }
@@ -211,7 +157,12 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
     }
 
     @Override
-    public Trigger<ItemData> trigger() {
-        return this::newItemCollected;
+    protected Collect updateCollect(ItemData data) {
+        return getToCollect().computeIfPresent(data.itemStackInteractedWith().getType(), (material, collect) -> {
+            // don't overshoot the total amount, because the player might have picked up more items (in the stack) that they needed
+            int newCurrentAmount = Math.min(collect.getCurrentAmount()+data.itemStackInteractedWith().getAmount(), collect.getAmountNeeded());
+            collect.setCurrentAmount(newCurrentAmount);
+            return collect;
+        });
     }
 }

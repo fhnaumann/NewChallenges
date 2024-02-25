@@ -144,6 +144,7 @@ public class ComponentUtil {
         return enumCollectionToTranslate.stream().map(ComponentUtil::translate).reduce(Component.empty(), Component::append);
     }
 
+    @Deprecated()
     public static <E extends Enum<E>> Component translate(E enumToTranslate) {
         String prefix = null;
         if(enumToTranslate instanceof Material material) {

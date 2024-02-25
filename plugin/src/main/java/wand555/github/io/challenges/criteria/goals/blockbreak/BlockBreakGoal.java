@@ -7,6 +7,7 @@ import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
+import wand555.github.io.challenges.criteria.goals.MapGoal;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
@@ -16,23 +17,13 @@ import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 
 import java.util.*;
 
-public class BlockBreakGoal extends BaseGoal implements Triggable<BlockBreakData>, Storable<BlockBreakGoalConfig> {
+public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements Storable<BlockBreakGoalConfig> {
 
     private BlockBreakType blockBreakType;
 
-    private BlockBreakGoalMessageHelper messageHelper;
-    private GoalCollector<Material> goalCollector;
-    private final boolean fixedOrder;
-
     public BlockBreakGoal(Context context, BlockBreakGoalConfig config, BlockBreakGoalMessageHelper messageHelper) {
-        super(context, config.getComplete());
+        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getBroken(), Material.class, messageHelper);
         this.blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
-        this.fixedOrder = config.getFixedOrder();
-        this.messageHelper = messageHelper;
-        if(config.getFixedOrder() && !config.getShuffled()) {
-            Collections.shuffle(config.getBroken());
-        }
-        this.goalCollector = new GoalCollector<>(context, config.getBroken(), Material.class);
 
     }
 
@@ -69,37 +60,10 @@ public class BlockBreakGoal extends BaseGoal implements Triggable<BlockBreakData
     }
 
     @Override
-    public Trigger<BlockBreakData> trigger() {
-        return this::newBlockBroken;
-    }
-
-    private void newBlockBroken(BlockBreakData data) {
-        Collect updatedCollect = goalCollector.getToCollect().computeIfPresent(data.broken(), (material, collect) -> {
+    protected Collect updateCollect(BlockBreakData data) {
+        return goalCollector.getToCollect().computeIfPresent(data.broken(), (material, collect) -> {
             collect.setCurrentAmount(collect.getCurrentAmount()+1);
             return collect;
         });
-        if(updatedCollect.isComplete()) {
-            messageHelper.sendSingleReachedAction(data, updatedCollect);
-        }
-        else {
-            messageHelper.sendSingleStepAction(data, updatedCollect);
-        }
-        if(determineComplete()) {
-            onComplete();
-        }
-    }
-
-    @Override
-    public boolean determineComplete() {
-        return goalCollector.isComplete();
-    }
-
-    @Override
-    public void onComplete() {
-        setComplete(true);
-
-        messageHelper.sendAllReachedAction();
-
-        notifyManager();
     }
 }

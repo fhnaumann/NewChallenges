@@ -25,7 +25,6 @@ public class NoBlockBreakRule extends PunishableRule implements Triggable<BlockB
         this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), material -> true));
 
         blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
-        context.plugin().getServer().getPluginManager().registerEvents(blockBreakType, context.plugin());
         this.messageHelper = new NoBlockBreakMessageHelper(context);
     }
 

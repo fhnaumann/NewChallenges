@@ -4,53 +4,30 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.*;
-import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.inventory.CollectedInventory;
-import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
-import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Skippable {
+public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Skippable {
 
     private final MobType mobType;
-    private final MobGoalMessageHelper messageHelper;
-
-    private final GoalCollector<EntityType> goalCollector;
     private final CollectedInventory collectedInventory;
     private final BossBar bossBar;
 
-    private final boolean fixedOrder;
-
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
-        super(context, config.getComplete());
+        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), null, EntityType.class, messageHelper);
         this.collectedInventory = new CollectedInventory(context.plugin());
         this.bossBar = createBossBar();
-        this.goalCollector = new GoalCollector<>(context, config.getMobs(), EntityType.class);
         this.mobType = new MobType(context, triggerCheck(), trigger());
         context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
-        this.messageHelper = messageHelper;
-        this.fixedOrder = config.getFixedOrder();
-    }
-
-    @Override
-    public void onComplete() {
-        setComplete(true);
-        messageHelper.sendAllReachedAction();
-        notifyManager();
     }
 
     @Override
@@ -65,27 +42,6 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
 
     public Map<EntityType, Collect> getToKill() {
         return goalCollector.getToCollect();
-    }
-
-    private void newEntityKilled(MobData data) {
-        Collect updatedCollect = goalCollector.getToCollect().computeIfPresent(data.entityInteractedWith(), (entityType, collect) -> {
-            collect.setCurrentAmount(collect.getCurrentAmount()+1);
-            return collect;
-        });
-        if(updatedCollect.isComplete()) {
-            messageHelper.sendSingleReachedAction(data, updatedCollect);
-        }
-        else {
-            messageHelper.sendSingleStepAction(data, updatedCollect);
-        }
-
-        if(determineComplete()) {
-            onComplete();
-        }
-    }
-
-    public boolean determineComplete() {
-        return goalCollector.isComplete();
     }
 
     @Override
@@ -175,7 +131,10 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
     }
 
     @Override
-    public Trigger<MobData> trigger() {
-        return this::newEntityKilled;
+    protected Collect updateCollect(MobData data) {
+        return goalCollector.getToCollect().computeIfPresent(data.entityInteractedWith(), (entityType, collect) -> {
+            collect.setCurrentAmount(collect.getCurrentAmount()+1);
+            return collect;
+        });
     }
 }

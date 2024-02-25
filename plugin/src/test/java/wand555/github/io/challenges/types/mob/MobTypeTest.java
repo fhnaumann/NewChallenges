@@ -2,12 +2,9 @@ package wand555.github.io.challenges.types.mob;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
-import be.seeseemelk.mockbukkit.block.BlockMock;
 import be.seeseemelk.mockbukkit.entity.PigMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,8 +13,6 @@ import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
-import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
-import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 
 import java.util.List;
 import java.util.UUID;

@@ -6,15 +6,7 @@
             "additionalProperties": false,
             "properties": {
                 "broken": {
-                    "default": [
-                        {
-                            "collectableData": {
-                                "amountNeeded": 1,
-                                "currentAmount": 0
-                            },
-                            "collectableName": "stone"
-                        }
-                    ],
+                    "default": [],
                     "description": "The blocks (more specifically materials) that need to be broken to beat this goal.",
                     "items": {
                         "$ref": "#/definitions/CollectableEntryConfig"
@@ -71,6 +63,7 @@
                 }
             },
             "required": [
+                "collectableData",
                 "collectableName"
             ],
             "type": "object"
