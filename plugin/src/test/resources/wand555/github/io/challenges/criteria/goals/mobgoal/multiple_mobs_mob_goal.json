@@ -1,19 +1,18 @@
 {
-  "goals": {
-    "mobGoal": {
-      "mobs": {
-
+  "mobs": [
+    {
+      "collectableName": "pig",
+      "collectableData": {
+        "amountNeeded": 2,
+        "currentAmount": 0
+      }
+    },
+    {
+      "collectableName": "wither_skeleton",
+      "collectableData": {
+        "amountNeeded": 3,
+        "currentAmount": 1
       }
     }
-  },
-  "mobs": {
-    "PIG": {
-      "currentAmount": 0,
-      "amountNeeded": 2
-    },
-    "WITHER_SKELETON": {
-      "currentAmount": 1,
-      "amountNeeded": 3
-    }
-  }
+  ]
 }

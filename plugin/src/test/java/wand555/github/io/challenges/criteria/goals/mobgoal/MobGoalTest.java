@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.types.mob.MobData;
 
@@ -57,8 +58,7 @@ public class MobGoalTest {
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.goalResourceBundle()).thenReturn(goalResourceBundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
-        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), new TypeReference<>() {
-        });
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
         dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
     }
@@ -77,16 +77,22 @@ public class MobGoalTest {
         String mobGoalJSON =
                 """
                 {
-                  "mobs": {
-                    "PIG": {
-                      "amountNeeded": 2,
-                      "currentAmount": 0
+                  "mobs": [
+                    {
+                      "collectableName": "pig",
+                      "collectableData": {
+                        "amountNeeded": 2,
+                        "currentAmount": 0
+                      }
                     },
-                    "WITHER_SKELETON": {
-                      "amountNeeded": 1,
-                      "currentAmount": 0
+                    {
+                      "collectableName": "wither_skeleton",
+                      "collectableData": {
+                        "amountNeeded": 1,
+                        "currentAmount": 0
+                      }
                     }
-                  }
+                  ]
                 }
                 """;
         mobGoal = new MobGoal(context, new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class), messageHelper);

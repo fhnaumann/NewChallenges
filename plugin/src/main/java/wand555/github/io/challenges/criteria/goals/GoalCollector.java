@@ -20,7 +20,7 @@ public class GoalCollector<T extends Enum<T>> implements Storable<List<Collectab
         this.context = context;
         this.toCollect = ModelMapper.str2Collectable(collectables, enumType);
         this.iterator = this.toCollect.entrySet().iterator();
-        this.currentlyToCollect = iterator.next();
+        this.currentlyToCollect = iterator.hasNext() ? iterator.next() : null;
     }
 
     public boolean hasNext() {

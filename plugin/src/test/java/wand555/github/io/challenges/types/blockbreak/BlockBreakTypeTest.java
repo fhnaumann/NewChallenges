@@ -6,6 +6,7 @@ import be.seeseemelk.mockbukkit.block.BlockMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.Challenges;
@@ -40,7 +41,13 @@ public class BlockBreakTypeTest {
         doNothing().when(mockedTrigger).actOnTriggered(any(BlockBreakData.class));
         blockBreakEvent = new BlockBreakEvent(new BlockMock(Material.DIRT), player);
         Context mockedContext = mock(Context.class);
+        when(mockedContext.plugin()).thenReturn(plugin);
         blockBreakType = spy(new BlockBreakType(mockedContext, mockedTriggerCheck, mockedTrigger));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        MockBukkit.unmock();
     }
 
     @Test

@@ -75,9 +75,7 @@ public class MobGoalJSONTest {
         String minimalMobGoalJSON =
                 """
                 {
-                  "mobs": {
-                   
-                  }
+                  "mobs": []
                 }
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(minimalMobGoalJSON, MobGoalConfig.class));

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
+import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.validation.ValidationResult;
@@ -49,8 +50,7 @@ public class HealthPunishmentTest {
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.punishmentResourceBundle()).thenReturn(bundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
-        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), new TypeReference<>() {
-        });
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
         dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
         validator = new Validator(

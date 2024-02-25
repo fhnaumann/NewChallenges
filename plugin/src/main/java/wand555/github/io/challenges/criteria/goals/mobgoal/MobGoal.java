@@ -23,7 +23,7 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     private final BossBar bossBar;
 
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
-        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), null, EntityType.class, messageHelper);
+        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getMobs(), EntityType.class, messageHelper);
         this.collectedInventory = new CollectedInventory(context.plugin());
         this.bossBar = createBossBar();
         this.mobType = new MobType(context, triggerCheck(), trigger());
