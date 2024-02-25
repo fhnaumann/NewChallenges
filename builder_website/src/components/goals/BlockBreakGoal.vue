@@ -48,6 +48,7 @@ import { useCollectableGoal, type AccessOperation } from '../collectableGoal';
 import { ref, toRaw, watch } from 'vue';
 import Checkbox from 'primevue/checkbox';
 import type { BlockBreakGoalConfig } from '../model/blockbreak';
+import { shuffleArray } from '../utils'
 
 const store = useConfigStore().model
 const defaultConfig = useDefaultConfigStore()
@@ -61,15 +62,13 @@ store.goals!.blockbreakGoal = {}
 const access: AccessOperation = {
     getSelectedData: (model) => model.goals?.blockbreakGoal?.broken!,
     setSelectedData: (model, newSelectedBlockMats) => model.goals!.blockbreakGoal!.broken! = newSelectedBlockMats,
-    getSelectAllData: (model) => model.goals?.blockbreakGoal?.allBlocks!,
-    setSelectAllData: (model, newSelectAllBlockMats) => model.goals!.blockbreakGoal!.allBlocks! = newSelectAllBlockMats
 }
 
 const collectable = useCollectableGoal(
     access,
     allBlockMaterialData,
     JSONSchemaConfig.BlockBreakGoalConfig.properties.broken.default,
-    JSONSchemaConfig.BlockBreakGoalConfig.properties.allBlocks.default
+    false
 )
 
 const defaultFixedOrder = JSONSchemaConfig.BlockBreakGoalConfig.properties.fixedOrder.default

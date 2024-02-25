@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.Challenges;
@@ -25,6 +26,11 @@ public class ItemGoalTest {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer("dummy");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        MockBukkit.unmock();
     }
 
     @Test

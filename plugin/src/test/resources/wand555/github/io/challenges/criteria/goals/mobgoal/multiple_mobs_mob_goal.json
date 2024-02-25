@@ -1,4 +1,11 @@
 {
+  "goals": {
+    "mobGoal": {
+      "mobs": {
+
+      }
+    }
+  },
   "mobs": {
     "PIG": {
       "currentAmount": 0,

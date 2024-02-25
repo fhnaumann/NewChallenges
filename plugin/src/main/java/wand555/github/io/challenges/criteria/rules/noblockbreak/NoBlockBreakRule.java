@@ -22,7 +22,7 @@ public class NoBlockBreakRule extends PunishableRule implements Triggable<BlockB
 
     public NoBlockBreakRule(Context context, NoBlockBreakRuleConfig config) {
         super(context, ModelMapper.mapToPunishments(context, config.getPunishments()));
-        this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), ModelMapper.VALID_BLOCKS));
+        this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), material -> true));
 
         blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
         context.plugin().getServer().getPluginManager().registerEvents(blockBreakType, context.plugin());

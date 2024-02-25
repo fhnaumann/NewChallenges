@@ -2,6 +2,43 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": false,
     "definitions": {
+        "BlockBreakGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "broken": {
+                    "default": [
+                        {
+                            "collectableData": {
+                                "amountNeeded": 1,
+                                "currentAmount": 0
+                            },
+                            "collectableName": "stone"
+                        }
+                    ],
+                    "description": "The blocks (more specifically materials) that need to be broken to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
         "CollectableDataConfig": {
             "additionalProperties": false,
             "properties": {
@@ -21,9 +58,21 @@
             "type": "object"
         },
         "CollectableEntryConfig": {
-            "additionalProperties": {
-                "$ref": "#/definitions/CollectableDataConfig"
+            "additionalProperties": false,
+            "properties": {
+                "collectableData": {
+                    "$ref": "#/definitions/CollectableDataConfig",
+                    "default": {},
+                    "description": "The data that is meant to be collected for this specific collectable"
+                },
+                "collectableName": {
+                    "description": "The name of the collectable. This could, for example, be \"PIG\" (entity), \"STONE\" (material).",
+                    "type": "string"
+                }
             },
+            "required": [
+                "collectableName"
+            ],
             "type": "object"
         },
         "DeathPunishmentConfig": {
@@ -80,6 +129,9 @@
         "GoalsConfig": {
             "additionalProperties": false,
             "properties": {
+                "blockbreakGoal": {
+                    "$ref": "#/definitions/BlockBreakGoalConfig"
+                },
                 "itemGoal": {
                     "$ref": "#/definitions/ItemGoalConfig"
                 },
@@ -119,16 +171,6 @@
         "ItemGoalConfig": {
             "additionalProperties": false,
             "properties": {
-                "allBlocks": {
-                    "default": false,
-                    "description": "If true, all items that are placable blocks (determined by \n{@link https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html#isBlock()Spigots isBlock method})\nhave to be collected.",
-                    "type": "boolean"
-                },
-                "allItems": {
-                    "default": true,
-                    "description": "If true, all items have to be collected.",
-                    "type": "boolean"
-                },
                 "complete": {
                     "default": false,
                     "description": "If the goal is completed.",
@@ -136,17 +178,23 @@
                 },
                 "fixedOrder": {
                     "default": false,
-                    "description": "If true, all selected items have to be collected in a specific (randomized) order",
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
                 "items": {
-                    "$ref": "#/definitions/CollectableEntryConfig",
-                    "description": "The items that need to be collected to beat this goal."
+                    "default": [],
+                    "description": "The items that need to be collected to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
                 }
             },
-            "required": [
-                "items"
-            ],
             "type": "object"
         },
         "MobGoalConfig": {
@@ -159,22 +207,23 @@
                 },
                 "fixedOrder": {
                     "default": false,
-                    "description": "If true, all selected mobs have to be killed in a specific (randomized) order",
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
                 "mobs": {
-                    "$ref": "#/definitions/CollectableEntryConfig",
-                    "default": {
-                        "ENDER_DRAGON": {
-                            "amountNeeded": 1
-                        }
+                    "default": "[\"collectableName\": \"ENDER_DRAGON\", \"collectableData\": {\"amountNeeded\": 1}]",
+                    "description": "The mobs that need to be killed to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
                     },
-                    "description": "The mobs that need to be killed to beat this goal."
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
                 }
             },
-            "required": [
-                "mobs"
-            ],
             "type": "object"
         },
         "NoBlockBreakRuleConfig": {

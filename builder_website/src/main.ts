@@ -130,12 +130,12 @@ const goalsView: GoalsView = {
             id: 'mobGoal',
             description: 'TODO MobGoal',
             label: 'MobGoal',
-        },
+        },*/
         itemGoal: {
             id: 'itemGoal',
             description: 'TODO ItemGoal',
             label: 'ItemGoal'
-        },*/
+        },
         blockbreakGoal: {
             id: 'blockbreakGoal',
             description: 'TODO blockbreak goal',

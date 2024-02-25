@@ -29,6 +29,7 @@ public class ItemType extends Type<ItemData> implements Listener {
     public ItemType(Context context, TriggerCheck<ItemData> triggerCheck, Trigger<ItemData> whenTriggered) {
         super(context, triggerCheck, whenTriggered);
         this.markedKey = new NamespacedKey(context.plugin(), "marked");
+        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @Override

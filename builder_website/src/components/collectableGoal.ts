@@ -1,4 +1,3 @@
-import { useActivatableGoal } from "./activatableGoal";
 import { computed, ref, toRaw, toRefs, watch } from "vue";
 import { useConfigStore } from '@/main';
 //import { DataRow, useLoadableDataRow } from "./loadableDataRow";
@@ -11,8 +10,6 @@ import { useValidator } from "./validator";
 export interface AccessOperation {
     getSelectedData: (model: Model) => CollectableEntryConfig[],
     setSelectedData: (model: Model, newSelectedData: CollectableEntryConfig[]) => void,
-    getSelectAllData: (model: Model) => boolean,
-    setSelectAllData: (model: Model, newSelectAllData: boolean) => void
 }
 
 export function useCollectableGoal(accessOperation: AccessOperation, allData: DataRow[], defaultSelectedData: CollectableEntryConfig[], defaultSelectAllData: boolean) {
@@ -30,7 +27,13 @@ export function useCollectableGoal(accessOperation: AccessOperation, allData: Da
 
     const selectAllData = ref<boolean>(false)
     watch(selectAllData, newSelectAllData => {
-        accessOperation.setSelectAllData(model, newSelectAllData)
+        if(newSelectAllData) {
+            overrideBulkSelectedData(allData.map(dataRow => dataRow.code))
+        }
+        else {
+            overrideBulkSelectedData(selectedData.value.map(entry => entry.collectableName))
+        }
+        
     })
 
     selectAllData.value = defaultSelectAllData
@@ -41,7 +44,8 @@ export function useCollectableGoal(accessOperation: AccessOperation, allData: Da
         }
 
         const newlyAdded: CollectableEntryConfig = {
-            collectableName: newSelectedData
+            collectableName: newSelectedData,
+            collectableData: {}
         }
 
         const { valid, messages } = validator.isValid(model, (copy) => {
@@ -49,6 +53,15 @@ export function useCollectableGoal(accessOperation: AccessOperation, allData: Da
         })
         if(valid) {
             pushOrOverrideNewlyAdded(currentlySelectedData, newlyAdded)
+        }
+    }
+
+    function overrideBulkSelectedData(selectedBulkData: string[]) {
+        const { valid, messages } = validator.isValid(model, (copy) => {
+            accessOperation.setSelectedData(copy, code2CollectableEntryConfig(selectedBulkData))
+        })
+        if(valid) {
+            accessOperation.setSelectedData(model, code2CollectableEntryConfig(selectedBulkData))
         }
     }
 
@@ -100,6 +113,15 @@ export function useCollectableGoal(accessOperation: AccessOperation, allData: Da
         return source.map((element: CollectableEntryConfig) => element.collectableName)
     }
 
+    function code2CollectableEntryConfig(source: string[]): CollectableEntryConfig[] {
+        return source.map(code => {
+            return {
+                collectableName: code,
+                collectableData: {}
+            }
+        })
+    }
+
     function copyExclude(source: DataRow[], excluding: CollectableEntryConfig[]): DataRow[] {
         return source.filter((dataRow: DataRow) => !collectableEntryConfig2Code(excluding).includes(dataRow.code))
     }
@@ -109,6 +131,7 @@ export function useCollectableGoal(accessOperation: AccessOperation, allData: Da
         selectAllData,
         updateSelectedData,
         updateSelectedDataSpecificAmount,
+        overrideBulkSelectedData,
         deleteDataRow,
         collectableEntryConfig2Code,
         collectableEntryConfig2DataRow,

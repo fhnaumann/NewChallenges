@@ -4,6 +4,7 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,12 +16,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
@@ -36,6 +35,7 @@ public class NoBlockBreakRuleTest {
 
     private static ResourceBundleContext resourceBundleContext;
     private static JsonNode schemaRoot;
+    private static DataSourceContext dataSourceContext;
 
     private ServerMock server;
     private Challenges plugin;
@@ -55,6 +55,10 @@ public class NoBlockBreakRuleTest {
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.ruleResourceBundle()).thenReturn(bundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), new TypeReference<>() {
+        });
+        dataSourceContext = mock(DataSourceContext.class);
+        when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
     }
 
     @BeforeEach
@@ -64,7 +68,7 @@ public class NoBlockBreakRuleTest {
         player = server.addPlayer("dummy");
         toBeBroken = player.getWorld().getBlockAt(0, 0, 0);
         ChallengeManager challengeManager = new ChallengeManager();
-        context = new Context(plugin, resourceBundleContext, schemaRoot, challengeManager);
+        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager);
         challengeManager.setContext(context);
         rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of(Material.STONE.toString()), null)));
 

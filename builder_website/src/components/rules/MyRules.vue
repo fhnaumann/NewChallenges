@@ -7,7 +7,9 @@
 
   </ConfirmDialog>
   <div class="space-y-4">
-    <h1 class="border-b border-black text-4xl">Rules</h1>
+    <div class="flex items-center justify-center mt-4">
+      <h1 class="text-4xl">Rules</h1>
+    </div>
     <div class="mx-auto px-4">
       <Toast />
       <div class="flex flex-col space-y-4">

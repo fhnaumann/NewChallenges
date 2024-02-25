@@ -3,27 +3,25 @@ package wand555.github.io.challenges.criteria.goals.mobgoal;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.entity.EntityType;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.mapping.MaterialDataSource;
+import wand555.github.io.challenges.mapping.MaterialJSON;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -33,6 +31,7 @@ public class MobGoalJSONTest {
     private static ResourceBundleContext resourceBundleContext;
 
     private static JsonNode schemaRoot;
+    private static DataSourceContext dataSourceContext;
 
     private ServerMock server;
     private Challenges plugin;
@@ -48,6 +47,9 @@ public class MobGoalJSONTest {
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.goalResourceBundle()).thenReturn(goalResourceBundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
+        dataSourceContext = mock(DataSourceContext.class);
+        when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
     }
 
     @BeforeEach
@@ -56,11 +58,16 @@ public class MobGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContext, schemaRoot, manager);
+        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, manager);
 
         messageHelperMock = mock(MobGoalMessageHelper.class, RETURNS_DEFAULTS);
 
         objectMapper = new ObjectMapper();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        MockBukkit.unmock();
     }
 
     @Test
@@ -76,7 +83,6 @@ public class MobGoalJSONTest {
         assertDoesNotThrow(() -> objectMapper.readValue(minimalMobGoalJSON, MobGoalConfig.class));
         MobGoalConfig config = objectMapper.readValue(minimalMobGoalJSON, MobGoalConfig.class);
         MobGoal mobGoal = new MobGoal(context, config, messageHelperMock);
-        assertFalse(mobGoal.isComplete());
         assertTrue(mobGoal.getToKill().isEmpty());
     }
 

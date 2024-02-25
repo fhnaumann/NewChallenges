@@ -1,3 +1,4 @@
+import type { BaseForceConfig } from "./forces";
 import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from "./goals";
 import type { PunishableRuleConfig } from "./rules";
 
@@ -7,6 +8,10 @@ export interface NoBlockBreakRuleConfig extends PunishableRuleConfig {
      * @default []
      */
     exemptions?: string[]
+}
+
+export interface BlockBreakForceConfig extends BaseForceConfig, Omit<BlockBreakGoalConfig, 'fixedOrder'> {
+
 }
 
 export interface BlockBreakGoalConfig extends BaseGoalConfig, Orderable {
@@ -22,11 +27,4 @@ export interface BlockBreakGoalConfig extends BaseGoalConfig, Orderable {
         }]
      */
     broken?: CollectableEntryConfig[]
-
-    /**
-     * If true, all blocks have to be broken (not just in the inventory) exactly once.
-     * 
-     * @default false
-     */
-    allBlocks?: boolean
 }

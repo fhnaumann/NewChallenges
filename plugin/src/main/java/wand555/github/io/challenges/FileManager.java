@@ -50,6 +50,7 @@ public class FileManager {
         Validator validator = new Validator(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
 
         JsonNode schemaRoot = null;
+
         try {
             schemaRoot = new ObjectMapper().readTree(Main.class.getResourceAsStream("/challenges_schema.json"));
         } catch (IOException e) {
@@ -58,9 +59,9 @@ public class FileManager {
         ValidationResult validationResult = validator.validate(json);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
-            ChallengesSchema ChallengesSchema = null;
+            ChallengesSchema challengesSchema = null;
             try {
-                ChallengesSchema = objectMapper.readValue(json, ChallengesSchema.class);
+                challengesSchema = objectMapper.readValue(json, ChallengesSchema.class);
 
                 Context context = new Context.Builder()
                         .withPlugin(plugin)
@@ -69,10 +70,11 @@ public class FileManager {
                         .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
                         .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
                         .withSchemaRoot(schemaRoot)
+                        .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                         .withChallengeManager(new ChallengeManager())
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
-                ModelMapper.map2ModelClasses(context, ChallengesSchema);
+                ModelMapper.map2ModelClasses(context, challengesSchema);
 
 
                 return context.challengeManager();

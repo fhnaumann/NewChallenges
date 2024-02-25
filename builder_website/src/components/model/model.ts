@@ -19,3 +19,6 @@ export interface Model {
     timer?: number
 }
 
+export interface Base {
+}
+

@@ -10,10 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.Collect;
-import wand555.github.io.challenges.criteria.goals.InvProgress;
-import wand555.github.io.challenges.criteria.goals.Skippable;
+import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.generated.CollectableDataConfig;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
@@ -27,6 +24,9 @@ import wand555.github.io.challenges.utils.RandomUtil;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -37,10 +37,7 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
     private final ItemType itemType;
     private final ItemGoalMessageHelper messageHelper;
 
-    private final Map<Material, Collect> toCollect;
-    private final boolean allItems;
-    private final boolean allBlocks;
-
+    private final GoalCollector<Material> goalCollector;
     private final boolean fixedOrder;
     private final BossBar bossBar;
     private final CollectedInventory collectedInventory;
@@ -57,38 +54,13 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
         if(currentAmount.isMissingNode()) {
             throw new RuntimeException();
         }
-        this.allItems = config.getAllItems();
-        this.allBlocks = config.getAllBlocks();
+
+        if(config.getFixedOrder() && !config.getShuffled()) {
+            Collections.shuffle(config.getItems());
+        }
+
         this.fixedOrder = config.getFixedOrder();
-
-        // get data that may already exist
-        // assumption: If some data already exists, then any setting allItems or allBlocks were already previously set
-        // in that case just use what already exists and ignore the other settings
-        // only if no data exists, assume that there have not been any previous saves and therefore fill the map according to the settings
-        Map<String, CollectableDataConfig> existingItemsToCollect = config.getItems().getAdditionalProperties();
-        if(!existingItemsToCollect.isEmpty()) {
-
-        }
-
-        if(this.allItems) {
-            this.toCollect = Stream.of(Material.values()).filter(ModelMapper.VALID_ITEMS).collect(Collectors.toMap(
-                    Function.identity(),
-                    material -> new Collect(amountNeeded.asInt(), currentAmount.asInt())
-            ));
-        }
-        else if(this.allBlocks) {
-            this.toCollect = Stream.of(Material.values()).filter(ModelMapper.VALID_BLOCKS).collect(Collectors.toMap(
-                    Function.identity(),
-                    material -> new Collect(amountNeeded.asInt(), currentAmount.asInt())
-            ));
-        }
-        else {
-            this.toCollect = ModelMapper.str2Collectable(config.getItems().getAdditionalProperties(), Material.class);
-        }
-
-        if(this.fixedOrder) {
-
-        }
+        this.goalCollector = new GoalCollector<>(context, config.getItems(), Material.class);
 
         this.bossBar = createBossBar();
         this.collectedInventory = new CollectedInventory(context.plugin());
@@ -96,17 +68,17 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
         this.markedKey = new NamespacedKey(context.plugin(), "marked");
 
         this.itemType = new ItemType(context, triggerCheck(), trigger());
-        context.plugin().getServer().getPluginManager().registerEvents(itemType, context.plugin());
         this.messageHelper = new ItemGoalMessageHelper(context);
     }
 
+    @Override
     public boolean determineComplete() {
-        return toCollect.values().stream().allMatch(Collect::isComplete);
+        return goalCollector.isComplete();
     }
 
     @Override
     public BossBar createBossBar() {
-        Map.Entry<Material, Collect> randomToCollect = RandomUtil.pickRandom(toCollect);
+        Map.Entry<Material, Collect> randomToCollect = RandomUtil.pickRandom(goalCollector.getToCollect());
 
         Component formattedBossBarComponent = formatBossBarComponent(randomToCollect.getKey(), randomToCollect.getValue());
         return BossBar.bossBar(formattedBossBarComponent, 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
@@ -134,7 +106,7 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
             name = formatBossBarComponent(material, collect);
         }
         else {
-            Map.Entry<Material, Collect> randomToCollect = RandomUtil.pickRandom(toCollect);
+            Map.Entry<Material, Collect> randomToCollect = RandomUtil.pickRandom(goalCollector.getToCollect());
             name = formatBossBarComponent(randomToCollect.getKey(), randomToCollect.getValue());
         }
         bossBar.name(name);
@@ -162,9 +134,12 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
 
     @Override
     public ItemGoalConfig toGeneratedJSONClass() {
-        CollectableEntryConfig collectableEntryConfig = new CollectableEntryConfig();
-        toCollect.forEach((material, collect) -> collectableEntryConfig.setAdditionalProperty(material.key().asMinimalString(), collect.toGeneratedJSONClass()));
-        return new ItemGoalConfig(allBlocks, allItems, isComplete(), fixedOrder, collectableEntryConfig);
+        return new ItemGoalConfig(
+                isComplete(),
+                this.fixedOrder,
+                goalCollector.toGeneratedJSONClass(),
+                false
+        );
     }
 
     private void newItemCollected(ItemData data) {
@@ -174,13 +149,11 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
             collect.setCurrentAmount(newCurrentAmount);
             return collect;
         });
-        Component toSend;
-        String soundInBundleKey;
         if(updatedCollect.isComplete()) {
             messageHelper.sendSingleReachedAction(data, updatedCollect);
         }
         else {
-            messageHelper.sendSingleReachedAction(data, updatedCollect);
+            messageHelper.sendSingleStepAction(data, updatedCollect);
         }
         refreshBossBar(data.itemStackInteractedWith().getType(), updatedCollect);
 
@@ -202,7 +175,7 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
     }
 
     public Map<Material, Collect> getToCollect() {
-        return toCollect;
+        return goalCollector.getToCollect();
     }
 
     @Override
@@ -227,7 +200,14 @@ public class ItemGoal extends BaseGoal implements Triggable<ItemData>, Storable<
 
     @Override
     public TriggerCheck<ItemData> triggerCheck() {
-        return data -> getToCollect().containsKey(data.itemStackInteractedWith().getType());
+        return data -> {
+            if(fixedOrder) {
+                return goalCollector.getCurrentlyToCollect().getKey() == data.itemStackInteractedWith().getType();
+            }
+            else {
+                return getToCollect().containsKey(data.itemStackInteractedWith().getType());
+            }
+        };
     }
 
     @Override

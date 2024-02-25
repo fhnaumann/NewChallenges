@@ -6,7 +6,7 @@
       <MultiSelect
         :model-value="selectedData"
         @update:model-value="updateIfValid"
-        :options="fullData.filter((row: DataRow) => row.isBlock)"
+        :options="allBlockMaterialData"
         option-label="label"
         placeholder="Select exemptions"
         display="chip"
@@ -20,10 +20,10 @@
             <img
               class="w-6"
               :alt="slotProps.option"
-              :src="'/rendered_items/' + slotProps.option.image + '.png'"
+              :src="'/rendered_items/' + slotProps.option.img_name"
               @error="$event.target.src = 'unknown.png'"
             />
-            <div>{{ slotProps.option.label }}</div>
+            <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
           </div>
         </template>
         <template #footer>
@@ -48,10 +48,10 @@
         <img
           class="w-6"
           :alt="item.code"
-          :src="'/rendered_items/' + item.image + '.png'"
+          :src="'/rendered_items/' + item.img_name"
           @error="$event.target.src = 'unknown.png'"
         />
-        <p>{{ item.label }}</p>
+        <p>{{ translation.translate(item.translation_key) }}</p>
       </div>
     </Sidebar>
   </DefaultPunishableRule>
@@ -75,6 +75,8 @@ import { watch } from 'vue'
 import { useValidator } from '../validator'
 import type { Model } from '../model/model'
 import Row from 'primevue/row'
+import { allBlockMaterialData } from '../loadableDataRow'
+import { useTranslation } from '../language'
 
 const props = defineProps({
   rule: {
@@ -86,6 +88,9 @@ const store = useConfigStore().model
 const defaultConfig = useDefaultConfigStore()
 const rulesViewStore = useRulesViewStore()
 const validator = useValidator()
+
+const translation = useTranslation()
+
 // IMPORTANT TO CLEAR THE CONFIG
 // For some reason deleting the entire goal does not delete "something", which
 // prevents the config from being wiped, therefore manually clearing it here
@@ -93,30 +98,24 @@ if(!Object.hasOwn(store.rules.enabledRules, 'noBlockBreak')) {
   store.rules.enabledRules.noBlockBreak = structuredClone(toRaw(defaultConfig.rules.enabledRules.noBlockBreak))
 }
 
-
-const { fullData, selectedData } = useLoadableDataRow(matList)
+const selectedData = ref<DataRow[]>([])
+watch(selectedData, (newSelectedData) => {
+  console.log("watching selecteddata", newSelectedData)
+  updateExemptionsInModel(store, newSelectedData)
+})
 
 function updateIfValid(newSelectedData: DataRow[]) {
   const { valid, messages } = validator.isValid(store, (copy) => {
-    updateStore(copy, newSelectedData)
+    updateExemptionsInModel(copy, newSelectedData)
   })
   if(valid) {
     selectedData.value = newSelectedData
-    //updateStore(store, newSelectedData)
   }
 }
-watch(selectedData, (newSelectedData) => {
-  console.log("watching selecteddata", newSelectedData)
-  updateStore(store, newSelectedData)
-})
-watch(store.rules.enabledRules.noBlockBreak!.exemptions, (newExemptions) => {
-  console.log("store exemptions modification detected, new:", newExemptions)
-  selectedData.value = []
-  newExemptions.forEach(exemption => selectedData.value.push(fullData.find((row: DataRow) => row.code === exemption)!))
-}, {deep: true})
-function updateStore(model: Model = store, newSelectedData: DataRow[]) {
+
+function updateExemptionsInModel(model: Model = store, newSelectedData: DataRow[]) {
   console.log("UPDATING EXEMPTIONS", newSelectedData)
-  model.rules.enabledRules.noBlockBreak!.exemptions = newSelectedData.map((row) => row.code)
+  model.rules!.enabledRules!.noBlockBreak!.exemptions = newSelectedData.map((dataRow: DataRow) => dataRow.code)
 }
 
 const visible = ref(false)

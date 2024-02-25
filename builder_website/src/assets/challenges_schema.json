@@ -1,17 +1,10 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": false,
-    "defaultProperties": [],
     "definitions": {
         "BlockBreakGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
-                "allBlocks": {
-                    "default": false,
-                    "description": "If true, all blocks have to be broken (not just in the inventory) exactly once.",
-                    "type": "boolean"
-                },
                 "broken": {
                     "default": [
                         {
@@ -37,13 +30,17 @@
                     "default": false,
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
                 }
             },
             "type": "object"
         },
         "CollectableDataConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "amountNeeded": {
                     "default": 1,
@@ -62,7 +59,6 @@
         },
         "CollectableEntryConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "collectableData": {
                     "$ref": "#/definitions/CollectableDataConfig",
@@ -81,7 +77,6 @@
         },
         "DeathPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -97,7 +92,6 @@
         },
         "EnabledRules": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
@@ -119,7 +113,6 @@
         },
         "EndPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -135,7 +128,6 @@
         },
         "GoalsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "blockbreakGoal": {
                     "$ref": "#/definitions/BlockBreakGoalConfig"
@@ -151,7 +143,6 @@
         },
         "HealthPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -179,18 +170,7 @@
         },
         "ItemGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
-                "allBlocks": {
-                    "default": false,
-                    "description": "If true, all items that are placable blocks (determined by \n{@link https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html#isBlock()Spigots isBlock method})\nhave to be collected.",
-                    "type": "boolean"
-                },
-                "allItems": {
-                    "default": true,
-                    "description": "If true, all items have to be collected.",
-                    "type": "boolean"
-                },
                 "complete": {
                     "default": false,
                     "description": "If the goal is completed.",
@@ -202,15 +182,23 @@
                     "type": "boolean"
                 },
                 "items": {
-                    "$ref": "#/definitions/CollectableEntryConfig",
-                    "description": "The items that need to be collected to beat this goal."
+                    "default": [],
+                    "description": "The items that need to be collected to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
                 }
             },
             "type": "object"
         },
         "MobGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "complete": {
                     "default": false,
@@ -229,13 +217,17 @@
                         "$ref": "#/definitions/CollectableEntryConfig"
                     },
                     "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
                 }
             },
             "type": "object"
         },
         "NoBlockBreakRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -253,7 +245,6 @@
         },
         "NoBlockPlaceRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -271,7 +262,6 @@
         },
         "NoCraftingRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -289,7 +279,6 @@
         },
         "NoDamageRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -299,7 +288,6 @@
         },
         "NoDeathRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -309,7 +297,6 @@
         },
         "PunishmentsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "deathPunishment": {
                     "$ref": "#/definitions/DeathPunishmentConfig"
@@ -331,7 +318,6 @@
         },
         "RandomEffectPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -359,7 +345,6 @@
         },
         "RandomItemPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "All",
@@ -392,7 +377,6 @@
         },
         "RulesConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "enabledGlobalPunishments": {
                     "$ref": "#/definitions/PunishmentsConfig"

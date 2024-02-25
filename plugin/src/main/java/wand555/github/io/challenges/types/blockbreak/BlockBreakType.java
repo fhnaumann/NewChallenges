@@ -14,6 +14,7 @@ public class BlockBreakType extends Type<BlockBreakData> implements Listener {
 
     public BlockBreakType(Context context, TriggerCheck<BlockBreakData> triggerCheck, Trigger<BlockBreakData> whenTriggered) {
         super(context, triggerCheck, whenTriggered);
+        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @EventHandler

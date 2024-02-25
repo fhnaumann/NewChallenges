@@ -10,10 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.Collect;
-import wand555.github.io.challenges.criteria.goals.InvProgress;
-import wand555.github.io.challenges.criteria.goals.Skippable;
+import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
@@ -32,23 +29,21 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
     private final MobType mobType;
     private final MobGoalMessageHelper messageHelper;
 
-    private final Map<EntityType, Collect> toKill;
+    private final GoalCollector<EntityType> goalCollector;
     private final CollectedInventory collectedInventory;
     private final BossBar bossBar;
 
+    private final boolean fixedOrder;
+
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
         super(context, config.getComplete());
-        this.toKill = ModelMapper.str2Collectable(config.getMobs().getAdditionalProperties(), EntityType.class);
         this.collectedInventory = new CollectedInventory(context.plugin());
         this.bossBar = createBossBar();
-
+        this.goalCollector = new GoalCollector<>(context, config.getMobs(), EntityType.class);
         this.mobType = new MobType(context, triggerCheck(), trigger());
         context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
         this.messageHelper = messageHelper;
-    }
-
-    public Map<EntityType, Collect> getToKill() {
-        return toKill;
+        this.fixedOrder = config.getFixedOrder();
     }
 
     @Override
@@ -60,17 +55,20 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
 
     @Override
     public MobGoalConfig toGeneratedJSONClass() {
-        CollectableEntryConfig collectableEntryConfig = new CollectableEntryConfig();
-        toKill.forEach((entityType, collect) -> collectableEntryConfig.setAdditionalProperty(entityType.toString(), collect.toGeneratedJSONClass()));
         return new MobGoalConfig(
                 isComplete(),
-                null, // TODO change constructor and set value here
-                collectableEntryConfig
+                this.fixedOrder,
+                goalCollector.toGeneratedJSONClass(),
+                true
         );
     }
 
+    public Map<EntityType, Collect> getToKill() {
+        return goalCollector.getToCollect();
+    }
+
     private void newEntityKilled(MobData data) {
-        Collect updatedCollect = getToKill().computeIfPresent(data.entityInteractedWith(), (entityType, collect) -> {
+        Collect updatedCollect = goalCollector.getToCollect().computeIfPresent(data.entityInteractedWith(), (entityType, collect) -> {
             collect.setCurrentAmount(collect.getCurrentAmount()+1);
             return collect;
         });
@@ -87,7 +85,7 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
     }
 
     public boolean determineComplete() {
-        return toKill.values().stream().allMatch(Collect::isComplete);
+        return goalCollector.isComplete();
     }
 
     @Override
@@ -104,7 +102,7 @@ public class MobGoal extends BaseGoal implements Triggable<MobData>, Storable<Mo
                 false
         ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(), context.resourceBundleContext().goalResourceBundle()));
         Component entities = Component.empty().appendNewline();
-        for (Map.Entry<EntityType, Collect> entry : toKill.entrySet()) {
+        for (Map.Entry<EntityType, Collect> entry : goalCollector.getToCollect().entrySet()) {
             EntityType entityType = entry.getKey();
             Collect collect = entry.getValue();
             Component entityCollectInfo = Component.empty()

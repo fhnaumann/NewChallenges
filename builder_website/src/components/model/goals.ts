@@ -1,4 +1,6 @@
 import type { BlockBreakGoalConfig } from "./blockbreak"
+import type { ItemGoalConfig } from "./item"
+import type { Base } from "./model"
 
 export type GoalName = keyof GoalsConfig
 
@@ -10,7 +12,7 @@ export interface GoalsConfig {
     blockbreakGoal?: BlockBreakGoalConfig
 }
 
-export interface BaseGoalConfig {
+export interface BaseGoalConfig extends Base {
 
     /**
      * If the goal is completed.
@@ -27,6 +29,18 @@ export interface Orderable {
      * @default false
      */
     fixedOrder?: boolean
+
+    /**
+     * Flag to remember whether the collectables have been shuffled or not.
+     * Can only ever be true if 'fixedOrder' is set to true.
+     * The builder website will always set this value to false (or leave it as default).
+     * Coming from the builder website to the minecraft server for the first time, then 'shuffled'
+     * will be false, which indicates to the server to shuffle the collectables once, set 'shuffled'
+     * to true and therefore never re-shuffle it again (on subsequent server starts).
+     * 
+     * @default false
+     */
+    shuffled?: boolean
 }
 
 export interface CollectableDataConfig {
@@ -58,7 +72,7 @@ export interface CollectableEntryConfig {
      * 
      * @default {}
      */
-    collectableData?: CollectableDataConfig
+    collectableData: CollectableDataConfig
 }
 export interface MobGoalConfig extends BaseGoalConfig, Orderable {
     /**
@@ -67,27 +81,4 @@ export interface MobGoalConfig extends BaseGoalConfig, Orderable {
      * @default ["collectableName": "ENDER_DRAGON", "collectableData": {"amountNeeded": 1}]
      */
     mobs?: CollectableEntryConfig[]
-}
-
-export interface ItemGoalConfig extends BaseGoalConfig, Orderable {
-    /**
-     * The items that need to be collected to beat this goal.
-     */
-    items?: CollectableEntryConfig
-
-    /**
-     * If true, all items have to be collected.
-     * 
-     * @default true
-     */
-    allItems?: boolean
-
-    /**
-     * If true, all items that are placable blocks (determined by 
-     * {@link https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html#isBlock()|Spigots isBlock method})
-     * have to be collected.
-     * 
-     * @default false
-     */
-    allBlocks?: boolean
 }

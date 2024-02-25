@@ -1,6 +1,8 @@
 package wand555.github.io.challenges.mapping;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.ChallengeManager;
@@ -22,14 +24,16 @@ import wand555.github.io.challenges.criteria.rules.Rule;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ModelMapper {
 
-    public static final Predicate<Material> VALID_ITEMS = material -> material.isItem() && !material.isLegacy() && !material.isAir() && material != Material.BARRIER;
-    public static final Predicate<Material> VALID_BLOCKS = material -> material.isBlock() && !material.isLegacy() && !material.isAir() && material != Material.BARRIER;
+    public static final Predicate<MaterialJSON> VALID_ITEMS = MaterialJSON::isItem;
+    public static final Predicate<MaterialJSON> VALID_BLOCKS = MaterialJSON::isBlock;
 
     private Challenges plugin;
     private JsonNode schemaRoot;
@@ -85,16 +89,16 @@ public class ModelMapper {
         return goals;
     }
 
-    public static <T extends Enum<T>> Map<T, Collect> str2Collectable(Map<String, CollectableDataConfig> collectables, Class<T> enumType) {
+    public static <T extends Enum<T>> Map<T, Collect> str2Collectable(List<CollectableEntryConfig> collectables, Class<T> enumType) {
         List<String> failedToMap = new ArrayList<>();
-        Map<T, Collect> mapped = collectables.entrySet().stream()
-                .map(entry -> {
+        Map<T, Collect> mapped = collectables.stream()
+                .map(collectable -> {
                     try {
-                        T matched = Enum.valueOf(enumType, entry.getKey());
-                        Collect collect = new Collect(entry.getValue().getAmountNeeded(), entry.getValue().getCurrentAmount());
+                        T matched = Enum.valueOf(enumType, collectable.getCollectableName().toUpperCase()); // code is always lowercase - enum is always uppercase
+                        Collect collect = new Collect(collectable.getCollectableData().getAmountNeeded(), collectable.getCollectableData().getCurrentAmount());
                         return Map.entry(matched, collect);
                     } catch (IllegalArgumentException | NullPointerException e) {
-                        failedToMap.add(entry.getKey());
+                        failedToMap.add(collectable.getCollectableName());
                         // return anything as it does not matter because we will error out in the
                         // next step anyway, because we encountered an error during the string -> enum conversion
                         return Map.entry((T)EntityType.BAT, new Collect(0));
@@ -105,6 +109,31 @@ public class ModelMapper {
             throw new RuntimeException(String.format("Failed to map material string(s) to valid enum: %s", String.join(",", failedToMap)));
         }
         return mapped;
+    }
+
+    public static List<CollectableEntryConfig> aggregateMaterials(JsonNode schemaRoot, List<MaterialJSON> materialJSONS) {
+        return aggregateMaterials(schemaRoot, materialJSONS, materialJSON -> true);
+    }
+
+    public static List<CollectableEntryConfig> aggregateMaterials(JsonNode schemaRoot, List<MaterialJSON> materialJSONS, Predicate<MaterialJSON> predicate) {
+        JsonNode amountNeeded = schemaRoot.at("/definitions/CollectableDataConfig/properties/amountNeeded/default");
+        if(amountNeeded.isMissingNode()) {
+            throw new RuntimeException();
+        }
+        JsonNode currentAmount = schemaRoot.at("/definitions/CollectableDataConfig/properties/currentAmount/default");
+        if(currentAmount.isMissingNode()) {
+            throw new RuntimeException();
+        }
+        return materialJSONS.stream()
+                .filter(predicate).map(value -> new CollectableEntryConfig(
+                        new CollectableDataConfig(amountNeeded.asInt(), currentAmount.asInt()),
+                        value.code()))
+                .toList();
+    }
+
+    public static <T> String enum2Code(List<MaterialJSON> materialJSONS, T codeAsMaterial) {
+        // TODO: implement for other enums, not just material
+        return materialJSONS.stream().filter(materialJSON -> Material.matchMaterial(materialJSON.code()) == codeAsMaterial).findFirst().orElseThrow().code();
     }
 
     private static List<Rule> mapToRules(@NotNull Context context, EnabledRules enabledRulesConfig) {

@@ -5,6 +5,7 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PigMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import be.seeseemelk.mockbukkit.entity.WitherSkeletonMock;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -16,12 +17,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.types.mob.MobData;
 
 import java.io.IOException;
@@ -38,6 +37,7 @@ public class MobGoalTest {
     private static ResourceBundleContext resourceBundleContext;
 
     private static JsonNode schemaRoot;
+    private static DataSourceContext dataSourceContext;
 
     private ServerMock server;
     private Challenges plugin;
@@ -57,6 +57,10 @@ public class MobGoalTest {
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.goalResourceBundle()).thenReturn(goalResourceBundle);
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), new TypeReference<>() {
+        });
+        dataSourceContext = mock(DataSourceContext.class);
+        when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
     }
 
     @BeforeEach
@@ -66,7 +70,7 @@ public class MobGoalTest {
         player = server.addPlayer("dummy");
 
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContext, schemaRoot, manager);
+        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, manager);
 
         messageHelper = mock(MobGoalMessageHelper.class, RETURNS_DEFAULTS);
 

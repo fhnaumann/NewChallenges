@@ -3,6 +3,7 @@ package wand555.github.io;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -10,11 +11,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -39,7 +42,9 @@ public class FileManagerTest {
         player = server.addPlayer();
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null), schemaRoot, new ChallengeManager());
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), new TypeReference<>() {
+        });
+        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null), new DataSourceContext(materialJSONS), schemaRoot, new ChallengeManager());
         mapper = new ModelMapper(context);
 
 
