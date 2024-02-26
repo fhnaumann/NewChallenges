@@ -11,9 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.mapping.MaterialDataSource;
-import wand555.github.io.challenges.mapping.MaterialJSON;
-import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.mapping.*;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
 
 import java.io.IOException;
@@ -44,7 +42,8 @@ public class FileManagerTest {
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
         JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
         List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null), new DataSourceContext(materialJSONS), schemaRoot, new ChallengeManager());
+        List<EntityTypeJSON> entityTypeJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), EntityTypeDataSource.class).getData();
+        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null), new DataSourceContext(materialJSONS, entityTypeJSONS), schemaRoot, new ChallengeManager());
         mapper = new ModelMapper(context);
 
 

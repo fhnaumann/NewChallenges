@@ -49,6 +49,11 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withEntityTypeJSONList(InputStream entityTypeJSONInputStream) {
+            dataSourceContextBuilder.withMaterialJSONList(entityTypeJSONInputStream);
+            return this;
+        }
+
         public Builder withSchemaRoot(JsonNode schemaRoot) {
             this.schemaRoot = schemaRoot;
             return this;

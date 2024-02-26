@@ -55,7 +55,10 @@ public class FileManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        DataSourceContext sourceContext = new DataSourceContext.Builder().withMaterialJSONList(FileManager.class.getResourceAsStream("/materials.json")).build();
+        DataSourceContext sourceContext = new DataSourceContext.Builder()
+                .withMaterialJSONList(FileManager.class.getResourceAsStream("/materials.json"))
+                .withEntityTypeJSONList(FileManager.class.getResourceAsStream("/entity_types.json"))
+                .build();
         ValidationResult validationResult = Validation.modernValidate(json, schemaStream, schematronStream, sourceContext);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();

@@ -50,12 +50,17 @@ public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements
     @Override
     public TriggerCheck<BlockBreakData> triggerCheck() {
         return data -> {
+            if(isComplete()) {
+                return false;
+            }
+            Collect toCollect = goalCollector.getToCollect().get(data.broken());
+            if(toCollect == null || toCollect.isComplete()) {
+                return false;
+            }
             if(fixedOrder) {
                 return goalCollector.getCurrentlyToCollect().getKey() == data.broken();
             }
-            else {
-                return goalCollector.getToCollect().containsKey(data.broken());
-            }
+            return true;
         };
     }
 

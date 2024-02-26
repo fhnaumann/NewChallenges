@@ -147,6 +147,9 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
     @Override
     public TriggerCheck<ItemData> triggerCheck() {
         return data -> {
+            if(isComplete()) {
+                return false;
+            }
             if(fixedOrder) {
                 return goalCollector.getCurrentlyToCollect().getKey() == data.itemStackInteractedWith().getType();
             }

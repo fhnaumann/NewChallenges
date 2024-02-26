@@ -47,6 +47,7 @@ public abstract class MapGoal<T extends Enum<T>, S> extends BaseGoal implements 
     @Override
     public Trigger<S> trigger() {
         return data -> {
+
             Collect updatedCollect = updateCollect(data);
             if(updatedCollect.isComplete()) {
                 messageHelper.sendSingleReachedAction(data, updatedCollect);

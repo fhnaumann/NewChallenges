@@ -32,7 +32,7 @@ public class ChallengeManager implements StatusInfo {
 
     public void start() {
         if(rules.isEmpty()) {
-            throw new RuntimeException("No rules specified!");
+            //throw new RuntimeException("No rules specified!");
         }
         if(goals.isEmpty()) {
             //throw new RuntimeException("No goals specified!");

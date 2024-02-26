@@ -54,15 +54,6 @@ public class Validation {
         schematronResourcePure.setErrorHandler(errorHandler);
     }
 
-
-    public Validation(List<Validator> validators) {
-        new JSONSchemaValidator(null)
-                .andThen(new SchematronValidator(null))
-                .andThen(new GoalsValidator(new DataSourceContext.Builder().withMaterialJSONList(Validation.class.getResourceAsStream("/materials.json")).build()))
-                .validate(new ValidationResult.ValidationResultBuilder(),"");
-    }
-
-
     public ValidationResult validate(String json) {
 
 

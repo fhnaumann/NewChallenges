@@ -10,9 +10,15 @@ import java.util.function.Predicate;
 public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extends Enum<E>> extends ModelValidator {
 
     private final List<T> dataSource;
+    private final Predicate<T> predicate;
 
     public CollectableValidator(List<T> dataSource) {
+        this(dataSource, t -> true);
+    }
+
+    public CollectableValidator(List<T> dataSource, Predicate<T> predicate) {
         this.dataSource = dataSource;
+        this.predicate = predicate;
     }
 
     @Override
@@ -30,7 +36,7 @@ public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extend
     }
 
     private boolean hasValidCode(CollectableEntryConfig collectable) {
-        return dataSource.stream().anyMatch(eDataSourceJSON -> eDataSourceJSON.getCode().equals(collectable.getCollectableName()));
+        return dataSource.stream().anyMatch(eDataSourceJSON -> eDataSourceJSON.getCode().equals(collectable.getCollectableName()) && predicate.test(eDataSourceJSON));
     }
 
     private void addCodeViolationToBuilder(ValidationResult.ValidationResultBuilder builder, String illegalCode) {
