@@ -19,16 +19,10 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemGoalValidationTest {
-    private static ObjectMapper objectMapper;
 
     private InputStream jsonSchemaStream;
     private InputStream schematronStream;
     private DataSourceContext dataSourceContext;
-    @BeforeAll
-    public static void setUpIOData() {
-        objectMapper = new ObjectMapper();
-
-    }
 
     @BeforeEach
     public void setUp() {

@@ -56,8 +56,8 @@ public class ModelMapper {
 
     public static void map2ModelClasses(Context context, ChallengesSchema json) {
 
-        List<Rule> rules = mapToRules(context, json.getRules().getEnabledRules());
-        List<Punishment> globalPunishments = mapToPunishments(context, json.getRules().getEnabledGlobalPunishments());
+        List<Rule> rules = mapToRules(context, json.getRules() != null ? json.getRules().getEnabledRules() : new EnabledRules());
+        List<Punishment> globalPunishments = mapToPunishments(context, json.getRules() != null ? json.getRules().getEnabledGlobalPunishments() : new PunishmentsConfig());
         if(!globalPunishments.isEmpty()) {
             rules.stream()
                     .filter(rule -> rule instanceof PunishableRule)
@@ -143,6 +143,9 @@ public class ModelMapper {
 
     private static List<Rule> mapToRules(@NotNull Context context, EnabledRules enabledRulesConfig) {
         List<Rule> rules = new ArrayList<>();
+        if(enabledRulesConfig == null) {
+            return rules;
+        }
         if(enabledRulesConfig.getNoBlockBreak() != null) {
             NoBlockBreakRuleConfig noBlockBreakRuleConfig = enabledRulesConfig.getNoBlockBreak();
             rules.add(new NoBlockBreakRule(context, noBlockBreakRuleConfig));

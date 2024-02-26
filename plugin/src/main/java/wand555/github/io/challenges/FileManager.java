@@ -44,9 +44,9 @@ public class FileManager {
             throw new RuntimeException(e);
         }
         InputStream schemaStream = Main.class.getResourceAsStream("/challenges_schema.json");
-        URL schematronStream = Main.class.getResource("/constraints.sch");
+        InputStream schematronStream = Main.class.getResourceAsStream("/constraints.sch");
         System.out.println(schematronStream);
-        Validation validation = new Validation(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
+        //Validation validation = new Validation(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
 
         JsonNode schemaRoot = null;
 
@@ -55,7 +55,8 @@ public class FileManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ValidationResult validationResult = validation.validate(json);
+        DataSourceContext sourceContext = new DataSourceContext.Builder().withMaterialJSONList(FileManager.class.getResourceAsStream("/materials.json")).build();
+        ValidationResult validationResult = Validation.modernValidate(json, schemaStream, schematronStream, sourceContext);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
             ChallengesSchema challengesSchema = null;
