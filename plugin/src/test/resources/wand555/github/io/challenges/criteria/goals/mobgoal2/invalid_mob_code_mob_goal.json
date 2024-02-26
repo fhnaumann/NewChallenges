@@ -1,0 +1,15 @@
+{
+  "goals": {
+    "mobGoal": {
+      "mobs": [
+        {
+          "collectableName": "not_a_valid_code",
+          "collectableData": {
+            "amountNeeded": 2,
+            "currentAmount": 0
+          }
+        }
+      ]
+    }
+  }
+}

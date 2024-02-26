@@ -3,12 +3,11 @@ package wand555.github.io.challenges;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.helger.schematron.pure.SchematronResourcePure;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
-import wand555.github.io.challenges.validation.Validator;
 
 import java.io.*;
 import java.net.URL;
@@ -47,7 +46,7 @@ public class FileManager {
         InputStream schemaStream = Main.class.getResourceAsStream("/challenges_schema.json");
         URL schematronStream = Main.class.getResource("/constraints.sch");
         System.out.println(schematronStream);
-        Validator validator = new Validator(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
+        Validation validation = new Validation(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
 
         JsonNode schemaRoot = null;
 
@@ -56,7 +55,7 @@ public class FileManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ValidationResult validationResult = validator.validate(json);
+        ValidationResult validationResult = validation.validate(json);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
             ChallengesSchema challengesSchema = null;

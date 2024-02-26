@@ -4,7 +4,6 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -18,8 +17,8 @@ import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.punishments.HealthPunishment;
+import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
-import wand555.github.io.challenges.validation.Validator;
 import wand555.github.io.challenges.validation.Violation;
 
 import static org.mockito.Mockito.*;
@@ -37,7 +36,7 @@ public class HealthPunishmentTest {
     private static JsonNode schemaRoot;
     private static DataSourceContext dataSourceContext;
 
-    private static Validator validator;
+    private static Validation validation;
 
     private ServerMock server;
     private Challenges plugin;
@@ -53,7 +52,7 @@ public class HealthPunishmentTest {
         List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
         dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
-        validator = new Validator(
+        validation = new Validation(
                 HealthPunishmentTest.class.getResourceAsStream("/challenges_schema.json"),
                 new File(HealthPunishmentTest.class.getResource("/constraints.sch").getFile())
         );
@@ -147,7 +146,7 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        ValidationResult result = validator.validate(emptyHealthPunishment);
+        ValidationResult result = validation.validate(emptyHealthPunishment);
         assertTrue(result.isValid());
     }
 
@@ -169,7 +168,7 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        ValidationResult result = validator.validate(validHealthAmountHealthPunishment);
+        ValidationResult result = validation.validate(validHealthAmountHealthPunishment);
         assertTrue(result.isValid());
 
         String invalidHealthAmountHealthPunishment =
@@ -188,7 +187,7 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        result = validator.validate(invalidHealthAmountHealthPunishment);
+        result = validation.validate(invalidHealthAmountHealthPunishment);
         assertFalse(result.isValid());
         assertEquals(1, result.getViolations().size());
     }
@@ -212,7 +211,7 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        ValidationResult result = validator.validate(complexHealthPunishment);
+        ValidationResult result = validation.validate(complexHealthPunishment);
         assertTrue(result.isValid());
         assertEquals(1, result.getViolations().size());
         assertEquals(Violation.Level.WARNING, result.getViolations().get(0).getLevel());
@@ -238,7 +237,7 @@ public class HealthPunishmentTest {
                   }
                 }
                 """;
-        ValidationResult result = validator.validate(complexHealthPunishment);
+        ValidationResult result = validation.validate(complexHealthPunishment);
         assertFalse(result.isValid());
         assertEquals(2, result.getViolations().size());
         assertEquals(1, result.getViolations().stream().filter(violation -> violation.getLevel() == Violation.Level.ERROR).count());

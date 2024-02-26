@@ -1,33 +1,27 @@
 package wand555.github.io.validation;
 
-import com.helger.schematron.pure.SchematronResourcePure;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.validation.ValidationResult;
-import wand555.github.io.challenges.validation.Validator;
+import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.Violation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 
-public class ValidatorTest {
+public class ValidationTest {
 
-    private static Validator validator;
+    private static Validation validation;
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
-        var tets = ValidatorTest.class.getResource("/constraints.sch");
+        var tets = ValidationTest.class.getResource("/constraints.sch");
         System.out.println(tets);
-        validator = new Validator(
-                ValidatorTest.class.getResourceAsStream("/challenges_schema.json"),
+        validation = new Validation(
+                ValidationTest.class.getResourceAsStream("/challenges_schema.json"),
                 //new File(ValidatorTest.class.getResource("/constraints.sch").getFile())
-                ValidatorTest.class.getResourceAsStream("/constraints.sch")
+                ValidationTest.class.getResourceAsStream("/constraints.sch")
         );
     }
 
@@ -43,7 +37,7 @@ public class ValidatorTest {
                   "goals": {}
                 }
                 """;
-        ValidationResult result = validator.validate(bareBoneJSON);
+        ValidationResult result = validation.validate(bareBoneJSON);
         assertTrue(result.isValid());
     }
 
@@ -61,7 +55,7 @@ public class ValidatorTest {
                   "goals": {}
                 }
                 """;
-        result = validator.validate(bareBoneMissingEnabledRulesJSON);
+        result = validation.validate(bareBoneMissingEnabledRulesJSON);
         assertTrue(result.isValid());
 
         String bareBoneMissingGoalsJSON =
@@ -73,7 +67,7 @@ public class ValidatorTest {
                   }
                 }
                 """;
-        result = validator.validate(bareBoneMissingGoalsJSON);
+        result = validation.validate(bareBoneMissingGoalsJSON);
         assertTrue(result.isValid());
     }
 
@@ -87,7 +81,7 @@ public class ValidatorTest {
                   },
                 }
                 """;
-        ValidationResult result = validator.validate(bareBoneMultipleMissingJSON);
+        ValidationResult result = validation.validate(bareBoneMultipleMissingJSON);
         assertTrue(result.isValid());
     }
 }
