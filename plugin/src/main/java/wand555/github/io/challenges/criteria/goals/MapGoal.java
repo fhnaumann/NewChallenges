@@ -44,6 +44,25 @@ public abstract class MapGoal<T extends Enum<T>, S> extends BaseGoal implements 
         notifyManager();
     }
 
+    protected abstract T getComparingDataContent(S data);
+
+    @Override
+    public TriggerCheck<S> triggerCheck() {
+        return data -> {
+            if(isComplete()) {
+                return false;
+            }
+            Collect toCollect = goalCollector.getToCollect().get(getComparingDataContent(data));
+            if(toCollect == null || toCollect.isComplete()) {
+                return false;
+            }
+            if(fixedOrder) {
+                return goalCollector.getCurrentlyToCollect().getKey() == getComparingDataContent(data);
+            }
+            return true;
+        };
+    }
+
     @Override
     public Trigger<S> trigger() {
         return data -> {
@@ -62,5 +81,12 @@ public abstract class MapGoal<T extends Enum<T>, S> extends BaseGoal implements 
         };
     }
 
-    protected abstract Collect updateCollect(S data);
+    protected Collect updateCollect(S data) {
+        return goalCollector.getToCollect().computeIfPresent(getComparingDataContent(data), (material, collect) -> {
+            // default behaviour is to add exactly 1 to the collect
+            // subclasses may override this behaviour
+            collect.setCurrentAmount(collect.getCurrentAmount()+1);
+            return collect;
+        });
+    }
 }

@@ -126,25 +126,7 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     }
 
     @Override
-    public TriggerCheck<MobData> triggerCheck() {
-        return data -> {
-            if(isComplete()) {
-                return false;
-            }
-            if(fixedOrder) {
-                return goalCollector.getCurrentlyToCollect().getKey() == data.entityInteractedWith();
-            }
-            else {
-                return goalCollector.getToCollect().containsKey(data.entityInteractedWith());
-            }
-        };
-    }
-
-    @Override
-    protected Collect updateCollect(MobData data) {
-        return goalCollector.getToCollect().computeIfPresent(data.entityInteractedWith(), (entityType, collect) -> {
-            collect.setCurrentAmount(collect.getCurrentAmount()+1);
-            return collect;
-        });
+    protected EntityType getComparingDataContent(MobData data) {
+        return data.entityInteractedWith();
     }
 }
