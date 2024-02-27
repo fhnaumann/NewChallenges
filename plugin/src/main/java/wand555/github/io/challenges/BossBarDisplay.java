@@ -5,20 +5,33 @@ import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
-public interface BossBarDisplay {
+public interface BossBarDisplay<S> {
 
-    public BossBar createBossBar();
+    public BossBar createBossBar(S data);
 
     public BossBar getBossBar();
+
+    public void updateBossBar(S data);
 
     public BossBarPriority getBossBarPriority();
 
     default void showBossBar(Player player) {
-        player.showBossBar(getBossBar());
+        if(getBossBar() != null) {
+            player.showBossBar(getBossBar());
+        }
+
     }
 
     default void showBossBar(Collection<? extends Player> players) {
         players.forEach(this::showBossBar);
+    }
+
+    default void removeBossBar(Player player) {
+        player.hideBossBar(getBossBar());
+    }
+
+    default void removeBossBar(Collection<? extends Player> players) {
+        players.forEach(this::removeBossBar);
     }
 
     enum BossBarPriority {

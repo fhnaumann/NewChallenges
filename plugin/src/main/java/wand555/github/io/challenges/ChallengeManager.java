@@ -40,8 +40,8 @@ public class ChallengeManager implements StatusInfo {
         gameState = GameState.RUNNING;
 
         Challenges.getPlugin(Challenges.class).getLogger().info("starting");
-
-        goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
+        goals.forEach(BaseGoal::onStart);
+        //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
         timerRunnable = new TimerRunnable(context);
         timerRunnable.start();

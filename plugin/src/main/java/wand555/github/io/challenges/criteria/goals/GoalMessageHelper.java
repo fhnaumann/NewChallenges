@@ -6,20 +6,40 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.MessageHelper;
 import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.CollectionUtil;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.function.Function;
 
-public abstract class GoalMessageHelper<T> extends MessageHelper {
+/**
+ *
+ * @param <T> Any data object (BlockBreakData, MobData, ItemData, ...)
+ * @param <E> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
+ */
+public abstract class GoalMessageHelper<T,E extends Enum<E>> extends MessageHelper {
     public GoalMessageHelper(Context context) {
         super(context);
     }
 
+    public Component formatBossBarComponent(E data, Collect collect) {
+        return ComponentUtil.formatBossBarMessage(
+                context.plugin(),
+                context.resourceBundleContext().goalResourceBundle(),
+                "%s.bossbar.message".formatted(getGoalNameInResourceBundle()),
+                Map.of(
+                        "amount", Component.text(collect.getCurrentAmount()),
+                        "total_amount", Component.text(collect.getAmountNeeded())
+                ),
+                additionalBossBarPlaceholders(data)
+        );
+    }
+
     protected abstract String getGoalNameInResourceBundle();
 
-    protected abstract Map<String, Component> additionalPlaceholders(T data);
+    protected abstract Map<String, Component> additionalBossBarPlaceholders(E data);
+
+    protected abstract Map<String, Component> additionalStepPlaceholders(T data);
 
     public void sendSingleStepAction(T data, Collect collect) {
         Map<String, Component> commonPlaceholder = Map.of(
@@ -30,7 +50,7 @@ public abstract class GoalMessageHelper<T> extends MessageHelper {
                 context.plugin(),
                 getGoalBundle(),
                 "%s.single.step.message".formatted(getGoalNameInResourceBundle()),
-                CollectionUtil.combine(commonPlaceholder, additionalPlaceholders(data))
+                CollectionUtil.combine(commonPlaceholder, additionalStepPlaceholders(data))
         );
         ActionHelper.sendAndPlaySound(
                 context.plugin(),
@@ -45,7 +65,7 @@ public abstract class GoalMessageHelper<T> extends MessageHelper {
                 context.plugin(),
                 getGoalBundle(),
                 "%s.single.reached.message".formatted(getGoalNameInResourceBundle()),
-                additionalPlaceholders(data)
+                additionalStepPlaceholders(data)
         );
         ActionHelper.sendAndPlaySound(
                 context.plugin(),

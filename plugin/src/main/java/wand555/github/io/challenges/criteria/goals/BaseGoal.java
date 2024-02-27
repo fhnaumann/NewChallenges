@@ -17,6 +17,8 @@ public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, St
         this.complete = complete;
     }
 
+    public abstract void onStart();
+
     public abstract void onComplete();
 
     protected final void notifyManager() {

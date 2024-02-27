@@ -9,22 +9,7 @@ import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
-public class ForceBlockBreak extends BaseForce implements Triggable<BlockBreakData>, Storable<ForceBlockBreak>, BossBarDisplay, Skippable {
-    @Override
-    public BossBar createBossBar() {
-        return null;
-    }
-
-    @Override
-    public BossBar getBossBar() {
-        return null;
-    }
-
-    @Override
-    public BossBarPriority getBossBarPriority() {
-        return null;
-    }
-
+public class ForceBlockBreak extends BaseForce implements Triggable<BlockBreakData>, Storable<ForceBlockBreak>, Skippable {
     @Override
     public ForceBlockBreak toGeneratedJSONClass() {
         return null;

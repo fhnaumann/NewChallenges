@@ -15,17 +15,16 @@ import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.Map;
+import java.util.function.Function;
 
-public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<MobGoalConfig>, BossBarDisplay, InvProgress, Skippable {
+public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<MobGoalConfig>, InvProgress, Skippable {
 
     private final MobType mobType;
     private final CollectedInventory collectedInventory;
-    private final BossBar bossBar;
 
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
         super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getMobs(), EntityType.class, messageHelper);
         this.collectedInventory = new CollectedInventory(context.plugin());
-        this.bossBar = createBossBar();
         this.mobType = new MobType(context, triggerCheck(), trigger());
         context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
     }
@@ -83,29 +82,6 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     }
 
     @Override
-    public BossBar createBossBar() {
-        Component carrotUnicode = ResourcePackHelper.getMaterialUnicodeMapping(Material.CARROT);
-        String manual = "\ue441";
-        // new String(Character.toChars(58433)), new String(Character.toChars(0xe441))
-        BossBar bossBar = BossBar.bossBar(Component.text("DUMMY TEST").append(carrotUnicode), 0f, BossBar.Color.BLUE, BossBar.Overlay.PROGRESS);
-        return bossBar;
-    }
-
-    @Override
-    public BossBar getBossBar() {
-        return bossBar;
-    }
-
-    private void refreshBossBar(EntityType entityType, Collect collect) {
-
-    }
-
-    @Override
-    public BossBarPriority getBossBarPriority() {
-        return BossBarPriority.INFO;
-    }
-
-    @Override
     public @NotNull CollectedInventory getCollectedInventory() {
         return collectedInventory;
     }
@@ -126,7 +102,7 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     }
 
     @Override
-    protected EntityType getComparingDataContent(MobData data) {
-        return data.entityInteractedWith();
+    protected Function<MobData, EntityType> data2MainElement() {
+        return MobData::entityInteractedWith;
     }
 }

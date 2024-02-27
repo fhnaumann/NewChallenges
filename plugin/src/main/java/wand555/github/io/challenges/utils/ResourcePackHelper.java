@@ -26,8 +26,28 @@ public class ResourcePackHelper {
 
     private static int unicodeCounter = 0xe000;
 
+    public static <E extends Enum<E>> Component getUnicodeMapping(E from) {
+        if(from instanceof Material material) {
+            return getMaterialUnicodeMapping(material);
+        }
+        if(from instanceof EntityType entityType) {
+            return getEntityTypeUnicodeMapping(entityType);
+        }
+        throw new RuntimeException("getUnicodeMapping called with '%s' and that is not an entity type or a material.".formatted(from));
+    }
+
     public static Component getMaterialUnicodeMapping(Material from) {
         String unicode = MATERIAL_UNICODE_MAPPING.get(from);
+        if(unicode != null) {
+            return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from, true)).append(Component.text(")")));
+        }
+        else {
+            return EnumConverterHelper.enum2Comp(from, null, true);
+        }
+    }
+
+    public static Component getEntityTypeUnicodeMapping(EntityType from) {
+        String unicode = ENTITY_UNICODE_MAPPING.get(from);
         if(unicode != null) {
             return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from, true)).append(Component.text(")")));
         }
@@ -84,6 +104,8 @@ public class ResourcePackHelper {
     }
 
     private static Map<EntityType, String> fillEntityUnicodeMappings() {
+        // TODO: use python script to create unicode mapping and then load them here (just like with materials)
+        /*
         Map<EntityType, String> map = new HashMap<>();
         List<EntityType> entityTypes = Stream.of(EntityType.values()).filter(entityType -> entityType != EntityType.UNKNOWN).toList();
         for(int i=0; i<entityTypes.size(); i++) {
@@ -91,5 +113,8 @@ public class ResourcePackHelper {
             map.put(entityTypes.get(i), Character.toString(unicodeCounter));
         }
         return map;
+
+         */
+        return Map.of();
     }
 }

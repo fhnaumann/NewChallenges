@@ -32,10 +32,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<ItemGoalConfig>, BossBarDisplay, InvProgress, Skippable {
+public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<ItemGoalConfig>, InvProgress, Skippable {
 
     private final ItemType itemType;
-    private final BossBar bossBar;
     private final CollectedInventory collectedInventory;
 
     public ItemGoal(Context context, ItemGoalConfig config) {
@@ -48,56 +47,9 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
         if(currentAmount.isMissingNode()) {
             throw new RuntimeException();
         }
-        this.bossBar = createBossBar();
         this.collectedInventory = new CollectedInventory(context.plugin());
 
         this.itemType = new ItemType(context, triggerCheck(), trigger());
-    }
-
-    @Override
-    public BossBar createBossBar() {
-        Map.Entry<Material, Collect> randomToCollect = RandomUtil.pickRandom(goalCollector.getToCollect());
-
-        Component formattedBossBarComponent = formatBossBarComponent(randomToCollect.getKey(), randomToCollect.getValue());
-        return BossBar.bossBar(formattedBossBarComponent, 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
-    }
-
-    private Component formatBossBarComponent(Material material, Collect collect) {
-        Component unicodeComponent = ResourcePackHelper.getMaterialUnicodeMapping(material);
-        return ComponentUtil.formatBossBarMessage(
-                context.plugin(),
-                context.resourceBundleContext().goalResourceBundle(),
-                "itemgoal.bossbar.message",
-                Map.of(
-                        "amount", Component.text(collect.getCurrentAmount()),
-                        "total_amount", Component.text(collect.getAmountNeeded())
-                ),
-                Map.of(
-                        "item", unicodeComponent
-                )
-        );
-    }
-
-    private void refreshBossBar(Material material, Collect collect) {
-        Component name;
-        if(!collect.isComplete()) {
-            name = formatBossBarComponent(material, collect);
-        }
-        else {
-            Map.Entry<Material, Collect> randomToCollect = RandomUtil.pickRandom(goalCollector.getToCollect());
-            name = formatBossBarComponent(randomToCollect.getKey(), randomToCollect.getValue());
-        }
-        bossBar.name(name);
-    }
-
-    @Override
-    public BossBar getBossBar() {
-        return bossBar;
-    }
-
-    @Override
-    public BossBarPriority getBossBarPriority() {
-        return BossBarPriority.INFO;
     }
 
     @Override
@@ -145,8 +97,8 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
     }
 
     @Override
-    protected Material getComparingDataContent(ItemData data) {
-        return data.itemStackInteractedWith().getType();
+    protected Function<ItemData, Material> data2MainElement() {
+        return data -> data.itemStackInteractedWith().getType();
     }
 
     @Override

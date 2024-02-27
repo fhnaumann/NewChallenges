@@ -16,6 +16,7 @@ import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements Storable<BlockBreakGoalConfig> {
 
@@ -48,7 +49,7 @@ public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements
     }
 
     @Override
-    protected Material getComparingDataContent(BlockBreakData data) {
-        return data.broken();
+    protected Function<BlockBreakData, Material> data2MainElement() {
+        return BlockBreakData::broken;
     }
 }
