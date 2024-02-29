@@ -62,6 +62,23 @@ export interface CollectableDataConfig {
      */
     currentAmount?: number
 }
+export interface CompletionConfig {
+    /**
+     * The time in seconds (since the start) that it took to complete this collectable. -1 indicates that is has not been collected (e.g. 'complete' is false).
+     * 
+     * @default -1
+     * @TJS-type integer
+     */
+    whenCollectedSeconds?: number,
+
+    /**
+     * The player (names) that contributed to completing this collectable.
+     */
+    contributors?: ContributorsConfig
+}
+export interface ContributorsConfig {
+    [key: string]: number;
+}
 export interface CollectableEntryConfig {
     /**
      * The name of the collectable. This could, for example, be "PIG" (entity), "STONE" (material).
@@ -72,7 +89,12 @@ export interface CollectableEntryConfig {
      * 
      * @default {}
      */
-    collectableData: CollectableDataConfig
+    collectableData: CollectableDataConfig,
+
+    /**
+     * Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable.
+     */
+    completion?: CompletionConfig
 }
 export interface MobGoalConfig extends BaseGoalConfig, Orderable {
     /**

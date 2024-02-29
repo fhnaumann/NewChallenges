@@ -3,7 +3,7 @@ schema_file_name="challenges_schema.json"
 
 echo "Typescript -> JSON Schema..."
 cd builder_website
-typescript-json-schema src/components/model/model.ts Model > src/assets/$schema_file_name --noExtraProps --strictNullChecks --required
+typescript-json-schema src/components/model/model.ts Model > src/assets/$schema_file_name --noExtraProps --strictNullChecks --required --defaultNumberType=integer
 cd ..
 echo "Typescript -> JSON Schema DONE!"
 echo "Copying into maven resource folder..."
