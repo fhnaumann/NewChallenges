@@ -1,5 +1,7 @@
 .idea/
 
+builder_website/package.json
+builder_website/package-lock.json
 builder_website/.idea/
 builder_website/node_modules/
 builder_website/public/minecraft/
@@ -16,3 +18,4 @@ plugin/server/
 plugin/target/
 plugin/Challenges.iml
 plugin/src/main/resources/rendered_items
+plugin/unicode_mapping/textures/
