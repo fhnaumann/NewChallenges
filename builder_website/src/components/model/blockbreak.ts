@@ -18,13 +18,7 @@ export interface BlockBreakGoalConfig extends BaseGoalConfig, Orderable {
     /**
      * The blocks (more specifically materials) that need to be broken to beat this goal.
      * 
-     * @default [{
-            "collectableName": "stone",
-            "collectableData": {
-                "amountNeeded": 1,
-                "currentAmount": 0
-            }
-        }]
+     * @default []
      */
     broken?: CollectableEntryConfig[]
 }

@@ -17,14 +17,12 @@ import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.function.Function;
 
-public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<MobGoalConfig>, InvProgress, Skippable {
+public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<MobGoalConfig>, Skippable {
 
     private final MobType mobType;
-    private final CollectedInventory collectedInventory;
 
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
         super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getMobs(), EntityType.class, messageHelper);
-        this.collectedInventory = new CollectedInventory(context.plugin());
         this.mobType = new MobType(context, triggerCheck(), trigger());
         context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
     }
@@ -79,21 +77,6 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
             entities = entities.append(entityCollectInfo).appendNewline();
         }
         return mobGoalName.append(entities);
-    }
-
-    @Override
-    public @NotNull CollectedInventory getCollectedInventory() {
-        return collectedInventory;
-    }
-
-    @Override
-    public String getBaseCommand() {
-        return "mobgoal";
-    }
-
-    @Override
-    public void onShowInvProgressCommand() {
-
     }
 
     @Override

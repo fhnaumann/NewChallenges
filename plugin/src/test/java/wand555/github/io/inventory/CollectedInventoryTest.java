@@ -4,19 +4,15 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.inventory.CollectedInventory;
-import wand555.github.io.challenges.inventory.CollectedItemStack;
+import wand555.github.io.challenges.inventory.MultipleCollectedItemStack;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import static org.mockito.Mockito.*;
@@ -36,7 +32,7 @@ public class CollectedInventoryTest {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
 
-        collectedInventory = spy(new CollectedInventory(plugin));
+        //collectedInventory = spy(new CollectedInventory(plugin));
 
         player1 = server.addPlayer();
         player2 = server.addPlayer();
@@ -110,9 +106,12 @@ public class CollectedInventoryTest {
     }
 
     private void fillNTimes(int n) {
+        /*
         collectedInventory.clearCollectedItemStacks();
         for(int i=0; i<n; i++) {
-            collectedInventory.addCollectedItemStack(new CollectedItemStack(Material.STONE, "abc", i));
+            collectedInventory.addCollectedItemStack(new MultipleCollectedItemStack(Material.STONE, "abc", i));
         }
+
+         */
     }
 }

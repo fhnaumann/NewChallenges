@@ -8,10 +8,6 @@ public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, St
     protected final Context context;
     private boolean complete;
 
-    public BaseGoal(Context context) {
-        this(context, false);
-    }
-
     public BaseGoal(Context context, boolean complete) {
         this.context = context;
         this.complete = complete;

@@ -1,7 +1,9 @@
 package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.translation.Translatable;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
@@ -14,14 +16,16 @@ import java.util.function.Function;
 
 /**
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
- * In constrast, something like "collect 10 XP levels" is not a map goal, because it is a singular goal that may be reached.
- * @param <T>
- * @param <S>
+ * In contrast, something like "collect 10 XP levels" is not a map goal, because it is a singular goal that may be reached.
+ * @param <T> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
+ * @param <S> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<T extends Enum<T>, S> extends BaseGoal implements Triggable<S>, BossBarDisplay<Map.Entry<T, Collect>> {
+public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal implements Triggable<S>, BossBarDisplay<Map.Entry<T, Collect>> {
 
     protected final GoalCollector<T> goalCollector;
     protected final GoalMessageHelper<S,T> messageHelper;
+    protected final InvProgress<S> invProgress;
+
     protected final boolean fixedOrder;
     private final BossBar bossBar;
 
@@ -32,6 +36,7 @@ public abstract class MapGoal<T extends Enum<T>, S> extends BaseGoal implements 
         }
         this.goalCollector = new GoalCollector<>(context, collectables, enumType);
         this.messageHelper = messageHelper;
+        this.invProgress = new InvProgress();
         this.fixedOrder = fixedOrder;
         if(fixedOrder) {
             this.bossBar = createBossBar(goalCollector.getCurrentlyToCollect());

@@ -60,12 +60,37 @@
                 "collectableName": {
                     "description": "The name of the collectable. This could, for example, be \"PIG\" (entity), \"STONE\" (material).",
                     "type": "string"
+                },
+                "completion": {
+                    "$ref": "#/definitions/CompletionConfig",
+                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
                 }
             },
             "required": [
                 "collectableData",
                 "collectableName"
             ],
+            "type": "object"
+        },
+        "CompletionConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "contributors": {
+                    "$ref": "#/definitions/ContributorsConfig",
+                    "description": "The player (names) that contributed to completing this collectable."
+                },
+                "whenCollectedSeconds": {
+                    "default": -1,
+                    "description": "The time in seconds (since the start) that it took to complete this collectable. -1 indicates that is has not been collected (e.g. 'complete' is false).",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "ContributorsConfig": {
+            "additionalProperties": {
+                "type": "integer"
+            },
             "type": "object"
         },
         "DeathPunishmentConfig": {
@@ -358,7 +383,7 @@
                     "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
                     "maximum": 10,
                     "minimum": 1,
-                    "type": "number"
+                    "type": "integer"
                 },
                 "randomizeItemsRemovedAtOnce": {
                     "default": false,

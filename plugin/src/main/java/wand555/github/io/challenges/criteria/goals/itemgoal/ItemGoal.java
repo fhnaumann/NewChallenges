@@ -32,10 +32,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<ItemGoalConfig>, InvProgress, Skippable {
+public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<ItemGoalConfig>, Skippable {
 
     private final ItemType itemType;
-    private final CollectedInventory collectedInventory;
 
     public ItemGoal(Context context, ItemGoalConfig config) {
         super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getItems(), Material.class, new ItemGoalMessageHelper(context));
@@ -47,7 +46,6 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
         if(currentAmount.isMissingNode()) {
             throw new RuntimeException();
         }
-        this.collectedInventory = new CollectedInventory(context.plugin());
 
         this.itemType = new ItemType(context, triggerCheck(), trigger());
     }
@@ -74,21 +72,6 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
 
     public Map<Material, Collect> getToCollect() {
         return goalCollector.getToCollect();
-    }
-
-    @Override
-    public @NotNull CollectedInventory getCollectedInventory() {
-        return collectedInventory;
-    }
-
-    @Override
-    public String getBaseCommand() {
-        return "itemgoal";
-    }
-
-    @Override
-    public void onShowInvProgressCommand() {
-
     }
 
     @Override

@@ -140,6 +140,7 @@ public class ComponentUtil {
                 .toArray(TagResolver.Single[]::new);
     }
 
+    @Deprecated
     public static  <E extends Enum<E>> Component translate(Collection<E> enumCollectionToTranslate) {
         return enumCollectionToTranslate.stream().map(ComponentUtil::translate).reduce(Component.empty(), Component::append);
     }

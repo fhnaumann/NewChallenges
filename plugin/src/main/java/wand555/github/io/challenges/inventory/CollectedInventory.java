@@ -1,15 +1,12 @@
 package wand555.github.io.challenges.inventory;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.Challenges;
 
@@ -18,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollectedInventory implements Listener {
+public abstract class CollectedInventory<S> implements Listener {
 
     record InvPage(Inventory inventory, int page) {}
 
@@ -29,41 +26,46 @@ public class CollectedInventory implements Listener {
     public static final int PREV_PAGE_IDX = MAX_INV_SIZE - 9;
     public static final int NEXT_PAGE_IX = MAX_INV_SIZE - 1;
 
-    private Map<Player, InvPage> openInventories;
+    private final Map<Player, InvPage> openInventories;
 
-    private final List<CollectedItemStack> collectedItemStacks;
+    private final List<MultipleCollectedItemStack> multipleCollectedItemStacks;
 
 
 
     public CollectedInventory(Challenges plugin) {
-        this.collectedItemStacks = new ArrayList<>();
+        this.multipleCollectedItemStacks = new ArrayList<>();
         this.openInventories = new HashMap<>();
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-    public void addCollectedItemStack(CollectedItemStack collectedItemStack) {
-        collectedItemStacks.add(collectedItemStack);
+    public void addCollectedItemStack(MultipleCollectedItemStack multipleCollectedItemStack) {
+        multipleCollectedItemStacks.add(multipleCollectedItemStack);
     }
 
+    public abstract void addOrUpdate(S data);
+
     public void clearCollectedItemStacks() {
-        collectedItemStacks.clear();
+        multipleCollectedItemStacks.clear();
     }
 
     private void fillInventoryPage(Inventory inventory, int page) {
         //paginatedInventories.put(page, inventory);
+        /*
         for(int i=0; i<USABLE_INV_SPACE; i++) {
             int globalIndex = (USABLE_INV_SPACE * page) + i;
-            CollectedItemStack collectedItemStack;
-            if(globalIndex < collectedItemStacks.size()) {
-                collectedItemStack = collectedItemStacks.get(globalIndex);
+            MultipleCollectedItemStack multipleCollectedItemStack;
+            if(globalIndex < multipleCollectedItemStacks.size()) {
+                multipleCollectedItemStack = multipleCollectedItemStacks.get(globalIndex);
             }
             else {
-                collectedItemStack = new CollectedItemStack(Material.AIR, null, 0);
+                multipleCollectedItemStack = new MultipleCollectedItemStack(Material.AIR, null, 0);
             }
-            inventory.setItem(i, collectedItemStack.render());
+            inventory.setItem(i, multipleCollectedItemStack.render());
         }
         inventory.setItem(45, new ItemStack(Material.ARROW));
         inventory.setItem(53, new ItemStack(Material.ARROW));
+
+         */
     }
 
     private void updateOnPageSwap(Player player, int newPage) {
@@ -82,7 +84,7 @@ public class CollectedInventory implements Listener {
         System.out.println(currentPage);
         int currentMaxNumber = ((currentPage+1) * USABLE_INV_SPACE);
         System.out.println(currentMaxNumber);
-        return currentMaxNumber <= collectedItemStacks.size();
+        return currentMaxNumber <= multipleCollectedItemStacks.size();
     }
 
     @EventHandler

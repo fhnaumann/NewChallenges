@@ -116,26 +116,6 @@ public class ModelMapper {
         return mapped;
     }
 
-    public static List<CollectableEntryConfig> aggregateMaterials(JsonNode schemaRoot, List<MaterialJSON> materialJSONS) {
-        return aggregateMaterials(schemaRoot, materialJSONS, materialJSON -> true);
-    }
-
-    public static List<CollectableEntryConfig> aggregateMaterials(JsonNode schemaRoot, List<MaterialJSON> materialJSONS, Predicate<MaterialJSON> predicate) {
-        JsonNode amountNeeded = schemaRoot.at("/definitions/CollectableDataConfig/properties/amountNeeded/default");
-        if(amountNeeded.isMissingNode()) {
-            throw new RuntimeException();
-        }
-        JsonNode currentAmount = schemaRoot.at("/definitions/CollectableDataConfig/properties/currentAmount/default");
-        if(currentAmount.isMissingNode()) {
-            throw new RuntimeException();
-        }
-        return materialJSONS.stream()
-                .filter(predicate).map(value -> new CollectableEntryConfig(
-                        new CollectableDataConfig(amountNeeded.asInt(), currentAmount.asInt()),
-                        value.code()))
-                .toList();
-    }
-
     public static <T> String enum2Code(List<MaterialJSON> materialJSONS, T codeAsMaterial) {
         // TODO: implement for other enums, not just material
         return materialJSONS.stream().filter(materialJSON -> Material.matchMaterial(materialJSON.code()) == codeAsMaterial).findFirst().orElseThrow().code();
