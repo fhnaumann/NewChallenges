@@ -1,0 +1,1456 @@
+minecraft:stone,minecraft_stone,Stone,true,true
+minecraft:granite,minecraft_granite,Granite,true,true
+minecraft:polished_granite,minecraft_polished_granite,Polished Granite,true,true
+minecraft:diorite,minecraft_diorite,Diorite,true,true
+minecraft:polished_diorite,minecraft_polished_diorite,Polished Diorite,true,true
+minecraft:andesite,minecraft_andesite,Andesite,true,true
+minecraft:polished_andesite,minecraft_polished_andesite,Polished Andesite,true,true
+minecraft:deepslate,minecraft_deepslate,Deepslate,true,true
+minecraft:cobbled_deepslate,minecraft_cobbled_deepslate,Cobbled Deepslate,true,true
+minecraft:polished_deepslate,minecraft_polished_deepslate,Polished Deepslate,true,true
+minecraft:calcite,minecraft_calcite,Calcite,true,true
+minecraft:tuff,minecraft_tuff,Tuff,true,true
+minecraft:tuff_slab,minecraft_tuff_slab,Tuff Slab,true,true
+minecraft:tuff_stairs,minecraft_tuff_stairs,Tuff Stairs,true,true
+minecraft:tuff_wall,minecraft_tuff_wall,Tuff Wall,true,true
+minecraft:chiseled_tuff,minecraft_chiseled_tuff,Chiseled Tuff,true,true
+minecraft:polished_tuff,minecraft_polished_tuff,Polished Tuff,true,true
+minecraft:polished_tuff_slab,minecraft_polished_tuff_slab,Polished Tuff Slab,true,true
+minecraft:polished_tuff_stairs,minecraft_polished_tuff_stairs,Polished Tuff Stairs,true,true
+minecraft:polished_tuff_wall,minecraft_polished_tuff_wall,Polished Tuff Wall,true,true
+minecraft:tuff_bricks,minecraft_tuff_bricks,Tuff Bricks,true,true
+minecraft:tuff_brick_slab,minecraft_tuff_brick_slab,Tuff Brick Slab,true,true
+minecraft:tuff_brick_stairs,minecraft_tuff_brick_stairs,Tuff Brick Stairs,true,true
+minecraft:tuff_brick_wall,minecraft_tuff_brick_wall,Tuff Brick Wall,true,true
+minecraft:chiseled_tuff_bricks,minecraft_chiseled_tuff_bricks,Chiseled Tuff Bricks,true,true
+minecraft:dripstone_block,minecraft_dripstone_block,Dripstone Block,true,true
+minecraft:grass_block,minecraft_grass_block,Grass Block,true,true
+minecraft:dirt,minecraft_dirt,Dirt,true,true
+minecraft:coarse_dirt,minecraft_coarse_dirt,Coarse Dirt,true,true
+minecraft:podzol,minecraft_podzol,Podzol,true,true
+minecraft:rooted_dirt,minecraft_rooted_dirt,Rooted Dirt,true,true
+minecraft:mud,minecraft_mud,Mud,true,true
+minecraft:crimson_nylium,minecraft_crimson_nylium,Crimson Nylium,true,true
+minecraft:warped_nylium,minecraft_warped_nylium,Warped Nylium,true,true
+minecraft:cobblestone,minecraft_cobblestone,Cobblestone,true,true
+minecraft:oak_planks,minecraft_oak_planks,Oak Planks,true,true
+minecraft:spruce_planks,minecraft_spruce_planks,Spruce Planks,true,true
+minecraft:birch_planks,minecraft_birch_planks,Birch Planks,true,true
+minecraft:jungle_planks,minecraft_jungle_planks,Jungle Planks,true,true
+minecraft:acacia_planks,minecraft_acacia_planks,Acacia Planks,true,true
+minecraft:cherry_planks,minecraft_cherry_planks,Cherry Planks,true,true
+minecraft:dark_oak_planks,minecraft_dark_oak_planks,Dark Oak Planks,true,true
+minecraft:mangrove_planks,minecraft_mangrove_planks,Mangrove Planks,true,true
+minecraft:bamboo_planks,minecraft_bamboo_planks,Bamboo Planks,true,true
+minecraft:crimson_planks,minecraft_crimson_planks,Crimson Planks,true,true
+minecraft:warped_planks,minecraft_warped_planks,Warped Planks,true,true
+minecraft:bamboo_mosaic,minecraft_bamboo_mosaic,Bamboo Mosaic,true,true
+minecraft:oak_sapling,minecraft_oak_sapling,Oak Sapling,true,true
+minecraft:spruce_sapling,minecraft_spruce_sapling,Spruce Sapling,true,true
+minecraft:birch_sapling,minecraft_birch_sapling,Birch Sapling,true,true
+minecraft:jungle_sapling,minecraft_jungle_sapling,Jungle Sapling,true,true
+minecraft:acacia_sapling,minecraft_acacia_sapling,Acacia Sapling,true,true
+minecraft:cherry_sapling,minecraft_cherry_sapling,Cherry Sapling,true,true
+minecraft:dark_oak_sapling,minecraft_dark_oak_sapling,Dark Oak Sapling,true,true
+minecraft:mangrove_propagule,minecraft_mangrove_propagule,Mangrove Propagule,true,true
+minecraft:bedrock,minecraft_bedrock,Bedrock,true,true
+minecraft:sand,minecraft_sand,Sand,true,true
+minecraft:suspicious_sand,minecraft_suspicious_sand,Suspicious Sand,true,true
+minecraft:suspicious_gravel,minecraft_suspicious_gravel,Suspicious Gravel,true,true
+minecraft:red_sand,minecraft_red_sand,Red Sand,true,true
+minecraft:gravel,minecraft_gravel,Gravel,true,true
+minecraft:coal_ore,minecraft_coal_ore,Coal Ore,true,true
+minecraft:deepslate_coal_ore,minecraft_deepslate_coal_ore,Deepslate Coal Ore,true,true
+minecraft:iron_ore,minecraft_iron_ore,Iron Ore,true,true
+minecraft:deepslate_iron_ore,minecraft_deepslate_iron_ore,Deepslate Iron Ore,true,true
+minecraft:copper_ore,minecraft_copper_ore,Copper Ore,true,true
+minecraft:deepslate_copper_ore,minecraft_deepslate_copper_ore,Deepslate Copper Ore,true,true
+minecraft:gold_ore,minecraft_gold_ore,Gold Ore,true,true
+minecraft:deepslate_gold_ore,minecraft_deepslate_gold_ore,Deepslate Gold Ore,true,true
+minecraft:redstone_ore,minecraft_redstone_ore,Redstone Ore,true,true
+minecraft:deepslate_redstone_ore,minecraft_deepslate_redstone_ore,Deepslate Redstone Ore,true,true
+minecraft:emerald_ore,minecraft_emerald_ore,Emerald Ore,true,true
+minecraft:deepslate_emerald_ore,minecraft_deepslate_emerald_ore,Deepslate Emerald Ore,true,true
+minecraft:lapis_ore,minecraft_lapis_ore,Lapis Ore,true,true
+minecraft:deepslate_lapis_ore,minecraft_deepslate_lapis_ore,Deepslate Lapis Ore,true,true
+minecraft:diamond_ore,minecraft_diamond_ore,Diamond Ore,true,true
+minecraft:deepslate_diamond_ore,minecraft_deepslate_diamond_ore,Deepslate Diamond Ore,true,true
+minecraft:nether_gold_ore,minecraft_nether_gold_ore,Nether Gold Ore,true,true
+minecraft:nether_quartz_ore,minecraft_nether_quartz_ore,Nether Quartz Ore,true,true
+minecraft:ancient_debris,minecraft_ancient_debris,Ancient Debris,true,true
+minecraft:coal_block,minecraft_coal_block,Coal Block,true,true
+minecraft:raw_iron_block,minecraft_raw_iron_block,Raw Iron Block,true,true
+minecraft:raw_copper_block,minecraft_raw_copper_block,Raw Copper Block,true,true
+minecraft:raw_gold_block,minecraft_raw_gold_block,Raw Gold Block,true,true
+minecraft:amethyst_block,minecraft_amethyst_block,Amethyst Block,true,true
+minecraft:budding_amethyst,minecraft_budding_amethyst,Budding Amethyst,true,true
+minecraft:iron_block,minecraft_iron_block,Iron Block,true,true
+minecraft:copper_block,minecraft_copper_block,Copper Block,true,true
+minecraft:gold_block,minecraft_gold_block,Gold Block,true,true
+minecraft:diamond_block,minecraft_diamond_block,Diamond Block,true,true
+minecraft:netherite_block,minecraft_netherite_block,Netherite Block,true,true
+minecraft:exposed_copper,minecraft_exposed_copper,Exposed Copper,true,true
+minecraft:weathered_copper,minecraft_weathered_copper,Weathered Copper,true,true
+minecraft:oxidized_copper,minecraft_oxidized_copper,Oxidized Copper,true,true
+minecraft:chiseled_copper,minecraft_chiseled_copper,Chiseled Copper,true,true
+minecraft:exposed_chiseled_copper,minecraft_exposed_chiseled_copper,Exposed Chiseled Copper,true,true
+minecraft:weathered_chiseled_copper,minecraft_weathered_chiseled_copper,Weathered Chiseled Copper,true,true
+minecraft:oxidized_chiseled_copper,minecraft_oxidized_chiseled_copper,Oxidized Chiseled Copper,true,true
+minecraft:cut_copper,minecraft_cut_copper,Cut Copper,true,true
+minecraft:exposed_cut_copper,minecraft_exposed_cut_copper,Exposed Cut Copper,true,true
+minecraft:weathered_cut_copper,minecraft_weathered_cut_copper,Weathered Cut Copper,true,true
+minecraft:oxidized_cut_copper,minecraft_oxidized_cut_copper,Oxidized Cut Copper,true,true
+minecraft:cut_copper_stairs,minecraft_cut_copper_stairs,Cut Copper Stairs,true,true
+minecraft:exposed_cut_copper_stairs,minecraft_exposed_cut_copper_stairs,Exposed Cut Copper Stairs,true,true
+minecraft:weathered_cut_copper_stairs,minecraft_weathered_cut_copper_stairs,Weathered Cut Copper Stairs,true,true
+minecraft:oxidized_cut_copper_stairs,minecraft_oxidized_cut_copper_stairs,Oxidized Cut Copper Stairs,true,true
+minecraft:cut_copper_slab,minecraft_cut_copper_slab,Cut Copper Slab,true,true
+minecraft:exposed_cut_copper_slab,minecraft_exposed_cut_copper_slab,Exposed Cut Copper Slab,true,true
+minecraft:weathered_cut_copper_slab,minecraft_weathered_cut_copper_slab,Weathered Cut Copper Slab,true,true
+minecraft:oxidized_cut_copper_slab,minecraft_oxidized_cut_copper_slab,Oxidized Cut Copper Slab,true,true
+minecraft:waxed_copper_block,minecraft_waxed_copper_block,Waxed Copper Block,true,true
+minecraft:waxed_exposed_copper,minecraft_waxed_exposed_copper,Waxed Exposed Copper,true,true
+minecraft:waxed_weathered_copper,minecraft_waxed_weathered_copper,Waxed Weathered Copper,true,true
+minecraft:waxed_oxidized_copper,minecraft_waxed_oxidized_copper,Waxed Oxidized Copper,true,true
+minecraft:waxed_chiseled_copper,minecraft_waxed_chiseled_copper,Waxed Chiseled Copper,true,true
+minecraft:waxed_exposed_chiseled_copper,minecraft_waxed_exposed_chiseled_copper,Waxed Exposed Chiseled Copper,true,true
+minecraft:waxed_weathered_chiseled_copper,minecraft_waxed_weathered_chiseled_copper,Waxed Weathered Chiseled Copper,true,true
+minecraft:waxed_oxidized_chiseled_copper,minecraft_waxed_oxidized_chiseled_copper,Waxed Oxidized Chiseled Copper,true,true
+minecraft:waxed_cut_copper,minecraft_waxed_cut_copper,Waxed Cut Copper,true,true
+minecraft:waxed_exposed_cut_copper,minecraft_waxed_exposed_cut_copper,Waxed Exposed Cut Copper,true,true
+minecraft:waxed_weathered_cut_copper,minecraft_waxed_weathered_cut_copper,Waxed Weathered Cut Copper,true,true
+minecraft:waxed_oxidized_cut_copper,minecraft_waxed_oxidized_cut_copper,Waxed Oxidized Cut Copper,true,true
+minecraft:waxed_cut_copper_stairs,minecraft_waxed_cut_copper_stairs,Waxed Cut Copper Stairs,true,true
+minecraft:waxed_exposed_cut_copper_stairs,minecraft_waxed_exposed_cut_copper_stairs,Waxed Exposed Cut Copper Stairs,true,true
+minecraft:waxed_weathered_cut_copper_stairs,minecraft_waxed_weathered_cut_copper_stairs,Waxed Weathered Cut Copper Stairs,true,true
+minecraft:waxed_oxidized_cut_copper_stairs,minecraft_waxed_oxidized_cut_copper_stairs,Waxed Oxidized Cut Copper Stairs,true,true
+minecraft:waxed_cut_copper_slab,minecraft_waxed_cut_copper_slab,Waxed Cut Copper Slab,true,true
+minecraft:waxed_exposed_cut_copper_slab,minecraft_waxed_exposed_cut_copper_slab,Waxed Exposed Cut Copper Slab,true,true
+minecraft:waxed_weathered_cut_copper_slab,minecraft_waxed_weathered_cut_copper_slab,Waxed Weathered Cut Copper Slab,true,true
+minecraft:waxed_oxidized_cut_copper_slab,minecraft_waxed_oxidized_cut_copper_slab,Waxed Oxidized Cut Copper Slab,true,true
+minecraft:oak_log,minecraft_oak_log,Oak Log,true,true
+minecraft:spruce_log,minecraft_spruce_log,Spruce Log,true,true
+minecraft:birch_log,minecraft_birch_log,Birch Log,true,true
+minecraft:jungle_log,minecraft_jungle_log,Jungle Log,true,true
+minecraft:acacia_log,minecraft_acacia_log,Acacia Log,true,true
+minecraft:cherry_log,minecraft_cherry_log,Cherry Log,true,true
+minecraft:dark_oak_log,minecraft_dark_oak_log,Dark Oak Log,true,true
+minecraft:mangrove_log,minecraft_mangrove_log,Mangrove Log,true,true
+minecraft:mangrove_roots,minecraft_mangrove_roots,Mangrove Roots,true,true
+minecraft:muddy_mangrove_roots,minecraft_muddy_mangrove_roots,Muddy Mangrove Roots,true,true
+minecraft:crimson_stem,minecraft_crimson_stem,Crimson Stem,true,true
+minecraft:warped_stem,minecraft_warped_stem,Warped Stem,true,true
+minecraft:bamboo_block,minecraft_bamboo_block,Bamboo Block,true,true
+minecraft:stripped_oak_log,minecraft_stripped_oak_log,Stripped Oak Log,true,true
+minecraft:stripped_spruce_log,minecraft_stripped_spruce_log,Stripped Spruce Log,true,true
+minecraft:stripped_birch_log,minecraft_stripped_birch_log,Stripped Birch Log,true,true
+minecraft:stripped_jungle_log,minecraft_stripped_jungle_log,Stripped Jungle Log,true,true
+minecraft:stripped_acacia_log,minecraft_stripped_acacia_log,Stripped Acacia Log,true,true
+minecraft:stripped_cherry_log,minecraft_stripped_cherry_log,Stripped Cherry Log,true,true
+minecraft:stripped_dark_oak_log,minecraft_stripped_dark_oak_log,Stripped Dark Oak Log,true,true
+minecraft:stripped_mangrove_log,minecraft_stripped_mangrove_log,Stripped Mangrove Log,true,true
+minecraft:stripped_crimson_stem,minecraft_stripped_crimson_stem,Stripped Crimson Stem,true,true
+minecraft:stripped_warped_stem,minecraft_stripped_warped_stem,Stripped Warped Stem,true,true
+minecraft:stripped_oak_wood,minecraft_stripped_oak_wood,Stripped Oak Wood,true,true
+minecraft:stripped_spruce_wood,minecraft_stripped_spruce_wood,Stripped Spruce Wood,true,true
+minecraft:stripped_birch_wood,minecraft_stripped_birch_wood,Stripped Birch Wood,true,true
+minecraft:stripped_jungle_wood,minecraft_stripped_jungle_wood,Stripped Jungle Wood,true,true
+minecraft:stripped_acacia_wood,minecraft_stripped_acacia_wood,Stripped Acacia Wood,true,true
+minecraft:stripped_cherry_wood,minecraft_stripped_cherry_wood,Stripped Cherry Wood,true,true
+minecraft:stripped_dark_oak_wood,minecraft_stripped_dark_oak_wood,Stripped Dark Oak Wood,true,true
+minecraft:stripped_mangrove_wood,minecraft_stripped_mangrove_wood,Stripped Mangrove Wood,true,true
+minecraft:stripped_crimson_hyphae,minecraft_stripped_crimson_hyphae,Stripped Crimson Hyphae,true,true
+minecraft:stripped_warped_hyphae,minecraft_stripped_warped_hyphae,Stripped Warped Hyphae,true,true
+minecraft:stripped_bamboo_block,minecraft_stripped_bamboo_block,Stripped Bamboo Block,true,true
+minecraft:oak_wood,minecraft_oak_wood,Oak Wood,true,true
+minecraft:spruce_wood,minecraft_spruce_wood,Spruce Wood,true,true
+minecraft:birch_wood,minecraft_birch_wood,Birch Wood,true,true
+minecraft:jungle_wood,minecraft_jungle_wood,Jungle Wood,true,true
+minecraft:acacia_wood,minecraft_acacia_wood,Acacia Wood,true,true
+minecraft:cherry_wood,minecraft_cherry_wood,Cherry Wood,true,true
+minecraft:dark_oak_wood,minecraft_dark_oak_wood,Dark Oak Wood,true,true
+minecraft:mangrove_wood,minecraft_mangrove_wood,Mangrove Wood,true,true
+minecraft:crimson_hyphae,minecraft_crimson_hyphae,Crimson Hyphae,true,true
+minecraft:warped_hyphae,minecraft_warped_hyphae,Warped Hyphae,true,true
+minecraft:oak_leaves,minecraft_oak_leaves,Oak Leaves,true,true
+minecraft:spruce_leaves,minecraft_spruce_leaves,Spruce Leaves,true,true
+minecraft:birch_leaves,minecraft_birch_leaves,Birch Leaves,true,true
+minecraft:jungle_leaves,minecraft_jungle_leaves,Jungle Leaves,true,true
+minecraft:acacia_leaves,minecraft_acacia_leaves,Acacia Leaves,true,true
+minecraft:cherry_leaves,minecraft_cherry_leaves,Cherry Leaves,true,true
+minecraft:dark_oak_leaves,minecraft_dark_oak_leaves,Dark Oak Leaves,true,true
+minecraft:mangrove_leaves,minecraft_mangrove_leaves,Mangrove Leaves,true,true
+minecraft:azalea_leaves,minecraft_azalea_leaves,Azalea Leaves,true,true
+minecraft:flowering_azalea_leaves,minecraft_flowering_azalea_leaves,Flowering Azalea Leaves,true,true
+minecraft:sponge,minecraft_sponge,Sponge,true,true
+minecraft:wet_sponge,minecraft_wet_sponge,Wet Sponge,true,true
+minecraft:glass,minecraft_glass,Glass,true,true
+minecraft:tinted_glass,minecraft_tinted_glass,Tinted Glass,true,true
+minecraft:lapis_block,minecraft_lapis_block,Lapis Block,true,true
+minecraft:sandstone,minecraft_sandstone,Sandstone,true,true
+minecraft:chiseled_sandstone,minecraft_chiseled_sandstone,Chiseled Sandstone,true,true
+minecraft:cut_sandstone,minecraft_cut_sandstone,Cut Sandstone,true,true
+minecraft:cobweb,minecraft_cobweb,Cobweb,true,true
+minecraft:short_grass,minecraft_short_grass,Short Grass,true,true
+minecraft:fern,minecraft_fern,Fern,true,true
+minecraft:azalea,minecraft_azalea,Azalea,true,true
+minecraft:flowering_azalea,minecraft_flowering_azalea,Flowering Azalea,true,true
+minecraft:dead_bush,minecraft_dead_bush,Dead Bush,true,true
+minecraft:seagrass,minecraft_seagrass,Seagrass,true,true
+minecraft:sea_pickle,minecraft_sea_pickle,Sea Pickle,true,true
+minecraft:white_wool,minecraft_white_wool,White Wool,true,true
+minecraft:orange_wool,minecraft_orange_wool,Orange Wool,true,true
+minecraft:magenta_wool,minecraft_magenta_wool,Magenta Wool,true,true
+minecraft:light_blue_wool,minecraft_light_blue_wool,Light Blue Wool,true,true
+minecraft:yellow_wool,minecraft_yellow_wool,Yellow Wool,true,true
+minecraft:lime_wool,minecraft_lime_wool,Lime Wool,true,true
+minecraft:pink_wool,minecraft_pink_wool,Pink Wool,true,true
+minecraft:gray_wool,minecraft_gray_wool,Gray Wool,true,true
+minecraft:light_gray_wool,minecraft_light_gray_wool,Light Gray Wool,true,true
+minecraft:cyan_wool,minecraft_cyan_wool,Cyan Wool,true,true
+minecraft:purple_wool,minecraft_purple_wool,Purple Wool,true,true
+minecraft:blue_wool,minecraft_blue_wool,Blue Wool,true,true
+minecraft:brown_wool,minecraft_brown_wool,Brown Wool,true,true
+minecraft:green_wool,minecraft_green_wool,Green Wool,true,true
+minecraft:red_wool,minecraft_red_wool,Red Wool,true,true
+minecraft:black_wool,minecraft_black_wool,Black Wool,true,true
+minecraft:dandelion,minecraft_dandelion,Dandelion,true,true
+minecraft:poppy,minecraft_poppy,Poppy,true,true
+minecraft:blue_orchid,minecraft_blue_orchid,Blue Orchid,true,true
+minecraft:allium,minecraft_allium,Allium,true,true
+minecraft:azure_bluet,minecraft_azure_bluet,Azure Bluet,true,true
+minecraft:red_tulip,minecraft_red_tulip,Red Tulip,true,true
+minecraft:orange_tulip,minecraft_orange_tulip,Orange Tulip,true,true
+minecraft:white_tulip,minecraft_white_tulip,White Tulip,true,true
+minecraft:pink_tulip,minecraft_pink_tulip,Pink Tulip,true,true
+minecraft:oxeye_daisy,minecraft_oxeye_daisy,Oxeye Daisy,true,true
+minecraft:cornflower,minecraft_cornflower,Cornflower,true,true
+minecraft:lily_of_the_valley,minecraft_lily_of_the_valley,Lily Of The Valley,true,true
+minecraft:wither_rose,minecraft_wither_rose,Wither Rose,true,true
+minecraft:torchflower,minecraft_torchflower,Torchflower,true,true
+minecraft:pitcher_plant,minecraft_pitcher_plant,Pitcher Plant,true,true
+minecraft:spore_blossom,minecraft_spore_blossom,Spore Blossom,true,true
+minecraft:brown_mushroom,minecraft_brown_mushroom,Brown Mushroom,true,true
+minecraft:red_mushroom,minecraft_red_mushroom,Red Mushroom,true,true
+minecraft:crimson_fungus,minecraft_crimson_fungus,Crimson Fungus,true,true
+minecraft:warped_fungus,minecraft_warped_fungus,Warped Fungus,true,true
+minecraft:crimson_roots,minecraft_crimson_roots,Crimson Roots,true,true
+minecraft:warped_roots,minecraft_warped_roots,Warped Roots,true,true
+minecraft:nether_sprouts,minecraft_nether_sprouts,Nether Sprouts,true,true
+minecraft:weeping_vines,minecraft_weeping_vines,Weeping Vines,true,true
+minecraft:twisting_vines,minecraft_twisting_vines,Twisting Vines,true,true
+minecraft:sugar_cane,minecraft_sugar_cane,Sugar Cane,true,true
+minecraft:kelp,minecraft_kelp,Kelp,true,true
+minecraft:moss_carpet,minecraft_moss_carpet,Moss Carpet,true,true
+minecraft:pink_petals,minecraft_pink_petals,Pink Petals,true,true
+minecraft:moss_block,minecraft_moss_block,Moss Block,true,true
+minecraft:hanging_roots,minecraft_hanging_roots,Hanging Roots,true,true
+minecraft:big_dripleaf,minecraft_big_dripleaf,Big Dripleaf,true,true
+minecraft:small_dripleaf,minecraft_small_dripleaf,Small Dripleaf,true,true
+minecraft:bamboo,minecraft_bamboo,Bamboo,true,true
+minecraft:oak_slab,minecraft_oak_slab,Oak Slab,true,true
+minecraft:spruce_slab,minecraft_spruce_slab,Spruce Slab,true,true
+minecraft:birch_slab,minecraft_birch_slab,Birch Slab,true,true
+minecraft:jungle_slab,minecraft_jungle_slab,Jungle Slab,true,true
+minecraft:acacia_slab,minecraft_acacia_slab,Acacia Slab,true,true
+minecraft:cherry_slab,minecraft_cherry_slab,Cherry Slab,true,true
+minecraft:dark_oak_slab,minecraft_dark_oak_slab,Dark Oak Slab,true,true
+minecraft:mangrove_slab,minecraft_mangrove_slab,Mangrove Slab,true,true
+minecraft:bamboo_slab,minecraft_bamboo_slab,Bamboo Slab,true,true
+minecraft:bamboo_mosaic_slab,minecraft_bamboo_mosaic_slab,Bamboo Mosaic Slab,true,true
+minecraft:crimson_slab,minecraft_crimson_slab,Crimson Slab,true,true
+minecraft:warped_slab,minecraft_warped_slab,Warped Slab,true,true
+minecraft:stone_slab,minecraft_stone_slab,Stone Slab,true,true
+minecraft:smooth_stone_slab,minecraft_smooth_stone_slab,Smooth Stone Slab,true,true
+minecraft:sandstone_slab,minecraft_sandstone_slab,Sandstone Slab,true,true
+minecraft:cut_sandstone_slab,minecraft_cut_sandstone_slab,Cut Sandstone Slab,true,true
+minecraft:petrified_oak_slab,minecraft_petrified_oak_slab,Petrified Oak Slab,true,true
+minecraft:cobblestone_slab,minecraft_cobblestone_slab,Cobblestone Slab,true,true
+minecraft:brick_slab,minecraft_brick_slab,Brick Slab,true,true
+minecraft:stone_brick_slab,minecraft_stone_brick_slab,Stone Brick Slab,true,true
+minecraft:mud_brick_slab,minecraft_mud_brick_slab,Mud Brick Slab,true,true
+minecraft:nether_brick_slab,minecraft_nether_brick_slab,Nether Brick Slab,true,true
+minecraft:quartz_slab,minecraft_quartz_slab,Quartz Slab,true,true
+minecraft:red_sandstone_slab,minecraft_red_sandstone_slab,Red Sandstone Slab,true,true
+minecraft:cut_red_sandstone_slab,minecraft_cut_red_sandstone_slab,Cut Red Sandstone Slab,true,true
+minecraft:purpur_slab,minecraft_purpur_slab,Purpur Slab,true,true
+minecraft:prismarine_slab,minecraft_prismarine_slab,Prismarine Slab,true,true
+minecraft:prismarine_brick_slab,minecraft_prismarine_brick_slab,Prismarine Brick Slab,true,true
+minecraft:dark_prismarine_slab,minecraft_dark_prismarine_slab,Dark Prismarine Slab,true,true
+minecraft:smooth_quartz,minecraft_smooth_quartz,Smooth Quartz,true,true
+minecraft:smooth_red_sandstone,minecraft_smooth_red_sandstone,Smooth Red Sandstone,true,true
+minecraft:smooth_sandstone,minecraft_smooth_sandstone,Smooth Sandstone,true,true
+minecraft:smooth_stone,minecraft_smooth_stone,Smooth Stone,true,true
+minecraft:bricks,minecraft_bricks,Bricks,true,true
+minecraft:bookshelf,minecraft_bookshelf,Bookshelf,true,true
+minecraft:chiseled_bookshelf,minecraft_chiseled_bookshelf,Chiseled Bookshelf,true,true
+minecraft:decorated_pot,minecraft_decorated_pot,Decorated Pot,true,true
+minecraft:mossy_cobblestone,minecraft_mossy_cobblestone,Mossy Cobblestone,true,true
+minecraft:obsidian,minecraft_obsidian,Obsidian,true,true
+minecraft:torch,minecraft_torch,Torch,true,true
+minecraft:end_rod,minecraft_end_rod,End Rod,true,true
+minecraft:chorus_plant,minecraft_chorus_plant,Chorus Plant,true,true
+minecraft:chorus_flower,minecraft_chorus_flower,Chorus Flower,true,true
+minecraft:purpur_block,minecraft_purpur_block,Purpur Block,true,true
+minecraft:purpur_pillar,minecraft_purpur_pillar,Purpur Pillar,true,true
+minecraft:purpur_stairs,minecraft_purpur_stairs,Purpur Stairs,true,true
+minecraft:spawner,minecraft_spawner,Spawner,true,true
+minecraft:chest,minecraft_chest,Chest,true,true
+minecraft:crafting_table,minecraft_crafting_table,Crafting Table,true,true
+minecraft:farmland,minecraft_farmland,Farmland,true,true
+minecraft:furnace,minecraft_furnace,Furnace,true,true
+minecraft:ladder,minecraft_ladder,Ladder,true,true
+minecraft:cobblestone_stairs,minecraft_cobblestone_stairs,Cobblestone Stairs,true,true
+minecraft:snow,minecraft_snow,Snow,true,true
+minecraft:ice,minecraft_ice,Ice,true,true
+minecraft:snow_block,minecraft_snow_block,Snow Block,true,true
+minecraft:cactus,minecraft_cactus,Cactus,true,true
+minecraft:clay,minecraft_clay,Clay,true,true
+minecraft:jukebox,minecraft_jukebox,Jukebox,true,true
+minecraft:oak_fence,minecraft_oak_fence,Oak Fence,true,true
+minecraft:spruce_fence,minecraft_spruce_fence,Spruce Fence,true,true
+minecraft:birch_fence,minecraft_birch_fence,Birch Fence,true,true
+minecraft:jungle_fence,minecraft_jungle_fence,Jungle Fence,true,true
+minecraft:acacia_fence,minecraft_acacia_fence,Acacia Fence,true,true
+minecraft:cherry_fence,minecraft_cherry_fence,Cherry Fence,true,true
+minecraft:dark_oak_fence,minecraft_dark_oak_fence,Dark Oak Fence,true,true
+minecraft:mangrove_fence,minecraft_mangrove_fence,Mangrove Fence,true,true
+minecraft:bamboo_fence,minecraft_bamboo_fence,Bamboo Fence,true,true
+minecraft:crimson_fence,minecraft_crimson_fence,Crimson Fence,true,true
+minecraft:warped_fence,minecraft_warped_fence,Warped Fence,true,true
+minecraft:pumpkin,minecraft_pumpkin,Pumpkin,true,true
+minecraft:carved_pumpkin,minecraft_carved_pumpkin,Carved Pumpkin,true,true
+minecraft:jack_o_lantern,minecraft_jack_o_lantern,Jack O Lantern,true,true
+minecraft:netherrack,minecraft_netherrack,Netherrack,true,true
+minecraft:soul_sand,minecraft_soul_sand,Soul Sand,true,true
+minecraft:soul_soil,minecraft_soul_soil,Soul Soil,true,true
+minecraft:basalt,minecraft_basalt,Basalt,true,true
+minecraft:polished_basalt,minecraft_polished_basalt,Polished Basalt,true,true
+minecraft:smooth_basalt,minecraft_smooth_basalt,Smooth Basalt,true,true
+minecraft:soul_torch,minecraft_soul_torch,Soul Torch,true,true
+minecraft:glowstone,minecraft_glowstone,Glowstone,true,true
+minecraft:infested_stone,minecraft_infested_stone,Infested Stone,true,true
+minecraft:infested_cobblestone,minecraft_infested_cobblestone,Infested Cobblestone,true,true
+minecraft:infested_stone_bricks,minecraft_infested_stone_bricks,Infested Stone Bricks,true,true
+minecraft:infested_mossy_stone_bricks,minecraft_infested_mossy_stone_bricks,Infested Mossy Stone Bricks,true,true
+minecraft:infested_cracked_stone_bricks,minecraft_infested_cracked_stone_bricks,Infested Cracked Stone Bricks,true,true
+minecraft:infested_chiseled_stone_bricks,minecraft_infested_chiseled_stone_bricks,Infested Chiseled Stone Bricks,true,true
+minecraft:infested_deepslate,minecraft_infested_deepslate,Infested Deepslate,true,true
+minecraft:stone_bricks,minecraft_stone_bricks,Stone Bricks,true,true
+minecraft:mossy_stone_bricks,minecraft_mossy_stone_bricks,Mossy Stone Bricks,true,true
+minecraft:cracked_stone_bricks,minecraft_cracked_stone_bricks,Cracked Stone Bricks,true,true
+minecraft:chiseled_stone_bricks,minecraft_chiseled_stone_bricks,Chiseled Stone Bricks,true,true
+minecraft:packed_mud,minecraft_packed_mud,Packed Mud,true,true
+minecraft:mud_bricks,minecraft_mud_bricks,Mud Bricks,true,true
+minecraft:deepslate_bricks,minecraft_deepslate_bricks,Deepslate Bricks,true,true
+minecraft:cracked_deepslate_bricks,minecraft_cracked_deepslate_bricks,Cracked Deepslate Bricks,true,true
+minecraft:deepslate_tiles,minecraft_deepslate_tiles,Deepslate Tiles,true,true
+minecraft:cracked_deepslate_tiles,minecraft_cracked_deepslate_tiles,Cracked Deepslate Tiles,true,true
+minecraft:chiseled_deepslate,minecraft_chiseled_deepslate,Chiseled Deepslate,true,true
+minecraft:reinforced_deepslate,minecraft_reinforced_deepslate,Reinforced Deepslate,true,true
+minecraft:brown_mushroom_block,minecraft_brown_mushroom_block,Brown Mushroom Block,true,true
+minecraft:red_mushroom_block,minecraft_red_mushroom_block,Red Mushroom Block,true,true
+minecraft:mushroom_stem,minecraft_mushroom_stem,Mushroom Stem,true,true
+minecraft:iron_bars,minecraft_iron_bars,Iron Bars,true,true
+minecraft:chain,minecraft_chain,Chain,true,true
+minecraft:glass_pane,minecraft_glass_pane,Glass Pane,true,true
+minecraft:melon,minecraft_melon,Melon,true,true
+minecraft:vine,minecraft_vine,Vine,true,true
+minecraft:glow_lichen,minecraft_glow_lichen,Glow Lichen,true,true
+minecraft:brick_stairs,minecraft_brick_stairs,Brick Stairs,true,true
+minecraft:stone_brick_stairs,minecraft_stone_brick_stairs,Stone Brick Stairs,true,true
+minecraft:mud_brick_stairs,minecraft_mud_brick_stairs,Mud Brick Stairs,true,true
+minecraft:mycelium,minecraft_mycelium,Mycelium,true,true
+minecraft:lily_pad,minecraft_lily_pad,Lily Pad,true,true
+minecraft:nether_bricks,minecraft_nether_bricks,Nether Bricks,true,true
+minecraft:cracked_nether_bricks,minecraft_cracked_nether_bricks,Cracked Nether Bricks,true,true
+minecraft:chiseled_nether_bricks,minecraft_chiseled_nether_bricks,Chiseled Nether Bricks,true,true
+minecraft:nether_brick_fence,minecraft_nether_brick_fence,Nether Brick Fence,true,true
+minecraft:nether_brick_stairs,minecraft_nether_brick_stairs,Nether Brick Stairs,true,true
+minecraft:sculk,minecraft_sculk,Sculk,true,true
+minecraft:sculk_vein,minecraft_sculk_vein,Sculk Vein,true,true
+minecraft:sculk_catalyst,minecraft_sculk_catalyst,Sculk Catalyst,true,true
+minecraft:sculk_shrieker,minecraft_sculk_shrieker,Sculk Shrieker,true,true
+minecraft:enchanting_table,minecraft_enchanting_table,Enchanting Table,true,true
+minecraft:end_portal_frame,minecraft_end_portal_frame,End Portal Frame,true,true
+minecraft:end_stone,minecraft_end_stone,End Stone,true,true
+minecraft:end_stone_bricks,minecraft_end_stone_bricks,End Stone Bricks,true,true
+minecraft:dragon_egg,minecraft_dragon_egg,Dragon Egg,true,true
+minecraft:sandstone_stairs,minecraft_sandstone_stairs,Sandstone Stairs,true,true
+minecraft:ender_chest,minecraft_ender_chest,Ender Chest,true,true
+minecraft:emerald_block,minecraft_emerald_block,Emerald Block,true,true
+minecraft:oak_stairs,minecraft_oak_stairs,Oak Stairs,true,true
+minecraft:spruce_stairs,minecraft_spruce_stairs,Spruce Stairs,true,true
+minecraft:birch_stairs,minecraft_birch_stairs,Birch Stairs,true,true
+minecraft:jungle_stairs,minecraft_jungle_stairs,Jungle Stairs,true,true
+minecraft:acacia_stairs,minecraft_acacia_stairs,Acacia Stairs,true,true
+minecraft:cherry_stairs,minecraft_cherry_stairs,Cherry Stairs,true,true
+minecraft:dark_oak_stairs,minecraft_dark_oak_stairs,Dark Oak Stairs,true,true
+minecraft:mangrove_stairs,minecraft_mangrove_stairs,Mangrove Stairs,true,true
+minecraft:bamboo_stairs,minecraft_bamboo_stairs,Bamboo Stairs,true,true
+minecraft:bamboo_mosaic_stairs,minecraft_bamboo_mosaic_stairs,Bamboo Mosaic Stairs,true,true
+minecraft:crimson_stairs,minecraft_crimson_stairs,Crimson Stairs,true,true
+minecraft:warped_stairs,minecraft_warped_stairs,Warped Stairs,true,true
+minecraft:command_block,minecraft_command_block,Command Block,true,true
+minecraft:beacon,minecraft_beacon,Beacon,true,true
+minecraft:cobblestone_wall,minecraft_cobblestone_wall,Cobblestone Wall,true,true
+minecraft:mossy_cobblestone_wall,minecraft_mossy_cobblestone_wall,Mossy Cobblestone Wall,true,true
+minecraft:brick_wall,minecraft_brick_wall,Brick Wall,true,true
+minecraft:prismarine_wall,minecraft_prismarine_wall,Prismarine Wall,true,true
+minecraft:red_sandstone_wall,minecraft_red_sandstone_wall,Red Sandstone Wall,true,true
+minecraft:mossy_stone_brick_wall,minecraft_mossy_stone_brick_wall,Mossy Stone Brick Wall,true,true
+minecraft:granite_wall,minecraft_granite_wall,Granite Wall,true,true
+minecraft:stone_brick_wall,minecraft_stone_brick_wall,Stone Brick Wall,true,true
+minecraft:mud_brick_wall,minecraft_mud_brick_wall,Mud Brick Wall,true,true
+minecraft:nether_brick_wall,minecraft_nether_brick_wall,Nether Brick Wall,true,true
+minecraft:andesite_wall,minecraft_andesite_wall,Andesite Wall,true,true
+minecraft:red_nether_brick_wall,minecraft_red_nether_brick_wall,Red Nether Brick Wall,true,true
+minecraft:sandstone_wall,minecraft_sandstone_wall,Sandstone Wall,true,true
+minecraft:end_stone_brick_wall,minecraft_end_stone_brick_wall,End Stone Brick Wall,true,true
+minecraft:diorite_wall,minecraft_diorite_wall,Diorite Wall,true,true
+minecraft:blackstone_wall,minecraft_blackstone_wall,Blackstone Wall,true,true
+minecraft:polished_blackstone_wall,minecraft_polished_blackstone_wall,Polished Blackstone Wall,true,true
+minecraft:polished_blackstone_brick_wall,minecraft_polished_blackstone_brick_wall,Polished Blackstone Brick Wall,true,true
+minecraft:cobbled_deepslate_wall,minecraft_cobbled_deepslate_wall,Cobbled Deepslate Wall,true,true
+minecraft:polished_deepslate_wall,minecraft_polished_deepslate_wall,Polished Deepslate Wall,true,true
+minecraft:deepslate_brick_wall,minecraft_deepslate_brick_wall,Deepslate Brick Wall,true,true
+minecraft:deepslate_tile_wall,minecraft_deepslate_tile_wall,Deepslate Tile Wall,true,true
+minecraft:anvil,minecraft_anvil,Anvil,true,true
+minecraft:chipped_anvil,minecraft_chipped_anvil,Chipped Anvil,true,true
+minecraft:damaged_anvil,minecraft_damaged_anvil,Damaged Anvil,true,true
+minecraft:chiseled_quartz_block,minecraft_chiseled_quartz_block,Chiseled Quartz Block,true,true
+minecraft:quartz_block,minecraft_quartz_block,Quartz Block,true,true
+minecraft:quartz_bricks,minecraft_quartz_bricks,Quartz Bricks,true,true
+minecraft:quartz_pillar,minecraft_quartz_pillar,Quartz Pillar,true,true
+minecraft:quartz_stairs,minecraft_quartz_stairs,Quartz Stairs,true,true
+minecraft:white_terracotta,minecraft_white_terracotta,White Terracotta,true,true
+minecraft:orange_terracotta,minecraft_orange_terracotta,Orange Terracotta,true,true
+minecraft:magenta_terracotta,minecraft_magenta_terracotta,Magenta Terracotta,true,true
+minecraft:light_blue_terracotta,minecraft_light_blue_terracotta,Light Blue Terracotta,true,true
+minecraft:yellow_terracotta,minecraft_yellow_terracotta,Yellow Terracotta,true,true
+minecraft:lime_terracotta,minecraft_lime_terracotta,Lime Terracotta,true,true
+minecraft:pink_terracotta,minecraft_pink_terracotta,Pink Terracotta,true,true
+minecraft:gray_terracotta,minecraft_gray_terracotta,Gray Terracotta,true,true
+minecraft:light_gray_terracotta,minecraft_light_gray_terracotta,Light Gray Terracotta,true,true
+minecraft:cyan_terracotta,minecraft_cyan_terracotta,Cyan Terracotta,true,true
+minecraft:purple_terracotta,minecraft_purple_terracotta,Purple Terracotta,true,true
+minecraft:blue_terracotta,minecraft_blue_terracotta,Blue Terracotta,true,true
+minecraft:brown_terracotta,minecraft_brown_terracotta,Brown Terracotta,true,true
+minecraft:green_terracotta,minecraft_green_terracotta,Green Terracotta,true,true
+minecraft:red_terracotta,minecraft_red_terracotta,Red Terracotta,true,true
+minecraft:black_terracotta,minecraft_black_terracotta,Black Terracotta,true,true
+minecraft:barrier,minecraft_barrier,Barrier,true,true
+minecraft:light,minecraft_light,Light,true,true
+minecraft:hay_block,minecraft_hay_block,Hay Block,true,true
+minecraft:white_carpet,minecraft_white_carpet,White Carpet,true,true
+minecraft:orange_carpet,minecraft_orange_carpet,Orange Carpet,true,true
+minecraft:magenta_carpet,minecraft_magenta_carpet,Magenta Carpet,true,true
+minecraft:light_blue_carpet,minecraft_light_blue_carpet,Light Blue Carpet,true,true
+minecraft:yellow_carpet,minecraft_yellow_carpet,Yellow Carpet,true,true
+minecraft:lime_carpet,minecraft_lime_carpet,Lime Carpet,true,true
+minecraft:pink_carpet,minecraft_pink_carpet,Pink Carpet,true,true
+minecraft:gray_carpet,minecraft_gray_carpet,Gray Carpet,true,true
+minecraft:light_gray_carpet,minecraft_light_gray_carpet,Light Gray Carpet,true,true
+minecraft:cyan_carpet,minecraft_cyan_carpet,Cyan Carpet,true,true
+minecraft:purple_carpet,minecraft_purple_carpet,Purple Carpet,true,true
+minecraft:blue_carpet,minecraft_blue_carpet,Blue Carpet,true,true
+minecraft:brown_carpet,minecraft_brown_carpet,Brown Carpet,true,true
+minecraft:green_carpet,minecraft_green_carpet,Green Carpet,true,true
+minecraft:red_carpet,minecraft_red_carpet,Red Carpet,true,true
+minecraft:black_carpet,minecraft_black_carpet,Black Carpet,true,true
+minecraft:terracotta,minecraft_terracotta,Terracotta,true,true
+minecraft:packed_ice,minecraft_packed_ice,Packed Ice,true,true
+minecraft:dirt_path,minecraft_dirt_path,Dirt Path,true,true
+minecraft:sunflower,minecraft_sunflower,Sunflower,true,true
+minecraft:lilac,minecraft_lilac,Lilac,true,true
+minecraft:rose_bush,minecraft_rose_bush,Rose Bush,true,true
+minecraft:peony,minecraft_peony,Peony,true,true
+minecraft:tall_grass,minecraft_tall_grass,Tall Grass,true,true
+minecraft:large_fern,minecraft_large_fern,Large Fern,true,true
+minecraft:white_stained_glass,minecraft_white_stained_glass,White Stained Glass,true,true
+minecraft:orange_stained_glass,minecraft_orange_stained_glass,Orange Stained Glass,true,true
+minecraft:magenta_stained_glass,minecraft_magenta_stained_glass,Magenta Stained Glass,true,true
+minecraft:light_blue_stained_glass,minecraft_light_blue_stained_glass,Light Blue Stained Glass,true,true
+minecraft:yellow_stained_glass,minecraft_yellow_stained_glass,Yellow Stained Glass,true,true
+minecraft:lime_stained_glass,minecraft_lime_stained_glass,Lime Stained Glass,true,true
+minecraft:pink_stained_glass,minecraft_pink_stained_glass,Pink Stained Glass,true,true
+minecraft:gray_stained_glass,minecraft_gray_stained_glass,Gray Stained Glass,true,true
+minecraft:light_gray_stained_glass,minecraft_light_gray_stained_glass,Light Gray Stained Glass,true,true
+minecraft:cyan_stained_glass,minecraft_cyan_stained_glass,Cyan Stained Glass,true,true
+minecraft:purple_stained_glass,minecraft_purple_stained_glass,Purple Stained Glass,true,true
+minecraft:blue_stained_glass,minecraft_blue_stained_glass,Blue Stained Glass,true,true
+minecraft:brown_stained_glass,minecraft_brown_stained_glass,Brown Stained Glass,true,true
+minecraft:green_stained_glass,minecraft_green_stained_glass,Green Stained Glass,true,true
+minecraft:red_stained_glass,minecraft_red_stained_glass,Red Stained Glass,true,true
+minecraft:black_stained_glass,minecraft_black_stained_glass,Black Stained Glass,true,true
+minecraft:white_stained_glass_pane,minecraft_white_stained_glass_pane,White Stained Glass Pane,true,true
+minecraft:orange_stained_glass_pane,minecraft_orange_stained_glass_pane,Orange Stained Glass Pane,true,true
+minecraft:magenta_stained_glass_pane,minecraft_magenta_stained_glass_pane,Magenta Stained Glass Pane,true,true
+minecraft:light_blue_stained_glass_pane,minecraft_light_blue_stained_glass_pane,Light Blue Stained Glass Pane,true,true
+minecraft:yellow_stained_glass_pane,minecraft_yellow_stained_glass_pane,Yellow Stained Glass Pane,true,true
+minecraft:lime_stained_glass_pane,minecraft_lime_stained_glass_pane,Lime Stained Glass Pane,true,true
+minecraft:pink_stained_glass_pane,minecraft_pink_stained_glass_pane,Pink Stained Glass Pane,true,true
+minecraft:gray_stained_glass_pane,minecraft_gray_stained_glass_pane,Gray Stained Glass Pane,true,true
+minecraft:light_gray_stained_glass_pane,minecraft_light_gray_stained_glass_pane,Light Gray Stained Glass Pane,true,true
+minecraft:cyan_stained_glass_pane,minecraft_cyan_stained_glass_pane,Cyan Stained Glass Pane,true,true
+minecraft:purple_stained_glass_pane,minecraft_purple_stained_glass_pane,Purple Stained Glass Pane,true,true
+minecraft:blue_stained_glass_pane,minecraft_blue_stained_glass_pane,Blue Stained Glass Pane,true,true
+minecraft:brown_stained_glass_pane,minecraft_brown_stained_glass_pane,Brown Stained Glass Pane,true,true
+minecraft:green_stained_glass_pane,minecraft_green_stained_glass_pane,Green Stained Glass Pane,true,true
+minecraft:red_stained_glass_pane,minecraft_red_stained_glass_pane,Red Stained Glass Pane,true,true
+minecraft:black_stained_glass_pane,minecraft_black_stained_glass_pane,Black Stained Glass Pane,true,true
+minecraft:prismarine,minecraft_prismarine,Prismarine,true,true
+minecraft:prismarine_bricks,minecraft_prismarine_bricks,Prismarine Bricks,true,true
+minecraft:dark_prismarine,minecraft_dark_prismarine,Dark Prismarine,true,true
+minecraft:prismarine_stairs,minecraft_prismarine_stairs,Prismarine Stairs,true,true
+minecraft:prismarine_brick_stairs,minecraft_prismarine_brick_stairs,Prismarine Brick Stairs,true,true
+minecraft:dark_prismarine_stairs,minecraft_dark_prismarine_stairs,Dark Prismarine Stairs,true,true
+minecraft:sea_lantern,minecraft_sea_lantern,Sea Lantern,true,true
+minecraft:red_sandstone,minecraft_red_sandstone,Red Sandstone,true,true
+minecraft:chiseled_red_sandstone,minecraft_chiseled_red_sandstone,Chiseled Red Sandstone,true,true
+minecraft:cut_red_sandstone,minecraft_cut_red_sandstone,Cut Red Sandstone,true,true
+minecraft:red_sandstone_stairs,minecraft_red_sandstone_stairs,Red Sandstone Stairs,true,true
+minecraft:repeating_command_block,minecraft_repeating_command_block,Repeating Command Block,true,true
+minecraft:chain_command_block,minecraft_chain_command_block,Chain Command Block,true,true
+minecraft:magma_block,minecraft_magma_block,Magma Block,true,true
+minecraft:nether_wart_block,minecraft_nether_wart_block,Nether Wart Block,true,true
+minecraft:warped_wart_block,minecraft_warped_wart_block,Warped Wart Block,true,true
+minecraft:red_nether_bricks,minecraft_red_nether_bricks,Red Nether Bricks,true,true
+minecraft:bone_block,minecraft_bone_block,Bone Block,true,true
+minecraft:structure_void,minecraft_structure_void,Structure Void,true,true
+minecraft:shulker_box,minecraft_shulker_box,Shulker Box,true,true
+minecraft:white_shulker_box,minecraft_white_shulker_box,White Shulker Box,true,true
+minecraft:orange_shulker_box,minecraft_orange_shulker_box,Orange Shulker Box,true,true
+minecraft:magenta_shulker_box,minecraft_magenta_shulker_box,Magenta Shulker Box,true,true
+minecraft:light_blue_shulker_box,minecraft_light_blue_shulker_box,Light Blue Shulker Box,true,true
+minecraft:yellow_shulker_box,minecraft_yellow_shulker_box,Yellow Shulker Box,true,true
+minecraft:lime_shulker_box,minecraft_lime_shulker_box,Lime Shulker Box,true,true
+minecraft:pink_shulker_box,minecraft_pink_shulker_box,Pink Shulker Box,true,true
+minecraft:gray_shulker_box,minecraft_gray_shulker_box,Gray Shulker Box,true,true
+minecraft:light_gray_shulker_box,minecraft_light_gray_shulker_box,Light Gray Shulker Box,true,true
+minecraft:cyan_shulker_box,minecraft_cyan_shulker_box,Cyan Shulker Box,true,true
+minecraft:purple_shulker_box,minecraft_purple_shulker_box,Purple Shulker Box,true,true
+minecraft:blue_shulker_box,minecraft_blue_shulker_box,Blue Shulker Box,true,true
+minecraft:brown_shulker_box,minecraft_brown_shulker_box,Brown Shulker Box,true,true
+minecraft:green_shulker_box,minecraft_green_shulker_box,Green Shulker Box,true,true
+minecraft:red_shulker_box,minecraft_red_shulker_box,Red Shulker Box,true,true
+minecraft:black_shulker_box,minecraft_black_shulker_box,Black Shulker Box,true,true
+minecraft:white_glazed_terracotta,minecraft_white_glazed_terracotta,White Glazed Terracotta,true,true
+minecraft:orange_glazed_terracotta,minecraft_orange_glazed_terracotta,Orange Glazed Terracotta,true,true
+minecraft:magenta_glazed_terracotta,minecraft_magenta_glazed_terracotta,Magenta Glazed Terracotta,true,true
+minecraft:light_blue_glazed_terracotta,minecraft_light_blue_glazed_terracotta,Light Blue Glazed Terracotta,true,true
+minecraft:yellow_glazed_terracotta,minecraft_yellow_glazed_terracotta,Yellow Glazed Terracotta,true,true
+minecraft:lime_glazed_terracotta,minecraft_lime_glazed_terracotta,Lime Glazed Terracotta,true,true
+minecraft:pink_glazed_terracotta,minecraft_pink_glazed_terracotta,Pink Glazed Terracotta,true,true
+minecraft:gray_glazed_terracotta,minecraft_gray_glazed_terracotta,Gray Glazed Terracotta,true,true
+minecraft:light_gray_glazed_terracotta,minecraft_light_gray_glazed_terracotta,Light Gray Glazed Terracotta,true,true
+minecraft:cyan_glazed_terracotta,minecraft_cyan_glazed_terracotta,Cyan Glazed Terracotta,true,true
+minecraft:purple_glazed_terracotta,minecraft_purple_glazed_terracotta,Purple Glazed Terracotta,true,true
+minecraft:blue_glazed_terracotta,minecraft_blue_glazed_terracotta,Blue Glazed Terracotta,true,true
+minecraft:brown_glazed_terracotta,minecraft_brown_glazed_terracotta,Brown Glazed Terracotta,true,true
+minecraft:green_glazed_terracotta,minecraft_green_glazed_terracotta,Green Glazed Terracotta,true,true
+minecraft:red_glazed_terracotta,minecraft_red_glazed_terracotta,Red Glazed Terracotta,true,true
+minecraft:black_glazed_terracotta,minecraft_black_glazed_terracotta,Black Glazed Terracotta,true,true
+minecraft:white_concrete,minecraft_white_concrete,White Concrete,true,true
+minecraft:orange_concrete,minecraft_orange_concrete,Orange Concrete,true,true
+minecraft:magenta_concrete,minecraft_magenta_concrete,Magenta Concrete,true,true
+minecraft:light_blue_concrete,minecraft_light_blue_concrete,Light Blue Concrete,true,true
+minecraft:yellow_concrete,minecraft_yellow_concrete,Yellow Concrete,true,true
+minecraft:lime_concrete,minecraft_lime_concrete,Lime Concrete,true,true
+minecraft:pink_concrete,minecraft_pink_concrete,Pink Concrete,true,true
+minecraft:gray_concrete,minecraft_gray_concrete,Gray Concrete,true,true
+minecraft:light_gray_concrete,minecraft_light_gray_concrete,Light Gray Concrete,true,true
+minecraft:cyan_concrete,minecraft_cyan_concrete,Cyan Concrete,true,true
+minecraft:purple_concrete,minecraft_purple_concrete,Purple Concrete,true,true
+minecraft:blue_concrete,minecraft_blue_concrete,Blue Concrete,true,true
+minecraft:brown_concrete,minecraft_brown_concrete,Brown Concrete,true,true
+minecraft:green_concrete,minecraft_green_concrete,Green Concrete,true,true
+minecraft:red_concrete,minecraft_red_concrete,Red Concrete,true,true
+minecraft:black_concrete,minecraft_black_concrete,Black Concrete,true,true
+minecraft:white_concrete_powder,minecraft_white_concrete_powder,White Concrete Powder,true,true
+minecraft:orange_concrete_powder,minecraft_orange_concrete_powder,Orange Concrete Powder,true,true
+minecraft:magenta_concrete_powder,minecraft_magenta_concrete_powder,Magenta Concrete Powder,true,true
+minecraft:light_blue_concrete_powder,minecraft_light_blue_concrete_powder,Light Blue Concrete Powder,true,true
+minecraft:yellow_concrete_powder,minecraft_yellow_concrete_powder,Yellow Concrete Powder,true,true
+minecraft:lime_concrete_powder,minecraft_lime_concrete_powder,Lime Concrete Powder,true,true
+minecraft:pink_concrete_powder,minecraft_pink_concrete_powder,Pink Concrete Powder,true,true
+minecraft:gray_concrete_powder,minecraft_gray_concrete_powder,Gray Concrete Powder,true,true
+minecraft:light_gray_concrete_powder,minecraft_light_gray_concrete_powder,Light Gray Concrete Powder,true,true
+minecraft:cyan_concrete_powder,minecraft_cyan_concrete_powder,Cyan Concrete Powder,true,true
+minecraft:purple_concrete_powder,minecraft_purple_concrete_powder,Purple Concrete Powder,true,true
+minecraft:blue_concrete_powder,minecraft_blue_concrete_powder,Blue Concrete Powder,true,true
+minecraft:brown_concrete_powder,minecraft_brown_concrete_powder,Brown Concrete Powder,true,true
+minecraft:green_concrete_powder,minecraft_green_concrete_powder,Green Concrete Powder,true,true
+minecraft:red_concrete_powder,minecraft_red_concrete_powder,Red Concrete Powder,true,true
+minecraft:black_concrete_powder,minecraft_black_concrete_powder,Black Concrete Powder,true,true
+minecraft:turtle_egg,minecraft_turtle_egg,Turtle Egg,true,true
+minecraft:sniffer_egg,minecraft_sniffer_egg,Sniffer Egg,true,true
+minecraft:dead_tube_coral_block,minecraft_dead_tube_coral_block,Dead Tube Coral Block,true,true
+minecraft:dead_brain_coral_block,minecraft_dead_brain_coral_block,Dead Brain Coral Block,true,true
+minecraft:dead_bubble_coral_block,minecraft_dead_bubble_coral_block,Dead Bubble Coral Block,true,true
+minecraft:dead_fire_coral_block,minecraft_dead_fire_coral_block,Dead Fire Coral Block,true,true
+minecraft:dead_horn_coral_block,minecraft_dead_horn_coral_block,Dead Horn Coral Block,true,true
+minecraft:tube_coral_block,minecraft_tube_coral_block,Tube Coral Block,true,true
+minecraft:brain_coral_block,minecraft_brain_coral_block,Brain Coral Block,true,true
+minecraft:bubble_coral_block,minecraft_bubble_coral_block,Bubble Coral Block,true,true
+minecraft:fire_coral_block,minecraft_fire_coral_block,Fire Coral Block,true,true
+minecraft:horn_coral_block,minecraft_horn_coral_block,Horn Coral Block,true,true
+minecraft:tube_coral,minecraft_tube_coral,Tube Coral,true,true
+minecraft:brain_coral,minecraft_brain_coral,Brain Coral,true,true
+minecraft:bubble_coral,minecraft_bubble_coral,Bubble Coral,true,true
+minecraft:fire_coral,minecraft_fire_coral,Fire Coral,true,true
+minecraft:horn_coral,minecraft_horn_coral,Horn Coral,true,true
+minecraft:dead_brain_coral,minecraft_dead_brain_coral,Dead Brain Coral,true,true
+minecraft:dead_bubble_coral,minecraft_dead_bubble_coral,Dead Bubble Coral,true,true
+minecraft:dead_fire_coral,minecraft_dead_fire_coral,Dead Fire Coral,true,true
+minecraft:dead_horn_coral,minecraft_dead_horn_coral,Dead Horn Coral,true,true
+minecraft:dead_tube_coral,minecraft_dead_tube_coral,Dead Tube Coral,true,true
+minecraft:tube_coral_fan,minecraft_tube_coral_fan,Tube Coral Fan,true,true
+minecraft:brain_coral_fan,minecraft_brain_coral_fan,Brain Coral Fan,true,true
+minecraft:bubble_coral_fan,minecraft_bubble_coral_fan,Bubble Coral Fan,true,true
+minecraft:fire_coral_fan,minecraft_fire_coral_fan,Fire Coral Fan,true,true
+minecraft:horn_coral_fan,minecraft_horn_coral_fan,Horn Coral Fan,true,true
+minecraft:dead_tube_coral_fan,minecraft_dead_tube_coral_fan,Dead Tube Coral Fan,true,true
+minecraft:dead_brain_coral_fan,minecraft_dead_brain_coral_fan,Dead Brain Coral Fan,true,true
+minecraft:dead_bubble_coral_fan,minecraft_dead_bubble_coral_fan,Dead Bubble Coral Fan,true,true
+minecraft:dead_fire_coral_fan,minecraft_dead_fire_coral_fan,Dead Fire Coral Fan,true,true
+minecraft:dead_horn_coral_fan,minecraft_dead_horn_coral_fan,Dead Horn Coral Fan,true,true
+minecraft:blue_ice,minecraft_blue_ice,Blue Ice,true,true
+minecraft:conduit,minecraft_conduit,Conduit,true,true
+minecraft:polished_granite_stairs,minecraft_polished_granite_stairs,Polished Granite Stairs,true,true
+minecraft:smooth_red_sandstone_stairs,minecraft_smooth_red_sandstone_stairs,Smooth Red Sandstone Stairs,true,true
+minecraft:mossy_stone_brick_stairs,minecraft_mossy_stone_brick_stairs,Mossy Stone Brick Stairs,true,true
+minecraft:polished_diorite_stairs,minecraft_polished_diorite_stairs,Polished Diorite Stairs,true,true
+minecraft:mossy_cobblestone_stairs,minecraft_mossy_cobblestone_stairs,Mossy Cobblestone Stairs,true,true
+minecraft:end_stone_brick_stairs,minecraft_end_stone_brick_stairs,End Stone Brick Stairs,true,true
+minecraft:stone_stairs,minecraft_stone_stairs,Stone Stairs,true,true
+minecraft:smooth_sandstone_stairs,minecraft_smooth_sandstone_stairs,Smooth Sandstone Stairs,true,true
+minecraft:smooth_quartz_stairs,minecraft_smooth_quartz_stairs,Smooth Quartz Stairs,true,true
+minecraft:granite_stairs,minecraft_granite_stairs,Granite Stairs,true,true
+minecraft:andesite_stairs,minecraft_andesite_stairs,Andesite Stairs,true,true
+minecraft:red_nether_brick_stairs,minecraft_red_nether_brick_stairs,Red Nether Brick Stairs,true,true
+minecraft:polished_andesite_stairs,minecraft_polished_andesite_stairs,Polished Andesite Stairs,true,true
+minecraft:diorite_stairs,minecraft_diorite_stairs,Diorite Stairs,true,true
+minecraft:cobbled_deepslate_stairs,minecraft_cobbled_deepslate_stairs,Cobbled Deepslate Stairs,true,true
+minecraft:polished_deepslate_stairs,minecraft_polished_deepslate_stairs,Polished Deepslate Stairs,true,true
+minecraft:deepslate_brick_stairs,minecraft_deepslate_brick_stairs,Deepslate Brick Stairs,true,true
+minecraft:deepslate_tile_stairs,minecraft_deepslate_tile_stairs,Deepslate Tile Stairs,true,true
+minecraft:polished_granite_slab,minecraft_polished_granite_slab,Polished Granite Slab,true,true
+minecraft:smooth_red_sandstone_slab,minecraft_smooth_red_sandstone_slab,Smooth Red Sandstone Slab,true,true
+minecraft:mossy_stone_brick_slab,minecraft_mossy_stone_brick_slab,Mossy Stone Brick Slab,true,true
+minecraft:polished_diorite_slab,minecraft_polished_diorite_slab,Polished Diorite Slab,true,true
+minecraft:mossy_cobblestone_slab,minecraft_mossy_cobblestone_slab,Mossy Cobblestone Slab,true,true
+minecraft:end_stone_brick_slab,minecraft_end_stone_brick_slab,End Stone Brick Slab,true,true
+minecraft:smooth_sandstone_slab,minecraft_smooth_sandstone_slab,Smooth Sandstone Slab,true,true
+minecraft:smooth_quartz_slab,minecraft_smooth_quartz_slab,Smooth Quartz Slab,true,true
+minecraft:granite_slab,minecraft_granite_slab,Granite Slab,true,true
+minecraft:andesite_slab,minecraft_andesite_slab,Andesite Slab,true,true
+minecraft:red_nether_brick_slab,minecraft_red_nether_brick_slab,Red Nether Brick Slab,true,true
+minecraft:polished_andesite_slab,minecraft_polished_andesite_slab,Polished Andesite Slab,true,true
+minecraft:diorite_slab,minecraft_diorite_slab,Diorite Slab,true,true
+minecraft:cobbled_deepslate_slab,minecraft_cobbled_deepslate_slab,Cobbled Deepslate Slab,true,true
+minecraft:polished_deepslate_slab,minecraft_polished_deepslate_slab,Polished Deepslate Slab,true,true
+minecraft:deepslate_brick_slab,minecraft_deepslate_brick_slab,Deepslate Brick Slab,true,true
+minecraft:deepslate_tile_slab,minecraft_deepslate_tile_slab,Deepslate Tile Slab,true,true
+minecraft:scaffolding,minecraft_scaffolding,Scaffolding,true,true
+minecraft:redstone,minecraft_redstone,Redstone,true,false
+minecraft:redstone_torch,minecraft_redstone_torch,Redstone Torch,true,true
+minecraft:redstone_block,minecraft_redstone_block,Redstone Block,true,true
+minecraft:repeater,minecraft_repeater,Repeater,true,true
+minecraft:comparator,minecraft_comparator,Comparator,true,true
+minecraft:piston,minecraft_piston,Piston,true,true
+minecraft:sticky_piston,minecraft_sticky_piston,Sticky Piston,true,true
+minecraft:slime_block,minecraft_slime_block,Slime Block,true,true
+minecraft:honey_block,minecraft_honey_block,Honey Block,true,true
+minecraft:observer,minecraft_observer,Observer,true,true
+minecraft:hopper,minecraft_hopper,Hopper,true,true
+minecraft:dispenser,minecraft_dispenser,Dispenser,true,true
+minecraft:dropper,minecraft_dropper,Dropper,true,true
+minecraft:lectern,minecraft_lectern,Lectern,true,true
+minecraft:target,minecraft_target,Target,true,true
+minecraft:lever,minecraft_lever,Lever,true,true
+minecraft:lightning_rod,minecraft_lightning_rod,Lightning Rod,true,true
+minecraft:daylight_detector,minecraft_daylight_detector,Daylight Detector,true,true
+minecraft:sculk_sensor,minecraft_sculk_sensor,Sculk Sensor,true,true
+minecraft:calibrated_sculk_sensor,minecraft_calibrated_sculk_sensor,Calibrated Sculk Sensor,true,true
+minecraft:tripwire_hook,minecraft_tripwire_hook,Tripwire Hook,true,true
+minecraft:trapped_chest,minecraft_trapped_chest,Trapped Chest,true,true
+minecraft:tnt,minecraft_tnt,Tnt,true,true
+minecraft:redstone_lamp,minecraft_redstone_lamp,Redstone Lamp,true,true
+minecraft:note_block,minecraft_note_block,Note Block,true,true
+minecraft:stone_button,minecraft_stone_button,Stone Button,true,true
+minecraft:polished_blackstone_button,minecraft_polished_blackstone_button,Polished Blackstone Button,true,true
+minecraft:oak_button,minecraft_oak_button,Oak Button,true,true
+minecraft:spruce_button,minecraft_spruce_button,Spruce Button,true,true
+minecraft:birch_button,minecraft_birch_button,Birch Button,true,true
+minecraft:jungle_button,minecraft_jungle_button,Jungle Button,true,true
+minecraft:acacia_button,minecraft_acacia_button,Acacia Button,true,true
+minecraft:cherry_button,minecraft_cherry_button,Cherry Button,true,true
+minecraft:dark_oak_button,minecraft_dark_oak_button,Dark Oak Button,true,true
+minecraft:mangrove_button,minecraft_mangrove_button,Mangrove Button,true,true
+minecraft:bamboo_button,minecraft_bamboo_button,Bamboo Button,true,true
+minecraft:crimson_button,minecraft_crimson_button,Crimson Button,true,true
+minecraft:warped_button,minecraft_warped_button,Warped Button,true,true
+minecraft:stone_pressure_plate,minecraft_stone_pressure_plate,Stone Pressure Plate,true,true
+minecraft:polished_blackstone_pressure_plate,minecraft_polished_blackstone_pressure_plate,Polished Blackstone Pressure Plate,true,true
+minecraft:light_weighted_pressure_plate,minecraft_light_weighted_pressure_plate,Light Weighted Pressure Plate,true,true
+minecraft:heavy_weighted_pressure_plate,minecraft_heavy_weighted_pressure_plate,Heavy Weighted Pressure Plate,true,true
+minecraft:oak_pressure_plate,minecraft_oak_pressure_plate,Oak Pressure Plate,true,true
+minecraft:spruce_pressure_plate,minecraft_spruce_pressure_plate,Spruce Pressure Plate,true,true
+minecraft:birch_pressure_plate,minecraft_birch_pressure_plate,Birch Pressure Plate,true,true
+minecraft:jungle_pressure_plate,minecraft_jungle_pressure_plate,Jungle Pressure Plate,true,true
+minecraft:acacia_pressure_plate,minecraft_acacia_pressure_plate,Acacia Pressure Plate,true,true
+minecraft:cherry_pressure_plate,minecraft_cherry_pressure_plate,Cherry Pressure Plate,true,true
+minecraft:dark_oak_pressure_plate,minecraft_dark_oak_pressure_plate,Dark Oak Pressure Plate,true,true
+minecraft:mangrove_pressure_plate,minecraft_mangrove_pressure_plate,Mangrove Pressure Plate,true,true
+minecraft:bamboo_pressure_plate,minecraft_bamboo_pressure_plate,Bamboo Pressure Plate,true,true
+minecraft:crimson_pressure_plate,minecraft_crimson_pressure_plate,Crimson Pressure Plate,true,true
+minecraft:warped_pressure_plate,minecraft_warped_pressure_plate,Warped Pressure Plate,true,true
+minecraft:iron_door,minecraft_iron_door,Iron Door,true,true
+minecraft:oak_door,minecraft_oak_door,Oak Door,true,true
+minecraft:spruce_door,minecraft_spruce_door,Spruce Door,true,true
+minecraft:birch_door,minecraft_birch_door,Birch Door,true,true
+minecraft:jungle_door,minecraft_jungle_door,Jungle Door,true,true
+minecraft:acacia_door,minecraft_acacia_door,Acacia Door,true,true
+minecraft:cherry_door,minecraft_cherry_door,Cherry Door,true,true
+minecraft:dark_oak_door,minecraft_dark_oak_door,Dark Oak Door,true,true
+minecraft:mangrove_door,minecraft_mangrove_door,Mangrove Door,true,true
+minecraft:bamboo_door,minecraft_bamboo_door,Bamboo Door,true,true
+minecraft:crimson_door,minecraft_crimson_door,Crimson Door,true,true
+minecraft:warped_door,minecraft_warped_door,Warped Door,true,true
+minecraft:copper_door,minecraft_copper_door,Copper Door,true,true
+minecraft:exposed_copper_door,minecraft_exposed_copper_door,Exposed Copper Door,true,true
+minecraft:weathered_copper_door,minecraft_weathered_copper_door,Weathered Copper Door,true,true
+minecraft:oxidized_copper_door,minecraft_oxidized_copper_door,Oxidized Copper Door,true,true
+minecraft:waxed_copper_door,minecraft_waxed_copper_door,Waxed Copper Door,true,true
+minecraft:waxed_exposed_copper_door,minecraft_waxed_exposed_copper_door,Waxed Exposed Copper Door,true,true
+minecraft:waxed_weathered_copper_door,minecraft_waxed_weathered_copper_door,Waxed Weathered Copper Door,true,true
+minecraft:waxed_oxidized_copper_door,minecraft_waxed_oxidized_copper_door,Waxed Oxidized Copper Door,true,true
+minecraft:iron_trapdoor,minecraft_iron_trapdoor,Iron Trapdoor,true,true
+minecraft:oak_trapdoor,minecraft_oak_trapdoor,Oak Trapdoor,true,true
+minecraft:spruce_trapdoor,minecraft_spruce_trapdoor,Spruce Trapdoor,true,true
+minecraft:birch_trapdoor,minecraft_birch_trapdoor,Birch Trapdoor,true,true
+minecraft:jungle_trapdoor,minecraft_jungle_trapdoor,Jungle Trapdoor,true,true
+minecraft:acacia_trapdoor,minecraft_acacia_trapdoor,Acacia Trapdoor,true,true
+minecraft:cherry_trapdoor,minecraft_cherry_trapdoor,Cherry Trapdoor,true,true
+minecraft:dark_oak_trapdoor,minecraft_dark_oak_trapdoor,Dark Oak Trapdoor,true,true
+minecraft:mangrove_trapdoor,minecraft_mangrove_trapdoor,Mangrove Trapdoor,true,true
+minecraft:bamboo_trapdoor,minecraft_bamboo_trapdoor,Bamboo Trapdoor,true,true
+minecraft:crimson_trapdoor,minecraft_crimson_trapdoor,Crimson Trapdoor,true,true
+minecraft:warped_trapdoor,minecraft_warped_trapdoor,Warped Trapdoor,true,true
+minecraft:copper_trapdoor,minecraft_copper_trapdoor,Copper Trapdoor,true,true
+minecraft:exposed_copper_trapdoor,minecraft_exposed_copper_trapdoor,Exposed Copper Trapdoor,true,true
+minecraft:weathered_copper_trapdoor,minecraft_weathered_copper_trapdoor,Weathered Copper Trapdoor,true,true
+minecraft:oxidized_copper_trapdoor,minecraft_oxidized_copper_trapdoor,Oxidized Copper Trapdoor,true,true
+minecraft:waxed_copper_trapdoor,minecraft_waxed_copper_trapdoor,Waxed Copper Trapdoor,true,true
+minecraft:waxed_exposed_copper_trapdoor,minecraft_waxed_exposed_copper_trapdoor,Waxed Exposed Copper Trapdoor,true,true
+minecraft:waxed_weathered_copper_trapdoor,minecraft_waxed_weathered_copper_trapdoor,Waxed Weathered Copper Trapdoor,true,true
+minecraft:waxed_oxidized_copper_trapdoor,minecraft_waxed_oxidized_copper_trapdoor,Waxed Oxidized Copper Trapdoor,true,true
+minecraft:oak_fence_gate,minecraft_oak_fence_gate,Oak Fence Gate,true,true
+minecraft:spruce_fence_gate,minecraft_spruce_fence_gate,Spruce Fence Gate,true,true
+minecraft:birch_fence_gate,minecraft_birch_fence_gate,Birch Fence Gate,true,true
+minecraft:jungle_fence_gate,minecraft_jungle_fence_gate,Jungle Fence Gate,true,true
+minecraft:acacia_fence_gate,minecraft_acacia_fence_gate,Acacia Fence Gate,true,true
+minecraft:cherry_fence_gate,minecraft_cherry_fence_gate,Cherry Fence Gate,true,true
+minecraft:dark_oak_fence_gate,minecraft_dark_oak_fence_gate,Dark Oak Fence Gate,true,true
+minecraft:mangrove_fence_gate,minecraft_mangrove_fence_gate,Mangrove Fence Gate,true,true
+minecraft:bamboo_fence_gate,minecraft_bamboo_fence_gate,Bamboo Fence Gate,true,true
+minecraft:crimson_fence_gate,minecraft_crimson_fence_gate,Crimson Fence Gate,true,true
+minecraft:warped_fence_gate,minecraft_warped_fence_gate,Warped Fence Gate,true,true
+minecraft:powered_rail,minecraft_powered_rail,Powered Rail,true,true
+minecraft:detector_rail,minecraft_detector_rail,Detector Rail,true,true
+minecraft:rail,minecraft_rail,Rail,true,true
+minecraft:activator_rail,minecraft_activator_rail,Activator Rail,true,true
+minecraft:saddle,minecraft_saddle,Saddle,true,false
+minecraft:minecart,minecraft_minecart,Minecart,true,false
+minecraft:chest_minecart,minecraft_chest_minecart,Chest Minecart,true,false
+minecraft:furnace_minecart,minecraft_furnace_minecart,Furnace Minecart,true,false
+minecraft:tnt_minecart,minecraft_tnt_minecart,Tnt Minecart,true,false
+minecraft:hopper_minecart,minecraft_hopper_minecart,Hopper Minecart,true,false
+minecraft:carrot_on_a_stick,minecraft_carrot_on_a_stick,Carrot On A Stick,true,false
+minecraft:warped_fungus_on_a_stick,minecraft_warped_fungus_on_a_stick,Warped Fungus On A Stick,true,false
+minecraft:elytra,minecraft_elytra,Elytra,true,false
+minecraft:oak_boat,minecraft_oak_boat,Oak Boat,true,false
+minecraft:oak_chest_boat,minecraft_oak_chest_boat,Oak Chest Boat,true,false
+minecraft:spruce_boat,minecraft_spruce_boat,Spruce Boat,true,false
+minecraft:spruce_chest_boat,minecraft_spruce_chest_boat,Spruce Chest Boat,true,false
+minecraft:birch_boat,minecraft_birch_boat,Birch Boat,true,false
+minecraft:birch_chest_boat,minecraft_birch_chest_boat,Birch Chest Boat,true,false
+minecraft:jungle_boat,minecraft_jungle_boat,Jungle Boat,true,false
+minecraft:jungle_chest_boat,minecraft_jungle_chest_boat,Jungle Chest Boat,true,false
+minecraft:acacia_boat,minecraft_acacia_boat,Acacia Boat,true,false
+minecraft:acacia_chest_boat,minecraft_acacia_chest_boat,Acacia Chest Boat,true,false
+minecraft:cherry_boat,minecraft_cherry_boat,Cherry Boat,true,false
+minecraft:cherry_chest_boat,minecraft_cherry_chest_boat,Cherry Chest Boat,true,false
+minecraft:dark_oak_boat,minecraft_dark_oak_boat,Dark Oak Boat,true,false
+minecraft:dark_oak_chest_boat,minecraft_dark_oak_chest_boat,Dark Oak Chest Boat,true,false
+minecraft:mangrove_boat,minecraft_mangrove_boat,Mangrove Boat,true,false
+minecraft:mangrove_chest_boat,minecraft_mangrove_chest_boat,Mangrove Chest Boat,true,false
+minecraft:bamboo_raft,minecraft_bamboo_raft,Bamboo Raft,true,false
+minecraft:bamboo_chest_raft,minecraft_bamboo_chest_raft,Bamboo Chest Raft,true,false
+minecraft:structure_block,minecraft_structure_block,Structure Block,true,true
+minecraft:jigsaw,minecraft_jigsaw,Jigsaw,true,true
+minecraft:turtle_helmet,minecraft_turtle_helmet,Turtle Helmet,true,false
+minecraft:scute,minecraft_scute,Scute,true,false
+minecraft:flint_and_steel,minecraft_flint_and_steel,Flint And Steel,true,false
+minecraft:apple,minecraft_apple,Apple,true,false
+minecraft:bow,minecraft_bow,Bow,true,false
+minecraft:arrow,minecraft_arrow,Arrow,true,false
+minecraft:coal,minecraft_coal,Coal,true,false
+minecraft:charcoal,minecraft_charcoal,Charcoal,true,false
+minecraft:diamond,minecraft_diamond,Diamond,true,false
+minecraft:emerald,minecraft_emerald,Emerald,true,false
+minecraft:lapis_lazuli,minecraft_lapis_lazuli,Lapis Lazuli,true,false
+minecraft:quartz,minecraft_quartz,Quartz,true,false
+minecraft:amethyst_shard,minecraft_amethyst_shard,Amethyst Shard,true,false
+minecraft:raw_iron,minecraft_raw_iron,Raw Iron,true,false
+minecraft:iron_ingot,minecraft_iron_ingot,Iron Ingot,true,false
+minecraft:raw_copper,minecraft_raw_copper,Raw Copper,true,false
+minecraft:copper_ingot,minecraft_copper_ingot,Copper Ingot,true,false
+minecraft:raw_gold,minecraft_raw_gold,Raw Gold,true,false
+minecraft:gold_ingot,minecraft_gold_ingot,Gold Ingot,true,false
+minecraft:netherite_ingot,minecraft_netherite_ingot,Netherite Ingot,true,false
+minecraft:netherite_scrap,minecraft_netherite_scrap,Netherite Scrap,true,false
+minecraft:wooden_sword,minecraft_wooden_sword,Wooden Sword,true,false
+minecraft:wooden_shovel,minecraft_wooden_shovel,Wooden Shovel,true,false
+minecraft:wooden_pickaxe,minecraft_wooden_pickaxe,Wooden Pickaxe,true,false
+minecraft:wooden_axe,minecraft_wooden_axe,Wooden Axe,true,false
+minecraft:wooden_hoe,minecraft_wooden_hoe,Wooden Hoe,true,false
+minecraft:stone_sword,minecraft_stone_sword,Stone Sword,true,false
+minecraft:stone_shovel,minecraft_stone_shovel,Stone Shovel,true,false
+minecraft:stone_pickaxe,minecraft_stone_pickaxe,Stone Pickaxe,true,false
+minecraft:stone_axe,minecraft_stone_axe,Stone Axe,true,false
+minecraft:stone_hoe,minecraft_stone_hoe,Stone Hoe,true,false
+minecraft:golden_sword,minecraft_golden_sword,Golden Sword,true,false
+minecraft:golden_shovel,minecraft_golden_shovel,Golden Shovel,true,false
+minecraft:golden_pickaxe,minecraft_golden_pickaxe,Golden Pickaxe,true,false
+minecraft:golden_axe,minecraft_golden_axe,Golden Axe,true,false
+minecraft:golden_hoe,minecraft_golden_hoe,Golden Hoe,true,false
+minecraft:iron_sword,minecraft_iron_sword,Iron Sword,true,false
+minecraft:iron_shovel,minecraft_iron_shovel,Iron Shovel,true,false
+minecraft:iron_pickaxe,minecraft_iron_pickaxe,Iron Pickaxe,true,false
+minecraft:iron_axe,minecraft_iron_axe,Iron Axe,true,false
+minecraft:iron_hoe,minecraft_iron_hoe,Iron Hoe,true,false
+minecraft:diamond_sword,minecraft_diamond_sword,Diamond Sword,true,false
+minecraft:diamond_shovel,minecraft_diamond_shovel,Diamond Shovel,true,false
+minecraft:diamond_pickaxe,minecraft_diamond_pickaxe,Diamond Pickaxe,true,false
+minecraft:diamond_axe,minecraft_diamond_axe,Diamond Axe,true,false
+minecraft:diamond_hoe,minecraft_diamond_hoe,Diamond Hoe,true,false
+minecraft:netherite_sword,minecraft_netherite_sword,Netherite Sword,true,false
+minecraft:netherite_shovel,minecraft_netherite_shovel,Netherite Shovel,true,false
+minecraft:netherite_pickaxe,minecraft_netherite_pickaxe,Netherite Pickaxe,true,false
+minecraft:netherite_axe,minecraft_netherite_axe,Netherite Axe,true,false
+minecraft:netherite_hoe,minecraft_netherite_hoe,Netherite Hoe,true,false
+minecraft:stick,minecraft_stick,Stick,true,false
+minecraft:bowl,minecraft_bowl,Bowl,true,false
+minecraft:mushroom_stew,minecraft_mushroom_stew,Mushroom Stew,true,false
+minecraft:string,minecraft_string,String,true,false
+minecraft:feather,minecraft_feather,Feather,true,false
+minecraft:gunpowder,minecraft_gunpowder,Gunpowder,true,false
+minecraft:wheat_seeds,minecraft_wheat_seeds,Wheat Seeds,true,false
+minecraft:wheat,minecraft_wheat,Wheat,true,true
+minecraft:bread,minecraft_bread,Bread,true,false
+minecraft:leather_helmet,minecraft_leather_helmet,Leather Helmet,true,false
+minecraft:leather_chestplate,minecraft_leather_chestplate,Leather Chestplate,true,false
+minecraft:leather_leggings,minecraft_leather_leggings,Leather Leggings,true,false
+minecraft:leather_boots,minecraft_leather_boots,Leather Boots,true,false
+minecraft:chainmail_helmet,minecraft_chainmail_helmet,Chainmail Helmet,true,false
+minecraft:chainmail_chestplate,minecraft_chainmail_chestplate,Chainmail Chestplate,true,false
+minecraft:chainmail_leggings,minecraft_chainmail_leggings,Chainmail Leggings,true,false
+minecraft:chainmail_boots,minecraft_chainmail_boots,Chainmail Boots,true,false
+minecraft:iron_helmet,minecraft_iron_helmet,Iron Helmet,true,false
+minecraft:iron_chestplate,minecraft_iron_chestplate,Iron Chestplate,true,false
+minecraft:iron_leggings,minecraft_iron_leggings,Iron Leggings,true,false
+minecraft:iron_boots,minecraft_iron_boots,Iron Boots,true,false
+minecraft:diamond_helmet,minecraft_diamond_helmet,Diamond Helmet,true,false
+minecraft:diamond_chestplate,minecraft_diamond_chestplate,Diamond Chestplate,true,false
+minecraft:diamond_leggings,minecraft_diamond_leggings,Diamond Leggings,true,false
+minecraft:diamond_boots,minecraft_diamond_boots,Diamond Boots,true,false
+minecraft:golden_helmet,minecraft_golden_helmet,Golden Helmet,true,false
+minecraft:golden_chestplate,minecraft_golden_chestplate,Golden Chestplate,true,false
+minecraft:golden_leggings,minecraft_golden_leggings,Golden Leggings,true,false
+minecraft:golden_boots,minecraft_golden_boots,Golden Boots,true,false
+minecraft:netherite_helmet,minecraft_netherite_helmet,Netherite Helmet,true,false
+minecraft:netherite_chestplate,minecraft_netherite_chestplate,Netherite Chestplate,true,false
+minecraft:netherite_leggings,minecraft_netherite_leggings,Netherite Leggings,true,false
+minecraft:netherite_boots,minecraft_netherite_boots,Netherite Boots,true,false
+minecraft:flint,minecraft_flint,Flint,true,false
+minecraft:porkchop,minecraft_porkchop,Porkchop,true,false
+minecraft:cooked_porkchop,minecraft_cooked_porkchop,Cooked Porkchop,true,false
+minecraft:painting,minecraft_painting,Painting,true,false
+minecraft:golden_apple,minecraft_golden_apple,Golden Apple,true,false
+minecraft:enchanted_golden_apple,minecraft_enchanted_golden_apple,Enchanted Golden Apple,true,false
+minecraft:oak_sign,minecraft_oak_sign,Oak Sign,true,true
+minecraft:spruce_sign,minecraft_spruce_sign,Spruce Sign,true,true
+minecraft:birch_sign,minecraft_birch_sign,Birch Sign,true,true
+minecraft:jungle_sign,minecraft_jungle_sign,Jungle Sign,true,true
+minecraft:acacia_sign,minecraft_acacia_sign,Acacia Sign,true,true
+minecraft:cherry_sign,minecraft_cherry_sign,Cherry Sign,true,true
+minecraft:dark_oak_sign,minecraft_dark_oak_sign,Dark Oak Sign,true,true
+minecraft:mangrove_sign,minecraft_mangrove_sign,Mangrove Sign,true,true
+minecraft:bamboo_sign,minecraft_bamboo_sign,Bamboo Sign,true,true
+minecraft:crimson_sign,minecraft_crimson_sign,Crimson Sign,true,true
+minecraft:warped_sign,minecraft_warped_sign,Warped Sign,true,true
+minecraft:oak_hanging_sign,minecraft_oak_hanging_sign,Oak Hanging Sign,true,true
+minecraft:spruce_hanging_sign,minecraft_spruce_hanging_sign,Spruce Hanging Sign,true,true
+minecraft:birch_hanging_sign,minecraft_birch_hanging_sign,Birch Hanging Sign,true,true
+minecraft:jungle_hanging_sign,minecraft_jungle_hanging_sign,Jungle Hanging Sign,true,true
+minecraft:acacia_hanging_sign,minecraft_acacia_hanging_sign,Acacia Hanging Sign,true,true
+minecraft:cherry_hanging_sign,minecraft_cherry_hanging_sign,Cherry Hanging Sign,true,true
+minecraft:dark_oak_hanging_sign,minecraft_dark_oak_hanging_sign,Dark Oak Hanging Sign,true,true
+minecraft:mangrove_hanging_sign,minecraft_mangrove_hanging_sign,Mangrove Hanging Sign,true,true
+minecraft:bamboo_hanging_sign,minecraft_bamboo_hanging_sign,Bamboo Hanging Sign,true,true
+minecraft:crimson_hanging_sign,minecraft_crimson_hanging_sign,Crimson Hanging Sign,true,true
+minecraft:warped_hanging_sign,minecraft_warped_hanging_sign,Warped Hanging Sign,true,true
+minecraft:bucket,minecraft_bucket,Bucket,true,false
+minecraft:water_bucket,minecraft_water_bucket,Water Bucket,true,false
+minecraft:lava_bucket,minecraft_lava_bucket,Lava Bucket,true,false
+minecraft:powder_snow_bucket,minecraft_powder_snow_bucket,Powder Snow Bucket,true,false
+minecraft:snowball,minecraft_snowball,Snowball,true,false
+minecraft:leather,minecraft_leather,Leather,true,false
+minecraft:milk_bucket,minecraft_milk_bucket,Milk Bucket,true,false
+minecraft:pufferfish_bucket,minecraft_pufferfish_bucket,Pufferfish Bucket,true,false
+minecraft:salmon_bucket,minecraft_salmon_bucket,Salmon Bucket,true,false
+minecraft:cod_bucket,minecraft_cod_bucket,Cod Bucket,true,false
+minecraft:tropical_fish_bucket,minecraft_tropical_fish_bucket,Tropical Fish Bucket,true,false
+minecraft:axolotl_bucket,minecraft_axolotl_bucket,Axolotl Bucket,true,false
+minecraft:tadpole_bucket,minecraft_tadpole_bucket,Tadpole Bucket,true,false
+minecraft:brick,minecraft_brick,Brick,true,false
+minecraft:clay_ball,minecraft_clay_ball,Clay Ball,true,false
+minecraft:dried_kelp_block,minecraft_dried_kelp_block,Dried Kelp Block,true,true
+minecraft:paper,minecraft_paper,Paper,true,false
+minecraft:book,minecraft_book,Book,true,false
+minecraft:slime_ball,minecraft_slime_ball,Slime Ball,true,false
+minecraft:egg,minecraft_egg,Egg,true,false
+minecraft:compass,minecraft_compass,Compass,true,false
+minecraft:recovery_compass,minecraft_recovery_compass,Recovery Compass,true,false
+minecraft:bundle,minecraft_bundle,Bundle,true,false
+minecraft:fishing_rod,minecraft_fishing_rod,Fishing Rod,true,false
+minecraft:clock,minecraft_clock,Clock,true,false
+minecraft:spyglass,minecraft_spyglass,Spyglass,true,false
+minecraft:glowstone_dust,minecraft_glowstone_dust,Glowstone Dust,true,false
+minecraft:cod,minecraft_cod,Cod,true,false
+minecraft:salmon,minecraft_salmon,Salmon,true,false
+minecraft:tropical_fish,minecraft_tropical_fish,Tropical Fish,true,false
+minecraft:pufferfish,minecraft_pufferfish,Pufferfish,true,false
+minecraft:cooked_cod,minecraft_cooked_cod,Cooked Cod,true,false
+minecraft:cooked_salmon,minecraft_cooked_salmon,Cooked Salmon,true,false
+minecraft:ink_sac,minecraft_ink_sac,Ink Sac,true,false
+minecraft:glow_ink_sac,minecraft_glow_ink_sac,Glow Ink Sac,true,false
+minecraft:cocoa_beans,minecraft_cocoa_beans,Cocoa Beans,true,false
+minecraft:white_dye,minecraft_white_dye,White Dye,true,false
+minecraft:orange_dye,minecraft_orange_dye,Orange Dye,true,false
+minecraft:magenta_dye,minecraft_magenta_dye,Magenta Dye,true,false
+minecraft:light_blue_dye,minecraft_light_blue_dye,Light Blue Dye,true,false
+minecraft:yellow_dye,minecraft_yellow_dye,Yellow Dye,true,false
+minecraft:lime_dye,minecraft_lime_dye,Lime Dye,true,false
+minecraft:pink_dye,minecraft_pink_dye,Pink Dye,true,false
+minecraft:gray_dye,minecraft_gray_dye,Gray Dye,true,false
+minecraft:light_gray_dye,minecraft_light_gray_dye,Light Gray Dye,true,false
+minecraft:cyan_dye,minecraft_cyan_dye,Cyan Dye,true,false
+minecraft:purple_dye,minecraft_purple_dye,Purple Dye,true,false
+minecraft:blue_dye,minecraft_blue_dye,Blue Dye,true,false
+minecraft:brown_dye,minecraft_brown_dye,Brown Dye,true,false
+minecraft:green_dye,minecraft_green_dye,Green Dye,true,false
+minecraft:red_dye,minecraft_red_dye,Red Dye,true,false
+minecraft:black_dye,minecraft_black_dye,Black Dye,true,false
+minecraft:bone_meal,minecraft_bone_meal,Bone Meal,true,false
+minecraft:bone,minecraft_bone,Bone,true,false
+minecraft:sugar,minecraft_sugar,Sugar,true,false
+minecraft:cake,minecraft_cake,Cake,true,true
+minecraft:white_bed,minecraft_white_bed,White Bed,true,true
+minecraft:orange_bed,minecraft_orange_bed,Orange Bed,true,true
+minecraft:magenta_bed,minecraft_magenta_bed,Magenta Bed,true,true
+minecraft:light_blue_bed,minecraft_light_blue_bed,Light Blue Bed,true,true
+minecraft:yellow_bed,minecraft_yellow_bed,Yellow Bed,true,true
+minecraft:lime_bed,minecraft_lime_bed,Lime Bed,true,true
+minecraft:pink_bed,minecraft_pink_bed,Pink Bed,true,true
+minecraft:gray_bed,minecraft_gray_bed,Gray Bed,true,true
+minecraft:light_gray_bed,minecraft_light_gray_bed,Light Gray Bed,true,true
+minecraft:cyan_bed,minecraft_cyan_bed,Cyan Bed,true,true
+minecraft:purple_bed,minecraft_purple_bed,Purple Bed,true,true
+minecraft:blue_bed,minecraft_blue_bed,Blue Bed,true,true
+minecraft:brown_bed,minecraft_brown_bed,Brown Bed,true,true
+minecraft:green_bed,minecraft_green_bed,Green Bed,true,true
+minecraft:red_bed,minecraft_red_bed,Red Bed,true,true
+minecraft:black_bed,minecraft_black_bed,Black Bed,true,true
+minecraft:cookie,minecraft_cookie,Cookie,true,false
+minecraft:crafter,minecraft_crafter,Crafter,true,true
+minecraft:filled_map,minecraft_filled_map,Filled Map,true,false
+minecraft:shears,minecraft_shears,Shears,true,false
+minecraft:melon_slice,minecraft_melon_slice,Melon Slice,true,false
+minecraft:dried_kelp,minecraft_dried_kelp,Dried Kelp,true,false
+minecraft:pumpkin_seeds,minecraft_pumpkin_seeds,Pumpkin Seeds,true,false
+minecraft:melon_seeds,minecraft_melon_seeds,Melon Seeds,true,false
+minecraft:beef,minecraft_beef,Beef,true,false
+minecraft:cooked_beef,minecraft_cooked_beef,Cooked Beef,true,false
+minecraft:chicken,minecraft_chicken,Chicken,true,false
+minecraft:cooked_chicken,minecraft_cooked_chicken,Cooked Chicken,true,false
+minecraft:rotten_flesh,minecraft_rotten_flesh,Rotten Flesh,true,false
+minecraft:ender_pearl,minecraft_ender_pearl,Ender Pearl,true,false
+minecraft:blaze_rod,minecraft_blaze_rod,Blaze Rod,true,false
+minecraft:ghast_tear,minecraft_ghast_tear,Ghast Tear,true,false
+minecraft:gold_nugget,minecraft_gold_nugget,Gold Nugget,true,false
+minecraft:nether_wart,minecraft_nether_wart,Nether Wart,true,true
+minecraft:potion,minecraft_potion,Potion,true,false
+minecraft:glass_bottle,minecraft_glass_bottle,Glass Bottle,true,false
+minecraft:spider_eye,minecraft_spider_eye,Spider Eye,true,false
+minecraft:fermented_spider_eye,minecraft_fermented_spider_eye,Fermented Spider Eye,true,false
+minecraft:blaze_powder,minecraft_blaze_powder,Blaze Powder,true,false
+minecraft:magma_cream,minecraft_magma_cream,Magma Cream,true,false
+minecraft:brewing_stand,minecraft_brewing_stand,Brewing Stand,true,true
+minecraft:cauldron,minecraft_cauldron,Cauldron,true,true
+minecraft:ender_eye,minecraft_ender_eye,Ender Eye,true,false
+minecraft:glistering_melon_slice,minecraft_glistering_melon_slice,Glistering Melon Slice,true,false
+minecraft:allay_spawn_egg,minecraft_allay_spawn_egg,Allay Spawn Egg,true,false
+minecraft:axolotl_spawn_egg,minecraft_axolotl_spawn_egg,Axolotl Spawn Egg,true,false
+minecraft:bat_spawn_egg,minecraft_bat_spawn_egg,Bat Spawn Egg,true,false
+minecraft:bee_spawn_egg,minecraft_bee_spawn_egg,Bee Spawn Egg,true,false
+minecraft:blaze_spawn_egg,minecraft_blaze_spawn_egg,Blaze Spawn Egg,true,false
+minecraft:breeze_spawn_egg,minecraft_breeze_spawn_egg,Breeze Spawn Egg,true,false
+minecraft:cat_spawn_egg,minecraft_cat_spawn_egg,Cat Spawn Egg,true,false
+minecraft:camel_spawn_egg,minecraft_camel_spawn_egg,Camel Spawn Egg,true,false
+minecraft:cave_spider_spawn_egg,minecraft_cave_spider_spawn_egg,Cave Spider Spawn Egg,true,false
+minecraft:chicken_spawn_egg,minecraft_chicken_spawn_egg,Chicken Spawn Egg,true,false
+minecraft:cod_spawn_egg,minecraft_cod_spawn_egg,Cod Spawn Egg,true,false
+minecraft:cow_spawn_egg,minecraft_cow_spawn_egg,Cow Spawn Egg,true,false
+minecraft:creeper_spawn_egg,minecraft_creeper_spawn_egg,Creeper Spawn Egg,true,false
+minecraft:dolphin_spawn_egg,minecraft_dolphin_spawn_egg,Dolphin Spawn Egg,true,false
+minecraft:donkey_spawn_egg,minecraft_donkey_spawn_egg,Donkey Spawn Egg,true,false
+minecraft:drowned_spawn_egg,minecraft_drowned_spawn_egg,Drowned Spawn Egg,true,false
+minecraft:elder_guardian_spawn_egg,minecraft_elder_guardian_spawn_egg,Elder Guardian Spawn Egg,true,false
+minecraft:ender_dragon_spawn_egg,minecraft_ender_dragon_spawn_egg,Ender Dragon Spawn Egg,true,false
+minecraft:enderman_spawn_egg,minecraft_enderman_spawn_egg,Enderman Spawn Egg,true,false
+minecraft:endermite_spawn_egg,minecraft_endermite_spawn_egg,Endermite Spawn Egg,true,false
+minecraft:evoker_spawn_egg,minecraft_evoker_spawn_egg,Evoker Spawn Egg,true,false
+minecraft:fox_spawn_egg,minecraft_fox_spawn_egg,Fox Spawn Egg,true,false
+minecraft:frog_spawn_egg,minecraft_frog_spawn_egg,Frog Spawn Egg,true,false
+minecraft:ghast_spawn_egg,minecraft_ghast_spawn_egg,Ghast Spawn Egg,true,false
+minecraft:glow_squid_spawn_egg,minecraft_glow_squid_spawn_egg,Glow Squid Spawn Egg,true,false
+minecraft:goat_spawn_egg,minecraft_goat_spawn_egg,Goat Spawn Egg,true,false
+minecraft:guardian_spawn_egg,minecraft_guardian_spawn_egg,Guardian Spawn Egg,true,false
+minecraft:hoglin_spawn_egg,minecraft_hoglin_spawn_egg,Hoglin Spawn Egg,true,false
+minecraft:horse_spawn_egg,minecraft_horse_spawn_egg,Horse Spawn Egg,true,false
+minecraft:husk_spawn_egg,minecraft_husk_spawn_egg,Husk Spawn Egg,true,false
+minecraft:iron_golem_spawn_egg,minecraft_iron_golem_spawn_egg,Iron Golem Spawn Egg,true,false
+minecraft:llama_spawn_egg,minecraft_llama_spawn_egg,Llama Spawn Egg,true,false
+minecraft:magma_cube_spawn_egg,minecraft_magma_cube_spawn_egg,Magma Cube Spawn Egg,true,false
+minecraft:mooshroom_spawn_egg,minecraft_mooshroom_spawn_egg,Mooshroom Spawn Egg,true,false
+minecraft:mule_spawn_egg,minecraft_mule_spawn_egg,Mule Spawn Egg,true,false
+minecraft:ocelot_spawn_egg,minecraft_ocelot_spawn_egg,Ocelot Spawn Egg,true,false
+minecraft:panda_spawn_egg,minecraft_panda_spawn_egg,Panda Spawn Egg,true,false
+minecraft:parrot_spawn_egg,minecraft_parrot_spawn_egg,Parrot Spawn Egg,true,false
+minecraft:phantom_spawn_egg,minecraft_phantom_spawn_egg,Phantom Spawn Egg,true,false
+minecraft:pig_spawn_egg,minecraft_pig_spawn_egg,Pig Spawn Egg,true,false
+minecraft:piglin_spawn_egg,minecraft_piglin_spawn_egg,Piglin Spawn Egg,true,false
+minecraft:piglin_brute_spawn_egg,minecraft_piglin_brute_spawn_egg,Piglin Brute Spawn Egg,true,false
+minecraft:pillager_spawn_egg,minecraft_pillager_spawn_egg,Pillager Spawn Egg,true,false
+minecraft:polar_bear_spawn_egg,minecraft_polar_bear_spawn_egg,Polar Bear Spawn Egg,true,false
+minecraft:pufferfish_spawn_egg,minecraft_pufferfish_spawn_egg,Pufferfish Spawn Egg,true,false
+minecraft:rabbit_spawn_egg,minecraft_rabbit_spawn_egg,Rabbit Spawn Egg,true,false
+minecraft:ravager_spawn_egg,minecraft_ravager_spawn_egg,Ravager Spawn Egg,true,false
+minecraft:salmon_spawn_egg,minecraft_salmon_spawn_egg,Salmon Spawn Egg,true,false
+minecraft:sheep_spawn_egg,minecraft_sheep_spawn_egg,Sheep Spawn Egg,true,false
+minecraft:shulker_spawn_egg,minecraft_shulker_spawn_egg,Shulker Spawn Egg,true,false
+minecraft:silverfish_spawn_egg,minecraft_silverfish_spawn_egg,Silverfish Spawn Egg,true,false
+minecraft:skeleton_spawn_egg,minecraft_skeleton_spawn_egg,Skeleton Spawn Egg,true,false
+minecraft:skeleton_horse_spawn_egg,minecraft_skeleton_horse_spawn_egg,Skeleton Horse Spawn Egg,true,false
+minecraft:slime_spawn_egg,minecraft_slime_spawn_egg,Slime Spawn Egg,true,false
+minecraft:sniffer_spawn_egg,minecraft_sniffer_spawn_egg,Sniffer Spawn Egg,true,false
+minecraft:snow_golem_spawn_egg,minecraft_snow_golem_spawn_egg,Snow Golem Spawn Egg,true,false
+minecraft:spider_spawn_egg,minecraft_spider_spawn_egg,Spider Spawn Egg,true,false
+minecraft:squid_spawn_egg,minecraft_squid_spawn_egg,Squid Spawn Egg,true,false
+minecraft:stray_spawn_egg,minecraft_stray_spawn_egg,Stray Spawn Egg,true,false
+minecraft:strider_spawn_egg,minecraft_strider_spawn_egg,Strider Spawn Egg,true,false
+minecraft:tadpole_spawn_egg,minecraft_tadpole_spawn_egg,Tadpole Spawn Egg,true,false
+minecraft:trader_llama_spawn_egg,minecraft_trader_llama_spawn_egg,Trader Llama Spawn Egg,true,false
+minecraft:tropical_fish_spawn_egg,minecraft_tropical_fish_spawn_egg,Tropical Fish Spawn Egg,true,false
+minecraft:turtle_spawn_egg,minecraft_turtle_spawn_egg,Turtle Spawn Egg,true,false
+minecraft:vex_spawn_egg,minecraft_vex_spawn_egg,Vex Spawn Egg,true,false
+minecraft:villager_spawn_egg,minecraft_villager_spawn_egg,Villager Spawn Egg,true,false
+minecraft:vindicator_spawn_egg,minecraft_vindicator_spawn_egg,Vindicator Spawn Egg,true,false
+minecraft:wandering_trader_spawn_egg,minecraft_wandering_trader_spawn_egg,Wandering Trader Spawn Egg,true,false
+minecraft:warden_spawn_egg,minecraft_warden_spawn_egg,Warden Spawn Egg,true,false
+minecraft:witch_spawn_egg,minecraft_witch_spawn_egg,Witch Spawn Egg,true,false
+minecraft:wither_spawn_egg,minecraft_wither_spawn_egg,Wither Spawn Egg,true,false
+minecraft:wither_skeleton_spawn_egg,minecraft_wither_skeleton_spawn_egg,Wither Skeleton Spawn Egg,true,false
+minecraft:wolf_spawn_egg,minecraft_wolf_spawn_egg,Wolf Spawn Egg,true,false
+minecraft:zoglin_spawn_egg,minecraft_zoglin_spawn_egg,Zoglin Spawn Egg,true,false
+minecraft:zombie_spawn_egg,minecraft_zombie_spawn_egg,Zombie Spawn Egg,true,false
+minecraft:zombie_horse_spawn_egg,minecraft_zombie_horse_spawn_egg,Zombie Horse Spawn Egg,true,false
+minecraft:zombie_villager_spawn_egg,minecraft_zombie_villager_spawn_egg,Zombie Villager Spawn Egg,true,false
+minecraft:zombified_piglin_spawn_egg,minecraft_zombified_piglin_spawn_egg,Zombified Piglin Spawn Egg,true,false
+minecraft:experience_bottle,minecraft_experience_bottle,Experience Bottle,true,false
+minecraft:fire_charge,minecraft_fire_charge,Fire Charge,true,false
+minecraft:writable_book,minecraft_writable_book,Writable Book,true,false
+minecraft:written_book,minecraft_written_book,Written Book,true,false
+minecraft:item_frame,minecraft_item_frame,Item Frame,true,false
+minecraft:glow_item_frame,minecraft_glow_item_frame,Glow Item Frame,true,false
+minecraft:flower_pot,minecraft_flower_pot,Flower Pot,true,true
+minecraft:carrot,minecraft_carrot,Carrot,true,false
+minecraft:potato,minecraft_potato,Potato,true,false
+minecraft:baked_potato,minecraft_baked_potato,Baked Potato,true,false
+minecraft:poisonous_potato,minecraft_poisonous_potato,Poisonous Potato,true,false
+minecraft:map,minecraft_map,Map,true,false
+minecraft:golden_carrot,minecraft_golden_carrot,Golden Carrot,true,false
+minecraft:skeleton_skull,minecraft_skeleton_skull,Skeleton Skull,true,true
+minecraft:wither_skeleton_skull,minecraft_wither_skeleton_skull,Wither Skeleton Skull,true,true
+minecraft:player_head,minecraft_player_head,Player Head,true,true
+minecraft:zombie_head,minecraft_zombie_head,Zombie Head,true,true
+minecraft:creeper_head,minecraft_creeper_head,Creeper Head,true,true
+minecraft:dragon_head,minecraft_dragon_head,Dragon Head,true,true
+minecraft:piglin_head,minecraft_piglin_head,Piglin Head,true,true
+minecraft:nether_star,minecraft_nether_star,Nether Star,true,false
+minecraft:pumpkin_pie,minecraft_pumpkin_pie,Pumpkin Pie,true,false
+minecraft:firework_rocket,minecraft_firework_rocket,Firework Rocket,true,false
+minecraft:firework_star,minecraft_firework_star,Firework Star,true,false
+minecraft:enchanted_book,minecraft_enchanted_book,Enchanted Book,true,false
+minecraft:nether_brick,minecraft_nether_brick,Nether Brick,true,false
+minecraft:prismarine_shard,minecraft_prismarine_shard,Prismarine Shard,true,false
+minecraft:prismarine_crystals,minecraft_prismarine_crystals,Prismarine Crystals,true,false
+minecraft:rabbit,minecraft_rabbit,Rabbit,true,false
+minecraft:cooked_rabbit,minecraft_cooked_rabbit,Cooked Rabbit,true,false
+minecraft:rabbit_stew,minecraft_rabbit_stew,Rabbit Stew,true,false
+minecraft:rabbit_foot,minecraft_rabbit_foot,Rabbit Foot,true,false
+minecraft:rabbit_hide,minecraft_rabbit_hide,Rabbit Hide,true,false
+minecraft:armor_stand,minecraft_armor_stand,Armor Stand,true,false
+minecraft:iron_horse_armor,minecraft_iron_horse_armor,Iron Horse Armor,true,false
+minecraft:golden_horse_armor,minecraft_golden_horse_armor,Golden Horse Armor,true,false
+minecraft:diamond_horse_armor,minecraft_diamond_horse_armor,Diamond Horse Armor,true,false
+minecraft:leather_horse_armor,minecraft_leather_horse_armor,Leather Horse Armor,true,false
+minecraft:lead,minecraft_lead,Lead,true,false
+minecraft:name_tag,minecraft_name_tag,Name Tag,true,false
+minecraft:command_block_minecart,minecraft_command_block_minecart,Command Block Minecart,true,false
+minecraft:mutton,minecraft_mutton,Mutton,true,false
+minecraft:cooked_mutton,minecraft_cooked_mutton,Cooked Mutton,true,false
+minecraft:white_banner,minecraft_white_banner,White Banner,true,true
+minecraft:orange_banner,minecraft_orange_banner,Orange Banner,true,true
+minecraft:magenta_banner,minecraft_magenta_banner,Magenta Banner,true,true
+minecraft:light_blue_banner,minecraft_light_blue_banner,Light Blue Banner,true,true
+minecraft:yellow_banner,minecraft_yellow_banner,Yellow Banner,true,true
+minecraft:lime_banner,minecraft_lime_banner,Lime Banner,true,true
+minecraft:pink_banner,minecraft_pink_banner,Pink Banner,true,true
+minecraft:gray_banner,minecraft_gray_banner,Gray Banner,true,true
+minecraft:light_gray_banner,minecraft_light_gray_banner,Light Gray Banner,true,true
+minecraft:cyan_banner,minecraft_cyan_banner,Cyan Banner,true,true
+minecraft:purple_banner,minecraft_purple_banner,Purple Banner,true,true
+minecraft:blue_banner,minecraft_blue_banner,Blue Banner,true,true
+minecraft:brown_banner,minecraft_brown_banner,Brown Banner,true,true
+minecraft:green_banner,minecraft_green_banner,Green Banner,true,true
+minecraft:red_banner,minecraft_red_banner,Red Banner,true,true
+minecraft:black_banner,minecraft_black_banner,Black Banner,true,true
+minecraft:end_crystal,minecraft_end_crystal,End Crystal,true,false
+minecraft:chorus_fruit,minecraft_chorus_fruit,Chorus Fruit,true,false
+minecraft:popped_chorus_fruit,minecraft_popped_chorus_fruit,Popped Chorus Fruit,true,false
+minecraft:torchflower_seeds,minecraft_torchflower_seeds,Torchflower Seeds,true,false
+minecraft:pitcher_pod,minecraft_pitcher_pod,Pitcher Pod,true,false
+minecraft:beetroot,minecraft_beetroot,Beetroot,true,false
+minecraft:beetroot_seeds,minecraft_beetroot_seeds,Beetroot Seeds,true,false
+minecraft:beetroot_soup,minecraft_beetroot_soup,Beetroot Soup,true,false
+minecraft:dragon_breath,minecraft_dragon_breath,Dragon Breath,true,false
+minecraft:splash_potion,minecraft_splash_potion,Splash Potion,true,false
+minecraft:spectral_arrow,minecraft_spectral_arrow,Spectral Arrow,true,false
+minecraft:tipped_arrow,minecraft_tipped_arrow,Tipped Arrow,true,false
+minecraft:lingering_potion,minecraft_lingering_potion,Lingering Potion,true,false
+minecraft:shield,minecraft_shield,Shield,true,false
+minecraft:totem_of_undying,minecraft_totem_of_undying,Totem Of Undying,true,false
+minecraft:shulker_shell,minecraft_shulker_shell,Shulker Shell,true,false
+minecraft:iron_nugget,minecraft_iron_nugget,Iron Nugget,true,false
+minecraft:knowledge_book,minecraft_knowledge_book,Knowledge Book,true,false
+minecraft:debug_stick,minecraft_debug_stick,Debug Stick,true,false
+minecraft:music_disc_13,minecraft_music_disc_13,Music Disc 13,true,false
+minecraft:music_disc_cat,minecraft_music_disc_cat,Music Disc Cat,true,false
+minecraft:music_disc_blocks,minecraft_music_disc_blocks,Music Disc Blocks,true,false
+minecraft:music_disc_chirp,minecraft_music_disc_chirp,Music Disc Chirp,true,false
+minecraft:music_disc_far,minecraft_music_disc_far,Music Disc Far,true,false
+minecraft:music_disc_mall,minecraft_music_disc_mall,Music Disc Mall,true,false
+minecraft:music_disc_mellohi,minecraft_music_disc_mellohi,Music Disc Mellohi,true,false
+minecraft:music_disc_stal,minecraft_music_disc_stal,Music Disc Stal,true,false
+minecraft:music_disc_strad,minecraft_music_disc_strad,Music Disc Strad,true,false
+minecraft:music_disc_ward,minecraft_music_disc_ward,Music Disc Ward,true,false
+minecraft:music_disc_11,minecraft_music_disc_11,Music Disc 11,true,false
+minecraft:music_disc_wait,minecraft_music_disc_wait,Music Disc Wait,true,false
+minecraft:music_disc_otherside,minecraft_music_disc_otherside,Music Disc Otherside,true,false
+minecraft:music_disc_relic,minecraft_music_disc_relic,Music Disc Relic,true,false
+minecraft:music_disc_5,minecraft_music_disc_5,Music Disc 5,true,false
+minecraft:music_disc_pigstep,minecraft_music_disc_pigstep,Music Disc Pigstep,true,false
+minecraft:disc_fragment_5,minecraft_disc_fragment_5,Disc Fragment 5,true,false
+minecraft:trident,minecraft_trident,Trident,true,false
+minecraft:phantom_membrane,minecraft_phantom_membrane,Phantom Membrane,true,false
+minecraft:nautilus_shell,minecraft_nautilus_shell,Nautilus Shell,true,false
+minecraft:heart_of_the_sea,minecraft_heart_of_the_sea,Heart Of The Sea,true,false
+minecraft:crossbow,minecraft_crossbow,Crossbow,true,false
+minecraft:suspicious_stew,minecraft_suspicious_stew,Suspicious Stew,true,false
+minecraft:loom,minecraft_loom,Loom,true,true
+minecraft:flower_banner_pattern,minecraft_flower_banner_pattern,Flower Banner Pattern,true,false
+minecraft:creeper_banner_pattern,minecraft_creeper_banner_pattern,Creeper Banner Pattern,true,false
+minecraft:skull_banner_pattern,minecraft_skull_banner_pattern,Skull Banner Pattern,true,false
+minecraft:mojang_banner_pattern,minecraft_mojang_banner_pattern,Mojang Banner Pattern,true,false
+minecraft:globe_banner_pattern,minecraft_globe_banner_pattern,Globe Banner Pattern,true,false
+minecraft:piglin_banner_pattern,minecraft_piglin_banner_pattern,Piglin Banner Pattern,true,false
+minecraft:goat_horn,minecraft_goat_horn,Goat Horn,true,false
+minecraft:composter,minecraft_composter,Composter,true,true
+minecraft:barrel,minecraft_barrel,Barrel,true,true
+minecraft:smoker,minecraft_smoker,Smoker,true,true
+minecraft:blast_furnace,minecraft_blast_furnace,Blast Furnace,true,true
+minecraft:cartography_table,minecraft_cartography_table,Cartography Table,true,true
+minecraft:fletching_table,minecraft_fletching_table,Fletching Table,true,true
+minecraft:grindstone,minecraft_grindstone,Grindstone,true,true
+minecraft:smithing_table,minecraft_smithing_table,Smithing Table,true,true
+minecraft:stonecutter,minecraft_stonecutter,Stonecutter,true,true
+minecraft:bell,minecraft_bell,Bell,true,true
+minecraft:lantern,minecraft_lantern,Lantern,true,true
+minecraft:soul_lantern,minecraft_soul_lantern,Soul Lantern,true,true
+minecraft:sweet_berries,minecraft_sweet_berries,Sweet Berries,true,false
+minecraft:glow_berries,minecraft_glow_berries,Glow Berries,true,false
+minecraft:campfire,minecraft_campfire,Campfire,true,true
+minecraft:soul_campfire,minecraft_soul_campfire,Soul Campfire,true,true
+minecraft:shroomlight,minecraft_shroomlight,Shroomlight,true,true
+minecraft:honeycomb,minecraft_honeycomb,Honeycomb,true,false
+minecraft:bee_nest,minecraft_bee_nest,Bee Nest,true,true
+minecraft:beehive,minecraft_beehive,Beehive,true,true
+minecraft:honey_bottle,minecraft_honey_bottle,Honey Bottle,true,false
+minecraft:honeycomb_block,minecraft_honeycomb_block,Honeycomb Block,true,true
+minecraft:lodestone,minecraft_lodestone,Lodestone,true,true
+minecraft:crying_obsidian,minecraft_crying_obsidian,Crying Obsidian,true,true
+minecraft:blackstone,minecraft_blackstone,Blackstone,true,true
+minecraft:blackstone_slab,minecraft_blackstone_slab,Blackstone Slab,true,true
+minecraft:blackstone_stairs,minecraft_blackstone_stairs,Blackstone Stairs,true,true
+minecraft:gilded_blackstone,minecraft_gilded_blackstone,Gilded Blackstone,true,true
+minecraft:polished_blackstone,minecraft_polished_blackstone,Polished Blackstone,true,true
+minecraft:polished_blackstone_slab,minecraft_polished_blackstone_slab,Polished Blackstone Slab,true,true
+minecraft:polished_blackstone_stairs,minecraft_polished_blackstone_stairs,Polished Blackstone Stairs,true,true
+minecraft:chiseled_polished_blackstone,minecraft_chiseled_polished_blackstone,Chiseled Polished Blackstone,true,true
+minecraft:polished_blackstone_bricks,minecraft_polished_blackstone_bricks,Polished Blackstone Bricks,true,true
+minecraft:polished_blackstone_brick_slab,minecraft_polished_blackstone_brick_slab,Polished Blackstone Brick Slab,true,true
+minecraft:polished_blackstone_brick_stairs,minecraft_polished_blackstone_brick_stairs,Polished Blackstone Brick Stairs,true,true
+minecraft:cracked_polished_blackstone_bricks,minecraft_cracked_polished_blackstone_bricks,Cracked Polished Blackstone Bricks,true,true
+minecraft:respawn_anchor,minecraft_respawn_anchor,Respawn Anchor,true,true
+minecraft:candle,minecraft_candle,Candle,true,true
+minecraft:white_candle,minecraft_white_candle,White Candle,true,true
+minecraft:orange_candle,minecraft_orange_candle,Orange Candle,true,true
+minecraft:magenta_candle,minecraft_magenta_candle,Magenta Candle,true,true
+minecraft:light_blue_candle,minecraft_light_blue_candle,Light Blue Candle,true,true
+minecraft:yellow_candle,minecraft_yellow_candle,Yellow Candle,true,true
+minecraft:lime_candle,minecraft_lime_candle,Lime Candle,true,true
+minecraft:pink_candle,minecraft_pink_candle,Pink Candle,true,true
+minecraft:gray_candle,minecraft_gray_candle,Gray Candle,true,true
+minecraft:light_gray_candle,minecraft_light_gray_candle,Light Gray Candle,true,true
+minecraft:cyan_candle,minecraft_cyan_candle,Cyan Candle,true,true
+minecraft:purple_candle,minecraft_purple_candle,Purple Candle,true,true
+minecraft:blue_candle,minecraft_blue_candle,Blue Candle,true,true
+minecraft:brown_candle,minecraft_brown_candle,Brown Candle,true,true
+minecraft:green_candle,minecraft_green_candle,Green Candle,true,true
+minecraft:red_candle,minecraft_red_candle,Red Candle,true,true
+minecraft:black_candle,minecraft_black_candle,Black Candle,true,true
+minecraft:small_amethyst_bud,minecraft_small_amethyst_bud,Small Amethyst Bud,true,true
+minecraft:medium_amethyst_bud,minecraft_medium_amethyst_bud,Medium Amethyst Bud,true,true
+minecraft:large_amethyst_bud,minecraft_large_amethyst_bud,Large Amethyst Bud,true,true
+minecraft:amethyst_cluster,minecraft_amethyst_cluster,Amethyst Cluster,true,true
+minecraft:pointed_dripstone,minecraft_pointed_dripstone,Pointed Dripstone,true,true
+minecraft:ochre_froglight,minecraft_ochre_froglight,Ochre Froglight,true,true
+minecraft:verdant_froglight,minecraft_verdant_froglight,Verdant Froglight,true,true
+minecraft:pearlescent_froglight,minecraft_pearlescent_froglight,Pearlescent Froglight,true,true
+minecraft:frogspawn,minecraft_frogspawn,Frogspawn,true,true
+minecraft:echo_shard,minecraft_echo_shard,Echo Shard,true,false
+minecraft:brush,minecraft_brush,Brush,true,false
+minecraft:netherite_upgrade_smithing_template,minecraft_netherite_upgrade_smithing_template,Netherite Upgrade Smithing Template,true,false
+minecraft:sentry_armor_trim_smithing_template,minecraft_sentry_armor_trim_smithing_template,Sentry Armor Trim Smithing Template,true,false
+minecraft:dune_armor_trim_smithing_template,minecraft_dune_armor_trim_smithing_template,Dune Armor Trim Smithing Template,true,false
+minecraft:coast_armor_trim_smithing_template,minecraft_coast_armor_trim_smithing_template,Coast Armor Trim Smithing Template,true,false
+minecraft:wild_armor_trim_smithing_template,minecraft_wild_armor_trim_smithing_template,Wild Armor Trim Smithing Template,true,false
+minecraft:ward_armor_trim_smithing_template,minecraft_ward_armor_trim_smithing_template,Ward Armor Trim Smithing Template,true,false
+minecraft:eye_armor_trim_smithing_template,minecraft_eye_armor_trim_smithing_template,Eye Armor Trim Smithing Template,true,false
+minecraft:vex_armor_trim_smithing_template,minecraft_vex_armor_trim_smithing_template,Vex Armor Trim Smithing Template,true,false
+minecraft:tide_armor_trim_smithing_template,minecraft_tide_armor_trim_smithing_template,Tide Armor Trim Smithing Template,true,false
+minecraft:snout_armor_trim_smithing_template,minecraft_snout_armor_trim_smithing_template,Snout Armor Trim Smithing Template,true,false
+minecraft:rib_armor_trim_smithing_template,minecraft_rib_armor_trim_smithing_template,Rib Armor Trim Smithing Template,true,false
+minecraft:spire_armor_trim_smithing_template,minecraft_spire_armor_trim_smithing_template,Spire Armor Trim Smithing Template,true,false
+minecraft:wayfinder_armor_trim_smithing_template,minecraft_wayfinder_armor_trim_smithing_template,Wayfinder Armor Trim Smithing Template,true,false
+minecraft:shaper_armor_trim_smithing_template,minecraft_shaper_armor_trim_smithing_template,Shaper Armor Trim Smithing Template,true,false
+minecraft:silence_armor_trim_smithing_template,minecraft_silence_armor_trim_smithing_template,Silence Armor Trim Smithing Template,true,false
+minecraft:raiser_armor_trim_smithing_template,minecraft_raiser_armor_trim_smithing_template,Raiser Armor Trim Smithing Template,true,false
+minecraft:host_armor_trim_smithing_template,minecraft_host_armor_trim_smithing_template,Host Armor Trim Smithing Template,true,false
+minecraft:angler_pottery_sherd,minecraft_angler_pottery_sherd,Angler Pottery Sherd,true,false
+minecraft:archer_pottery_sherd,minecraft_archer_pottery_sherd,Archer Pottery Sherd,true,false
+minecraft:arms_up_pottery_sherd,minecraft_arms_up_pottery_sherd,Arms Up Pottery Sherd,true,false
+minecraft:blade_pottery_sherd,minecraft_blade_pottery_sherd,Blade Pottery Sherd,true,false
+minecraft:brewer_pottery_sherd,minecraft_brewer_pottery_sherd,Brewer Pottery Sherd,true,false
+minecraft:burn_pottery_sherd,minecraft_burn_pottery_sherd,Burn Pottery Sherd,true,false
+minecraft:danger_pottery_sherd,minecraft_danger_pottery_sherd,Danger Pottery Sherd,true,false
+minecraft:explorer_pottery_sherd,minecraft_explorer_pottery_sherd,Explorer Pottery Sherd,true,false
+minecraft:friend_pottery_sherd,minecraft_friend_pottery_sherd,Friend Pottery Sherd,true,false
+minecraft:heart_pottery_sherd,minecraft_heart_pottery_sherd,Heart Pottery Sherd,true,false
+minecraft:heartbreak_pottery_sherd,minecraft_heartbreak_pottery_sherd,Heartbreak Pottery Sherd,true,false
+minecraft:howl_pottery_sherd,minecraft_howl_pottery_sherd,Howl Pottery Sherd,true,false
+minecraft:miner_pottery_sherd,minecraft_miner_pottery_sherd,Miner Pottery Sherd,true,false
+minecraft:mourner_pottery_sherd,minecraft_mourner_pottery_sherd,Mourner Pottery Sherd,true,false
+minecraft:plenty_pottery_sherd,minecraft_plenty_pottery_sherd,Plenty Pottery Sherd,true,false
+minecraft:prize_pottery_sherd,minecraft_prize_pottery_sherd,Prize Pottery Sherd,true,false
+minecraft:sheaf_pottery_sherd,minecraft_sheaf_pottery_sherd,Sheaf Pottery Sherd,true,false
+minecraft:shelter_pottery_sherd,minecraft_shelter_pottery_sherd,Shelter Pottery Sherd,true,false
+minecraft:skull_pottery_sherd,minecraft_skull_pottery_sherd,Skull Pottery Sherd,true,false
+minecraft:snort_pottery_sherd,minecraft_snort_pottery_sherd,Snort Pottery Sherd,true,false
+minecraft:copper_grate,minecraft_copper_grate,Copper Grate,true,true
+minecraft:exposed_copper_grate,minecraft_exposed_copper_grate,Exposed Copper Grate,true,true
+minecraft:weathered_copper_grate,minecraft_weathered_copper_grate,Weathered Copper Grate,true,true
+minecraft:oxidized_copper_grate,minecraft_oxidized_copper_grate,Oxidized Copper Grate,true,true
+minecraft:waxed_copper_grate,minecraft_waxed_copper_grate,Waxed Copper Grate,true,true
+minecraft:waxed_exposed_copper_grate,minecraft_waxed_exposed_copper_grate,Waxed Exposed Copper Grate,true,true
+minecraft:waxed_weathered_copper_grate,minecraft_waxed_weathered_copper_grate,Waxed Weathered Copper Grate,true,true
+minecraft:waxed_oxidized_copper_grate,minecraft_waxed_oxidized_copper_grate,Waxed Oxidized Copper Grate,true,true
+minecraft:copper_bulb,minecraft_copper_bulb,Copper Bulb,true,true
+minecraft:exposed_copper_bulb,minecraft_exposed_copper_bulb,Exposed Copper Bulb,true,true
+minecraft:weathered_copper_bulb,minecraft_weathered_copper_bulb,Weathered Copper Bulb,true,true
+minecraft:oxidized_copper_bulb,minecraft_oxidized_copper_bulb,Oxidized Copper Bulb,true,true
+minecraft:waxed_copper_bulb,minecraft_waxed_copper_bulb,Waxed Copper Bulb,true,true
+minecraft:waxed_exposed_copper_bulb,minecraft_waxed_exposed_copper_bulb,Waxed Exposed Copper Bulb,true,true
+minecraft:waxed_weathered_copper_bulb,minecraft_waxed_weathered_copper_bulb,Waxed Weathered Copper Bulb,true,true
+minecraft:waxed_oxidized_copper_bulb,minecraft_waxed_oxidized_copper_bulb,Waxed Oxidized Copper Bulb,true,true
+minecraft:trial_spawner,minecraft_trial_spawner,Trial Spawner,true,true
+minecraft:trial_key,minecraft_trial_key,Trial Key,true,false
+minecraft:water,minecraft_water,Water,false,true
+minecraft:lava,minecraft_lava,Lava,false,true
+minecraft:tall_seagrass,minecraft_tall_seagrass,Tall Seagrass,false,true
+minecraft:piston_head,minecraft_piston_head,Piston Head,false,true
+minecraft:moving_piston,minecraft_moving_piston,Moving Piston,false,true
+minecraft:wall_torch,minecraft_wall_torch,Wall Torch,false,true
+minecraft:fire,minecraft_fire,Fire,false,true
+minecraft:soul_fire,minecraft_soul_fire,Soul Fire,false,true
+minecraft:redstone_wire,minecraft_redstone_wire,Redstone Wire,false,true
+minecraft:oak_wall_sign,minecraft_oak_wall_sign,Oak Wall Sign,false,true
+minecraft:spruce_wall_sign,minecraft_spruce_wall_sign,Spruce Wall Sign,false,true
+minecraft:birch_wall_sign,minecraft_birch_wall_sign,Birch Wall Sign,false,true
+minecraft:acacia_wall_sign,minecraft_acacia_wall_sign,Acacia Wall Sign,false,true
+minecraft:cherry_wall_sign,minecraft_cherry_wall_sign,Cherry Wall Sign,false,true
+minecraft:jungle_wall_sign,minecraft_jungle_wall_sign,Jungle Wall Sign,false,true
+minecraft:dark_oak_wall_sign,minecraft_dark_oak_wall_sign,Dark Oak Wall Sign,false,true
+minecraft:mangrove_wall_sign,minecraft_mangrove_wall_sign,Mangrove Wall Sign,false,true
+minecraft:bamboo_wall_sign,minecraft_bamboo_wall_sign,Bamboo Wall Sign,false,true
+minecraft:oak_wall_hanging_sign,minecraft_oak_wall_hanging_sign,Oak Wall Hanging Sign,false,true
+minecraft:spruce_wall_hanging_sign,minecraft_spruce_wall_hanging_sign,Spruce Wall Hanging Sign,false,true
+minecraft:birch_wall_hanging_sign,minecraft_birch_wall_hanging_sign,Birch Wall Hanging Sign,false,true
+minecraft:acacia_wall_hanging_sign,minecraft_acacia_wall_hanging_sign,Acacia Wall Hanging Sign,false,true
+minecraft:cherry_wall_hanging_sign,minecraft_cherry_wall_hanging_sign,Cherry Wall Hanging Sign,false,true
+minecraft:jungle_wall_hanging_sign,minecraft_jungle_wall_hanging_sign,Jungle Wall Hanging Sign,false,true
+minecraft:dark_oak_wall_hanging_sign,minecraft_dark_oak_wall_hanging_sign,Dark Oak Wall Hanging Sign,false,true
+minecraft:mangrove_wall_hanging_sign,minecraft_mangrove_wall_hanging_sign,Mangrove Wall Hanging Sign,false,true
+minecraft:crimson_wall_hanging_sign,minecraft_crimson_wall_hanging_sign,Crimson Wall Hanging Sign,false,true
+minecraft:warped_wall_hanging_sign,minecraft_warped_wall_hanging_sign,Warped Wall Hanging Sign,false,true
+minecraft:bamboo_wall_hanging_sign,minecraft_bamboo_wall_hanging_sign,Bamboo Wall Hanging Sign,false,true
+minecraft:redstone_wall_torch,minecraft_redstone_wall_torch,Redstone Wall Torch,false,true
+minecraft:soul_wall_torch,minecraft_soul_wall_torch,Soul Wall Torch,false,true
+minecraft:nether_portal,minecraft_nether_portal,Nether Portal,false,true
+minecraft:attached_pumpkin_stem,minecraft_attached_pumpkin_stem,Attached Pumpkin Stem,false,true
+minecraft:attached_melon_stem,minecraft_attached_melon_stem,Attached Melon Stem,false,true
+minecraft:pumpkin_stem,minecraft_pumpkin_stem,Pumpkin Stem,false,true
+minecraft:melon_stem,minecraft_melon_stem,Melon Stem,false,true
+minecraft:water_cauldron,minecraft_water_cauldron,Water Cauldron,false,true
+minecraft:lava_cauldron,minecraft_lava_cauldron,Lava Cauldron,false,true
+minecraft:powder_snow_cauldron,minecraft_powder_snow_cauldron,Powder Snow Cauldron,false,true
+minecraft:end_portal,minecraft_end_portal,End Portal,false,true
+minecraft:cocoa,minecraft_cocoa,Cocoa,false,true
+minecraft:tripwire,minecraft_tripwire,Tripwire,false,true
+minecraft:potted_torchflower,minecraft_potted_torchflower,Potted Torchflower,false,true
+minecraft:potted_oak_sapling,minecraft_potted_oak_sapling,Potted Oak Sapling,false,true
+minecraft:potted_spruce_sapling,minecraft_potted_spruce_sapling,Potted Spruce Sapling,false,true
+minecraft:potted_birch_sapling,minecraft_potted_birch_sapling,Potted Birch Sapling,false,true
+minecraft:potted_jungle_sapling,minecraft_potted_jungle_sapling,Potted Jungle Sapling,false,true
+minecraft:potted_acacia_sapling,minecraft_potted_acacia_sapling,Potted Acacia Sapling,false,true
+minecraft:potted_cherry_sapling,minecraft_potted_cherry_sapling,Potted Cherry Sapling,false,true
+minecraft:potted_dark_oak_sapling,minecraft_potted_dark_oak_sapling,Potted Dark Oak Sapling,false,true
+minecraft:potted_mangrove_propagule,minecraft_potted_mangrove_propagule,Potted Mangrove Propagule,false,true
+minecraft:potted_fern,minecraft_potted_fern,Potted Fern,false,true
+minecraft:potted_dandelion,minecraft_potted_dandelion,Potted Dandelion,false,true
+minecraft:potted_poppy,minecraft_potted_poppy,Potted Poppy,false,true
+minecraft:potted_blue_orchid,minecraft_potted_blue_orchid,Potted Blue Orchid,false,true
+minecraft:potted_allium,minecraft_potted_allium,Potted Allium,false,true
+minecraft:potted_azure_bluet,minecraft_potted_azure_bluet,Potted Azure Bluet,false,true
+minecraft:potted_red_tulip,minecraft_potted_red_tulip,Potted Red Tulip,false,true
+minecraft:potted_orange_tulip,minecraft_potted_orange_tulip,Potted Orange Tulip,false,true
+minecraft:potted_white_tulip,minecraft_potted_white_tulip,Potted White Tulip,false,true
+minecraft:potted_pink_tulip,minecraft_potted_pink_tulip,Potted Pink Tulip,false,true
+minecraft:potted_oxeye_daisy,minecraft_potted_oxeye_daisy,Potted Oxeye Daisy,false,true
+minecraft:potted_cornflower,minecraft_potted_cornflower,Potted Cornflower,false,true
+minecraft:potted_lily_of_the_valley,minecraft_potted_lily_of_the_valley,Potted Lily Of The Valley,false,true
+minecraft:potted_wither_rose,minecraft_potted_wither_rose,Potted Wither Rose,false,true
+minecraft:potted_red_mushroom,minecraft_potted_red_mushroom,Potted Red Mushroom,false,true
+minecraft:potted_brown_mushroom,minecraft_potted_brown_mushroom,Potted Brown Mushroom,false,true
+minecraft:potted_dead_bush,minecraft_potted_dead_bush,Potted Dead Bush,false,true
+minecraft:potted_cactus,minecraft_potted_cactus,Potted Cactus,false,true
+minecraft:carrots,minecraft_carrots,Carrots,false,true
+minecraft:potatoes,minecraft_potatoes,Potatoes,false,true
+minecraft:skeleton_wall_skull,minecraft_skeleton_wall_skull,Skeleton Wall Skull,false,true
+minecraft:wither_skeleton_wall_skull,minecraft_wither_skeleton_wall_skull,Wither Skeleton Wall Skull,false,true
+minecraft:zombie_wall_head,minecraft_zombie_wall_head,Zombie Wall Head,false,true
+minecraft:player_wall_head,minecraft_player_wall_head,Player Wall Head,false,true
+minecraft:creeper_wall_head,minecraft_creeper_wall_head,Creeper Wall Head,false,true
+minecraft:dragon_wall_head,minecraft_dragon_wall_head,Dragon Wall Head,false,true
+minecraft:piglin_wall_head,minecraft_piglin_wall_head,Piglin Wall Head,false,true
+minecraft:white_wall_banner,minecraft_white_wall_banner,White Wall Banner,false,true
+minecraft:orange_wall_banner,minecraft_orange_wall_banner,Orange Wall Banner,false,true
+minecraft:magenta_wall_banner,minecraft_magenta_wall_banner,Magenta Wall Banner,false,true
+minecraft:light_blue_wall_banner,minecraft_light_blue_wall_banner,Light Blue Wall Banner,false,true
+minecraft:yellow_wall_banner,minecraft_yellow_wall_banner,Yellow Wall Banner,false,true
+minecraft:lime_wall_banner,minecraft_lime_wall_banner,Lime Wall Banner,false,true
+minecraft:pink_wall_banner,minecraft_pink_wall_banner,Pink Wall Banner,false,true
+minecraft:gray_wall_banner,minecraft_gray_wall_banner,Gray Wall Banner,false,true
+minecraft:light_gray_wall_banner,minecraft_light_gray_wall_banner,Light Gray Wall Banner,false,true
+minecraft:cyan_wall_banner,minecraft_cyan_wall_banner,Cyan Wall Banner,false,true
+minecraft:purple_wall_banner,minecraft_purple_wall_banner,Purple Wall Banner,false,true
+minecraft:blue_wall_banner,minecraft_blue_wall_banner,Blue Wall Banner,false,true
+minecraft:brown_wall_banner,minecraft_brown_wall_banner,Brown Wall Banner,false,true
+minecraft:green_wall_banner,minecraft_green_wall_banner,Green Wall Banner,false,true
+minecraft:red_wall_banner,minecraft_red_wall_banner,Red Wall Banner,false,true
+minecraft:black_wall_banner,minecraft_black_wall_banner,Black Wall Banner,false,true
+minecraft:torchflower_crop,minecraft_torchflower_crop,Torchflower Crop,false,true
+minecraft:pitcher_crop,minecraft_pitcher_crop,Pitcher Crop,false,true
+minecraft:beetroots,minecraft_beetroots,Beetroots,false,true
+minecraft:end_gateway,minecraft_end_gateway,End Gateway,false,true
+minecraft:frosted_ice,minecraft_frosted_ice,Frosted Ice,false,true
+minecraft:kelp_plant,minecraft_kelp_plant,Kelp Plant,false,true
+minecraft:dead_tube_coral_wall_fan,minecraft_dead_tube_coral_wall_fan,Dead Tube Coral Wall Fan,false,true
+minecraft:dead_brain_coral_wall_fan,minecraft_dead_brain_coral_wall_fan,Dead Brain Coral Wall Fan,false,true
+minecraft:dead_bubble_coral_wall_fan,minecraft_dead_bubble_coral_wall_fan,Dead Bubble Coral Wall Fan,false,true
+minecraft:dead_fire_coral_wall_fan,minecraft_dead_fire_coral_wall_fan,Dead Fire Coral Wall Fan,false,true
+minecraft:dead_horn_coral_wall_fan,minecraft_dead_horn_coral_wall_fan,Dead Horn Coral Wall Fan,false,true
+minecraft:tube_coral_wall_fan,minecraft_tube_coral_wall_fan,Tube Coral Wall Fan,false,true
+minecraft:brain_coral_wall_fan,minecraft_brain_coral_wall_fan,Brain Coral Wall Fan,false,true
+minecraft:bubble_coral_wall_fan,minecraft_bubble_coral_wall_fan,Bubble Coral Wall Fan,false,true
+minecraft:fire_coral_wall_fan,minecraft_fire_coral_wall_fan,Fire Coral Wall Fan,false,true
+minecraft:horn_coral_wall_fan,minecraft_horn_coral_wall_fan,Horn Coral Wall Fan,false,true
+minecraft:bamboo_sapling,minecraft_bamboo_sapling,Bamboo Sapling,false,true
+minecraft:potted_bamboo,minecraft_potted_bamboo,Potted Bamboo,false,true
+minecraft:bubble_column,minecraft_bubble_column,Bubble Column,false,true
+minecraft:sweet_berry_bush,minecraft_sweet_berry_bush,Sweet Berry Bush,false,true
+minecraft:weeping_vines_plant,minecraft_weeping_vines_plant,Weeping Vines Plant,false,true
+minecraft:twisting_vines_plant,minecraft_twisting_vines_plant,Twisting Vines Plant,false,true
+minecraft:crimson_wall_sign,minecraft_crimson_wall_sign,Crimson Wall Sign,false,true
+minecraft:warped_wall_sign,minecraft_warped_wall_sign,Warped Wall Sign,false,true
+minecraft:potted_crimson_fungus,minecraft_potted_crimson_fungus,Potted Crimson Fungus,false,true
+minecraft:potted_warped_fungus,minecraft_potted_warped_fungus,Potted Warped Fungus,false,true
+minecraft:potted_crimson_roots,minecraft_potted_crimson_roots,Potted Crimson Roots,false,true
+minecraft:potted_warped_roots,minecraft_potted_warped_roots,Potted Warped Roots,false,true
+minecraft:candle_cake,minecraft_candle_cake,Candle Cake,false,true
+minecraft:white_candle_cake,minecraft_white_candle_cake,White Candle Cake,false,true
+minecraft:orange_candle_cake,minecraft_orange_candle_cake,Orange Candle Cake,false,true
+minecraft:magenta_candle_cake,minecraft_magenta_candle_cake,Magenta Candle Cake,false,true
+minecraft:light_blue_candle_cake,minecraft_light_blue_candle_cake,Light Blue Candle Cake,false,true
+minecraft:yellow_candle_cake,minecraft_yellow_candle_cake,Yellow Candle Cake,false,true
+minecraft:lime_candle_cake,minecraft_lime_candle_cake,Lime Candle Cake,false,true
+minecraft:pink_candle_cake,minecraft_pink_candle_cake,Pink Candle Cake,false,true
+minecraft:gray_candle_cake,minecraft_gray_candle_cake,Gray Candle Cake,false,true
+minecraft:light_gray_candle_cake,minecraft_light_gray_candle_cake,Light Gray Candle Cake,false,true
+minecraft:cyan_candle_cake,minecraft_cyan_candle_cake,Cyan Candle Cake,false,true
+minecraft:purple_candle_cake,minecraft_purple_candle_cake,Purple Candle Cake,false,true
+minecraft:blue_candle_cake,minecraft_blue_candle_cake,Blue Candle Cake,false,true
+minecraft:brown_candle_cake,minecraft_brown_candle_cake,Brown Candle Cake,false,true
+minecraft:green_candle_cake,minecraft_green_candle_cake,Green Candle Cake,false,true
+minecraft:red_candle_cake,minecraft_red_candle_cake,Red Candle Cake,false,true
+minecraft:black_candle_cake,minecraft_black_candle_cake,Black Candle Cake,false,true
+minecraft:powder_snow,minecraft_powder_snow,Powder Snow,false,true
+minecraft:cave_vines,minecraft_cave_vines,Cave Vines,false,true
+minecraft:cave_vines_plant,minecraft_cave_vines_plant,Cave Vines Plant,false,true
+minecraft:big_dripleaf_stem,minecraft_big_dripleaf_stem,Big Dripleaf Stem,false,true
+minecraft:potted_azalea_bush,minecraft_potted_azalea_bush,Potted Azalea Bush,false,true
+minecraft:potted_flowering_azalea_bush,minecraft_potted_flowering_azalea_bush,Potted Flowering Azalea Bush,false,true
