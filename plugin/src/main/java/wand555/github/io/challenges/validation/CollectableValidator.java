@@ -36,7 +36,13 @@ public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extend
     }
 
     private boolean hasValidCode(CollectableEntryConfig collectable) {
-        return dataSource.stream().anyMatch(eDataSourceJSON -> eDataSourceJSON.getCode().equals(collectable.getCollectableName()) && predicate.test(eDataSourceJSON));
+        return dataSource.stream()
+                .filter(eDataSourceJSON -> codeExists(eDataSourceJSON.getCode()))
+                .anyMatch(predicate);
+    }
+
+    private boolean codeExists(String code) {
+        return dataSource.stream().anyMatch(eDataSourceJSON -> eDataSourceJSON.getCode().equals(code));
     }
 
     private void addCodeViolationToBuilder(ValidationResult.ValidationResultBuilder builder, String illegalCode) {

@@ -4,8 +4,12 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
+import wand555.github.io.challenges.exceptions.UnskippableException;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -45,6 +49,40 @@ public class ChallengeManager implements StatusInfo {
 
         timerRunnable = new TimerRunnable(context);
         timerRunnable.start();
+    }
+
+    public void onSkip(Player player) {
+        List<Skippable> skippables = goals.stream().filter(Skippable.class::isInstance).map(Skippable.class::cast).toList();
+        if(skippables.isEmpty()) {
+            player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().commandsResourceBundle(),
+                    "skip.empty.message"
+            ));
+            return;
+        }
+        if(skippables.size() > 1) {
+            player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().commandsResourceBundle(),
+                    "skip.toomany.message"
+            ));
+            return;
+        }
+        try {
+            skippables.get(0).onSkip(player);
+            player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().commandsResourceBundle(),
+                    "skip.success.message"
+            ));
+        } catch (UnskippableException e) {
+            player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().commandsResourceBundle(),
+                    "skip.unskippable.message"
+            ));
+        }
     }
 
     public boolean isRunning() {

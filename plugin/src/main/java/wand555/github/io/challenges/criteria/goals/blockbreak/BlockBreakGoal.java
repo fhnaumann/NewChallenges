@@ -2,6 +2,7 @@ package wand555.github.io.challenges.criteria.goals.blockbreak;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
@@ -51,5 +52,10 @@ public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements
     @Override
     protected Function<BlockBreakData, Material> data2MainElement() {
         return BlockBreakData::broken;
+    }
+
+    @Override
+    protected BlockBreakData constructForSkipFrom(Map.Entry<Material, Collect> currentlyToCollect, Player player) {
+        return new BlockBreakData(currentlyToCollect.getKey(), player);
     }
 }

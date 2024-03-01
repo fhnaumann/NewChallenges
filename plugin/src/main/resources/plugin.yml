@@ -11,6 +11,8 @@ commands:
     description: abc
   status:
     description: abc
+  skip:
+    description: abc
   progress:
     description: abc
 libraries:

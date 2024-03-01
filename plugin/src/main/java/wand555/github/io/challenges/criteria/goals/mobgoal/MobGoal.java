@@ -4,6 +4,7 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.generated.GoalsConfig;
@@ -80,12 +81,12 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     }
 
     @Override
-    public void onSkip() {
-
+    protected Function<MobData, EntityType> data2MainElement() {
+        return MobData::entityInteractedWith;
     }
 
     @Override
-    protected Function<MobData, EntityType> data2MainElement() {
-        return MobData::entityInteractedWith;
+    protected MobData constructForSkipFrom(Map.Entry<EntityType, Collect> currentlyToCollect, Player player) {
+        return new MobData(currentlyToCollect.getKey(), player);
     }
 }

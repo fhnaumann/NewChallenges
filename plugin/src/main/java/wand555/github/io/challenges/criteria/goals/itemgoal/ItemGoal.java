@@ -75,11 +75,6 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
     }
 
     @Override
-    public void onSkip() {
-
-    }
-
-    @Override
     protected Function<ItemData, Material> data2MainElement() {
         return data -> data.itemStackInteractedWith().getType();
     }
@@ -92,5 +87,11 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
             collect.setCurrentAmount(newCurrentAmount);
             return collect;
         });
+    }
+
+    @Override
+    protected ItemData constructForSkipFrom(Map.Entry<Material, Collect> currentlyToCollect, Player player) {
+        int amountRemaining = currentlyToCollect.getValue().getAmountNeeded()-currentlyToCollect.getValue().getCurrentAmount();
+        return new ItemData(new ItemStack(currentlyToCollect.getKey(), amountRemaining), player);
     }
 }

@@ -4,8 +4,10 @@ import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.translation.Translatable;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
+import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
@@ -20,7 +22,7 @@ import java.util.function.Function;
  * @param <T> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  * @param <S> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal implements Triggable<S>, BossBarDisplay<Map.Entry<T, Collect>> {
+public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal implements Triggable<S>, Skippable, BossBarDisplay<Map.Entry<T, Collect>> {
 
     protected final GoalCollector<T> goalCollector;
     protected final GoalMessageHelper<S,T> messageHelper;
@@ -114,6 +116,25 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
             return collect;
         });
     }
+
+    @Override
+    public void onSkip(Player player) throws UnskippableException {
+        if(!fixedOrder) {
+            throw new UnskippableException();
+        }
+        goalCollector.getCurrentlyToCollect().getValue().setCurrentAmount(goalCollector.getCurrentlyToCollect().getValue().getAmountNeeded());
+        if(determineComplete()) {
+            // there are no other collects left to complete -> skipping the active collect completes the goal
+            onComplete();
+        }
+        else {
+            Map.Entry<T, Collect> next = goalCollector.next();
+            updateBossBar(next);
+        }
+
+    }
+
+    protected abstract S constructForSkipFrom(Map.Entry<T, Collect> currentlyToCollect, Player player);
 
     @Override
     public BossBar createBossBar(Map.Entry<T, Collect> data) {

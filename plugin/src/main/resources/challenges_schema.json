@@ -125,6 +125,9 @@
                 },
                 "noDeath": {
                     "$ref": "#/definitions/NoDeathRuleConfig"
+                },
+                "noMobKill": {
+                    "$ref": "#/definitions/NoMobKillRuleConfig"
                 }
             },
             "type": "object"
@@ -307,6 +310,23 @@
         "NoDeathRuleConfig": {
             "additionalProperties": false,
             "properties": {
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "type": "object"
+        },
+        "NoMobKillRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of entity types that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
                 }

@@ -148,9 +148,9 @@ public class ModelMapper {
     }
 
     @NotNull
-    public static Collection<Material> str2Mat(@NotNull Collection<String> matsAsStrings, @NotNull Predicate<Material> additionalConstraints) {
+    public static Collection<Material> str2Mat(@NotNull Collection<String> matsAsCodes, @NotNull Predicate<Material> additionalConstraints) {
         List<String> failedToMap = new ArrayList<>();
-        List<Material> mapped = matsAsStrings.stream()
+        List<Material> mapped = matsAsCodes.stream()
                 .map(s -> {
                     try {
                         return str2Mat(s, additionalConstraints);

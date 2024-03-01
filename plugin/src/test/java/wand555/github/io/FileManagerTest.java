@@ -43,7 +43,7 @@ public class FileManagerTest {
         JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
         List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
         List<EntityTypeJSON> entityTypeJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), EntityTypeDataSource.class).getData();
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null), new DataSourceContext(materialJSONS, entityTypeJSONS), schemaRoot, new ChallengeManager());
+        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null, null), new DataSourceContext(materialJSONS, entityTypeJSONS), schemaRoot, new ChallengeManager());
         mapper = new ModelMapper(context);
 
 

@@ -39,6 +39,11 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withCommandsResourceBundle(ResourceBundle commandsResourceBundle) {
+            resourceBundleContextBuilder.withCommandsResourceBundle(commandsResourceBundle);
+            return this;
+        }
+
         public Builder withMiscResourceBundle(ResourceBundle miscResourceBundle) {
             resourceBundleContextBuilder.withMiscResourceBundle(miscResourceBundle);
             return this;

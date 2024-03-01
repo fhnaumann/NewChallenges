@@ -87,6 +87,11 @@ public class ComponentUtil {
         return formatChatMessage(plugin, bundle, key, Map.of(), prefix);
     }
 
+    public static Component formatChallengesPrefixChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
+        return formatChatMessage(plugin, bundle, key, Map.of(), false, true);
+    }
+
+
     public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders) {
         return formatChatMessage(plugin, bundle, key, placeholders, true);
     }
@@ -96,6 +101,11 @@ public class ComponentUtil {
     }
     @NotNull
     public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix) {
+        return formatChatMessage(plugin, bundle, key, placeholders, prefix, false);
+    }
+
+    @NotNull
+    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix, boolean challengesPrefix) {
         Objects.requireNonNull(bundle);
         Objects.requireNonNull(key);
         Objects.requireNonNull(placeholders);
@@ -110,13 +120,14 @@ public class ComponentUtil {
 
         Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(rawText, mappedPlaceholders);
 
+        Component baseName = Component.empty();
+        if(challengesPrefix) {
+            baseName = baseName.append(Component.text("[Challenges]: ", TextColor.fromHexString(prefixColor)));
+        }
         if(prefix) {
-            Component baseName = getBaseName(plugin, bundle, key, prefixColor);
-            return baseName.append(mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor)));
+            baseName = baseName.append(getBaseName(plugin, bundle, key, prefixColor));
         }
-        else {
-            return mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor));
-        }
+        return baseName.append(mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor)));
     }
 
     private static Component getBaseName(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull String prefixColor) {
