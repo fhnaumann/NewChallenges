@@ -44,12 +44,25 @@ public class ChallengeManager implements StatusInfo {
         }
         gameState = GameState.RUNNING;
 
-        Challenges.getPlugin(Challenges.class).getLogger().info("starting");
+        Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenge.start.chat"
+        );
+        context.plugin().getServer().broadcast(toSend);
         goals.forEach(BaseGoal::onStart);
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
         timerRunnable = new TimerRunnable(context);
         timerRunnable.start();
+    }
+
+    public void pause() {
+        gameState = GameState.PAUSED;
+    }
+
+    public void resume() {
+        gameState = GameState.RUNNING;
     }
 
     public void onSkip(Player player) {
@@ -113,6 +126,7 @@ public class ChallengeManager implements StatusInfo {
 
     public void endChallenge() {
         Bukkit.getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
+        gameState = GameState.ENDED;
         Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
                         context.plugin(),
                         context.resourceBundleContext().miscResourceBundle(),

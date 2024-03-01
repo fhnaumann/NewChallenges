@@ -11,10 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class TimerRunnable implements Consumer<BukkitTask> {
-
-
-
+public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
     private final Context context;
 
     private long timer;
@@ -30,12 +27,20 @@ public class TimerRunnable implements Consumer<BukkitTask> {
 
     @Override
     public void accept(BukkitTask bukkitTask) {
-        timer += 1;
-
-        Map<TimerUtil.TimeParts, String> mappedTime = TimerUtil.format(timer);
-
-        Component formattedTime = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().miscResourceBundle(), "timer.format", mappedTime);
-
+        Component formattedTime;
+        if(context.challengeManager().isRunning()) {
+            timer += 1;
+            Map<TimerUtil.TimeParts, String> mappedTime = TimerUtil.format(timer);
+            formattedTime = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().miscResourceBundle(), "timer.format", mappedTime);
+        }
+        else {
+            formattedTime = ComponentUtil.formatChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "timer.paused",
+                    false
+            );
+        }
         context.plugin().getServer().getOnlinePlayers().forEach(player -> {
             player.sendActionBar(formattedTime);
         });
@@ -44,5 +49,10 @@ public class TimerRunnable implements Consumer<BukkitTask> {
 
     public long getTimer() {
         return timer;
+    }
+
+    @Override
+    public Integer toGeneratedJSONClass() {
+        return (int) timer;
     }
 }

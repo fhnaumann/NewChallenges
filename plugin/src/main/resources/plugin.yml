@@ -13,6 +13,10 @@ commands:
     description: abc
   skip:
     description: abc
+  pause:
+    description: abc
+  resume:
+    description: abc
   progress:
     description: abc
 libraries:

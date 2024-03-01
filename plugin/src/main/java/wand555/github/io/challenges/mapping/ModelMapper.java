@@ -99,9 +99,9 @@ public class ModelMapper {
         return goals;
     }
 
-    public static <T extends Enum<T>> Map<T, Collect> str2Collectable(List<CollectableEntryConfig> collectables, Class<T> enumType) {
+    public static <T extends Enum<T>> LinkedHashMap<T, Collect> str2Collectable(List<CollectableEntryConfig> collectables, Class<T> enumType) {
         List<String> failedToMap = new ArrayList<>();
-        Map<T, Collect> mapped = collectables.stream()
+        LinkedHashMap<T, Collect> mapped = collectables.stream()
                 .map(collectable -> {
                     try {
                         T matched = Enum.valueOf(enumType, collectable.getCollectableName().toUpperCase()); // code is always lowercase - enum is always uppercase
@@ -114,7 +114,7 @@ public class ModelMapper {
                         return Map.entry((T)EntityType.BAT, new Collect(0));
                     }
                 })
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
         if(!failedToMap.isEmpty()) {
             throw new RuntimeException(String.format("Failed to map material string(s) to valid enum: %s", String.join(",", failedToMap)));
         }

@@ -43,6 +43,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         getCommand("save").setExecutor(this);
         getCommand("status").setExecutor(this);
         getCommand("skip").setExecutor(this);
+        getCommand("pause").setExecutor(this);
+        getCommand("resume").setExecutor(this);
     }
 
     @Override
@@ -89,6 +91,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         // command for skipping
         else if(command.getName().equalsIgnoreCase("skip")) {
             manager.onSkip(player);
+        }
+        else if(command.getName().equalsIgnoreCase("pause")) {
+            manager.pause();
+        }
+        else if(command.getName().equalsIgnoreCase("resume")) {
+            manager.resume();
         }
         if(command.getName().equalsIgnoreCase("test")) {
             Bukkit.broadcast(Component.text("123"));
