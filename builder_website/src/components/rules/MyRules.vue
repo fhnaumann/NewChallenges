@@ -60,7 +60,13 @@
                 v-if="activeRule.id === 'noBlockBreak'"
                 :rule="activeRule"
               />
-              <NoBlockPlace
+              <NoMobKillRule
+                v-if="activeRule.id === 'noMobKill'" :rule="activeRule"
+              />
+              <NoItemRule
+                v-if="activeRule.id === 'noItem'" :rule="activeRule"
+              />
+              <!--NoBlockPlace
                 v-if="activeRule.id === 'noBlockPlace'" :rule="activeRule" />
               <NoDamage
                 v-if="activeRule.id === 'noDamage'"
@@ -69,7 +75,7 @@
               <NoDeath
                 v-if="activeRule.id === 'noDeath'"
                 :rule="activeRule"
-              />
+              /-->
             </AccordionTab>
           </Accordion>
         </ScrollPanel>
@@ -105,6 +111,9 @@ import DefaultRule from './DefaultRule.vue'
 import DefaultPunishableRule from './DefaultPunishableRule.vue'
 import { useConfirm } from "primevue/useconfirm";
 import NoBlockPlace from './NoBlockPlace.vue'
+import NoMobKillRule from './NoMobKillRule.vue'
+import { rule } from 'postcss'
+import NoItemRule from './NoItemRule.vue'
 
 const RuleSelector = defineAsyncComponent(() => import('./RuleSelector.vue'))
 const config = useConfigStore().model

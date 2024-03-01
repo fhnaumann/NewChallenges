@@ -235,7 +235,7 @@
                     "type": "boolean"
                 },
                 "mobs": {
-                    "default": "[\"collectableName\": \"ENDER_DRAGON\", \"collectableData\": {\"amountNeeded\": 1}]",
+                    "default": [],
                     "description": "The mobs that need to be killed to beat this goal.",
                     "items": {
                         "$ref": "#/definitions/CollectableEntryConfig"

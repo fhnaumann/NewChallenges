@@ -115,6 +115,16 @@ const rulesView: RulesView = {
             id: 'noDeath',
             label: "NoDeath",
             description: 'Dying is prohibited!'
+        },
+        noItem: {
+            id: 'noItem',
+            label: "NoItem",
+            description: 'Picking up items is prohibited!'
+        },
+        noMobKill: {
+            id: 'noMobKill',
+            label: "NoMobKill",
+            description: 'Killing mobs is prohibited!'
         }
     }
 }
@@ -125,12 +135,11 @@ export const useRulesViewStore = defineStore('rulesView', {
 
 const goalsView: GoalsView = {
     allgoals: {
-        /*
         mobGoal: {
             id: 'mobGoal',
             description: 'TODO MobGoal',
             label: 'MobGoal',
-        },*/
+        },
         itemGoal: {
             id: 'itemGoal',
             description: 'TODO ItemGoal',

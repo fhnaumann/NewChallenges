@@ -43,7 +43,6 @@
                   </span>
                 </template>
                 <MobGoalVue
-                  ref="mobGoal"
                   v-if="activeGoal.id === 'mobGoal'"
                 />
                 <ItemGoalVue v-if="activeGoal.id === 'itemGoal'"/>

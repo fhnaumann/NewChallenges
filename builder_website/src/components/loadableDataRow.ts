@@ -1,6 +1,7 @@
 import { computed, defineComponent, ref, toRefs, watch } from "vue";
 import type { Model } from "./model/model";
 import materials from '../assets/materials.json'
+import entities from '../assets/entity_types.json'
 
 /**
  * A "data row" containing the necessary information for a "single point of information".
@@ -28,9 +29,14 @@ export interface MaterialDataRow extends DataRow {
     is_block: boolean;
 }
 
+export interface EntityTypeDataRow extends DataRow {
+    /* Nothing to add for now */
+}
+
 export type Getter = (model: Model) => DataRow[]
 export type Setter = (model: Model, value: DataRow[]) => void
 
 export const allMaterialData: MaterialDataRow[] = materials.data;
 export const allBlockMaterialData: MaterialDataRow[] = materials.data.filter(mat => mat.is_block)
 export const allItemMaterialData: MaterialDataRow[] = materials.data.filter(mat => mat.is_item)
+export const allEntityTypeData: EntityTypeDataRow[] = entities.data

@@ -13,7 +13,7 @@ export interface MobGoalConfig extends BaseGoalConfig, Orderable {
     /**
      * The mobs that need to be killed to beat this goal.
      * 
-     * @default ["collectableName": "ENDER_DRAGON", "collectableData": {"amountNeeded": 1}]
+     * @default []
      */
     mobs?: CollectableEntryConfig[]
 }
