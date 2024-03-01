@@ -17,7 +17,7 @@ public class NoMobKillRuleMessageHelper extends RuleMessageHelper<MobData, Entit
     public Map<String, Component> additionalViolationPlaceholders(MobData data) {
         return Map.of(
                 "player", Component.text(data.player().getName()),
-                "block", Component.translatable(data.entityInteractedWith())
+                "entity", Component.translatable(data.entityInteractedWith())
         );
     }
 

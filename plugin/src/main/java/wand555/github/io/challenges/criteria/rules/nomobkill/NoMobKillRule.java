@@ -2,6 +2,8 @@ package wand555.github.io.challenges.criteria.rules.nomobkill;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.Trigger;
@@ -10,6 +12,7 @@ import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.NoMobKillRuleConfig;
+import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
@@ -17,18 +20,16 @@ import wand555.github.io.challenges.types.mob.MobType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NoMobKillRule extends PunishableRule implements Triggable<MobData>, Storable<NoMobKillRuleConfig> {
+public class NoMobKillRule extends PunishableRule<MobData, EntityType> implements Storable<NoMobKillRuleConfig> {
 
     private final MobType mobType;
-    private final NoMobKillRuleMessageHelper messageHelper;
 
-    private final Set<Material> exemptions;
+    private final Set<EntityType> exemptions;
 
     public NoMobKillRule(Context context, NoMobKillRuleConfig config, NoMobKillRuleMessageHelper messageHelper) {
-        super(context);
+        super(context, config.getPunishments(), messageHelper);
         this.mobType = new MobType(context, triggerCheck(), trigger());
-        this.messageHelper = messageHelper;
-        this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), material -> true));
+        this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2EntityType(context.dataSourceContext().entityTypeJSONList(), config.getExemptions())) : new HashSet<>();
     }
 
     @Override
@@ -43,16 +44,19 @@ public class NoMobKillRule extends PunishableRule implements Triggable<MobData>,
 
     @Override
     public NoMobKillRuleConfig toGeneratedJSONClass() {
-        return null;
+        return new NoMobKillRuleConfig(
+                exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(),
+                toPunishmentsConfig()
+        );
     }
 
     @Override
     public TriggerCheck<MobData> triggerCheck() {
-        return null;
+        return data -> !exemptions.contains(data.entityInteractedWith());
     }
 
     @Override
-    public Trigger<MobData> trigger() {
-        return null;
+    protected Player playerFrom(MobData data) {
+        return data.player();
     }
 }

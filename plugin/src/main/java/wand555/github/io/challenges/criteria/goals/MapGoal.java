@@ -134,8 +134,6 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
 
     }
 
-    protected abstract S constructForSkipFrom(Map.Entry<T, Collect> currentlyToCollect, Player player);
-
     @Override
     public BossBar createBossBar(Map.Entry<T, Collect> data) {
         if(fixedOrder) {

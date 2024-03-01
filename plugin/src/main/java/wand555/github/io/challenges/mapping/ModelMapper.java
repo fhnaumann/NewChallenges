@@ -14,6 +14,11 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakMessageHelper;
+import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
+import wand555.github.io.challenges.criteria.rules.noitem.NoItemRuleMessageHelper;
+import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
+import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRuleMessageHelper;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
@@ -128,16 +133,23 @@ public class ModelMapper {
         }
         if(enabledRulesConfig.getNoBlockBreak() != null) {
             NoBlockBreakRuleConfig noBlockBreakRuleConfig = enabledRulesConfig.getNoBlockBreak();
-            rules.add(new NoBlockBreakRule(context, noBlockBreakRuleConfig));
+            rules.add(new NoBlockBreakRule(context, noBlockBreakRuleConfig, new NoBlockBreakMessageHelper(context)));
         }
         if(enabledRulesConfig.getNoBlockPlace() != null) {
             NoBlockPlaceRuleConfig noBlockPlaceRuleConfig = enabledRulesConfig.getNoBlockPlace();
+        }
+        if(enabledRulesConfig.getNoMobKill() != null) {
+            rules.add(new NoMobKillRule(context, enabledRulesConfig.getNoMobKill(), new NoMobKillRuleMessageHelper(context)));
+        }
+        if(enabledRulesConfig.getNoItem() != null) {
+            rules.add(new NoItemRule(context, enabledRulesConfig.getNoItem(), new NoItemRuleMessageHelper(context)));
         }
 
 
         return rules;
     }
 
+    @Deprecated
     @Nullable
     public static Material str2Mat(@NotNull String matAsString, @NotNull Predicate<Material> additionalConstraints) {
         Material matched = Material.matchMaterial(matAsString);
@@ -147,6 +159,7 @@ public class ModelMapper {
         return matched;
     }
 
+    @Deprecated
     @NotNull
     public static Collection<Material> str2Mat(@NotNull Collection<String> matsAsCodes, @NotNull Predicate<Material> additionalConstraints) {
         List<String> failedToMap = new ArrayList<>();
@@ -164,6 +177,30 @@ public class ModelMapper {
             throw new RuntimeException(String.format("Failed to map material string(s) to valid Material enum (or they are not valid at this point): %s", String.join(", ", failedToMap)));
         }
         return mapped;
+    }
+
+    @NotNull
+    public static Collection<Material> str2Materials(@NotNull Collection<MaterialJSON> dataSource, @NotNull Collection<String> matsAsCodes) {
+        return matsAsCodes.stream()
+                .map(code -> str2Material(dataSource, code))
+                .map(MaterialJSON::toEnum)
+                .toList();
+    }
+
+    public static MaterialJSON str2Material(@NotNull Collection<MaterialJSON> dataSource, @NotNull String matAsCode) {
+        return dataSource.stream().filter(matJSON -> matJSON.getCode().equals(matAsCode)).findFirst().orElseThrow();
+    }
+
+    @NotNull
+    public static Collection<EntityType> str2EntityType(@NotNull Collection<EntityTypeJSON> dataSource, @NotNull Collection<String> entityTypesAsCodes) {
+        return entityTypesAsCodes.stream()
+                .map(code -> str2EntityType(dataSource, code))
+                .map(EntityTypeJSON::toEnum)
+                .toList();
+    }
+
+    public static EntityTypeJSON str2EntityType(@NotNull Collection<EntityTypeJSON> dataSource, @NotNull String entityTypeAsCode) {
+        return dataSource.stream().filter(entityTypeJSON -> entityTypeJSON.getCode().equals(entityTypeAsCode)).findFirst().orElseThrow();
     }
 
     public static List<Punishment> mapToPunishments(@NotNull Context context, @Nullable PunishmentsConfig punishmentsConfig) {

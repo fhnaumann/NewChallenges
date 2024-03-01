@@ -126,6 +126,9 @@
                 "noDeath": {
                     "$ref": "#/definitions/NoDeathRuleConfig"
                 },
+                "noItem": {
+                    "$ref": "#/definitions/NoItemCollectRuleConfig"
+                },
                 "noMobKill": {
                     "$ref": "#/definitions/NoMobKillRuleConfig"
                 }
@@ -310,6 +313,23 @@
         "NoDeathRuleConfig": {
             "additionalProperties": false,
             "properties": {
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "type": "object"
+        },
+        "NoItemCollectRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
                 }

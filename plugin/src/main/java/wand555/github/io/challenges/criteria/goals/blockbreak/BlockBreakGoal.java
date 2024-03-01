@@ -53,9 +53,4 @@ public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements
     protected Function<BlockBreakData, Material> data2MainElement() {
         return BlockBreakData::broken;
     }
-
-    @Override
-    protected BlockBreakData constructForSkipFrom(Map.Entry<Material, Collect> currentlyToCollect, Player player) {
-        return new BlockBreakData(currentlyToCollect.getKey(), player);
-    }
 }

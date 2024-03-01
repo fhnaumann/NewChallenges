@@ -1,8 +1,13 @@
 package wand555.github.io.challenges.mapping;
 
-public interface DataSourceJSON<E extends Enum<E>> {
+import org.bukkit.Keyed;
 
+public interface DataSourceJSON<E extends Enum<E>> {
     E toEnum();
+
+    static <T extends Keyed> String toCode(T dataSourceElement) {
+        return dataSourceElement.key().value();
+    }
 
     String getCode();
 }

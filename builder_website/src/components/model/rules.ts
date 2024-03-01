@@ -1,4 +1,6 @@
 import type { NoBlockBreakRuleConfig } from "./blockbreak"
+import type { NoItemCollectRuleConfig } from "./item"
+import type { NoMobKillRuleConfig } from "./mob"
 import type { PunishmentsConfig } from "./punishments"
 
 export type RuleName = keyof EnabledRules
@@ -9,6 +11,8 @@ export interface RulesConfig {
 }
 export interface EnabledRules {
     noBlockBreak?: NoBlockBreakRuleConfig,
+    noMobKill?: NoMobKillRuleConfig,
+    noItem?: NoItemCollectRuleConfig,
     noBlockPlace?: NoBlockPlaceRuleConfig,
     noCrafting?: NoCraftingRuleConfig,
     noDamage?: NoDamageRuleConfig,

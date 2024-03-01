@@ -75,6 +75,7 @@ public class FileManager {
                         .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
                         .withSchemaRoot(schemaRoot)
                         .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
+                        .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
                         .withChallengeManager(new ChallengeManager())
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager

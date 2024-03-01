@@ -2,6 +2,7 @@ package wand555.github.io.challenges.mapping;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
 public record EntityTypeJSON(
@@ -10,7 +11,11 @@ public record EntityTypeJSON(
         @JsonProperty("img_name") String imgName) implements DataSourceJSON<EntityType> {
     @Override
     public EntityType toEnum() {
-        return null;
+        return Enum.valueOf(EntityType.class, code.toUpperCase());
+    }
+
+    public static String toCode(EntityType entityType) {
+        return entityType.key().value();
     }
 
     @Override

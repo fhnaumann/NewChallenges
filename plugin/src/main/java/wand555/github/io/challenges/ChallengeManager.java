@@ -10,6 +10,7 @@ import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.exceptions.UnskippableException;
+import wand555.github.io.challenges.utils.ActionHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -112,6 +113,12 @@ public class ChallengeManager implements StatusInfo {
 
     public void endChallenge() {
         Bukkit.getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
+        Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().miscResourceBundle(),
+                        "challenge.beaten.chat"
+                );
+        context.plugin().getServer().broadcast(toSend);
     }
 
     public boolean allGoalsCompleted() {

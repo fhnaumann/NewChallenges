@@ -55,7 +55,7 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
         }
 
         public Builder withEntityTypeJSONList(InputStream entityTypeJSONInputStream) {
-            dataSourceContextBuilder.withMaterialJSONList(entityTypeJSONInputStream);
+            dataSourceContextBuilder.withEntityTypeJSONList(entityTypeJSONInputStream);
             return this;
         }
 

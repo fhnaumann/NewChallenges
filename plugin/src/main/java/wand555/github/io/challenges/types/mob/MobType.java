@@ -13,6 +13,7 @@ public class MobType extends Type<MobData> implements Listener {
 
     public MobType(Context context, TriggerCheck<MobData> triggerCheck, Trigger<MobData> whenTriggered) {
         super(context, triggerCheck, whenTriggered);
+        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @EventHandler

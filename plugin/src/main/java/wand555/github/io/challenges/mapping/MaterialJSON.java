@@ -12,7 +12,7 @@ public record MaterialJSON(
 
     @Override
     public Material toEnum() {
-        return null;
+        return Enum.valueOf(Material.class, code.toUpperCase());
     }
 
     @Override

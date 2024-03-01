@@ -70,7 +70,7 @@ public class NoBlockBreakRuleTest {
         ChallengeManager challengeManager = new ChallengeManager();
         context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager);
         challengeManager.setContext(context);
-        rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of(Material.STONE.toString()), null)));
+        rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of("stone"), null), new NoBlockBreakMessageHelper(context)));
 
     }
 
@@ -124,7 +124,7 @@ public class NoBlockBreakRuleTest {
 
         assertTrue(emptyNoBlockBreakRuleConfig.getExemptions().isEmpty());
 
-        NoBlockBreakRule emptyNoBlockBreakRule = new NoBlockBreakRule(context, emptyNoBlockBreakRuleConfig);
+        NoBlockBreakRule emptyNoBlockBreakRule = new NoBlockBreakRule(context, emptyNoBlockBreakRuleConfig, new NoBlockBreakMessageHelper(context));
         ModelMapper.map2ModelClasses(context, ChallengesSchema);
 
         assertEquals(emptyNoBlockBreakRule, context.challengeManager().getRules().get(0));
@@ -149,7 +149,7 @@ public class NoBlockBreakRuleTest {
 
         assertEquals(List.of("STONE", "DIRT"), complexNoBlockBreakRuleConfig.getExemptions());
 
-        NoBlockBreakRule compelxNoBlockBreakRule = new NoBlockBreakRule(context, complexNoBlockBreakRuleConfig);
+        NoBlockBreakRule compelxNoBlockBreakRule = new NoBlockBreakRule(context, complexNoBlockBreakRuleConfig, new NoBlockBreakMessageHelper(context));
         ModelMapper.map2ModelClasses(context, ChallengesSchema);
 
         assertEquals(compelxNoBlockBreakRule, context.challengeManager().getRules().get(0));
@@ -215,7 +215,7 @@ public class NoBlockBreakRuleTest {
         // But #toGeneratedJSONClass converts from a set to a list, therefore any ordering is lost, hence it is always being sorted.
         List<String> exemptions = Stream.of("STONE", "DIRT").sorted().toList();
         NoBlockBreakRuleConfig config = new NoBlockBreakRuleConfig(exemptions, null);
-        NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(context, config);
+        NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(context, config, new NoBlockBreakMessageHelper(context));
         assertEquals(config, noBlockBreakRule.toGeneratedJSONClass());
     }
 }

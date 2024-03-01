@@ -1,5 +1,6 @@
 import type { BlockBreakGoalConfig } from "./blockbreak"
 import type { ItemGoalConfig } from "./item"
+import type { MobGoalConfig } from "./mob"
 import type { Base } from "./model"
 
 export type GoalName = keyof GoalsConfig
@@ -95,12 +96,4 @@ export interface CollectableEntryConfig {
      * Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable.
      */
     completion?: CompletionConfig
-}
-export interface MobGoalConfig extends BaseGoalConfig, Orderable {
-    /**
-     * The mobs that need to be killed to beat this goal.
-     * 
-     * @default ["collectableName": "ENDER_DRAGON", "collectableData": {"amountNeeded": 1}]
-     */
-    mobs?: CollectableEntryConfig[]
 }

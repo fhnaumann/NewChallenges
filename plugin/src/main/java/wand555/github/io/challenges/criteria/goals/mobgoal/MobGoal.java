@@ -84,9 +84,4 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     protected Function<MobData, EntityType> data2MainElement() {
         return MobData::entityInteractedWith;
     }
-
-    @Override
-    protected MobData constructForSkipFrom(Map.Entry<EntityType, Collect> currentlyToCollect, Player player) {
-        return new MobData(currentlyToCollect.getKey(), player);
-    }
 }
