@@ -3,7 +3,6 @@ package wand555.github.io.challenges.criteria.goals.mobgoal;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -19,8 +18,6 @@ import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,10 +25,10 @@ import static org.mockito.Mockito.*;
 
 public class MobGoalJSONTest {
 
-    private static ResourceBundleContext resourceBundleContext;
+    private static ResourceBundleContext resourceBundleContextMock;
 
-    private static JsonNode schemaRoot;
-    private static DataSourceContext dataSourceContext;
+    private static JsonNode schemaRootMock;
+    private static DataSourceContext dataSourceContextMock;
 
     private ServerMock server;
     private Challenges plugin;
@@ -44,12 +41,12 @@ public class MobGoalJSONTest {
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundle goalResourceBundle = ResourceBundle.getBundle("goals", Locale.ENGLISH, UTF8ResourceBundleControl.get());
-        resourceBundleContext = mock(ResourceBundleContext.class);
-        when(resourceBundleContext.goalResourceBundle()).thenReturn(goalResourceBundle);
-        schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
+        resourceBundleContextMock = mock(ResourceBundleContext.class);
+        when(resourceBundleContextMock.goalResourceBundle()).thenReturn(goalResourceBundle);
+        schemaRootMock = mock(JsonNode.class);
         List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
-        dataSourceContext = mock(DataSourceContext.class);
-        when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
+        dataSourceContextMock = mock(DataSourceContext.class);
+        when(dataSourceContextMock.materialJSONList()).thenReturn(materialJSONS);
     }
 
     @BeforeEach
@@ -57,8 +54,8 @@ public class MobGoalJSONTest {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
 
-        ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, manager);
+        ChallengeManager managerMock = mock(ChallengeManager.class);
+        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, schemaRootMock, managerMock);
 
         messageHelperMock = mock(MobGoalMessageHelper.class, RETURNS_DEFAULTS);
 
@@ -86,7 +83,27 @@ public class MobGoalJSONTest {
 
     @Test
     public void testMultipleMobsMobGoalJSON2Model() throws IOException {
-        URL multipleMobsMobGoalJSON = MobGoalJSONTest.class.getResource("multiple_mobs_mob_goal.json");
+        String multipleMobsMobGoalJSON =
+                """
+                {
+                  "mobs": [
+                    {
+                      "collectableName": "pig",
+                      "collectableData": {
+                        "amountNeeded": 2,
+                        "currentAmount": 0
+                      }
+                    },
+                    {
+                      "collectableName": "wither_skeleton",
+                      "collectableData": {
+                        "amountNeeded": 3,
+                        "currentAmount": 1
+                      }
+                    }
+                  ]
+                }
+                """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleMobsMobGoalJSON, MobGoalConfig.class));
         MobGoalConfig config = objectMapper.readValue(multipleMobsMobGoalJSON, MobGoalConfig.class);
         MobGoal mobGoal = new MobGoal(context, config, messageHelperMock);

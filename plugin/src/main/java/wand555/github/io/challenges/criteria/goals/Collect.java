@@ -52,4 +52,12 @@ public class Collect implements Storable<CollectableDataConfig> {
     public int hashCode() {
         return Objects.hash(amountNeeded, currentAmount);
     }
+
+    @Override
+    public String toString() {
+        return "Collect{" +
+                "amountNeeded=" + amountNeeded +
+                ", currentAmount=" + currentAmount +
+                '}';
+    }
 }

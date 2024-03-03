@@ -1,13 +1,15 @@
 package wand555.github.io.challenges.validation;
 
+import org.bukkit.Keyed;
 import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extends Enum<E>> extends ModelValidator {
+public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extends Keyed> extends ModelValidator {
 
     private final List<T> dataSource;
     private final Predicate<T> predicate;
@@ -36,9 +38,7 @@ public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extend
     }
 
     private boolean hasValidCode(CollectableEntryConfig collectable) {
-        return dataSource.stream()
-                .filter(eDataSourceJSON -> codeExists(eDataSourceJSON.getCode()))
-                .anyMatch(predicate);
+        return codeExists(collectable.getCollectableName()) && predicate.test(DataSourceJSON.fromCode(dataSource, collectable.getCollectableName()));
     }
 
     private boolean codeExists(String code) {

@@ -25,7 +25,6 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
         super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getMobs(), EntityType.class, messageHelper);
         this.mobType = new MobType(context, triggerCheck(), trigger());
-        context.plugin().getServer().getPluginManager().registerEvents(mobType, context.plugin());
     }
 
     @Override

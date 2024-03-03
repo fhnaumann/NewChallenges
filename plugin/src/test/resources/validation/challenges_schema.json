@@ -60,12 +60,37 @@
                 "collectableName": {
                     "description": "The name of the collectable. This could, for example, be \"PIG\" (entity), \"STONE\" (material).",
                     "type": "string"
+                },
+                "completion": {
+                    "$ref": "#/definitions/CompletionConfig",
+                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
                 }
             },
             "required": [
                 "collectableData",
                 "collectableName"
             ],
+            "type": "object"
+        },
+        "CompletionConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "contributors": {
+                    "$ref": "#/definitions/ContributorsConfig",
+                    "description": "The player (names) that contributed to completing this collectable."
+                },
+                "whenCollectedSeconds": {
+                    "default": -1,
+                    "description": "The time in seconds (since the start) that it took to complete this collectable. -1 indicates that is has not been collected (e.g. 'complete' is false).",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "ContributorsConfig": {
+            "additionalProperties": {
+                "type": "integer"
+            },
             "type": "object"
         },
         "DeathPunishmentConfig": {
@@ -100,6 +125,12 @@
                 },
                 "noDeath": {
                     "$ref": "#/definitions/NoDeathRuleConfig"
+                },
+                "noItem": {
+                    "$ref": "#/definitions/NoItemCollectRuleConfig"
+                },
+                "noMobKill": {
+                    "$ref": "#/definitions/NoMobKillRuleConfig"
                 }
             },
             "type": "object"
@@ -204,7 +235,7 @@
                     "type": "boolean"
                 },
                 "mobs": {
-                    "default": "[\"collectableName\": \"ENDER_DRAGON\", \"collectableData\": {\"amountNeeded\": 1}]",
+                    "default": [],
                     "description": "The mobs that need to be killed to beat this goal.",
                     "items": {
                         "$ref": "#/definitions/CollectableEntryConfig"
@@ -288,6 +319,40 @@
             },
             "type": "object"
         },
+        "NoItemCollectRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "type": "object"
+        },
+        "NoMobKillRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of entity types that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "type": "object"
+        },
         "PunishmentsConfig": {
             "additionalProperties": false,
             "properties": {
@@ -358,7 +423,7 @@
                     "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
                     "maximum": 10,
                     "minimum": 1,
-                    "type": "number"
+                    "type": "integer"
                 },
                 "randomizeItemsRemovedAtOnce": {
                     "default": false,

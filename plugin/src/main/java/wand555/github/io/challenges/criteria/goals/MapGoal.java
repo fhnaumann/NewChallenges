@@ -62,8 +62,9 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
     public void onComplete() {
         setComplete(true);
         messageHelper.sendAllReachedAction();
-
-        removeBossBar(context.plugin().getServer().getOnlinePlayers());
+        if(bossBar != null) {
+            removeBossBar(context.plugin().getServer().getOnlinePlayers());
+        }
 
         notifyManager();
     }
@@ -146,7 +147,9 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
     @Override
     public void updateBossBar(Map.Entry<T, Collect> data) {
         if(!fixedOrder) {
-            throw new RuntimeException("Attempted boss bar creation while fixedOrder is false.");
+            //throw new RuntimeException("Attempted boss bar creation while fixedOrder is false.");
+            // ignore for now
+            return;
         }
         bossBar.name(messageHelper.formatBossBarComponent(data.getKey(), data.getValue()));
     }
