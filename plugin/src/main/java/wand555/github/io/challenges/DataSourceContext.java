@@ -11,15 +11,6 @@ import java.io.InputStream;
 import java.util.List;
 
 public record DataSourceContext(List<MaterialJSON> materialJSONList, List<EntityTypeJSON> entityTypeJSONList) {
-
-    public List<Material> asMaterials() {
-        return null;
-    }
-
-    public List<EntityType> asEntityTypes() {
-        return null;
-    }
-
     public static final class Builder {
         private List<MaterialJSON> materialJSONList;
         private List<EntityTypeJSON> entityTypeJSONList;

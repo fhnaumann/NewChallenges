@@ -1,15 +1,13 @@
 package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.bossbar.BossBar;
-import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.translation.Translatable;
+import org.bukkit.Keyed;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
-import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,19 +17,19 @@ import java.util.function.Function;
 /**
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
  * In contrast, something like "collect 10 XP levels" is not a map goal, because it is a singular goal that may be reached.
- * @param <T> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
+ * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  * @param <S> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal implements Triggable<S>, Skippable, BossBarDisplay<Map.Entry<T, Collect>> {
+public abstract class MapGoal<K extends Keyed, S> extends BaseGoal implements Triggable<S>, Skippable, BossBarDisplay<Map.Entry<K, Collect>> {
 
-    protected final GoalCollector<T> goalCollector;
-    protected final GoalMessageHelper<S,T> messageHelper;
+    protected final GoalCollector<K> goalCollector;
+    protected final GoalMessageHelper<S, K> messageHelper;
     protected final InvProgress<S> invProgress;
 
     protected final boolean fixedOrder;
     private final BossBar bossBar;
 
-    public MapGoal(Context context, boolean complete, boolean fixedOrder, boolean shuffled, List<CollectableEntryConfig> collectables, Class<T> enumType, GoalMessageHelper<S,T> messageHelper) {
+    public MapGoal(Context context, boolean complete, boolean fixedOrder, boolean shuffled, List<CollectableEntryConfig> collectables, Class<K> enumType, GoalMessageHelper<S, K> messageHelper) {
         super(context, complete);
         if(fixedOrder && !shuffled) {
             Collections.shuffle(collectables);
@@ -69,7 +67,7 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
         notifyManager();
     }
 
-    protected abstract Function<S, T> data2MainElement();
+    protected abstract Function<S, K> data2MainElement();
 
     @Override
     public TriggerCheck<S> triggerCheck() {
@@ -129,14 +127,14 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
             onComplete();
         }
         else {
-            Map.Entry<T, Collect> next = goalCollector.next();
+            Map.Entry<K, Collect> next = goalCollector.next();
             updateBossBar(next);
         }
 
     }
 
     @Override
-    public BossBar createBossBar(Map.Entry<T, Collect> data) {
+    public BossBar createBossBar(Map.Entry<K, Collect> data) {
         if(fixedOrder) {
             Component formattedBossBarComponent = messageHelper.formatBossBarComponent(data.getKey(), data.getValue());
             return BossBar.bossBar(formattedBossBarComponent, 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
@@ -145,7 +143,7 @@ public abstract class MapGoal<T extends Enum<T> & Keyed, S> extends BaseGoal imp
     }
 
     @Override
-    public void updateBossBar(Map.Entry<T, Collect> data) {
+    public void updateBossBar(Map.Entry<K, Collect> data) {
         if(!fixedOrder) {
             //throw new RuntimeException("Attempted boss bar creation while fixedOrder is false.");
             // ignore for now

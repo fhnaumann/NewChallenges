@@ -1,28 +1,27 @@
 package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Keyed;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.MessageHelper;
 import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.CollectionUtil;
-import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 
 /**
  *
- * @param <T> Any data object (BlockBreakData, MobData, ItemData, ...)
- * @param <E> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
+ * @param <S> Any data object (BlockBreakData, MobData, ItemData, ...)
+ * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  */
-public abstract class GoalMessageHelper<T,E extends Enum<E>> extends MessageHelper {
+public abstract class GoalMessageHelper<S, K extends Keyed> extends MessageHelper {
     public GoalMessageHelper(Context context) {
         super(context);
     }
 
-    public Component formatBossBarComponent(E data, Collect collect) {
+    public Component formatBossBarComponent(K data, Collect collect) {
         return ComponentUtil.formatBossBarMessage(
                 context.plugin(),
                 context.resourceBundleContext().goalResourceBundle(),
@@ -37,11 +36,11 @@ public abstract class GoalMessageHelper<T,E extends Enum<E>> extends MessageHelp
 
     protected abstract String getGoalNameInResourceBundle();
 
-    protected abstract Map<String, Component> additionalBossBarPlaceholders(E data);
+    protected abstract Map<String, Component> additionalBossBarPlaceholders(K data);
 
-    protected abstract Map<String, Component> additionalStepPlaceholders(T data);
+    protected abstract Map<String, Component> additionalStepPlaceholders(S data);
 
-    public void sendSingleStepAction(T data, Collect collect) {
+    public void sendSingleStepAction(S data, Collect collect) {
         Map<String, Component> commonPlaceholder = Map.of(
                 "amount", Component.text(collect.getCurrentAmount()),
                 "total_amount", Component.text(collect.getAmountNeeded())
@@ -60,7 +59,7 @@ public abstract class GoalMessageHelper<T,E extends Enum<E>> extends MessageHelp
         );
     }
 
-    public void sendSingleReachedAction(T data, Collect collect) {
+    public void sendSingleReachedAction(S data, Collect collect) {
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 getGoalBundle(),

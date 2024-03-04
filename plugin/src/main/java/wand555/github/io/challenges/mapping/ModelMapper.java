@@ -3,11 +3,13 @@ package wand555.github.io.challenges.mapping;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
+import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
@@ -99,26 +101,24 @@ public class ModelMapper {
         return goals;
     }
 
-    public static <T extends Enum<T>> LinkedHashMap<T, Collect> str2Collectable(List<CollectableEntryConfig> collectables, Class<T> enumType) {
-        List<String> failedToMap = new ArrayList<>();
-        LinkedHashMap<T, Collect> mapped = collectables.stream()
-                .map(collectable -> {
-                    try {
-                        T matched = Enum.valueOf(enumType, collectable.getCollectableName().toUpperCase()); // code is always lowercase - enum is always uppercase
-                        Collect collect = new Collect(collectable.getCollectableData().getAmountNeeded(), collectable.getCollectableData().getCurrentAmount());
-                        return Map.entry(matched, collect);
-                    } catch (IllegalArgumentException | NullPointerException e) {
-                        failedToMap.add(collectable.getCollectableName());
-                        // return anything as it does not matter because we will error out in the
-                        // next step anyway, because we encountered an error during the string -> enum conversion
-                        return Map.entry((T)EntityType.BAT, new Collect(0));
-                    }
-                })
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
-        if(!failedToMap.isEmpty()) {
-            throw new RuntimeException(String.format("Failed to map material string(s) to valid enum: %s", String.join(",", failedToMap)));
+    public static <K extends Keyed> LinkedHashMap<K, Collect> str2Collectable(List<CollectableEntryConfig> collectables, DataSourceContext dataSourceContext, Class<K> keyedType) {
+        if(keyedType == Material.class) {
+            return collectables.stream().map(collectableEntryConfig -> {
+                K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.materialJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
+                Collect collect = new Collect(collectableEntryConfig.getCollectableData().getAmountNeeded(), collectableEntryConfig.getCollectableData().getCurrentAmount());
+                return Map.entry(enumInstance, collect);
+            }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
         }
-        return mapped;
+        else if(keyedType == EntityType.class) {
+            return collectables.stream().map(collectableEntryConfig -> {
+                K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.entityTypeJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
+                Collect collect = new Collect(collectableEntryConfig.getCollectableData().getAmountNeeded(), collectableEntryConfig.getCollectableData().getCurrentAmount());
+                return Map.entry(enumInstance, collect);
+            }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
+        }
+        else {
+            throw new RuntimeException("Unknown how to handle '%s' when mapping to collectable.".formatted(keyedType));
+        }
     }
 
     public static <T> String enum2Code(List<MaterialJSON> materialJSONS, T codeAsMaterial) {

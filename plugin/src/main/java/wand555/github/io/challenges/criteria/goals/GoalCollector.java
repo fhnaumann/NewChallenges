@@ -1,7 +1,6 @@
 package wand555.github.io.challenges.criteria.goals;
 
-import net.kyori.adventure.key.Keyed;
-import net.kyori.adventure.translation.Translatable;
+import org.bukkit.Keyed;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableDataConfig;
@@ -13,18 +12,18 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class GoalCollector<T extends Enum<T> & Keyed> implements Storable<List<CollectableEntryConfig>> {
+public class GoalCollector<K extends Keyed> implements Storable<List<CollectableEntryConfig>> {
 
     private final Context context;
-    private final Map<T, Collect> toCollect;
-    private Map.Entry<T, Collect> currentlyToCollect;
-    private final Iterator<Map.Entry<T, Collect>> iterator;
+    private final Map<K, Collect> toCollect;
+    private Map.Entry<K, Collect> currentlyToCollect;
+    private final Iterator<Map.Entry<K, Collect>> iterator;
 
     private final Map<String, CompletionConfig> completionConfigs;
 
-    public GoalCollector(Context context, List<CollectableEntryConfig> collectables, Class<T> enumType) {
+    public GoalCollector(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType) {
         this.context = context;
-        this.toCollect = ModelMapper.str2Collectable(collectables, enumType);
+        this.toCollect = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
         this.iterator = this.toCollect.entrySet().iterator();
         this.currentlyToCollect = iterator.hasNext() ? iterator.next() : null;
         this.completionConfigs = collectables.stream()
@@ -39,17 +38,17 @@ public class GoalCollector<T extends Enum<T> & Keyed> implements Storable<List<C
         return iterator.hasNext();
     }
 
-    public Map.Entry<T, Collect> next() {
+    public Map.Entry<K, Collect> next() {
         currentlyToCollect = iterator.next();
         return currentlyToCollect;
     }
 
     @Nullable
-    public Map.Entry<T, Collect> getCurrentlyToCollect() {
+    public Map.Entry<K, Collect> getCurrentlyToCollect() {
         return currentlyToCollect;
     }
 
-    public Map<T, Collect> getToCollect() {
+    public Map<K, Collect> getToCollect() {
         return toCollect;
     }
 

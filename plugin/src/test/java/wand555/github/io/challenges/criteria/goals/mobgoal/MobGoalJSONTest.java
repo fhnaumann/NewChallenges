@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.mapping.EntityTypeDataSource;
+import wand555.github.io.challenges.mapping.EntityTypeJSON;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 
@@ -44,9 +46,9 @@ public class MobGoalJSONTest {
         resourceBundleContextMock = mock(ResourceBundleContext.class);
         when(resourceBundleContextMock.goalResourceBundle()).thenReturn(goalResourceBundle);
         schemaRootMock = mock(JsonNode.class);
-        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
+        List<EntityTypeJSON> entityJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/entity_types.json"), EntityTypeDataSource.class).getData();
         dataSourceContextMock = mock(DataSourceContext.class);
-        when(dataSourceContextMock.materialJSONList()).thenReturn(materialJSONS);
+        when(dataSourceContextMock.entityTypeJSONList()).thenReturn(entityJSONS);
     }
 
     @BeforeEach
