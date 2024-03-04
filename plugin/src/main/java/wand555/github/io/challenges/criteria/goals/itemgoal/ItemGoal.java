@@ -1,38 +1,18 @@
 package wand555.github.io.challenges.criteria.goals.itemgoal;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.*;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.*;
-import wand555.github.io.challenges.generated.CollectableDataConfig;
-import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
-import wand555.github.io.challenges.inventory.CollectedInventory;
-import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.item.ItemData;
 import wand555.github.io.challenges.types.item.ItemType;
-import wand555.github.io.challenges.utils.ActionHelper;
-import wand555.github.io.challenges.utils.RandomUtil;
-import wand555.github.io.challenges.utils.ResourcePackHelper;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<ItemGoalConfig>, Skippable {
+public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<ItemGoalConfig>, Skippable {
 
     private final ItemType itemType;
 
@@ -72,11 +52,6 @@ public class ItemGoal extends MapGoal<Material, ItemData> implements Storable<It
 
     public Map<Material, Collect> getToCollect() {
         return goalCollector.getToCollect();
-    }
-
-    @Override
-    protected Function<ItemData, Material> data2MainElement() {
-        return data -> data.itemStackInteractedWith().getType();
     }
 
     @Override

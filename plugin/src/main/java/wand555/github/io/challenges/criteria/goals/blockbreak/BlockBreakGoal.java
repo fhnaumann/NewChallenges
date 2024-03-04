@@ -2,24 +2,14 @@ package wand555.github.io.challenges.criteria.goals.blockbreak;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.criteria.Triggable;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.Collect;
-import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.MapGoal;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
-import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
-import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 
-import java.util.*;
-import java.util.function.Function;
-
-public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements Storable<BlockBreakGoalConfig> {
+public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements Storable<BlockBreakGoalConfig> {
 
     private BlockBreakType blockBreakType;
 
@@ -49,8 +39,4 @@ public class BlockBreakGoal extends MapGoal<Material, BlockBreakData> implements
         );
     }
 
-    @Override
-    protected Function<BlockBreakData, Material> data2MainElement() {
-        return BlockBreakData::broken;
-    }
 }

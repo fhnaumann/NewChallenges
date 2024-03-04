@@ -8,6 +8,7 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
+import wand555.github.io.challenges.types.Data;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,18 +19,18 @@ import java.util.function.Function;
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
  * In contrast, something like "collect 10 XP levels" is not a map goal, because it is a singular goal that may be reached.
  * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
- * @param <S> Any data object (BlockBreakData, MobData, ItemData, ...)
+ * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<K extends Keyed, S> extends BaseGoal implements Triggable<S>, Skippable, BossBarDisplay<Map.Entry<K, Collect>> {
+public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, BossBarDisplay<Map.Entry<K, Collect>> {
 
     protected final GoalCollector<K> goalCollector;
-    protected final GoalMessageHelper<S, K> messageHelper;
-    protected final InvProgress<S> invProgress;
+    protected final GoalMessageHelper<D, K> messageHelper;
+    protected final InvProgress<D> invProgress;
 
     protected final boolean fixedOrder;
     private final BossBar bossBar;
 
-    public MapGoal(Context context, boolean complete, boolean fixedOrder, boolean shuffled, List<CollectableEntryConfig> collectables, Class<K> enumType, GoalMessageHelper<S, K> messageHelper) {
+    public MapGoal(Context context, boolean complete, boolean fixedOrder, boolean shuffled, List<CollectableEntryConfig> collectables, Class<K> enumType, GoalMessageHelper<D, K> messageHelper) {
         super(context, complete);
         if(fixedOrder && !shuffled) {
             Collections.shuffle(collectables);
@@ -67,27 +68,25 @@ public abstract class MapGoal<K extends Keyed, S> extends BaseGoal implements Tr
         notifyManager();
     }
 
-    protected abstract Function<S, K> data2MainElement();
-
     @Override
-    public TriggerCheck<S> triggerCheck() {
+    public TriggerCheck<D> triggerCheck() {
         return data -> {
             if(isComplete()) {
                 return false;
             }
-            Collect toCollect = goalCollector.getToCollect().get(data2MainElement().apply(data));
+            Collect toCollect = goalCollector.getToCollect().get(data.mainDataInvolved());
             if(toCollect == null || toCollect.isComplete()) {
                 return false;
             }
             if(fixedOrder) {
-                return goalCollector.getCurrentlyToCollect().getKey() == data2MainElement().apply(data);
+                return goalCollector.getCurrentlyToCollect().getKey() == data.mainDataInvolved();
             }
             return true;
         };
     }
 
     @Override
-    public Trigger<S> trigger() {
+    public Trigger<D> trigger() {
         return data -> {
             Collect updatedCollect = updateCollect(data);
             if(updatedCollect.isComplete()) {
@@ -107,8 +106,8 @@ public abstract class MapGoal<K extends Keyed, S> extends BaseGoal implements Tr
         };
     }
 
-    protected Collect updateCollect(S data) {
-        return goalCollector.getToCollect().computeIfPresent(data2MainElement().apply(data), (material, collect) -> {
+    protected Collect updateCollect(D data) {
+        return goalCollector.getToCollect().computeIfPresent(data.mainDataInvolved(), (material, collect) -> {
             // default behaviour is to add exactly 1 to the collect
             // subclasses may override this behaviour
             collect.setCurrentAmount(collect.getCurrentAmount()+1);
@@ -160,5 +159,9 @@ public abstract class MapGoal<K extends Keyed, S> extends BaseGoal implements Tr
     @Override
     public BossBarPriority getBossBarPriority() {
         return fixedOrder ? BossBarPriority.URGENT : BossBarPriority.INFO;
+    }
+
+    public GoalCollector<K> getGoalCollector() {
+        return goalCollector;
     }
 }

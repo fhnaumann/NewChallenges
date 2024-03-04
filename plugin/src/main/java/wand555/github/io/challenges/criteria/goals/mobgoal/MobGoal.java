@@ -1,24 +1,17 @@
 package wand555.github.io.challenges.criteria.goals.mobgoal;
 
-import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
-import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
-import wand555.github.io.challenges.utils.ResourcePackHelper;
 
-import javax.validation.constraints.NotNull;
 import java.util.Map;
-import java.util.function.Function;
 
-public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<MobGoalConfig>, Skippable {
+public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<MobGoalConfig>, Skippable {
 
     private final MobType mobType;
 
@@ -79,8 +72,4 @@ public class MobGoal extends MapGoal<EntityType, MobData> implements Storable<Mo
         return mobGoalName.append(entities);
     }
 
-    @Override
-    protected Function<MobData, EntityType> data2MainElement() {
-        return MobData::entityInteractedWith;
-    }
 }

@@ -5,39 +5,36 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PigMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import be.seeseemelk.mockbukkit.entity.WitherSkeletonMock;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.ChallengeManager;
+import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.Context;
+import wand555.github.io.challenges.DataSourceContext;
+import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.MobGoalConfig;
-import wand555.github.io.challenges.mapping.EntityTypeDataSource;
-import wand555.github.io.challenges.mapping.EntityTypeJSON;
-import wand555.github.io.challenges.mapping.MaterialDataSource;
-import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.types.mob.MobData;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.Map;
 import java.util.UUID;
-import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
-public class MobGoalTest {
+public class MobGoalFixedOrderTest {
+
     private ServerMock server;
     private Challenges plugin;
 
@@ -52,8 +49,6 @@ public class MobGoalTest {
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
-
-
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.goalResourceBundle()).thenReturn(CriteriaUtil.loadGoalResourceBundle());
         DataSourceContext dataSourceContext = mock(DataSourceContext.class);
@@ -64,7 +59,7 @@ public class MobGoalTest {
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
-        messageHelper = mock(MobGoalMessageHelper.class);
+        messageHelper = spy(new MobGoalMessageHelper(context));
     }
 
     @BeforeEach
@@ -92,7 +87,9 @@ public class MobGoalTest {
                         "currentAmount": 0
                       }
                     }
-                  ]
+                  ],
+                  "shuffled": true,
+                  "fixedOrder": true
                 }
                 """;
         mobGoal = new MobGoal(context, new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class), messageHelper);
@@ -108,9 +105,14 @@ public class MobGoalTest {
     }
 
     @Test
+    public void testBossBarExists() {
+        assertNotNull(mobGoal.getBossBar());
+    }
+
+    @Test
     public void testMobGoalTriggerCheck() {
         assertTrue(mobGoal.triggerCheck().applies(new MobData(EntityType.PIG, player)));
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(EntityType.WITHER_SKELETON, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.WITHER_SKELETON, player)));
         assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.ENDER_DRAGON, player)));
     }
 
@@ -134,8 +136,21 @@ public class MobGoalTest {
     }
 
     @Test
+    public void testCurrentlyToComplete() {
+        assertEquals(Map.entry(EntityType.PIG, new Collect(2, 0)), mobGoal.getGoalCollector().getCurrentlyToCollect());
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
+        assertEquals(Map.entry(EntityType.PIG, new Collect(2, 1)), mobGoal.getGoalCollector().getCurrentlyToCollect());
+    }
+
+    @Test
+    public void testCurrentlyToCompleteSwitch() {
+        CriteriaUtil.callEvent(server, pigDeathEvent, 2);
+        assertEquals(Map.entry(EntityType.WITHER_SKELETON, new Collect(1, 0)), mobGoal.getGoalCollector().getCurrentlyToCollect());
+    }
+
+    @Test
     public void testSingleStepComplete() {
-        callEvent(pigDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
         verify(messageHelper, times(1)).sendSingleStepAction(new MobData(EntityType.PIG, player), new Collect(2, 1));
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
         verify(messageHelper, never()).sendAllReachedAction();
@@ -143,7 +158,7 @@ public class MobGoalTest {
 
     @Test
     public void testSingleReachedComplete() {
-        callEvent(pigDeathEvent, 2);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 2);
         verify(messageHelper, times(1)).sendSingleReachedAction(new MobData(EntityType.PIG, player), new Collect(2, 2));
         verify(messageHelper, never()).sendAllReachedAction();
     }
@@ -153,8 +168,8 @@ public class MobGoalTest {
         LivingEntity witherSkeletonMock = new WitherSkeletonMock(server, UUID.randomUUID());
         witherSkeletonMock.setKiller(player);
         EntityDeathEvent witherSkeletonDeathEvent = new EntityDeathEvent(witherSkeletonMock, List.of());
-        callEvent(pigDeathEvent, 2);
-        callEvent(witherSkeletonDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 2);
+        CriteriaUtil.callEvent(server, witherSkeletonDeathEvent, 1);
         verify(messageHelper, times(1)).sendAllReachedAction();
     }
 
@@ -164,15 +179,11 @@ public class MobGoalTest {
         witherSkeletonMock.setKiller(player);
         EntityDeathEvent witherSkeletonDeathEvent = new EntityDeathEvent(witherSkeletonMock, List.of());
         assertFalse(mobGoal.isComplete());
-        callEvent(pigDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
         assertFalse(mobGoal.isComplete());
-        callEvent(pigDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
         assertFalse(mobGoal.isComplete());
-        callEvent(witherSkeletonDeathEvent, 1);
+        CriteriaUtil.callEvent(server, witherSkeletonDeathEvent, 1);
         assertTrue(mobGoal.isComplete());
-    }
-
-    private void callEvent(Event event, int n) {
-        IntStream.range(0, n).forEach(ignored -> server.getPluginManager().callEvent(event));
     }
 }

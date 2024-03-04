@@ -5,6 +5,7 @@ import org.bukkit.Keyed;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.MessageHelper;
+import wand555.github.io.challenges.types.Data;
 import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.CollectionUtil;
 
@@ -13,10 +14,10 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @param <S> Any data object (BlockBreakData, MobData, ItemData, ...)
+ * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
  * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  */
-public abstract class GoalMessageHelper<S, K extends Keyed> extends MessageHelper {
+public abstract class GoalMessageHelper<D extends Data<K>, K extends Keyed> extends MessageHelper {
     public GoalMessageHelper(Context context) {
         super(context);
     }
@@ -38,9 +39,9 @@ public abstract class GoalMessageHelper<S, K extends Keyed> extends MessageHelpe
 
     protected abstract Map<String, Component> additionalBossBarPlaceholders(K data);
 
-    protected abstract Map<String, Component> additionalStepPlaceholders(S data);
+    protected abstract Map<String, Component> additionalStepPlaceholders(D data);
 
-    public void sendSingleStepAction(S data, Collect collect) {
+    public void sendSingleStepAction(D data, Collect collect) {
         Map<String, Component> commonPlaceholder = Map.of(
                 "amount", Component.text(collect.getCurrentAmount()),
                 "total_amount", Component.text(collect.getAmountNeeded())
@@ -59,7 +60,7 @@ public abstract class GoalMessageHelper<S, K extends Keyed> extends MessageHelpe
         );
     }
 
-    public void sendSingleReachedAction(S data, Collect collect) {
+    public void sendSingleReachedAction(D data, Collect collect) {
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 getGoalBundle(),
