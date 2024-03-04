@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.mapping.*;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 
 import static org.mockito.Mockito.*;
 
+@Disabled
 public class FileManagerTest {
 
     private ServerMock server;

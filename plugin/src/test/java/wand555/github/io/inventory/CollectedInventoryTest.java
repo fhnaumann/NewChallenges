@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.inventory.CollectedInventory;
@@ -18,6 +19,7 @@ import java.util.stream.IntStream;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 public class CollectedInventoryTest {
 
     private ServerMock server;

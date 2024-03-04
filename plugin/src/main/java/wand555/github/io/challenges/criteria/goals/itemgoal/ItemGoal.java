@@ -16,16 +16,8 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
 
     private final ItemType itemType;
 
-    public ItemGoal(Context context, ItemGoalConfig config) {
-        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getItems(), Material.class, new ItemGoalMessageHelper(context));
-        JsonNode amountNeeded = context.schemaRoot().at("/definitions/CollectableDataConfig/properties/amountNeeded/default");
-        if(amountNeeded.isMissingNode()) {
-            throw new RuntimeException();
-        }
-        JsonNode currentAmount = context.schemaRoot().at("/definitions/CollectableDataConfig/properties/currentAmount/default");
-        if(currentAmount.isMissingNode()) {
-            throw new RuntimeException();
-        }
+    public ItemGoal(Context context, ItemGoalConfig config, ItemGoalMessageHelper messageHelper) {
+        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getItems(), Material.class, messageHelper);
 
         this.itemType = new ItemType(context, triggerCheck(), trigger());
     }

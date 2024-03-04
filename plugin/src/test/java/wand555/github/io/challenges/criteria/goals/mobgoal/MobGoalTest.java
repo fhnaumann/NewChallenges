@@ -52,8 +52,6 @@ public class MobGoalTest {
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
-
-
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.goalResourceBundle()).thenReturn(CriteriaUtil.loadGoalResourceBundle());
         DataSourceContext dataSourceContext = mock(DataSourceContext.class);
@@ -135,7 +133,7 @@ public class MobGoalTest {
 
     @Test
     public void testSingleStepComplete() {
-        callEvent(pigDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
         verify(messageHelper, times(1)).sendSingleStepAction(new MobData(EntityType.PIG, player), new Collect(2, 1));
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
         verify(messageHelper, never()).sendAllReachedAction();
@@ -143,7 +141,7 @@ public class MobGoalTest {
 
     @Test
     public void testSingleReachedComplete() {
-        callEvent(pigDeathEvent, 2);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 2);
         verify(messageHelper, times(1)).sendSingleReachedAction(new MobData(EntityType.PIG, player), new Collect(2, 2));
         verify(messageHelper, never()).sendAllReachedAction();
     }
@@ -153,8 +151,8 @@ public class MobGoalTest {
         LivingEntity witherSkeletonMock = new WitherSkeletonMock(server, UUID.randomUUID());
         witherSkeletonMock.setKiller(player);
         EntityDeathEvent witherSkeletonDeathEvent = new EntityDeathEvent(witherSkeletonMock, List.of());
-        callEvent(pigDeathEvent, 2);
-        callEvent(witherSkeletonDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 2);
+        CriteriaUtil.callEvent(server, witherSkeletonDeathEvent, 1);
         verify(messageHelper, times(1)).sendAllReachedAction();
     }
 
@@ -164,15 +162,11 @@ public class MobGoalTest {
         witherSkeletonMock.setKiller(player);
         EntityDeathEvent witherSkeletonDeathEvent = new EntityDeathEvent(witherSkeletonMock, List.of());
         assertFalse(mobGoal.isComplete());
-        callEvent(pigDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
         assertFalse(mobGoal.isComplete());
-        callEvent(pigDeathEvent, 1);
+        CriteriaUtil.callEvent(server, pigDeathEvent, 1);
         assertFalse(mobGoal.isComplete());
-        callEvent(witherSkeletonDeathEvent, 1);
+        CriteriaUtil.callEvent(server, witherSkeletonDeathEvent, 1);
         assertTrue(mobGoal.isComplete());
-    }
-
-    private void callEvent(Event event, int n) {
-        IntStream.range(0, n).forEach(ignored -> server.getPluginManager().callEvent(event));
     }
 }

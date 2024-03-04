@@ -5,22 +5,21 @@ import wand555.github.io.challenges.generated.ChallengesSchema;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extends Keyed> extends ModelValidator {
+public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends ModelValidator {
 
     private final List<T> dataSource;
-    private final Predicate<T> predicate;
+    private final Predicate<T> additionalCodeConstraints;
+    private final List<CollectableEntryConfig> collectables;
+    private final String pathToCollectables;
 
-    public CollectableValidator(List<T> dataSource) {
-        this(dataSource, t -> true);
-    }
-
-    public CollectableValidator(List<T> dataSource, Predicate<T> predicate) {
+    public CodeValidator(List<T> dataSource, Predicate<T> additionalCodeConstraints, List<CollectableEntryConfig> collectables, String pathToCollectables) {
         this.dataSource = dataSource;
-        this.predicate = predicate;
+        this.additionalCodeConstraints = additionalCodeConstraints;
+        this.collectables = collectables;
+        this.pathToCollectables = pathToCollectables;
     }
 
     @Override
@@ -28,17 +27,17 @@ public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extend
         return performCodeValidation(builder, challengesSchema);
     }
 
-    protected ValidationResult.ValidationResultBuilder performCodeValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
-        List<String> illegalCodes = getCollectables(challengesSchema).stream()
-                .filter(Predicate.not(this::hasValidCode))
+    private ValidationResult.ValidationResultBuilder performCodeValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
+        List<String> illegalCodes = collectables.stream()
                 .map(CollectableEntryConfig::getCollectableName)
+                .filter(Predicate.not(this::hasValidCode))
                 .toList();
         illegalCodes.forEach(s -> addCodeViolationToBuilder(builder, s));
         return builder;
     }
 
-    private boolean hasValidCode(CollectableEntryConfig collectable) {
-        return codeExists(collectable.getCollectableName()) && predicate.test(DataSourceJSON.fromCode(dataSource, collectable.getCollectableName()));
+    private boolean hasValidCode(String code) {
+        return codeExists(code) && additionalCodeConstraints.test(DataSourceJSON.fromCode(dataSource, code));
     }
 
     private boolean codeExists(String code) {
@@ -47,13 +46,9 @@ public abstract class CollectableValidator<T extends DataSourceJSON<E>, E extend
 
     private void addCodeViolationToBuilder(ValidationResult.ValidationResultBuilder builder, String illegalCode) {
         builder.addViolation(new Violation(
-                getPathToCurrentCollectables(),
+                pathToCollectables,
                 "'%s' is not a valid code for the data source '%s'.".formatted(illegalCode, dataSource.get(0).getClass().getSimpleName()),
                 Violation.Level.ERROR
         ));
     }
-
-    protected abstract List<CollectableEntryConfig> getCollectables(ChallengesSchema challengesSchema);
-
-    protected abstract String getPathToCurrentCollectables();
 }

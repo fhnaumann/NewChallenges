@@ -41,6 +41,7 @@ public class MobTypeTest {
         mockedTrigger = mock(Trigger.class);
         doNothing().when(mockedTrigger).actOnTriggered(any(MobData.class));
         Context mockedContext = mock(Context.class);
+        when(mockedContext.plugin()).thenReturn(plugin);
         mobType = spy(new MobType(mockedContext, mockedTriggerCheck, mockedTrigger));
     }
 

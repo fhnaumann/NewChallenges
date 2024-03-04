@@ -8,6 +8,13 @@
             "currentAmount": 0
           },
           "collectableName": "stone"
+        },
+        {
+          "collectableData": {
+            "amountNeeded": 100,
+            "currentAmount": 0
+          },
+          "collectableName": "carrot"
         }
       ]
     }

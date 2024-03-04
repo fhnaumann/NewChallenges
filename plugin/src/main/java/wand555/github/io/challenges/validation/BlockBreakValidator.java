@@ -7,9 +7,19 @@ import wand555.github.io.challenges.mapping.MaterialJSON;
 
 import java.util.List;
 
-public class BlockBreakValidator extends CollectableValidator<MaterialJSON, Material> {
+public class BlockBreakValidator extends CodeableValidator<MaterialJSON, Material> {
     public BlockBreakValidator(List<MaterialJSON> dataSource) {
-        super(dataSource, MaterialJSON::isBlock);
+        super(dataSource);
+    }
+
+    @Override
+    protected ValidationResult.ValidationResultBuilder performAdditionalValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema schema) {
+        return null;
+    }
+
+    @Override
+    protected boolean additionalCodeConstraints(MaterialJSON dataSourceElement) {
+        return dataSourceElement.isBlock();
     }
 
     @Override

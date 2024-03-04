@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
@@ -21,6 +22,7 @@ import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.types.Type;
 
 import java.util.Arrays;
+import java.util.Set;
 
 public class ItemType extends Type<ItemData> implements Listener {
 
@@ -78,6 +80,9 @@ public class ItemType extends Type<ItemData> implements Listener {
         if(event.getCurrentItem() == null || event.getCurrentItem().getType().isAir()) {
             return;
         }
+        if(Set.of(ClickType.CONTROL_DROP, ClickType.DROP, ClickType.WINDOW_BORDER_LEFT, ClickType.WINDOW_BORDER_RIGHT, ClickType.CREATIVE).contains(event.getClick())) {
+            return;
+        }
         ItemStack currentItem = event.getCurrentItem();
         if(event.getClickedInventory() == null) {
             return;
@@ -99,14 +104,18 @@ public class ItemType extends Type<ItemData> implements Listener {
                 craftingInventory.setResult(fakeResult);
             }
             else {
-                triggerIfCheckPasses(new ItemData(event.getCurrentItem(), player));
+                triggerIfCheckPasses(new ItemData(currentItem, player));
             }
 
         }
         else {
-            // if a player right clicks (selects half of the current stack amount), then all items from that stack
-            // will be marked, but that's a minor bug.
-            triggerIfCheckPasses(new ItemData(event.getCurrentItem(), player));
+            // If a player right clicks (selects half of the current stack amount), then mark only half
+            // Right click causing the player to pick up half does not work when used in a crafting result.
+            // There it behaves exactly the same as a regular left click.
+            if(event.getClick() == ClickType.RIGHT) {
+                currentItem = new ItemStack(currentItem.getType(), (int) Math.ceil((double)currentItem.getAmount()/2));
+            }
+            triggerIfCheckPasses(new ItemData(currentItem, player));
 
         }
     }

@@ -15,6 +15,7 @@ import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
+import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
@@ -93,7 +94,7 @@ public class ModelMapper {
             ));
         }
         if(goalsConfig.getItemGoal() != null) {
-            goals.add(new ItemGoal(context, goalsConfig.getItemGoal()));
+            goals.add(new ItemGoal(context, goalsConfig.getItemGoal(), new ItemGoalMessageHelper(context)));
         }
         if(goalsConfig.getBlockbreakGoal() != null) {
             goals.add(new BlockBreakGoal(context, goalsConfig.getBlockbreakGoal(), new BlockBreakGoalMessageHelper(context)));
