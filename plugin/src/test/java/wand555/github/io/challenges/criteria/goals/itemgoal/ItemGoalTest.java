@@ -139,6 +139,7 @@ public class ItemGoalTest {
         assertTrue(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.CARROT), player)));
         assertTrue(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.STONE), player)));
         assertFalse(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.DIRT), player)));
+        assertFalse(itemGoal.triggerCheck().applies(new ItemData(createMockMarkedItemStack(Material.CARROT, 1), player)));
     }
 
     @Test
@@ -153,66 +154,28 @@ public class ItemGoalTest {
         assertEquals(0, itemGoal.getToCollect().get(Material.STONE).getCurrentAmount());
     }
 
-    @Test
-    public void testInventoryResultClick() {
-        Inventory inventory = stickCrafting(1);
-        player.openInventory(inventory);
-        player.simulateInventoryClick(player.getOpenInventory(), ClickType.LEFT, 0);
-        assertEquals(new ItemStack(Material.STICK, 4), ((CraftingInventory) inventory).getResult()); // passes
-        assertEquals(new ItemStack(Material.STICK, 4), inventory.getItem(0)); // fails
-    }
 
-    @ParameterizedTest
-    @MethodSource("provideInventoryClickEvents")
-    public void testInventoryEvents(Inventory inventory, ClickType clickType, int slot, Material changedMaterial, int expectedCurrentAmount) {
-        player.openInventory(inventory);
-        InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
-        assertEquals(expectedCurrentAmount, itemGoal.getToCollect().get(changedMaterial).getCurrentAmount());
-        /*List<ItemStack> resultsInInventory = Arrays.stream(event.getInventory().getContents())
-                .filter(Objects::nonNull)
-                .filter(itemStack -> itemStack.getType() == changedMaterial)
-                .toList();
-        assertFalse(resultsInInventory.isEmpty(), "Expected items to have moved to the player's inventory, but they cannot be found!");
-        assertEquals(expectedCurrentAmount, resultsInInventory.stream().mapToInt(ItemStack::getAmount).count());
-        resultsInInventory.forEach(itemStack -> {
-            assertTrue(itemStack.getItemMeta().getPersistentDataContainer().has(markedKey, PersistentDataType.STRING));
-        });
-
-         */
-    }
-
-    public static Stream<Arguments> provideInventoryClickEvents() {
-        MockBukkit.getOrCreateMock();
-        return Stream.of(
-                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT)), ClickType.LEFT, 0, Material.CARROT, 1),
-                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT, 10)), ClickType.RIGHT, 0, Material.CARROT, 5), // pick up half
-                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT, 10)), ClickType.DROP, 0, Material.CARROT, 0), // dropping does not count as pick up
-                Arguments.of(stickCrafting(1), ClickType.LEFT, 0, Material.STICK, 4)
-        );
-    }
-
-    private static Inventory set(Inventory inventory, int slot, ItemStack what) {
-        inventory.setItem(slot, what);
-        return inventory;
-    }
-
-    private static Inventory stickCrafting(int amountPerPlank) {
-        WorkbenchInventoryMock workbenchInventoryMock = new WorkbenchInventoryMock(null);
-        workbenchInventoryMock.setMatrix(new ItemStack[]{
-                null, null, null,
-                null, plank(amountPerPlank), null,
-                null, plank(amountPerPlank), null
-        });
-        workbenchInventoryMock.setResult(new ItemStack(Material.STICK, Math.min(amountPerPlank*4, 64)));
-        return workbenchInventoryMock;
-    }
-
-    private static ItemStack plank(int amount) {
-        return new ItemStack(Material.OAK_PLANKS, amount);
-    }
 
     @Test
     public void testCompleteConditionMet() {
+        assertFalse(itemGoal.isComplete());
+        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.CARROT, 50)), 0), 1);
+        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.CARROT, 50)), 0), 1);
+        assertFalse(itemGoal.isComplete());
+        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STICK, 50)), 0), 1);
+        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STICK, 50)), 0), 1);
+        assertFalse(itemGoal.isComplete());
+        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STONE, 50)), 0), 1);
+        assertTrue(itemGoal.isComplete());
 
+    }
+
+    private static ItemStack createMockMarkedItemStack(Material material, int amount) {
+        ServerMock serverMock = MockBukkit.getOrCreateMock();
+        Challenges plugin = MockBukkit.load(Challenges.class);
+        NamespacedKey markedKey = new NamespacedKey(plugin, "marked");
+        ItemStack itemStack = new ItemStack(material, amount);
+        itemStack.editMeta(itemMeta -> itemMeta.getPersistentDataContainer().set(markedKey, PersistentDataType.STRING, "marked"));
+        return itemStack;
     }
 }

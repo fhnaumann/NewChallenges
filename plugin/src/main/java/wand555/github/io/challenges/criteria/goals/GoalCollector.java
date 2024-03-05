@@ -18,24 +18,26 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
     private final Map<K, Collect> toCollect;
     private Map.Entry<K, Collect> currentlyToCollect;
     private final Iterator<Map.Entry<K, Collect>> iterator;
+    private final boolean fixedOrder;
 
     private final Map<String, CompletionConfig> completionConfigs;
 
-    public GoalCollector(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType) {
+    public GoalCollector(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType, boolean fixedOrder) {
         this.context = context;
         this.toCollect = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
-        this.iterator = this.toCollect.entrySet().iterator();
-        this.currentlyToCollect = iterator.hasNext() ? iterator.next() : null;
+        this.iterator = fixedOrder ? this.toCollect.entrySet().iterator() : null;
+        this.currentlyToCollect = fixedOrder ? (iterator.hasNext() ? iterator.next() : null) : null;
         this.completionConfigs = collectables.stream()
                 .collect(Collectors.toMap(
                         CollectableEntryConfig::getCollectableName,
                         collectableEntryConfig -> collectableEntryConfig.getCompletion() != null ? collectableEntryConfig.getCompletion() : new CompletionConfig()
                         )
                 );
+        this.fixedOrder = fixedOrder;
     }
 
     public boolean hasNext() {
-        return iterator.hasNext();
+        return !fixedOrder || iterator.hasNext();
     }
 
     public Map.Entry<K, Collect> next() {

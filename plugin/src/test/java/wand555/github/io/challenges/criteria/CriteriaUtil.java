@@ -37,6 +37,8 @@ public class CriteriaUtil {
     }
 
     public static void callEvent(ServerMock server, Event event, int n) {
-        IntStream.range(0, n).forEach(ignored -> server.getPluginManager().callEvent(event));
+        IntStream.range(0, n).forEach(ignored -> {
+            server.getPluginManager().callEvent(event);
+        });
     }
 }

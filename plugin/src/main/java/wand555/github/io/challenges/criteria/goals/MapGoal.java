@@ -35,7 +35,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         if(fixedOrder && !shuffled) {
             Collections.shuffle(collectables);
         }
-        this.goalCollector = new GoalCollector<>(context, collectables, enumType);
+        this.goalCollector = new GoalCollector<>(context, collectables, enumType, fixedOrder);
         this.messageHelper = messageHelper;
         this.invProgress = new InvProgress();
         this.fixedOrder = fixedOrder;
@@ -91,13 +91,15 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             Collect updatedCollect = updateCollect(data);
             if(updatedCollect.isComplete()) {
                 messageHelper.sendSingleReachedAction(data, updatedCollect);
-                if(goalCollector.hasNext()) {
+                if(fixedOrder && goalCollector.hasNext()) {
                     updateBossBar(goalCollector.next());
                 }
             }
             else {
                 messageHelper.sendSingleStepAction(data, updatedCollect);
-                updateBossBar(goalCollector.getCurrentlyToCollect());
+                if(fixedOrder) {
+                    updateBossBar(goalCollector.getCurrentlyToCollect());
+                }
             }
 
             if(determineComplete()) {
