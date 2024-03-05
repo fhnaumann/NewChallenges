@@ -1,0 +1,44 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noBlockBreak": {
+        "exemptions": ["stone"]
+      },
+      "noItem": {
+        "exemptions": ["carrot"]
+      },
+      "noMobKill": {
+        "exemptions": ["pig"]
+      }
+    }
+  },
+  "goals": {
+    "blockbreakGoal": {
+      "broken": [{
+        "collectableName": "dirt",
+        "collectableData": {
+
+        }
+      }
+      ]
+    },
+    "itemGoal": {
+      "items": [{
+        "collectableName": "stick",
+        "collectableData": {
+
+        }
+      }
+      ]
+    },
+    "mobGoal": {
+      "mobs": [{
+        "collectableName": "ender_dragon",
+        "collectableData": {
+
+        }
+      }
+      ]
+    }
+  }
+}

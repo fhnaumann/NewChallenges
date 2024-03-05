@@ -1,10 +1,7 @@
-package wand555.github.io.validation;
+package wand555.github.io.challenges.validation;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.validation.ValidationResult;
-import wand555.github.io.challenges.validation.Validation;
-import wand555.github.io.challenges.validation.Violation;
 
 import static org.junit.jupiter.api.Assertions.*;
 

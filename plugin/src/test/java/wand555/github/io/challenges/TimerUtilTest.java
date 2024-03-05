@@ -1,4 +1,4 @@
-package wand555.github.io;
+package wand555.github.io.challenges;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

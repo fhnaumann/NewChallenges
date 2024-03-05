@@ -1,4 +1,4 @@
-package wand555.github.io.punishments;
+package wand555.github.io.challenges.punishments;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
@@ -16,7 +16,6 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
-import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
 import wand555.github.io.challenges.validation.Violation;
