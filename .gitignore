@@ -7,7 +7,6 @@ builder_website/node_modules/
 builder_website/public/minecraft/
 builder_website/public/img/
 builder_website/public/rendered_items/
-builder_website/public/themes/
 
 plugin/.idea/
 plugin/cache/
