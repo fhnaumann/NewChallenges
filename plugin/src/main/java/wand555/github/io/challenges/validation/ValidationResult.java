@@ -15,6 +15,10 @@ public class ValidationResult {
     private final List<Violation> violations;
     private final Exception initialException;
 
+    public ValidationResult() {
+        this(true, List.of(), null);
+    }
+
     public ValidationResult(boolean valid, List<Violation> violations, Exception initialException) {
         this.valid = valid;
         this.violations = violations;

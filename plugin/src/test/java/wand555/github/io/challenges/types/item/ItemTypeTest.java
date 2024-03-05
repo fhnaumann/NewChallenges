@@ -71,9 +71,6 @@ public class ItemTypeTest {
         MockBukkit.unmock();
     }
 
-    @Test
-
-
     @ParameterizedTest
     @MethodSource("provideInventoryClickEvents")
     public void testInventoryEvents(Inventory inventory, ClickType clickType, int slot, Material changedMaterial, int expectedCurrentAmount) {

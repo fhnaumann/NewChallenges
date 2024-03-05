@@ -17,6 +17,8 @@ import org.json.JSONTokener;
 import org.json.XML;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.DataSourceContext;
+import wand555.github.io.challenges.validation.goals.GoalsValidator;
+import wand555.github.io.challenges.validation.rules.RulesValidator;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -66,6 +68,7 @@ public class Validation {
     public static ValidationResult modernValidate(String json, InputStream jsonSchemaStream, InputStream schematronStream, DataSourceContext dataSourceContext) {
         return new JSONSchemaValidator(jsonSchemaStream)
                 .andThen(new SchematronValidator(schematronStream))
+                .andThen(new RulesValidator(dataSourceContext))
                 .andThen(new GoalsValidator(dataSourceContext))
                 .validate(new ValidationResult.ValidationResultBuilder(), json);
     }

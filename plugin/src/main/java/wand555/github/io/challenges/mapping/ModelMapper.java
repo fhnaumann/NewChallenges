@@ -122,6 +122,10 @@ public class ModelMapper {
         }
     }
 
+    public static List<String> collectables2Codes(List<CollectableEntryConfig> collectables) {
+        return collectables.stream().map(CollectableEntryConfig::getCollectableName).toList();
+    }
+
     public static <T> String enum2Code(List<MaterialJSON> materialJSONS, T codeAsMaterial) {
         // TODO: implement for other enums, not just material
         return materialJSONS.stream().filter(materialJSON -> Material.matchMaterial(materialJSON.code()) == codeAsMaterial).findFirst().orElseThrow().code();

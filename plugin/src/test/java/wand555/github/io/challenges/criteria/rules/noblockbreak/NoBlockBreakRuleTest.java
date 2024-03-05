@@ -138,7 +138,7 @@ public class NoBlockBreakRuleTest {
                   "rules": {
                     "enabledRules": {
                       "noBlockBreak": {
-                        "exemptions": ["STONE", "DIRT"]
+                        "exemptions": ["stone", "dirt"]
                       }
                     }
                   }
@@ -196,7 +196,7 @@ public class NoBlockBreakRuleTest {
                   "rules": {
                     "enabledRules": {
                       "noBlockBreak": {
-                        "exemptions": ["CARROT"]
+                        "exemptions": ["carrot"]
                       }
                     }
                   }

@@ -1,7 +1,9 @@
-package wand555.github.io.challenges.validation;
+package wand555.github.io.challenges.validation.goals;
 
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.validation.ModelValidator;
+import wand555.github.io.challenges.validation.ValidationResult;
 
 public class GoalsValidator extends ModelValidator {
 
@@ -21,7 +23,7 @@ public class GoalsValidator extends ModelValidator {
             new ItemGoalValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
         }
         if(challengesSchema.getGoals().getBlockbreakGoal() != null) {
-            new BlockBreakValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
+            new BlockBreakGoalValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
         }
         if(challengesSchema.getGoals().getMobGoal() != null) {
             new MobGoalValidator(dataSourceContext.entityTypeJSONList()).performValidation(builder, challengesSchema);

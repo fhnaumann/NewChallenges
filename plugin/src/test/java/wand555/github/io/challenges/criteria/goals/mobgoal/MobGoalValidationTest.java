@@ -1,15 +1,12 @@
 package wand555.github.io.challenges.criteria.goals.mobgoal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.validator.ValidatorResult;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.validation.MobGoalValidator;
+import wand555.github.io.challenges.validation.goals.MobGoalValidator;
 import wand555.github.io.challenges.validation.ValidationResult;
 import wand555.github.io.challenges.validation.Validation;
-import wand555.github.io.challenges.validation.Validator;
 import wand555.github.io.challenges.validation.Violation;
 
 import java.io.IOException;

@@ -2,60 +2,36 @@ package wand555.github.io.challenges.criteria.goals.itemgoal;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
-import be.seeseemelk.mockbukkit.block.state.ChestMock;
 import be.seeseemelk.mockbukkit.entity.ItemEntityMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import be.seeseemelk.mockbukkit.inventory.PlayerInventoryViewMock;
-import be.seeseemelk.mockbukkit.inventory.WorkbenchInventoryMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryAction;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.CraftingInventory;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.FileManager;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
-import wand555.github.io.challenges.criteria.goals.Collect;
-import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
-import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
-import wand555.github.io.challenges.mapping.MaterialDataSource;
-import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.types.item.ItemData;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-public class ItemGoalTest {
+import static org.mockito.Mockito.when;
+
+public class ItemGoalFixedOrderTest {
 
     private NamespacedKey markedKey;
 
@@ -98,6 +74,8 @@ public class ItemGoalTest {
         String itemGoalJSON =
                 """
                 {
+                  "fixedOrder": true,
+                  "shuffled": true,
                   "items": [
                     {
                       "collectableName": "carrot",
@@ -137,7 +115,7 @@ public class ItemGoalTest {
     @Test
     public void testItemGoalTriggerCheck() {
         assertTrue(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.CARROT), player)));
-        assertTrue(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.STONE), player)));
+        assertFalse(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.STONE), player)));
         assertFalse(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.DIRT), player)));
     }
 
@@ -166,6 +144,5 @@ public class ItemGoalTest {
         assertFalse(itemGoal.isComplete());
         CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STONE, 50)), 0), 1);
         assertTrue(itemGoal.isComplete());
-
     }
 }

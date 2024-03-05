@@ -12,13 +12,13 @@ public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends
 
     private final List<T> dataSource;
     private final Predicate<T> additionalCodeConstraints;
-    private final List<CollectableEntryConfig> collectables;
+    private final List<String> codes;
     private final String pathToCollectables;
 
-    public CodeValidator(List<T> dataSource, Predicate<T> additionalCodeConstraints, List<CollectableEntryConfig> collectables, String pathToCollectables) {
+    public CodeValidator(List<T> dataSource, Predicate<T> additionalCodeConstraints, List<String> codes, String pathToCollectables) {
         this.dataSource = dataSource;
         this.additionalCodeConstraints = additionalCodeConstraints;
-        this.collectables = collectables;
+        this.codes = codes;
         this.pathToCollectables = pathToCollectables;
     }
 
@@ -28,8 +28,7 @@ public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends
     }
 
     private ValidationResult.ValidationResultBuilder performCodeValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
-        List<String> illegalCodes = collectables.stream()
-                .map(CollectableEntryConfig::getCollectableName)
+        List<String> illegalCodes = codes.stream()
                 .filter(Predicate.not(this::hasValidCode))
                 .toList();
         illegalCodes.forEach(s -> addCodeViolationToBuilder(builder, s));
