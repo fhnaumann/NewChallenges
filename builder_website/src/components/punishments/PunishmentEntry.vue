@@ -20,8 +20,7 @@ import Dropdown from 'primevue/dropdown';
 import Checkbox from 'primevue/checkbox';
 import { defineComponent, defineProps, ref, toRef, onMounted } from 'vue'
 import { useConfigStore } from '@/main';
-import { isValid } from '@/validator.js'
-import { useValidatable } from './validatable';
+import { useValidator } from '../validator';
 const props = defineProps({
     currentRule: String,
     punishmentName: String
@@ -36,18 +35,7 @@ const currentRule = toRef(props.currentRule)
 const newActive = ref(punishmentAlreadyActive() ? true : false)
 const newAffects = ref(getInitialAffect())
 
-const validatable = useValidatable()
-
-const { valid, messages } = validatable.isValid((storeCopy) => {
-    console.log(props.currentRule)
-    if(!props.currentRule) {
-        storeCopy.globalPunishments[props.punishmentName] = {}
-    }
-    else {
-        storeCopy.rules[props.currentRule].punishments[props.punishmentName] = {}
-    }
-    
-})
+const validatable = useValidator()
 
 function updateAffects(affects) {
     if (localPunishmentAlreadyActive()) {
