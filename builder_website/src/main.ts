@@ -13,7 +13,8 @@ import modelSchema from './assets/challenges_schema.json'
 import type { PunishmentsView } from './components/view/punishments'
 import type { GoalsView } from './components/view/goals'
 import ConfirmationService from 'primevue/confirmationservice';
-
+import { createRouter, createWebHashHistory, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import ResourcePack from "./components/ResourcePack.vue"
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -28,18 +29,36 @@ app.directive('tooltip', Tooltip);
 
 export const toast = app.config.globalProperties.$toast
 
-export const useAllMaterialDataStore = defineStore('allMaterialDataConfig', {
-    state: () => (materials.data)
+const routes: RouteRecordRaw[] = [
+    {path: "/", component: App},
+    {
+        path: "/resourcepack",
+        component: ResourcePack,
+        beforeEnter: (_to, _from, next) => {
+            // Create a link element
+            const link = document.createElement('a');
+            // Set the file URL
+            link.href = '/testpack.zip'; // Replace with your file URL
+            // Set the download attribute with the desired file name
+            link.setAttribute('download', 'testpack.zip');
+            // Append the link to the document body
+            document.body.appendChild(link);
+            // Trigger the click event to start the download
+            link.click();
+            // Remove the link from the document body after the download starts
+            document.body.removeChild(link);
+
+            //next(false)
+        }
+    }
+]
+
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes: routes
 })
 
-export const useBlockMaterialDataStore = defineStore('blockMaterialDataConfig', {
-    state: () => (materials.data.filter((mat) => mat.is_block))
-})
-
-export const useItemMaterialDataStore = defineStore('itemMaterialDataConfig', {
-    state: () => (materials.data.filter((mat) => mat.is_item))
-})
-
+app.use(router)
 
 export const useJSONSchemaConfigStore = defineStore('JSONSchemaConfig', {
     state: () => (modelSchema.definitions)
