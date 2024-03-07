@@ -1,14 +1,13 @@
 package wand555.github.io.challenges.criteria.rules.noitem;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.Material;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.rules.RuleMessageHelper;
 import wand555.github.io.challenges.types.item.ItemData;
 
 import java.util.Map;
 
-public class NoItemRuleMessageHelper extends RuleMessageHelper<ItemData, Material> {
+public class NoItemRuleMessageHelper extends RuleMessageHelper<ItemData> {
     public NoItemRuleMessageHelper(Context context) {
         super(context);
     }

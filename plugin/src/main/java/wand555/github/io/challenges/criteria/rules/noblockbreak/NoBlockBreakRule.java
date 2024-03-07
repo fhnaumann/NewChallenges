@@ -3,9 +3,11 @@ package wand555.github.io.challenges.criteria.rules.noblockbreak;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
+import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.generated.EnabledRules;
@@ -15,18 +17,17 @@ import wand555.github.io.challenges.criteria.rules.PunishableRule;
 
 import java.util.*;
 
-public class NoBlockBreakRule extends PunishableRule<BlockBreakData, Material> implements Triggable<BlockBreakData>, Storable<NoBlockBreakRuleConfig> {
+public class NoBlockBreakRule extends PunishableRule<BlockBreakData> implements Triggable<BlockBreakData>, Storable<NoBlockBreakRuleConfig> {
 
     private final BlockBreakType blockBreakType;
     private final Set<Material> exemptions;
 
     public NoBlockBreakRule(Context context, NoBlockBreakRuleConfig config, NoBlockBreakMessageHelper messageHelper) {
-        super(context, config.getPunishments(), messageHelper);
+        super(context, config.getPunishments(), PunishableRule.Result.fromJSONString(config.getResult().value()), messageHelper);
         this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), material -> true));
 
-        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
+        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfDeny());
     }
-
     @Override
     public TriggerCheck<BlockBreakData> triggerCheck() {
         return data -> !exemptions.contains(data.broken());
@@ -63,7 +64,8 @@ public class NoBlockBreakRule extends PunishableRule<BlockBreakData, Material> i
     public NoBlockBreakRuleConfig toGeneratedJSONClass() {
         return new NoBlockBreakRuleConfig(
                 exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(), // always sort when moving from set to list
-                toPunishmentsConfig()
+                toPunishmentsConfig(),
+                NoBlockBreakRuleConfig.Result.fromValue(getResult().getValue())
         );
     }
 

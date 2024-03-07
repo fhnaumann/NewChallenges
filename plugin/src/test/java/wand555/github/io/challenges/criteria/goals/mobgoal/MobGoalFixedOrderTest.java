@@ -54,7 +54,7 @@ public class MobGoalFixedOrderTest {
         DataSourceContext dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.entityTypeJSONList()).thenReturn(CriteriaUtil.loadEntities().getData());
         ChallengeManager manager = mock(ChallengeManager.class);
-
+        when(manager.isRunning()).thenReturn(true);
         context = mock(Context.class);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);

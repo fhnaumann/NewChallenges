@@ -1,0 +1,22 @@
+{
+  "goals": {
+    "blockbreakGoal": {
+      "broken": [
+        {
+          "collectableData": {
+            "amountNeeded": 2,
+            "currentAmount": 0
+          },
+          "collectableName": "stone"
+        },
+        {
+          "collectableData": {
+            "amountNeeded": 2,
+            "currentAmount": 0
+          },
+          "collectableName": "dirt"
+        }
+      ]
+    }
+  }
+}

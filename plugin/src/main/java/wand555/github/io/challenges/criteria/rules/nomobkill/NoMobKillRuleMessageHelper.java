@@ -1,14 +1,13 @@
 package wand555.github.io.challenges.criteria.rules.nomobkill;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.rules.RuleMessageHelper;
 import wand555.github.io.challenges.types.mob.MobData;
 
 import java.util.Map;
 
-public class NoMobKillRuleMessageHelper extends RuleMessageHelper<MobData, EntityType> {
+public class NoMobKillRuleMessageHelper extends RuleMessageHelper<MobData> {
     public NoMobKillRuleMessageHelper(Context context) {
         super(context);
     }

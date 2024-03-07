@@ -9,6 +9,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
@@ -40,8 +41,11 @@ public class BlockBreakTypeTest {
         mockedTrigger = mock(Trigger.class);
         doNothing().when(mockedTrigger).actOnTriggered(any(BlockBreakData.class));
         blockBreakEvent = new BlockBreakEvent(new BlockMock(Material.DIRT), player);
+        ChallengeManager manager = mock(ChallengeManager.class);
+        when(manager.isRunning()).thenReturn(true);
         Context mockedContext = mock(Context.class);
         when(mockedContext.plugin()).thenReturn(plugin);
+        when(mockedContext.challengeManager()).thenReturn(manager);
         blockBreakType = spy(new BlockBreakType(mockedContext, mockedTriggerCheck, mockedTrigger));
     }
 

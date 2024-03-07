@@ -8,19 +8,19 @@ import wand555.github.io.challenges.generated.EndPunishmentConfig;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 
-public class EndPunishment extends Punishment implements Storable<HealthPunishmentConfig> {
+public class EndPunishment extends Punishment implements Storable<EndPunishmentConfig> {
     public EndPunishment(Context context, EndPunishmentConfig config) {
         super(context, map(config.getAffects()));
     }
 
     @Override
     public void addToGeneratedConfig(PunishmentsConfig config) {
-
+        config.setEndPunishment(toGeneratedJSONClass());
     }
 
     @Override
-    public HealthPunishmentConfig toGeneratedJSONClass() {
-        return null;
+    public EndPunishmentConfig toGeneratedJSONClass() {
+        return new EndPunishmentConfig(EndPunishmentConfig.Affects.fromValue(getAffects().getValue()));
     }
 
     @Override

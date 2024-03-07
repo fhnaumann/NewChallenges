@@ -70,7 +70,7 @@ public class NoBlockBreakRuleTest {
         ChallengeManager challengeManager = new ChallengeManager();
         context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager);
         challengeManager.setContext(context);
-        rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of("stone"), null), new NoBlockBreakMessageHelper(context)));
+        rule = spy(new NoBlockBreakRule(context, new NoBlockBreakRuleConfig(List.of("stone"), null, NoBlockBreakRuleConfig.Result.DENY), new NoBlockBreakMessageHelper(context)));
 
     }
 
@@ -214,7 +214,7 @@ public class NoBlockBreakRuleTest {
         // When comparing NoBlockBreakRuleConfig, it internally compares the two exemption lists.
         // But #toGeneratedJSONClass converts from a set to a list, therefore any ordering is lost, hence it is always being sorted.
         List<String> exemptions = Stream.of("STONE", "DIRT").sorted().toList();
-        NoBlockBreakRuleConfig config = new NoBlockBreakRuleConfig(exemptions, null);
+        NoBlockBreakRuleConfig config = new NoBlockBreakRuleConfig(exemptions, null, NoBlockBreakRuleConfig.Result.DENY);
         NoBlockBreakRule noBlockBreakRule = new NoBlockBreakRule(context, config, new NoBlockBreakMessageHelper(context));
         assertEquals(config, noBlockBreakRule.toGeneratedJSONClass());
     }

@@ -26,7 +26,6 @@ import java.util.ResourceBundle;
 
 import static org.mockito.Mockito.*;import static org.junit.jupiter.api.Assertions.*;
 
-@Disabled
 public class FileManagerTest {
 
     private ServerMock server;
@@ -66,18 +65,6 @@ public class FileManagerTest {
     @AfterEach
     public void tearDown() {
         MockBukkit.unmock();
-    }
-
-    @Test
-    public void testWriteToFile() {
-        StringWriter stringWriter = new StringWriter();
-        FileManager.writeToFile(challengeManager, stringWriter);
-        //assertEquals("", stringWriter.toString());
-    }
-
-    @Test
-    public void testReadFromFile() throws IOException {
-
     }
 
     @Test

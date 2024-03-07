@@ -6,6 +6,8 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
@@ -19,9 +21,11 @@ import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Set;
 
 public class ItemType extends Type<ItemData> implements Listener {
@@ -29,14 +33,22 @@ public class ItemType extends Type<ItemData> implements Listener {
     private final NamespacedKey markedKey;
 
     public ItemType(Context context, TriggerCheck<ItemData> triggerCheck, Trigger<ItemData> whenTriggered) {
-        super(context, triggerCheck, whenTriggered);
+        this(context, triggerCheck, whenTriggered, event -> {}, event -> {});
+    }
+
+    public ItemType(Context context, TriggerCheck<ItemData> triggerCheck, Trigger<ItemData> whenTriggered, EventContainer<EntityPickupItemEvent> entityPickUpItem, EventContainer<InventoryClickEvent> inventoryClick) {
+        super(context, triggerCheck, whenTriggered, Map.of(
+                EntityPickupItemEvent.class, entityPickUpItem,
+                InventoryClickEvent.class, inventoryClick
+        ));
         this.markedKey = new NamespacedKey(context.plugin(), "marked");
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @Override
-    protected void triggerIfCheckPasses(ItemData data) {
+    protected <E extends Event & Cancellable> void triggerIfCheckPasses(ItemData data, E event) {
         if(triggerCheck.applies(data) && !isMarked(data.itemStackInteractedWith())) {
+            callEventInContainer(event);
             markItemStack(data.itemStackInteractedWith());
             whenTriggered.actOnTriggered(data);
         }
@@ -65,7 +77,8 @@ public class ItemType extends Type<ItemData> implements Listener {
         if(event.isCancelled()) {
             return;
         }
-        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(), player));
+
+        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(), player), event);
     }
 
     @EventHandler
@@ -99,12 +112,12 @@ public class ItemType extends Type<ItemData> implements Listener {
                 craftingInventory.setMatrix(fakeMatrix);
 
                 ItemStack fakeResult = new ItemStack(currentItem.getType(), totalResultAmount);
-                triggerIfCheckPasses(new ItemData(fakeResult, player));
+                triggerIfCheckPasses(new ItemData(fakeResult, player), event);
 
                 craftingInventory.setResult(fakeResult);
             }
             else {
-                triggerIfCheckPasses(new ItemData(currentItem, player));
+                triggerIfCheckPasses(new ItemData(currentItem, player), event);
             }
 
         }
@@ -115,7 +128,7 @@ public class ItemType extends Type<ItemData> implements Listener {
             if(event.getClick() == ClickType.RIGHT) {
                 currentItem = new ItemStack(currentItem.getType(), (int) Math.ceil((double)currentItem.getAmount()/2));
             }
-            triggerIfCheckPasses(new ItemData(currentItem, player));
+            triggerIfCheckPasses(new ItemData(currentItem, player), event);
 
         }
     }

@@ -69,8 +69,6 @@ public class ItemGoalTest {
     private ItemGoal itemGoal;
     private static ItemGoalMessageHelper messageHelper;
 
-    private EntityPickupItemEvent pickupOneCarrot;
-
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -124,9 +122,6 @@ public class ItemGoalTest {
                 }
                 """;
         itemGoal = new ItemGoal(context, new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class), messageHelper);
-
-        ItemStack toCollect = new ItemStack(Material.CARROT);
-        pickupOneCarrot = new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), toCollect), 0);
     }
 
     @AfterEach
@@ -166,6 +161,5 @@ public class ItemGoalTest {
         assertFalse(itemGoal.isComplete());
         CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STONE, 50)), 0), 1);
         assertTrue(itemGoal.isComplete());
-
     }
 }

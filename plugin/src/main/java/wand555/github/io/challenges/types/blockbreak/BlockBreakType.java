@@ -8,20 +8,31 @@ import org.bukkit.event.block.BlockBreakEvent;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
 public class BlockBreakType extends Type<BlockBreakData> implements Listener {
 
+    private final EventContainer<BlockBreakEvent> onBlockBreak;
+
     public BlockBreakType(Context context, TriggerCheck<BlockBreakData> triggerCheck, Trigger<BlockBreakData> whenTriggered) {
+        this(context, triggerCheck, whenTriggered, event -> {});
+    }
+
+    public BlockBreakType(Context context, TriggerCheck<BlockBreakData> triggerCheck, Trigger<BlockBreakData> whenTriggered, EventContainer<BlockBreakEvent> onBlockBreak) {
         super(context, triggerCheck, whenTriggered);
+        this.onBlockBreak = onBlockBreak;
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        if(!context.challengeManager().isRunning()) {
+            return;
+        }
         Player player = event.getPlayer();
         Material broken = event.getBlock().getType();
         BlockBreakData blockBreakData = new BlockBreakData(broken, player);
-        triggerIfCheckPasses(blockBreakData);
+        triggerIfCheckPasses(blockBreakData, event);
     }
 }

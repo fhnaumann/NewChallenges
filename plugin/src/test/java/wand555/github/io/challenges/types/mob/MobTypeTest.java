@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
@@ -40,8 +41,11 @@ public class MobTypeTest {
         when(mockedTriggerCheck.applies(any(MobData.class))).thenReturn(true);
         mockedTrigger = mock(Trigger.class);
         doNothing().when(mockedTrigger).actOnTriggered(any(MobData.class));
+        ChallengeManager manager = mock(ChallengeManager.class);
+        when(manager.isRunning()).thenReturn(true);
         Context mockedContext = mock(Context.class);
         when(mockedContext.plugin()).thenReturn(plugin);
+        when(mockedContext.challengeManager()).thenReturn(manager);
         mobType = spy(new MobType(mockedContext, mockedTriggerCheck, mockedTrigger));
     }
 

@@ -11,9 +11,8 @@ import java.util.ResourceBundle;
 /**
  *
  * @param <T> Any data object (BlockBreakData, MobData, ItemData, ...)
- * @param <E> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  */
-public abstract class RuleMessageHelper<T,E extends Enum<E>> extends MessageHelper {
+public abstract class RuleMessageHelper<T> extends MessageHelper {
     public RuleMessageHelper(Context context) {
         super(context);
     }
