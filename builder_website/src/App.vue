@@ -16,7 +16,7 @@
       </div>
       <div class="flex justify-center">
           <Button @click="validateConsistency()"
-              class="text-3xl w-full mx-10 my-5 border-4 rounded-md bg-green-500">Generate settings file</Button>
+              class="text-3xl w-full mx-10 my-5 border-4 rounded-md bg-green-500" label="Generate settings file" />
       </div>
       <DynamicDialog />
   </div>
@@ -56,6 +56,7 @@ import { ref, onBeforeUpdate } from "vue"
 import { useConfigStore } from './main';
 import Ajv from 'ajv'
 import challengesSchema from '@/assets/challenges_schema.json';
+import Button from 'primevue/button';
 
 const ajv = new Ajv({allErrors: true, strict: 'log'})
 
