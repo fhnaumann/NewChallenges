@@ -2,7 +2,6 @@ package wand555.github.io.challenges.criteria.rules.nomobkill;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.TriggerCheck;
@@ -17,7 +16,7 @@ import wand555.github.io.challenges.types.mob.MobType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NoMobKillRule extends PunishableRule<MobData> implements Storable<NoMobKillRuleConfig> {
+public class NoMobKillRule extends PunishableRule<MobData, EntityType> implements Storable<NoMobKillRuleConfig> {
 
     private final MobType mobType;
 
@@ -53,8 +52,4 @@ public class NoMobKillRule extends PunishableRule<MobData> implements Storable<N
         return data -> !exemptions.contains(data.entityInteractedWith());
     }
 
-    @Override
-    protected Player playerFrom(MobData data) {
-        return data.player();
-    }
 }

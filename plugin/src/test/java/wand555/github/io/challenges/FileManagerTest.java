@@ -3,17 +3,14 @@ package wand555.github.io.challenges;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.mapping.*;
-import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +33,7 @@ public class FileManagerTest {
     private Context context;
 
     private ChallengeManager challengeManager;
-    private NoBlockBreakRule noBlockBreakRule;
+    private BlockBreakRule blockBreakRule;
 
     private ObjectMapper objectMapper;
 

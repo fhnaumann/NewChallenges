@@ -2,7 +2,6 @@ package wand555.github.io.challenges.criteria.rules.noitem;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.TriggerCheck;
@@ -17,7 +16,7 @@ import wand555.github.io.challenges.types.item.ItemType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NoItemRule extends PunishableRule<ItemData> implements Storable<NoItemCollectRuleConfig> {
+public class NoItemRule extends PunishableRule<ItemData, Material> implements Storable<NoItemCollectRuleConfig> {
 
     private final ItemType itemType;
     private final Set<Material> exemptions;
@@ -52,8 +51,4 @@ public class NoItemRule extends PunishableRule<ItemData> implements Storable<NoI
         return data -> !exemptions.contains(data.itemStackInteractedWith().getType());
     }
 
-    @Override
-    protected Player playerFrom(ItemData data) {
-        return data.player();
-    }
 }

@@ -7,9 +7,9 @@ import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import java.util.Map;
 
-public class NoBlockBreakMessageHelper extends RuleMessageHelper<BlockBreakData> {
+public class BlockBreakRuleMessageHelper extends RuleMessageHelper<BlockBreakData> {
 
-    public NoBlockBreakMessageHelper(Context context) {
+    public BlockBreakRuleMessageHelper(Context context) {
         super(context);
     }
 

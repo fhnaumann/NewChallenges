@@ -1,8 +1,6 @@
 package wand555.github.io.challenges.mapping;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -17,7 +15,7 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMess
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
-import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakMessageHelper;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
@@ -28,14 +26,12 @@ import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.RandomEffectPunishment;
-import wand555.github.io.challenges.criteria.rules.noblockbreak.NoBlockBreakRule;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.criteria.rules.Rule;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -66,16 +62,17 @@ public class ModelMapper {
 
         List<Rule> rules = mapToRules(context, json.getRules() != null ? json.getRules().getEnabledRules() : new EnabledRules());
         List<Punishment> globalPunishments = mapToPunishments(context, json.getRules() != null ? json.getRules().getEnabledGlobalPunishments() : new PunishmentsConfig());
-        if(!globalPunishments.isEmpty()) {
+        /*if(!globalPunishments.isEmpty()) {
             rules.stream()
                     .filter(rule -> rule instanceof PunishableRule)
                     .map(rule -> (PunishableRule) rule)
                     .forEach(punishableRule -> {
                         punishableRule.setPunishments(globalPunishments);
                     });
-        }
+        }*/
 
         List<BaseGoal> goals = mapToGoals(context, json.getGoals());
+        context.challengeManager().setGlobalPunishments(globalPunishments);
         context.challengeManager().setRules(rules);
         context.challengeManager().setGoals(goals);
     }
@@ -138,7 +135,7 @@ public class ModelMapper {
         }
         if(enabledRulesConfig.getNoBlockBreak() != null) {
             NoBlockBreakRuleConfig noBlockBreakRuleConfig = enabledRulesConfig.getNoBlockBreak();
-            rules.add(new NoBlockBreakRule(context, noBlockBreakRuleConfig, new NoBlockBreakMessageHelper(context)));
+            rules.add(new BlockBreakRule(context, noBlockBreakRuleConfig, new BlockBreakRuleMessageHelper(context)));
         }
         if(enabledRulesConfig.getNoBlockPlace() != null) {
             NoBlockPlaceRuleConfig noBlockPlaceRuleConfig = enabledRulesConfig.getNoBlockPlace();

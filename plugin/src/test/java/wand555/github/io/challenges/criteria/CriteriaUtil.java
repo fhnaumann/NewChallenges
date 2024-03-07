@@ -20,6 +20,10 @@ public class CriteriaUtil {
         return ResourceBundle.getBundle("goals", Locale.ENGLISH, UTF8ResourceBundleControl.get());
     }
 
+    public static ResourceBundle loadRuleResourceBundle() {
+        return ResourceBundle.getBundle("rules", Locale.ENGLISH, UTF8ResourceBundleControl.get());
+    }
+
     public static InputStream loadJSONSchemaStream() {
         return CriteriaUtil.class.getResourceAsStream("/challenges_schema.json");
     }

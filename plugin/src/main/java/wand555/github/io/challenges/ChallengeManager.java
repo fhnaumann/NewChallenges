@@ -10,6 +10,7 @@ import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.exceptions.UnskippableException;
+import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.utils.ActionHelper;
 
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class ChallengeManager implements StatusInfo {
     private @NotNull Context context;
 
     private @NotNull List<Rule> rules;
+    private @NotNull List<Punishment> globalPunishments;
     private @NotNull List<BaseGoal> goals;
 
     private GameState gameState;
@@ -113,6 +115,14 @@ public class ChallengeManager implements StatusInfo {
 
     public void setRules(@NotNull List<Rule> rules) {
         this.rules = rules;
+    }
+
+    public List<Punishment> getGlobalPunishments() {
+        return globalPunishments;
+    }
+
+    public void setGlobalPunishments(List<Punishment> globalPunishments) {
+        this.globalPunishments = globalPunishments;
     }
 
     public void onGoalCompleted() {

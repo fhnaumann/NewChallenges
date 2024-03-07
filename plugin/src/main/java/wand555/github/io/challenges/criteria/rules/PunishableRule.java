@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.criteria.rules;
 
 
+import org.bukkit.Keyed;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -10,6 +11,7 @@ import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.punishments.Punishment;
+import wand555.github.io.challenges.types.Data;
 import wand555.github.io.challenges.types.EventContainer;
 
 import javax.annotation.Nullable;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class PunishableRule<T> extends Rule implements Triggable<T> {
+public abstract class PunishableRule<T extends Data<K>, K extends Keyed> extends Rule implements Triggable<T> {
 
     protected @NotNull List<Punishment> punishments;
 
@@ -49,11 +51,9 @@ public abstract class PunishableRule<T> extends Rule implements Triggable<T> {
     public Trigger<T> trigger() {
         return data -> {
             messageHelper.sendViolationAction(data);
-            enforcePunishments(playerFrom(data));
+            enforcePunishments(data.player());
         };
     }
-
-    protected abstract Player playerFrom(T data);
 
     public void enforcePunishments(Player causer) {
         getPunishments().forEach(punishment -> punishment.enforcePunishment(causer));

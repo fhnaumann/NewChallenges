@@ -1,22 +1,10 @@
 {
-  "goals": {
-    "itemGoal": {
-      "items": [
-        {
-          "collectableName": "carrot",
-          "collectableData": {
-            "amountNeeded": 2,
-            "currentAmount": 0
-          }
-        },
-        {
-          "collectableName": "stone",
-          "collectableData": {
-            "currentAmount": 0,
-            "amountNeeded": 1
-          }
-        }
-      ]
+  "rules": {
+    "enabledRules": {
+      "noBlockBreak": {
+        "exemptions": ["stone"],
+        "result": "Deny"
+      }
     }
   }
 }
