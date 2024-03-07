@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noBlockBreak": {
+        "exemptions": ["stone", "dirt"]
+      }
+    }
+  }
+}

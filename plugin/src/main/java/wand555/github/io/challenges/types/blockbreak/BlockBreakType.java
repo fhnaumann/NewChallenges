@@ -11,6 +11,8 @@ import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
+import java.util.Map;
+
 public class BlockBreakType extends Type<BlockBreakData> implements Listener {
 
     private final EventContainer<BlockBreakEvent> onBlockBreak;
@@ -20,7 +22,7 @@ public class BlockBreakType extends Type<BlockBreakData> implements Listener {
     }
 
     public BlockBreakType(Context context, TriggerCheck<BlockBreakData> triggerCheck, Trigger<BlockBreakData> whenTriggered, EventContainer<BlockBreakEvent> onBlockBreak) {
-        super(context, triggerCheck, whenTriggered);
+        super(context, triggerCheck, whenTriggered, Map.of(BlockBreakEvent.class, onBlockBreak));
         this.onBlockBreak = onBlockBreak;
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }

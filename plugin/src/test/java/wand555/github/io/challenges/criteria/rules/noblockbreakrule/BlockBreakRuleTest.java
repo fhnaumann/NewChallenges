@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.criteria.rules.noblockbreak;
+package wand555.github.io.challenges.criteria.rules.noblockbreakrule;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +19,8 @@ import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
+import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.ChallengesSchema;
@@ -107,5 +110,33 @@ public class BlockBreakRuleTest {
         player.simulateBlockBreak(toBeBroken);
         //rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
         verify(messageHelper, never()).sendViolationAction(any());
+    }
+
+    @Test
+    public void testDeny() throws JsonProcessingException {
+        String blockBreakRuleJSON =
+                """
+                {
+                    "exemptions": ["stone"],
+                    "result": "Deny"
+                }
+                """;
+        rule = new BlockBreakRule(context, new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class), messageHelper);
+        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
+        assertTrue(event.isCancelled());
+    }
+
+    @Test
+    public void testAllow() throws JsonProcessingException {
+        String blockBreakRuleJSON =
+                """
+                {
+                    "exemptions": ["stone"],
+                    "result": "Allow"
+                }
+                """;
+        rule = new BlockBreakRule(context, new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class), messageHelper);
+        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
+        assertFalse(event.isCancelled());
     }
 }
