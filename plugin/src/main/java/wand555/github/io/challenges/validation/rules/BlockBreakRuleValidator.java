@@ -7,8 +7,8 @@ import wand555.github.io.challenges.validation.types.BlockBreakTypeValidator;
 
 import java.util.List;
 
-public class NoBlockBreakRuleValidator extends BlockBreakTypeValidator {
-    public NoBlockBreakRuleValidator(List<MaterialJSON> dataSource) {
+public class BlockBreakRuleValidator extends BlockBreakTypeValidator {
+    public BlockBreakRuleValidator(List<MaterialJSON> dataSource) {
         super(dataSource);
     }
 

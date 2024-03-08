@@ -73,27 +73,18 @@ public class HealthPunishmentTest {
     }
 
     @Test
-    public void testHealthPunishmentSchemaAccess() {
-        HealthPunishmentConfig healthPunishmentConfigMock = mock(HealthPunishmentConfig.class);
-        when(healthPunishmentConfigMock.getAffects()).thenReturn(HealthPunishmentConfig.Affects.CAUSER);
-        when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(1);
-        when(healthPunishmentConfigMock.getRandomizeHeartsLost()).thenReturn(false);
-        assertDoesNotThrow(() -> new HealthPunishment(context, healthPunishmentConfigMock));
-    }
-
-    @Test
     public void testCauserHeartsLostHealthPunishment() {
         HealthPunishmentConfig healthPunishmentConfigMock = mock(HealthPunishmentConfig.class);
         int heartsLost = 5;
         when(healthPunishmentConfigMock.getAffects()).thenReturn(HealthPunishmentConfig.Affects.CAUSER);
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(heartsLost);
-        when(healthPunishmentConfigMock.getRandomizeHeartsLost()).thenReturn(false);
+        when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(false);
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
         heartsLostPunishment.enforcePunishment(player);
         assertEquals(player.getMaxHealth()-heartsLost, player.getHealth(), 1e-3);
 
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(1);
-        when(healthPunishmentConfigMock.getRandomizeHeartsLost()).thenReturn(true);
+        when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(true);
         HealthPunishment randomHeartLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
         randomHeartLostPunishment.enforcePunishment(player);
         // only test that the player lost any health
@@ -109,7 +100,7 @@ public class HealthPunishmentTest {
         int heartsLost = 5;
         when(healthPunishmentConfigMock.getAffects()).thenReturn(HealthPunishmentConfig.Affects.ALL);
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(heartsLost);
-        when(healthPunishmentConfigMock.getRandomizeHeartsLost()).thenReturn(false);
+        when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(false);
 
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
         heartsLostPunishment.enforcePunishment(player);

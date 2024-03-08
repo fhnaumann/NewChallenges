@@ -76,6 +76,7 @@
             <configuration>
                 <sourceDirectory>${basedir}/src/main/resources/challenges_schema.json</sourceDirectory>
                 <targetPackage>wand555.github.io.challenges.generated</targetPackage>
+                <usePrimitives>true</usePrimitives>
                 <includeJsr303Annotations>true</includeJsr303Annotations>
                 <includeJsr305Annotations>true</includeJsr305Annotations>
                 <useJakartaValidation>true</useJakartaValidation>

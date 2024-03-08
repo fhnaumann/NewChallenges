@@ -16,7 +16,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
     private final MobType mobType;
 
     public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
-        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getMobs(), EntityType.class, messageHelper);
+        super(context, config.isComplete(), config.isFixedOrder(), config.isShuffled(), config.getMobs(), EntityType.class, messageHelper);
         this.mobType = new MobType(context, triggerCheck(), trigger());
     }
 

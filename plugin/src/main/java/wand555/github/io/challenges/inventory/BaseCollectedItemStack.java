@@ -19,7 +19,7 @@ public abstract class BaseCollectedItemStack implements ResourceBundleNarrowable
     public BaseCollectedItemStack(Context context, CompletionConfig completionConfig) {
         this.context = context;
         this.contributors = completionConfig.getContributors() != null ? completionConfig.getContributors().getAdditionalProperties(): new HashMap<>();
-        this.whenCollectedSeconds = completionConfig.getWhenCollectedSeconds() != null ? completionConfig.getWhenCollectedSeconds() : -1; // assume its not completed when not set
+        this.whenCollectedSeconds = completionConfig.getWhenCollectedSeconds();
     }
 
     /**

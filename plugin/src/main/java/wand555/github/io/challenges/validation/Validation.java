@@ -66,11 +66,12 @@ public class Validation {
     }
 
     public static ValidationResult modernValidate(String json, InputStream jsonSchemaStream, InputStream schematronStream, DataSourceContext dataSourceContext) {
-        return new JSONSchemaValidator(jsonSchemaStream)
-                .andThen(new SchematronValidator(schematronStream))
-                .andThen(new RulesValidator(dataSourceContext))
-                .andThen(new GoalsValidator(dataSourceContext))
-                .validate(new ValidationResult.ValidationResultBuilder(), json);
+        return new ValidationContainer(
+                new JSONSchemaValidator(jsonSchemaStream),
+                new SchematronValidator(schematronStream),
+                new RulesValidator(dataSourceContext),
+                new GoalsValidator(dataSourceContext)
+        ).validate(new ValidationResult.ValidationResultBuilder(), json);
     }
 
     private Validation validateAgainstJSONSchema(String json) {

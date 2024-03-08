@@ -1,16 +1,13 @@
-package wand555.github.io.challenges.criteria.rules.noblockbreakrule;
+package wand555.github.io.challenges.criteria.rules.blockbreakrule;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.block.BlockMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,21 +15,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
-import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
-import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
-import wand555.github.io.challenges.generated.ChallengesSchema;
-import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Stream;
 
 public class BlockBreakRuleTest {
 

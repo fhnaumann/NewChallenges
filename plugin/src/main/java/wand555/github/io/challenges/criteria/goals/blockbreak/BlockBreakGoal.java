@@ -14,7 +14,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
     private BlockBreakType blockBreakType;
 
     public BlockBreakGoal(Context context, BlockBreakGoalConfig config, BlockBreakGoalMessageHelper messageHelper) {
-        super(context, config.getComplete(), config.getFixedOrder(), config.getShuffled(), config.getBroken(), Material.class, messageHelper);
+        super(context, config.isComplete(), config.isFixedOrder(), config.isShuffled(), config.getBroken(), Material.class, messageHelper);
         this.blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
 
     }

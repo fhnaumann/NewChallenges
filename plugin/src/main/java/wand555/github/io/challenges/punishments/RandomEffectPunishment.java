@@ -16,7 +16,7 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     public RandomEffectPunishment(Context context, RandomEffectPunishmentConfig config) {
         super(context, map(config.getAffects()));
         this.effectsAtOnce = config.getEffectsAtOnce();
-        this.randomizeEffectsAtOnce = config.getRandomizeEffectsAtOnce();
+        this.randomizeEffectsAtOnce = config.isRandomizeEffectsAtOnce();
     }
 
     @Override

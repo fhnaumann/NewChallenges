@@ -17,7 +17,7 @@ public class RulesValidator extends ModelValidator {
     @Override
     protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
         // TODO: go through each and every rule and call the appropriate validator (if validation is necessary)
-        if(challengesSchema.getRules() == null) {
+        if(challengesSchema.getRules() == null || challengesSchema.getRules().getEnabledRules() == null) {
             return builder;
         }
         EnabledRules enabledRules = challengesSchema.getRules().getEnabledRules();
@@ -25,7 +25,7 @@ public class RulesValidator extends ModelValidator {
             new NoItemRuleValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
         }
         if(enabledRules.getNoBlockBreak() != null) {
-            new NoBlockBreakRuleValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
+            new BlockBreakRuleValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
         }
         if(enabledRules.getNoMobKill() != null) {
             new NoMobKillRuleValidator(dataSourceContext.entityTypeJSONList()).performValidation(builder, challengesSchema);

@@ -103,14 +103,16 @@ public class ModelMapper {
         if(keyedType == Material.class) {
             return collectables.stream().map(collectableEntryConfig -> {
                 K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.materialJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
-                Collect collect = new Collect(collectableEntryConfig.getCollectableData().getAmountNeeded(), collectableEntryConfig.getCollectableData().getCurrentAmount());
+                CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(), CollectableDataConfig.class);
+                Collect collect = new Collect(collectableDataConfig.getAmountNeeded(), collectableDataConfig.getCurrentAmount());
                 return Map.entry(enumInstance, collect);
             }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
         }
         else if(keyedType == EntityType.class) {
             return collectables.stream().map(collectableEntryConfig -> {
                 K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.entityTypeJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
-                Collect collect = new Collect(collectableEntryConfig.getCollectableData().getAmountNeeded(), collectableEntryConfig.getCollectableData().getCurrentAmount());
+                CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(), CollectableDataConfig.class);
+                Collect collect = new Collect(collectableDataConfig.getAmountNeeded(), collectableDataConfig.getCurrentAmount());
                 return Map.entry(enumInstance, collect);
             }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
         }

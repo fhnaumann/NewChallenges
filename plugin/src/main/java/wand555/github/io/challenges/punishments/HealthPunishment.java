@@ -25,7 +25,7 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     public HealthPunishment(Context context, HealthPunishmentConfig config) {
         super(context, map(config.getAffects()));
         this.heartsLost = config.getHeartsLost();
-        this.randomizeHeartsLost = config.getRandomizeHeartsLost();
+        this.randomizeHeartsLost = config.isRandomizeHeartsLost();
         String path = "/definitions/HealthPunishmentConfig/properties/heartsLost";
         JsonNode heartsLostNode = context.schemaRoot().at(path);
         if(heartsLostNode.isMissingNode() || heartsLostNode.path("minimum").isMissingNode() || heartsLostNode.path("maximum").isMissingNode()) {

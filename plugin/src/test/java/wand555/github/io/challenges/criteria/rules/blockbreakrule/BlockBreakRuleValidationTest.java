@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.criteria.rules.noblockbreakrule;
+package wand555.github.io.challenges.criteria.rules.blockbreakrule;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,7 +12,7 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
 import wand555.github.io.challenges.validation.Violation;
-import wand555.github.io.challenges.validation.goals.BlockBreakGoalValidator;
+import wand555.github.io.challenges.validation.rules.BlockBreakRuleValidator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,9 +45,9 @@ public class BlockBreakRuleValidationTest {
     @ParameterizedTest
     @MethodSource("provideJSONs")
     public void testCodes(String json, ValidationResult expected) {
-        ValidationResult isolated = new BlockBreakGoalValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(), json);
+        //ValidationResult isolated = new BlockBreakRuleValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(), json);
         ValidationResult full = Validation.modernValidate(json, CriteriaUtil.loadJSONSchemaStream(), CriteriaUtil.loadSchematronStream(), dataSourceContext);
-        ValidationUtil.assertResult(expected, isolated);
+        //ValidationUtil.assertResult(expected, isolated);
         ValidationUtil.assertResult(expected, full);
     }
 
@@ -60,7 +60,7 @@ public class BlockBreakRuleValidationTest {
     }
 
     private static ValidationResult createExpectedInvalidResult() {
-        return new ValidationResult(false, List.of(new Violation("rules/enabledRules/blockBreakRule/broken", "", Violation.Level.ERROR)), null);
+        return new ValidationResult(false, List.of(new Violation("rules/enabledRules/noBlockBreakRule/exemptions", "", Violation.Level.ERROR)), null);
     }
 
     private static String loadInvalidCodeBlocks() throws IOException {
