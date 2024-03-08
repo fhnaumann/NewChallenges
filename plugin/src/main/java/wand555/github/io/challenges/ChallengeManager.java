@@ -135,7 +135,7 @@ public class ChallengeManager implements StatusInfo {
     }
 
     public void endChallenge() {
-        Bukkit.getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
+        context.plugin().getServer().getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
         gameState = GameState.ENDED;
         Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
                         context.plugin(),

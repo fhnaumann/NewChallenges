@@ -9,6 +9,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.mapping.NullHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,13 +27,9 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         super(context, map(config.getAffects()));
         this.heartsLost = config.getHeartsLost();
         this.randomizeHeartsLost = config.isRandomizeHeartsLost();
-        String path = "/definitions/HealthPunishmentConfig/properties/heartsLost";
-        JsonNode heartsLostNode = context.schemaRoot().at(path);
-        if(heartsLostNode.isMissingNode() || heartsLostNode.path("minimum").isMissingNode() || heartsLostNode.path("maximum").isMissingNode()) {
-            throw new IllegalStateException(String.format("Path '%s' is incorrectly formatted. Either it is missing completely, or at the end point are no minimum/maximum fields.", path));
-        }
-        this.minimumHeartsLost = heartsLostNode.path("minimum").asInt();
-        this.maximumHeartsLost = heartsLostNode.path("maximum").asInt();
+        this.minimumHeartsLost = NullHelper.minValue(context.schemaRoot(), "HealthPunishmentConfig", "heartsLost");
+        this.maximumHeartsLost = NullHelper.maxValue(context.schemaRoot(), "HealthPunishmentConfig", "heartsLost");
+
     }
 
     @Override

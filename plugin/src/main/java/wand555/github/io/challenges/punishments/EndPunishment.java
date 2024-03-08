@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.punishments;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
@@ -26,8 +27,14 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
     @Override
     public void enforcePunishment(Player causer) {
         // TODO create backup
-
-        context.challengeManager().endChallenge();
+        switch (getAffects()) {
+            case ALL -> {
+                context.challengeManager().endChallenge();
+            }
+            case CAUSER -> {
+                causer.setGameMode(GameMode.SPECTATOR);
+            }
+        }
     }
 
     @Override

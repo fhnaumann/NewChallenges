@@ -2,26 +2,71 @@ package wand555.github.io.challenges.punishments;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.generated.RandomEffectPunishmentConfig;
+import wand555.github.io.challenges.mapping.NullHelper;
+import wand555.github.io.challenges.utils.CollectionUtil;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 
 public class RandomEffectPunishment extends Punishment implements Storable<RandomEffectPunishmentConfig> {
 
     private final int effectsAtOnce;
     private final boolean randomizeEffectsAtOnce;
 
+    private final int minimumEffectsAtOnce, maximumEffectsAtOnce;
+
     public RandomEffectPunishment(Context context, RandomEffectPunishmentConfig config) {
         super(context, map(config.getAffects()));
         this.effectsAtOnce = config.getEffectsAtOnce();
         this.randomizeEffectsAtOnce = config.isRandomizeEffectsAtOnce();
+        this.minimumEffectsAtOnce = NullHelper.minValue(context.schemaRoot(), "RandomEffectPunishmentConfig", "effectsAtOnce");
+        this.maximumEffectsAtOnce = NullHelper.maxValue(context.schemaRoot(), "RandomEffectPunishmentConfig", "effectsAtOnce");
     }
 
     @Override
     public void enforcePunishment(Player causer) {
+        List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
+        switch (getAffects()) {
+            case CAUSER -> {
+                calculatedEffectsAtOnce.forEach(causer::addPotionEffect);
+            }
+            case ALL -> {
+                calculatedEffectsAtOnce.forEach(potionEffect -> context.plugin().getServer().getOnlinePlayers().forEach(player -> player.addPotionEffect(potionEffect)));
+            }
+        }
+    }
 
+    private List<PotionEffect> getCalculatedEffectsAtOnce() {
+        int amount = 0;
+        if(!randomizeEffectsAtOnce) {
+            amount = effectsAtOnce;
+        }
+        else {
+            amount = ThreadLocalRandom.current().nextInt(minimumEffectsAtOnce, maximumEffectsAtOnce);
+        }
+        return createNEffects(amount);
+    }
+
+    private List<PotionEffect> createNEffects(int n) {
+        List<PotionEffectType> toApply = CollectionUtil.pickN(Arrays.asList(PotionEffectType.values()), n);
+        return toApply.stream().map(this::potionEffect).toList();
+    }
+
+    private PotionEffect potionEffect(PotionEffectType type) {
+        return type.createEffect(
+                ThreadLocalRandom.current().nextInt(10,60*10+1) * 20, // between 10 seconds and 10 minutes
+                ThreadLocalRandom.current().nextInt(6)
+        );
     }
 
     public void addToGeneratedConfig(PunishmentsConfig generatedPunishmentsConfig) {

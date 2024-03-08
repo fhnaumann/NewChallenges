@@ -16,6 +16,10 @@ import java.util.stream.IntStream;
 
 public class CriteriaUtil {
 
+    public static ResourceBundle loadPunishmentResourceBundle() {
+        return ResourceBundle.getBundle("punishments", Locale.ENGLISH, UTF8ResourceBundleControl.get());
+    }
+
     public static ResourceBundle loadGoalResourceBundle() {
         return ResourceBundle.getBundle("goals", Locale.ENGLISH, UTF8ResourceBundleControl.get());
     }

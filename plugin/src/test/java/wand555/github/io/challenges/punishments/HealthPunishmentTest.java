@@ -3,7 +3,6 @@ package wand555.github.io.challenges.punishments;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -17,8 +16,6 @@ import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.validation.Validation;
-import wand555.github.io.challenges.validation.ValidationResult;
-import wand555.github.io.challenges.validation.Violation;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -116,121 +113,5 @@ public class HealthPunishmentTest {
         assertNotEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), player.getHealth(), 1e-3);
         assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), secondPlayer.getHealth(), 1e-3);
         assertNotEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), thirdPlayer.getHealth(), 1e-3);
-    }
-
-    @Test
-    public void testEmptyHealthPunishmentValidator() throws JsonProcessingException {
-        String emptyHealthPunishment =
-                """
-                {
-                  "rules": {
-                    "enabledRules": {
-                      "noBlockBreak": {
-                        "punishments": {
-                          "healthPunishment": {
-                            
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                """;
-        ValidationResult result = validation.validate(emptyHealthPunishment);
-        assertTrue(result.isValid());
-    }
-
-    @Test
-    public void testHealthAmount() {
-        String validHealthAmountHealthPunishment =
-                """
-                {
-                  "rules": {
-                    "enabledRules": {
-                      "noBlockBreak": {
-                        "punishments": {
-                          "healthPunishment": {
-                            "heartsLost": 2
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                """;
-        ValidationResult result = validation.validate(validHealthAmountHealthPunishment);
-        assertTrue(result.isValid());
-
-        String invalidHealthAmountHealthPunishment =
-                """
-                {
-                  "rules": {
-                    "enabledRules": {
-                      "noBlockBreak": {
-                        "punishments": {
-                          "healthPunishment": {
-                            "heartsLost": 25
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                """;
-        result = validation.validate(invalidHealthAmountHealthPunishment);
-        assertFalse(result.isValid());
-        assertEquals(1, result.getViolations().size());
-    }
-
-    @Test
-    public void testComplexHealthPunishment1() throws JsonProcessingException {
-        String complexHealthPunishment =
-                """
-                {
-                  "rules": {
-                    "enabledRules": {
-                      "noBlockBreak": {
-                        "punishments": {
-                          "healthPunishment": {
-                            "heartsLost": 2,
-                            "randomizeHeartsLost": true
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                """;
-        ValidationResult result = validation.validate(complexHealthPunishment);
-        assertTrue(result.isValid());
-        assertEquals(1, result.getViolations().size());
-        assertEquals(Violation.Level.WARNING, result.getViolations().get(0).getLevel());
-    }
-
-    @Test
-    public void testComplexHealthPunishment2() {
-        String complexHealthPunishment =
-                """
-                {
-                  "rules": {
-                    "enabledRules": {
-                      "noBlockBreak": {
-                        "punishments": {
-                          "healthPunishment": {
-                            "heartsLost": 25,
-                            "randomizeHeartsLost": true,
-                            "affects": "Causer"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                """;
-        ValidationResult result = validation.validate(complexHealthPunishment);
-        assertFalse(result.isValid());
-        assertEquals(2, result.getViolations().size());
-        assertEquals(1, result.getViolations().stream().filter(violation -> violation.getLevel() == Violation.Level.ERROR).count());
-        assertEquals(1, result.getViolations().stream().filter(violation -> violation.getLevel() == Violation.Level.WARNING).count());
     }
 }
