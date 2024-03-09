@@ -78,7 +78,11 @@ function getRuleConfig(): PunishableRuleConfig {
 
 
 const allPunishments: PunishmentName[] = [
-    'endPunishment', 'healthPunishment', 'deathPunishment', 'randomEffectPunishment', 'randomItemPunishment'
+    'endPunishment', 
+    'healthPunishment', 
+    //'deathPunishment', 
+    'randomEffectPunishment', 
+    //'randomItemPunishment'
 ]
 const allPunishmentsView: PunishmentView[] = allPunishments.map(punishmentName => punishmentsViewStore.allpunishments[punishmentName as PunishmentName])
 

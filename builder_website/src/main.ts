@@ -115,6 +115,17 @@ const rulesView: RulesView = {
             label: 'NoBlockBreak',
             description: 'Breaking blocks is prohibited!',
         },
+        noItem: {
+            id: 'noItem',
+            label: "NoItem",
+            description: 'Picking up items is prohibited!'
+        },
+        noMobKill: {
+            id: 'noMobKill',
+            label: "NoMobKill",
+            description: 'Killing mobs is prohibited!'
+        }
+        /*
         noBlockPlace: {
             id: 'noBlockPlace',
             label: "NoBlockPlace",
@@ -135,16 +146,7 @@ const rulesView: RulesView = {
             label: "NoDeath",
             description: 'Dying is prohibited!'
         },
-        noItem: {
-            id: 'noItem',
-            label: "NoItem",
-            description: 'Picking up items is prohibited!'
-        },
-        noMobKill: {
-            id: 'noMobKill',
-            label: "NoMobKill",
-            description: 'Killing mobs is prohibited!'
-        }
+        */
     }
 }
 
@@ -156,17 +158,17 @@ const goalsView: GoalsView = {
     allgoals: {
         mobGoal: {
             id: 'mobGoal',
-            description: 'TODO MobGoal',
+            description: 'Kill mobs to complete the goal!',
             label: 'MobGoal',
         },
         itemGoal: {
             id: 'itemGoal',
-            description: 'TODO ItemGoal',
+            description: 'Collect items to complete the goal!',
             label: 'ItemGoal'
         },
         blockbreakGoal: {
             id: 'blockbreakGoal',
-            description: 'TODO blockbreak goal',
+            description: 'Break blocks to complete the goal!',
             label: 'BlockBreakGoal'
         }
     }

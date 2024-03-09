@@ -3,17 +3,9 @@
     class="border-solid border-2 rounded-md bg-blue-500 hover:brightness-125"
     @click="addDefaultSectionToConfig"
   >
-    <div class="flex items-center max-w-96">
-      <img
-        class="w-10"
-        :src="'/img/' + props.rule?.id + '.png'"
-        alt=""
-        @error="$event.target.src = 'unknown.png'"
-      />
-      <div>
-        <p class="text-3xl font-bold">{{ rule?.label }}</p>
-        <p class="text-wrap ml-4">{{ rule?.description }}</p>
-      </div>
+    <div class="flex flex-col items-start max-w-96">
+      <p class="text-3xl font-bold ml-2">{{ rule.label }}</p>
+      <p class="text-wrap ml-4">{{ rule.description }}</p>
     </div>
   </button>
 </template>
@@ -21,7 +13,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { useConfigStore, useDefaultConfigStore } from '@/main';
-import type { NoBlockBreakRuleConfig, RuleName, RulesConfig, BaseRuleConfig } from '../model/rules';
+import type { RuleName, RulesConfig, BaseRuleConfig } from '../model/rules';
 import type { RuleView } from '../view/rules';
 import { useValidator } from '../validator';
 import type { Model } from '../model/model';

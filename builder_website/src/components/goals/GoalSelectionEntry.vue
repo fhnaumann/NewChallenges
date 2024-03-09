@@ -4,17 +4,9 @@
     :disabled="isActive()"
     @click="addDefaultSectionToConfig"
   >
-    <div class="flex items-center max-w-96">
-      <img
-        class="w-10"
-        :src="'/img/' + props.goal?.id + '.png'"
-        alt=""
-        @error="$event.target.src = 'unknown.png'"
-      />
-      <div>
-        <p class="text-3xl font-bold">{{ goal.label }}</p>
-        <p class="text-wrap ml-4">{{ goal.description }}</p>
-      </div>
+    <div class="flex flex-col items-start max-w-96">
+      <p class="text-3xl font-bold ml-2">{{ goal.label }}</p>
+      <p class="text-wrap ml-4">{{ goal.description }}</p>
     </div>
   </button>
 </template>

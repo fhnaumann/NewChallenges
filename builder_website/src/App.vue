@@ -41,6 +41,37 @@
           </div>
       </div>
   </Dialog>
+  <Dialog class="w-3/5" v-model:visible="isInvalid" @after-hide="isInvalid = false">
+    <div>
+        <div class="flex flex-col space-y-4">
+            <p class="text-2xl">Uh oh! Looks like something went wrong!</p>
+        <p>The builder website (somehow) generated invalid code. Please report this bug on 
+            <a href="https://github.com/fhnaumann/NewChallenges/issues/new" target="_tab" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800 hover:underline">GitHub</a> 
+            or <a href="https://discord.gg/EST6jR7Zdr" target="_tab" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800 hover:underline">Discord</a> 
+            and provide the code below along with the steps you took.
+        </p>
+        </div>
+        <div class="relative mx-auto mt-2 w-full">
+          <div class="bg-red-900 text-white p-4 rounded-md">
+              <div class="flex justify-between items-center mb-2">
+                  <span class="text-gray-400">Code:</span>
+                  <Toast />
+                  <Button @click="copyToClibboard"
+                      class="code bg-red-800 hover:bg-red-700 text-gray-300 px-3 py-1 rounded-md">
+                      Copy
+                  </Button>
+
+              </div>
+              <div class="overflow-x-auto">
+                  <pre id="code" class="text-gray-300">
+                  <pre>{{ jsonifyConfigSettings() }}</pre>
+
+              </pre>
+              </div>
+          </div>
+      </div>
+    </div>
+  </Dialog>
 </template>
 
 <script setup lang="ts">
@@ -64,6 +95,7 @@ const store = useConfigStore()
 const toast = useToast()
 
 const showSettingsFile = ref(false)
+const isInvalid = ref(false)
 
 onBeforeUpdate(() => {
   console.log("BEFORE UPDATE", store)
@@ -79,7 +111,7 @@ function validateConsistency() {
         console.log(validate.errors)
     }
     if(!isValid) {
-        console.error("TERRIBLE ERROR!!!")
+        isInvalid.value = false;
         return
     }
     showSettingsFile.value = true
