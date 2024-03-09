@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
@@ -47,6 +48,7 @@ public class MobGoalTest {
 
     private MobGoal mobGoal;
     private static MobGoalMessageHelper messageHelper;
+    private static MobGoalBossBarHelper bossBarHelper;
 
     private EntityDeathEvent pigDeathEvent;
 
@@ -63,6 +65,7 @@ public class MobGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = mock(MobGoalMessageHelper.class);
+        bossBarHelper = mock(MobGoalBossBarHelper.class);
     }
 
     @BeforeEach
@@ -93,7 +96,8 @@ public class MobGoalTest {
                   ]
                 }
                 """;
-        mobGoal = new MobGoal(context, new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class), messageHelper);
+        MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
+        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);

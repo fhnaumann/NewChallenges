@@ -21,6 +21,8 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.criteria.goals.GoalCollector;
+import wand555.github.io.challenges.criteria.goals.factory.ItemGoalFactory;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.types.item.ItemData;
 
@@ -44,6 +46,7 @@ public class ItemGoalFixedOrderTest {
 
     private ItemGoal itemGoal;
     private static ItemGoalMessageHelper messageHelper;
+    private static ItemGoalBossBarHelper bossBarHelper;
 
     private EntityPickupItemEvent pickupOneCarrot;
 
@@ -61,6 +64,7 @@ public class ItemGoalFixedOrderTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new ItemGoalMessageHelper(context));
+        bossBarHelper = mock(ItemGoalBossBarHelper.class);
     }
 
     @BeforeEach
@@ -101,7 +105,8 @@ public class ItemGoalFixedOrderTest {
                   ]
                 }
                 """;
-        itemGoal = new ItemGoal(context, new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class), messageHelper);
+        ItemGoalConfig config = new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class);
+        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()),messageHelper, bossBarHelper);
 
         ItemStack toCollect = new ItemStack(Material.CARROT);
         pickupOneCarrot = new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), toCollect), 0);

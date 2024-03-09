@@ -20,6 +20,7 @@ import wand555.github.io.challenges.FileManager;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
@@ -49,6 +50,7 @@ public class ItemGoalJSONTest {
 
     private Context context;
     private ItemGoalMessageHelper messageHelper;
+    private ItemGoalBossBarHelper bossBarHelper;
 
     private ObjectMapper objectMapper;
 
@@ -68,7 +70,8 @@ public class ItemGoalJSONTest {
         ChallengeManager managerMock = mock(ChallengeManager.class);
         context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock, new Random());
 
-        messageHelper = new ItemGoalMessageHelper(context);
+        messageHelper = mock(ItemGoalMessageHelper.class);
+        bossBarHelper = mock(ItemGoalBossBarHelper.class);
 
         objectMapper = new ObjectMapper();
     }
@@ -88,7 +91,7 @@ public class ItemGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(minimalItemGoalJSON, ItemGoalConfig.class));
         ItemGoalConfig config = objectMapper.readValue(minimalItemGoalJSON, ItemGoalConfig.class);
-        ItemGoal itemGoal = new ItemGoal(context, config, messageHelper);
+        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
         assertTrue(itemGoal.getToCollect().isEmpty());
     }
 
@@ -117,7 +120,7 @@ public class ItemGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class));
         ItemGoalConfig config = objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class);
-        ItemGoal itemGoal = new ItemGoal(context, config, messageHelper);
+        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
         Map<Material, Collect> expected = new HashMap<>();
         expected.put(Material.CARROT, new Collect(2,0));
         expected.put(Material.STONE, new Collect(3,1));
@@ -151,7 +154,7 @@ public class ItemGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class));
         ItemGoalConfig config = objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class);
-        ItemGoal itemGoal = new ItemGoal(context, config, messageHelper);
+        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
         assertEquals(Map.entry(Material.CARROT, new Collect(2, 0)), itemGoal.getGoalCollector().getCurrentlyToCollect());
     }
 }

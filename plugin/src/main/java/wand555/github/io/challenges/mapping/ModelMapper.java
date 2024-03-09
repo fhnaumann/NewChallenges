@@ -12,6 +12,9 @@ import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
+import wand555.github.io.challenges.criteria.goals.factory.BlockBreakGoalFactory;
+import wand555.github.io.challenges.criteria.goals.factory.ItemGoalFactory;
+import wand555.github.io.challenges.criteria.goals.factory.MobGoalFactory;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
@@ -84,17 +87,13 @@ public class ModelMapper {
         }
         if(goalsConfig.getMobGoal() != null) {
             MobGoalConfig mobGoalConfig = goalsConfig.getMobGoal();
-            goals.add(new MobGoal(
-                    context,
-                    mobGoalConfig,
-                    new MobGoalMessageHelper(context)
-            ));
+            goals.add(new MobGoalFactory().createGoal(context, mobGoalConfig));
         }
         if(goalsConfig.getItemGoal() != null) {
-            goals.add(new ItemGoal(context, goalsConfig.getItemGoal(), new ItemGoalMessageHelper(context)));
+            goals.add(new ItemGoalFactory().createGoal(context, goalsConfig.getItemGoal()));
         }
         if(goalsConfig.getBlockbreakGoal() != null) {
-            goals.add(new BlockBreakGoal(context, goalsConfig.getBlockbreakGoal(), new BlockBreakGoalMessageHelper(context)));
+            goals.add(new BlockBreakGoalFactory().createGoal(context, goalsConfig.getBlockbreakGoal()));
         }
         return goals;
     }

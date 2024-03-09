@@ -20,6 +20,7 @@ import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.types.mob.MobData;
 
@@ -44,6 +45,7 @@ public class MobGoalFixedOrderTest {
 
     private MobGoal mobGoal;
     private static MobGoalMessageHelper messageHelper;
+    private static MobGoalBossBarHelper bossBarHelper;
 
     private EntityDeathEvent pigDeathEvent;
 
@@ -60,6 +62,7 @@ public class MobGoalFixedOrderTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new MobGoalMessageHelper(context));
+        bossBarHelper = mock(MobGoalBossBarHelper.class);
     }
 
     @BeforeEach
@@ -92,7 +95,8 @@ public class MobGoalFixedOrderTest {
                   "fixedOrder": true
                 }
                 """;
-        mobGoal = new MobGoal(context, new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class), messageHelper);
+        MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
+        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()),messageHelper, bossBarHelper);
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);
@@ -102,11 +106,6 @@ public class MobGoalFixedOrderTest {
     @AfterEach
     public void tearDown() {
         MockBukkit.unmock();
-    }
-
-    @Test
-    public void testBossBarExists() {
-        assertNotNull(mobGoal.getBossBar());
     }
 
     @Test

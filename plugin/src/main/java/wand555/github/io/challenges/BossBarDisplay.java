@@ -5,15 +5,9 @@ import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
-public interface BossBarDisplay<S> {
-
-    public BossBar createBossBar(S data);
+public interface BossBarDisplay {
 
     public BossBar getBossBar();
-
-    public void updateBossBar(S data);
-
-    public BossBarPriority getBossBarPriority();
 
     default void showBossBar(Player player) {
         if(getBossBar() != null) {

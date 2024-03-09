@@ -17,6 +17,7 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
+import wand555.github.io.challenges.criteria.goals.factory.BlockBreakGoalFactory;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 
@@ -93,7 +94,7 @@ public class BlockBreakGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(json, BlockBreakGoalConfig.class));
         BlockBreakGoalConfig config = objectMapper.readValue(json, BlockBreakGoalConfig.class);
-        BlockBreakGoal blockBreakGoal = new BlockBreakGoal(context, config, messageHelper);
+        BlockBreakGoal blockBreakGoal = new BlockBreakGoalFactory().createGoal(context, config);
         Map<Material, Collect> expected = new HashMap<>();
         expected.put(Material.STONE, new Collect(2,0));
         expected.put(Material.DIRT, new Collect(2,0));
@@ -127,7 +128,7 @@ public class BlockBreakGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(json, BlockBreakGoalConfig.class));
         BlockBreakGoalConfig config = objectMapper.readValue(json, BlockBreakGoalConfig.class);
-        BlockBreakGoal blockBreakGoal = new BlockBreakGoal(context, config, messageHelper);
+        BlockBreakGoal blockBreakGoal = new BlockBreakGoalFactory().createGoal(context, config);
         assertEquals(Map.entry(Material.STONE, new Collect(2,0)), blockBreakGoal.getGoalCollector().getCurrentlyToCollect());
     }
 }

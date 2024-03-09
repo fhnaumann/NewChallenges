@@ -1,19 +1,14 @@
 package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.bossbar.BossBar;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Keyed;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
-import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.types.Data;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 /**
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
@@ -21,30 +16,19 @@ import java.util.function.Function;
  * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, BossBarDisplay<Map.Entry<K, Collect>> {
+public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, BossBarDisplay {
 
     protected final GoalCollector<K> goalCollector;
+    private final MapGoalBossBarHelper<K> bossBarHelper;
     protected final GoalMessageHelper<D, K> messageHelper;
     protected final InvProgress<D> invProgress;
 
-    protected final boolean fixedOrder;
-    private final BossBar bossBar;
-
-    public MapGoal(Context context, boolean complete, boolean fixedOrder, boolean shuffled, List<CollectableEntryConfig> collectables, Class<K> enumType, GoalMessageHelper<D, K> messageHelper) {
+    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, MapGoalBossBarHelper<K> bossBarHelper) {
         super(context, complete);
-        if(fixedOrder && !shuffled) {
-            Collections.shuffle(collectables);
-        }
-        this.goalCollector = new GoalCollector<>(context, collectables, enumType, fixedOrder);
+        this.goalCollector = goalCollector;
+        this.bossBarHelper = bossBarHelper;
         this.messageHelper = messageHelper;
         this.invProgress = new InvProgress();
-        this.fixedOrder = fixedOrder;
-        if(fixedOrder) {
-            this.bossBar = createBossBar(goalCollector.getCurrentlyToCollect());
-        }
-        else {
-            this.bossBar = null;
-        }
     }
 
     @Override
@@ -61,7 +45,8 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     public void onComplete() {
         setComplete(true);
         messageHelper.sendAllReachedAction();
-        if(bossBar != null) {
+
+        if(bossBarHelper.getBossBar() != null) {
             removeBossBar(context.plugin().getServer().getOnlinePlayers());
         }
 
@@ -78,7 +63,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             if(toCollect == null || toCollect.isComplete()) {
                 return false;
             }
-            if(fixedOrder) {
+            if(goalCollector.isFixedOrder()) {
                 return goalCollector.getCurrentlyToCollect().getKey() == data.mainDataInvolved();
             }
             return true;
@@ -91,20 +76,18 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             Collect updatedCollect = updateCollect(data);
             if(updatedCollect.isComplete()) {
                 messageHelper.sendSingleReachedAction(data, updatedCollect);
-                if(fixedOrder && goalCollector.hasNext()) {
-                    updateBossBar(goalCollector.next());
+                if(goalCollector.hasNext()) {
+                    goalCollector.next();
                 }
             }
             else {
                 messageHelper.sendSingleStepAction(data, updatedCollect);
-                if(fixedOrder) {
-                    updateBossBar(goalCollector.getCurrentlyToCollect());
-                }
             }
 
             if(determineComplete()) {
                 onComplete();
             }
+            bossBarHelper.updateBossBar();
         };
     }
 
@@ -119,7 +102,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
 
     @Override
     public void onSkip(Player player) throws UnskippableException {
-        if(!fixedOrder) {
+        if(!goalCollector.isFixedOrder()) {
             throw new UnskippableException();
         }
         goalCollector.getCurrentlyToCollect().getValue().setCurrentAmount(goalCollector.getCurrentlyToCollect().getValue().getAmountNeeded());
@@ -128,42 +111,21 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             onComplete();
         }
         else {
-            Map.Entry<K, Collect> next = goalCollector.next();
-            updateBossBar(next);
+            bossBarHelper.updateBossBar();
         }
 
-    }
-
-    @Override
-    public BossBar createBossBar(Map.Entry<K, Collect> data) {
-        if(fixedOrder) {
-            Component formattedBossBarComponent = messageHelper.formatBossBarComponent(data.getKey(), data.getValue());
-            return BossBar.bossBar(formattedBossBarComponent, 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
-        }
-        throw new RuntimeException("Attempted boss bar creation while fixedOrder is false.");
-    }
-
-    @Override
-    public void updateBossBar(Map.Entry<K, Collect> data) {
-        if(!fixedOrder) {
-            //throw new RuntimeException("Attempted boss bar creation while fixedOrder is false.");
-            // ignore for now
-            return;
-        }
-        bossBar.name(messageHelper.formatBossBarComponent(data.getKey(), data.getValue()));
     }
 
     @Override
     public BossBar getBossBar() {
-        return bossBar;
-    }
-
-    @Override
-    public BossBarPriority getBossBarPriority() {
-        return fixedOrder ? BossBarPriority.URGENT : BossBarPriority.INFO;
+        return bossBarHelper.getBossBar();
     }
 
     public GoalCollector<K> getGoalCollector() {
         return goalCollector;
+    }
+
+    public boolean isFixedOrder() {
+        return goalCollector.isFixedOrder();
     }
 }

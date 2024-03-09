@@ -16,9 +16,8 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
 
     private final ItemType itemType;
 
-    public ItemGoal(Context context, ItemGoalConfig config, ItemGoalMessageHelper messageHelper) {
-        super(context, config.isComplete(), config.isFixedOrder(), config.isShuffled(), config.getItems(), Material.class, messageHelper);
-
+    public ItemGoal(Context context, ItemGoalConfig config, GoalCollector<Material> goalCollector, ItemGoalMessageHelper messageHelper, ItemGoalBossBarHelper bossBarHelper) {
+        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper);
         this.itemType = new ItemType(context, triggerCheck(), trigger());
     }
 
@@ -36,7 +35,7 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
     public ItemGoalConfig toGeneratedJSONClass() {
         return new ItemGoalConfig(
                 isComplete(),
-                this.fixedOrder,
+                isFixedOrder(),
                 goalCollector.toGeneratedJSONClass(),
                 false
         );

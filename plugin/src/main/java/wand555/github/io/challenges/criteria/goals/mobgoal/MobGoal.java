@@ -15,8 +15,8 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     private final MobType mobType;
 
-    public MobGoal(Context context, MobGoalConfig config, MobGoalMessageHelper messageHelper) {
-        super(context, config.isComplete(), config.isFixedOrder(), config.isShuffled(), config.getMobs(), EntityType.class, messageHelper);
+    public MobGoal(Context context, MobGoalConfig config, GoalCollector<EntityType> goalCollector, MobGoalMessageHelper messageHelper, MobGoalBossBarHelper bossBarHelper) {
+        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper);
         this.mobType = new MobType(context, triggerCheck(), trigger());
     }
 
@@ -24,7 +24,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
     public MobGoalConfig toGeneratedJSONClass() {
         return new MobGoalConfig(
                 isComplete(),
-                this.fixedOrder,
+                isFixedOrder(),
                 goalCollector.toGeneratedJSONClass(),
                 true
         );

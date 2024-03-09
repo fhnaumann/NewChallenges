@@ -19,7 +19,9 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
+import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalBossBarHelper;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
@@ -43,6 +45,7 @@ public class BlockBreakGoalTest {
 
     private BlockBreakGoal blockBreakGoal;
     private static BlockBreakGoalMessageHelper messageHelper;
+    private static BlockBreakGoalBossBarHelper bossBarHelper;
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -58,6 +61,7 @@ public class BlockBreakGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new BlockBreakGoalMessageHelper(context));
+        bossBarHelper = mock(BlockBreakGoalBossBarHelper.class);
     }
 
     @BeforeEach
@@ -88,7 +92,8 @@ public class BlockBreakGoalTest {
                   ]
                 }
                 """;
-        blockBreakGoal = new BlockBreakGoal(context, new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class), messageHelper);
+        BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
+        blockBreakGoal = new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
     }
 
     @AfterEach

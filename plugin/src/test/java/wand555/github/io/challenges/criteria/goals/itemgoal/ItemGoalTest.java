@@ -37,6 +37,7 @@ import wand555.github.io.challenges.FileManager;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
@@ -68,6 +69,7 @@ public class ItemGoalTest {
 
     private ItemGoal itemGoal;
     private static ItemGoalMessageHelper messageHelper;
+    private static ItemGoalBossBarHelper bossBarHelper;
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -83,6 +85,7 @@ public class ItemGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new ItemGoalMessageHelper(context));
+        bossBarHelper = mock(ItemGoalBossBarHelper.class);
     }
 
     @BeforeEach
@@ -121,7 +124,8 @@ public class ItemGoalTest {
                   ]
                 }
                 """;
-        itemGoal = new ItemGoal(context, new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class), messageHelper);
+        ItemGoalConfig config = new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class);
+        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
     }
 
     @AfterEach
