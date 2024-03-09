@@ -56,7 +56,10 @@ public abstract class PunishableRule<T extends Data<K>, K extends Keyed> extends
     }
 
     public void enforcePunishments(Player causer) {
+        // enforce local punishments
         getPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
+        // enforce global punishments
+        context.challengeManager().getGlobalPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
     }
 
     protected final @Nullable PunishmentsConfig toPunishmentsConfig() {

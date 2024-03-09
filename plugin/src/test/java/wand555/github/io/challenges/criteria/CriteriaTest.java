@@ -11,6 +11,8 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.ResourceBundleContext;
 
+import java.util.Random;
+
 import static org.mockito.Mockito.mock;
 
 public abstract class CriteriaTest<C, M extends MessageHelper> {
@@ -31,7 +33,7 @@ public abstract class CriteriaTest<C, M extends MessageHelper> {
         criteria = createCriteria();
         messageHelper = createMessageHelper();
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, createResourceBundleContext(), createDataSourceContext(), null, manager);
+        context = new Context(plugin, createResourceBundleContext(), createDataSourceContext(), null, manager, new Random());
     }
 
     @AfterEach

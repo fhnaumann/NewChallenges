@@ -55,7 +55,7 @@ public class MobGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager managerMock = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, schemaRootMock, managerMock);
+        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, schemaRootMock, managerMock, new Random());
 
         messageHelper = new MobGoalMessageHelper(context);
 

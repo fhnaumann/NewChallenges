@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.criteria;
 
 import be.seeseemelk.mockbukkit.ServerMock;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.event.Event;
@@ -30,6 +31,14 @@ public class CriteriaUtil {
 
     public static InputStream loadJSONSchemaStream() {
         return CriteriaUtil.class.getResourceAsStream("/challenges_schema.json");
+    }
+
+    public static JsonNode loadJSONSchemaStreamAsJSONNode() {
+        try {
+            return new ObjectMapper().readTree(loadJSONSchemaStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static InputStream loadSchematronStream() {

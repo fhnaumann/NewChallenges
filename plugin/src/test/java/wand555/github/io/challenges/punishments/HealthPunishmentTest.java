@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class HealthPunishmentTest {
@@ -31,8 +32,6 @@ public class HealthPunishmentTest {
     private static ResourceBundleContext resourceBundleContext;
     private static JsonNode schemaRoot;
     private static DataSourceContext dataSourceContext;
-
-    private static Validation validation;
 
     private ServerMock server;
     private Challenges plugin;
@@ -44,14 +43,10 @@ public class HealthPunishmentTest {
         ResourceBundle bundle = ResourceBundle.getBundle("punishments", Locale.ENGLISH, UTF8ResourceBundleControl.get());
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.punishmentResourceBundle()).thenReturn(bundle);
-        schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/test-output-schema.json"));
+        schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
         List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
         dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
-        validation = new Validation(
-                HealthPunishmentTest.class.getResourceAsStream("/challenges_schema.json"),
-                new File(HealthPunishmentTest.class.getResource("/constraints.sch").getFile())
-        );
     }
 
     @BeforeEach
@@ -60,7 +55,9 @@ public class HealthPunishmentTest {
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
         ChallengeManager challengeManager = new ChallengeManager();
-        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager);
+        Random randomMock = mock(Random.class);
+        when(randomMock.nextInt(anyInt(), anyInt())).thenReturn(3);
+        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager, randomMock);
         challengeManager.setContext(context);
     }
 

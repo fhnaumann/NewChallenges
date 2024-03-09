@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
@@ -13,8 +14,10 @@ import wand555.github.io.challenges.mapping.NullHelper;
 import wand555.github.io.challenges.utils.CollectionUtil;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
@@ -36,36 +39,50 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     @Override
     public void enforcePunishment(Player causer) {
         List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
+
+        String key = "";
+        Map<String, Component> placeholders = new HashMap<>();
+        placeholders.put("amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())));
         switch (getAffects()) {
             case CAUSER -> {
                 calculatedEffectsAtOnce.forEach(causer::addPotionEffect);
+                key = "randomeffect.enforced.causer";
+                placeholders.put("player", Component.text(causer.getName()));
             }
             case ALL -> {
                 calculatedEffectsAtOnce.forEach(potionEffect -> context.plugin().getServer().getOnlinePlayers().forEach(player -> player.addPotionEffect(potionEffect)));
+                key = "randomeffect.enforced.all";
             }
         }
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                key,
+                placeholders
+        );
+        context.plugin().getServer().broadcast(toSend);
     }
 
     private List<PotionEffect> getCalculatedEffectsAtOnce() {
-        int amount = 0;
+        int amount;
         if(!randomizeEffectsAtOnce) {
             amount = effectsAtOnce;
         }
         else {
-            amount = ThreadLocalRandom.current().nextInt(minimumEffectsAtOnce, maximumEffectsAtOnce);
+            amount = context.random().nextInt(minimumEffectsAtOnce, maximumEffectsAtOnce);
         }
         return createNEffects(amount);
     }
 
     private List<PotionEffect> createNEffects(int n) {
-        List<PotionEffectType> toApply = CollectionUtil.pickN(Arrays.asList(PotionEffectType.values()), n);
+        List<PotionEffectType> toApply = CollectionUtil.pickN(Arrays.asList(PotionEffectType.values()), n, context.random());
         return toApply.stream().map(this::potionEffect).toList();
     }
 
     private PotionEffect potionEffect(PotionEffectType type) {
         return type.createEffect(
-                ThreadLocalRandom.current().nextInt(10,60*10+1) * 20, // between 10 seconds and 10 minutes
-                ThreadLocalRandom.current().nextInt(6)
+                context.random().nextInt(10,60*10+1) * 20, // between 10 seconds and 10 minutes
+                context.random().nextInt(6)
         );
     }
 

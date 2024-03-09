@@ -71,7 +71,7 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         if(!randomizeHeartsLost) {
             return heartsLost;
         }
-        return ThreadLocalRandom.current().nextInt(minimumHeartsLost, maximumHeartsLost+1);
+        return context.random().nextInt(minimumHeartsLost, maximumHeartsLost+1);
     }
 
     @Override

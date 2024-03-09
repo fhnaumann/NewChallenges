@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,7 +66,7 @@ public class ItemGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager managerMock = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock);
+        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock, new Random());
 
         messageHelper = new ItemGoalMessageHelper(context);
 

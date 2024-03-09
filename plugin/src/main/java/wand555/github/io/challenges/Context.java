@@ -3,9 +3,10 @@ package wand555.github.io.challenges;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.InputStream;
+import java.util.Random;
 import java.util.ResourceBundle;
 
-public record Context(Challenges plugin, ResourceBundleContext resourceBundleContext, DataSourceContext dataSourceContext, JsonNode schemaRoot, ChallengeManager challengeManager) {
+public record Context(Challenges plugin, ResourceBundleContext resourceBundleContext, DataSourceContext dataSourceContext, JsonNode schemaRoot, ChallengeManager challengeManager, Random random) {
 
     public static final class Builder {
         private Challenges plugin;
@@ -13,6 +14,8 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
         private DataSourceContext.Builder dataSourceContextBuilder;
         private JsonNode schemaRoot;
         private ChallengeManager manager;
+
+        private Random random;
 
         public Builder() {
             this.resourceBundleContextBuilder = new ResourceBundleContext.Builder();
@@ -69,8 +72,13 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withRandom(Random random) {
+            this.random = random;
+            return this;
+        }
+
         public Context build() {
-            return new Context(plugin, resourceBundleContextBuilder.build(), dataSourceContextBuilder.build(), schemaRoot, manager);
+            return new Context(plugin, resourceBundleContextBuilder.build(), dataSourceContextBuilder.build(), schemaRoot, manager, random);
         }
     }
 

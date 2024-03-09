@@ -23,6 +23,7 @@ import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -55,7 +56,7 @@ public class BlockBreakGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager managerMock = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock);
+        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock, new Random());
 
         messageHelper = new BlockBreakGoalMessageHelper(context);
 

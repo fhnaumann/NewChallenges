@@ -13,6 +13,7 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class FileManager {
@@ -77,6 +78,7 @@ public class FileManager {
                         .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                         .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
                         .withChallengeManager(new ChallengeManager())
+                        .withRandom(new Random())
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                 ModelMapper.map2ModelClasses(context, challengesSchema);

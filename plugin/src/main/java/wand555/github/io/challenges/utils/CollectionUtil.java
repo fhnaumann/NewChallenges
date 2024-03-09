@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,10 +20,11 @@ public class CollectionUtil {
     }
 
     @NotNull
-    public static <T> List<T> pickN(@NotNull List<T> from, int n) {
+    public static <T> List<T> pickN(@NotNull List<T> from, int n, @NotNull Random random) {
+        from = new ArrayList<>(from);
         List<T> picked = new ArrayList<>();
         for(int i=0; i<n; i++) {
-            int randomIdx = ThreadLocalRandom.current().nextInt(from.size());
+            int randomIdx = random.nextInt(from.size());
             T randomElement = from.get(randomIdx);
             from.remove(randomIdx);
             picked.add(randomElement);
