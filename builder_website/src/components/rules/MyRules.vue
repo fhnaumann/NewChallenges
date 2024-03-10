@@ -114,8 +114,8 @@ import NoBlockPlace from './NoBlockPlace.vue'
 import NoMobKillRule from './NoMobKillRule.vue'
 import { rule } from 'postcss'
 import NoItemRule from './NoItemRule.vue'
+import RuleSelector from './RuleSelector.vue'
 
-const RuleSelector = defineAsyncComponent(() => import('./RuleSelector.vue'))
 const config = useConfigStore().model
 const defaultConfig = useDefaultConfigStore()
 const rulesViewStore = useRulesViewStore()

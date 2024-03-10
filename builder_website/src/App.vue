@@ -1,10 +1,16 @@
 <template>
   <Toast />
-  <div class="flex flex-col h-screen w-screen">
+  <div class="absolute inset-0">
+    <div class="flex flex-col h-screen w-screen">
+
       <div>
           <div class="text-center py-4">
               <h1 class="text-4xl">Challenge Settings Builder</h1>
           </div>
+      </div>
+      <div class="flex justify-center">
+          <Button @click="validateConsistency()"
+              class="text-3xl w-5/6 mx-10 my-5 border-4 rounded-md bg-green-500" label="Generate settings file" />
       </div>
       <div class="flex flex-1 justify-center h-full w-full space-x-10">
           <div class="shrink-0 border-8 border-slate-300 rounded-lg">
@@ -14,12 +20,11 @@
               <MyGoals class="ml-2" />
           </div>
       </div>
-      <div class="flex justify-center">
-          <Button @click="validateConsistency()"
-              class="text-3xl w-full mx-10 my-5 border-4 rounded-md bg-green-500" label="Generate settings file" />
-      </div>
+
       <DynamicDialog />
+    </div>
   </div>
+
   <Dialog class="w-3/5" v-model:visible="showSettingsFile">
       <div class="relative mx-auto mt-2 w-full">
           <div class="bg-gray-900 text-white p-4 rounded-md">
@@ -88,6 +93,7 @@ import { useConfigStore } from './main';
 import Ajv from 'ajv'
 import challengesSchema from '@/assets/challenges_schema.json';
 import Button from 'primevue/button';
+import type { Model } from './components/model/model';
 
 const ajv = new Ajv({allErrors: true, strict: 'log'})
 
@@ -100,6 +106,22 @@ const isInvalid = ref(false)
 onBeforeUpdate(() => {
   console.log("BEFORE UPDATE", store)
 })
+
+// set default model
+const model: Model = useConfigStore().model
+// kill one ender dragon
+model.goals!.mobGoal = {
+    mobs: [
+        {
+            collectableName: "ender_dragon",
+            collectableData: {
+                currentAmount: 0,
+                amountNeeded: 1
+            }
+        }
+    ]
+}
+
 
 function validateConsistency() {
     const isValid = ajv.validate(challengesSchema, store.model)

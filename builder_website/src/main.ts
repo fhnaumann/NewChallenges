@@ -30,7 +30,7 @@ app.directive('tooltip', Tooltip);
 export const toast = app.config.globalProperties.$toast
 
 const routes: RouteRecordRaw[] = [
-    {path: "/", component: App},
+    {path: "/builder", component: App},
     {
         path: "/resourcepack",
         component: ResourcePack,
@@ -54,11 +54,13 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: routes
 })
 
 app.use(router)
+
+export const BASE_IMG_URL = process.env.NODE_ENV === 'production' ? 'https://challenges-builder.s3.eu-central-1.amazonaws.com' : ''
 
 export const useJSONSchemaConfigStore = defineStore('JSONSchemaConfig', {
     state: () => (modelSchema.definitions)

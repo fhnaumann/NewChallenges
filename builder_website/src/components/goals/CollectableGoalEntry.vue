@@ -5,13 +5,13 @@
                 display="chip" :virtual-scroller-options="{ itemSize: 44 }" filter class="w-full md:w-80">
                 <template #value="slotProps">
                     <div v-if="slotProps.value" class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="'/rendered_items/' + slotProps.value.img_name" :alt="slotProps.value" @error="$event.target.src = 'unknown.png'">
+                        <img class="w-6" :src="'/rendered_images/' + slotProps.value.img_name" :alt="slotProps.value" @error="$event.target.src = 'unknown.png'">
                         <div>{{ translation.translate(slotProps.value.translation_key) }}</div>
                     </div>
                 </template>
                 <template #option="slotProps">
                     <div class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="'/rendered_items/' + slotProps.option.img_name" :alt="slotProps.option" @error="$event.target.src = 'unknown.png'">
+                        <img class="w-6" :src="'/rendered_images/' + slotProps.option.img_name" :alt="slotProps.option" @error="$event.target.src = 'unknown.png'">
                         <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
                     </div>
                 </template>

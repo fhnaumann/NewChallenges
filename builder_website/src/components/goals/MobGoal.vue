@@ -1,5 +1,5 @@
 <template>
-    <DefaultGoal :goal="goalsView.allgoals.itemGoal">
+    <DefaultGoal :goal="goalsView.allgoals.mobGoal">
         <div class="flex flex-col space-y-5">
             <p class="text-xl">Configuration</p>
             <div>

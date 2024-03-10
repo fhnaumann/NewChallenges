@@ -20,7 +20,7 @@
             <img
               class="w-6"
               :alt="slotProps.option"
-              :src="'/rendered_items/' + slotProps.option.img_name"
+              :src="BASE_IMG_URL + '/rendered_images/' + slotProps.option.img_name"
               @error="$event.target.src = 'unknown.png'"
             />
             <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
@@ -58,6 +58,7 @@
 </template>
 
 <script setup lang="ts">
+import { BASE_IMG_URL } from '@/main'
 import DefaultPunishableRule from './DefaultPunishableRule.vue'
 import MultiSelect from 'primevue/multiselect'
 import Sidebar from 'primevue/sidebar'
