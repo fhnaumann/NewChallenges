@@ -15,8 +15,8 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     private final MobType mobType;
 
-    public MobGoal(Context context, MobGoalConfig config, GoalCollector<EntityType> goalCollector, MobGoalMessageHelper messageHelper, MobGoalBossBarHelper bossBarHelper) {
-        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper);
+    public MobGoal(Context context, MobGoalConfig config, GoalCollector<EntityType> goalCollector, MobGoalMessageHelper messageHelper, MobGoalBossBarHelper bossBarHelper, MobGoalCollectedInventory collectedInventory) {
+        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper, collectedInventory);
         this.mobType = new MobType(context, triggerCheck(), trigger());
     }
 
@@ -72,4 +72,8 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
         return mobGoalName.append(entities);
     }
 
+    @Override
+    public String getSkipNameInCommand() {
+        return "mob";
+    }
 }

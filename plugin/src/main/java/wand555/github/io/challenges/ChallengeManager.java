@@ -2,16 +2,13 @@ package wand555.github.io.challenges;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.punishments.Punishment;
-import wand555.github.io.challenges.utils.ActionHelper;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -86,7 +83,7 @@ public class ChallengeManager implements StatusInfo {
             return;
         }
         try {
-            skippables.get(0).onSkip(player);
+            skippables.get(0).onSkip();
             player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().commandsResourceBundle(),

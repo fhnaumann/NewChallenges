@@ -2,13 +2,11 @@ package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.Keyed;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
+import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.types.Data;
-
-import java.util.Map;
 
 /**
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
@@ -21,14 +19,14 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     protected final GoalCollector<K> goalCollector;
     private final MapGoalBossBarHelper<K> bossBarHelper;
     protected final GoalMessageHelper<D, K> messageHelper;
-    protected final InvProgress<D> invProgress;
+    protected final CollectedInventory<D, K> collectedInventory;
 
-    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, MapGoalBossBarHelper<K> bossBarHelper) {
+    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, MapGoalBossBarHelper<K> bossBarHelper, CollectedInventory<D, K> collectedInventory) {
         super(context, complete);
         this.goalCollector = goalCollector;
         this.bossBarHelper = bossBarHelper;
         this.messageHelper = messageHelper;
-        this.invProgress = new InvProgress();
+        this.collectedInventory = collectedInventory;
     }
 
     @Override
@@ -77,12 +75,16 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             if(updatedCollect.isComplete()) {
                 messageHelper.sendSingleReachedAction(data, updatedCollect);
                 if(goalCollector.hasNext()) {
+                    // move currentlyToSelect to the next object
                     goalCollector.next();
                 }
             }
             else {
                 messageHelper.sendSingleStepAction(data, updatedCollect);
             }
+
+            // update collected inventory
+            collectedInventory.addOrUpdate(data.mainDataInvolved(), updatedCollect);
 
             if(determineComplete()) {
                 onComplete();
@@ -101,7 +103,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     }
 
     @Override
-    public void onSkip(Player player) throws UnskippableException {
+    public void onSkip() throws UnskippableException {
         if(!goalCollector.isFixedOrder()) {
             throw new UnskippableException();
         }

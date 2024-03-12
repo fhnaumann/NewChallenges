@@ -70,6 +70,7 @@ public class ItemGoalTest {
     private ItemGoal itemGoal;
     private static ItemGoalMessageHelper messageHelper;
     private static ItemGoalBossBarHelper bossBarHelper;
+    private static ItemGoalCollectedInventory collectedInventory;
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -86,6 +87,7 @@ public class ItemGoalTest {
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new ItemGoalMessageHelper(context));
         bossBarHelper = mock(ItemGoalBossBarHelper.class);
+        collectedInventory = mock(ItemGoalCollectedInventory.class);
     }
 
     @BeforeEach
@@ -125,7 +127,7 @@ public class ItemGoalTest {
                 }
                 """;
         ItemGoalConfig config = new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class);
-        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
+        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
     }
 
     @AfterEach

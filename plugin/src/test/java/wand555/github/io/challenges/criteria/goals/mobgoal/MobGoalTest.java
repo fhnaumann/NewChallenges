@@ -39,6 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class MobGoalTest {
+    private static MobGoalCollectedInventory collectedInventory;
     private ServerMock server;
     private Challenges plugin;
 
@@ -66,6 +67,7 @@ public class MobGoalTest {
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = mock(MobGoalMessageHelper.class);
         bossBarHelper = mock(MobGoalBossBarHelper.class);
+        collectedInventory = mock(MobGoalCollectedInventory.class);
     }
 
     @BeforeEach
@@ -97,7 +99,7 @@ public class MobGoalTest {
                 }
                 """;
         MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
-        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
+        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);

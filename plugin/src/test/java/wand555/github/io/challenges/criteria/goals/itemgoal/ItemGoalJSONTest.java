@@ -53,6 +53,7 @@ public class ItemGoalJSONTest {
     private ItemGoalBossBarHelper bossBarHelper;
 
     private ObjectMapper objectMapper;
+    private ItemGoalCollectedInventory collectedInventory;
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -72,7 +73,7 @@ public class ItemGoalJSONTest {
 
         messageHelper = mock(ItemGoalMessageHelper.class);
         bossBarHelper = mock(ItemGoalBossBarHelper.class);
-
+        collectedInventory = mock(ItemGoalCollectedInventory.class);
         objectMapper = new ObjectMapper();
     }
 
@@ -91,7 +92,7 @@ public class ItemGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(minimalItemGoalJSON, ItemGoalConfig.class));
         ItemGoalConfig config = objectMapper.readValue(minimalItemGoalJSON, ItemGoalConfig.class);
-        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
+        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
         assertTrue(itemGoal.getToCollect().isEmpty());
     }
 
@@ -120,7 +121,7 @@ public class ItemGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class));
         ItemGoalConfig config = objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class);
-        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
+        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
         Map<Material, Collect> expected = new HashMap<>();
         expected.put(Material.CARROT, new Collect(2,0));
         expected.put(Material.STONE, new Collect(3,1));
@@ -154,7 +155,7 @@ public class ItemGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class));
         ItemGoalConfig config = objectMapper.readValue(multipleItemsItemGoalJSON, ItemGoalConfig.class);
-        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper);
+        ItemGoal itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
         assertEquals(Map.entry(Material.CARROT, new Collect(2, 0)), itemGoal.getGoalCollector().getCurrentlyToCollect());
     }
 }

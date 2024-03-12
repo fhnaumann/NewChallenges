@@ -14,8 +14,8 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     private BlockBreakType blockBreakType;
 
-    public BlockBreakGoal(Context context, BlockBreakGoalConfig config, GoalCollector<Material> goalCollector, BlockBreakGoalMessageHelper messageHelper, BlockBreakGoalBossBarHelper bossBarHelper) {
-        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper);
+    public BlockBreakGoal(Context context, BlockBreakGoalConfig config, GoalCollector<Material> goalCollector, BlockBreakGoalMessageHelper messageHelper, BlockBreakGoalBossBarHelper bossBarHelper, BlockBreakCollectedInventory collectedInventory) {
+        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper, collectedInventory);
         this.blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
     }
 
@@ -39,4 +39,8 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
         );
     }
 
+    @Override
+    public String getSkipNameInCommand() {
+        return "blockbreak";
+    }
 }

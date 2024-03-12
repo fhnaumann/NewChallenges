@@ -1,6 +1,5 @@
 package wand555.github.io.challenges.criteria.goals.itemgoal;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import wand555.github.io.challenges.*;
@@ -16,8 +15,8 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
 
     private final ItemType itemType;
 
-    public ItemGoal(Context context, ItemGoalConfig config, GoalCollector<Material> goalCollector, ItemGoalMessageHelper messageHelper, ItemGoalBossBarHelper bossBarHelper) {
-        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper);
+    public ItemGoal(Context context, ItemGoalConfig config, GoalCollector<Material> goalCollector, ItemGoalMessageHelper messageHelper, ItemGoalBossBarHelper bossBarHelper, ItemGoalCollectedInventory collectedInventory) {
+        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper, collectedInventory);
         this.itemType = new ItemType(context, triggerCheck(), trigger());
     }
 
@@ -53,5 +52,10 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
             collect.setCurrentAmount(newCurrentAmount);
             return collect;
         });
+    }
+
+    @Override
+    public String getSkipNameInCommand() {
+        return "item";
     }
 }

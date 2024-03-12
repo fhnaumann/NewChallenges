@@ -16,6 +16,12 @@ import java.util.Map;
 public abstract class SingleCollectedItemStack<E> extends BaseCollectedItemStack {
 
     protected final E about;
+
+    public SingleCollectedItemStack(Context context, E about, long secondsSinceStart) {
+        super(context, secondsSinceStart);
+        this.about = about;
+    }
+
     public SingleCollectedItemStack(Context context, CompletionConfig completionConfig, E about) {
         super(context, completionConfig);
         this.about = about;
@@ -45,7 +51,7 @@ public abstract class SingleCollectedItemStack<E> extends BaseCollectedItemStack
                                 "timer.format",
                                 TimerUtil.format(whenCollectedSeconds)
                         ),
-                        "player", Component.text(contributors.keySet().stream().findFirst().orElseThrow())
+                        "player", Component.text(contributors.keySet().stream().findFirst().orElse("-"))
                 ),
                 false
         );

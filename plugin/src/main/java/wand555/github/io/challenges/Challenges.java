@@ -1,6 +1,7 @@
 package wand555.github.io.challenges;
 
 import com.google.common.base.Preconditions;
+import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.translation.Translatable;
@@ -16,7 +17,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.incendo.cloud.CommandManager;
+import org.incendo.cloud.SenderMapper;
+import org.incendo.cloud.execution.ExecutionCoordinator;
+import org.incendo.cloud.meta.CommandMeta;
+import org.incendo.cloud.paper.PaperCommandManager;
+import org.incendo.cloud.parser.ParserDescriptor;
+import org.incendo.cloud.parser.standard.StringParser;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challenges.commands.SkippableParser;
+import wand555.github.io.challenges.criteria.goals.Skippable;
+import wand555.github.io.challenges.exceptions.UnskippableException;
 
 import java.io.*;
 import java.util.*;
@@ -45,6 +56,28 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         getCommand("skip").setExecutor(this);
         getCommand("pause").setExecutor(this);
         getCommand("resume").setExecutor(this);
+
+
+        org.incendo.cloud.Command<CommandSender> command = org.incendo.cloud.Command.newBuilder("goal", CommandMeta.empty())
+                .senderType(CommandSender.class)
+                //.optional("goalType", ParserDescriptor.of(new SkippableParser<>(manager.getGoals()), Skippable.class))
+                .handler(commandContext -> {
+                    Skippable skippable = commandContext.get("goalType");
+                    try {
+                        skippable.onSkip();
+                        // send skip message here
+                    } catch (UnskippableException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }).build();
+        PaperCommandManager<CommandSender> commandManager = new PaperCommandManager<>(
+                this,
+                ExecutionCoordinator.simpleCoordinator(),
+                SenderMapper.identity()
+        );
+        commandManager.parserRegistry().registerParserSupplier(TypeToken.get(Skippable.class), options -> new SkippableParser<>(manager.getGoals()));
+        commandManager.command(command);
     }
 
     @Override

@@ -41,6 +41,10 @@
                     "minimum": 1,
                     "type": "integer"
                 },
+                "completion": {
+                    "$ref": "#/definitions/CompletionConfig",
+                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
+                },
                 "currentAmount": {
                     "default": 0,
                     "description": "The amount that is currently collected.",
@@ -60,10 +64,6 @@
                 "collectableName": {
                     "description": "The name of the collectable. This could, for example, be \"PIG\" (entity), \"STONE\" (material).",
                     "type": "string"
-                },
-                "completion": {
-                    "$ref": "#/definitions/CompletionConfig",
-                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
                 }
             },
             "required": [
@@ -85,6 +85,9 @@
                     "type": "integer"
                 }
             },
+            "required": [
+                "whenCollectedSeconds"
+            ],
             "type": "object"
         },
         "ContributorsConfig": {

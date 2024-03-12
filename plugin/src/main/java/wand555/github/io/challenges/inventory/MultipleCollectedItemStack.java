@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.inventory;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Keyed;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
@@ -15,14 +16,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public abstract class MultipleCollectedItemStack<T extends Enum<T>> extends BaseCollectedItemStack {
+public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCollectedItemStack {
 
     protected final T about;
     protected Collect collect;
 
-    public MultipleCollectedItemStack(Context context, CompletionConfig completionConfig, Collect collect, T about) {
+    public MultipleCollectedItemStack(Context context, T about, long secondsSinceStart) {
+        super(context, secondsSinceStart);
+        this.about = about;
+    }
+
+    public MultipleCollectedItemStack(Context context, CompletionConfig completionConfig, T about) {
         super(context, completionConfig);
-        this.collect = collect;
         this.about = about;
     }
 
@@ -36,6 +41,9 @@ public abstract class MultipleCollectedItemStack<T extends Enum<T>> extends Base
 
     @Override
     public final ItemStack render() {
+        if(collect == null) {
+            return getBaseItemStack();
+        }
         if(collect.isComplete()) {
             return renderComplete();
         }
@@ -115,7 +123,7 @@ public abstract class MultipleCollectedItemStack<T extends Enum<T>> extends Base
         return collect;
     }
 
-    public Map<String, Integer> getContributors() {
-        return contributors;
+    public T getAbout() {
+        return about;
     }
 }

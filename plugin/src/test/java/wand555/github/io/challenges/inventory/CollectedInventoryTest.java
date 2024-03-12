@@ -3,17 +3,33 @@ package wand555.github.io.challenges.inventory;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
+import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.Context;
+import wand555.github.io.challenges.DataSourceContext;
+import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakCollectedInventory;
+import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalBossBarHelper;
+import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
+import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 @Disabled
 public class CollectedInventoryTest {
@@ -25,12 +41,30 @@ public class CollectedInventoryTest {
 
     private CollectedInventory collectedInventory;
 
+    private static Context context;
+
+    @BeforeAll
+    public static void setUpIOData() throws IOException {
+        ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
+        when(resourceBundleContext.goalResourceBundle()).thenReturn(CriteriaUtil.loadGoalResourceBundle());
+        when(resourceBundleContext.miscResourceBundle()).thenReturn(CriteriaUtil.loadMiscResourceBundle());
+        DataSourceContext dataSourceContext = mock(DataSourceContext.class);
+        when(dataSourceContext.materialJSONList()).thenReturn(CriteriaUtil.loadMaterials().getData());
+        ChallengeManager manager = mock(ChallengeManager.class);
+        when(manager.isRunning()).thenReturn(true);
+
+        context = mock(Context.class);
+        when(context.dataSourceContext()).thenReturn(dataSourceContext);
+        when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
+        when(context.challengeManager()).thenReturn(manager);
+    }
+
     @BeforeEach
     public void setUp() {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
-
-        //collectedInventory = spy(new CollectedInventory(plugin));
+        when(context.plugin()).thenReturn(plugin);
+        collectedInventory = new BlockBreakCollectedInventory(context, List.of(), Material.class);
 
         player1 = server.addPlayer();
         player2 = server.addPlayer();
@@ -46,8 +80,9 @@ public class CollectedInventoryTest {
 
     @Test
     public void testInitialOpen() {
+        player1.performCommand("goal test123");
         int collectedItems = 5;
-        fillNTimes(collectedItems);
+        collectedInventory.addOrUpdate(Material.CARROT, new Collect(1, 1));
         collectedInventory.show(player1);
         Inventory openInv = player1.getOpenInventory().getTopInventory();
         assertEquals(collectedItems, nonEmptyCollectableSize(openInv));
@@ -103,13 +138,15 @@ public class CollectedInventoryTest {
                 .count();
     }
 
+
+
     private void fillNTimes(int n) {
-        /*
-        collectedInventory.clearCollectedItemStacks();
+
         for(int i=0; i<n; i++) {
-            collectedInventory.addCollectedItemStack(new MultipleCollectedItemStack(Material.STONE, "abc", i));
+            //collectedInventory.addOrUpdate(new BlockBreakData(Material.STONE, player1), new Collect(2, 1));
+            //collectedInventory.addCollectedItemStack(new MultipleCollectedItemStack(Material.STONE, "abc", i));
         }
 
-         */
+
     }
 }

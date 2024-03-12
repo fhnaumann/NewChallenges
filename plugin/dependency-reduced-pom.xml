@@ -74,6 +74,7 @@
         <configuration>
           <sourceDirectory>${basedir}/src/main/resources/challenges_schema.json</sourceDirectory>
           <targetPackage>wand555.github.io.challenges.generated</targetPackage>
+          <usePrimitives>true</usePrimitives>
           <includeJsr303Annotations>true</includeJsr303Annotations>
           <includeJsr305Annotations>true</includeJsr305Annotations>
           <useJakartaValidation>true</useJakartaValidation>
@@ -100,6 +101,11 @@
   </build>
   <repositories>
     <repository>
+      <id>minecraft-libraries</id>
+      <name>Minecraft Libraries</name>
+      <url>https://libraries.minecraft.net</url>
+    </repository>
+    <repository>
       <id>papermc-repo</id>
       <url>https://repo.papermc.io/repository/maven-public/</url>
     </repository>
@@ -109,6 +115,12 @@
     </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>com.mojang</groupId>
+      <artifactId>brigadier</artifactId>
+      <version>1.0.18</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>io.papermc.paper</groupId>
       <artifactId>paper-api</artifactId>
@@ -181,10 +193,6 @@
           <artifactId>junit-platform-commons</artifactId>
           <groupId>org.junit.platform</groupId>
         </exclusion>
-        <exclusion>
-          <artifactId>apiguardian-api</artifactId>
-          <groupId>org.apiguardian</groupId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -196,10 +204,6 @@
         <exclusion>
           <artifactId>junit-platform-engine</artifactId>
           <groupId>org.junit.platform</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>apiguardian-api</artifactId>
-          <groupId>org.apiguardian</groupId>
         </exclusion>
       </exclusions>
     </dependency>

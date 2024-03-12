@@ -22,8 +22,6 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
     private final Iterator<Map.Entry<K, Collect>> iterator;
     private final boolean fixedOrder;
 
-    private final Map<String, CompletionConfig> completionConfigs;
-
     public GoalCollector(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType, boolean fixedOrder, boolean shuffled) {
         this.context = context;
         if(fixedOrder && !shuffled) {
@@ -32,12 +30,6 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
         this.toCollect = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
         this.iterator = fixedOrder ? this.toCollect.entrySet().iterator() : null;
         this.currentlyToCollect = fixedOrder ? (iterator.hasNext() ? iterator.next() : null) : null;
-        this.completionConfigs = collectables.stream()
-                .collect(Collectors.toMap(
-                        CollectableEntryConfig::getCollectableName,
-                        collectableEntryConfig -> collectableEntryConfig.getCompletion() != null ? collectableEntryConfig.getCompletion() : new CompletionConfig()
-                        )
-                );
         this.fixedOrder = fixedOrder;
     }
 
@@ -78,15 +70,10 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
         return toCollect.entrySet().stream().map(collectEntryFromMap -> {
             Collect collect = collectEntryFromMap.getValue();
             return new CollectableEntryConfig(
-                    new CollectableDataConfig(collect.getAmountNeeded(), collect.getCurrentAmount()),
-                    ModelMapper.enum2Code(context.dataSourceContext().materialJSONList(), collectEntryFromMap.getKey()),
-                    completionConfigs.get(collectEntryFromMap.getKey().key()) // TODO: this is ugly. I need to find a better way to handle completions. They should not be in this class in the first place
+                    collect.toGeneratedJSONClass(),
+                    ModelMapper.enum2Code(context.dataSourceContext().materialJSONList(), collectEntryFromMap.getKey())
             );
         }).toList();
-    }
-
-    public List<CompletionConfig> getCompletionConfigs() {
-        return new ArrayList<>(completionConfigs.values());
     }
 
     public boolean isFixedOrder() {

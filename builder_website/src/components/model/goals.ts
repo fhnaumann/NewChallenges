@@ -62,6 +62,11 @@ export interface CollectableDataConfig {
      * @TJS-type integer
      */
     currentAmount?: number
+    
+    /**
+     * Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable.
+     */
+    completion?: CompletionConfig
 }
 export interface CompletionConfig {
     /**
@@ -70,7 +75,7 @@ export interface CompletionConfig {
      * @default -1
      * @TJS-type integer
      */
-    whenCollectedSeconds?: number,
+    whenCollectedSeconds: number,
 
     /**
      * The player (names) that contributed to completing this collectable.
@@ -91,9 +96,4 @@ export interface CollectableEntryConfig {
      * @default {}
      */
     collectableData: CollectableDataConfig,
-
-    /**
-     * Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable.
-     */
-    completion?: CompletionConfig
 }

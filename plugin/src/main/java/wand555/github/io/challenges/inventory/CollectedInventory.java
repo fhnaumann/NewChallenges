@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.inventory;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,14 +9,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.Context;
+import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.criteria.goals.Collect;
+import wand555.github.io.challenges.generated.CollectableEntryConfig;
+import wand555.github.io.challenges.generated.CompletionConfig;
+import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.types.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class CollectedInventory<S> implements Listener {
+public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> implements Listener, Storable<List<CompletionConfig>> {
+
+    protected final Context context;
 
     record InvPage(Inventory inventory, int page) {}
 
@@ -28,44 +37,71 @@ public abstract class CollectedInventory<S> implements Listener {
 
     private final Map<Player, InvPage> openInventories;
 
-    private final List<MultipleCollectedItemStack> multipleCollectedItemStacks;
+    private final List<BaseCollectedItemStack> collectedItemStacks;
 
 
 
-    public CollectedInventory(Challenges plugin) {
-        this.multipleCollectedItemStacks = new ArrayList<>();
+    public CollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType) {
+        this.context = context;
+        Map<K, Collect> map = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
+        this.collectedItemStacks = new ArrayList<>();
         this.openInventories = new HashMap<>();
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
-    public void addCollectedItemStack(MultipleCollectedItemStack multipleCollectedItemStack) {
-        multipleCollectedItemStacks.add(multipleCollectedItemStack);
+    public void addOrUpdate(K data, Collect collect) {
+        long secondsSinceStart = context.challengeManager().getTime();
+        if(collect.getAmountNeeded() == 1) {
+            // if it is a single collected itemstack, then it cannot have existed previously
+            collectedItemStacks.add(createSingle(data, secondsSinceStart));
+        }
+        else {
+            MultipleCollectedItemStack<?> match = findMatch(data);
+            if(match == null) {
+                collectedItemStacks.add(createMultiple(data, secondsSinceStart));
+            }
+            else {
+                int idx = collectedItemStacks.indexOf(match);
+                MultipleCollectedItemStack<?> existing = (MultipleCollectedItemStack<?>) collectedItemStacks.get(idx);
+                if(collect.isComplete()) {
+                    existing.setWhenCollectedSeconds((int) secondsSinceStart);
+                }
+                existing.update(collect);
+            }
+        }
     }
 
-    public abstract void addOrUpdate(S data);
-
-    public void clearCollectedItemStacks() {
-        multipleCollectedItemStacks.clear();
+    private MultipleCollectedItemStack<?> findMatch(K data) {
+        return collectedItemStacks.stream()
+                .filter(collectedItemStack -> collectedItemStack instanceof MultipleCollectedItemStack<?>)
+                .map(MultipleCollectedItemStack.class::cast)
+                .filter(multipleCollectedItemStack -> multipleCollectedItemStack.getAbout() == data)
+                .findFirst()
+                .orElse(null);
     }
+
+    protected abstract BaseCollectedItemStack createSingle(K data, long secondsSinceStart);
+
+    protected abstract MultipleCollectedItemStack<?> createMultiple(K data, long secondsSinceStart);
 
     private void fillInventoryPage(Inventory inventory, int page) {
         //paginatedInventories.put(page, inventory);
-        /*
+
         for(int i=0; i<USABLE_INV_SPACE; i++) {
             int globalIndex = (USABLE_INV_SPACE * page) + i;
-            MultipleCollectedItemStack multipleCollectedItemStack;
-            if(globalIndex < multipleCollectedItemStacks.size()) {
-                multipleCollectedItemStack = multipleCollectedItemStacks.get(globalIndex);
+            BaseCollectedItemStack baseCollectedItemStack;
+            if(globalIndex < collectedItemStacks.size()) {
+                baseCollectedItemStack = collectedItemStacks.get(globalIndex);
             }
             else {
-                multipleCollectedItemStack = new MultipleCollectedItemStack(Material.AIR, null, 0);
+                baseCollectedItemStack = BaseCollectedItemStack.AIR;
             }
-            inventory.setItem(i, multipleCollectedItemStack.render());
+            inventory.setItem(i, baseCollectedItemStack.render());
         }
         inventory.setItem(45, new ItemStack(Material.ARROW));
         inventory.setItem(53, new ItemStack(Material.ARROW));
 
-         */
+
     }
 
     private void updateOnPageSwap(Player player, int newPage) {
@@ -81,10 +117,8 @@ public abstract class CollectedInventory<S> implements Listener {
     }
 
     private boolean hasNextPage(int currentPage) {
-        System.out.println(currentPage);
         int currentMaxNumber = ((currentPage+1) * USABLE_INV_SPACE);
-        System.out.println(currentMaxNumber);
-        return currentMaxNumber <= multipleCollectedItemStacks.size();
+        return currentMaxNumber <= collectedItemStacks.size();
     }
 
     @EventHandler
@@ -116,5 +150,10 @@ public abstract class CollectedInventory<S> implements Listener {
                 updateOnPageSwap(player, currentPage+1);
             }
         }
+    }
+
+    @Override
+    public List<CompletionConfig> toGeneratedJSONClass() {
+        return collectedItemStacks.stream().map(BaseCollectedItemStack::toGeneratedJSONClass).toList();
     }
 }
