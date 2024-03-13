@@ -1,10 +1,12 @@
 package wand555.github.io.challenges;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.utils.ResourceBundleHelper;
@@ -17,6 +19,8 @@ import java.util.stream.Stream;
 
 public class ComponentUtil {
 
+    public static final String URL = "mc-challenges.com";
+    public static final Component BUILDER_LINK = Component.text(URL).clickEvent(ClickEvent.openUrl(URL));
     public static final Component COLON = Component.text(":");
 
     private static Map<String, Component> time2Placeholders(Map<TimerUtil.TimeParts, String> mappedTime) {
@@ -78,6 +82,16 @@ public class ComponentUtil {
         return mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor));
     }
 
+    public static Component formatActionBarMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, double phase) {
+        String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
+
+        String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
+        String highlightColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight");
+        String defaultGradientEndColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default.gradient_end");
+
+        return null; // TODO change
+    }
+
     public static TextColor getPrefixColor(@NotNull Challenges plugin, ResourceBundle bundle) {
         String hexColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");
         return TextColor.fromHexString(hexColor);
@@ -88,7 +102,15 @@ public class ComponentUtil {
     }
 
     public static Component formatChallengesPrefixChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
-        return formatChatMessage(plugin, bundle, key, Map.of(), false, true);
+        return formatChatMessage(plugin, bundle, key, Map.of(), true, false, true);
+    }
+
+    public static Component formatChallengesPrefixChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, Map<String, Component> placeholders) {
+        return formatChallengesPrefixChatMessage(plugin, bundle, key, placeholders, true);
+    }
+
+    public static Component formatChallengesPrefixChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, Map<String, Component> placeholders, boolean highlightPlaceholders) {
+        return formatChatMessage(plugin, bundle, key, placeholders, highlightPlaceholders, false, true);
     }
 
 
@@ -101,11 +123,11 @@ public class ComponentUtil {
     }
     @NotNull
     public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix) {
-        return formatChatMessage(plugin, bundle, key, placeholders, prefix, false);
+        return formatChatMessage(plugin, bundle, key, placeholders, prefix, true, false);
     }
 
     @NotNull
-    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix, boolean challengesPrefix) {
+    public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean highlightPlaceholders, boolean prefix, boolean challengesPrefix) {
         Objects.requireNonNull(bundle);
         Objects.requireNonNull(key);
         Objects.requireNonNull(placeholders);
@@ -114,7 +136,7 @@ public class ComponentUtil {
 
         String prefixColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");
         String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
-        String highlightColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight");
+        String highlightColor = highlightPlaceholders ? ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight") : "";
 
         TagResolver.Single[] mappedPlaceholders = mapPlaceHolders(placeholders, highlightColor);
 
@@ -149,6 +171,20 @@ public class ComponentUtil {
                         entry.getValue().color(TextColor.fromHexString(highlightColor)))
                 )
                 .toArray(TagResolver.Single[]::new);
+    }
+
+    public static Component formatTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
+        String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
+        return Component.text(rawText);
+    }
+
+    public static Component formatSubTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
+        String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
+        return Component.text(rawText);
+    }
+
+    public static Component formatSubTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, double progress) {
+        throw new NotImplementedException();
     }
 
     @Deprecated

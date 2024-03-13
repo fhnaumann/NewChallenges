@@ -70,7 +70,7 @@ public class FileManagerTest {
         String readJSON = objectMapper.writeValueAsString(objectMapper.readValue(FileManagerTest.class.getResourceAsStream("integration/full1.json"), Object.class));
         File file = Paths.get(FileManagerTest.class.getResource("integration/full1.json").toURI()).toFile();
         assertDoesNotThrow(() -> FileManager.readFromFile(file, plugin));
-        ChallengeManager manager = FileManager.readFromFile(file, plugin);
+        ChallengeManager manager = FileManager.readFromFile(file, plugin).challengeManager();
         // TODO create expectations programmatically and compare
         assertDoesNotThrow(() -> FileManager.writeToFile(challengeManager, new StringWriter()));
     }

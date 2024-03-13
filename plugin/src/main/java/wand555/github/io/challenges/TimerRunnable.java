@@ -33,6 +33,16 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
             Map<TimerUtil.TimeParts, String> mappedTime = TimerUtil.format(timer);
             formattedTime = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().miscResourceBundle(), "timer.format", mappedTime);
         }
+        else if(context.challengeManager().isSetup()) {
+            // show URL to website builder when it is in setup phase
+            formattedTime = ComponentUtil.formatChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenge.builder.chat",
+                    Map.of("url", ComponentUtil.BUILDER_LINK),
+                    false
+            );
+        }
         else {
             formattedTime = ComponentUtil.formatChatMessage(
                     context.plugin(),

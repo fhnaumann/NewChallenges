@@ -37,7 +37,7 @@ public class FileManager {
         }
     }
 
-    public static ChallengeManager readFromFile(File file, Challenges plugin) throws LoadValidationException, IOException {
+    public static Context readFromFile(File file, Challenges plugin) throws LoadValidationException {
         String json = null;
         try {
             json = Files.readString(file.toPath());
@@ -84,7 +84,7 @@ public class FileManager {
                 ModelMapper.map2ModelClasses(context, challengesSchema);
 
 
-                return context.challengeManager();
+                return context;
             } catch (JsonProcessingException e) {
                 // should never happen because it was validated first.
                 throw new RuntimeException(e);

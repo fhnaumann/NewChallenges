@@ -1,6 +1,10 @@
 package wand555.github.io.challenges.validation;
 
 import com.google.common.collect.ImmutableList;
+import net.kyori.adventure.text.Component;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import wand555.github.io.challenges.ComponentUtil;
+import wand555.github.io.challenges.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +35,37 @@ public class ValidationResult {
 
     public List<Violation> getViolations() {
         return ImmutableList.copyOf(violations);
+    }
+
+    public Component asFormattedComponent(Context context) {
+        Component component = Component.empty();
+
+        for(Violation violation : getViolations()) {
+            component = component.append(ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.result.violation",
+                    Map.of(
+                            "level", Component.text(violation.getLevel().toString().toUpperCase()),
+                            "where", Component.text(violation.getWhere()),
+                            "message", Component.text(violation.getMessage())
+                    ),
+                    false
+            )).appendNewline();
+        }
+
+        if(initialException != null) {
+            component = component.append(ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.result.exception",
+                    Map.of(
+                            "exception", Component.text(ExceptionUtils.getStackTrace(initialException))
+                    ),
+                    false
+            ));
+        }
+        return component;
     }
 
     public String asFormattedString() {

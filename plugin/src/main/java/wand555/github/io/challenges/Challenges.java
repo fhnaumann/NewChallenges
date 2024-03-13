@@ -1,10 +1,14 @@
 package wand555.github.io.challenges;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
 import io.leangen.geantyref.TypeToken;
 import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import net.kyori.adventure.translation.Translatable;
+import net.kyori.adventure.util.Ticks;
+import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,8 +21,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.incendo.cloud.CommandManager;
 import org.incendo.cloud.SenderMapper;
+import org.incendo.cloud.context.CommandContext;
+import org.incendo.cloud.execution.CommandExecutionHandler;
 import org.incendo.cloud.execution.ExecutionCoordinator;
 import org.incendo.cloud.meta.CommandMeta;
 import org.incendo.cloud.paper.PaperCommandManager;
@@ -28,9 +36,13 @@ import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.commands.SkippableParser;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
+import wand555.github.io.challenges.utils.ActionHelper;
 
 import java.io.*;
+import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
 public class Challenges extends JavaPlugin implements CommandExecutor {
@@ -58,9 +70,41 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         getCommand("resume").setExecutor(this);
 
 
+        Context context = null;
+        try {
+            context = new Context.Builder()
+                    .withPlugin(this)
+                    .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withGoalResourceBundle(ResourceBundle.getBundle("goals", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withCommandsResourceBundle(ResourceBundle.getBundle("commands", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withSchemaRoot(new ObjectMapper().readTree(Main.class.getResourceAsStream("/challenges_schema.json")))
+                    .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
+                    .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
+                    .withChallengeManager(new ChallengeManager())
+                    .withRandom(new Random())
+                    .build();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        context.challengeManager().setContext(context); // immediately set context so it is available in the manager
+
+        /*
+         * Send message with link to builder website.
+         */
+        Component builderLink = ComponentUtil.formatChallengesPrefixChatMessage(
+                this,
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenge.builder.chat",
+                Map.of("url", ComponentUtil.BUILDER_LINK)
+        );
+        Bukkit.broadcast(builderLink);
+
         org.incendo.cloud.Command<CommandSender> command = org.incendo.cloud.Command.newBuilder("goal", CommandMeta.empty())
                 .senderType(CommandSender.class)
-                //.optional("goalType", ParserDescriptor.of(new SkippableParser<>(manager.getGoals()), Skippable.class))
+                .optional("goalType", ParserDescriptor.of(new SkippableParser<>(context.challengeManager().getGoals()), Skippable.class))
                 .handler(commandContext -> {
                     Skippable skippable = commandContext.get("goalType");
                     try {
@@ -78,6 +122,75 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         );
         commandManager.parserRegistry().registerParserSupplier(TypeToken.get(Skippable.class), options -> new SkippableParser<>(manager.getGoals()));
         commandManager.command(command);
+
+        Context finalContext = context;
+        org.incendo.cloud.Command<CommandSender> loadCommand = org.incendo.cloud.Command.<CommandSender>newBuilder("load", CommandMeta.empty())
+                .senderType(CommandSender.class)
+                .futureHandler(commandContext -> onLoadCommand(commandContext, finalContext))
+                .build();
+        PaperCommandManager<CommandSender> asyncCommandManager = new PaperCommandManager<>(
+                this,
+                ExecutionCoordinator.asyncCoordinator(),
+                SenderMapper.identity()
+        );
+    }
+
+    private CompletableFuture<Void> onLoadCommand(CommandContext<CommandSender> commandContext, Context context) {
+        if(!hasSettingsFileProvided()) {
+            commandContext.sender().sendMessage("settings file not provided");
+            return CompletableFuture.completedFuture(null);
+        }
+        try {
+            commandContext.sender().showTitle(Title.title(ComponentUtil.formatTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.start.title"
+            ), Component.empty()));
+
+            context = FileManager.readFromFile(getSettingsFile(), this);
+
+            Component successTitle = ComponentUtil.formatTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.title"
+            );
+            Component successSubtitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.subtitle"
+            );
+            commandContext.sender().showTitle(Title.title(successTitle, successSubtitle));
+
+            Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.chat"
+            );
+            Bukkit.broadcast(successChat);
+            return CompletableFuture.completedFuture(null);
+        } catch (LoadValidationException e) {
+            Component failureTitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.title"
+            );
+            Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.subtitle"
+            );
+            commandContext.sender().showTitle(Title.title(failureTitle, failureSubtitle, Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(10), Duration.ofSeconds(1))));
+            Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.chat",
+                    Map.of(),
+                    false
+            );
+            Bukkit.broadcast(failureChat);
+            Bukkit.broadcast(e.getValidationResult().asFormattedComponent(context));
+            return CompletableFuture.completedFuture(null);
+        }
     }
 
     @Override
@@ -87,28 +200,37 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
     private ChallengeManager manager;
 
+    private boolean hasSettingsFileProvided() {
+        File file = getSettingsFile();
+        return file.exists() && file.isFile();
+    }
+
+    private File getSettingsFile() {
+        return Paths.get(getDataFolder().getAbsolutePath(), "settings", "data.json").toFile();
+    }
+
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof Player player)) {
             return false;
         }
 
+
         if(command.getName().equalsIgnoreCase("load")) {
-
-
-
-
-            File file = new File(getDataFolder(), "data.json");
-            if(!file.exists()) {
-
+            if(!hasSettingsFileProvided()) {
+                sender.sendMessage("settings file not provided");
             }
             try {
-                manager = FileManager.readFromFile(file, this);
-                manager.start();
-            } catch (LoadValidationException | IOException e) {
+                Context context = FileManager.readFromFile(getSettingsFile(), this);
+                context.challengeManager().start();
+            } catch (LoadValidationException e) {
                 throw new RuntimeException(e);
             }
             //Main.main(null, file, this);
+        }
+        else if(command.getName().equalsIgnoreCase("start")) {
+
         }
         else if (command.getName().equalsIgnoreCase("save")) {
             File file = new File(getDataFolder(), "data.json");

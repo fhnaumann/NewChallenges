@@ -102,6 +102,10 @@ public class ChallengeManager implements StatusInfo {
         return gameState == GameState.RUNNING;
     }
 
+    public boolean isSetup() {
+        return gameState == GameState.SETUP;
+    }
+
     public boolean isInChallenge(UUID uuid) {
         return true;
     }
