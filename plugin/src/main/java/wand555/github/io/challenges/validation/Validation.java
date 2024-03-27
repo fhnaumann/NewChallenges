@@ -67,6 +67,7 @@ public class Validation {
 
     public static ValidationResult modernValidate(String json, InputStream jsonSchemaStream, InputStream schematronStream, DataSourceContext dataSourceContext) {
         return new ValidationContainer(
+                new EmptyDataValidator(),
                 new JSONSchemaValidator(jsonSchemaStream),
                 new SchematronValidator(schematronStream),
                 new RulesValidator(dataSourceContext),

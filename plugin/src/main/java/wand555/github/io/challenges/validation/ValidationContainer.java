@@ -21,7 +21,12 @@ public class ValidationContainer {
 
     public ValidationResult validate(ValidationResult.ValidationResultBuilder builder, String json) {
         // builder is being mutated in each validate call
-        validators.forEach(validator -> validator.validate(builder, json));
+        for (Validator validator : validators) {
+            ValidationResult intermediate = validator.validate(builder, json);
+            if(!intermediate.isValid()) {
+                return builder.build();
+            }
+        }
         return builder.build();
     }
 }

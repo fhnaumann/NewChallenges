@@ -47,7 +47,6 @@ public class FileManager {
         InputStream schemaStream = Main.class.getResourceAsStream("/challenges_schema.json");
         InputStream schematronStream = Main.class.getResourceAsStream("/constraints.sch");
         System.out.println(schematronStream);
-        //Validation validation = new Validation(schemaStream, Main.class.getResourceAsStream("/constraints.sch"));
 
         JsonNode schemaRoot = null;
 
@@ -81,6 +80,7 @@ public class FileManager {
                         .withRandom(new Random())
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
+                context.challengeManager().setValid(true);
                 ModelMapper.map2ModelClasses(context, challengesSchema);
 
 

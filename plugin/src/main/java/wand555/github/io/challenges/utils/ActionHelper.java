@@ -1,8 +1,11 @@
 package wand555.github.io.challenges.utils;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.exceptions.MissingSoundException;
 
 import java.util.Map;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.bukkit.Sound;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 public class ActionHelper {
@@ -23,6 +27,24 @@ public class ActionHelper {
                     sound -> sound.getKey().getKey(),
                     Function.identity()
             ));
+
+    public static void showAllTitle(@NotNull Component title) {
+        showAllTitle(title, null, null);
+    }
+
+    public static void showAllTitle(@NotNull Component title, @Nullable Title.Times times) {
+        showAllTitle(title, null, times);
+    }
+
+    public static void showAllTitle(@NotNull Component title, @Nullable Component subtitle) {
+        showAllTitle(title, subtitle, null);
+    }
+
+    public static void showAllTitle(@NotNull Component title, @Nullable Component subtitle, @Nullable Title.Times times) {
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            player.showTitle(Title.title(title, subtitle != null ? subtitle : Component.empty(), times));
+        });
+    }
 
     public static void sendAndPlaySound(@NotNull Challenges plugin, @NotNull Component componentToSend, @NotNull ResourceBundle resourceBundle, @NotNull String keyInBundle) {
         String soundToPlayKey = ResourceBundleHelper.getFromBundle(plugin, resourceBundle, keyInBundle);

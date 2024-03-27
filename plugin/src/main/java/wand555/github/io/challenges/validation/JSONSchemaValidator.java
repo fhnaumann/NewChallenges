@@ -4,6 +4,7 @@ import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -24,6 +25,8 @@ public class JSONSchemaValidator extends Validator {
        } catch (ValidationException e) {
            JSONObject errors = e.toJSON();
            addJSONViolationsToBuilder(builder, errors);
+       } catch (JSONException e) {
+           builder.setInitialException(e);
        }
        return builder;
     }

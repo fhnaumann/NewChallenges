@@ -40,6 +40,7 @@ public class ValidationResult {
     public Component asFormattedComponent(Context context) {
         Component component = Component.empty();
 
+        /*
         for(Violation violation : getViolations()) {
             component = component.append(ComponentUtil.formatChallengesPrefixChatMessage(
                     context.plugin(),
@@ -52,7 +53,20 @@ public class ValidationResult {
                     ),
                     false
             )).appendNewline();
-        }
+        }*/
+        component = getViolations().stream().reduce((Component)Component.empty(), (textComponent, violation) -> {
+           return ComponentUtil.formatChallengesPrefixChatMessage(
+                   context.plugin(),
+                   context.resourceBundleContext().miscResourceBundle(),
+                   "challenges.validation.failure.result.violation",
+                   Map.of(
+                           "level", Component.text(violation.getLevel().toString().toUpperCase()),
+                           "where", Component.text(violation.getWhere()),
+                           "message", Component.text(violation.getMessage())
+                   ),
+                   false
+           );
+        }, (textComponent, textComponent2) -> textComponent.appendNewline().append(textComponent2));
 
         if(initialException != null) {
             component = component.append(ComponentUtil.formatChallengesPrefixChatMessage(

@@ -22,12 +22,15 @@ public class ChallengeManager implements StatusInfo {
     private @NotNull List<Punishment> globalPunishments;
     private @NotNull List<BaseGoal> goals;
 
+    private boolean valid;
+
     private GameState gameState;
 
     private TimerRunnable timerRunnable;
 
 
     public ChallengeManager() {
+        gameState = GameState.SETUP;
     }
 
     public void setContext(@NotNull Context context) {
@@ -187,6 +190,14 @@ public class ChallengeManager implements StatusInfo {
         Component total = ruleComponent.append(goalComponent);
         context.plugin().getLogger().info(MiniMessage.miniMessage().serialize(total));
         return total.append(Component.text("\uE000"));
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
     private enum GameState {

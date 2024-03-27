@@ -19,8 +19,9 @@ import java.util.stream.Stream;
 
 public class ComponentUtil {
 
-    public static final String URL = "mc-challenges.com";
-    public static final Component BUILDER_LINK = Component.text(URL).clickEvent(ClickEvent.openUrl(URL));
+    public static final String DISPLAY_URL = "mc-challenges.com";
+    public static final String ACTUAL_URL = "https://www.%s/".formatted(DISPLAY_URL);
+    public static final Component BUILDER_LINK = Component.text(DISPLAY_URL).clickEvent(ClickEvent.openUrl(ACTUAL_URL));
     public static final Component COLON = Component.text(":");
 
     private static Map<String, Component> time2Placeholders(Map<TimerUtil.TimeParts, String> mappedTime) {

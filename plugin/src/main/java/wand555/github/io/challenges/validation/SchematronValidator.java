@@ -32,15 +32,16 @@ public class SchematronValidator extends Validator {
 
     @Override
     protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, String json) {
-        String xml = XML.toString(new JSONObject(json), "root");
+
         try {
+            String xml = XML.toString(new JSONObject(json), "root");
             Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
             SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);
             ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(schematronOutputType);
             addSchematronViolationsToBuilder(builder, svrlFailedAsserts);
         } catch (Exception e) {
             builder.setInitialException(e);
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
 
         }
         return builder;

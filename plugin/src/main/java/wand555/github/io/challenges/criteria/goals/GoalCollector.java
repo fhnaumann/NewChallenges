@@ -54,7 +54,7 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
     @NotNull
     public GoalCollector.CollectionStatus getTotalCollectionStatus() {
         int stillToComplete = (int) getToCollect().values().stream().filter(Predicate.not(Collect::isComplete)).count();
-        return new CollectionStatus(stillToComplete, getToCollect().size());
+        return new CollectionStatus(getToCollect().size()-stillToComplete, getToCollect().size());
     }
 
     public Map<K, Collect> getToCollect() {
