@@ -193,6 +193,10 @@
           <artifactId>junit-platform-commons</artifactId>
           <groupId>org.junit.platform</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>apiguardian-api</artifactId>
+          <groupId>org.apiguardian</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -204,6 +208,10 @@
         <exclusion>
           <artifactId>junit-platform-engine</artifactId>
           <groupId>org.junit.platform</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>apiguardian-api</artifactId>
+          <groupId>org.apiguardian</groupId>
         </exclusion>
       </exclusions>
     </dependency>
