@@ -119,7 +119,19 @@ model.goals!.mobGoal = {
                 amountNeeded: 1
             }
         }
-    ]
+    ],
+    fixedOrder: true
+}
+// no dying
+model.rules!.enabledRules!.noDeath = {
+    result: 'Allow'
+}
+
+// end punishment
+model.rules!.enabledGlobalPunishments = {
+    endPunishment: {
+        affects: 'All'
+    }
 }
 
 

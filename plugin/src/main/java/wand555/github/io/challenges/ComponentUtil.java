@@ -124,7 +124,7 @@ public class ComponentUtil {
     }
     @NotNull
     public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix) {
-        return formatChatMessage(plugin, bundle, key, placeholders, prefix, true, false);
+        return formatChatMessage(plugin, bundle, key, placeholders, true, prefix, false);
     }
 
     @NotNull

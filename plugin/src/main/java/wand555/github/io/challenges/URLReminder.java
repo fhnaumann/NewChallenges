@@ -12,12 +12,32 @@ import java.util.function.Consumer;
 
 public class URLReminder implements Consumer<BukkitTask>, Listener {
 
+    private class URLActionBar implements Consumer<BukkitTask> {
+
+        @Override
+        public void accept(BukkitTask bukkitTask) {
+            if(context.challengeManager().isSetup()) {
+                Component message = ComponentUtil.formatChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().miscResourceBundle(),
+                        "challenge.builder.chat.short",
+                        Map.of("url", ComponentUtil.BUILDER_LINK),
+                        false
+                );
+                context.plugin().getServer().getOnlinePlayers().forEach(player -> player.sendActionBar(message));
+            }
+        }
+    }
+
     private Context context;
     private boolean ranOnce;
+
+    private final URLActionBar urlActionBar;
 
     public URLReminder(Context context) {
         this.context = context;
         this.ranOnce = false;
+        this.urlActionBar = new URLActionBar();
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
@@ -28,6 +48,7 @@ public class URLReminder implements Consumer<BukkitTask>, Listener {
     public void start() {
         try {
             context.plugin().getServer().getScheduler().runTaskTimerAsynchronously(context.plugin(), this, 5*20L, 30*20L);
+            context.plugin().getServer().getScheduler().runTaskTimer(context.plugin(), urlActionBar, 0L, 20L);
         } catch (Exception ignored) {
             // MockBukkit throws UnimplentedOperationException for async timers
         }

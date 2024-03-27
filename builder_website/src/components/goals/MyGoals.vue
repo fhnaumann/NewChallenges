@@ -98,9 +98,6 @@ import BlockBreakGoal from './BlockBreakGoal.vue'
       goalName => goalsViewStore.allgoals[goalName as GoalName],
     ),
   )
-watch(config.rules, (newRules) => {
-  console.log(newRules)
-}, {deep: true})
 
   const mobGoal = ref(undefined)
   

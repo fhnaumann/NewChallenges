@@ -38,7 +38,7 @@
             }"
           >
             <AccordionTab
-              v-for="activeRule in activeRulesView"
+              v-for="activeRule in activeRulesView.filter(rule => rule !== undefined)"
               :key="activeRule.id"
               :pt="{
                 header: {
@@ -65,6 +65,10 @@
               />
               <NoItemRule
                 v-if="activeRule.id === 'noItem'" :rule="activeRule"
+              />
+              <NoDeath
+                v-if="activeRule.id === 'noDeath'"
+                :rule="activeRule"
               />
               <!--NoBlockPlace
                 v-if="activeRule.id === 'noBlockPlace'" :rule="activeRule" />

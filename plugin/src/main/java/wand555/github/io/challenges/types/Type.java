@@ -36,6 +36,9 @@ public abstract class Type<T> {
     }
 
     protected final <E extends Event & Cancellable> void callEventInContainer(E event) {
-        ((EventContainer<E>) eventContainers.get(event.getClass())).onEvent(event);
+        EventContainer<E> eventContainer = (EventContainer<E>)eventContainers.get(event.getClass());
+        if(eventContainer != null) {
+            eventContainer.onEvent(event);
+        }
     }
 }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class PunishableRule<T extends Data<K>, K extends Keyed> extends Rule implements Triggable<T> {
+public abstract class PunishableRule<T extends Data<K>, K> extends Rule implements Triggable<T> {
 
     protected @NotNull List<Punishment> punishments;
 

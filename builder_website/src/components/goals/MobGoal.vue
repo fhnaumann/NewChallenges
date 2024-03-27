@@ -56,7 +56,7 @@ const goalsView = useGoalsViewStore()
 const validator = useValidator()
 
 // init empty
-model.goals!.mobGoal = {}
+//model.goals!.mobGoal = {}
 
 const access: AccessOperation = {
     getSelectedData: (model) => model.goals?.mobGoal?.mobs!,
@@ -66,18 +66,15 @@ const access: AccessOperation = {
 const collectable = useCollectableGoal(
     access,
     allEntityTypeData,
-    [{
-        collectableName: 'ender_dragon',
-        collectableData: {}
-    }],
+    access.getSelectedData(model) !== undefined ? access.getSelectedData(model) : [],
     false
 )
 
-const fixedOrder = ref<boolean>(false)
+const fixedOrder = ref<boolean>(model.goals!.mobGoal!.fixedOrder!)
 watch(fixedOrder, newFixedOrder => {
     model.goals!.mobGoal!.fixedOrder! = newFixedOrder
 })
-fixedOrder.value = JSONSchemaConfig.MobGoalConfig.properties.fixedOrder.default
+//fixedOrder.value = JSONSchemaConfig.MobGoalConfig.properties.fixedOrder.default
 
 
 </script>

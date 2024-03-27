@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.validation.BossBarShower;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
 
@@ -81,6 +82,7 @@ public class FileManager {
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                 context.challengeManager().setValid(true);
+                context.challengeManager().setBossBarShower(new BossBarShower(context));
                 ModelMapper.map2ModelClasses(context, challengesSchema);
 
 

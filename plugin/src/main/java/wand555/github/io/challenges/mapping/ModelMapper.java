@@ -19,6 +19,8 @@ import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
+import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRule;
+import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
@@ -26,6 +28,7 @@ import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRuleMessag
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
+import wand555.github.io.challenges.punishments.EndPunishment;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.RandomEffectPunishment;
@@ -147,6 +150,9 @@ public class ModelMapper {
         if(enabledRulesConfig.getNoItem() != null) {
             rules.add(new NoItemRule(context, enabledRulesConfig.getNoItem(), new NoItemRuleMessageHelper(context)));
         }
+        if(enabledRulesConfig.getNoDeath() != null) {
+            rules.add(new NoDeathRule(context, enabledRulesConfig.getNoDeath(), new NoDeathRuleMessageHelper(context)));
+        }
 
 
         return rules;
@@ -214,7 +220,7 @@ public class ModelMapper {
             return punishments;
         }
         if(punishmentsConfig.getEndPunishment() != null) {
-
+            punishments.add(new EndPunishment(context, punishmentsConfig.getEndPunishment()));
         }
         if(punishmentsConfig.getHealthPunishment() != null) {
             HealthPunishmentConfig healthPunishmentConfig = punishmentsConfig.getHealthPunishment();

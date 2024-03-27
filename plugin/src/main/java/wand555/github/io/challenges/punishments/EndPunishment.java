@@ -41,17 +41,16 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
             }
             case CAUSER -> {
                 causer.setGameMode(GameMode.SPECTATOR);
-                key = "end.enforced.causer";
-                placeholders.put("player", Component.text(causer.getName()));
+                Component toSend = ComponentUtil.formatChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().punishmentResourceBundle(),
+                        "end.enforced.causer",
+                        Map.of("player", Component.text(causer.getName()))
+                );
+                context.plugin().getServer().broadcast(toSend);
             }
         }
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                key,
-                placeholders
-        );
-        context.plugin().getServer().broadcast(toSend);
+
     }
 
     @Override

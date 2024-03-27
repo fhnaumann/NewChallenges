@@ -9,6 +9,7 @@ import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.punishments.Punishment;
+import wand555.github.io.challenges.validation.BossBarShower;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -28,6 +29,7 @@ public class ChallengeManager implements StatusInfo {
 
     private TimerRunnable timerRunnable;
 
+    private BossBarShower bossBarShower;
 
     public ChallengeManager() {
         gameState = GameState.SETUP;
@@ -35,6 +37,10 @@ public class ChallengeManager implements StatusInfo {
 
     public void setContext(@NotNull Context context) {
         this.context = context;
+    }
+
+    public void setBossBarShower(BossBarShower bossBarShower) {
+        this.bossBarShower = bossBarShower;
     }
 
     public void start() {

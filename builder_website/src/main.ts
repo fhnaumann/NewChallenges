@@ -126,7 +126,12 @@ const rulesView: RulesView = {
             id: 'noMobKill',
             label: "NoMobKill",
             description: 'Killing mobs is prohibited!'
-        }
+        },
+        noDeath: {
+            id: 'noDeath',
+            label: "NoDeath",
+            description: 'Dying is prohibited!'
+        },
         /*
         noBlockPlace: {
             id: 'noBlockPlace',

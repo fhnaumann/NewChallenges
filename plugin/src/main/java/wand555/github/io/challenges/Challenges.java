@@ -1,41 +1,16 @@
 package wand555.github.io.challenges;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Preconditions;
-import io.leangen.geantyref.TypeToken;
-import net.kyori.adventure.key.Keyed;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
-import net.kyori.adventure.translation.Translatable;
-import net.kyori.adventure.util.Ticks;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.incendo.cloud.CommandManager;
-import org.incendo.cloud.SenderMapper;
-import org.incendo.cloud.context.CommandContext;
-import org.incendo.cloud.execution.CommandExecutionHandler;
-import org.incendo.cloud.execution.ExecutionCoordinator;
-import org.incendo.cloud.meta.CommandMeta;
-import org.incendo.cloud.paper.PaperCommandManager;
-import org.incendo.cloud.parser.ParserDescriptor;
-import org.incendo.cloud.parser.standard.StringParser;
 import org.jetbrains.annotations.NotNull;
-import wand555.github.io.challenges.commands.SkippableParser;
-import wand555.github.io.challenges.criteria.goals.Skippable;
-import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.utils.ActionHelper;
 
 import java.io.*;
@@ -43,8 +18,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Stream;
 
 public class Challenges extends JavaPlugin implements CommandExecutor {
 
@@ -111,7 +84,11 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        try {
+            FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(getSettingsFile()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean hasSettingsFileProvided() {
