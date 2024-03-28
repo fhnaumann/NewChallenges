@@ -27,7 +27,7 @@
     "primevue": "^3.46.0",
     "typescript-json-schema": "^0.62.0",
     "vee-validate": "^4.12.4",
-    "vite-plugin-ngmi-polyfill": "^0.0.2",
+    "vite-plugin-node-polyfills": "^0.21.0",
     "vue": "^3.3.11",
     "vue-router": "^4.3.0",
     "xml-js": "^1.6.11",

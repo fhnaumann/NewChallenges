@@ -8,14 +8,16 @@ import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfil
 // yarn add --dev @esbuild-plugins/node-modules-polyfill
 import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
 import rollupNodePolyFill from "rollup-plugin-node-polyfills";
-import { NgmiPolyfill } from "vite-plugin-ngmi-polyfill";
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+//import { NgmiPolyfill } from "vite-plugin-ngmi-polyfill";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    NgmiPolyfill()
+    //NgmiPolyfill()
+    nodePolyfills()
   ],
   resolve: {
     alias: {
