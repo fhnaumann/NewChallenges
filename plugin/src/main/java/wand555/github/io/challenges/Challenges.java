@@ -1,6 +1,9 @@
 package wand555.github.io.challenges;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.kyori.adventure.resource.ResourcePackInfo;
+import net.kyori.adventure.resource.ResourcePackInfoLike;
+import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -9,17 +12,23 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.utils.ActionHelper;
 
 import java.io.*;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
-public class Challenges extends JavaPlugin implements CommandExecutor {
+public class Challenges extends JavaPlugin implements CommandExecutor, Listener {
 
     private Context tempContext;
     private URLReminder urlReminder;
@@ -43,6 +52,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         getCommand("skip").setExecutor(this);
         getCommand("pause").setExecutor(this);
         getCommand("resume").setExecutor(this);
+
+        getServer().getPluginManager().registerEvents(this, this);
 
 
         tempContext = null;
@@ -269,5 +280,25 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             tempContext.challengeManager().resume();
         }
         return true;
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void requestRPOnJoin(PlayerJoinEvent event) throws ExecutionException, InterruptedException {
+        ResourcePackInfoLike pack = ResourcePackInfo.resourcePackInfo()
+                .uri(URI.create("https://www.mc-challenges.com/resourcepack"))
+                .computeHashAndBuild().get();
+        ResourcePackRequest request = ResourcePackRequest.resourcePackRequest()
+                .packs(pack)
+                .prompt(ComponentUtil.formatChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().miscResourceBundle(),
+                        "rp.prompt",
+                        false
+                )
+                )
+                .required(true)
+                .build();
+
+        event.getPlayer().sendResourcePacks(request);
     }
 }
