@@ -21,6 +21,11 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
         timer = context.schemaRoot().at("/definitions/Model/properties/timer").asLong(0L);
     }
 
+    public TimerRunnable(Context context, long timer) {
+        this.context = context;
+        this.timer = timer;
+    }
+
     public void start() {
         context.plugin().getServer().getScheduler().runTaskTimer(context.plugin(), this, 0L, 20L);
     }

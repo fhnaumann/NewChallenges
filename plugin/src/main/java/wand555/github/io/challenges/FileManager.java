@@ -19,10 +19,13 @@ import java.util.ResourceBundle;
 
 public class FileManager {
 
+
     public static void writeToFile(ChallengeManager challengeManager, Writer writer) {
         EnabledRules enabledRulesConfig = new EnabledRules();
         challengeManager.getRules().forEach(rule -> rule.addToGeneratedConfig(enabledRulesConfig));
-        RulesConfig rulesConfig = new RulesConfig(new PunishmentsConfig(), enabledRulesConfig);
+        PunishmentsConfig globalPunishmentsConfig = new PunishmentsConfig();
+        challengeManager.getGlobalPunishments().forEach(punishment -> punishment.addToGeneratedConfig(globalPunishmentsConfig));
+        RulesConfig rulesConfig = new RulesConfig(globalPunishmentsConfig, enabledRulesConfig);
 
         GoalsConfig goalsConfig = new GoalsConfig();
         challengeManager.getGoals().forEach(goal -> goal.addToGeneratedConfig(goalsConfig));

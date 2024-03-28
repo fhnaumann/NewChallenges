@@ -4,11 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
@@ -68,16 +64,17 @@ public class ModelMapper {
 
         List<Rule> rules = mapToRules(context, json.getRules() != null ? json.getRules().getEnabledRules() : new EnabledRules());
         List<Punishment> globalPunishments = mapToPunishments(context, json.getRules() != null ? json.getRules().getEnabledGlobalPunishments() : new PunishmentsConfig());
-        /*if(!globalPunishments.isEmpty()) {
-            rules.stream()
-                    .filter(rule -> rule instanceof PunishableRule)
-                    .map(rule -> (PunishableRule) rule)
-                    .forEach(punishableRule -> {
-                        punishableRule.setPunishments(globalPunishments);
-                    });
-        }*/
 
         List<BaseGoal> goals = mapToGoals(context, json.getGoals());
+
+        TimerRunnable timerRunnable = new TimerRunnable(context, json.getTimer());
+        // assume that if the data contains a time larger than 0, then the challenge had been previously played and was interrupted before finishing
+        // it is important to set the gamestate BEFORE starting the runnable, because the runnable will increment the timer when the gamestate is running
+        context.challengeManager().setGameState(timerRunnable.getTimer() > 0L ? ChallengeManager.GameState.PAUSED : ChallengeManager.GameState.SETUP);
+
+        timerRunnable.start();
+        context.challengeManager().setTimerRunnable(timerRunnable);
+
         context.challengeManager().setGlobalPunishments(globalPunishments);
         context.challengeManager().setRules(rules);
         context.challengeManager().setGoals(goals);
@@ -125,11 +122,6 @@ public class ModelMapper {
 
     public static List<String> collectables2Codes(List<CollectableEntryConfig> collectables) {
         return collectables.stream().map(CollectableEntryConfig::getCollectableName).toList();
-    }
-
-    public static <T> String enum2Code(List<MaterialJSON> materialJSONS, T codeAsMaterial) {
-        // TODO: implement for other enums, not just material
-        return materialJSONS.stream().filter(materialJSON -> Material.matchMaterial(materialJSON.code()) == codeAsMaterial).findFirst().orElseThrow().code();
     }
 
     private static List<Rule> mapToRules(@NotNull Context context, EnabledRules enabledRulesConfig) {

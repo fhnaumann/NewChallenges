@@ -35,18 +35,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
          * #fceaff default text
          * #64baaa highlight in text
          */
-        if(!getDataFolder().exists()) {
-            boolean created = getDataFolder().mkdir();
-        }
-        File settingsFile = getSettingsFile();
-        if(!settingsFile.exists()) {
-            try {
-                Files.createDirectories(Paths.get(settingsFile.getParentFile().toURI()));
-                Files.createFile(settingsFile.toPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
         getCommand("load").setExecutor(this);
         getCommand("start").setExecutor(this);
@@ -80,14 +68,41 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
 
         urlReminder = new URLReminder(tempContext);
         urlReminder.start();
+
+        if(!getDataFolder().exists()) {
+            boolean created = getDataFolder().mkdir();
+        }
+        File settingsFile = getSettingsFile();
+        if(!settingsFile.exists()) {
+            try {
+                Files.createDirectories(Paths.get(settingsFile.getParentFile().toURI()));
+                Files.createFile(settingsFile.toPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            handleLoad();
+        }
+
     }
 
     @Override
     public void onDisable() {
-        try {
-            FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(getSettingsFile()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(!tempContext.challengeManager().isSetup()) {
+            // Not being in setup phase ensures that the challenge data had been previously loaded.
+            // Otherwise, the potentially existing data may be wiped because "nothing" is written.
+            // When being in setup phase, the server cannot add any potential data, therefore it is not necessary to write something in this case.
+            try {
+                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(getSettingsFile()));
+            } catch (IOException e) {
+                Bukkit.broadcast(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "save.error"
+                ));
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -100,6 +115,73 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         return Paths.get(getDataFolder().getAbsolutePath(), "settings", "data.json").toFile();
     }
 
+    private void handleLoad() {
+        if(!hasSettingsFileProvided()) {
+            Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
+                    tempContext.plugin(),
+                    tempContext.resourceBundleContext().commandsResourceBundle(),
+                    "load.settings_missing"
+            );
+            Bukkit.broadcast(noSettingsFile);
+            return;
+        }
+        try {
+            ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
+                    tempContext.plugin(),
+                    tempContext.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.start.title"
+            ));
+
+            Context context = FileManager.readFromFile(getSettingsFile(), this);
+            tempContext = context;
+            urlReminder.setContext(context);
+
+            Component successTitle = ComponentUtil.formatTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.title"
+            );
+            Component successSubtitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.subtitle"
+            );
+            ActionHelper.showAllTitle(successTitle, successSubtitle);
+
+            Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.chat"
+            );
+            Bukkit.broadcast(successChat);
+
+            // don't start yet
+            //context.challengeManager().start();
+        } catch (LoadValidationException e) {
+            Component failureTitle = ComponentUtil.formatSubTitleMessage(
+                    tempContext.plugin(),
+                    tempContext.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.title"
+            );
+            Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
+                    tempContext.plugin(),
+                    tempContext.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.subtitle"
+            );
+            ActionHelper.showAllTitle(failureTitle, failureSubtitle, Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(10), Duration.ofSeconds(1)));
+            Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                    tempContext.plugin(),
+                    tempContext.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.chat",
+                    Map.of(),
+                    false
+            );
+            Bukkit.broadcast(failureChat);
+            Bukkit.broadcast(e.getValidationResult().asFormattedComponent(tempContext));
+        }
+        //Main.main(null, file, this);
+    }
+
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -107,70 +189,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             return false;
         }
         if(command.getName().equalsIgnoreCase("load")) {
-            if(!hasSettingsFileProvided()) {
-                Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().commandsResourceBundle(),
-                        "load.settings_missing"
-                );
-                Bukkit.broadcast(noSettingsFile);
-                return true;
-            }
-            try {
-                ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.start.title"
-                ));
+            Bukkit.getScheduler().runTaskAsynchronously(this, this::handleLoad);
 
-                Context context = FileManager.readFromFile(getSettingsFile(), this);
-                tempContext = context;
-                urlReminder.setContext(context);
-
-                Component successTitle = ComponentUtil.formatTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.success.title"
-                );
-                Component successSubtitle = ComponentUtil.formatSubTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.success.subtitle"
-                );
-                ActionHelper.showAllTitle(successTitle, successSubtitle);
-
-                Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.success.chat"
-                );
-                Bukkit.broadcast(successChat);
-
-                // don't start yet
-                //context.challengeManager().start();
-            } catch (LoadValidationException e) {
-                Component failureTitle = ComponentUtil.formatSubTitleMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.failure.title"
-                );
-                Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.failure.subtitle"
-                );
-                ActionHelper.showAllTitle(failureTitle, failureSubtitle, Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(10), Duration.ofSeconds(1)));
-                Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.failure.chat",
-                        Map.of(),
-                        false
-                );
-                Bukkit.broadcast(failureChat);
-                Bukkit.broadcast(e.getValidationResult().asFormattedComponent(tempContext));
-            }
-            //Main.main(null, file, this);
         }
         else if(command.getName().equalsIgnoreCase("start")) {
 
@@ -182,15 +202,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
                 ));
                 return true;
             }
-            if(!tempContext.challengeManager().isSetup()) {
-                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().commandsResourceBundle(),
-                        "start.not_loaded"
-                ));
-                return true;
-            }
             else if(!tempContext.challengeManager().isValid()) {
+                // either invalid or never loaded
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),
@@ -203,7 +216,18 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
         else if (command.getName().equalsIgnoreCase("save")) {
             try {
                 FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(getSettingsFile()));
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "save.saved"
+                ));
+                return true;
             } catch (IOException e) {
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "save.error"
+                ));
                 throw new RuntimeException(e);
             }
         }
@@ -215,9 +239,33 @@ public class Challenges extends JavaPlugin implements CommandExecutor {
             tempContext.challengeManager().onSkip(player);
         }
         else if(command.getName().equalsIgnoreCase("pause")) {
+            if(tempContext.challengeManager().isPaused()) {
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "pause.already_paused"
+                ));
+                return true;
+            }
+            else if(!tempContext.challengeManager().isRunning()) {
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "pause.not_running"
+                ));
+                return true;
+            }
             tempContext.challengeManager().pause();
         }
         else if(command.getName().equalsIgnoreCase("resume")) {
+            if(!tempContext.challengeManager().isPaused()) {
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "resume.not_paused"
+                ));
+                return true;
+            }
             tempContext.challengeManager().resume();
         }
         return true;

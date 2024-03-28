@@ -111,6 +111,10 @@ public class ChallengeManager implements StatusInfo {
         return gameState == GameState.RUNNING;
     }
 
+    public boolean isPaused() {
+        return gameState == GameState.PAUSED;
+    }
+
     public boolean isSetup() {
         return gameState == GameState.SETUP;
     }
@@ -171,6 +175,14 @@ public class ChallengeManager implements StatusInfo {
         return timerRunnable.getTimer();
     }
 
+    public void setTimerRunnable(TimerRunnable timerRunnable) {
+        this.timerRunnable = timerRunnable;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
     @Override
     public Component getCurrentStatus() {
         Component empty = Component.empty();
@@ -206,7 +218,7 @@ public class ChallengeManager implements StatusInfo {
         this.valid = valid;
     }
 
-    private enum GameState {
+    public enum GameState {
         SETUP, RUNNING, PAUSED, ENDED
     }
 }

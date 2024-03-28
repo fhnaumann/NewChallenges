@@ -6,6 +6,7 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableDataConfig;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.CompletionConfig;
+import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
 
 import javax.annotation.Nullable;
@@ -71,7 +72,7 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
             Collect collect = collectEntryFromMap.getValue();
             return new CollectableEntryConfig(
                     collect.toGeneratedJSONClass(),
-                    ModelMapper.enum2Code(context.dataSourceContext().materialJSONList(), collectEntryFromMap.getKey())
+                    DataSourceJSON.toCode(collectEntryFromMap.getKey())
             );
         }).toList();
     }
