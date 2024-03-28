@@ -64,7 +64,7 @@ public class EndPunishmentTest {
         EndPunishmentConfig endPunishmentConfig = new EndPunishmentConfig(EndPunishmentConfig.Affects.CAUSER);
         EndPunishment endPunishment = new EndPunishment(context, endPunishmentConfig);
         endPunishment.enforcePunishment(causer);
-        verify(context.challengeManager(), never()).endChallenge();
+        verify(context.challengeManager(), never()).endChallenge(true);
         causer.assertGameMode(GameMode.SPECTATOR);
         other.assertGameMode(GameMode.SURVIVAL);
     }
@@ -74,6 +74,6 @@ public class EndPunishmentTest {
         EndPunishmentConfig endPunishmentConfig = new EndPunishmentConfig(EndPunishmentConfig.Affects.ALL);
         EndPunishment endPunishment = new EndPunishment(context, endPunishmentConfig);
         endPunishment.enforcePunishment(causer);
-        verify(context.challengeManager()).endChallenge();
+        verify(context.challengeManager()).endChallenge(true);
     }
 }

@@ -176,12 +176,12 @@ public class ComponentUtil {
 
     public static Component formatTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
         String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
-        return Component.text(rawText);
+        return MiniMessage.miniMessage().deserialize(rawText);
     }
 
     public static Component formatSubTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
         String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
-        return Component.text(rawText);
+        return MiniMessage.miniMessage().deserialize(rawText);
     }
 
     public static Component formatSubTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, double progress) {

@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 
 public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
     private final Context context;
+    private BukkitTask task;
 
     private long timer;
 
@@ -30,8 +31,15 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
         context.plugin().getServer().getScheduler().runTaskTimer(context.plugin(), this, 0L, 20L);
     }
 
+    public void shutdown() {
+        task.cancel();
+    }
+
     @Override
     public void accept(BukkitTask bukkitTask) {
+        if(task == null) {
+            task = bukkitTask;
+        }
         Component formattedTime;
         if(context.challengeManager().isRunning()) {
             timer += 1;
@@ -39,14 +47,8 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
             formattedTime = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().miscResourceBundle(), "timer.format", mappedTime);
         }
         else if(context.challengeManager().isSetup()) {
-            // show URL to website builder when it is in setup phase
-            formattedTime = ComponentUtil.formatChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenge.builder.chat",
-                    Map.of("url", ComponentUtil.BUILDER_LINK),
-                    false
-            );
+            // don't do anything in this case, as the URLReminder is showing something already
+            return;
         }
         else {
             formattedTime = ComponentUtil.formatChatMessage(

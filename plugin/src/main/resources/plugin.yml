@@ -9,6 +9,8 @@ commands:
     description: abc
   start:
     description: abc
+  cancel:
+    description: abc
   save:
     description: abc
   status:

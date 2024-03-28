@@ -47,6 +47,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
         getCommand("load").setExecutor(this);
         getCommand("start").setExecutor(this);
+        getCommand("cancel").setExecutor(this);
         getCommand("save").setExecutor(this);
         getCommand("status").setExecutor(this);
         getCommand("skip").setExecutor(this);
@@ -115,6 +116,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 throw new RuntimeException(e);
             }
         }
+        tempContext.challengeManager().shutdownRunnables();
     }
 
     private boolean hasSettingsFileProvided() {
@@ -200,6 +202,14 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             return false;
         }
         if(command.getName().equalsIgnoreCase("load")) {
+            if(tempContext.challengeManager().isRunning() || tempContext.challengeManager().isPaused()) {
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "load.already_running"
+                ));
+                return true;
+            }
             Bukkit.getScheduler().runTaskAsynchronously(this, this::handleLoad);
 
         }
@@ -223,6 +233,10 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 return true;
             }
             tempContext.challengeManager().start();
+        }
+        else if(command.getName().equalsIgnoreCase("cancel")) {
+            // artificially end the challenge (as success)
+            tempContext.challengeManager().endChallenge(true);
         }
         else if (command.getName().equalsIgnoreCase("save")) {
             try {

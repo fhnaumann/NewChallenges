@@ -144,19 +144,30 @@ public class ChallengeManager implements StatusInfo {
             throw new RuntimeException("Goal completed while challenge is not running!");
         }
         if(allGoalsCompleted()) {
-            endChallenge();
+            endChallenge(true);
         }
     }
 
-    public void endChallenge() {
+    public void endChallenge(boolean success) {
         context.plugin().getServer().getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
         gameState = GameState.ENDED;
-        Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenge.beaten.chat"
-                );
-        context.plugin().getServer().broadcast(toSend);
+        if(success) {
+            Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenge.complete.beaten.chat"
+            );
+            context.plugin().getServer().broadcast(toSend);
+        }
+        else {
+            Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenge.complete.failed.chat"
+            );
+            context.plugin().getServer().broadcast(toSend);
+        }
+
     }
 
     public boolean allGoalsCompleted() {
@@ -181,6 +192,12 @@ public class ChallengeManager implements StatusInfo {
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+    }
+
+    public void shutdownRunnables() {
+        if(timerRunnable != null) {
+            timerRunnable.shutdown();
+        }
     }
 
     @Override

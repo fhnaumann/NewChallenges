@@ -36,7 +36,7 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
         Map<String, Component> placeholders = new HashMap<>();
         switch (getAffects()) {
             case ALL -> {
-                context.challengeManager().endChallenge();
+                context.challengeManager().endChallenge(false);
                 // no own message, because the messages about the challenge failure will be sent anyway.
             }
             case CAUSER -> {
