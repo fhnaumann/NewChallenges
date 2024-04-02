@@ -92,7 +92,7 @@ public class ChallengeManager implements StatusInfo {
             return;
         }
         try {
-            skippables.get(0).onSkip();
+            skippables.get(0).onSkip(player);
             player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().commandsResourceBundle(),

@@ -23,6 +23,10 @@ public class Collect implements Storable<CollectableDataConfig> {
         this.config = config;
     }
 
+    public int getRemainingToCollect() {
+        return getAmountNeeded() - getCurrentAmount();
+    }
+
     public int getAmountNeeded() {
         return config.getAmountNeeded();
     }

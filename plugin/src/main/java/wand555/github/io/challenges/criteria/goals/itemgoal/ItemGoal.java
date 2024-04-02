@@ -1,13 +1,17 @@
 package wand555.github.io.challenges.criteria.goals.itemgoal;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.types.item.ItemData;
 import wand555.github.io.challenges.types.item.ItemType;
+import wand555.github.io.challenges.utils.RandomUtil;
 
 import java.util.Map;
 
@@ -45,13 +49,8 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
     }
 
     @Override
-    protected Collect updateCollect(ItemData data) {
-        return getToCollect().computeIfPresent(data.itemStackInteractedWith().getType(), (material, collect) -> {
-            // don't overshoot the total amount, because the player might have picked up more items (in the stack) that they needed
-            int newCurrentAmount = Math.min(collect.getCurrentAmount()+data.itemStackInteractedWith().getAmount(), collect.getAmountNeeded());
-            collect.setCurrentAmount(newCurrentAmount);
-            return collect;
-        });
+    protected ItemData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
+        return new ItemData(new ItemStack(toSkip.getKey()), toSkip.getValue().getRemainingToCollect(), player);
     }
 
     @Override

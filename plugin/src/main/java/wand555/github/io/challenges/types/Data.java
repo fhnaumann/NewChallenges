@@ -7,4 +7,6 @@ public interface Data<K> {
 
     Player player();
     K mainDataInvolved();
+
+    int amount();
 }

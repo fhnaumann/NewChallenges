@@ -2,11 +2,14 @@ package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.Keyed;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.inventory.CollectedInventory;
 import wand555.github.io.challenges.types.Data;
+
+import java.util.Map;
 
 /**
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
@@ -95,19 +98,20 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
 
     protected Collect updateCollect(D data) {
         return goalCollector.getToCollect().computeIfPresent(data.mainDataInvolved(), (material, collect) -> {
-            // default behaviour is to add exactly 1 to the collect
+            // default behaviour is to add exactly 1 to the collect (data.amount() defaults to 1 unless it is being used to skip something)
             // subclasses may override this behaviour
-            collect.setCurrentAmount(collect.getCurrentAmount()+1);
+            collect.setCurrentAmount(Math.min(collect.getCurrentAmount() + data.amount(), collect.getAmountNeeded()));
             return collect;
         });
     }
 
     @Override
-    public void onSkip() throws UnskippableException {
+    public void onSkip(Player player) throws UnskippableException {
         if(!goalCollector.isFixedOrder()) {
             throw new UnskippableException();
         }
-        goalCollector.getCurrentlyToCollect().getValue().setCurrentAmount(goalCollector.getCurrentlyToCollect().getValue().getAmountNeeded());
+        //goalCollector.getCurrentlyToCollect().getValue().setCurrentAmount(goalCollector.getCurrentlyToCollect().getValue().getAmountNeeded());
+        trigger().actOnTriggered(createSkipData(goalCollector.getCurrentlyToCollect(), player));
         if(determineComplete()) {
             // there are no other collects left to complete -> skipping the active collect completes the goal
             onComplete();
@@ -115,8 +119,9 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         else {
             bossBarHelper.updateBossBar();
         }
-
     }
+
+    protected abstract D createSkipData(Map.Entry<K, Collect> toSkip, Player player);
 
     @Override
     public BossBar getBossBar() {

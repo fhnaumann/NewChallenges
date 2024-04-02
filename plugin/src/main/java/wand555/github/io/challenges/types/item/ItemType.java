@@ -78,7 +78,7 @@ public class ItemType extends Type<ItemData> implements Listener {
             return;
         }
 
-        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(), player), event);
+        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(), event.getItem().getItemStack().getAmount(), player), event);
     }
 
     @EventHandler
@@ -112,12 +112,12 @@ public class ItemType extends Type<ItemData> implements Listener {
                 craftingInventory.setMatrix(fakeMatrix);
 
                 ItemStack fakeResult = new ItemStack(currentItem.getType(), totalResultAmount);
-                triggerIfCheckPasses(new ItemData(fakeResult, player), event);
+                triggerIfCheckPasses(new ItemData(fakeResult, totalResultAmount,player), event);
 
                 craftingInventory.setResult(fakeResult);
             }
             else {
-                triggerIfCheckPasses(new ItemData(currentItem, player), event);
+                triggerIfCheckPasses(new ItemData(currentItem, currentItem.getAmount(), player), event);
             }
 
         }
@@ -128,7 +128,7 @@ public class ItemType extends Type<ItemData> implements Listener {
             if(event.getClick() == ClickType.RIGHT) {
                 currentItem = new ItemStack(currentItem.getType(), (int) Math.ceil((double)currentItem.getAmount()/2));
             }
-            triggerIfCheckPasses(new ItemData(currentItem, player), event);
+            triggerIfCheckPasses(new ItemData(currentItem, currentItem.getAmount(), player), event);
 
         }
     }

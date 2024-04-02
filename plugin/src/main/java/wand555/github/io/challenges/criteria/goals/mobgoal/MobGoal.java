@@ -1,13 +1,16 @@
 package wand555.github.io.challenges.criteria.goals.mobgoal;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
+import wand555.github.io.challenges.utils.RandomUtil;
 
 import java.util.Map;
 
@@ -75,5 +78,10 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
     @Override
     public String getSkipNameInCommand() {
         return "mob";
+    }
+
+    @Override
+    protected MobData createSkipData(Map.Entry<EntityType, Collect> toSkip, Player player) {
+        return new MobData(toSkip.getKey(), player);
     }
 }

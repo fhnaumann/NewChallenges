@@ -1,14 +1,20 @@
 package wand555.github.io.challenges.criteria.goals.blockbreak;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.MapGoal;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
+import wand555.github.io.challenges.utils.RandomUtil;
+
+import java.util.Map;
 
 public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements Storable<BlockBreakGoalConfig> {
 
@@ -42,5 +48,10 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
     @Override
     public String getSkipNameInCommand() {
         return "blockbreak";
+    }
+
+    @Override
+    protected BlockBreakData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
+        return new BlockBreakData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }
 }
