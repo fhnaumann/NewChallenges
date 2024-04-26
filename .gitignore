@@ -12,6 +12,7 @@ builder_website/public/testpack.*
 builder_website/public/themes/
 
 docs/.retype
+docs/node_modules
 
 plugin/.idea/
 plugin/cache/
