@@ -46,12 +46,12 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
     }
 
     @Override
-    public String getSkipNameInCommand() {
-        return "blockbreak";
+    protected BlockBreakData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
+        return new BlockBreakData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }
 
     @Override
-    protected BlockBreakData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new BlockBreakData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
+    public String getNameInCommand() {
+        return null;
     }
 }

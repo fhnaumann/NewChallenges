@@ -17,7 +17,7 @@ import java.util.Map;
  * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, BossBarDisplay {
+public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, Progressable, BossBarDisplay {
 
     protected final GoalCollector<K> goalCollector;
     private final MapGoalBossBarHelper<K> bossBarHelper;
@@ -119,6 +119,11 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         else {
             bossBarHelper.updateBossBar();
         }
+    }
+
+    @Override
+    public void onProgressStatus(Player player) {
+        collectedInventory.show(player);
     }
 
     protected abstract D createSkipData(Map.Entry<K, Collect> toSkip, Player player);

@@ -38,7 +38,7 @@ public abstract class MapGoalBossBarHelper<K extends Keyed> extends BossBarHelpe
 
     @Override
     public void updateBossBar() {
-        if(goalCollector.isFixedOrder() && goalCollector.hasNext()) {
+        if(goalCollector.isFixedOrder()) {
             bossBar.name(formatFixedOrderBossBarComponent(goalCollector.getCurrentlyToCollect().getKey(), goalCollector.getCurrentlyToCollect().getValue()));
         }
         else {

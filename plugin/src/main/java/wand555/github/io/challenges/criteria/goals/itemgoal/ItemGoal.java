@@ -54,7 +54,7 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
     }
 
     @Override
-    public String getSkipNameInCommand() {
-        return "item";
+    public String getNameInCommand() {
+        return null;
     }
 }

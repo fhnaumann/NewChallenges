@@ -8,7 +8,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.utils.ActionHelper;
 
 import java.io.*;
@@ -50,7 +50,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("start").setExecutor(this);
         getCommand("cancel").setExecutor(this);
         getCommand("save").setExecutor(this);
-        getCommand("status").setExecutor(this);
         getCommand("skip").setExecutor(this);
         getCommand("pause").setExecutor(this);
         getCommand("resume").setExecutor(this);
@@ -97,11 +96,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         else {
             handleLoad();
         }
-
     }
 
     @Override
     public void onDisable() {
+        if(tempContext == null) {
+            return;
+        }
         if(!tempContext.challengeManager().isSetup()) {
             // Not being in setup phase ensures that the challenge data had been previously loaded.
             // Otherwise, the potentially existing data may be wiped because "nothing" is written.
@@ -284,7 +285,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             tempContext.challengeManager().pause();
         }
         else if(command.getName().equalsIgnoreCase("resume")) {
-            if(!tempContext.challengeManager().isPaused()) {
+            if(!tempContext.challengeManager().isPaused() && tempContext.challengeManager().getGameState() != ChallengeManager.GameState.ENDED) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),

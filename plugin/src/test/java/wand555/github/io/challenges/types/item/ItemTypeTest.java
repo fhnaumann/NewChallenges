@@ -76,7 +76,7 @@ public class ItemTypeTest {
     public void testInventoryEvents(Inventory inventory, ClickType clickType, int slot, Material changedMaterial, int expectedCurrentAmount) {
         player.openInventory(inventory);
         InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
-        verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), player));
+        verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), expectedCurrentAmount, player));
     }
 
     @Disabled("fails for crafting inventory for now, because there is no way to simulate clicking in the result slot\n" +

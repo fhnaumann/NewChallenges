@@ -3,26 +3,20 @@ version: '${project.version}'
 main: wand555.github.io.challenges.Challenges
 api-version: 1.20
 commands:
-  test:
-    description: abc
   load:
-    description: abc
+    description: Load and validate a challenge configuration.
   start:
-    description: abc
+    description: Start a challenge.
   cancel:
-    description: abc
+    description: Cancel/Abort a challenge.
   save:
-    description: abc
-  status:
-    description: abc
+    description: Manually save a challenge.
   skip:
-    description: abc
+    description: Some goals may be skipped.
   pause:
-    description: abc
+    description: Pause a challenge.
   resume:
-    description: abc
-  progress:
-    description: abc
+    description: Resume a challenge.
 libraries:
   - com.github.erosb:everit-json-schema:1.14.4
   - com.fasterxml.jackson.core:jackson-databind:2.16.1

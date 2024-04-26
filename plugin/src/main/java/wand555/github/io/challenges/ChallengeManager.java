@@ -5,6 +5,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.exceptions.UnskippableException;
@@ -73,6 +74,10 @@ public class ChallengeManager implements StatusInfo {
         gameState = GameState.RUNNING;
     }
 
+    public void onProgress(Player player, Progressable progressable) {
+        progressable.onProgressStatus(player);
+    }
+
     public void onSkip(Player player) {
         List<Skippable> skippables = goals.stream().filter(Skippable.class::isInstance).map(Skippable.class::cast).toList();
         if(skippables.isEmpty()) {
@@ -113,6 +118,10 @@ public class ChallengeManager implements StatusInfo {
 
     public boolean isPaused() {
         return gameState == GameState.PAUSED;
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 
     public boolean isSetup() {

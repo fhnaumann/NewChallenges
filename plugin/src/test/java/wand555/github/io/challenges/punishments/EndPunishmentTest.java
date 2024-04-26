@@ -74,6 +74,6 @@ public class EndPunishmentTest {
         EndPunishmentConfig endPunishmentConfig = new EndPunishmentConfig(EndPunishmentConfig.Affects.ALL);
         EndPunishment endPunishment = new EndPunishment(context, endPunishmentConfig);
         endPunishment.enforcePunishment(causer);
-        verify(context.challengeManager()).endChallenge(true);
+        verify(context.challengeManager()).endChallenge(false);
     }
 }

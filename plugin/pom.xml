@@ -134,12 +134,6 @@
 
   <dependencies>
       <dependency>
-          <groupId>com.mojang</groupId>
-          <artifactId>brigadier</artifactId>
-          <version>1.0.18</version>
-          <scope>test</scope>
-      </dependency>
-      <dependency>
           <groupId>io.papermc.paper</groupId>
           <artifactId>paper-api</artifactId>
           <version>1.20.4-R0.1-SNAPSHOT</version>
