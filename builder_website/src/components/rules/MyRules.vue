@@ -8,13 +8,13 @@
   </ConfirmDialog>
   <div class="space-y-4">
     <div class="flex items-center justify-center mt-4">
-      <h1 class="text-4xl">Rules</h1>
+      <h1 class="text-4xl">{{ t("rules.global_title") }}</h1>
     </div>
     <div class="mx-auto px-4">
       <Toast />
       <div class="flex flex-col space-y-4">
         <Button
-        label="Configure global punishments"
+        :label="t('rules.configure_global_punishments')"
         @click="showGlobalPunishments"
         :badge="getGlobalActivePunishmentAmount()"
         badge-class="mr-6 scale-150"
@@ -22,7 +22,7 @@
         />
       <Button
         @click="showRuleSelection"
-        label="Add new rule"
+        :label="t('rules.add_new_rule')"
         class="cursor-pointer w-full h-20 bg-gray-600 py-1 rounded text-2xl text-white "
         />
       </div>
@@ -48,11 +48,11 @@
             >
               <template #header>
                 <span class="flex justify-between items-center gap-2 w-full">
-                  <p>{{ activeRule.label }}</p>
+                  <p>{{ t(`rules.types.${activeRule.id}.name`) }}</p>
                   <button
                     class="cursor-pointer bg-red-700 py-1 px-1 rounded text-white"
                     @click="deleteActiveRule(activeRule.id)"
-                    >Deactivate</button
+                    >{{ t('rules.deactivate_button') }}</button
                   >
                 </span>
               </template>
@@ -119,6 +119,9 @@ import NoMobKillRule from './NoMobKillRule.vue'
 import { rule } from 'postcss'
 import NoItemRule from './NoItemRule.vue'
 import RuleSelector from './RuleSelector.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const config = useConfigStore().model
 const defaultConfig = useDefaultConfigStore()

@@ -1,0 +1,3 @@
+# Rules
+
+Rules are constraints that can be added to challenges. They make reaching the [set goals](../goals/goals.md) harder by limiting different abilities in game. For example, the [NoDeathRule](noDeath.md) adds the constraint that no player may die during the challenge. Some rules have additional configuration options. The chapters in this documentation will go over each rule and its configuration options. 

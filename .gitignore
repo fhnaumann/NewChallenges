@@ -11,6 +11,8 @@ builder_website/public/testpack/
 builder_website/public/testpack.*
 builder_website/public/themes/
 
+docs/.retype
+
 plugin/.idea/
 plugin/cache/
 plugin/htmlReport/

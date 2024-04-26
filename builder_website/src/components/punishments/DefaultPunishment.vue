@@ -4,10 +4,10 @@
             <div class="flex items-center space-x-2">
                 <Checkbox :model-value="punishable.active.value" @input="(newActive) => updateIfValid(newActive)" :binary="true"
                     :input-id="props.punishmentView.id" />
-                <label :for="props.punishmentView.id" class="ml-2">{{ punishmentView.label }}</label>
+                <label :for="props.punishmentView.id" class="ml-2" v-tooltip="{ value: t(`punishments.types.${punishmentView.id}.tooltip`), showDelay: 500, hideDelay: 250}">{{ t(`punishments.types.${punishmentView.id}.name`) }}</label>
             </div>
             <div class="flex items-center space-x-2">
-                <p v-tooltip="{ value: 'Who the punishment applies to, if violated', showDelay: 500, hideDelay: 250}">Affected:</p>
+                <p v-tooltip="{ value: t(`punishments.affects.affected.tooltip`), showDelay: 500, hideDelay: 250}">{{ t('punishments.affects.affected.name') }}</p>
                 <Dropdown class="w-32 h-10" :pt="{
                     input: {
                         class: 'flex items-center'
@@ -37,6 +37,7 @@ import type { PunishmentView } from '../view/punishments';
 import { useValidator } from '../validator';
 import type { Model } from '../model/model';
 import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n';
 
 export interface GlobalPunishmentProps {
     punishmentView: PunishmentView
@@ -54,6 +55,9 @@ const emit = defineEmits(['clearOnDisabled'])
 
 const config = useConfigStore().model
 const validator = useValidator()
+
+const { t } = useI18n()
+
 
 function updateAffectsIfValid(newAffects: Affects) {
     punishable.affects.value = newAffects

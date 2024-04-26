@@ -3,10 +3,10 @@
     <DefaultPunishment v-bind="props" v-slot="slotProps" @clear-on-disabled="clearOnDisabled">
         <div v-if="slotProps.punishable.active.value" class="">
             <div class="flex items-center space-x-4">
-                <p>Hearts lost:</p>
+                <p v-tooltip="{ value: t(`punishments.types.healthPunishment.settings.hearts_lost.tooltip`), showDelay: 500, hideDelay: 250}">{{ t("punishments.types.healthPunishment.settings.hearts_lost.name") }}</p>
                 <InputNumber input-style="width:32px" :model-value="heartsLost" @update:model-value="(newHeartsLost: number) => updateIfActive(slotProps.punishable, newHeartsLost)" show-buttons mode="decimal" :min="minHeartsLost" :max="maxHeartsLost" :disabled="randomizeHeartsLost"/>
-                <Checkbox v-model="randomizeHeartsLost" :binary="true" input-id="0"/>
-                <label for="0" class="ml-2">Randomize every time?</label>
+                <Checkbox v-model="randomizeHeartsLost" :binary="true" input-id="randomizeHeartsLost"/>
+                <label  for="randomizeHeartsLost" class="ml-2" v-tooltip="{ value: t(`punishments.types.healthPunishment.settings.randomized.tooltip`), showDelay: 500, hideDelay: 250}">{{ t(`punishments.types.healthPunishment.settings.randomized.name`) }}</label>
             </div>
             
         </div>
@@ -24,10 +24,13 @@ import type { PunishmentView } from '../view/punishments';
 import { useConfigStore, useJSONSchemaConfigStore } from '@/main';
 import InputNumber from 'primevue/inputnumber';
 import Checkbox from 'primevue/checkbox';
+import { useI18n } from 'vue-i18n';
 const props = defineProps<PunishmentProps>()
 
 const config = useConfigStore()
 const jsonSchema = useJSONSchemaConfigStore()
+
+const { t } = useI18n()
 
 const { getPunishmentBasePath } = usePunishableCommons()
 

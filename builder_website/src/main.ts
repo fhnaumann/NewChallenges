@@ -13,8 +13,14 @@ import modelSchema from './assets/challenges_schema.json'
 import type { PunishmentsView } from './components/view/punishments'
 import type { GoalsView } from './components/view/goals'
 import ConfirmationService from 'primevue/confirmationservice';
-import { createRouter, createWebHashHistory, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import ResourcePack from "./components/ResourcePack.vue"
+import { createI18n } from 'vue-i18n'
+import en_punishments from './locales/en/punishments.json'
+import en_rules from './locales/en/rules.json'
+import Docs from './components/Docs.vue'
+import HomeView from './components/HomeView.vue'
+import ChallengeBuilder from './components/ChallengeBuilder.vue'
 
 const pinia = createPinia()
 const app = createApp(App)
@@ -29,8 +35,23 @@ app.directive('tooltip', Tooltip);
 
 export const toast = app.config.globalProperties.$toast
 
+const i18n = createI18n({
+    legacy: false,
+    locale: 'en',
+    messages: {
+        en: Object.assign({}, en_punishments, en_rules),
+    }
+})
+
+app.use(i18n)
+
+
 const routes: RouteRecordRaw[] = [
-    {path: "/builder", component: App},
+    {path: "/", component: HomeView},
+    {path: "/builder", name: "Builder", component: ChallengeBuilder},
+    {
+        path: "/docs/:page*", name: "Docs", component: Docs
+    },
     {
         path: "/resourcepack",
         component: ResourcePack,
@@ -115,22 +136,22 @@ const rulesView: RulesView = {
         noBlockBreak: {
             id: 'noBlockBreak',
             label: 'NoBlockBreak',
-            description: 'Breaking blocks is prohibited!',
+            description_key: 'Breaking blocks is prohibited!',
         },
         noItem: {
             id: 'noItem',
             label: "NoItem",
-            description: 'Picking up items is prohibited!'
+            description_key: 'Picking up items is prohibited!'
         },
         noMobKill: {
             id: 'noMobKill',
             label: "NoMobKill",
-            description: 'Killing mobs is prohibited!'
+            description_key: 'Killing mobs is prohibited!'
         },
         noDeath: {
             id: 'noDeath',
             label: "NoDeath",
-            description: 'Dying is prohibited!'
+            description_key: 'Dying is prohibited!'
         },
         /*
         noBlockPlace: {

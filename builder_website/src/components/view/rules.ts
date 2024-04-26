@@ -6,7 +6,7 @@ export interface RuleView extends Searchable {
     /**The internal code that is used for building and accessing paths in the configuration store/file */
     id: RuleName,
     /** The description that is displayed to the user below the label. */
-    description: string,
+    description_key: string,
     /** The path to the associated image. */
     image?: string
 }

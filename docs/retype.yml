@@ -1,0 +1,13 @@
+input: .
+output: .retype
+url: wiki.mc-challenges.com
+branding:
+  title: MC Challenges
+  label: Docs
+links:
+  - text: Challenge Builder
+    link: https://mc-challenges.com/
+  - text: Challenge Plugin
+    link: https://hangar.papermc.io/wand555/Challenges/
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."

@@ -73,7 +73,9 @@ const access: AccessOperation = {
 
 const collectable = useCollectableGoal(
     access,
-    allMaterialData,
+    // FIX --- only include block codes if they are also an item. A code that is just a block and not an item is not obtainable and therefore
+    // cannot be part of an ItemGoal.
+    allMaterialData.filter(dataRow => dataRow.is_item || (dataRow.is_block && dataRow.is_item)),
     JSONSchemaConfig.ItemGoalConfig.properties.items.default,
     false
 )
@@ -87,7 +89,8 @@ watch(allItems, newAllItems => {
             collectable.selectAllData.value = true
         }
         else {
-            collectable.overrideBulkSelectedData(allItemMaterialData.map(dataRow => dataRow.code))
+            // FIX --- In this context "allItem" refers to codes that are only items but not blocks
+            collectable.overrideBulkSelectedData(allItemMaterialData.filter(dataRow => !dataRow.is_block).map(dataRow => dataRow.code))
         }
     }
     else {
@@ -104,7 +107,8 @@ watch(allBlocks, newAllBlocks => {
             collectable.selectAllData.value = true
         }
         else {
-            collectable.overrideBulkSelectedData(allBlockMaterialData.map(dataRow => dataRow.code))
+            // FIX --- if something is a block but not an item, then it should be ignored completely as it is not obtainable
+            collectable.overrideBulkSelectedData(allBlockMaterialData.filter(dataRow => dataRow.is_item).map(dataRow => dataRow.code))
         }
     }
     else {

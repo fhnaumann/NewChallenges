@@ -1,0 +1,20 @@
+{
+    "rules": {
+      "enabledRules": {
+        "noDeath": {
+          "result": "Allow"
+        }
+      },
+      "enabledGlobalPunishments": {
+        "endPunishment": {
+          "affects": "All"
+        }
+      }
+    },
+    "goals": {
+      "itemGoal": {
+        "items": ["dragon_egg"],
+        "fixedOrder": true
+      }
+    }
+  }

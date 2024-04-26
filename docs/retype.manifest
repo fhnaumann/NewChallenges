@@ -1,0 +1,99 @@
+{
+  "version": "3.5.0",
+  "created": "2024-04-26T18:45:27Z",
+  "files": [
+    {
+      "path": ".nojekyll"
+    },
+    {
+      "path": "404.html"
+    },
+    {
+      "path": "CNAME"
+    },
+    {
+      "path": "goals\\index.html"
+    },
+    {
+      "path": "goals\\itemgoal\\index.html"
+    },
+    {
+      "path": "goals\\mobgoal\\index.html"
+    },
+    {
+      "path": "index.html"
+    },
+    {
+      "path": "resources\\css\\retype.css"
+    },
+    {
+      "path": "resources\\fonts\\Inter-italic-latin-var.woff2"
+    },
+    {
+      "path": "resources\\fonts\\Inter-roman-latin-var.woff2"
+    },
+    {
+      "path": "resources\\js\\config.js"
+    },
+    {
+      "path": "resources\\js\\lunr.js"
+    },
+    {
+      "path": "resources\\js\\prism.js"
+    },
+    {
+      "path": "resources\\js\\retype.js"
+    },
+    {
+      "path": "resources\\js\\search.json"
+    },
+    {
+      "path": "resources\\lunr.js.LICENSE.txt"
+    },
+    {
+      "path": "resources\\mermaid.js.LICENSE.txt"
+    },
+    {
+      "path": "resources\\prism.js.LICENSE.txt"
+    },
+    {
+      "path": "resources\\retype.js.LICENSE.txt"
+    },
+    {
+      "path": "resources\\retype.LICENSE.txt"
+    },
+    {
+      "path": "robots.txt"
+    },
+    {
+      "path": "rules\\index.html"
+    },
+    {
+      "path": "rules\\nodeath\\index.html"
+    },
+    {
+      "path": "sitemap.xml.gz"
+    },
+    {
+      "path": "static\\goals\\no_death_end_challenge_item_goal_1_dragon_egg.json"
+    },
+    {
+      "path": "static\\goals\\no_death_end_challenge_item_goal_every_item_once_fixed_order.json"
+    },
+    {
+      "path": "static\\goals\\no_death_end_challenge_mob_goal_1_ender_dragon.json"
+    },
+    {
+      "path": "static\\goals\\no_death_end_challenge_mob_goal_every_mob_once_fixed_order.json"
+    },
+    {
+      "path": "static\\mc-textures\\minecraft_carrot.png"
+    },
+    {
+      "path": "static\\mc-textures\\minecraft_stone.png"
+    },
+    {
+      "path": "static\\rules\\no_death_end_challenge_mob_goal.json"
+    }
+  ]
+}
