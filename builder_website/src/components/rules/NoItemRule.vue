@@ -8,7 +8,7 @@
                 :virtual-scroller-options="{ itemSize: 44, delay: 100 }" filter class="w-full md:w-80">
                 <template #option="slotProps">
                     <div class="flex justify-center items-center space-x-2">
-                        <img class="w-6" :alt="slotProps.option" :src="'/rendered_items/' + slotProps.option.img_name"
+                        <img class="w-6" :alt="slotProps.option" :src="BASE_IMG_URL + '/rendered_images/' + slotProps.option.img_name"
                             @error="$event.target.src = 'unknown.png'" />
                         <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
                     </div>
@@ -24,7 +24,7 @@
         </div>
         <Sidebar v-model:visible="visibleExemptionsSidebar" header="Exemptions" position="right">
             <div class="flex items-center space-x-2" v-for="item in selectedData" :key="item.code">
-                <img class="w-6" :alt="item.code" :src="'/rendered_items/' + item.img_name"
+                <img class="w-6" :alt="item.code" :src="BASE_IMG_URL + '/rendered_images/' + item.img_name"
                     @error="$event.target.src = 'unknown.png'" />
                 <p>{{ translation.translate(item.translation_key) }}</p>
             </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { useConfigStore, useDefaultConfigStore, useRulesViewStore } from '@/main';
+import { BASE_IMG_URL, useConfigStore, useDefaultConfigStore, useRulesViewStore } from '@/main';
 import { useTranslation } from '../language';
 import { useValidator } from '../validator';
 import type { RuleView } from '../view/rules';

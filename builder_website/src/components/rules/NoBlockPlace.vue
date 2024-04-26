@@ -19,7 +19,7 @@
             <img
               class="w-6"
               :alt="slotProps.option"
-              :src="'/rendered_items/' + slotProps.option.image + '.png'"
+              :src="BASE_IMG_URL + '/rendered_images/' + slotProps.option.image + '.png'"
               @error="$event.target.src = 'unknown.png'"
             />
             <div>{{ slotProps.option.label }}</div>
@@ -47,7 +47,7 @@
         <img
           class="w-6"
           :alt="item.code"
-          :src="'/rendered_items/' + item.image + '.png'"
+          :src="BASE_IMG_URL + '/rendered_images/' + item.image + '.png'"
           @error="$event.target.src = 'unknown.png'"
         />
         <p>{{ item.label }}</p>
@@ -64,6 +64,7 @@ import { ref, defineComponent, toRef, toRaw, computed } from 'vue'
 import matList from '../../assets/items.csv?raw'
 import PunishmentSettingsInRule from '../punishments/PunishmentSettingsInRule.vue'
 import {
+BASE_IMG_URL,
   useConfigStore,
   useDefaultConfigStore,
   useRulesViewStore,

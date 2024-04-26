@@ -48,7 +48,7 @@
         <img
           class="w-6"
           :alt="item.code"
-          :src="'/rendered_items/' + item.img_name"
+          :src="BASE_IMG_URL + '/rendered_images/' + item.img_name"
           @error="$event.target.src = 'unknown.png'"
         />
         <p>{{ translation.translate(item.translation_key) }}</p>

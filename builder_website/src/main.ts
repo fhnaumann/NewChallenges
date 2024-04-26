@@ -47,11 +47,7 @@ app.use(i18n)
 
 
 const routes: RouteRecordRaw[] = [
-    {path: "/", component: HomeView},
-    {path: "/builder", name: "Builder", component: ChallengeBuilder},
-    {
-        path: "/docs/:page*", name: "Docs", component: Docs
-    },
+    {path: "/", component: ChallengeBuilder},
     {
         path: "/resourcepack",
         component: ResourcePack,
