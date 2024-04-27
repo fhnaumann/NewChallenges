@@ -1,19 +1,19 @@
 <template>
     <div class="flex flex-row items-center space-x-4 h-12">
         <p>{{ collectablePrefix }}</p>
-            <Dropdown v-model="selectedData" :options="possibleData" option-label="label" :placeholder="placeHolderText" :disabled="disabled"
+            <Dropdown v-model="selectedData" :options="possibleData" :option-label=translateDataRow :placeholder="placeHolderText" :disabled="disabled"
                 display="chip" :virtual-scroller-options="{ itemSize: 44 }" filter class="w-full md:w-80"
                 @update:modelValue="$emit('transferDataFromPlaceHolderToNewInstance', selectedData!); selectedData=undefined">
                 <template #value="slotProps">
                     <div v-if="slotProps.value" class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="BASE_IMG_URL + '/rendered_images/' + slotProps.value.img_name" :alt="slotProps.value" @error="$event.target!.src = 'unknown.png'">
-                        <div>{{ translation.translate(slotProps.value.translation_key) }}</div>
+                        <img v-if="showImage" class="w-6" :src="BASE_IMG_URL + '/rendered_images/' + slotProps.value.img_name" :alt="slotProps.value" @error="$event.target!.src = 'unknown.png'">
+                        <div>{{ translate(slotProps.value.translation_key) }}</div>
                     </div>
                 </template>
                 <template #option="slotProps">
                     <div class="flex justify-start items-center space-x-2">
-                        <img class="w-6" :src="BASE_IMG_URL + '/rendered_images/' + slotProps.option.img_name" :alt="slotProps.option" @error="$event.target!.src = 'unknown.png'">
-                        <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
+                        <img v-if="showImage" class="w-6" :src="BASE_IMG_URL + '/rendered_images/' + slotProps.option.img_name" :alt="slotProps.option" @error="$event.target!.src = 'unknown.png'">
+                        <div>{{ translate(slotProps.option.translation_key) }}</div>
                     </div>
                 </template>
             </Dropdown>
@@ -37,10 +37,11 @@ const props = defineProps<{
     collectablePrefix: string
     amountPrefix: string
     placeHolderText: string
-    disabled: boolean
+    disabled: boolean,
+    showImage: boolean
 }>()
 
-const translation = useTranslation()
+const { translate, translateDataRow } = useTranslation()
 
 const selectedData = ref<DataRow>()
 const kills = 0

@@ -12,10 +12,10 @@
       }
     },
     "goals": {
-      "itemGoal": {
-        "items": [
+      "blockbreakGoal": {
+        "broken": [
           {
-            "collectableName": "dragon_egg",
+            "collectableName": "beacon",
             "collectableData": {}
           }
         ],

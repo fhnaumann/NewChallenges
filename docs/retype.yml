@@ -3,7 +3,7 @@ output: .retype
 url: wiki.mc-challenges.com
 branding:
   title: MC Challenges
-  label: Docs
+  label: Wiki
 links:
   - text: Challenge Builder
     link: https://mc-challenges.com/

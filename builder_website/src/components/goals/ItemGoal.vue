@@ -12,6 +12,7 @@
                     @update-value-for-amount="collectable.updateSelectedDataSpecificAmount(blockMat.collectableName, $event)"
                     @delete-entry="collectable.deleteDataRow"
                     :disabled="collectable.selectAllData.value || allBlocks || allItems"
+                    :show-image="true"
                 />
                 <CollectableGoalEntryPlaceholder 
                     :possible-data="collectable.copyExclude(allBlockMaterialData, collectable.selectedData.value)"
@@ -20,6 +21,7 @@
                     :place-holder-text="'Select items'"
                     @transfer-data-from-place-holder-to-new-instance="collectable.updateSelectedData(undefined, $event.code)"
                     :disabled="collectable.selectAllData.value || allBlocks || allItems"
+                    :show-image="true"
                 />
             </div>
             <div class="flex flex-col space-y-4">

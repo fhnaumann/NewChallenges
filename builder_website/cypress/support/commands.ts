@@ -36,4 +36,18 @@
 //   }
 // }
 
+Cypress.Commands.add('emptySelection', () => {
+    cy.visit('http://localhost:5173/');
+    cy.get('#pv_id_5_0_header_action > .flex > .cursor-pointer').click();
+    cy.get('#pv_id_8_0_header_action > .flex > .cursor-pointer').click();
+    cy.get('[aria-label="Configure Global Punishments 1"] > .p-button-label').click();
+    cy.get(':nth-child(1) > .flex-col > .justify-between > :nth-child(1) > .p-checkbox > .p-checkbox-box').click();
+    cy.get('.p-dialog-header-icon > .p-icon > path').click();
+})
+
+Cypress.Commands.add('generateJSON', (filename) => {
+    cy.get('#code > pre').invoke("text").as("settings")
+    cy.get("@settings").then((text) => cy.writeFile(`path/to/${filename}.json`, text))
+})
+
 export {}

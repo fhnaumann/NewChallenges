@@ -1,4 +1,5 @@
 import lang_en from '../assets/en_us.json'
+import type { DataRow } from './loadableDataRow'
 
 
 export type Language = 'en' | 'de'
@@ -27,6 +28,10 @@ export function useTranslation() {
         return 'LANGAUGE UNKNOWN'
     }
 
-    return { translate }
+    function translateDataRow(dataRow: DataRow): string {
+        return translate(dataRow.translation_key)
+    }
+
+    return { translate, translateDataRow }
 
 }

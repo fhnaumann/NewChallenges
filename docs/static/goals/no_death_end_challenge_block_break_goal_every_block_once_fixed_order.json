@@ -1,0 +1,4233 @@
+{
+    "rules": {
+      "enabledRules": {
+        "noDeath": {
+          "result": "Allow"
+        }
+      },
+      "enabledGlobalPunishments": {
+        "endPunishment": {
+          "affects": "All"
+        }
+      }
+    },
+    "goals": {
+      "blockbreakGoal": {
+        "broken": [
+          {
+            "collectableName": "stone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "granite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_granite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "diorite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_diorite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "andesite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_andesite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobbled_deepslate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_deepslate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "calcite",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_tuff",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_tuff",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_tuff_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_tuff_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_tuff_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tuff_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_tuff_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dripstone_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "grass_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dirt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "coarse_dirt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "podzol",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "rooted_dirt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mud",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_nylium",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_nylium",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobblestone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_planks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_mosaic",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_propagule",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bedrock",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sand",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "suspicious_sand",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "suspicious_gravel",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_sand",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gravel",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "coal_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_coal_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "iron_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_iron_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "copper_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_copper_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gold_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_gold_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "redstone_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_redstone_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "emerald_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_emerald_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lapis_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_lapis_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "diamond_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_diamond_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_gold_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_quartz_ore",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "ancient_debris",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "coal_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "raw_iron_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "raw_copper_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "raw_gold_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "amethyst_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "budding_amethyst",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "iron_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "copper_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gold_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "diamond_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "netherite_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_copper_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_chiseled_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_cut_copper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_cut_copper_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_cut_copper_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "muddy_mangrove_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_oak_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_spruce_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_birch_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_jungle_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_acacia_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_cherry_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_dark_oak_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_mangrove_log",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_crimson_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_warped_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_oak_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_spruce_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_birch_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_jungle_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_acacia_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_cherry_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_dark_oak_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_mangrove_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_crimson_hyphae",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_warped_hyphae",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stripped_bamboo_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_wood",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_hyphae",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_hyphae",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "azalea_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "flowering_azalea_leaves",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sponge",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "wet_sponge",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tinted_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lapis_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobweb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "short_grass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "azalea",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "flowering_azalea",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_bush",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "seagrass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sea_pickle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_wool",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dandelion",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "poppy",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_orchid",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "allium",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "azure_bluet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxeye_daisy",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cornflower",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lily_of_the_valley",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "wither_rose",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "torchflower",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pitcher_plant",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spore_blossom",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_mushroom",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_mushroom",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_fungus",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_fungus",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_sprouts",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weeping_vines",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "twisting_vines",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sugar_cane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "kelp",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "moss_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_petals",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "moss_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "hanging_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "big_dripleaf",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "small_dripleaf",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_mosaic_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_stone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sandstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_sandstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "petrified_oak_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobblestone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mud_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "quartz_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_sandstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_red_sandstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purpur_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_prismarine_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_quartz",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_red_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_stone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bookshelf",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_bookshelf",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "decorated_pot",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_cobblestone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "obsidian",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "torch",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_rod",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chorus_plant",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chorus_flower",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purpur_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purpur_pillar",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purpur_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spawner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chest",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crafting_table",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "farmland",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "furnace",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "ladder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobblestone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "snow",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "ice",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "snow_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cactus",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "clay",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jukebox",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pumpkin",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "carved_pumpkin",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jack_o_lantern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "netherrack",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_sand",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_soil",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "basalt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_basalt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_basalt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_torch",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "glowstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_stone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_cobblestone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_mossy_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_cracked_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_chiseled_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "infested_deepslate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cracked_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "packed_mud",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mud_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cracked_deepslate_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_tiles",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cracked_deepslate_tiles",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_deepslate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "reinforced_deepslate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_mushroom_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_mushroom_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mushroom_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "iron_bars",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chain",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "melon",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "vine",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "glow_lichen",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mud_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mycelium",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lily_pad",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cracked_nether_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_nether_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_brick_fence",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sculk",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sculk_vein",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sculk_catalyst",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sculk_shrieker",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "enchanting_table",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_portal_frame",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_stone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_stone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dragon_egg",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sandstone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "ender_chest",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "emerald_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_mosaic_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "command_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "beacon",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobblestone_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_cobblestone_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_sandstone_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_stone_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "granite_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mud_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "andesite_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_nether_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sandstone_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_stone_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "diorite_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blackstone_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobbled_deepslate_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_deepslate_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_brick_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_tile_wall",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "anvil",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chipped_anvil",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "damaged_anvil",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_quartz_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "quartz_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "quartz_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "quartz_pillar",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "quartz_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "barrier",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "hay_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_carpet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "packed_ice",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dirt_path",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sunflower",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lilac",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "rose_bush",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "peony",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tall_grass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "large_fern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_stained_glass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_stained_glass_pane",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_prismarine",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "prismarine_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_prismarine_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sea_lantern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_red_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cut_red_sandstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_sandstone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "repeating_command_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chain_command_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magma_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_wart_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_wart_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_nether_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bone_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "structure_void",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_shulker_box",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_glazed_terracotta",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_concrete",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_concrete_powder",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "turtle_egg",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sniffer_egg",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_tube_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_brain_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_bubble_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_fire_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_horn_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tube_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brain_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bubble_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fire_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "horn_coral_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tube_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brain_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bubble_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fire_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "horn_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_brain_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_bubble_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_fire_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_horn_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_tube_coral",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tube_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brain_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bubble_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fire_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "horn_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_tube_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_brain_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_bubble_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_fire_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_horn_coral_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_ice",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "conduit",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_granite_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_red_sandstone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_stone_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_diorite_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_cobblestone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_stone_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_sandstone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_quartz_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "granite_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "andesite_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_nether_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_andesite_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "diorite_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobbled_deepslate_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_deepslate_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_tile_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_granite_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_red_sandstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_stone_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_diorite_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mossy_cobblestone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_stone_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_sandstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smooth_quartz_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "granite_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "andesite_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_nether_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_andesite_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "diorite_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cobbled_deepslate_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_deepslate_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "deepslate_tile_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "scaffolding",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "redstone_torch",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "redstone_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "repeater",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "comparator",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "piston",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sticky_piston",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "slime_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "honey_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "observer",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "hopper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dispenser",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dropper",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lectern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "target",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lever",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lightning_rod",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "daylight_detector",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sculk_sensor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "calibrated_sculk_sensor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tripwire_hook",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "trapped_chest",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tnt",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "redstone_lamp",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "note_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_button",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stone_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_weighted_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "heavy_weighted_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_pressure_plate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "iron_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_copper_door",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "iron_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_copper_trapdoor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_fence_gate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "powered_rail",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "detector_rail",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "rail",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "activator_rail",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "structure_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jigsaw",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "wheat",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dried_kelp_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_bed",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crafter",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_wart",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brewing_stand",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cauldron",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "flower_pot",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "skeleton_skull",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "wither_skeleton_skull",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "player_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "zombie_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "creeper_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dragon_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "piglin_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "loom",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "composter",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smoker",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blast_furnace",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cartography_table",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fletching_table",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "grindstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "smithing_table",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "stonecutter",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bell",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lantern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_lantern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "campfire",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_campfire",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "shroomlight",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bee_nest",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "beehive",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "honeycomb_block",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lodestone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crying_obsidian",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blackstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blackstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blackstone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gilded_blackstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "chiseled_polished_blackstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_brick_slab",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "polished_blackstone_brick_stairs",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cracked_polished_blackstone_bricks",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "respawn_anchor",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_candle",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "small_amethyst_bud",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "medium_amethyst_bud",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "large_amethyst_bud",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "amethyst_cluster",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pointed_dripstone",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "ochre_froglight",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "verdant_froglight",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pearlescent_froglight",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "frogspawn",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_copper_grate",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "exposed_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weathered_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oxidized_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_exposed_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_weathered_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "waxed_oxidized_copper_bulb",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "trial_spawner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "water",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lava",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tall_seagrass",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "piston_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "moving_piston",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "wall_torch",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fire",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_fire",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "redstone_wire",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "oak_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "spruce_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "birch_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "acacia_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cherry_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "jungle_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dark_oak_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "mangrove_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_wall_hanging_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "redstone_wall_torch",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "soul_wall_torch",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "nether_portal",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "attached_pumpkin_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "attached_melon_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pumpkin_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "melon_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "water_cauldron",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lava_cauldron",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "powder_snow_cauldron",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_portal",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cocoa",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tripwire",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_torchflower",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_oak_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_spruce_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_birch_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_jungle_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_acacia_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_cherry_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_dark_oak_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_mangrove_propagule",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_fern",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_dandelion",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_poppy",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_blue_orchid",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_allium",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_azure_bluet",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_red_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_orange_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_white_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_pink_tulip",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_oxeye_daisy",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_cornflower",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_lily_of_the_valley",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_wither_rose",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_red_mushroom",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_brown_mushroom",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_dead_bush",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_cactus",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "carrots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potatoes",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "skeleton_wall_skull",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "wither_skeleton_wall_skull",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "zombie_wall_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "player_wall_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "creeper_wall_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dragon_wall_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "piglin_wall_head",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_wall_banner",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "torchflower_crop",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pitcher_crop",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "beetroots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "end_gateway",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "frosted_ice",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "kelp_plant",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_tube_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_brain_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_bubble_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_fire_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "dead_horn_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "tube_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brain_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bubble_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "fire_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "horn_coral_wall_fan",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bamboo_sapling",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_bamboo",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "bubble_column",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "sweet_berry_bush",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "weeping_vines_plant",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "twisting_vines_plant",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "crimson_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "warped_wall_sign",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_crimson_fungus",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_warped_fungus",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_crimson_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_warped_roots",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "white_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "orange_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "magenta_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_blue_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "yellow_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "lime_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "pink_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "gray_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "light_gray_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cyan_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "purple_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "blue_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "brown_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "green_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "red_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "black_candle_cake",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "powder_snow",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cave_vines",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "cave_vines_plant",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "big_dripleaf_stem",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_azalea_bush",
+            "collectableData": {}
+          },
+          {
+            "collectableName": "potted_flowering_azalea_bush",
+            "collectableData": {}
+          }
+        ],
+        "fixedOrder": true
+      }
+    }
+  }

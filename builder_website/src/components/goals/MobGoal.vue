@@ -12,6 +12,7 @@
                     @update-value-for-amount="collectable.updateSelectedDataSpecificAmount(entityType.collectableName, $event)"
                     @delete-entry="collectable.deleteDataRow"
                     :disabled="collectable.selectAllData.value"
+                    :show-image="false"
                 />
                 <CollectableGoalEntryPlaceholder 
                     :possible-data="collectable.copyExclude(allEntityTypeData, collectable.selectedData.value)"
@@ -20,6 +21,7 @@
                     :place-holder-text="'Select mobs'"
                     @transfer-data-from-place-holder-to-new-instance="collectable.updateSelectedData(undefined, $event.code)"
                     :disabled="collectable.selectAllData.value"
+                    :show-image="false"
                 />
             </div>
             <div class="flex flex-col space-y-4">
@@ -66,7 +68,7 @@ const access: AccessOperation = {
 const collectable = useCollectableGoal(
     access,
     allEntityTypeData,
-    access.getSelectedData(model) !== undefined ? access.getSelectedData(model) : [],
+    Object.keys(access.getSelectedData(model)).length !== 0 ? access.getSelectedData(model) : [],
     false
 )
 

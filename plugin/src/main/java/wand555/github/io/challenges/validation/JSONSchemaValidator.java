@@ -12,7 +12,7 @@ import java.io.InputStream;
 
 public class JSONSchemaValidator extends Validator {
 
-    private final JSONObject jsonSchema;
+    private JSONObject jsonSchema;
 
     public JSONSchemaValidator(InputStream jsonSchemaStream) {
         this.jsonSchema = new JSONObject(new JSONTokener(jsonSchemaStream));

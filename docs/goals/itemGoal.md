@@ -1,6 +1,6 @@
 # Item Goal
 
-When Item Goal is selected, a configurable collection of items have to obtained in order to complete the goal. The configuration includes different items as well as amounts. *Obtaining* in this context means being placed in a players inventory in a slot at least once.
+When Item Goal is selected, a configurable collection of items have to obtained in order to complete the goal. The configuration includes different items as well as amounts. *Obtaining* in this context means being placed in a players inventory in a slot at least once. 
 
 !!!warning Skipping items
 Minecraft does not send information about inventory clicks when the player is in creative. If you want to skip an item, perform `/skip` or drop the item from the creative menu and pick it up. **Placing the item from the creative menu in the inventory or using `/give` does not work!**
@@ -12,19 +12,20 @@ The recipe book is disabled on the server as soon as this goal is selected. This
 
 ## Configuration
 
-You can select items and their necessary amounts individually with the dropdown option. Alternatively, you can check the other checkboxes which cover different subsets of items.
+[!badge Individual Dropdown Selection]
+:   Select items and their necessary amounts individually with the dropdown option.
 
 [!badge Collect everything]
-: Every obtainable item has to be collected once.
+:   Every obtainable item has to be collected once.
 
 [!badge Collect all items]
-: Every *item* that is considered an item but not a block has to be collected (for example: ![carrot](../static/mc-textures/minecraft_carrot.png){width=25 height=25}).
+:   Every *item* that is considered an item but not a block has to be collected (for example: ![carrot](../static/mc-textures/minecraft_carrot.png){width=25 height=25}).
 
 [!badge Collect all blocks]
-: Every item that is considered a block (for example: ![stone](../static/mc-textures/minecraft_stone.png){width=25 height=25}).
+:   Every item that is considered a block (for example: ![stone](../static/mc-textures/minecraft_stone.png){width=25 height=25}).
 
 [!badge Fixed random order]
-: If selected, every item has to be collected in a specific order that is determined when the settings file is generated. Otherwise the items can be collected in any order.
+:   If selected, every item has to be collected in a specific order that is determined when the settings file is generated. Otherwise the items can be collected in any order.
 
 ## Example Configuration
 

@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noDeath": {}
+    },
+    "enabledGlobalPunishments": {
+      "endPunishment": {
+        "affects": "All"
+      }
+    }
+  },
+  "goals": {
+    "mobGoal": {
+      "mobs": [
+        {
+          "collectableName": "ender_dragon",
+          "collectableData": {}
+        }
+      ],
+      "fixedOrder": true
+    }
+  }
+}

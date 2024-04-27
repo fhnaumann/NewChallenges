@@ -4,13 +4,13 @@
         <div class="flex items-center space-x-4 h-12">
             <p class="">Exemptions:</p>
             <MultiSelect :model-value="selectedData" @update:model-value="updateIfValid" :options="allItemMaterialData"
-                option-label="label" placeholder="Select exemptions" display="chip"
+                :option-label=translateDataRow placeholder="Select exemptions" display="chip"
                 :virtual-scroller-options="{ itemSize: 44, delay: 100 }" filter class="w-full md:w-80">
                 <template #option="slotProps">
                     <div class="flex justify-center items-center space-x-2">
                         <img class="w-6" :alt="slotProps.option" :src="BASE_IMG_URL + '/rendered_images/' + slotProps.option.img_name"
                             @error="$event.target.src = 'unknown.png'" />
-                        <div>{{ translation.translate(slotProps.option.translation_key) }}</div>
+                        <div>{{ translate(slotProps.option.translation_key) }}</div>
                     </div>
                 </template>
                 <template #footer>
@@ -26,7 +26,7 @@
             <div class="flex items-center space-x-2" v-for="item in selectedData" :key="item.code">
                 <img class="w-6" :alt="item.code" :src="BASE_IMG_URL + '/rendered_images/' + item.img_name"
                     @error="$event.target.src = 'unknown.png'" />
-                <p>{{ translation.translate(item.translation_key) }}</p>
+                <p>{{ translate(item.translation_key) }}</p>
             </div>
         </Sidebar>
     </DefaultPunishableRule>
@@ -59,7 +59,7 @@ const defaultConfig = useDefaultConfigStore()
 const rulesViewStore = useRulesViewStore()
 const validator = useValidator()
 
-const translation = useTranslation()
+const {translate, translateDataRow} = useTranslation()
 
 store.rules!.enabledRules!.noItem = {exemptions: []}
 

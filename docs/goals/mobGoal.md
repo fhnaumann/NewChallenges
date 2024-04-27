@@ -4,7 +4,14 @@ When Mob Goal is selected, then a configurable collection of mobs have to be kil
 
 ## Configuration
 
-You can select mobs and their necessary amounts individually with the dropdown option. Alternatively, you can check the [!badge Collect all mobs] checkbox which adds every (living) mob exactly once to the goal. If the [!badge Fixed random order] checkbox is selected, then every mob has to be killed in a specific order that is determined when the settings file is generated on the website. Otherwise, the mobs can be killed in any order.
+[!badge Individual Dropdown Selection]
+:   Select mobs and their necessary amounts individually with the dropdown option.
+
+[!badge Collect all mobs]
+:   Every (living) mob has to be killed once.
+
+[!badge Fixed random order]
+:   If selected, every mob has to be killed in a specific order that is determined when the settings file is generated. Otherwise the mobs can be killed in any order.
 
 ## Example Configuration
 
