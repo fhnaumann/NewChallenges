@@ -11,7 +11,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          project: ./some/nested/folder
+          project: builder_website/
           build: npm run build
           start: npm start
       - name: Upload generated JSON files
