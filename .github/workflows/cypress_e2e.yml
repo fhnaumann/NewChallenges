@@ -102,11 +102,15 @@ jobs:
         with:
           name: cypress-artifacts
           path: docs_generation
-      - name: Read files to copy
+      - name: Copy files
         run: |
-          ls && jq -r '.[] | select(.valid == true) | .filename' docs_generation/results.json | while IFS= read -r file; do
-            cp "$file" docs/static/examples/
-          done
+          cp -r docs_generation/* docs/static/examples/
+      - name: Delete downloaded artifact
+        run: |
+          rm -rf docs_generation
       - name: Commit and push
         uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Deploy examples JSON files from Cypress E2E to docs
+          file_pattern: 'docs/static/examples'
   
