@@ -19,6 +19,9 @@ public class BossBarShower implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        if(manager.isSetup()) {
+            return;
+        }
         manager.getGoals().stream()
                 .filter(baseGoal -> baseGoal instanceof BossBarDisplay).map(baseGoal -> (BossBarDisplay) baseGoal)
                 .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));

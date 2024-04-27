@@ -87,7 +87,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             }
 
             // update collected inventory
-            collectedInventory.addOrUpdate(data.mainDataInvolved(), updatedCollect);
+            //collectedInventory.addOrUpdate(data.mainDataInvolved(), updatedCollect);
 
             if(determineComplete()) {
                 onComplete();
