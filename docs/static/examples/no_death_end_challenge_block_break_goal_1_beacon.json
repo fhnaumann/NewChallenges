@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noDeath": {}
+    },
+    "enabledGlobalPunishments": {
+      "endPunishment": {
+        "affects": "All"
+      }
+    }
+  },
+  "goals": {
+    "blockbreakGoal": {
+      "broken": [
+        {
+          "collectableName": "beacon",
+          "collectableData": {}
+        }
+      ],
+      "fixedOrder": true
+    }
+  }
+}
