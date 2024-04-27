@@ -24,3 +24,4 @@ plugin/target/
 plugin/Challenges.iml
 plugin/src/main/resources/rendered_items
 plugin/unicode_mapping/textures/
+plugin/generated_jar/
