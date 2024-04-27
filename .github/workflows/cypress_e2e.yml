@@ -9,9 +9,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Cypress run
-        working-directory: ./builder_website
         uses: cypress-io/github-action@v6
         with:
+          project: ./builder_website
           build: npm run build
           start: npm start
       - name: Upload generated JSON files
