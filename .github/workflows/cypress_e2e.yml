@@ -1,6 +1,9 @@
 name: Cypress E2E
 
-on: [push]
+on:
+  push:
+    paths:
+      - '!docs/**'
 
 jobs:
   cypress-run:
@@ -70,4 +73,27 @@ jobs:
           name: Plugin Validation Results
           path: docs_generation/results.json
           if-no-files-found: error
+      - name: Check validation results
+        run: |
+        if grep -q '"valid": false' docs_generation/results.json; then
+          echo "Validation failed"
+          exit 1
+        else
+          echo "Validation passed"
+          touch validation_passed.txt
+        fi
+  deploy-docs:
+    needs: plugin-validation
+    runs-on: ubuntu-latest
+    if: always() && success()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Read files to copy
+        run: |
+          jq -r '.[] | select(.valid == true) | .filename' docs_generation/results.json | while IFS= read -r file; do
+            cp "$file" docs/static/examples/
+          done
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
   

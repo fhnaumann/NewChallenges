@@ -35,7 +35,7 @@ Below are some examples you can directly copy into your server without using the
 Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
 !!!
 
-[!file Example 1](../static/goals/no_death_end_challenge_block_break_goal_1_beacon.json)
+[!file Example 1](../static/examples/no_death_end_challenge_block_break_goal_1_beacon.json)
 
 :::example_configuration
 **Example 2**
@@ -51,4 +51,4 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
 !!!
 
-[!file Example 2](../static/goals/no_death_end_challenge_item_goal_every_item_once_fixed_order.json)
+[!file Example 2](../static/examples/no_death_end_challenge_block_break_goal_every_block_once_fixed_order.json)

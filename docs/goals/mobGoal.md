@@ -31,7 +31,7 @@ Below are some examples you can directly copy into your server without using the
 Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
 !!!
 
-[!file Example 1](../static/goals/no_death_end_challenge_mob_goal_1_ender_dragon.json)
+[!file Example 1](../static/examples/no_death_end_challenge_mob_goal_1_ender_dragon.json)
 
 
 :::example_configuration
@@ -48,4 +48,4 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
 !!!
 
-[!file Example 2](../static/goals/no_death_end_challenge_mob_goal_every_mob_once_fixed_order.json)
+[!file Example 2](../static/examples/no_death_end_challenge_mob_goal_every_mob_once_fixed_order.json)

@@ -50,7 +50,7 @@ public class OnlyValidation {
             String json = objectMapper.writeValueAsString(objectMapper.readValue(jsonSourcePath, Object.class));
             ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronStream, dataSourceContext);
             JsonObject entry = new JsonObject();
-            entry.addProperty("jsonSourcePath", jsonSourcePath.getAbsolutePath());
+            entry.addProperty("filename", child.getName());
             entry.addProperty("valid", result.isValid());
             entry.addProperty("message", result.asFormattedString());
             validationData.add(entry);
