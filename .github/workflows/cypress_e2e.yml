@@ -80,7 +80,6 @@ jobs:
             exit 1
           else
             echo "Validation passed"
-            touch validation_passed.txt
           fi
   deploy-docs:
     needs: plugin-validation
@@ -89,9 +88,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Download JSON Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: docs_generation
       - name: Read files to copy
         run: |
-          jq -r '.[] | select(.valid == true) | .filename' docs_generation/results.json | while IFS= read -r file; do
+          ls && jq -r '.[] | select(.valid == true) | .filename' docs_generation/results.json | while IFS= read -r file; do
             cp "$file" docs/static/examples/
           done
       - name: Commit and push
