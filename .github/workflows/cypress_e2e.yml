@@ -62,11 +62,12 @@ jobs:
       - name: Display
         run: cd docs_generation && ls
       - name: Perform validation
-        run: java -jar generated_jar/PluginValidation.jar path/to
+        working-directory: docs_generation/
+        run: java -jar PluginValidation.jar .
       - name: Upload validation results
         uses: actions/upload-artifact@v4
         with:
           name: Plugin Validation Results
-          path: generated_jar/results.json
+          path: docs_generation/results.json
           if-no-files-found: error
   

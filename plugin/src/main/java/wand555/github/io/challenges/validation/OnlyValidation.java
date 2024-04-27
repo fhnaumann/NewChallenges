@@ -31,7 +31,7 @@ public class OnlyValidation {
 
 
         File folder = new File(args[0]);
-        File[] children = folder.listFiles();
+        File[] children = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".json"));
         if(children == null) {
             throw new RuntimeException("Folder has no children!");
         }
