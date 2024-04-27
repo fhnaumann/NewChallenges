@@ -2,8 +2,8 @@ name: Cypress E2E
 
 on:
   push:
-    paths:
-      - '!docs/**'
+    paths-ignore:
+      - 'docs/**'
 
 jobs:
   cypress-run:
