@@ -39,7 +39,7 @@ jobs:
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
-          name: Plugin JAR Artifacts
+          name: plugin-jar-artifacts
           path: plugin/generated_jar/PluginValidation.jar
           if-no-files-found: error
 
@@ -56,8 +56,11 @@ jobs:
           distribution: 'adopt'
       - name: Download JSON Artifacts and Plugin Validation JAR
         uses: actions/download-artifact@v4
+        with:
+          path: docs_generation
+          merge-multiple: true
       - name: Display
-        run: ls -R
+        run: cd docs_generation && ls
       - name: Perform validation
         run: java -jar generated_jar/PluginValidation.jar path/to
       - name: Upload validation results
