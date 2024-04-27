@@ -37,7 +37,7 @@
 // }
 
 Cypress.Commands.add('emptySelection', () => {
-    cy.visit('http://localhost:5173/');
+    cy.visit('http://localhost:4173/');
     cy.get('#pv_id_5_0_header_action > .flex > .cursor-pointer').click();
     cy.get('#pv_id_8_0_header_action > .flex > .cursor-pointer').click();
     cy.get('[aria-label="Configure Global Punishments 1"] > .p-button-label').click();
