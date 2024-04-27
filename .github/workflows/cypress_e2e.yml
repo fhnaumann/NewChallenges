@@ -19,6 +19,7 @@ jobs:
         with:
           name: cypress-artifacts
           path: path/to/
+          if-no-files-found: error
 
   plugin-jar-gen:
     runs-on: ubuntu-latest
@@ -37,7 +38,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Plugin JAR Artifacts
-          path: generated_jar/PluginValidation.jar
+          path: plugin/generated_jar/PluginValidation.jar
+          if-no-files-found: error
 
   plugin-validation:
     needs: [cypress-run, plugin-jar-gen]
@@ -61,4 +63,5 @@ jobs:
         with:
           name: Plugin Validation Results
           path: generated_jar/results.json
+          if-no-files-found: error
   
