@@ -46,7 +46,6 @@ public class OnlyValidation {
             DataSourceContext dataSourceContext = new DataSourceContext(materialJSONS, entityTypeJSONS);
 
             File jsonSourcePath = new File(child.getPath());
-            System.out.println(jsonSourcePath);
             String json = objectMapper.writeValueAsString(objectMapper.readValue(jsonSourcePath, Object.class));
             ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronStream, dataSourceContext);
             JsonObject entry = new JsonObject();
