@@ -22,11 +22,6 @@ import java.util.Objects;
 public class OnlyValidation {
 
     public static void main(String[] args) throws IOException {
-        File file = new File(args[0]);
-        for(File sub : Objects.requireNonNull(file.listFiles())) {
-            System.out.println(sub.getAbsolutePath());
-        }
-
         ObjectMapper objectMapper = new ObjectMapper();
 
 
