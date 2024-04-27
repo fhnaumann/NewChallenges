@@ -74,7 +74,7 @@ jobs:
           path: docs_generation/results.json
           if-no-files-found: error
       - name: Check validation results
-        run: |
+        run: >-
         if grep -q '"valid": false' docs_generation/results.json; then
           echo "Validation failed"
           exit 1
@@ -90,7 +90,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Read files to copy
-        run: |
+        run: >-
           jq -r '.[] | select(.valid == true) | .filename' docs_generation/results.json | while IFS= read -r file; do
             cp "$file" docs/static/examples/
           done
