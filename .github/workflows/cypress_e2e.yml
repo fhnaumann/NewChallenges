@@ -11,6 +11,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          working-directory: builder_website/
           project: builder_website/
           build: cd builder_website && npm run build
           start: cd builder_website && npm start
