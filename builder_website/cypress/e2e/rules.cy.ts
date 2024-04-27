@@ -1,5 +1,3 @@
-import clipboard from 'clipboardy'
-
 describe('rules tests', () => {
   beforeEach(() => {
     cy.emptySelection()
