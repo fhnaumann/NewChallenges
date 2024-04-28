@@ -27,6 +27,7 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMess
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
+import wand555.github.io.challenges.generated.ContributorsConfig;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
@@ -120,6 +121,14 @@ public class BlockBreakGoalTest {
         blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(Material.STONE, player));
         assertEquals(2, blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
         assertEquals(0, blockBreakGoal.getGoalCollector().getToCollect().get(Material.DIRT).getCurrentAmount());
+    }
+
+    @Test
+    public void testContributionTracked() {
+        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(Material.STONE, player));
+        ContributorsConfig contributorsConfig = blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCompletionConfig().getContributors();
+        assertTrue(contributorsConfig.getAdditionalProperties().containsKey(player.getName()));
+        assertEquals(1, contributorsConfig.getAdditionalProperties().get(player.getName()));
     }
 
     @Test

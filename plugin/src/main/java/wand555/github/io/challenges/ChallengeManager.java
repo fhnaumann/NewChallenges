@@ -2,6 +2,7 @@ package wand555.github.io.challenges;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
@@ -71,6 +72,13 @@ public class ChallengeManager implements StatusInfo {
     }
 
     public void resume() {
+        if(gameState == GameState.ENDED) {
+            // BossBars were removed when gameState was set to ENDED
+            goals.stream()
+                    .filter(BossBarDisplay.class::isInstance)
+                    .map(BossBarDisplay.class::cast)
+                    .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
+        }
         gameState = GameState.RUNNING;
     }
 
@@ -177,6 +185,10 @@ public class ChallengeManager implements StatusInfo {
             context.plugin().getServer().broadcast(toSend);
         }
 
+        goals.stream()
+                .filter(BossBarDisplay.class::isInstance)
+                .map(BossBarDisplay.class::cast)
+                .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
     }
 
     public boolean allGoalsCompleted() {
@@ -192,7 +204,9 @@ public class ChallengeManager implements StatusInfo {
     }
 
     public long getTime() {
-        return timerRunnable.getTimer();
+        // Shouldn't have made Context a singleton...
+        // Some challenge data (progress) require the current time
+        return timerRunnable != null ? timerRunnable.getTimer() : 0L;
     }
 
     public void setTimerRunnable(TimerRunnable timerRunnable) {

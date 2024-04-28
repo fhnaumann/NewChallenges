@@ -17,6 +17,8 @@ commands:
     description: Pause a challenge.
   resume:
     description: Resume a challenge.
+  progress:
+    description: Show progress for active goals.
 libraries:
   - com.github.erosb:everit-json-schema:1.14.4
   - com.fasterxml.jackson.core:jackson-databind:2.16.1

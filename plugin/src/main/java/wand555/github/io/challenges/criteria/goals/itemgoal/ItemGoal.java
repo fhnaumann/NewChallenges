@@ -55,6 +55,6 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
 
     @Override
     public String getNameInCommand() {
-        return null;
+        return "item";
     }
 }

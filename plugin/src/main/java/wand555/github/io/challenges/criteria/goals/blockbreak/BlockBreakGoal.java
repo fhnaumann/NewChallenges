@@ -52,6 +52,6 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     @Override
     public String getNameInCommand() {
-        return null;
+        return "blockbreak";
     }
 }

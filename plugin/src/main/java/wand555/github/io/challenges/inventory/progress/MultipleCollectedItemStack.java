@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.inventory;
+package wand555.github.io.challenges.inventory.progress;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Keyed;
@@ -6,53 +6,19 @@ import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.Collect;
-import wand555.github.io.challenges.generated.CompletionConfig;
-import wand555.github.io.challenges.generated.ContributorsConfig;
-import wand555.github.io.challenges.utils.CollectionUtil;
 import wand555.github.io.challenges.utils.TimerUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCollectedItemStack {
+public abstract class MultipleCollectedItemStack<K extends Keyed> extends BaseCollectedItemStack<K> {
 
-    protected final T about;
-    protected Collect collect;
-
-    public MultipleCollectedItemStack(Context context, T about, long secondsSinceStart) {
-        super(context, secondsSinceStart);
-        this.about = about;
+    public MultipleCollectedItemStack(Context context, Collect collect, K about) {
+        super(context, collect, about);
     }
 
-    public MultipleCollectedItemStack(Context context, CompletionConfig completionConfig, T about) {
-        super(context, completionConfig);
-        this.about = about;
-    }
-
-    public ItemStack update(Collect newCollect) {
-        if(newCollect.isComplete() && whenCollectedSeconds == -1) {
-            throw new RuntimeException("collect is completed, but no completion time has been set!");
-        }
-        this.collect = newCollect;
-        return render();
-    }
-
-    @Override
-    public final ItemStack render() {
-        if(collect == null) {
-            return getBaseItemStack();
-        }
-        if(collect.isComplete()) {
-            return renderComplete();
-        }
-        else {
-            return renderOngoing();
-        }
-    }
-
-    private ItemStack renderComplete() {
+    protected ItemStack renderComplete() {
         ItemStack itemStack = getBaseItemStack();
         List<Component> lore = new ArrayList<>();
         lore.add(getCollectedInTime());
@@ -61,7 +27,7 @@ public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCo
         return itemStack;
     }
 
-    private ItemStack renderOngoing() {
+    protected ItemStack renderOngoing() {
         ItemStack itemStack = getBaseItemStack();
         List<Component> lore = new ArrayList<>();
         lore.add(getIncompleteFirstMessage());
@@ -76,8 +42,8 @@ public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCo
                 getSpecificBundle(),
                 "%s.progress.multiple.incomplete.message".formatted(getNameInResourceBundle()),
                 Map.of(
-                        "amount", Component.text(collect.getCurrentAmount()),
-                        "total_amount", Component.text(collect.getAmountNeeded())
+                        "amount", Component.text(getCollect().getCurrentAmount()),
+                        "total_amount", Component.text(getCollect().getAmountNeeded())
                 ),
                 false
         );
@@ -93,7 +59,7 @@ public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCo
                                 context.plugin(),
                                 context.resourceBundleContext().miscResourceBundle(),
                                 "timer.format",
-                                TimerUtil.format(whenCollectedSeconds)
+                                TimerUtil.format(getWhenCollectedSeconds())
                         )
                 ),
                 false
@@ -101,7 +67,7 @@ public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCo
     }
 
     private List<Component> getContributorsComponent() {
-        return contributors.entrySet().stream()
+        return getContributors().entrySet().stream()
                 .map(this::contributorComponent)
                 .toList();
     }
@@ -117,13 +83,5 @@ public abstract class MultipleCollectedItemStack<T extends Keyed> extends BaseCo
                 ),
                 false
         );
-    }
-
-    public Collect getCollect() {
-        return collect;
-    }
-
-    public T getAbout() {
-        return about;
     }
 }

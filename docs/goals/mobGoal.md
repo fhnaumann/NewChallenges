@@ -22,7 +22,7 @@ Below are some examples you can directly copy into your server without using the
 
 **Rules:** [NoDeath](../rules/noDeath.md)
 
-**Punishments:** The challenge is over for everyone (EndChallenge)
+**Punishments:** The challenge is over for everyone (EndPunishment)
 
 **Goals:** Kill 1 Enderdragon (MobGoal)
 :::
@@ -39,7 +39,7 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 
 **Rules:** [NoDeath](../rules/noDeath.md)
 
-**Punishments:** The challenge is over for everyone (EndChallenge)
+**Punishments:** The challenge is over for everyone (EndPunishment)
 
 **Goals:** Kill every mob once in a fixed order (MobGoal)
 :::

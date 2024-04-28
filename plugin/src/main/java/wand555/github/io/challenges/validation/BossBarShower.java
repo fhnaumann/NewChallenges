@@ -19,7 +19,7 @@ public class BossBarShower implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if(manager.isSetup()) {
+        if(manager.isSetup() || manager.getGameState() == ChallengeManager.GameState.ENDED) {
             return;
         }
         manager.getGoals().stream()

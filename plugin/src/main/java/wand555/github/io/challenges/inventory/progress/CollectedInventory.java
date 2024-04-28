@@ -1,5 +1,6 @@
-package wand555.github.io.challenges.inventory;
+package wand555.github.io.challenges.inventory.progress;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
@@ -7,22 +8,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.ResourceBundleNarrowable;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
-import wand555.github.io.challenges.generated.CompletionConfig;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.types.Data;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> implements Listener, Storable<List<CompletionConfig>> {
+public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> implements Listener, ResourceBundleNarrowable {
 
     protected final Context context;
 
@@ -37,52 +38,36 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
 
     private final Map<Player, InvPage> openInventories;
 
-    private final List<BaseCollectedItemStack> collectedItemStacks;
+    private final List<BaseCollectedItemStack<K>> collectedItemStacks;
 
 
 
     public CollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType) {
         this.context = context;
         Map<K, Collect> map = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
-        this.collectedItemStacks = new ArrayList<>();
+        collectedItemStacks = map.entrySet().stream().map(entry -> createFromConfig(entry.getKey(), entry.getValue())).toList();
         this.openInventories = new HashMap<>();
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
-    public void addOrUpdate(K data, Collect collect) {
-        long secondsSinceStart = context.challengeManager().getTime();
+    public void update(K about, Collect collect) {
+        collectedItemStacks.stream().filter(kBaseCollectedItemStack -> kBaseCollectedItemStack.getAbout().equals(about)).findAny().ifPresent(kBaseCollectedItemStack -> {
+            kBaseCollectedItemStack.update(collect);
+        });
+    }
+
+    protected abstract SingleCollectedItemStack<K> createSingle(K about, Collect collect);
+
+    protected abstract MultipleCollectedItemStack<K> createMultiple(K about, Collect collect);
+
+    protected BaseCollectedItemStack<K> createFromConfig(K about, Collect collect) {
         if(collect.getAmountNeeded() == 1) {
-            // if it is a single collected itemstack, then it cannot have existed previously
-            collectedItemStacks.add(createSingle(data, secondsSinceStart));
+            return createSingle(about, collect);
         }
         else {
-            MultipleCollectedItemStack<?> match = findMatch(data);
-            if(match == null) {
-                collectedItemStacks.add(createMultiple(data, secondsSinceStart));
-            }
-            else {
-                int idx = collectedItemStacks.indexOf(match);
-                MultipleCollectedItemStack<?> existing = (MultipleCollectedItemStack<?>) collectedItemStacks.get(idx);
-                if(collect.isComplete()) {
-                    existing.setWhenCollectedSeconds((int) secondsSinceStart);
-                }
-                existing.update(collect);
-            }
+            return createMultiple(about, collect);
         }
     }
-
-    private MultipleCollectedItemStack<?> findMatch(K data) {
-        return collectedItemStacks.stream()
-                .filter(collectedItemStack -> collectedItemStack instanceof MultipleCollectedItemStack<?>)
-                .map(MultipleCollectedItemStack.class::cast)
-                .filter(multipleCollectedItemStack -> multipleCollectedItemStack.getAbout() == data)
-                .findFirst()
-                .orElse(null);
-    }
-
-    protected abstract BaseCollectedItemStack createSingle(K data, long secondsSinceStart);
-
-    protected abstract MultipleCollectedItemStack<?> createMultiple(K data, long secondsSinceStart);
 
     private void fillInventoryPage(Inventory inventory, int page) {
         //paginatedInventories.put(page, inventory);
@@ -110,7 +95,13 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
     }
 
     public void show(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, MAX_INV_SIZE); // TODO: title
+        Component title = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().goalResourceBundle(),
+                "%s.name".formatted(getNameInResourceBundle()),
+                false
+                );
+        Inventory inventory = Bukkit.createInventory(null, MAX_INV_SIZE, title);
         fillInventoryPage(inventory, 0);
         openInventories.put(player, new InvPage(inventory, 0));
         player.openInventory(inventory);
@@ -129,15 +120,17 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
         if(!(event.getWhoClicked() instanceof Player player)) {
             return;
         }
-        if(openInventories.values().stream().noneMatch(invPage -> invPage.inventory().equals(event.getClickedInventory()))) {
+        if(!openInventories.containsKey(player)) {
             return;
         }
         int currentPage = openInventories.get(player).page;
         Inventory currentPageInv = openInventories.get(player).inventory;
+        if(player.getOpenInventory().getTopInventory().equals(currentPageInv)) {
+            event.setCancelled(true);
+        }
         if(!event.getClickedInventory().equals(currentPageInv)) {
             return;
         }
-        event.setCancelled(true);
         int clickedSlot = event.getSlot();
         if(clickedSlot == PREV_PAGE_IDX) {
             if(currentPage == 0) {
@@ -152,8 +145,15 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
         }
     }
 
-    @Override
-    public List<CompletionConfig> toGeneratedJSONClass() {
-        return collectedItemStacks.stream().map(BaseCollectedItemStack::toGeneratedJSONClass).toList();
+    @EventHandler
+    public void onInvClose(InventoryCloseEvent event) {
+        if(!(event.getPlayer() instanceof Player player)) {
+            return;
+        }
+        openInventories.remove(player);
+    }
+
+    public List<BaseCollectedItemStack<K>> getCollectedItemStacks() {
+        return collectedItemStacks;
     }
 }

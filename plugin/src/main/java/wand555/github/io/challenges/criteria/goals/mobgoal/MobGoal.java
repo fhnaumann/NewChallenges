@@ -82,6 +82,6 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     @Override
     public String getNameInCommand() {
-        return null;
+        return "mob";
     }
 }

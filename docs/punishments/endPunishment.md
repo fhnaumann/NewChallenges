@@ -15,7 +15,7 @@ Below are some examples you can directly copy into your server without using the
 
 **Rules:** [NoDeath](../rules/noDeath.md)
 
-**Punishments:** The challenge is over for everyone (EndChallenge)
+**Punishments:** The challenge is over for everyone (EndPunishment)
 
 **Goals:** Kill 1 Enderdragon ([MobGoal](../goals/mobGoal.md))
 :::

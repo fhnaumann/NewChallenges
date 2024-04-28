@@ -6,7 +6,9 @@ import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.exceptions.UnskippableException;
-import wand555.github.io.challenges.inventory.CollectedInventory;
+import wand555.github.io.challenges.generated.CompletionConfig;
+import wand555.github.io.challenges.generated.ContributorsConfig;
+import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.types.Data;
 
 import java.util.Map;
@@ -86,8 +88,10 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
                 messageHelper.sendSingleStepAction(data, updatedCollect);
             }
 
-            // update collected inventory
-            //collectedInventory.addOrUpdate(data.mainDataInvolved(), updatedCollect);
+            // update collected inventory:
+            // The map of Collect instances are different objects that hold the same information. We have just updated our collect,
+            // hence we need to update the same collect there.
+            collectedInventory.update(data.mainDataInvolved(), updatedCollect);
 
             if(determineComplete()) {
                 onComplete();
@@ -101,8 +105,24 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             // default behaviour is to add exactly 1 to the collect (data.amount() defaults to 1 unless it is being used to skip something)
             // subclasses may override this behaviour
             collect.setCurrentAmount(Math.min(collect.getCurrentAmount() + data.amount(), collect.getAmountNeeded()));
+
+            updateContributorsIn(collect.getCompletionConfig(), data.player(), data.amount());
+            if(collect.isComplete()) {
+                // set the completion time if the collect is now complete
+                collect.getCompletionConfig().setWhenCollectedSeconds((int)context.challengeManager().getTime());
+            }
             return collect;
         });
+    }
+
+    private void updateContributorsIn(CompletionConfig completionConfig, Player by, int amount) {
+        if(completionConfig == null) {
+            completionConfig = new CompletionConfig();
+        }
+        if(completionConfig.getContributors() == null) {
+            completionConfig.setContributors(new ContributorsConfig());
+        }
+        completionConfig.getContributors().getAdditionalProperties().merge(by.getName(), amount, Integer::sum);
     }
 
     @Override

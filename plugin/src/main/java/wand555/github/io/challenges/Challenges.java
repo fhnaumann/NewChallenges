@@ -53,6 +53,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("skip").setExecutor(this);
         getCommand("pause").setExecutor(this);
         getCommand("resume").setExecutor(this);
+        getCommand("progress").setExecutor(this);
 
         getServer().getPluginManager().registerEvents(this, this);
 
@@ -294,6 +295,47 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 return true;
             }
             tempContext.challengeManager().resume();
+        }
+        else if(command.getName().equalsIgnoreCase("progress")) {
+            List<Progressable> progressables = tempContext.challengeManager().getGoals().stream().filter(Progressable.class::isInstance).map(Progressable.class::cast).toList();
+            if(progressables.isEmpty()) {
+                // nothing to show progress for
+                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                        tempContext.plugin(),
+                        tempContext.resourceBundleContext().commandsResourceBundle(),
+                        "progress.empty.message"
+                ));
+                return true;
+            }
+            if(args.length == 0) {
+                if(progressables.size() > 1) {
+                    // more than one progressable goal, but not specified which to show
+                    sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                            tempContext.plugin(),
+                            tempContext.resourceBundleContext().commandsResourceBundle(),
+                            "progress.toomany.message"
+                    ));
+                    return true;
+                }
+                else {
+                    tempContext.challengeManager().onProgress(player, progressables.get(0));
+                }
+            }
+            else if(args.length == 1) {
+                Optional<Progressable> optionalProgressable = progressables.stream().filter(progressable -> progressable.getNameInCommand().equalsIgnoreCase(args[0])).findAny();
+                if(optionalProgressable.isPresent()) {
+                    tempContext.challengeManager().onProgress(player, optionalProgressable.get());
+                }
+                else {
+                    // did not match any progressable goal that is active
+                    sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
+                            tempContext.plugin(),
+                            tempContext.resourceBundleContext().commandsResourceBundle(),
+                            "progress.unknown_name.message",
+                            Map.of("name", Component.text(args[0]))
+                    ));
+                }
+            }
         }
         return true;
     }

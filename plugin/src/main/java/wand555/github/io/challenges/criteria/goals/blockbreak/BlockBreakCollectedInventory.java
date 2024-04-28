@@ -3,12 +3,11 @@ package wand555.github.io.challenges.criteria.goals.blockbreak;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.Context;
+import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
-import wand555.github.io.challenges.generated.CompletionConfig;
-import wand555.github.io.challenges.inventory.BaseCollectedItemStack;
-import wand555.github.io.challenges.inventory.CollectedInventory;
-import wand555.github.io.challenges.inventory.MultipleCollectedItemStack;
-import wand555.github.io.challenges.inventory.SingleCollectedItemStack;
+import wand555.github.io.challenges.inventory.progress.CollectedInventory;
+import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
+import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import java.util.List;
@@ -21,24 +20,34 @@ public class BlockBreakCollectedInventory extends CollectedInventory<BlockBreakD
     }
 
     @Override
-    protected BaseCollectedItemStack createSingle(Material data, long secondsSinceStart) {
-        return new BlockBreakSingleCollectedItemStack(context, data, secondsSinceStart);
+    protected SingleCollectedItemStack<Material> createSingle(Material about, Collect collect) {
+        return new BlockBreakSingleCollectedItemStack(context, collect, about);
     }
 
     @Override
-    protected MultipleCollectedItemStack<?> createMultiple(Material data, long secondsSinceStart) {
-        return new BlockBreakMultipleCollectedItemStack(context, data, secondsSinceStart);
+    protected MultipleCollectedItemStack<Material> createMultiple(Material about, Collect collect) {
+        return new BlockBreakMultipleCollectedItemStack(context, collect, about);
+    }
+
+    @Override
+    public String getNameInResourceBundle() {
+        return "blockbreakgoal";
+    }
+
+    @Override
+    public ResourceBundle getSpecificBundle() {
+        return context.resourceBundleContext().goalResourceBundle();
     }
 
     private static class BlockBreakSingleCollectedItemStack extends SingleCollectedItemStack<Material> {
 
-        public BlockBreakSingleCollectedItemStack(Context context, Material about, long secondsSinceStart) {
-            super(context, about, secondsSinceStart);
+        public BlockBreakSingleCollectedItemStack(Context context, Collect collect, Material about) {
+            super(context, collect, about);
         }
 
         @Override
         protected ItemStack getBaseItemStack() {
-            return new ItemStack(about);
+            return new ItemStack(getAbout());
         }
 
         @Override
@@ -54,13 +63,8 @@ public class BlockBreakCollectedInventory extends CollectedInventory<BlockBreakD
 
     private static class BlockBreakMultipleCollectedItemStack extends MultipleCollectedItemStack<Material> {
 
-
-        public BlockBreakMultipleCollectedItemStack(Context context, Material about, long secondsSinceStart) {
-            super(context, about, secondsSinceStart);
-        }
-
-        public BlockBreakMultipleCollectedItemStack(Context context, CompletionConfig completionConfig, Material about) {
-            super(context, completionConfig, about);
+        public BlockBreakMultipleCollectedItemStack(Context context, Collect collect, Material about) {
+            super(context, collect, about);
         }
 
         @Override
@@ -75,7 +79,7 @@ public class BlockBreakCollectedInventory extends CollectedInventory<BlockBreakD
 
         @Override
         protected ItemStack getBaseItemStack() {
-            return new ItemStack(about);
+            return new ItemStack(getAbout());
         }
     }
 }

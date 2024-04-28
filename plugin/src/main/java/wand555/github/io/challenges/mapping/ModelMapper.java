@@ -103,7 +103,7 @@ public class ModelMapper {
             return collectables.stream().map(collectableEntryConfig -> {
                 K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.materialJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
                 CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(), CollectableDataConfig.class);
-                Collect collect = new Collect(collectableDataConfig.getAmountNeeded(), collectableDataConfig.getCurrentAmount());
+                Collect collect = new Collect(collectableDataConfig);
                 return Map.entry(enumInstance, collect);
             }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
         }
@@ -111,7 +111,7 @@ public class ModelMapper {
             return collectables.stream().map(collectableEntryConfig -> {
                 K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.entityTypeJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
                 CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(), CollectableDataConfig.class);
-                Collect collect = new Collect(collectableDataConfig.getAmountNeeded(), collectableDataConfig.getCurrentAmount());
+                Collect collect = new Collect(collectableDataConfig);
                 return Map.entry(enumInstance, collect);
             }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
         }

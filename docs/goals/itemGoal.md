@@ -36,7 +36,7 @@ Below are some examples you can directly copy into your server without using the
 
 **Rules:** [NoDeath](../rules/noDeath.md)
 
-**Punishments:** The challenge is over for everyone (EndChallenge)
+**Punishments:** The challenge is over for everyone (EndPunishment)
 
 **Goals:** Collect 1 dragon egg (Item Goal)
 :::
@@ -52,7 +52,7 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 
 **Rules:** [NoDeath](../rules/noDeath.md)
 
-**Punishments:** The challenge is over for everyone (EndChallenge)
+**Punishments:** The challenge is over for everyone (EndPunishment)
 
 **Goals:** Collect every obtainable item once in a fixed order (Item Goal)
 :::
