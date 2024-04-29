@@ -47,7 +47,7 @@ public class BlockBreakCollectedInventory extends CollectedInventory<BlockBreakD
 
         @Override
         protected ItemStack getBaseItemStack() {
-            return new ItemStack(getAbout());
+            return DEFAULT_ITEMSTACK_CREATOR.apply(context, getAbout());
         }
 
         @Override
@@ -79,7 +79,7 @@ public class BlockBreakCollectedInventory extends CollectedInventory<BlockBreakD
 
         @Override
         protected ItemStack getBaseItemStack() {
-            return new ItemStack(getAbout());
+            return DEFAULT_ITEMSTACK_CREATOR.apply(context, getAbout());
         }
     }
 }
