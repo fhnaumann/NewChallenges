@@ -140,7 +140,7 @@ public class MobGoalTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(new MobData(EntityType.PIG, player), new Collect(2, 1));
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 1));
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
         verify(messageHelper, never()).sendAllReachedAction();
     }
@@ -148,7 +148,7 @@ public class MobGoalTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(new MobData(EntityType.PIG, player), new Collect(2, 2));
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 2));
         verify(messageHelper, never()).sendAllReachedAction();
     }
 

@@ -140,7 +140,7 @@ public class MobGoalFixedOrderTest {
     public void testCurrentlyToComplete() {
         assertEquals(Map.entry(EntityType.PIG, new Collect(2, 0)), mobGoal.getGoalCollector().getCurrentlyToCollect());
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        assertEquals(Map.entry(EntityType.PIG, new Collect(2, 1)), mobGoal.getGoalCollector().getCurrentlyToCollect());
+        assertEquals(Map.entry(EntityType.PIG, new Collect(2, 1, Map.of("dummy", 1))), mobGoal.getGoalCollector().getCurrentlyToCollect());
     }
 
     @Test
@@ -152,7 +152,7 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(new MobData(EntityType.PIG, player), new Collect(2, 1));
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 1));
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
         verify(messageHelper, never()).sendAllReachedAction();
     }
@@ -160,7 +160,7 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(new MobData(EntityType.PIG, player), new Collect(2, 2));
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 2));
         verify(messageHelper, never()).sendAllReachedAction();
     }
 

@@ -4,7 +4,9 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableDataConfig;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.generated.CompletionConfig;
+import wand555.github.io.challenges.generated.ContributorsConfig;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Collect implements Storable<CollectableDataConfig> {
@@ -19,8 +21,18 @@ public class Collect implements Storable<CollectableDataConfig> {
         this(new CollectableDataConfig(amountNeeded, new CompletionConfig(), currentAmount));
     }
 
+    public Collect(int amountNeeded, int currentAmount, Map<String, Integer> contributors) {
+        this(new CollectableDataConfig(amountNeeded, new CompletionConfig(), currentAmount));
+        ContributorsConfig contributorsConfig = new ContributorsConfig();
+        contributors.forEach(contributorsConfig::setAdditionalProperty);
+        getCompletionConfig().setContributors(contributorsConfig);
+    }
+
     public Collect(CollectableDataConfig config) {
         this.config = config;
+        if(this.config.getCompletion() == null) {
+            this.config.setCompletion(new CompletionConfig());
+        }
     }
 
     public int getRemainingToCollect() {
@@ -64,5 +76,10 @@ public class Collect implements Storable<CollectableDataConfig> {
     @Override
     public int hashCode() {
         return Objects.hash(config);
+    }
+
+    @Override
+    public String toString() {
+        return getCompletionConfig().toString();
     }
 }
