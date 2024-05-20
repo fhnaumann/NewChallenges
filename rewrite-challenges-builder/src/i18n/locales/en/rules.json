@@ -1,0 +1,39 @@
+{
+  "rules": {
+    "global_title": "Rules",
+    "category": "Rule",
+    "browse_button": "Browse all Rules",
+    "configure_global_punishments": "Configure Global Punishments",
+    "description_header": "Description:",
+    "configuration_header": "Configuration:",
+    "local_punishments_button": "Modify Punishments",
+    "deactivate_button": "Deactivate",
+    "exemption": {
+      "label": "Exemptions:",
+      "placeholder": "Select exemptions",
+      "view_button": "View selected exemptions"
+    },
+    "types": {
+      "noDeath": {
+        "name": "NoDeath",
+        "alias": ["NoDeath", "No Death"],
+        "tooltip": "Dying is prohibited!"
+      },
+      "noBlockBreak": {
+        "name": "NoBlockBreak",
+        "alias": ["NoBlockBreak", "No BlockBreak", "NoBlock Break", "No Block Break"],
+        "tooltip": "Breaking blocks is prohibited!"
+      },
+      "noItem": {
+        "name": "NoItem",
+        "alias": ["NoItem"],
+        "tooltip": "Collecting items is prohibited!"
+      },
+      "noMobKill": {
+        "name": "NoMobKill",
+        "alias": ["NoMobKill"],
+        "tooltip": "Killings mobs is prohibited!"
+      }
+    }
+  }
+}

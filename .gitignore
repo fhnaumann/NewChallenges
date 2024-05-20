@@ -7,9 +7,22 @@ builder_website/node_modules/
 builder_website/public/minecraft/
 builder_website/public/img/
 builder_website/public/rendered_items/
+builder_website/public/rendered_images/
 builder_website/public/testpack/
 builder_website/public/testpack.*
 builder_website/public/themes/
+
+rewrite-challenges-builder/package.json
+rewrite-challenges-builder/package-lock.json
+rewrite-challenges-builder/.idea/
+rewrite-challenges-builder/node_modules/
+rewrite-challenges-builder/public/minecraft/
+rewrite-challenges-builder/public/img/
+rewrite-challenges-builder/public/rendered_items/
+rewrite-challenges-builder/public/rendered_images/
+rewrite-challenges-builder/public/testpack/
+rewrite-challenges-builder/public/testpack.*
+rewrite-challenges-builder/public/themes/
 
 docs/.retype
 docs/node_modules

@@ -1,0 +1,15 @@
+{
+  "general": {
+    "modification": {
+      "title": "Modify {criteria}",
+      "wiki_banner": "Visit the {wiki} about {criteria} to understand what it does and how it can be configured!"
+    },
+    "search": {
+      "criteria_category": "Category: {category}",
+      "placeholder": "Type to search...",
+      "no_matches": "Your search did not match anything."
+    },
+    "delete": "Delete",
+    "save_changes": "Save changes"
+  }
+}

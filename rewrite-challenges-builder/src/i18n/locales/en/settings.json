@@ -1,0 +1,18 @@
+{
+  "settings": {
+    "global_title": "Settings",
+    "category": "Setting",
+    "types": {
+      "customHealthSetting": {
+        "name": "Custom Health",
+        "alias": ["Custom Health", "CustomHealth", "CustomHearts", "Custom Hearts"],
+        "settings": {
+          "hearts": {
+            "name": "Hearts:",
+            "tooltip": "Set the maximum number of hearts for every player."
+          }
+        }
+      }
+    }
+  }
+}

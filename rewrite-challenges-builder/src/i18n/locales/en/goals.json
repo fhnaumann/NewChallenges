@@ -1,0 +1,13 @@
+{
+  "goals": {
+    "global_title": "Goals",
+    "category": "Goal",
+    "browse_button": "Browse all Goals",
+    "types": {
+      "blockBreakGoal": {
+        "name": "BlockBreakGoal",
+        "alias": ["BlockBreakGoal", "BlockBreak Goal", "Block BreakGoal", "Block Break Goal"]
+      }
+    }
+  }
+}
