@@ -23,6 +23,8 @@ rewrite-challenges-builder/public/rendered_images/
 rewrite-challenges-builder/public/testpack/
 rewrite-challenges-builder/public/testpack.*
 rewrite-challenges-builder/public/themes/
+rewrite-challenges-builder/src/assets/aura/
+rewrite-challenges-builder/src/assets/lara/
 
 docs/.retype
 docs/node_modules

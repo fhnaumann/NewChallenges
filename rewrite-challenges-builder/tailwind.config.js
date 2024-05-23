@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
+        rule: colors.rose,
+        goal: colors.amber,
+        setting: colors.slate,
         primary: 'rgb(var(--primary))',
         'primary-inverse': 'rgb(var(--primary-inverse))',
         'primary-hover': 'rgb(var(--primary-hover))',

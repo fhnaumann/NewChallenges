@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-4 h-svh bg-red-100">
+  <div class="pt-4 h-svh bg-rules-100">
     <div class="flex flex-col items-center justify-center space-y-2 w-full">
       <p :class="`text-3xl font-bold ${computedTextColor}`">{{ t('general.modification.title', { criteria: t(`${criteriaType}.types.${criteriaKey}.name`) }) }}</p>
 

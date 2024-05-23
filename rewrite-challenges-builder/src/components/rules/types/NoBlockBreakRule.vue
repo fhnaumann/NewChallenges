@@ -3,7 +3,7 @@
   <!--div class="... flex flex-row justify-between space-x-5 pt-4 h-svh  bg-red-100"-->
     <BaseCriteriaModification criteria-type="rules" criteria-key="noBlockBreak" relative-u-r-l-to-wiki="rules/nodeath">
       <template #configuration>
-        <ExemptionSelection class="text-red-900 pl-4"
+        <ExemptionSelection class="text-rules-900 pl-4"
           :possible-exemptions="ALL_IS_BLOCK_MATERIAL_DATA"
           :model-access="{
             get: model => model.rules?.enabledRules?.noBlockBreak?.exemptions!,

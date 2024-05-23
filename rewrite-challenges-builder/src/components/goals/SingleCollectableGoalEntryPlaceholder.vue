@@ -12,7 +12,7 @@
       filter
       class="w-full md:w-80"
       @update:modelValue="
-        $emit('transferDataFromPlaceHolderToNewInstance', selectedData!)
+        $emit('transferDataFromPlaceHolderToNewInstance', selectedData!);
         selectedData = undefined
       "
     >
@@ -21,18 +21,18 @@
           v-if="slotProps.value"
           class="flex justify-start items-center space-x-2"
         >
-          <CollectableRow
-            :translation-key="slotProps.value.translation_key"
-            :img-path="slotProps.value.img_name"
+          <DataRowVisual
+            :translation-key="slotProps.value.mc_translation_key"
+            :img-path="slotProps.value.img_path"
             :show-image="showImage"
           />
         </div>
       </template>
       <template #option="slotProps">
         <div class="flex justify-start items-center space-x-2">
-          <CollectableRow
-            :translation-key="slotProps.option.translation_key"
-            :img-path="slotProps.option.img_name"
+          <DataRowVisual
+            :translation-key="slotProps.option.mc_translation_key"
+            :img-path="slotProps.option.img_path"
             :show-image="showImage"
           />
         </div>
@@ -45,8 +45,7 @@
       :min="1"
       :max="100"
       :step="1"
-      :disabled="!selectedData"
-      inputStyle="width:32px"
+      :disabled="true"
     />
   </div>
 </template>
@@ -55,7 +54,9 @@
   import type { DataRow } from '@/models/data_row'
   import { ref } from 'vue'
   import { useTranslation } from '@/language'
-  import CollectableRow from '@/components/DataRowVisual.vue'
+  import DataRowVisual from '@/components/DataRowVisual.vue'
+  import Dropdown from 'primevue/dropdown'
+  import InputNumber from 'primevue/inputnumber'
 
   const props = defineProps<{
     possibleData: DataRow[]

@@ -1,14 +1,14 @@
 import type { CriteriaKey, CriteriaType } from '@/models/model'
 import { useModelStore } from '@/stores/model'
 
-export function getBgColor(criteriaType: CriteriaType, strength: 1 | 2 | 3): string {
+export function getBgColor(criteriaType: CriteriaType, hover: boolean): string {
   switch (criteriaType) {
     case 'rules':
-      return `bg-red-${strength}00`
+      return hover ? 'bg-rule-100 hover:bg-rule-200' : 'bg-rule-100'
     case 'goals':
-      return `bg-yellow-${strength}00`
+      return hover ? `bg-goal-100 hover:bg-goal-200` : 'bg-goal-100'
     case 'settings':
-      return `bg-gray-${strength}00`
+      return hover ? `bg-setting-100 hover:bg-setting-200` : 'bg-setting-100'
     default:
       return 'bg-red-100'
   }

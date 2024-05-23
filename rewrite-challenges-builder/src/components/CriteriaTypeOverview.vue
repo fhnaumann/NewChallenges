@@ -6,7 +6,6 @@
       <ActiveCriteriaRow
         v-for="activeCriteria in getCriteria()"
         :key="activeCriteria"
-        class="bg-red-300"
         :criteria-code="activeCriteria"
         :criteria-type="criteriaType"
       >

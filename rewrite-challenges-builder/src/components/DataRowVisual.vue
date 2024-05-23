@@ -4,8 +4,7 @@
       v-if="showImage"
       class="w-6"
       :src="BASE_IMG_URL + '/rendered_images/' + imgPath"
-      alt="ERROR"
-      @error="($event.target as HTMLInputElement).src = 'unknown.png'"
+      @error="($event.target as HTMLInputElement).src = '/unknown.png'"
     />
     <div>{{ translate(translationKey) }}</div>
   </div>

@@ -34,19 +34,19 @@
                     "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
                     "maximum": 100000,
                     "minimum": 10,
-                    "type": "boolean"
+                    "type": "number"
                 },
                 "minTimeSeconds": {
                     "default": 180,
                     "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
                     "maximum": 100000,
                     "minimum": 10,
-                    "type": "boolean"
+                    "type": "number"
                 },
                 "order": {
                     "default": -1,
                     "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
-                    "type": "integer"
+                    "type": "number"
                 },
                 "shuffled": {
                     "default": false,
@@ -120,7 +120,7 @@
         },
         "ContributorsConfig": {
             "additionalProperties": {
-                "type": "integer"
+                "type": "number"
             },
             "defaultProperties": [],
             "type": "object"
@@ -223,6 +223,11 @@
             "additionalProperties": false,
             "defaultProperties": [],
             "properties": {
+                "currentOrder": {
+                    "default": -1,
+                    "description": "The number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
+                    "type": "integer"
+                },
                 "goals": {
                     "$ref": "#/definitions/GoalsConfig"
                 },
@@ -344,7 +349,7 @@
                     "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
                     "maximum": 10,
                     "minimum": 1,
-                    "type": "integer"
+                    "type": "number"
                 },
                 "randomizeItemsRemovedAtOnce": {
                     "default": false,

@@ -1,23 +1,35 @@
 <template>
-  <BaseCriteriaModification criteria-name-i18-n-path="block_break_goal">
+  <BaseCriteriaModification criteria-type="goals" criteria-key="blockBreakGoal" relative-u-r-l-to-wiki="goals/blockbreakgoal">
     <template #configuration>
       <CollectableDropdownConfiguration
-        selected-data=""
-        dropdown-placeholder-text=""
-        collectable-text-prefix=""
-        show-image=""
-        disabled=""
-        possible-data=""
-        collectable-amount-prefix="" />
+        :model-access="{
+        get: modelInFunc => modelInFunc.goals?.blockBreakGoal?.broken,
+        where: 'goals.blockBreakGoal.broken',
+        testSchematron: false
+        }"
+        :dropdown-placeholder-text="t('goals.types.blockBreakGoal.settings.dropdown.blockPlaceholder')"
+        :collectable-text-prefix="t('goals.types.blockBreakGoal.settings.dropdown.blockPrefix')"
+        :show-image="true"
+        :disabled="breakAllBlocksOnce"
+        :all-possible-data="ALL_IS_BLOCK_MATERIAL_DATA"
+        :collectable-amount-prefix="t('goals.types.blockBreakGoal.settings.dropdown.amountPrefix')"
+        :render-selection="!breakAllBlocksOnce"
+      />
       <Checkbox
         v-model="breakAllBlocksOnce"
+        @update:model-value="updateBreakAllBlocksOnce"
         input-id="breakAllBlocksOnce"
         binary />
       <label
         for="breakAllBlocksOnce"
         class="ml-2"
-        >{{ t('goals.block_block_goal.break_all_blocks_once.text') }}</label
+        >{{ t('goals.types.blockBreakGoal.settings.breakAllBlocks.name') }}</label
       >
+      <TimerConfiguration :model-access="{
+        get: model => model.goals?.blockBreakGoal,
+        where: 'goals.blockBreakGoal',
+        testSchematron: false
+      }" />
     </template>
   </BaseCriteriaModification>
 </template>
@@ -30,22 +42,19 @@
   import { useFetchable } from '@/fetchable'
   import type { BlockBreakGoalConfig } from '@/models/blockbreak'
   import { useI18n } from 'vue-i18n'
+  import { useModelStore } from '@/stores/model'
+  import { ALL_IS_BLOCK_MATERIAL_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row'
+  import Checkbox from 'primevue/checkbox'
+  import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
 
   const { t } = useI18n()
   const route = useRoute()
-  const { fetch } = useFetchable()
-
-  watch(
-    () => route.params.id,
-    value => fetchCriteriaData(value as string),
-    { immediate: true },
-  )
+  const { model, set } = useModelStore()
 
   const breakAllBlocksOnce = ref<boolean>(false)
 
-  function fetchCriteriaData(id: string) {
-    const fetched: BlockBreakGoalConfig = fetch<BlockBreakGoalConfig>('goals', 'blockBreakGoal', id)
-
-    breakAllBlocksOnce.value = fetched.breakAllBlocksOnce !== undefined ? fetched.breakAllBlocksOnce : false
+  function updateBreakAllBlocksOnce(breakAllBlocksOnce: boolean) {
+    set('goals.blockBreakGoal.broken', breakAllBlocksOnce ? fromDataRowArray2CollectableEntryArray(ALL_IS_BLOCK_MATERIAL_DATA) : undefined, true)
   }
+
 </script>

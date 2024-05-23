@@ -2,6 +2,7 @@
   "settings": {
     "global_title": "Settings",
     "category": "Setting",
+    "browse_button": "Browse all Settings",
     "types": {
       "customHealthSetting": {
         "name": "Custom Health",

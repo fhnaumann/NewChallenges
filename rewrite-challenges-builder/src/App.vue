@@ -4,12 +4,14 @@ import HelloWorld from './components/HelloWorld.vue'
 import { useModelStore } from '@/stores/model'
 import type { NoBlockBreakRuleConfig } from '@/models/blockbreak'
 import { useI18n } from 'vue-i18n'
+import DynamicDialog from 'primevue/dynamicdialog'
 
 const modelStore = useModelStore()
 
 console.log("early", modelStore.model)
 modelStore.set("rules.enabledRules.noBlockBreak", {}, true)
 modelStore.set("settings.customHealthSetting", {}, true)
+modelStore.set('goals.blockBreakGoal', {}, true)
 console.log("reached")
 
 const i18n = useI18n()
@@ -22,4 +24,5 @@ console.log("2", i18n.messages.value[i18n.locale.value])
   <div>
   </div>
   <router-view></router-view>
+  <DynamicDialog />
 </template>

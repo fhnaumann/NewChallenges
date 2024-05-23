@@ -16,18 +16,18 @@
           v-if="slotProps.value"
           class="flex justify-start items-center space-x-2"
         >
-          <CollectableRow
-            :translation-key="slotProps.value.translation_key"
-            :img-path="slotProps.value.img_name"
+          <DataRowVisual
+            :translation-key="slotProps.value.mc_translation_key"
+            :img-path="slotProps.value.img_path"
             :show-image="showImage"
           />
         </div>
       </template>
       <template #option="slotProps">
         <div class="flex justify-start items-center space-x-2">
-          <CollectableRow
-            :translation-key="slotProps.option.translation_key"
-            :img-path="slotProps.option.img_name"
+          <DataRowVisual
+            :translation-key="slotProps.option.mc_translation_key"
+            :img-path="slotProps.option.img_path"
             :show-image="showImage"
           />
         </div>
@@ -35,17 +35,19 @@
     </Dropdown>
     <p>{{ collectableAmountPrefix }}</p>
     <InputNumber
-      v-model="amount"
+      :model-value="valueOrDefault()"
+      @update:model-value="(value: number) => set(`${modelAccess.where}.collectableData.amountNeeded`, value, false)"
       showButtons
       :min="1"
       :max="100"
       :step="1"
+      :button-layout="'stacked'"
       :disabled="disabled"
-      inputStyle="width:32px"
     />
     <Button
       v-if="currentlySelected"
       label="Delete"
+      :class="getBgColor('goals', true)"
       @click="$emit('deleteEntry', currentlySelected)"
       :disabled="disabled"
     />
@@ -53,14 +55,21 @@
 </template>
 
 <script setup lang="ts">
-  import constants from '@/constants'
+  import DataRowVisual from '@/components/DataRowVisual.vue'
+  import Dropdown from 'primevue/dropdown'
+  import InputNumber from 'primevue/inputnumber'
+  import Button from 'primevue/button'
   import type { DataRow } from '@/models/data_row'
   import { computed, ref } from 'vue'
-  import type { CollectableDataConfig } from '@/models/goals'
+  import type { CollectableDataConfig, CollectableEntryConfig } from '@/models/goals'
   import { useTranslation } from '@/language'
-  import CollectableRow from '@/components/DataRowVisual.vue'
+  import { useModelStore } from '@/stores/model'
+  import type { ModelAccess } from '@/main'
+  import { useJSONSchemaConfig } from '@/stores/default_model'
+  import { getBgColor } from '@/util'
 
   const props = defineProps<{
+    modelAccess: ModelAccess<CollectableEntryConfig>
     currentlySelected: DataRow
     currentlySelectedAmount: number | undefined
     possibleData: DataRow[]
@@ -70,24 +79,26 @@
     disabled: boolean
   }>()
 
+  const emit = defineEmits<{
+    updateCurrentlySelected: [value: DataRow]
+    deleteEntry: [dataRowToDelete: DataRow]
+  }>()
+
   const compCurrentlySelected = computed({
     get: () => props.currentlySelected,
     set: (value: DataRow) => emit('updateCurrentlySelected', value),
   })
 
-  const amount = ref(props.currentlySelectedAmount)
-
   const { translate, translateDataRow } = useTranslation()
+  const { model, set } = useModelStore()
+  const jsonSchemaConfig = useJSONSchemaConfig()
 
-  function createModelPart(): CollectableDataConfig {
-    return {
-      amountNeeded: amount.value,
-      currentAmount: 0,
-    }
+  function valueOrDefault(): number {
+    return props.modelAccess.get(model)?.collectableData?.amountNeeded !== undefined
+      ?
+      props.modelAccess.get(model)?.collectableData?.amountNeeded!
+      :
+      jsonSchemaConfig.CollectableDataConfig.properties.amountNeeded.default
   }
 
-  const emit = defineEmits<{
-    updateCurrentlySelected: [value: DataRow]
-    deleteEntry: [dataRowToDelete: DataRow]
-  }>()
 </script>

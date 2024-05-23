@@ -6,7 +6,7 @@
     },
     "search": {
       "criteria_category": "Category: {category}",
-      "placeholder": "Type to search...",
+      "placeholder": "Search rules, goals, or settings to add",
       "no_matches": "Your search did not match anything."
     },
     "delete": "Delete",

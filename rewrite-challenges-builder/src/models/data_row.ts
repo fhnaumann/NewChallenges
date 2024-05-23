@@ -1,5 +1,6 @@
 import materials from '../../public/data_rows/materials.json'
 import entity_types from '../../public/data_rows/entity_types.json'
+import type { CollectableDataConfig, CollectableEntryConfig } from '@/models/goals'
 
 /**
  * A "data row" containing the necessary information for a "single point of information".
@@ -53,4 +54,16 @@ export function fromDataRow2Code(dataRow: DataRow): string {
 
 export function fromDataRowArray2CodeArray(dataRows: DataRow[]): string[] {
   return dataRows.map(value => fromDataRow2Code(value))
+}
+
+export function fromDataRowArray2CollectableEntryArray(dataRows: DataRow[], defaultData: CollectableDataConfig | undefined = undefined): CollectableEntryConfig[] {
+  if(defaultData === undefined) {
+    defaultData = {}
+  }
+  return dataRows.map(value => {
+    return {
+      collectableName: value.code,
+      collectableData: defaultData
+    }
+  })
 }

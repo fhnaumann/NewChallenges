@@ -3,10 +3,27 @@
     "global_title": "Goals",
     "category": "Goal",
     "browse_button": "Browse all Goals",
+    "timer": {
+      "enable": "Time Limit",
+      "orderPrefix": "Ordering:",
+      "minTimerPrefix": "Minimum:",
+      "maxTimerPrefix": "Maximum:"
+    },
     "types": {
       "blockBreakGoal": {
         "name": "BlockBreakGoal",
-        "alias": ["BlockBreakGoal", "BlockBreak Goal", "Block BreakGoal", "Block Break Goal"]
+        "alias": ["BlockBreakGoal", "BlockBreak Goal", "Block BreakGoal", "Block Break Goal"],
+        "settings": {
+          "dropdown": {
+            "blockPrefix": "Block:",
+            "blockPlaceholder": "Select blocks",
+            "amountPrefix": "Amount:",
+            "noMatch": "No matching blocks found."
+          },
+          "breakAllBlocks": {
+            "name": "Break all blocks once"
+          }
+        }
       }
     }
   }

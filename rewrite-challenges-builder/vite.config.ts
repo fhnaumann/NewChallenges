@@ -10,6 +10,9 @@ export default defineConfig({
     vue(),
     VueDevTools(),
   ],
+  build: {
+    target: ['es2023']
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
