@@ -7,7 +7,7 @@
     <div v-if="enabled" class="flex flex-col space-y-2">
       <div class="flex flex-row items-center space-x-2">
         <p>{{ t("goals.timer.orderPrefix") }}</p>
-        <InputNumber :model-value="orderOrDefault()" @update:model-value="updateOrder" :min=1 :max=100 />
+        <InputNumber :model-value="orderOrDefault()" @update:model-value="updateOrder" :min="1" :max="100" />
       </div>
       <div class="flex flex-row items-center space-x-2">
         <p>{{ t('goals.timer.minTimerPrefix') }}</p>
@@ -36,6 +36,7 @@
   import { ref, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
   import Checkbox from 'primevue/checkbox'
+  import CheckboxCriteria from '@/components/wrappers/CheckboxCriteria.vue'
 
   const props = defineProps<{
     modelAccess: ModelAccess<Timeable>
@@ -49,7 +50,11 @@
 
   watch(() => enabled.value, value => {
     console.log('new enabled', value)
-    if (!value) {
+    if (value) {
+      set(`${props.modelAccess.where}.order`, 1, false)
+    }
+    else {
+      set(`${props.modelAccess.where}.order`, undefined, false)
       set(`${props.modelAccess.where}.minTimeSeconds`, undefined, false)
       set(`${props.modelAccess.where}.maxTimeSeconds`, undefined, false)
     }

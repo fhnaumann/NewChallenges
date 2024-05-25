@@ -4,6 +4,8 @@ import NoBlockBreakRule from '@/components/rules/types/NoBlockBreakRule.vue'
 import AllCriteriaOverview from '@/components/AllCriteriaOverview.vue'
 import CustomHealthSetting from '@/components/settings/CustomHealthSetting.vue'
 import BlockBreakGoal from '@/components/goals/types/BlockBreakGoal.vue'
+import MobGoal from '@/components/goals/types/MobGoal.vue'
+import NoMobKillRule from '@/components/rules/types/NoMobKillRule.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +24,16 @@ const router = createRouter({
       path: '/goals/blockBreakGoal',
       name: 'BlockBreakGoal',
       component: BlockBreakGoal
+    },
+    {
+      path: '/rules/noMobKill',
+      name: 'NoMobKillRule',
+      component: NoMobKillRule
+    },
+    {
+      path: '/goals/mobGoal',
+      name: 'MobGoal',
+      component: MobGoal
     },
     {
       path: '/settings/customHealthSetting',

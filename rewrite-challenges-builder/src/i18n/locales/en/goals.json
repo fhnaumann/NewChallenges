@@ -9,6 +9,9 @@
       "minTimerPrefix": "Minimum:",
       "maxTimerPrefix": "Maximum:"
     },
+    "fixedOrder": {
+      "name": "Fixed Order"
+    },
     "types": {
       "blockBreakGoal": {
         "name": "BlockBreakGoal",
@@ -22,6 +25,21 @@
           },
           "breakAllBlocks": {
             "name": "Break all blocks once"
+          }
+        }
+      },
+      "mobGoal": {
+        "name": "MobGoal",
+        "alias": ["MobGoal", "Mob Goal", "KillGoal", "Kill Goal", "EntityGoal", "Entity Goal"],
+        "settings": {
+          "dropdown": {
+            "mobPrefix": "Mob:",
+            "mobPlaceholder": "Select mobs",
+            "amountPrefix": "Amount:",
+            "noMatch": "No matching mobs found."
+          },
+          "killAllMobs": {
+            "name": "Kill all mobs once"
           }
         }
       }

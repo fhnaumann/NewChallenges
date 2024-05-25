@@ -12,6 +12,8 @@ console.log("early", modelStore.model)
 modelStore.set("rules.enabledRules.noBlockBreak", {}, true)
 modelStore.set("settings.customHealthSetting", {}, true)
 modelStore.set('goals.blockBreakGoal', {}, true)
+modelStore.set('goals.mobGoal', {}, true)
+modelStore.set('rules.enabledRules.noMobKill', {}, true)
 console.log("reached")
 
 const i18n = useI18n()

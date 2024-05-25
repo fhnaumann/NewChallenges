@@ -1,5 +1,6 @@
 import type { PunishmentsConfig } from './punishments'
 import type { NoBlockBreakRuleConfig } from './blockbreak'
+import type { NoMobKillRuleConfig } from '@/models/mob'
 
 export type RuleName = keyof EnabledRules
 
@@ -9,6 +10,7 @@ export interface RulesConfig {
 }
 export interface EnabledRules {
   noBlockBreak?: NoBlockBreakRuleConfig
+  noMobKill?: NoMobKillRuleConfig
 }
 
 export interface BaseRuleConfig {}

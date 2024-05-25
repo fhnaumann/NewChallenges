@@ -19,7 +19,7 @@
       <!--p class="bg-gray-200 px-2 w-full text-center">{{ t('general.modification.wiki_banner', { criteria: t(criteriaNameI18NPath) }) }}</p-->
     </div>
     <div class="flex flex-row w-screen justify-between space-x-4 h-96 border-indigo-700 border-4">
-      <div class="bg-green-400 h-screen pl-2">
+      <div :class="`h-screen pl-2 ${computedCssClass}`">
         <slot name="configuration">
 
         </slot>
@@ -55,4 +55,13 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const computedTextColor = computed(() => getTextColor(props.criteriaType))
+
+const computedCssClass = computed(() => {
+  switch(props.criteriaType) {
+    case 'rules': return 'customized-rule'
+    case 'goals': return 'customized-goal'
+    case 'settings': return 'customized-setting'
+    default: throw Error()
+  }
+})
 </script>

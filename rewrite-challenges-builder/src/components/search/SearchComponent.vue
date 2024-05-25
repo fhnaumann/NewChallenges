@@ -1,28 +1,31 @@
 <template>
-  <div class="flex flex-col space-y-4 items-center justify-center bg-gray-200 rounded-lg">
-    <div>
-      <IconField icon-position="left">
-        <InputIcon>
-          <i class="pi pi-search" />
-        </InputIcon>
-        <InputText class="w-full" type="text" :placeholder="t(`general.search.placeholder`)" v-model="searchFieldValue" />
-      </IconField>
-    </div>
-    <div>
-      <DataView :value="getPartialMatches()" paginator :rows="5">
-        <template #list="slotProps">
-          <div class="flex flex-col p-4 items-center w-[32rem] h-[32rem]">
-            <SearchCriteriaRow class="w-full h-20 rounded-lg" v-for="(item, index) in slotProps.items"
-                               :key="index" :criteria-type="(item as Searchable).criteriaType"
-                               :criteria-key="(item as Searchable).criteriaKey" />
-          </div>
-        </template>
-        <template #empty>
-          <div>
-            <p>{{ t('general.search.no_matches') }}</p>
-          </div>
-        </template>
-      </DataView>
+  <div class="flex flex-col space-y-4 items-center justify-center bg-gray-200 rounded-lg h-full max-h-full w-full min-w-[64rem] max-w-full">
+    <div class="">
+      <div>
+        <IconField icon-position="left">
+          <InputIcon>
+            <i class="pi pi-search" />
+          </InputIcon>
+          <InputText class="w-full" type="text" :placeholder="t(`general.search.placeholder`)"
+                     v-model="searchFieldValue" ref="dialogSearchText" />
+        </IconField>
+      </div>
+      <div>
+        <DataView :value="getPartialMatches()" paginator :rows="5">
+          <template #list="slotProps">
+            <div class="flex flex-col p-4 items-center w-[64rem] h-[32rem]">
+              <SearchCriteriaRow class="w-full h-20 rounded-lg" v-for="(item, index) in slotProps.items"
+                                 :key="index" :criteria-type="(item as Searchable).criteriaType"
+                                 :criteria-key="(item as Searchable).criteriaKey" />
+            </div>
+          </template>
+          <template #empty>
+            <div>
+              <p>{{ t('general.search.no_matches') }}</p>
+            </div>
+          </template>
+        </DataView>
+      </div>
     </div>
   </div>
 </template>
@@ -36,10 +39,37 @@
   import IconField from 'primevue/iconfield'
   import InputIcon from 'primevue/inputicon'
   import gsap from 'gsap'
+  import { computed, inject, onMounted, ref, watch } from 'vue'
 
   const { searchFieldValue, getPartialMatches } = useSearchable(undefined)
 
   const { t } = useI18n()
+
+  const dialogRef = inject('dialogRef') as any
+  watch(dialogRef, () => {
+    console.log(dialogRef)
+  })
+
+  const dialogSearchText = ref(null)
+
+  onMounted(() => {
+    console.log("mounted")
+    console.log(dialogRef)
+    console.log(dialogSearchText.value)
+    dialogSearchText.value!.$el.focus()
+  })
+
+  const size = computed(() => {
+    if(window.innerWidth < 640) {
+      return 'w-11/12 h-3/4'
+    }
+    else if(window.innerWidth < 1024) {
+      return 'w-3/4 h-2/3'
+    }
+    else {
+      return 'w-1/2 h-1/2'
+    }
+  })
 
   function onBeforeEnter(el) {
     el.style.opacity = 0

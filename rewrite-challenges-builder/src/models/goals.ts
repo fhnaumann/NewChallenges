@@ -1,9 +1,11 @@
 import type { BlockBreakGoalConfig } from './blockbreak'
+import type { MobGoalConfig } from '@/models/mob'
 
 export type GoalName = keyof GoalsConfig
 
 export interface GoalsConfig {
   blockBreakGoal?: BlockBreakGoalConfig
+  mobGoal?: MobGoalConfig
 }
 
 export interface BaseGoalConfig extends Timeable {

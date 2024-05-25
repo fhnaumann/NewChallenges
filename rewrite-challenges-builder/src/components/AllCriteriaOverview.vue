@@ -29,9 +29,10 @@
   import { ref } from 'vue'
   import { useDialog } from 'primevue/usedialog'
   import { root } from 'postcss'
+  import { useRouter } from 'vue-router'
 
   const { t } = useI18n()
-
+  const router = useRouter()
   const dialog = useDialog()
 
   function showSearcher() {
@@ -53,6 +54,11 @@
           mask: {
             class: 'backdrop-blur-[2px]'
           }
+        }
+      },
+      onClose(options) {
+        if(options?.data) {
+          router.push(options?.data.navigateTo)
         }
       },
     })

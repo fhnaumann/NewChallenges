@@ -18,10 +18,13 @@ export function useSearchable(options: Searchable[] | undefined) {
     options = getAllSearchOptions()
   }
 
+  console.log("goals", getLabelFor('goals'))
+  console.log("rules", getLabelFor('rules'))
+  console.log("settings", getLabelFor('settings'))
+  console.log("early combined", getAllSearchOptions())
   const searchFieldValue = ref<string>('')
 
   function getPartialMatches(): Searchable[] {
-    console.log('options', options)
     if (!searchFieldValue.value.trim()) {
       return options!
     } else {
@@ -32,17 +35,10 @@ export function useSearchable(options: Searchable[] | undefined) {
   }
 
   function getAllSearchOptions(): Searchable[] {
-    return Object.values(Object.assign(
-      {},
-      getLabelFor('rules'),
-      getLabelFor('goals'),
-      getLabelFor('settings'),
-    ))
+    return ([] as Searchable[]).concat(getLabelFor('rules'), getLabelFor('goals'), getLabelFor('settings'))
   }
 
   function getLabelFor(labelFor: CriteriaType) {
-    console.log(selectedLangMessages)
-    console.log(labelFor)
     return Object.entries(selectedLangMessages[labelFor]['types'])
       .map(([key, value]) => {
         return {

@@ -15,7 +15,6 @@
     "module": "NodeNext",
     "allowJs": true,
     "noImplicitAny": false,
-    "lib": ["ES2023"],
-    "target": "ES2023"
+    "lib": ["ES2023"]
   }
 }

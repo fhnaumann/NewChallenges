@@ -35,7 +35,7 @@
         <DataRowVisual
           :img-path="(slotProps.option as DataRow).img_path"
           :translation-key="(slotProps.option as DataRow).mc_translation_key"
-          :show-image="true"
+          :show-image="showImages"
         />
       </template>
     </MultiSelect>
@@ -56,6 +56,7 @@
   const props = defineProps<{
     possibleExemptions: DataRow[]
     modelAccess: ModelAccess<string[]>
+    showImages: boolean
   }>()
 
   const modelStore = useModelStore()
