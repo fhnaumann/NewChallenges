@@ -32,14 +32,14 @@
                 "maxTimeSeconds": {
                     "default": 600,
                     "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
-                    "maximum": 100000,
+                    "maximum": 86400,
                     "minimum": 10,
                     "type": "number"
                 },
                 "minTimeSeconds": {
                     "default": 180,
                     "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
-                    "maximum": 100000,
+                    "maximum": 86400,
                     "minimum": 10,
                     "type": "number"
                 },
@@ -161,6 +161,9 @@
             "properties": {
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
+                },
+                "noMobKill": {
+                    "$ref": "#/definitions/NoMobKillRuleConfig"
                 }
             },
             "type": "object"
@@ -187,6 +190,9 @@
             "properties": {
                 "blockBreakGoal": {
                     "$ref": "#/definitions/BlockBreakGoalConfig"
+                },
+                "mobGoal": {
+                    "$ref": "#/definitions/MobGoalConfig"
                 }
             },
             "type": "object"
@@ -214,6 +220,55 @@
                 "randomizeHeartsLost": {
                     "default": false,
                     "description": "If true, the amount of hearts (half hearts) that are subtracted per punishment are\nrandomized every time.",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "MobGoalConfig": {
+            "additionalProperties": false,
+            "defaultProperties": [],
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "maxTimeSeconds": {
+                    "default": 600,
+                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "number"
+                },
+                "minTimeSeconds": {
+                    "default": 180,
+                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "number"
+                },
+                "mobs": {
+                    "default": [],
+                    "description": "The mobs that need to be killed to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "order": {
+                    "default": -1,
+                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
+                    "type": "number"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
                     "type": "boolean"
                 }
             },
@@ -256,6 +311,33 @@
                 "exemptions": {
                     "default": [],
                     "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "result": {
+                    "default": "Deny",
+                    "description": "The result action when the rule is violated.",
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "NoMobKillRuleConfig": {
+            "additionalProperties": false,
+            "defaultProperties": [],
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of entity types that are exempted from the rule.",
                     "items": {
                         "type": "string"
                     },

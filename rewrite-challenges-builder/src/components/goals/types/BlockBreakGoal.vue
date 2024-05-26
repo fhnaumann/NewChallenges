@@ -52,18 +52,19 @@
   import CheckboxCriteria from '@/components/wrappers/CheckboxCriteria.vue'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import type { ModelAccess } from '@/main'
+  import { useVarHelperStore } from '@/stores/var_helper'
+  import { storeToRefs } from 'pinia'
 
   const { t } = useI18n()
   const route = useRoute()
   const { model, set } = useModelStore()
+  const { breakAllBlocksOnce } = storeToRefs(useVarHelperStore())
 
   const baseModelAcces: ModelAccess<BlockBreakGoalConfig> = {
     get: model => model.goals?.blockBreakGoal,
     where: 'goals.blockBreakGoal',
     testSchematron: false
   }
-
-  const breakAllBlocksOnce = ref<boolean>(false)
 
   function updateBreakAllBlocksOnce(breakAllBlocksOnce: boolean) {
     set('goals.blockBreakGoal.broken', breakAllBlocksOnce ? fromDataRowArray2CollectableEntryArray(ALL_IS_BLOCK_MATERIAL_DATA) : undefined, true)

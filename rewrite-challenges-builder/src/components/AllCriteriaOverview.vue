@@ -2,16 +2,15 @@
   <div class="grid grid-cols-3 gap-x-2 gap-y-4 justify-center content-start h-screen w-screen">
     <div class="col-span-3 px-2 pt-2">
       <InputText class="w-full" type="text" :placeholder="t(`general.search.placeholder`)"
-                 @click="showSearcher(); console.log('clicked')" />
+                 @click="showSearcher()" />
     </div>
     <CriteriaTypeOverview class="customized-rule" criteria-type="rules" />
     <CriteriaTypeOverview class="customized-goal" criteria-type="goals" />
     <CriteriaTypeOverview class="customized-setting" criteria-type="settings" />
     <div class="fixed inset-x-0 bottom-0">
       <div class="flex justify-end px-4 py-2">
-        <Button :label="t('general.export.download_button')"/>
+        <Button :label="t('general.export.download_button')" @click="showCodeDisplay()" />
       </div>
-
     </div>
   </div>
 </template>
@@ -27,10 +26,13 @@
   import { root } from 'postcss'
   import { useRouter } from 'vue-router'
   import Button from 'primevue/button'
+  import CodeDisplay from '@/components/CodeDisplay.vue'
+
 
   const { t } = useI18n()
   const router = useRouter()
   const dialog = useDialog()
+
 
   function showSearcher() {
     dialog.open(SearchComponent, {
@@ -58,6 +60,22 @@
           router.push(options?.data.navigateTo)
         }
       },
+    })
+  }
+
+  function showCodeDisplay() {
+    dialog.open(CodeDisplay, {
+      props: {
+        modal: true,
+        showHeader: true,
+        position: "top",
+        draggable: false,
+        pt: {
+          root: {
+            class: 'w-[64rem] bg-surface-0'
+          }
+        }
+      }
     })
   }
 

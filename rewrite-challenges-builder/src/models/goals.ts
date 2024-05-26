@@ -1,5 +1,5 @@
 import type { BlockBreakGoalConfig } from './blockbreak'
-import type { MobGoalConfig } from '@/models/mob'
+import type { MobGoalConfig } from './mob'
 
 export type GoalName = keyof GoalsConfig
 

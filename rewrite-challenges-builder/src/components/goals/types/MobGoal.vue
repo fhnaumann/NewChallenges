@@ -33,17 +33,26 @@
   import type { ModelAccess } from '@/main'
   import type { MobGoalConfig } from '@/models/mob'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
+  import { useVarHelperStore } from '@/stores/var_helper'
+  import { storeToRefs } from 'pinia'
+  import type { CollectableEntryConfig } from '@/models/goals'
 
   const { t } = useI18n()
   const { model, set } = useModelStore()
-
-  const killAllMobsOnce = ref<boolean>(false)
+  const { killAllMobsOnce } = storeToRefs(useVarHelperStore())
 
   const baseModelAccess: ModelAccess<MobGoalConfig> = {
     get: model => model.goals?.mobGoal,
     where: 'goals.mobGoal',
     testSchematron: false
   }
+
+  set('goals.mobGoal.mobs', [{
+    collectableName: "ender_dragon",
+    collectableData: {
+      amountNeeded: 1
+    }
+  }] as CollectableEntryConfig[], false)
 
   function updateKillAllMobsOnce(killAllMobsOnce: boolean) {
     set('goals.mobGoal.mobs', killAllMobsOnce ? fromDataRowArray2CollectableEntryArray(ALL_ENTITY_TYPE_DATA) : undefined, true)

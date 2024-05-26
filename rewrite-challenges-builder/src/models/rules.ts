@@ -1,6 +1,6 @@
 import type { PunishmentsConfig } from './punishments'
 import type { NoBlockBreakRuleConfig } from './blockbreak'
-import type { NoMobKillRuleConfig } from '@/models/mob'
+import type { NoMobKillRuleConfig } from './mob'
 
 export type RuleName = keyof EnabledRules
 

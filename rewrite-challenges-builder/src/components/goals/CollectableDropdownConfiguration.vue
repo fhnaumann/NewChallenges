@@ -92,6 +92,7 @@
   }
 
   function collectableEntryConfig2Code(source: CollectableEntryConfig[]): string[] {
+    console.log("source", source)
     return source.map((element: CollectableEntryConfig) => element.collectableName)
   }
 

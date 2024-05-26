@@ -1,5 +1,5 @@
-import type { PunishableRuleConfig } from '@/models/rules'
-import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from '@/models/goals'
+import type { PunishableRuleConfig } from './rules'
+import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from './goals'
 
 export interface NoMobKillRuleConfig extends PunishableRuleConfig {
   /**

@@ -11,6 +11,7 @@ import Lara from '@/assets/lara'
 import Aura from '@/assets/aura'
 import type { Model } from '@/models/model'
 import DialogService from 'primevue/dialogservice';
+import ToastService from 'primevue/toastservice';
 
 const app = createApp(App)
 
@@ -18,6 +19,7 @@ app.use(createPinia())
 app.use(router)
 app.use(i18n)
 app.use(DialogService)
+app.use(ToastService)
 app.use(PrimeVue, {
   unstyled: true,
   pt: Aura,

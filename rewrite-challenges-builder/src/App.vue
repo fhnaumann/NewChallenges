@@ -13,6 +13,7 @@ modelStore.set("rules.enabledRules.noBlockBreak", {}, true)
 modelStore.set("settings.customHealthSetting", {}, true)
 modelStore.set('goals.blockBreakGoal', {}, true)
 modelStore.set('goals.mobGoal', {}, true)
+
 modelStore.set('rules.enabledRules.noMobKill', {}, true)
 modelStore.set('rules.enabledRules.noMobKill2', {}, true)
 modelStore.set('rules.enabledRules.noMobKill3', {}, true)
@@ -21,6 +22,7 @@ modelStore.set('rules.enabledRules.noMobKill5', {}, true)
 modelStore.set('rules.enabledRules.noMobKill6', {}, true)
 modelStore.set('rules.enabledRules.noMobKill7', {}, true)
 modelStore.set('rules.enabledRules.noMobKill8', {}, true)
+
 console.log("reached")
 
 const i18n = useI18n()

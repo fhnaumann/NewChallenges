@@ -1,5 +1,5 @@
 <template>
-  <div :class="`flex flex-row flex-1 px-8 my-2 space-y-1 justify-between items-center cursor-pointer ${computedBgColor}`" @click="createEmptyCriteria(); closeDialog()">
+  <div :class="`flex flex-row px-8 my-2 space-y-1 justify-between items-center cursor-pointer ${computedBgColor}`" @click="createEmptyCriteria(); closeDialog()">
     <div class="flex flex-col justify-center">
       <p class="text-2xl font-bold">{{ t(`${criteriaType}.types.${criteriaKey}.name`) }}</p>
       <p>{{ t('general.search.criteria_category', { category: t(`${criteriaType}.category`) }) }}</p>
