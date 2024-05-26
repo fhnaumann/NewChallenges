@@ -23,6 +23,13 @@ export function getTextColor(criteriaType: CriteriaType): string {
   }
 }
 
+export function pathToCriteria(criteriaType: CriteriaType): string {
+  switch(criteriaType) {
+    case 'rules': return "rules.enabledRules"
+    default: return criteriaType
+  }
+}
+
 export function deleteCriteria(criteriaType: CriteriaType, criteriaCode: CriteriaKey) {
   const { set } = useModelStore()
   console.log("deleting", criteriaType, criteriaCode)

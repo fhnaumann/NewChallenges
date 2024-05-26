@@ -1,22 +1,18 @@
 <template>
-  <div class="grid grid-cols-3 gap-x-2 gap-y-4 border-2 border-amber-300">
-    <div class="col-span-3">
+  <div class="grid grid-cols-3 gap-x-2 gap-y-4 justify-center content-start h-screen w-screen">
+    <div class="col-span-3 px-2 pt-2">
       <InputText class="w-full" type="text" :placeholder="t(`general.search.placeholder`)"
                  @click="showSearcher(); console.log('clicked')" />
     </div>
+    <CriteriaTypeOverview class="customized-rule" criteria-type="rules" />
+    <CriteriaTypeOverview class="customized-goal" criteria-type="goals" />
+    <CriteriaTypeOverview class="customized-setting" criteria-type="settings" />
+    <div class="fixed inset-x-0 bottom-0">
+      <div class="flex justify-end px-4 py-2">
+        <Button :label="t('general.export.download_button')"/>
+      </div>
 
-      <!--Dialog :visible="searcherVisible" modal :close-on-escape="true" :pt="{root: 'border-none', mask: {style: 'backdrop-filter: blur(2xp)'}}">
-        <template #container="{ closeCallback }">
-          <div class="w-[800] h-128">
-            <SearchComponent />
-          </div>
-        </template>
-      </Dialog-->
-
-
-    <CriteriaTypeOverview criteria-type="rules" />
-    <CriteriaTypeOverview criteria-type="goals" />
-    <CriteriaTypeOverview criteria-type="settings" />
+    </div>
   </div>
 </template>
 
@@ -30,6 +26,7 @@
   import { useDialog } from 'primevue/usedialog'
   import { root } from 'postcss'
   import { useRouter } from 'vue-router'
+  import Button from 'primevue/button'
 
   const { t } = useI18n()
   const router = useRouter()
@@ -46,7 +43,7 @@
         unstyled: true,
         pt: {
           root: {
-            class: 'border-0 pt-5'
+            class: 'border-0 pt-5 px-12 w-[64rem]'
           },
           content: {
             class: 'rounded-none'

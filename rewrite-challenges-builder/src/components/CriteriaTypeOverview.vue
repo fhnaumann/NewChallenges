@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col items-center space-y-2">
+  <div class="flex flex-col items-center space-y-2 py-4 bg-primary-100 rounded-xl">
     <Button :label="t(`${criteriaType}.browse_button`)" />
-    <p>{{ t(`${criteriaType}.global_title`) }}</p>
-    <div :class="`flex flex-col p-4 space-y-2 ${computedBgColor}`">
+    <p class="text-3xl font-bold text-primary-900">{{ t(`${criteriaType}.global_title`) }}</p>
+    <div class="flex flex-col space-y-2 w-full px-12 py-4">
       <ActiveCriteriaRow
         v-for="activeCriteria in getCriteria()"
         :key="activeCriteria"

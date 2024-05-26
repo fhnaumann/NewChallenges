@@ -21,17 +21,17 @@
       },
       "noBlockBreak": {
         "name": "NoBlockBreak",
-        "alias": ["NoBlockBreak", "No BlockBreak", "NoBlock Break", "No Block Break"],
+        "alias": ["NoBlockBreak", "No BlockBreak", "NoBlock Break", "No Block Break", "rule"],
         "tooltip": "Breaking blocks is prohibited!"
       },
       "noItem": {
         "name": "NoItem",
-        "alias": ["NoItem"],
+        "alias": ["NoItem", "rule"],
         "tooltip": "Collecting items is prohibited!"
       },
       "noMobKill": {
         "name": "NoMobKill",
-        "alias": ["NoMobKill"],
+        "alias": ["NoMobKill", "No MobKill", "NoMob Kill", "entity", "rule"],
         "tooltip": "Killings mobs is prohibited!"
       }
     }

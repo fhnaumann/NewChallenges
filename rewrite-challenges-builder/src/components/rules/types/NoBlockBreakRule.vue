@@ -27,6 +27,5 @@
   import { ALL_IS_BLOCK_MATERIAL_DATA } from '@/models/data_row'
   import SaveOrRemoveChanges from '@/components/SaveOrRemoveChanges.vue'
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
-  //import '@/assets/rules.css'
 
 </script>

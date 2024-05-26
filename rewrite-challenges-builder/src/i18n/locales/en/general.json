@@ -10,6 +10,10 @@
       "no_matches": "Your search did not match anything."
     },
     "delete": "Delete",
-    "save_changes": "Save changes"
+    "save_changes": "Save changes",
+    "export": {
+      "download_button": "Download Settings File",
+      "upload_button": "Upload Settings File"
+    }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div :class="`flex items-center justify-between px-2 space-x-4 ${computedBgColor}`">
-    <p>{{ t(`${criteriaType}.types.${criteriaCode}.name`) }}</p>
+  <div class="flex items-center justify-between px-2 space-x-4 bg-primary-300 hover:bg-primary-400 rounded-lg w-full">
+    <p class="truncate">{{ t(`${criteriaType}.types.${criteriaCode}.name`) }}</p>
     <div class="flex space-x-2">
       <router-link :to="`/${criteriaType}/${criteriaCode}`">
         <Button
