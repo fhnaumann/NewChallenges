@@ -14,6 +14,9 @@
     "export": {
       "download_button": "Download Settings File",
       "upload_button": "Upload Settings File"
+    },
+    "criteria": {
+      "empty_configuration": "{criteria} does not have any additional configuration options."
     }
   }
 }

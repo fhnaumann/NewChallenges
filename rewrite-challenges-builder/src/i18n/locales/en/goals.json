@@ -42,6 +42,36 @@
             "name": "Kill all mobs once"
           }
         }
+      },
+      "itemGoal": {
+        "name": "ItemGoal",
+        "alias": ["ItemGoal", "Item Goal"],
+        "settings": {
+          "dropdown": {
+            "itemPrefix": "Item:",
+            "itemPlaceholder": "Select items",
+            "amountPrefix": "Amount:",
+            "noMatch": "No matching items found."
+          },
+          "collectEverything": {
+            "name": "Collect everything"
+          },
+          "collectAllItems": {
+            "name": "Collect all items"
+          },
+          "collectAllBlocks": {
+            "name": "Collect all blocks"
+          }
+        }
+      },
+      "deathGoal": {
+        "name": "DeathGoal",
+        "alias": ["DeathGoal", "Death Goal"],
+        "settings": {
+          "deathAmount": {
+            "name": "Deaths: "
+          }
+        }
       }
     }
   }

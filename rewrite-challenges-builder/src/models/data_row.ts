@@ -1,5 +1,5 @@
-import materials from '../../public/data_rows/materials.json'
-import entity_types from '../../public/data_rows/entity_types.json'
+import materials from '@/assets/data_rows/materials.json'
+import entity_types from '@/assets/data_rows/entity_types.json'
 import type { CollectableDataConfig, CollectableEntryConfig } from '@/models/goals'
 
 /**

@@ -16,7 +16,7 @@
     "types": {
       "noDeath": {
         "name": "NoDeath",
-        "alias": ["NoDeath", "No Death"],
+        "alias": ["NoDeath", "No Death", "rule"],
         "tooltip": "Dying is prohibited!"
       },
       "noBlockBreak": {

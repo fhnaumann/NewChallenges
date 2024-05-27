@@ -6,7 +6,7 @@
     "types": {
       "customHealthSetting": {
         "name": "Custom Health",
-        "alias": ["Custom Health", "CustomHealth", "CustomHearts", "Custom Hearts"],
+        "alias": ["Custom Health", "CustomHealth", "CustomHearts", "Custom Hearts", "setting"],
         "settings": {
           "hearts": {
             "name": "Hearts:",

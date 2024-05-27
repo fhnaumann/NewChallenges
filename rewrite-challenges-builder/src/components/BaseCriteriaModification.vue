@@ -1,9 +1,9 @@
 <template>
-  <div class="pt-4 h-svh bg-rules-100">
+  <div :class="`pt-4 h-svh ${computedCssClass} bg-primary-200`">
     <div class="flex flex-col items-center justify-center space-y-2 w-full">
-      <p :class="`text-3xl font-bold ${computedTextColor}`">{{ t('general.modification.title', { criteria: t(`${criteriaType}.types.${criteriaKey}.name`) }) }}</p>
+      <p :class="`text-3xl font-bold text-primary-900`">{{ t('general.modification.title', { criteria: t(`${criteriaType}.types.${criteriaKey}.name`) }) }}</p>
 
-      <div class="bg-gray-200 px-2 w-full text-center text-2xl">
+      <div class="bg-gray-200 px-2 py-1 w-full text-center text-2xl drop-shadow-xl">
         <i18n-t keypath="general.modification.wiki_banner" tag="p">
           <template #wiki>
             <span class="font-bold">wiki</span>
@@ -18,10 +18,10 @@
 
       <!--p class="bg-gray-200 px-2 w-full text-center">{{ t('general.modification.wiki_banner', { criteria: t(criteriaNameI18NPath) }) }}</p-->
     </div>
-    <div class="flex flex-row w-screen justify-between space-x-4 h-96 border-indigo-700 border-4">
-      <div :class="`h-screen pl-2 ${computedCssClass}`">
+    <div class="flex flex-row w-screen justify-between space-x-4 h-96 pt-4">
+      <div class="h-full pl-2">
         <slot name="configuration">
-
+          <p>{{ t('general.criteria.empty_configuration', {criteria: t(`${criteriaType}.types.${criteriaKey}.name`)}) }}</p>
         </slot>
       </div>
       <SaveOrRemoveChanges class="w-40" @deleteCriteria="emit('deleteCriteria'); deleteCriteria(criteriaType, criteriaKey)"

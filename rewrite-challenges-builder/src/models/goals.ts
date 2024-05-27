@@ -1,11 +1,15 @@
 import type { BlockBreakGoalConfig } from './blockbreak'
 import type { MobGoalConfig } from './mob'
+import type { ItemGoalConfig } from './item'
+import type { DeathGoalConfig } from './death'
 
 export type GoalName = keyof GoalsConfig
 
 export interface GoalsConfig {
   blockBreakGoal?: BlockBreakGoalConfig
   mobGoal?: MobGoalConfig
+  itemGoal?: ItemGoalConfig,
+  deathGoal?: DeathGoalConfig,
 }
 
 export interface BaseGoalConfig extends Timeable {
