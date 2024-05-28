@@ -25,6 +25,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     private final MapGoalBossBarHelper<K> bossBarHelper;
     protected final GoalMessageHelper<D, K> messageHelper;
     protected final CollectedInventory<D, K> collectedInventory;
+    protected Timer timer;
 
     public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, MapGoalBossBarHelper<K> bossBarHelper, CollectedInventory<D, K> collectedInventory) {
         super(context, complete);

@@ -30,12 +30,14 @@ public class FileManager {
         GoalsConfig goalsConfig = new GoalsConfig();
         challengeManager.getGoals().forEach(goal -> goal.addToGeneratedConfig(goalsConfig));
 
+        SettingsConfig settingsConfig = new SettingsConfig();
+
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        ChallengesSchema ChallengesSchema = new ChallengesSchema(goalsConfig, rulesConfig, (int) challengeManager.getTime());
+        Model Model = new Model(0, goalsConfig, null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, ChallengesSchema);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, Model);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,9 +68,9 @@ public class FileManager {
         ValidationResult validationResult = Validation.modernValidate(json, schemaStream, schematronStream, sourceContext);
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
-            ChallengesSchema challengesSchema = null;
+            Model challengesSchema = null;
             try {
-                challengesSchema = objectMapper.readValue(json, ChallengesSchema.class);
+                challengesSchema = objectMapper.readValue(json, Model.class);
 
                 Context context = new Context.Builder()
                         .withPlugin(plugin)

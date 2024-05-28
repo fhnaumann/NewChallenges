@@ -4,13 +4,7 @@
     "definitions": {
         "BlockBreakGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
-                "breakAllBlocksOnce": {
-                    "default": false,
-                    "description": "Every block has to be broken exactly once.",
-                    "type": "boolean"
-                },
                 "broken": {
                     "default": [],
                     "description": "The blocks (more specifically materials) that need to be broken to beat this goal.",
@@ -29,24 +23,8 @@
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
-                "maxTimeSeconds": {
-                    "default": 600,
-                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "minTimeSeconds": {
-                    "default": 180,
-                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "order": {
-                    "default": -1,
-                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
-                    "type": "number"
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
                 },
                 "shuffled": {
                     "default": false,
@@ -58,7 +36,6 @@
         },
         "CollectableDataConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "amountNeeded": {
                     "default": 1,
@@ -81,7 +58,6 @@
         },
         "CollectableEntryConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "collectableData": {
                     "$ref": "#/definitions/CollectableDataConfig",
@@ -101,7 +77,6 @@
         },
         "CompletionConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "contributors": {
                     "$ref": "#/definitions/ContributorsConfig",
@@ -120,14 +95,12 @@
         },
         "ContributorsConfig": {
             "additionalProperties": {
-                "type": "number"
+                "type": "integer"
             },
-            "defaultProperties": [],
             "type": "object"
         },
         "CustomHealthSettingConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "hearts": {
                     "default": 20,
@@ -141,7 +114,6 @@
         },
         "DeathGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "complete": {
                     "default": false,
@@ -155,31 +127,14 @@
                     "minimum": 1,
                     "type": "integer"
                 },
-                "maxTimeSeconds": {
-                    "default": 600,
-                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "minTimeSeconds": {
-                    "default": 180,
-                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "order": {
-                    "default": -1,
-                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
-                    "type": "number"
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
                 }
             },
             "type": "object"
         },
         "DeathPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "all",
@@ -195,7 +150,6 @@
         },
         "EnabledRules": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
@@ -214,7 +168,6 @@
         },
         "EndPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "all",
@@ -228,9 +181,33 @@
             },
             "type": "object"
         },
+        "GoalTimer": {
+            "additionalProperties": false,
+            "properties": {
+                "maxTimeSeconds": {
+                    "default": 600,
+                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "minTimeSeconds": {
+                    "default": 180,
+                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "order": {
+                    "default": -1,
+                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
         "GoalsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "blockBreakGoal": {
                     "$ref": "#/definitions/BlockBreakGoalConfig"
@@ -249,7 +226,6 @@
         },
         "HealthPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "all",
@@ -277,7 +253,6 @@
         },
         "ItemGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "complete": {
                     "default": false,
@@ -289,6 +264,9 @@
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
                 "items": {
                     "default": [],
                     "description": "The items that need to be collected to beat this goal.",
@@ -296,25 +274,6 @@
                         "$ref": "#/definitions/CollectableEntryConfig"
                     },
                     "type": "array"
-                },
-                "maxTimeSeconds": {
-                    "default": 600,
-                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "minTimeSeconds": {
-                    "default": 180,
-                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "order": {
-                    "default": -1,
-                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
-                    "type": "number"
                 },
                 "shuffled": {
                     "default": false,
@@ -326,7 +285,6 @@
         },
         "MobGoalConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "complete": {
                     "default": false,
@@ -338,19 +296,8 @@
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
-                "maxTimeSeconds": {
-                    "default": 600,
-                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
-                },
-                "minTimeSeconds": {
-                    "default": 180,
-                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
-                    "maximum": 86400,
-                    "minimum": 10,
-                    "type": "number"
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
                 },
                 "mobs": {
                     "default": [],
@@ -359,11 +306,6 @@
                         "$ref": "#/definitions/CollectableEntryConfig"
                     },
                     "type": "array"
-                },
-                "order": {
-                    "default": -1,
-                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
-                    "type": "number"
                 },
                 "shuffled": {
                     "default": false,
@@ -375,7 +317,6 @@
         },
         "Model": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "currentOrder": {
                     "default": -1,
@@ -405,7 +346,6 @@
         },
         "NoBlockBreakRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -432,7 +372,6 @@
         },
         "NoDeathRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -451,7 +390,6 @@
         },
         "NoItemCollectRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -478,7 +416,6 @@
         },
         "NoMobKillRuleConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -505,7 +442,6 @@
         },
         "PunishmentsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "deathPunishment": {
                     "$ref": "#/definitions/DeathPunishmentConfig"
@@ -527,7 +463,6 @@
         },
         "RandomEffectPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "all",
@@ -555,7 +490,6 @@
         },
         "RandomItemPunishmentConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "affects": {
                     "default": "all",
@@ -576,7 +510,7 @@
                     "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
                     "maximum": 10,
                     "minimum": 1,
-                    "type": "number"
+                    "type": "integer"
                 },
                 "randomizeItemsRemovedAtOnce": {
                     "default": false,
@@ -588,7 +522,6 @@
         },
         "RulesConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "enabledGlobalPunishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -601,7 +534,6 @@
         },
         "SettingsConfig": {
             "additionalProperties": false,
-            "defaultProperties": [],
             "properties": {
                 "customHealthSetting": {
                     "$ref": "#/definitions/CustomHealthSettingConfig"

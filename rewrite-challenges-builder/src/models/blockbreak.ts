@@ -16,11 +16,4 @@ export interface BlockBreakGoalConfig extends BaseGoalConfig, Orderable {
    * @default []
    */
   broken?: CollectableEntryConfig[]
-
-  /**
-   * Every block has to be broken exactly once.
-   *
-   * @default false
-   */
-  breakAllBlocksOnce?: boolean
 }

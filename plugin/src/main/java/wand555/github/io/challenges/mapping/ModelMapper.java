@@ -60,7 +60,7 @@ public class ModelMapper {
         this.context = context;
     }
 
-    public static void map2ModelClasses(Context context, ChallengesSchema json) {
+    public static void map2ModelClasses(Context context, Model json) {
 
         List<Rule> rules = mapToRules(context, json.getRules() != null ? json.getRules().getEnabledRules() : new EnabledRules());
         List<Punishment> globalPunishments = mapToPunishments(context, json.getRules() != null ? json.getRules().getEnabledGlobalPunishments() : new PunishmentsConfig());
@@ -92,8 +92,8 @@ public class ModelMapper {
         if(goalsConfig.getItemGoal() != null) {
             goals.add(new ItemGoalFactory().createGoal(context, goalsConfig.getItemGoal()));
         }
-        if(goalsConfig.getBlockbreakGoal() != null) {
-            goals.add(new BlockBreakGoalFactory().createGoal(context, goalsConfig.getBlockbreakGoal()));
+        if(goalsConfig.getBlockBreakGoal() != null) {
+            goals.add(new BlockBreakGoalFactory().createGoal(context, goalsConfig.getBlockBreakGoal()));
         }
         return goals;
     }
@@ -132,9 +132,6 @@ public class ModelMapper {
         if(enabledRulesConfig.getNoBlockBreak() != null) {
             NoBlockBreakRuleConfig noBlockBreakRuleConfig = enabledRulesConfig.getNoBlockBreak();
             rules.add(new BlockBreakRule(context, noBlockBreakRuleConfig, new BlockBreakRuleMessageHelper(context)));
-        }
-        if(enabledRulesConfig.getNoBlockPlace() != null) {
-            NoBlockPlaceRuleConfig noBlockPlaceRuleConfig = enabledRulesConfig.getNoBlockPlace();
         }
         if(enabledRulesConfig.getNoMobKill() != null) {
             rules.add(new NoMobKillRule(context, enabledRulesConfig.getNoMobKill(), new NoMobKillRuleMessageHelper(context)));

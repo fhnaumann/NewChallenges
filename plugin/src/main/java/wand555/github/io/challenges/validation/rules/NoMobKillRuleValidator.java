@@ -1,6 +1,6 @@
 package wand555.github.io.challenges.validation.rules;
 
-import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
 import wand555.github.io.challenges.validation.TypeValidatorHelper;
 import wand555.github.io.challenges.validation.types.MobTypeValidator;
@@ -13,7 +13,7 @@ public class NoMobKillRuleValidator extends MobTypeValidator {
     }
 
     @Override
-    protected List<String> getCodes(ChallengesSchema challengesSchema) {
+    protected List<String> getCodes(Model challengesSchema) {
         return challengesSchema.getRules().getEnabledRules().getNoMobKill().getExemptions();
     }
 

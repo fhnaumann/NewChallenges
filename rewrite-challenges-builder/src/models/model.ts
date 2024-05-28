@@ -3,7 +3,7 @@ import type { RuleName, RulesConfig } from './rules'
 import type { SettingName, SettingsConfig } from './settings'
 
 // running the command:
-// typescript-json-schema src/models/model.ts Model > "src/assets/challenges_schema.json" --noExtraProps --strictNullChecks --required --defaultProps
+// typescript-json-schema src/models/model.ts Model > "src/assets/challenges_schema.json" --noExtraProps --strictNullChecks --required --defaultNumberType=integer
 // NOTE: Any class that exports an interface may not import any other file (except for other interfaces)!
 
 export interface Model {

@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +16,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.criteria.goals.Progressable;
@@ -56,7 +61,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("progress").setExecutor(this);
 
         getServer().getPluginManager().registerEvents(this, this);
-
 
         tempContext = null;
         try {

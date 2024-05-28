@@ -1,7 +1,7 @@
 package wand555.github.io.challenges.validation;
 
 import org.bukkit.Keyed;
-import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 
 import java.util.List;
@@ -15,14 +15,14 @@ public abstract class CodeableValidator<T extends DataSourceJSON<K>, K extends K
     }
 
     @Override
-    public ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
+    public ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
         CodeValidator<T,K> codeValidator = new CodeValidator<>(dataSource, this::additionalCodeConstraints, getCodes(challengesSchema), getPathToCurrentCollectables());
         return codeValidator.performValidation(builder, challengesSchema);
     }
 
     protected abstract boolean additionalCodeConstraints(T dataSourceElement);
 
-    protected abstract List<String> getCodes(ChallengesSchema challengesSchema);
+    protected abstract List<String> getCodes(Model challengesSchema);
 
     protected abstract String getPathToCurrentCollectables();
 }

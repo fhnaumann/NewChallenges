@@ -43,7 +43,7 @@ public abstract class BaseCollectedItemStack<K extends Keyed> implements Resourc
         }
     };
 
-    public static final BiFunction<Context, Material, ItemStack> DEFAULT_ITEMSTACK_CREATOR = (context1, material) -> {
+    public static final BiFunction<Context, Material, ItemStack> DEFAULT_ITEMSTACK_CREATOR = (ignoredForNow, material) -> {
         if(material.isItem()) {
             return new ItemStack(material);
         }

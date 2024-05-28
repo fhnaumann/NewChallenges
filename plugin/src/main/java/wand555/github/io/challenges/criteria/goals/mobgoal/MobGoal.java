@@ -28,6 +28,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
         return new MobGoalConfig(
                 isComplete(),
                 isFixedOrder(),
+                timer.toGeneratedJSONClass(),
                 goalCollector.toGeneratedJSONClass(),
                 true
         );

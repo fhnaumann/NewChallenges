@@ -39,6 +39,7 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
         return new ItemGoalConfig(
                 isComplete(),
                 isFixedOrder(),
+                timer.toGeneratedJSONClass(),
                 goalCollector.toGeneratedJSONClass(),
                 false
         );

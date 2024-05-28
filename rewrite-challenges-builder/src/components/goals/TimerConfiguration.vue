@@ -51,30 +51,30 @@
   watch(() => enabled.value, value => {
     console.log('new enabled', value)
     if (value) {
-      set(`${props.modelAccess.where}.order`, 1, false)
+      set(`${props.modelAccess.where}.goalTimer.order`, 1, false)
     }
     else {
-      set(`${props.modelAccess.where}.order`, undefined, false)
-      set(`${props.modelAccess.where}.minTimeSeconds`, undefined, false)
-      set(`${props.modelAccess.where}.maxTimeSeconds`, undefined, false)
+      set(`${props.modelAccess.where}.goalTimer.order`, undefined, false)
+      set(`${props.modelAccess.where}.goalTimer.minTimeSeconds`, undefined, false)
+      set(`${props.modelAccess.where}.goalTimer.maxTimeSeconds`, undefined, false)
     }
   })
 
   function updateOrder(value: number) {
-    set(`${props.modelAccess.where}.order`, value, false)
+    set(`${props.modelAccess.where}.goalTimer.order`, value, false)
   }
 
   function updateMin(value: number) {
     value = minutes2Sec(value)
     if (value <= maxTimeSecOrDefault()) {
-      set(`${props.modelAccess.where}.minTimeSeconds`, value, false)
+      set(`${props.modelAccess.where}.goalTimer.minTimeSeconds`, value, false)
     }
   }
 
   function updateMax(value: number) {
     value = minutes2Sec(value)
     if (value >= minTimeSecOrDefault()) {
-      set(`${props.modelAccess.where}.maxTimeSeconds`, value, false)
+      set(`${props.modelAccess.where}.goalTimer.maxTimeSeconds`, value, false)
     }
   }
 
@@ -84,26 +84,26 @@
   }
 
   // take default values from any goal config instead of the specific one (for now)
-  const config = jsonSchemaConfig.BlockBreakGoalConfig.properties
+  const config = jsonSchemaConfig.GoalTimer.properties
 
   function minTimeSecOrDefault(): number {
-    return props.modelAccess.get(model)?.minTimeSeconds !== undefined
+    return props.modelAccess.get(model)?.goalTimer?.minTimeSeconds !== undefined
       ?
-      props.modelAccess.get(model)?.minTimeSeconds!
+      props.modelAccess.get(model)?.goalTimer?.minTimeSeconds!
       : config.minTimeSeconds.default
   }
 
   function maxTimeSecOrDefault(): number {
-    return props.modelAccess.get(model)?.maxTimeSeconds !== undefined
+    return props.modelAccess.get(model)?.goalTimer?.maxTimeSeconds !== undefined
       ?
-      props.modelAccess.get(model)?.maxTimeSeconds!
+      props.modelAccess.get(model)?.goalTimer?.maxTimeSeconds!
       : config.maxTimeSeconds.default
   }
 
   function orderOrDefault(): number {
-    return props.modelAccess.get(model)?.order !== undefined
+    return props.modelAccess.get(model)?.goalTimer?.order !== undefined
       ?
-      props.modelAccess.get(model)?.order!
+      props.modelAccess.get(model)?.goalTimer?.order!
       : 1
   }
 

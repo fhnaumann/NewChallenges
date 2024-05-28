@@ -42,8 +42,8 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
     }
 
     public enum Affects {
-        CAUSER("Causer"),
-        ALL("All");
+        CAUSER("causer"),
+        ALL("all");
 
         private String value;
 
@@ -56,11 +56,11 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
         }
 
         public static Affects fromJSONString(String valueInJSONString) {
-            switch (valueInJSONString) {
-                case "All": return ALL;
-                case "Causer": return CAUSER;
-                default: throw new RuntimeException();
-            }
+            return switch (valueInJSONString) {
+                case "all" -> ALL;
+                case "causer" -> CAUSER;
+                default -> throw new RuntimeException();
+            };
         }
     }
 }

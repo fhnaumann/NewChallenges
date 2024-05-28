@@ -1,7 +1,7 @@
 package wand555.github.io.challenges.validation.goals;
 
 import org.bukkit.entity.EntityType;
-import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
@@ -17,7 +17,7 @@ public class MobGoalValidator extends MobTypeValidator {
     }
 
     @Override
-    protected List<String> getCodes(ChallengesSchema challengesSchema) {
+    protected List<String> getCodes(Model challengesSchema) {
         return ModelMapper.collectables2Codes(challengesSchema.getGoals().getMobGoal().getMobs());
     }
 

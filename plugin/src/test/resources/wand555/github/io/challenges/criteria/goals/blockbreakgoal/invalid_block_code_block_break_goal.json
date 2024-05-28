@@ -1,6 +1,6 @@
 {
   "goals": {
-    "blockbreakGoal": {
+    "blockBreakGoal": {
       "broken": [
         {
           "collectableData": {

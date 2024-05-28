@@ -1,7 +1,7 @@
 package wand555.github.io.challenges.validation;
 
 import org.bukkit.Keyed;
-import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 
@@ -23,11 +23,11 @@ public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends
     }
 
     @Override
-    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
+    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
         return performCodeValidation(builder, challengesSchema);
     }
 
-    private ValidationResult.ValidationResultBuilder performCodeValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
+    private ValidationResult.ValidationResultBuilder performCodeValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
         List<String> illegalCodes = codes.stream()
                 .filter(Predicate.not(this::hasValidCode))
                 .toList();

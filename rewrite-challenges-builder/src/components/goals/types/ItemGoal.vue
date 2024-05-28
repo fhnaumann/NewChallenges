@@ -4,14 +4,14 @@
       <CollectableDropdownConfiguration
         :all-possible-data="ALL_IS_ITEM_MATERIAL_DATA"
         :dropdown-placeholder-text="t('goals.types.itemGoal.settings.dropdown.itemPlaceholder')"
-        :render-selection="!collectAllItemsOnce"
+        :render-selection="!(collectEveryItemOnce || collectAllItemsOnce || collectAllBlockItemsOnce)"
         :model-access="{
-                                        get: model => model.goals?.mobGoal?.mobs,
-                                        where: 'goals.mobGoal.mobs',
+                                        get: model => model.goals?.itemGoal?.items,
+                                        where: 'goals.itemGoal.items',
                                         testSchematron: false
                                         }"
         :collectable-text-prefix="t('goals.types.itemGoal.settings.dropdown.itemPrefix')"
-        :show-image="true" :disabled="collectAllItemsOnce"
+        :show-image="true" :disabled="collectEveryItemOnce || collectAllItemsOnce || collectAllBlockItemsOnce"
         :collectable-amount-prefix="t('goals.types.itemGoal.settings.dropdown.amountPrefix')" />
       <div>
         <Checkbox v-model="collectEveryItemOnce" @update:model-value="updateCollectEverythingOnce"
@@ -20,12 +20,12 @@
       </div>
       <div>
         <Checkbox v-model="collectAllItemsOnce" @update:model-value="updateCollectAllItemsOnce"
-                  input-id="collectAllItemsOnce" binary />
+                  input-id="collectAllItemsOnce" binary :disabled="collectEveryItemOnce" />
         <label for="collectAllItemsOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectAllItems.name') }}</label>
       </div>
       <div>
         <Checkbox v-model="collectAllBlockItemsOnce" @update:model-value="updateCollectAllBlockItemsOnce"
-                  input-id="collectAllBlockItemsOnce" binary />
+                  input-id="collectAllBlockItemsOnce" binary :disabled="collectEveryItemOnce" />
         <label for="collectAllBlockItemsOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectAllBlocks.name') }}</label>
       </div>
       <FixedOrderConfiguration :model-access="baseModelAccess" />
@@ -54,6 +54,7 @@
   import type { ItemGoalConfig } from '@/models/item'
   import type { CollectableEntryConfig } from '@/models/goals'
   import { useI18n } from 'vue-i18n'
+  import { watch } from 'vue'
 
   const { t } = useI18n()
   const { set } = useModelStore()
@@ -71,6 +72,23 @@
       amountNeeded: 1
     }
   } as CollectableEntryConfig], false)
+
+  watch(collectEveryItemOnce, newCollectEveryItemOnce => {
+    if(newCollectEveryItemOnce) {
+      collectAllItemsOnce.value = false
+      collectAllBlockItemsOnce.value = false
+    }
+  })
+  watch(collectEveryItemOnce, newCollectEveryItemOnce => {
+    if(newCollectEveryItemOnce && collectAllBlockItemsOnce.value) {
+      collectEveryItemOnce.value = true
+    }
+  })
+  watch(collectAllBlockItemsOnce, newCollectAllBlockItemsOnce => {
+    if(newCollectAllBlockItemsOnce && collectAllItemsOnce.value) {
+      collectEveryItemOnce.value = true
+    }
+  })
 
   function updateCollectEverythingOnce(collectEveryItemOnce: boolean) {
     updateItems(ALL_IS_ITEM_MATERIAL_DATA, collectEveryItemOnce)

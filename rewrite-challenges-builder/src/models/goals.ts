@@ -43,6 +43,10 @@ export interface Orderable {
 }
 
 export interface Timeable {
+  goalTimer?: GoalTimer
+}
+
+export interface GoalTimer {
   /**
    * The lower bound for determining the time that is allowed to complete a goal.
    * Cannot be bigger than maxTimeSeconds.

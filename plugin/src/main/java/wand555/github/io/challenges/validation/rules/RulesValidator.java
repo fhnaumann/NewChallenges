@@ -1,7 +1,7 @@
 package wand555.github.io.challenges.validation.rules;
 
 import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.validation.ModelValidator;
 import wand555.github.io.challenges.validation.ValidationResult;
@@ -15,7 +15,7 @@ public class RulesValidator extends ModelValidator {
     }
 
     @Override
-    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, ChallengesSchema challengesSchema) {
+    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
         // TODO: go through each and every rule and call the appropriate validator (if validation is necessary)
         if(challengesSchema.getRules() == null || challengesSchema.getRules().getEnabledRules() == null) {
             return builder;

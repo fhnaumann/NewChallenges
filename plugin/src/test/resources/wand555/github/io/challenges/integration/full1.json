@@ -13,7 +13,7 @@
     }
   },
   "goals": {
-    "blockbreakGoal": {
+    "blockBreakGoal": {
       "broken": [{
         "collectableName": "dirt",
         "collectableData": {

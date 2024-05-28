@@ -1,6 +1,6 @@
 {
+    "$ref": "#/definitions/Model",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "additionalProperties": false,
     "definitions": {
         "BlockBreakGoalConfig": {
             "additionalProperties": false,
@@ -23,6 +23,9 @@
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
                 "shuffled": {
                     "default": false,
                     "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
@@ -40,6 +43,10 @@
                     "maximum": 100,
                     "minimum": 1,
                     "type": "integer"
+                },
+                "completion": {
+                    "$ref": "#/definitions/CompletionConfig",
+                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
                 },
                 "currentAmount": {
                     "default": 0,
@@ -60,10 +67,6 @@
                 "collectableName": {
                     "description": "The name of the collectable. This could, for example, be \"PIG\" (entity), \"STONE\" (material).",
                     "type": "string"
-                },
-                "completion": {
-                    "$ref": "#/definitions/CompletionConfig",
-                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
                 }
             },
             "required": [
@@ -85,6 +88,9 @@
                     "type": "integer"
                 }
             },
+            "required": [
+                "whenCollectedSeconds"
+            ],
             "type": "object"
         },
         "ContributorsConfig": {
@@ -93,15 +99,49 @@
             },
             "type": "object"
         },
+        "CustomHealthSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "hearts": {
+                    "default": 20,
+                    "description": "The maximum number of hearts the players play with.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "DeathGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "deathAmount": {
+                    "default": 1,
+                    "description": "The amount of deaths required to complete the goal.",
+                    "maximum": 1000,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                }
+            },
+            "type": "object"
+        },
         "DeathPunishmentConfig": {
             "additionalProperties": false,
             "properties": {
                 "affects": {
-                    "default": "All",
+                    "default": "all",
                     "description": "Who is affected by the punishment.",
                     "enum": [
-                        "All",
-                        "Causer"
+                        "all",
+                        "causer"
                     ],
                     "type": "string"
                 }
@@ -113,15 +153,6 @@
             "properties": {
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
-                },
-                "noBlockPlace": {
-                    "$ref": "#/definitions/NoBlockPlaceRuleConfig"
-                },
-                "noCrafting": {
-                    "$ref": "#/definitions/NoCraftingRuleConfig"
-                },
-                "noDamage": {
-                    "$ref": "#/definitions/NoDamageRuleConfig"
                 },
                 "noDeath": {
                     "$ref": "#/definitions/NoDeathRuleConfig"
@@ -139,13 +170,38 @@
             "additionalProperties": false,
             "properties": {
                 "affects": {
-                    "default": "All",
+                    "default": "all",
                     "description": "Who is affected by the punishment.",
                     "enum": [
-                        "All",
-                        "Causer"
+                        "all",
+                        "causer"
                     ],
                     "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "GoalTimer": {
+            "additionalProperties": false,
+            "properties": {
+                "maxTimeSeconds": {
+                    "default": 600,
+                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "minTimeSeconds": {
+                    "default": 180,
+                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "order": {
+                    "default": -1,
+                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
+                    "type": "integer"
                 }
             },
             "type": "object"
@@ -153,8 +209,11 @@
         "GoalsConfig": {
             "additionalProperties": false,
             "properties": {
-                "blockbreakGoal": {
+                "blockBreakGoal": {
                     "$ref": "#/definitions/BlockBreakGoalConfig"
+                },
+                "deathGoal": {
+                    "$ref": "#/definitions/DeathGoalConfig"
                 },
                 "itemGoal": {
                     "$ref": "#/definitions/ItemGoalConfig"
@@ -169,11 +228,11 @@
             "additionalProperties": false,
             "properties": {
                 "affects": {
-                    "default": "All",
+                    "default": "all",
                     "description": "Who is affected by the punishment.",
                     "enum": [
-                        "All",
-                        "Causer"
+                        "all",
+                        "causer"
                     ],
                     "type": "string"
                 },
@@ -205,6 +264,9 @@
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
                 "items": {
                     "default": [],
                     "description": "The items that need to be collected to beat this goal.",
@@ -234,6 +296,9 @@
                     "description": "If true, all selected elements have to be collected/killed in a specific order.",
                     "type": "boolean"
                 },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
                 "mobs": {
                     "default": [],
                     "description": "The mobs that need to be killed to beat this goal.",
@@ -246,6 +311,35 @@
                     "default": false,
                     "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
                     "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "Model": {
+            "additionalProperties": false,
+            "properties": {
+                "currentOrder": {
+                    "default": -1,
+                    "description": "The number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
+                    "type": "integer"
+                },
+                "goals": {
+                    "$ref": "#/definitions/GoalsConfig"
+                },
+                "nextChallenge": {
+                    "$ref": "#/definitions/Model"
+                },
+                "rules": {
+                    "$ref": "#/definitions/RulesConfig"
+                },
+                "settings": {
+                    "$ref": "#/definitions/SettingsConfig"
+                },
+                "timer": {
+                    "default": 0,
+                    "description": "The time (in seconds) that has passed since the challenge was started.",
+                    "minimum": 0,
+                    "type": "integer"
                 }
             },
             "type": "object"
@@ -263,49 +357,15 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
-                }
-            },
-            "type": "object"
-        },
-        "NoBlockPlaceRuleConfig": {
-            "additionalProperties": false,
-            "properties": {
-                "exemptions": {
-                    "default": [],
-                    "description": "List of materials that are exempted from the rule.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
                 },
-                "punishments": {
-                    "$ref": "#/definitions/PunishmentsConfig"
-                }
-            },
-            "type": "object"
-        },
-        "NoCraftingRuleConfig": {
-            "additionalProperties": false,
-            "properties": {
-                "exemptions": {
-                    "default": [],
-                    "description": "List of materials that are exempted from the rule.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "punishments": {
-                    "$ref": "#/definitions/PunishmentsConfig"
-                }
-            },
-            "type": "object"
-        },
-        "NoDamageRuleConfig": {
-            "additionalProperties": false,
-            "properties": {
-                "punishments": {
-                    "$ref": "#/definitions/PunishmentsConfig"
+                "result": {
+                    "default": "Deny",
+                    "description": "The result action when the rule is violated.",
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -315,6 +375,15 @@
             "properties": {
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "result": {
+                    "default": "Deny",
+                    "description": "The result action when the rule is violated.",
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -332,6 +401,15 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "result": {
+                    "default": "Deny",
+                    "description": "The result action when the rule is violated.",
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -349,6 +427,15 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "result": {
+                    "default": "Deny",
+                    "description": "The result action when the rule is violated.",
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -378,11 +465,11 @@
             "additionalProperties": false,
             "properties": {
                 "affects": {
-                    "default": "All",
+                    "default": "all",
                     "description": "Who is affected by the punishment.",
                     "enum": [
-                        "All",
-                        "Causer"
+                        "all",
+                        "causer"
                     ],
                     "type": "string"
                 },
@@ -405,11 +492,11 @@
             "additionalProperties": false,
             "properties": {
                 "affects": {
-                    "default": "All",
+                    "default": "all",
                     "description": "Who is affected by the punishment.",
                     "enum": [
-                        "All",
-                        "Causer"
+                        "all",
+                        "causer"
                     ],
                     "type": "string"
                 },
@@ -444,22 +531,16 @@
                 }
             },
             "type": "object"
-        }
-    },
-    "properties": {
-        "goals": {
-            "$ref": "#/definitions/GoalsConfig"
         },
-        "rules": {
-            "$ref": "#/definitions/RulesConfig"
-        },
-        "timer": {
-            "default": 0,
-            "description": "The time (in seconds) that has passed since the challenge was started.",
-            "minimum": 0,
-            "type": "integer"
+        "SettingsConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "customHealthSetting": {
+                    "$ref": "#/definitions/CustomHealthSettingConfig"
+                }
+            },
+            "type": "object"
         }
-    },
-    "type": "object"
+    }
 }
 

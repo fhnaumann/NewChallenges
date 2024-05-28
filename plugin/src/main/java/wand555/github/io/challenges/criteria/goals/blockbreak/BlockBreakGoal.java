@@ -27,7 +27,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     @Override
     public void addToGeneratedConfig(GoalsConfig config) {
-        config.setBlockbreakGoal(toGeneratedJSONClass());
+        config.setBlockBreakGoal(toGeneratedJSONClass());
     }
 
     @Override
@@ -41,6 +41,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
                 goalCollector.toGeneratedJSONClass(),
                 isComplete(),
                 isFixedOrder(),
+                timer.toGeneratedJSONClass(),
                 true // anything that is stored from the server will already be shuffled (once)
         );
     }

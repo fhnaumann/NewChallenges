@@ -1,7 +1,7 @@
 package wand555.github.io.challenges.validation.goals;
 
 import org.bukkit.Material;
-import wand555.github.io.challenges.generated.ChallengesSchema;
+import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
@@ -17,8 +17,8 @@ public class BlockBreakGoalValidator extends BlockBreakTypeValidator {
     }
 
     @Override
-    protected List<String> getCodes(ChallengesSchema challengesSchema) {
-        return ModelMapper.collectables2Codes(challengesSchema.getGoals().getBlockbreakGoal().getBroken());
+    protected List<String> getCodes(Model challengesSchema) {
+        return ModelMapper.collectables2Codes(challengesSchema.getGoals().getBlockBreakGoal().getBroken());
     }
 
 
