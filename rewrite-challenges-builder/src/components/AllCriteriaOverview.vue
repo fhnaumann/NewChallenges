@@ -42,7 +42,6 @@
         blockScroll: true,
         draggable: false,
         position: 'top',
-        unstyled: true,
         pt: {
           root: {
             class: 'border-0 pt-5 px-12 w-[64rem]'
@@ -72,7 +71,7 @@
         draggable: false,
         pt: {
           root: {
-            class: 'w-[64rem] bg-surface-0'
+            class: 'w-[64rem] h-5/6 bg-surface-0'
           }
         }
       }

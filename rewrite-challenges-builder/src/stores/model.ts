@@ -2,7 +2,7 @@ import type { Model } from '@/models/model'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useModelStore = defineStore('model', () => {
+export const useModelStore = defineStore('stateModel', () => {
   const model = ref<Model>({})
 
   function mapIdxAsStringOrIndex(wherePart: string): string | number {

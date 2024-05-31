@@ -1,6 +1,9 @@
 {
     "punishments": {
         "global_title": "Global Punishments",
+        "local_title": "Local Punishments for {rule}",
+        "local_enable": "Enable local punishments",
+        "randomize": "Randomize",
         "affects": {
             "affected": {
                 "name": "Affected:",

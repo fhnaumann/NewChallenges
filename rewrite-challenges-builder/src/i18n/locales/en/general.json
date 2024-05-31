@@ -17,6 +17,10 @@
     },
     "criteria": {
       "empty_configuration": "{criteria} does not have any additional configuration options."
+    },
+    "redirect_to_existing_criteria": {
+      "summary": "Redirected to existing {criteria}",
+      "detail": "{criteria} already exists! You cannot have multiple {criteria} within the same challenge."
     }
   }
 }

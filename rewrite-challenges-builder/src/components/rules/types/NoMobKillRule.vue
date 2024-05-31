@@ -1,5 +1,5 @@
 <template>
-  <BaseCriteriaModification criteria-key="noMobKill" relative-u-r-l-to-wiki="rules/noMobKill" criteria-type="rules">
+  <BaseRuleModification criteria-key="noMobKill" relative-u-r-l-to-wiki="rules/noMobKill" criteria-type="rules">
     <template #configuration>
       <ExemptionSelection class="pl-4"
                           :possible-exemptions="ALL_ENTITY_TYPE_DATA"
@@ -11,7 +11,7 @@
           }"
       />
     </template>
-  </BaseCriteriaModification>
+  </BaseRuleModification>
 </template>
 
 <script setup lang="ts">
@@ -20,6 +20,7 @@
   import { ALL_ENTITY_TYPE_DATA } from '@/models/data_row'
   import ExemptionSelection from '@/components/rules/ExemptionSelection.vue'
   import { useModelStore } from '@/stores/model'
+  import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'
 
   const { set } = useModelStore()
 

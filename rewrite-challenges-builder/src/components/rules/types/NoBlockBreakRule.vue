@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--div class="... flex flex-row justify-between space-x-5 pt-4 h-svh  bg-red-100"-->
-    <BaseCriteriaModification criteria-type="rules" criteria-key="noBlockBreak" relative-u-r-l-to-wiki="rules/nodeath">
+    <BaseRuleModification criteria-type="rules" criteria-key="noBlockBreak" relative-u-r-l-to-wiki="rules/nodeath">
       <template #configuration>
         <ExemptionSelection class="pl-4"
                             :possible-exemptions="ALL_IS_BLOCK_MATERIAL_DATA"
@@ -13,7 +13,7 @@
           }"
         />
       </template>
-    </BaseCriteriaModification>
+    </BaseRuleModification>
 
 
   </div>
@@ -27,5 +27,6 @@
   import { ALL_IS_BLOCK_MATERIAL_DATA } from '@/models/data_row'
   import SaveOrRemoveChanges from '@/components/SaveOrRemoveChanges.vue'
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
+  import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'
 
 </script>

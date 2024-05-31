@@ -1,16 +1,18 @@
 <template>
+  <Toast />
   <div class="flex justify-center w-full h-full">
-    <div class="w-3/5" v-if="validJSON">
+    <div class="w-full" v-if="validJSON">
       <div class="relative mx-auto mt-2 w-full">
         <div class="text-black p-4 rounded-md">
           <div class="flex justify-between items-center mb-2">
             <span class="text-gray-400">Code:</span>
-            <Toast />
-            <Button @click="copyCodeToClipboard" label="Copy" />
-
+            <div class="flex space-x-2">
+              <Button @click="copyCodeToClipboard" label="Copy" />
+              <Button @click="downloadAsFile" label="Download" />
+            </div>
           </div>
           <div class="overflow-x-auto">
-        <pre id="code" class="text-black">
+        <pre id="code" class="text-black bg-gray-200 rounded-lg w-full pl-2">
         {{ jsonifyConfigSettings() }}
         </pre>
           </div>
@@ -34,7 +36,6 @@
             <div class="bg-surface-0 text-black p-4 rounded-md">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-gray-400">Code:</span>
-                <Toast />
                 <Button @click="copyCodeToClipboard" label="Copy" />
 
               </div>
@@ -50,7 +51,6 @@
             <div class="bg-surface-0 text-black p-4 rounded-md">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-gray-400">Error:</span>
-                <Toast />
                 <Button @click="copyErrorToClipboard" label="Copy" />
 
               </div>
@@ -122,6 +122,18 @@
 
   function jsonifyConfigSettings() {
     return JSON.stringify(model, null, 2)
+  }
+
+  function downloadAsFile() {
+    const blob = new Blob([jsonifyConfigSettings()], { type: "application/json" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'data.json'
+    document.body.append(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
   }
 
 </script>

@@ -9,6 +9,7 @@ import NoMobKillRule from '@/components/rules/types/NoMobKillRule.vue'
 import NoItemRule from '@/components/rules/types/NoItemRule.vue'
 import ItemGoal from '@/components/goals/types/ItemGoal.vue'
 import DeathGoal from '@/components/goals/types/DeathGoal.vue'
+import NoDeathRule from '@/components/rules/types/NoDeathRule.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +20,7 @@ const router = createRouter({
       component: AllCriteriaOverview
     },
     /*
-    RULES
+    blockbreak
      */
     {
       path: '/rules/noBlockBreak',
@@ -27,37 +28,48 @@ const router = createRouter({
       component: NoBlockBreakRule
     },
     {
+      path: '/goals/blockBreakGoal',
+      name: 'BlockBreakGoal',
+      component: BlockBreakGoal
+    },
+    /*
+    mob
+     */
+    {
       path: '/rules/noMobKill',
       name: 'NoMobKillRule',
       component: NoMobKillRule
     },
     {
-      path: '/rules/noItem',
-      name: 'NoItemRule',
-      component: NoItemRule
-    },
-    /*
-    GOALS
-     */
-    {
       path: '/goals/mobGoal',
       name: 'MobGoal',
       component: MobGoal
     },
+    /*
+    death
+     */
     {
-      path: '/goals/blockBreakGoal',
-      name: 'BlockBreakGoal',
-      component: BlockBreakGoal
-    },
-    {
-      path: '/goals/itemGoal',
-      name: 'ItemGoal',
-      component: ItemGoal
+      path: '/rules/noDeath',
+      name: 'NoDeath',
+      component: NoDeathRule
     },
     {
       path: '/goals/deathGoal',
       name: 'DeathGoal',
       component: DeathGoal
+    },
+    /*
+     * item
+     */
+    {
+      path: '/rules/noItem',
+      name: 'NoItemRule',
+      component: NoItemRule
+    },
+    {
+      path: '/goals/itemGoal',
+      name: 'ItemGoal',
+      component: ItemGoal
     },
     /*
     SETTINGS

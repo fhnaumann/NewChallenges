@@ -4,13 +4,16 @@ import { useModelStore } from '@/stores/model'
 import { useI18n } from 'vue-i18n'
 import DynamicDialog from 'primevue/dynamicdialog'
 
-const modelStore = useModelStore()
+const { model, set } = useModelStore()
 
-console.log("early", modelStore.model)
-modelStore.set("rules.enabledRules.noBlockBreak", {}, true)
-modelStore.set("settings.customHealthSetting", {}, true)
-modelStore.set('goals.blockBreakGoal', {}, true)
-modelStore.set('goals.mobGoal', {}, true)
+console.log("early", model)
+
+set("rules.enabledRules.noBlockBreak", {}, true)
+set("settings.customHealthSetting", {}, true)
+set('goals.blockBreakGoal', {}, true)
+set('goals.mobGoal', {}, true)
+
+
 
 console.log("reached")
 
@@ -25,4 +28,5 @@ console.log("2", i18n.messages.value[i18n.locale.value])
   </div>
   <router-view></router-view>
   <DynamicDialog />
+  <Toast />
 </template>

@@ -6,7 +6,7 @@
           <i class="pi pi-search" />
         </InputIcon>
         <InputText class="w-full" type="text" :placeholder="t(`general.search.placeholder`)"
-                   v-model="searchFieldValue" ref="dialogSearchText" />
+                   v-model="searchFieldValue" ref="dialogSearchText"/>
       </IconField>
     </div>
     <div>
@@ -38,15 +38,16 @@
   import InputIcon from 'primevue/inputicon'
   import gsap from 'gsap'
   import { computed, inject, onMounted, ref, watch } from 'vue'
+  import { useToast } from 'primevue/usetoast'
+  import Button from 'primevue/button'
 
   const { searchFieldValue, getPartialMatches } = useSearchable(undefined)
 
   const { t } = useI18n()
 
   const dialogRef = inject('dialogRef') as any
-  watch(dialogRef, () => {
-    console.log(dialogRef)
-  })
+
+  const toast = useToast()
 
   const dialogSearchText = ref(null)
 
