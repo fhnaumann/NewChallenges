@@ -80,7 +80,6 @@
           <useJakartaValidation>true</useJakartaValidation>
           <includeConstructors>true</includeConstructors>
           <includeAllPropertiesConstructor>true</includeAllPropertiesConstructor>
-          <useTitleAsClassname>true</useTitleAsClassname>
         </configuration>
       </plugin>
       <plugin>

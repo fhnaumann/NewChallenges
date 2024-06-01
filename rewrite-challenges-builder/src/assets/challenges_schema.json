@@ -202,8 +202,20 @@
                     "default": -1,
                     "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
                     "type": "integer"
+                },
+                "startingTime": {
+                    "description": "The time that was determined by the server as the starting point. It is chosen randomly between minSecondsTime and maxSecondsTime.\n-1 is the default value set by the builder website.\nThis indicates that the server did not calculate the actual time yet and will do so on the next server start.",
+                    "type": "integer"
+                },
+                "time": {
+                    "description": "The actual timer decrementing every second when the challenge is running. -1 is the default value set by the builder website.\nThis indicates that the server did not calculate the actual time yet and will do so on the next server start.",
+                    "type": "integer"
                 }
             },
+            "required": [
+                "startingTime",
+                "time"
+            ],
             "type": "object"
         },
         "GoalsConfig": {

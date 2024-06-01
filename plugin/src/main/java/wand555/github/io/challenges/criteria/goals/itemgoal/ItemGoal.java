@@ -7,20 +7,23 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
+import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.types.item.ItemData;
 import wand555.github.io.challenges.types.item.ItemType;
 import wand555.github.io.challenges.utils.RandomUtil;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<ItemGoalConfig>, Skippable {
 
     private final ItemType itemType;
 
-    public ItemGoal(Context context, ItemGoalConfig config, GoalCollector<Material> goalCollector, ItemGoalMessageHelper messageHelper, ItemGoalBossBarHelper bossBarHelper, ItemGoalCollectedInventory collectedInventory) {
-        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper, collectedInventory);
+    public ItemGoal(Context context, ItemGoalConfig config, GoalCollector<Material> goalCollector, ItemGoalMessageHelper messageHelper, ItemGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
+        super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
         this.itemType = new ItemType(context, triggerCheck(), trigger());
     }
 
@@ -39,7 +42,7 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
         return new ItemGoalConfig(
                 isComplete(),
                 isFixedOrder(),
-                timer.toGeneratedJSONClass(),
+                timer != null ? timer.toGeneratedJSONClass() : null,
                 goalCollector.toGeneratedJSONClass(),
                 false
         );
@@ -47,6 +50,11 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
 
     public Map<Material, Collect> getToCollect() {
         return goalCollector.getToCollect();
+    }
+
+    @Override
+    protected BossBarPart.GoalInformation<Material> constructGoalInformation() {
+        return new BossBarPart.GoalInformation<>("itemgoal", data -> Map.of("item", ResourcePackHelper.getMaterialUnicodeMapping(data)));
     }
 
     @Override

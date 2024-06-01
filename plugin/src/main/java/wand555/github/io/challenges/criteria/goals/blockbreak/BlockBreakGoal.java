@@ -8,20 +8,24 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.MapGoal;
+import wand555.github.io.challenges.criteria.goals.Timer;
+import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 import wand555.github.io.challenges.utils.RandomUtil;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements Storable<BlockBreakGoalConfig> {
 
     private BlockBreakType blockBreakType;
 
-    public BlockBreakGoal(Context context, BlockBreakGoalConfig config, GoalCollector<Material> goalCollector, BlockBreakGoalMessageHelper messageHelper, BlockBreakGoalBossBarHelper bossBarHelper, BlockBreakCollectedInventory collectedInventory) {
-        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper, collectedInventory);
+    public BlockBreakGoal(Context context, BlockBreakGoalConfig config, GoalCollector<Material> goalCollector, BlockBreakGoalMessageHelper messageHelper, BlockBreakCollectedInventory collectedInventory, @Nullable Timer timer) {
+        super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
         this.blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
     }
 
@@ -41,9 +45,14 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
                 goalCollector.toGeneratedJSONClass(),
                 isComplete(),
                 isFixedOrder(),
-                timer.toGeneratedJSONClass(),
+                timer != null ? timer.toGeneratedJSONClass() : null,
                 true // anything that is stored from the server will already be shuffled (once)
         );
+    }
+
+    @Override
+    protected BossBarPart.GoalInformation<Material> constructGoalInformation() {
+        return new BossBarPart.GoalInformation<>("blockbreakgoal", data -> Map.of("block", ResourcePackHelper.getMaterialUnicodeMapping(data)));
     }
 
     @Override

@@ -1,5 +1,7 @@
 package wand555.github.io.challenges.criteria.goals;
 
+import wand555.github.io.challenges.criteria.goals.bossbar.BossBarHelper;
+
 public interface Goal {
 
     public boolean isComplete();
@@ -9,4 +11,10 @@ public interface Goal {
     public boolean determineComplete();
 
     public abstract void onComplete();
+
+    public boolean hasTimer();
+
+    public Timer getTimer();
+
+    public BossBarHelper getBossBarHelper();
 }

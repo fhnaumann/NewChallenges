@@ -6,20 +6,23 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
+import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
 import wand555.github.io.challenges.utils.RandomUtil;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<MobGoalConfig>, Skippable {
 
     private final MobType mobType;
 
-    public MobGoal(Context context, MobGoalConfig config, GoalCollector<EntityType> goalCollector, MobGoalMessageHelper messageHelper, MobGoalBossBarHelper bossBarHelper, MobGoalCollectedInventory collectedInventory) {
-        super(context, config.isComplete(), goalCollector, messageHelper, bossBarHelper, collectedInventory);
+    public MobGoal(Context context, MobGoalConfig config, GoalCollector<EntityType> goalCollector, MobGoalMessageHelper messageHelper, MobGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
+        super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
         this.mobType = new MobType(context, triggerCheck(), trigger());
     }
 
@@ -28,7 +31,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
         return new MobGoalConfig(
                 isComplete(),
                 isFixedOrder(),
-                timer.toGeneratedJSONClass(),
+                timer != null ? timer.toGeneratedJSONClass() : null,
                 goalCollector.toGeneratedJSONClass(),
                 true
         );
@@ -65,7 +68,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
                     context.resourceBundleContext().goalResourceBundle(),
                     "mobgoal.statusinfo.mob",
                     Map.of(
-                            "entity", ComponentUtil.translate(entityType),
+                            "entity", Component.translatable(entityType),
                             "amount", Component.text(collect.getCurrentAmount()),
                             "total_amount", Component.text(collect.getAmountNeeded())
                     ),
@@ -74,6 +77,11 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
             entities = entities.append(entityCollectInfo).appendNewline();
         }
         return mobGoalName.append(entities);
+    }
+
+    @Override
+    protected BossBarPart.GoalInformation<EntityType> constructGoalInformation() {
+        return new BossBarPart.GoalInformation<>("mobgoal", data -> Map.of("entity", ResourcePackHelper.getEntityTypeUnicodeMapping(data)));
     }
 
     @Override

@@ -47,6 +47,23 @@ export interface Timeable {
 }
 
 export interface GoalTimer {
+
+  /**
+   * The actual timer decrementing every second when the challenge is running. -1 is the default value set by the builder website.
+   * This indicates that the server did not calculate the actual time yet and will do so on the next server start.
+   *
+   * @TSJ-type integer
+   */
+  time: number
+  /**
+   * The time that was determined by the server as the starting point. It is chosen randomly between minSecondsTime and maxSecondsTime.
+   * -1 is the default value set by the builder website.
+   * This indicates that the server did not calculate the actual time yet and will do so on the next server start.
+   *
+   * @TSJ-type integer
+   */
+  startingTime: number
+
   /**
    * The lower bound for determining the time that is allowed to complete a goal.
    * Cannot be bigger than maxTimeSeconds.

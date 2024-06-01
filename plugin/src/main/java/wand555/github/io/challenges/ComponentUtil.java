@@ -14,6 +14,8 @@ import wand555.github.io.challenges.utils.TimerUtil;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,6 +25,9 @@ public class ComponentUtil {
     public static final String ACTUAL_URL = "https://www.%s/".formatted(DISPLAY_URL);
     public static final Component BUILDER_LINK = Component.text(DISPLAY_URL).clickEvent(ClickEvent.openUrl(ACTUAL_URL));
     public static final Component COLON = Component.text(":");
+
+    public static final Function<Component, BinaryOperator<Component>> ACCUMULATOR = spacer -> (component1, component2) -> component1.append(spacer).append(component2);
+    public static final BinaryOperator<Component> SPACE_ACCUMULATOR = ACCUMULATOR.apply(Component.space());
 
     private static Map<String, Component> time2Placeholders(Map<TimerUtil.TimeParts, String> mappedTime) {
         Map<String, Component> placeholders = new HashMap<>();

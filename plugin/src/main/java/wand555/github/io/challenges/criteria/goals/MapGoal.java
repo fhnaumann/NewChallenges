@@ -5,6 +5,7 @@ import org.bukkit.Keyed;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
+import wand555.github.io.challenges.criteria.goals.bossbar.*;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.CompletionConfig;
 import wand555.github.io.challenges.generated.ContributorsConfig;
@@ -20,20 +21,30 @@ import java.util.Map;
  * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
  */
 public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, Progressable, BossBarDisplay {
-
     protected final GoalCollector<K> goalCollector;
-    private final MapGoalBossBarHelper<K> bossBarHelper;
     protected final GoalMessageHelper<D, K> messageHelper;
     protected final CollectedInventory<D, K> collectedInventory;
-    protected Timer timer;
 
-    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, MapGoalBossBarHelper<K> bossBarHelper, CollectedInventory<D, K> collectedInventory) {
-        super(context, complete);
+    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, CollectedInventory<D, K> collectedInventory, Timer timer) {
+        super(context, complete, timer);
         this.goalCollector = goalCollector;
-        this.bossBarHelper = bossBarHelper;
+
+        BossBarBuilder bossBarBuilder = new BossBarBuilder();
+        if(isFixedOrder()) {
+            bossBarBuilder.then(new FixedOrderBossBarPart<>(context, constructGoalInformation(), goalCollector));
+        }
+        else {
+            bossBarBuilder.then(new TotalCollectablesBossBarPart(context, messageHelper.getGoalNameInResourceBundle(), goalCollector));
+        }
+        if(hasTimer()) {
+            bossBarBuilder.then(new TimerBossBarPart(context, timer));
+        }
+        this.bossBarHelper = new BossBarHelper(context, bossBarBuilder.getParts());
         this.messageHelper = messageHelper;
         this.collectedInventory = collectedInventory;
     }
+
+    protected abstract BossBarPart.GoalInformation<K> constructGoalInformation();
 
     @Override
     public boolean determineComplete() {

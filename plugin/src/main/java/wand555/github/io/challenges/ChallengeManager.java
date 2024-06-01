@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
@@ -32,6 +33,8 @@ public class ChallengeManager implements StatusInfo {
     private TimerRunnable timerRunnable;
 
     private BossBarShower bossBarShower;
+
+    private int currentOrder;
 
     public ChallengeManager() {
         gameState = GameState.SETUP;
@@ -201,6 +204,8 @@ public class ChallengeManager implements StatusInfo {
 
     public void setGoals(@NotNull List<BaseGoal> goals) {
         this.goals = goals;
+        // goals may have time limits -> set current order to minimum order value that exists in the goals
+        goals.stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresent(this::setCurrentOrder);
     }
 
     public long getTime() {
@@ -250,12 +255,28 @@ public class ChallengeManager implements StatusInfo {
         return total.append(Component.text("\uE000"));
     }
 
+    public List<Goal> goalsWithSameOrderNumber() {
+        return goals.stream()
+                .filter(BaseGoal::hasTimer)
+                .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
+                .map(Goal.class::cast)
+                .toList();
+    }
+
     public boolean isValid() {
         return valid;
     }
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public int getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(int currentOrder) {
+        this.currentOrder = currentOrder;
     }
 
     public enum GameState {

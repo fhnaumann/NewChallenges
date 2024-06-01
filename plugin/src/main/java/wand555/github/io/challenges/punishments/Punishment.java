@@ -59,7 +59,7 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
             return switch (valueInJSONString) {
                 case "all" -> ALL;
                 case "causer" -> CAUSER;
-                default -> throw new RuntimeException();
+                default -> throw new RuntimeException("Failed to match %s".formatted(valueInJSONString));
             };
         }
     }

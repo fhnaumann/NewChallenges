@@ -2,11 +2,10 @@ package wand555.github.io.challenges.criteria.goals.factory;
 
 import org.bukkit.Material;
 import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
+import wand555.github.io.challenges.criteria.goals.Timer;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakCollectedInventory;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
-import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalBossBarHelper;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 
@@ -20,8 +19,8 @@ public class BlockBreakGoalFactory implements GoalFactory<BlockBreakGoalConfig> 
                 config,
                 goalCollector,
                 new BlockBreakGoalMessageHelper(context),
-                new BlockBreakGoalBossBarHelper(context, goalCollector),
-                new BlockBreakCollectedInventory(context, config.getBroken(), Material.class)
+                new BlockBreakCollectedInventory(context, config.getBroken(), Material.class),
+                config.getGoalTimer() != null ? new Timer(config.getGoalTimer()) : null
                 );
     }
 }

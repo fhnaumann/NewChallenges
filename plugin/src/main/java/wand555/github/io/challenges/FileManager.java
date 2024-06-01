@@ -88,12 +88,18 @@ public class FileManager {
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                 context.challengeManager().setValid(true);
                 context.challengeManager().setBossBarShower(new BossBarShower(context));
+                context.challengeManager().setCurrentOrder(challengesSchema.getCurrentOrder());
                 ModelMapper.map2ModelClasses(context, challengesSchema);
 
 
                 return context;
-            } catch (JsonProcessingException e) {
+            } catch (Exception e) {
                 // should never happen because it was validated first.
+
+                // Case where it may be thrown: A code (material, entityType, ...) is in the source json files, but does
+                // not exist as an enum at runtime for the current server version. This may occur in two scenarios:
+                // 1. The user is using a server version that is not supported.
+                // 2. I forgot to update the source jsons when changing the supported server version.
                 throw new RuntimeException(e);
             }
         }

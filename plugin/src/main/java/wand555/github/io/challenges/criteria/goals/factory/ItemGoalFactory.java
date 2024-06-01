@@ -2,10 +2,9 @@ package wand555.github.io.challenges.criteria.goals.factory;
 
 import org.bukkit.Material;
 import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
+import wand555.github.io.challenges.criteria.goals.Timer;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
-import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalBossBarHelper;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalCollectedInventory;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
@@ -19,9 +18,8 @@ public class ItemGoalFactory implements GoalFactory<ItemGoalConfig> {
                 config,
                 goalCollector,
                 new ItemGoalMessageHelper(context),
-                new ItemGoalBossBarHelper(context, goalCollector),
-                new ItemGoalCollectedInventory(context, config.getItems(), Material.class)
-
+                new ItemGoalCollectedInventory(context, config.getItems(), Material.class),
+                config.getGoalTimer() != null ? new Timer(config.getGoalTimer()) : null
         );
     }
 }

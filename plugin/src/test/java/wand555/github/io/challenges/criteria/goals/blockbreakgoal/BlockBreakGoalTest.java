@@ -7,7 +7,6 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,13 +21,9 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakCollectedInventory;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
-import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalBossBarHelper;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
-import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
-import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.ContributorsConfig;
-import wand555.github.io.challenges.generated.ItemGoalConfig;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import java.io.IOException;
@@ -97,7 +92,7 @@ public class BlockBreakGoalTest {
                 }
                 """;
         BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
-        blockBreakGoal = new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
+        blockBreakGoal = new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory, null);
     }
 
     @AfterEach

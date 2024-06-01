@@ -50,9 +50,13 @@
   watch(() => enabled.value, value => {
     console.log('new enabled', value)
     if (value) {
+      set(`${props.modelAccess.where}.goalTimer.time`, -1, false)
+      set(`${props.modelAccess.where}.goalTimer.startingTime`, -1, false)
       set(`${props.modelAccess.where}.goalTimer.order`, 1, false)
     }
     else {
+      set(`${props.modelAccess.where}.goalTimer.time`, undefined, false)
+      set(`${props.modelAccess.where}.goalTimer.startingTime`, undefined, false)
       set(`${props.modelAccess.where}.goalTimer.order`, undefined, false)
       set(`${props.modelAccess.where}.goalTimer.minTimeSeconds`, undefined, false)
       set(`${props.modelAccess.where}.goalTimer.maxTimeSeconds`, undefined, false)

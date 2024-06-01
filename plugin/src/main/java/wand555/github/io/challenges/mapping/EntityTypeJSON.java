@@ -11,7 +11,7 @@ public record EntityTypeJSON(
         @JsonProperty("img_name") String imgName) implements DataSourceJSON<EntityType> {
     @Override
     public EntityType toEnum() {
-        return Enum.valueOf(EntityType.class, code.toUpperCase());
+        return EntityType.fromName(code);
     }
 
     public static String toCode(EntityType entityType) {
