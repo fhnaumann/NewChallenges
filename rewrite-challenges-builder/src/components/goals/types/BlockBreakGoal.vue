@@ -49,7 +49,6 @@
   import { ALL_IS_BLOCK_MATERIAL_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row'
   import Checkbox from 'primevue/checkbox'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
-  import CheckboxCriteria from '@/components/wrappers/CheckboxCriteria.vue'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import type { ModelAccess } from '@/main'
   import { useVarHelperStore } from '@/stores/var_helper'

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center space-y-2 py-4 bg-primary-100 rounded-xl">
-    <Button :label="t(`${criteriaType}.browse_button`)" />
+    <Button :label="t(`${criteriaType}.browse_button`)" @click="showSearcher()" />
     <p class="text-3xl font-bold text-primary-900">{{ t(`${criteriaType}.global_title`) }}</p>
     <Button class="h-10" v-if="criteriaType === 'rules'" :label="t(`rules.configure_global_punishments`)" @click="showGlobalPunishments"/>
     <div class="h-10" v-else />
@@ -26,6 +26,8 @@ import { getBgColor } from '@/util'
 import { useModelStore } from '@/stores/model'
 import { useDialog } from 'primevue/usedialog'
 import PunishmentList from './rules/PunishmentList.vue'
+import SearchComponent from '@/components/search/SearchComponent.vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   criteriaType: CriteriaType
@@ -34,6 +36,7 @@ const props = defineProps<{
 const { t } = useI18n()
 const dialog = useDialog()
 const modelStore = useModelStore()
+const router = useRouter()
 
 function getCriteria(): CriteriaKey[] {
   if(props.criteriaType === 'rules') {
@@ -62,6 +65,37 @@ function showGlobalPunishments() {
     data: {
       global: true
     }
+  })
+}
+
+function showSearcher() {
+  dialog.open(SearchComponent, {
+    props: {
+      modal: true,
+      showHeader: false,
+      blockScroll: true,
+      draggable: false,
+      position: 'top',
+      pt: {
+        root: {
+          class: 'border-0 pt-5 px-12 w-[64rem]'
+        },
+        content: {
+          class: 'rounded-none'
+        },
+        mask: {
+          class: 'backdrop-blur-[2px]'
+        }
+      },
+    },
+    data: {
+      validOption: props.criteriaType
+    },
+    onClose(options) {
+      if(options?.data) {
+        router.push(options?.data.navigateTo)
+      }
+    },
   })
 }
 

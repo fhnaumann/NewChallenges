@@ -18,6 +18,8 @@
   import PunishmentList from '@/components/rules/PunishmentList.vue'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
+  import type EndPunishment from '@/components/rules/punishments/EndPunishment.vue'
+  import type { EndPunishmentConfig } from '@/models/punishments'
 
   const props = defineProps<{
     criteriaType: CriteriaType,
@@ -26,7 +28,10 @@
   }>()
 
   const { t } = useI18n()
-  const { model } = useModelStore()
+  const { model, set } = useModelStore()
+
+  set(`rules.enabledRules.${props.criteriaKey}.punishments.endPunishment`, { affects: 'all' } as EndPunishmentConfig, false)
+
 
   const punishmentsEnabled = ref<boolean>(model.rules?.enabledRules?.[props.criteriaKey]?.punishments !== undefined ? Object.keys(model.rules?.enabledRules?.[props.criteriaKey]?.punishments!).length !== 0 : false)
 

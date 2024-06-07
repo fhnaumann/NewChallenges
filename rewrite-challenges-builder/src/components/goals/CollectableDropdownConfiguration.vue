@@ -73,7 +73,6 @@
   }
 
   function deleteDataRow(toDelete: DataRow) {
-    console.log("deleting", toDelete.code, "at", buildWhere(toDelete.code))
     //set(buildWhere(toDelete.code), undefined, false)
     const entries = props.modelAccess.get(model)!
     const idx: number = entries.findIndex((entry: CollectableEntryConfig) => entry.collectableName == toDelete.code)
@@ -92,7 +91,6 @@
   }
 
   function collectableEntryConfig2Code(source: CollectableEntryConfig[]): string[] {
-    console.log("source", source)
     return source.map((element: CollectableEntryConfig) => element.collectableName)
   }
 

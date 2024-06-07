@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center">
     <div class="flex items-center space-x-2">
-      <slot name="punishmentDetailConfiguration">
+      <slot name="punishmentDetailConfiguration" :randomized="modelAccess.get(model)">
 
       </slot>
     </div>
@@ -9,7 +9,8 @@
       <Checkbox :model-value="modelAccess.get(model)"
                 @update:model-value="(value: boolean) => set(modelAccess.where, value, modelAccess.testSchematron)"
                 binary :input-id="modelAccess.where" />
-      <label :for="modelAccess.where">{{ t('punishments.randomize') }}</label></div>
+      <label :for="modelAccess.where">{{ t('punishments.randomize') }}</label>
+    </div>
   </div>
 </template>
 

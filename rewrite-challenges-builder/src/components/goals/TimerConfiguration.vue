@@ -48,7 +48,6 @@
   const enabled = ref<boolean>(false)
 
   watch(() => enabled.value, value => {
-    console.log('new enabled', value)
     if (value) {
       set(`${props.modelAccess.where}.goalTimer.time`, -1, false)
       set(`${props.modelAccess.where}.goalTimer.startingTime`, -1, false)

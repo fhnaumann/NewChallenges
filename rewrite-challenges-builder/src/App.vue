@@ -6,20 +6,12 @@ import DynamicDialog from 'primevue/dynamicdialog'
 
 const { model, set } = useModelStore()
 
-console.log("early", model)
-
 set("rules.enabledRules.noBlockBreak", {}, true)
 set("settings.customHealthSetting", {}, true)
 set('goals.blockBreakGoal', {}, true)
 set('goals.mobGoal', {}, true)
 
-
-
-console.log("reached")
-
 const i18n = useI18n()
-console.log("1", i18n.locale.value)
-console.log("2", i18n.messages.value[i18n.locale.value])
 
 </script>
 

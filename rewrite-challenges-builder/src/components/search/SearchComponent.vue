@@ -10,7 +10,7 @@
       </IconField>
     </div>
     <div>
-      <DataView :value="getPartialMatches()" paginator :rows="5">
+      <DataView :value="getPartialMatches !== undefined ? getPartialMatches() : []" paginator :rows="5">
         <template #list="slotProps">
           <div class="flex flex-col p-4 items-center w-full h-[32rem]">
             <SearchCriteriaRow class="w-full h-20 rounded-lg" v-for="(item, index) in slotProps.items"
@@ -19,7 +19,7 @@
           </div>
         </template>
         <template #empty>
-          <div>
+          <div class="flex items-center justify-center p-4">
             <p>{{ t('general.search.no_matches') }}</p>
           </div>
         </template>
@@ -39,9 +39,10 @@
   import gsap from 'gsap'
   import { computed, inject, onMounted, ref, watch } from 'vue'
   import { useToast } from 'primevue/usetoast'
-  import Button from 'primevue/button'
+  import type { CriteriaType } from '@/models/model'
 
-  const { searchFieldValue, getPartialMatches } = useSearchable(undefined)
+  let searchFieldValue = ref()
+  const getPartialMatches = ref()
 
   const { t } = useI18n()
 
@@ -52,10 +53,15 @@
   const dialogSearchText = ref(null)
 
   onMounted(() => {
-    console.log('mounted')
-    console.log(dialogRef)
-    console.log(dialogSearchText.value)
     dialogSearchText.value!.$el.focus()
+    console.log(dialogRef.value.data.validOption)
+    const searchable = useSearchable(dialogRef.value.data.validOption)
+
+    // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
+    // between the ref in the composable (searchable) and this ref here.
+    // eslint-disable-next-line
+    searchFieldValue = searchable.searchFieldValue
+    getPartialMatches.value = searchable.getPartialMatches
   })
 
   const size = computed(() => {

@@ -9,7 +9,7 @@ export interface Searchable {
   alias: string[]
 }
 
-export function useSearchable(options: Searchable[] | undefined) {
+export function useSearchable(options: Searchable[] | CriteriaType | undefined) {
 
   const i18n = useI18n()
   const selectedLangMessages = i18n.messages.value[i18n.locale.value]
@@ -17,18 +17,18 @@ export function useSearchable(options: Searchable[] | undefined) {
   if (options === undefined) {
     options = getAllSearchOptions()
   }
-
-  console.log("goals", getLabelFor('goals'))
-  console.log("rules", getLabelFor('rules'))
-  console.log("settings", getLabelFor('settings'))
-  console.log("early combined", getAllSearchOptions())
+  if(["rules", "settings", "goals"].includes(options as CriteriaType)) {
+    console.log("getting options for", options)
+    console.log(getLabelFor('rules'))
+    options = getLabelFor(options as CriteriaType)
+  }
   const searchFieldValue = ref<string>('')
 
   function getPartialMatches(): Searchable[] {
     if (!searchFieldValue.value.trim()) {
-      return options!
+      return options! as Searchable[]
     } else {
-      return options!.filter((searchable) =>
+      return (options! as Searchable[]).filter((searchable) =>
         searchable.alias.some(value => value.toLowerCase().includes(searchFieldValue.value.toLowerCase())),
       )
     }

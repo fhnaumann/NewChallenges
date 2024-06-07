@@ -54,7 +54,6 @@ export const useModelStore = defineStore('stateModel', () => {
       shallowReference = shallowReference[elem]
     }
     if (!Array.isArray(shallowReference[pList[len - 1]])) {
-      console.log('creating array')
       shallowReference[pList[len - 1]] = []
     }
 

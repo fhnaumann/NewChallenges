@@ -54,6 +54,9 @@
           }
         }
       },
+      data: {
+        validOption: undefined
+      },
       onClose(options) {
         if(options?.data) {
           router.push(options?.data.navigateTo)

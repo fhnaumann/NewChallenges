@@ -13,7 +13,8 @@
         :collectable-text-prefix="t('goals.types.mobGoal.settings.dropdown.mobPrefix')"
         :show-image="false" :disabled="killAllMobsOnce"
         :collectable-amount-prefix="t('goals.types.mobGoal.settings.dropdown.amountPrefix')" />
-      <Checkbox v-model="killAllMobsOnce" @update:model-value="updateKillAllMobsOnce" input-id="killAllMobsOnce" binary/>
+      <Checkbox v-model="killAllMobsOnce" @update:model-value="updateKillAllMobsOnce" input-id="killAllMobsOnce"
+                binary />
       <label for="killAllMobsOnce" class="ml-2">{{ t('goals.types.mobGoal.settings.killAllMobs.name') }}</label>
       <FixedOrderConfiguration :model-access="baseModelAccess" />
       <TimerConfiguration :model-access="baseModelAccess" />
@@ -44,14 +45,14 @@
   const baseModelAccess: ModelAccess<MobGoalConfig> = {
     get: model => model.goals?.mobGoal,
     where: 'goals.mobGoal',
-    testSchematron: false
+    testSchematron: false,
   }
 
   set('goals.mobGoal.mobs', [{
-    collectableName: "ender_dragon",
+    collectableName: 'ender_dragon',
     collectableData: {
-      amountNeeded: 1
-    }
+      amountNeeded: 1,
+    },
   }] as CollectableEntryConfig[], false)
 
   function updateKillAllMobsOnce(killAllMobsOnce: boolean) {

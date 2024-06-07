@@ -94,7 +94,6 @@
     validJSON.value = isValid as boolean
     if (!isValid) {
       errorMessages.value = JSON.stringify(validate.errors, null, 2)
-      console.log(validate.errors)
     }
   }
 

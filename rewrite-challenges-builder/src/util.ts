@@ -32,13 +32,10 @@ export function pathToCriteria(criteriaType: CriteriaType): string {
 
 export function deleteCriteria(criteriaType: CriteriaType, criteriaCode: CriteriaKey) {
   const { set } = useModelStore()
-  console.log("deleting", criteriaType, criteriaCode)
   if(criteriaType === 'rules') {
-    console.log("deleting rule", criteriaCode)
     set(`rules.enabledRules.${criteriaCode}`, undefined, false)
   }
   else {
-    console.log("deleting else", criteriaCode)
     set(`${criteriaType}.${criteriaCode}`, undefined, false)
   }
 }

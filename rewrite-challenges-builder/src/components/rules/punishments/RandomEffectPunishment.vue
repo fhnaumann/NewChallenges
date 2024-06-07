@@ -2,9 +2,12 @@
   <BasePunishment punishment-type="randomEffectPunishment" :model-access="modelAccess">
     <template #configuration>
       <RandomizeValue :model-access="randomizeEffectAmountModelAccess">
-        <template #punishmentDetailConfiguration>
-          <label :for="modelAccess.where">{{ t(`punishments.types.randomEffectPunishment.settings.effects_at_once.name`) }}</label>
-          <InputNumber :model-value="effectAmountOrDefault(model)" @update:model-value="updateEffectAmount" :input-id="modelAccess.where" :min="config.effectsAtOnce.minimum" :max="config.effectsAtOnce.maximum" />
+        <template #punishmentDetailConfiguration="detailConfigProps">
+          <label :for="modelAccess.where">{{ t(`punishments.types.randomEffectPunishment.settings.effects_at_once.name`)
+            }}</label>
+          <InputNumber :model-value="effectAmountOrDefault(model)" @update:model-value="updateEffectAmount"
+                       :input-id="modelAccess.where" :min="config.effectsAtOnce.minimum"
+                       :max="config.effectsAtOnce.maximum" :disabled="detailConfigProps.randomized" />
         </template>
       </RandomizeValue>
     </template>
@@ -30,7 +33,7 @@
   const randomizeEffectAmountModelAccess = {
     get: model => effectAmountRandomizeOrDefault(model),
     where: `${props.modelAccess.where}.randomizeEffectsAtOnce`,
-    testSchematron: true
+    testSchematron: true,
   } as ModelAccess<boolean>
 
   const { t } = useI18n()
@@ -40,7 +43,7 @@
 
   function effectAmountOrDefault(model: Model): number {
     return props.modelAccess.get(model)?.effectsAtOnce !== undefined
-    ? props.modelAccess.get(model)?.effectsAtOnce!
+      ? props.modelAccess.get(model)?.effectsAtOnce!
       : config.effectsAtOnce.default
   }
 

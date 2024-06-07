@@ -39,11 +39,8 @@
   }
 
   const createEmptyOrRedirectToExistingCriteria = async () => {
-    // TODO: don't overwrite an existing criteria object if one already exists
-    console.log("empty?" ,model.rules?.enabledRules?.[props.criteriaKey] !== undefined)
     if((props.criteriaType === 'rules' && model.rules?.enabledRules?.[props.criteriaKey] !== undefined) || model[props.criteriaType]?.[props.criteriaKey] !== undefined) {
       showRedirectInsteadOfNewlyCreated()
-      console.log("showing redirect")
     }
     else {
       set(`${pathToCriteria(props.criteriaType)}.${props.criteriaKey}`, {}, true)

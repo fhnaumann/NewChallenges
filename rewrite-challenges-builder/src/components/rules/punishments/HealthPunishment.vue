@@ -3,12 +3,13 @@
     <template #configuration>
       <RandomizeValue
         :model-access="randomizeHeartsModelAccess">
-        <template #punishmentDetailConfiguration>
+        <template #punishmentDetailConfiguration="detailConfigProps">
           <label :for="modelAccess.where">{{ t(`punishments.types.healthPunishment.settings.hearts_lost.name`)
             }}</label>
           <InputNumber :model-value="heartsLostOrDefault()" @update:model-value="updateHeartsLost"
                        :input-id="modelAccess.where"
-                       :min="config.heartsLost.minimum" :max="config.heartsLost.maximum" />
+                       :min="config.heartsLost.minimum" :max="config.heartsLost.maximum"
+                       :disabled="detailConfigProps.randomized" />
 
         </template>
       </RandomizeValue>
