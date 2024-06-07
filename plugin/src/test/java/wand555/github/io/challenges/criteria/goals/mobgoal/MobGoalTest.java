@@ -21,6 +21,7 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
+import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
@@ -49,7 +50,6 @@ public class MobGoalTest {
 
     private MobGoal mobGoal;
     private static MobGoalMessageHelper messageHelper;
-    private static MobGoalBossBarHelper bossBarHelper;
 
     private EntityDeathEvent pigDeathEvent;
 
@@ -66,7 +66,6 @@ public class MobGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = mock(MobGoalMessageHelper.class);
-        bossBarHelper = mock(MobGoalBossBarHelper.class);
         collectedInventory = mock(MobGoalCollectedInventory.class);
     }
 
@@ -99,7 +98,7 @@ public class MobGoalTest {
                 }
                 """;
         MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
-        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
+        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);
@@ -174,5 +173,11 @@ public class MobGoalTest {
         assertFalse(mobGoal.isComplete());
         CriteriaUtil.callEvent(server, witherSkeletonDeathEvent, 1);
         assertTrue(mobGoal.isComplete());
+    }
+
+    @Test
+    public void testAllCodes() throws IOException {
+        MobGoalConfig config = new ObjectMapper().readValue(MobGoalTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), MobGoalConfig.class);
+        assertDoesNotThrow(() -> new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null));
     }
 }

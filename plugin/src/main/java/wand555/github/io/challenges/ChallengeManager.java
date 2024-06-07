@@ -17,6 +17,7 @@ import wand555.github.io.challenges.validation.BossBarShower;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ChallengeManager implements StatusInfo {
 
@@ -63,7 +64,7 @@ public class ChallengeManager implements StatusInfo {
                 "challenge.start.chat"
         );
         context.plugin().getServer().broadcast(toSend);
-        goals.forEach(BaseGoal::onStart);
+        goals.stream().filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
         timerRunnable = new TimerRunnable(context);
@@ -79,6 +80,7 @@ public class ChallengeManager implements StatusInfo {
             // BossBars were removed when gameState was set to ENDED
             goals.stream()
                     .filter(BossBarDisplay.class::isInstance)
+                    .filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder())
                     .map(BossBarDisplay.class::cast)
                     .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
         }
@@ -159,17 +161,39 @@ public class ChallengeManager implements StatusInfo {
         this.globalPunishments = globalPunishments;
     }
 
-    public void onGoalCompleted() {
+    public void onGoalCompleted(GoalCompletion goalCompletion) {
         if(!isRunning()) {
             throw new RuntimeException("Goal completed while challenge is not running!");
+        }
+        if(goalCompletion == GoalCompletion.TIMER_BEATEN && allGoalsWithOrderCurrentNumberComplete()) {
+            int nextOrderNumber = nextOrderNumber();
+            setCurrentOrder(nextOrderNumber);
+            // initialize goals that now "start"
+            getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
         }
         if(allGoalsCompleted()) {
             endChallenge(true);
         }
     }
 
+    private boolean allGoalsWithOrderCurrentNumberComplete() {
+        return goalsWithSameOrderNumber().stream().allMatch(Goal::isComplete);
+    }
+
+    private int nextOrderNumber() {
+        return getGoals().stream()
+                .filter(BaseGoal::hasTimer)
+                .mapToInt(baseGoal -> baseGoal.getTimer().getOrder())
+                .filter(value -> value > getCurrentOrder())
+                .min()
+                .orElse(-1);
+    }
+
     public void endChallenge(boolean success) {
-        context.plugin().getServer().getOnlinePlayers().forEach(player -> player.setGameMode(GameMode.SPECTATOR));
+        context.plugin().getServer().getOnlinePlayers().forEach(player -> {
+            player.setGameMode(GameMode.SPECTATOR);
+            player.getActivePotionEffects().clear();
+        });
         gameState = GameState.ENDED;
         if(success) {
             Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
@@ -194,7 +218,7 @@ public class ChallengeManager implements StatusInfo {
                 .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
     }
 
-    public boolean allGoalsCompleted() {
+    private boolean allGoalsCompleted() {
         return goals.stream().allMatch(BaseGoal::isComplete);
     }
 
@@ -205,7 +229,7 @@ public class ChallengeManager implements StatusInfo {
     public void setGoals(@NotNull List<BaseGoal> goals) {
         this.goals = goals;
         // goals may have time limits -> set current order to minimum order value that exists in the goals
-        goals.stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresent(this::setCurrentOrder);
+        goals.stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresentOrElse(this::setCurrentOrder, () -> setCurrentOrder(-1));
     }
 
     public long getTime() {
@@ -281,5 +305,9 @@ public class ChallengeManager implements StatusInfo {
 
     public enum GameState {
         SETUP, RUNNING, PAUSED, ENDED
+    }
+
+    public enum GoalCompletion {
+        COMPLETED, TIMER_BEATEN
     }
 }

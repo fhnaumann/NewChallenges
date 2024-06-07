@@ -52,7 +52,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     @Override
     protected BossBarPart.GoalInformation<Material> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>("blockbreakgoal", data -> Map.of("block", ResourcePackHelper.getMaterialUnicodeMapping(data)));
+        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(), data -> Map.of("block", ResourcePackHelper.getMaterialUnicodeMapping(data)));
     }
 
     @Override
@@ -63,5 +63,10 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
     @Override
     public String getNameInCommand() {
         return "blockbreak";
+    }
+
+    @Override
+    public String getNameInResourceBundle() {
+        return "blockbreakgoal";
     }
 }

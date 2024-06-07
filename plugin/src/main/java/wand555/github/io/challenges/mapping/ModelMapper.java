@@ -72,7 +72,6 @@ public class ModelMapper {
         // it is important to set the gamestate BEFORE starting the runnable, because the runnable will increment the timer when the gamestate is running
         context.challengeManager().setGameState(timerRunnable.getTimer() > 0L ? ChallengeManager.GameState.PAUSED : ChallengeManager.GameState.SETUP);
 
-        timerRunnable.start();
         context.challengeManager().setTimerRunnable(timerRunnable);
 
         context.challengeManager().setGlobalPunishments(globalPunishments);

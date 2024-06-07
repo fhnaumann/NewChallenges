@@ -3,10 +3,12 @@ package wand555.github.io.challenges.criteria.goals;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarBuilder;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarHelper;
+import wand555.github.io.challenges.criteria.goals.bossbar.GoalNameBossBarPart;
 import wand555.github.io.challenges.criteria.goals.bossbar.TimerBossBarPart;
 import wand555.github.io.challenges.generated.GoalsConfig;
 
 import javax.annotation.Nullable;
+import java.util.ResourceBundle;
 
 public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, StatusInfo {
 
@@ -22,17 +24,19 @@ public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, St
         this.timer = timer;
         BossBarBuilder bossBarBuilder = new BossBarBuilder();
         if(hasTimer()) {
-            bossBarBuilder.then(new TimerBossBarPart(context, timer));
+            bossBarBuilder.then(new TimerBossBarPart(context, timer)).then(new GoalNameBossBarPart(context, getNameInResourceBundle()));
         }
         this.bossBarHelper = new BossBarHelper(context, bossBarBuilder.getParts());
     }
 
     public abstract void onStart();
 
-    public abstract void onComplete();
+    public void onComplete() {
+        setComplete(true);
+    }
 
-    protected final void notifyManager() {
-        context.challengeManager().onGoalCompleted();
+    protected final void notifyManager(ChallengeManager.GoalCompletion goalCompletion) {
+        context.challengeManager().onGoalCompleted(goalCompletion);
     }
 
     public boolean isComplete() {
@@ -55,5 +59,10 @@ public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, St
     @Nullable
     public BossBarHelper getBossBarHelper() {
         return bossBarHelper;
+    }
+
+    @Override
+    public ResourceBundle getSpecificBundle() {
+        return context.resourceBundleContext().goalResourceBundle();
     }
 }

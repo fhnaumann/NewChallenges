@@ -69,7 +69,6 @@ public class ItemGoalTest {
 
     private ItemGoal itemGoal;
     private static ItemGoalMessageHelper messageHelper;
-    private static ItemGoalBossBarHelper bossBarHelper;
     private static ItemGoalCollectedInventory collectedInventory;
 
     @BeforeAll
@@ -86,7 +85,6 @@ public class ItemGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new ItemGoalMessageHelper(context));
-        bossBarHelper = mock(ItemGoalBossBarHelper.class);
         collectedInventory = mock(ItemGoalCollectedInventory.class);
     }
 
@@ -127,7 +125,7 @@ public class ItemGoalTest {
                 }
                 """;
         ItemGoalConfig config = new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class);
-        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
+        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
     }
 
     @AfterEach

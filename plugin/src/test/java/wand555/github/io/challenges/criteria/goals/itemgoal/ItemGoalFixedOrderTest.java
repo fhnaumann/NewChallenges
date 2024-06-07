@@ -46,7 +46,6 @@ public class ItemGoalFixedOrderTest {
 
     private ItemGoal itemGoal;
     private static ItemGoalMessageHelper messageHelper;
-    private static ItemGoalBossBarHelper bossBarHelper;
     private static ItemGoalCollectedInventory collectedInventory;
 
     private EntityPickupItemEvent pickupOneCarrot;
@@ -65,7 +64,6 @@ public class ItemGoalFixedOrderTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new ItemGoalMessageHelper(context));
-        bossBarHelper = mock(ItemGoalBossBarHelper.class);
         collectedInventory = mock(ItemGoalCollectedInventory.class);
     }
 
@@ -108,7 +106,7 @@ public class ItemGoalFixedOrderTest {
                 }
                 """;
         ItemGoalConfig config = new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class);
-        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()),messageHelper, bossBarHelper, collectedInventory);
+        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()),messageHelper, collectedInventory, null);
 
         ItemStack toCollect = new ItemStack(Material.CARROT);
         pickupOneCarrot = new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), toCollect), 0);

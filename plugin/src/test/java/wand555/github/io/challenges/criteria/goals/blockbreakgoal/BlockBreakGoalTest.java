@@ -42,7 +42,6 @@ public class BlockBreakGoalTest {
 
     private BlockBreakGoal blockBreakGoal;
     private static BlockBreakGoalMessageHelper messageHelper;
-    private static BlockBreakGoalBossBarHelper bossBarHelper;
     private static BlockBreakCollectedInventory collectedInventory;
 
     @BeforeAll
@@ -59,7 +58,6 @@ public class BlockBreakGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new BlockBreakGoalMessageHelper(context));
-        bossBarHelper = mock(BlockBreakGoalBossBarHelper.class);
         collectedInventory = mock(BlockBreakCollectedInventory.class);
     }
 
@@ -92,7 +90,7 @@ public class BlockBreakGoalTest {
                 }
                 """;
         BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
-        blockBreakGoal = new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory, null);
+        blockBreakGoal = new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
     }
 
     @AfterEach
@@ -139,5 +137,11 @@ public class BlockBreakGoalTest {
         assertFalse(blockBreakGoal.isComplete());
         CriteriaUtil.callEvent(server, new BlockBreakEvent(new BlockMock(Material.DIRT), player), 1);
         assertTrue(blockBreakGoal.isComplete());
+    }
+
+    @Test
+    public void testAllCodes() throws IOException {
+        BlockBreakGoalConfig config = new ObjectMapper().readValue(BlockBreakGoalTest.class.getResourceAsStream("all_blocks_code_block_break_goal.json"), BlockBreakGoalConfig.class);
+        assertDoesNotThrow(() -> new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null));
     }
 }

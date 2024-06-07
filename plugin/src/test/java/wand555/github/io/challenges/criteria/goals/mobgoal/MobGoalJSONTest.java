@@ -36,7 +36,6 @@ public class MobGoalJSONTest {
 
     private Context context;
     private MobGoalMessageHelper messageHelper;
-    private MobGoalBossBarHelper bossBarHelper;
     private ObjectMapper objectMapper;
     private MobGoalCollectedInventory collectedInventory;
 
@@ -60,7 +59,6 @@ public class MobGoalJSONTest {
         context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, schemaRootMock, managerMock, new Random());
 
         messageHelper = new MobGoalMessageHelper(context);
-        bossBarHelper = mock(MobGoalBossBarHelper.class);
         collectedInventory = mock(MobGoalCollectedInventory.class);
         objectMapper = new ObjectMapper();
     }
@@ -80,7 +78,7 @@ public class MobGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(minimalMobGoalJSON, MobGoalConfig.class));
         MobGoalConfig config = objectMapper.readValue(minimalMobGoalJSON, MobGoalConfig.class);
-        MobGoal mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
+        MobGoal mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
         assertTrue(mobGoal.getToKill().isEmpty());
     }
 
@@ -109,7 +107,7 @@ public class MobGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleMobsMobGoalJSON, MobGoalConfig.class));
         MobGoalConfig config = objectMapper.readValue(multipleMobsMobGoalJSON, MobGoalConfig.class);
-        MobGoal mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
+        MobGoal mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
         Map<EntityType, Collect> expected = new HashMap<>();
         expected.put(EntityType.PIG, new Collect(2,0));
         expected.put(EntityType.WITHER_SKELETON, new Collect(3,1));
@@ -143,7 +141,12 @@ public class MobGoalJSONTest {
                 """;
         assertDoesNotThrow(() -> objectMapper.readValue(multipleMobsMobGoalJSON, MobGoalConfig.class));
         MobGoalConfig config = objectMapper.readValue(multipleMobsMobGoalJSON, MobGoalConfig.class);
-        MobGoal mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, bossBarHelper, collectedInventory);
+        MobGoal mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
         assertEquals(Map.entry(EntityType.PIG, new Collect(2, 0)), mobGoal.getGoalCollector().getCurrentlyToCollect());
+    }
+
+    @Test
+    public void testAllMobGoalJSON2Model() {
+        assertDoesNotThrow(() -> objectMapper.readValue(MobGoalJSONTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), MobGoalConfig.class));
     }
 }

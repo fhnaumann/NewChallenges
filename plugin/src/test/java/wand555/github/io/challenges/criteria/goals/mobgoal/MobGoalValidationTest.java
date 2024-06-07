@@ -69,4 +69,12 @@ public class MobGoalValidationTest {
         assertFalse(result.isValid());
         assertEquals(1, result.getViolations().size());
     }
+
+    @Test
+    public void testAllMobCode() throws IOException {
+        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), Object.class);
+        String json = objectMapper.writeValueAsString(objJSON);
+        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        assertTrue(result.isValid());
+    }
 }

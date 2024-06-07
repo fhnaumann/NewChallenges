@@ -45,7 +45,6 @@ public class MobGoalFixedOrderTest {
 
     private MobGoal mobGoal;
     private static MobGoalMessageHelper messageHelper;
-    private static MobGoalBossBarHelper bossBarHelper;
     private static MobGoalCollectedInventory collectedInventory;
 
     private EntityDeathEvent pigDeathEvent;
@@ -63,7 +62,6 @@ public class MobGoalFixedOrderTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new MobGoalMessageHelper(context));
-        bossBarHelper = mock(MobGoalBossBarHelper.class);
         collectedInventory = mock(MobGoalCollectedInventory.class);
     }
 
@@ -98,7 +96,7 @@ public class MobGoalFixedOrderTest {
                 }
                 """;
         MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
-        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()),messageHelper, bossBarHelper, collectedInventory);
+        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()),messageHelper, collectedInventory, null);
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);

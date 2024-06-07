@@ -23,6 +23,7 @@ public class BossBarShower implements Listener {
             return;
         }
         manager.getGoals().stream()
+                .filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == manager.getCurrentOrder())
                 .filter(baseGoal -> baseGoal instanceof BossBarDisplay).map(baseGoal -> (BossBarDisplay) baseGoal)
                 .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
     }

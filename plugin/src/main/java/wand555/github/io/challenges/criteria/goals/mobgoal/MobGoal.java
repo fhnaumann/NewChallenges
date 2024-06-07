@@ -81,7 +81,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     @Override
     protected BossBarPart.GoalInformation<EntityType> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>("mobgoal", data -> Map.of("entity", ResourcePackHelper.getEntityTypeUnicodeMapping(data)));
+        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(), data -> Map.of("entity", ResourcePackHelper.getEntityTypeUnicodeMapping(data)));
     }
 
     @Override
@@ -92,5 +92,10 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
     @Override
     public String getNameInCommand() {
         return "mob";
+    }
+
+    @Override
+    public String getNameInResourceBundle() {
+        return "mobgoal";
     }
 }

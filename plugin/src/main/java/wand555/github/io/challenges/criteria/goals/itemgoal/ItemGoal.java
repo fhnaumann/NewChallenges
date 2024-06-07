@@ -54,7 +54,7 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
 
     @Override
     protected BossBarPart.GoalInformation<Material> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>("itemgoal", data -> Map.of("item", ResourcePackHelper.getMaterialUnicodeMapping(data)));
+        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(), data -> Map.of("item", ResourcePackHelper.getMaterialUnicodeMapping(data)));
     }
 
     @Override
@@ -65,5 +65,10 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
     @Override
     public String getNameInCommand() {
         return "item";
+    }
+
+    @Override
+    public String getNameInResourceBundle() {
+        return "itemgoal";
     }
 }

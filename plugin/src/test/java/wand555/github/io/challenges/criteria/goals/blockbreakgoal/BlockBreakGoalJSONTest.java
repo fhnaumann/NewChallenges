@@ -19,6 +19,7 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.factory.BlockBreakGoalFactory;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
+import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalValidationTest;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 
 import java.io.IOException;
@@ -130,5 +131,10 @@ public class BlockBreakGoalJSONTest {
         BlockBreakGoalConfig config = objectMapper.readValue(json, BlockBreakGoalConfig.class);
         BlockBreakGoal blockBreakGoal = new BlockBreakGoalFactory().createGoal(context, config);
         assertEquals(Map.entry(Material.STONE, new Collect(2,0)), blockBreakGoal.getGoalCollector().getCurrentlyToCollect());
+    }
+
+    @Test
+    public void testAllBlockBreakGoalJSON2Model() {
+        assertDoesNotThrow(() -> objectMapper.readValue(BlockBreakGoalJSONTest.class.getResourceAsStream("all_blocks_code_block_break_goal.json"), BlockBreakGoalConfig.class));
     }
 }

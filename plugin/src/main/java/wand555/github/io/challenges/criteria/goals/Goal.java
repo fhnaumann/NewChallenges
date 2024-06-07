@@ -1,8 +1,9 @@
 package wand555.github.io.challenges.criteria.goals;
 
+import wand555.github.io.challenges.ResourceBundleNarrowable;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarHelper;
 
-public interface Goal {
+public interface Goal extends ResourceBundleNarrowable {
 
     public boolean isComplete();
 

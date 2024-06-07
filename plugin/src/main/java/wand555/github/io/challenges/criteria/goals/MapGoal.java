@@ -34,7 +34,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             bossBarBuilder.then(new FixedOrderBossBarPart<>(context, constructGoalInformation(), goalCollector));
         }
         else {
-            bossBarBuilder.then(new TotalCollectablesBossBarPart(context, messageHelper.getGoalNameInResourceBundle(), goalCollector));
+            bossBarBuilder.then(new TotalCollectablesBossBarPart(context, getNameInResourceBundle(), goalCollector));
         }
         if(hasTimer()) {
             bossBarBuilder.then(new TimerBossBarPart(context, timer));
@@ -58,20 +58,26 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
 
     @Override
     public void onComplete() {
-        setComplete(true);
+        super.onComplete();
         messageHelper.sendAllReachedAction();
 
         if(bossBarHelper.getBossBar() != null) {
             removeBossBar(context.plugin().getServer().getOnlinePlayers());
         }
 
-        notifyManager();
+        notifyManager(hasTimer() ? ChallengeManager.GoalCompletion.TIMER_BEATEN : ChallengeManager.GoalCompletion.COMPLETED);
     }
 
     @Override
     public TriggerCheck<D> triggerCheck() {
         return data -> {
             if(isComplete()) {
+                return false;
+            }
+            if(hasTimer() && context.challengeManager().getCurrentOrder() != getTimer().getOrder()) {
+                // the goal has a timer and its order number is bigger than the current order number, meaning
+                // this goal is yet "active". It only becomes active if preceding goals are completed and
+                // the order number is increases.
                 return false;
             }
             Collect toCollect = goalCollector.getToCollect().get(data.mainDataInvolved());
