@@ -7,7 +7,6 @@ import App from './App.vue'
 import router from './router'
 import PrimeVue from 'primevue/config'
 import i18n from '@/i18n'
-import Lara from '@/assets/lara'
 import Aura from '@/assets/aura'
 import type { Model } from '@/models/model'
 import DialogService from 'primevue/dialogservice';
