@@ -20,7 +20,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-themes-
       - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Download theme files from S3
