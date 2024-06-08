@@ -21,17 +21,13 @@ jobs:
           key: ${{ runner.os }}-themes-${{ hashFiles('builder_website/src/assets/aura/*') }}
           restore-keys: |
             ${{ runner.os }}-themes-
-      - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: eu-central-1
       - name: Download theme files from S3
         if: steps.cache-themes.outputs.cache-hit != 'true'
         run: |
           mkdir -p builder_website/src/assets/aura/
           cd builder_website/src/assets/ && ls && cd aura/ && ls && pwd
           echo ${GITHUB_WORKSPACE}
-          aws s3 cp s3://challenges-builder/themes/aura/ ${GITHUB_WORKSPACE}/builder_website/src/assets/aura/ --recursive --no-sign-request
+          aws s3 cp s3://challenges-builder/themes/aura/ ${GITHUB_WORKSPACE}/builder_website/src/assets/aura/ --recursive --no-sign-request --region eu-central-1
 
 
       - name: Cypress run
