@@ -1,5 +1,7 @@
 name: Cypress E2E
-
+permissions:
+  id-token: write
+  contents: read
 on:
   push:
     paths-ignore:
