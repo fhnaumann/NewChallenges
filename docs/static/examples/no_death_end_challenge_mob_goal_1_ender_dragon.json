@@ -1,28 +1,26 @@
 {
-    "rules": {
-      "enabledRules": {
-        "noDeath": {
-          "result": "Allow"
-        }
-      },
-      "enabledGlobalPunishments": {
-        "endPunishment": {
-          "affects": "All"
-        }
-      }
-    },
-    "goals": {
-      "mobGoal": {
-        "mobs": [
-          {
-            "collectableName": "ender_dragon",
-            "collectableData": {
-              "currentAmount": 0,
-              "amountNeeded": 1
-            }
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
           }
-        ],
-        "fixedOrder": true
+        }
       }
     }
-  }
+  },
+  "goals": {
+    "mobGoal": {
+      "mobs": [
+        {
+          "collectableName": "ender_dragon",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        }
+      ]
+    }
+  },
+  "settings": {}
+}

@@ -1,25 +1,26 @@
 {
-    "rules": {
-      "enabledRules": {
-        "noDeath": {
-          "result": "Allow"
-        }
-      },
-      "enabledGlobalPunishments": {
-        "endPunishment": {
-          "affects": "All"
-        }
-      }
-    },
-    "goals": {
-      "itemGoal": {
-        "items": [
-          {
-            "collectableName": "dragon_egg",
-            "collectableData": {}
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
           }
-        ],
-        "fixedOrder": true
+        }
       }
     }
-  }
+  },
+  "goals": {
+    "itemGoal": {
+      "items": [
+        {
+          "collectableName": "dragon_egg",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        }
+      ]
+    }
+  },
+  "settings": {}
+}
