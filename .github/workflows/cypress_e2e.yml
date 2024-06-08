@@ -11,6 +11,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Cache theme files
+        id: cache-themes
+        uses: actions/cache@v3
+        with:
+          path: builder_website/src/assets/aura/
+          key: ${{ runner.os }}-themes-${{ hashFiles('builder_website/src/assets/aura/*') }}
+          restore-keys: |
+            ${{ runner.os }}-themes-
+      - name: Download theme files from S3
+        if: steps.cache-themes.outputs.cache-hit != 'true'
+        run: |
+          aws s3 cp s3://challenges-builder/themes/aura/ /builder_website/src/assets/aura/ --recursive --no-sign-request
+
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:

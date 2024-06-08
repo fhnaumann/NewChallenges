@@ -13,6 +13,8 @@ builder_website/public/rendered_images/
 builder_website/public/testpack/
 builder_website/public/testpack.*
 builder_website/public/themes/
+builder_website/src/assets/aura
+builder_website/src/assets/lara
 
 docs/.retype
 docs/node_modules
