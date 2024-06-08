@@ -22,9 +22,8 @@ jobs:
       - name: Download theme files from S3
         if: steps.cache-themes.outputs.cache-hit != 'true'
         run: |
-          pwd
-          ls
           mkdir -p builder_website/src/assets/aura/
+          cd builder_website/src/assets/ && ls && cd aura/ && ls
           aws s3 cp s3://challenges-builder/themes/aura/ builder_website/src/assets/aura/ --recursive --no-sign-request
 
 
