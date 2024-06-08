@@ -24,7 +24,7 @@ jobs:
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+          aws-region: eu-central-1
       - name: Download theme files from S3
         if: steps.cache-themes.outputs.cache-hit != 'true'
         run: |
