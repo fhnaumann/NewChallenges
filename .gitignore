@@ -1,5 +1,7 @@
 .idea/
 
+legacy_builder_website/
+
 builder_website/package.json
 builder_website/package-lock.json
 builder_website/.idea/
@@ -11,20 +13,8 @@ builder_website/public/rendered_images/
 builder_website/public/testpack/
 builder_website/public/testpack.*
 builder_website/public/themes/
-
-rewrite-challenges-builder/package.json
-rewrite-challenges-builder/package-lock.json
-rewrite-challenges-builder/.idea/
-rewrite-challenges-builder/node_modules/
-rewrite-challenges-builder/public/minecraft/
-rewrite-challenges-builder/public/img/
-rewrite-challenges-builder/public/rendered_items/
-rewrite-challenges-builder/public/rendered_images/
-rewrite-challenges-builder/public/testpack/
-rewrite-challenges-builder/public/testpack.*
-rewrite-challenges-builder/public/themes/
-rewrite-challenges-builder/src/assets/aura/
-rewrite-challenges-builder/src/assets/lara/
+builder_website/src/assets/aura/
+builder_website/src/assets/lara/
 
 docs/.retype
 docs/node_modules

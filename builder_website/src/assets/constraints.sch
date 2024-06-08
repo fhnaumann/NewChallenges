@@ -2,7 +2,7 @@
   <pattern>
     <rule context="root/rules/enabledRules/noDeath">
       <assert test="not(punishments/deathPunishment)">
-        NoDeath rule cannnot contain the Death punishment.
+        NoDeath rule cannot contain the Death punishment.
       </assert>
     </rule>
     <rule context="root/rules">
@@ -23,5 +23,10 @@
         If 'allItems' or 'allBlocks' is selected, then no specific items may be selected.
       </assert>
     </rule-->
+    <rule context="root/goals/*">
+      <assert test="number(minTimeSeconds) <= number(maxTimeSeconds)">
+        Value of 'minTimeSeconds' must be smaller or equal to the value of 'maxTimeSeconds'.
+      </assert>
+    </rule>
   </pattern>
 </schema>

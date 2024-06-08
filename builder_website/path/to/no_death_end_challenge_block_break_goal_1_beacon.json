@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      }
+    }
+  },
+  "goals": {
+    "blockBreakGoal": {
+      "broken": [
+        {
+          "collectableName": "beacon",
+          "collectableData": {}
+        }
+      ]
+    }
+  },
+  "settings": {}
+}

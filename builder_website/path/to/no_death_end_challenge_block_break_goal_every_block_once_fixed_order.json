@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      }
+    }
+  },
+  "goals": {
+    "blockBreakGoal": {}
+  },
+  "settings": {}
+}

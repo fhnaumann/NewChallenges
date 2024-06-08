@@ -1,0 +1,26 @@
+{
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      }
+    }
+  },
+  "goals": {
+    "itemGoal": {
+      "items": [
+        {
+          "collectableName": "dragon_egg",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        }
+      ]
+    }
+  },
+  "settings": {}
+}

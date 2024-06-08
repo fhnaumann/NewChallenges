@@ -1,5 +1,5 @@
 {
-  "files": ["model.ts"],
+  "files": [],
   "references": [
     {
       "path": "./tsconfig.node.json"
@@ -13,7 +13,9 @@
   ],
   "compilerOptions": {
     "module": "NodeNext",
-    "target": "ES2022",
-    "lib": ["ES2023"],
+    "allowJs": true,
+    "noImplicitAny": false,
+    "lib": ["ESNext.Array", "DOM", "ESNext"],
+    "target": "ESNext"
   }
 }
