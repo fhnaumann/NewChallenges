@@ -23,7 +23,7 @@ jobs:
         if: steps.cache-themes.outputs.cache-hit != 'true'
         run: |
           mkdir -p builder_website/src/assets/aura/
-          cd builder_website/src/assets/ && ls && cd aura/ && ls
+          cd builder_website/src/assets/ && ls && cd aura/ && ls && pwd
           aws s3 cp s3://challenges-builder/themes/aura/ builder_website/src/assets/aura/ --recursive --no-sign-request
 
 
