@@ -19,6 +19,10 @@ jobs:
           key: ${{ runner.os }}-themes-${{ hashFiles('builder_website/src/assets/aura/*') }}
           restore-keys: |
             ${{ runner.os }}-themes-
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Download theme files from S3
         if: steps.cache-themes.outputs.cache-hit != 'true'
         run: |
