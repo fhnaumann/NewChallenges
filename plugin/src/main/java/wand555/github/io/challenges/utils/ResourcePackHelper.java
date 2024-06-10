@@ -24,8 +24,6 @@ public class ResourcePackHelper {
     private static final Map<Material, String> MATERIAL_UNICODE_MAPPING = fillMatUnicodeMappings();
     public static final Map<EntityType, String> ENTITY_UNICODE_MAPPING = fillEntityUnicodeMappings();
 
-    private static int unicodeCounter = 0xe000;
-
     public static <E extends Enum<E>> Component getUnicodeMapping(E from) {
         if(from instanceof Material material) {
             return getMaterialUnicodeMapping(material);

@@ -34,7 +34,8 @@ public class FileManager {
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model Model = new Model(0, goalsConfig, null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
+        Model Model = new Model(0, goalsConfig, null, null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
+        // TODO set metadata
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, Model);

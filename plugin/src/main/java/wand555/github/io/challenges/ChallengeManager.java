@@ -11,6 +11,7 @@ import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.exceptions.UnskippableException;
+import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.validation.BossBarShower;
 
@@ -26,6 +27,8 @@ public class ChallengeManager implements StatusInfo {
     private @NotNull List<Rule> rules;
     private @NotNull List<Punishment> globalPunishments;
     private @NotNull List<BaseGoal> goals;
+
+    private @NotNull ChallengeMetadata challengeMetadata;
 
     private boolean valid;
 
@@ -301,6 +304,14 @@ public class ChallengeManager implements StatusInfo {
 
     public void setCurrentOrder(int currentOrder) {
         this.currentOrder = currentOrder;
+    }
+
+    public @NotNull ChallengeMetadata getChallengeMetadata() {
+        return challengeMetadata;
+    }
+
+    public void setChallengeMetadata(@NotNull ChallengeMetadata challengeMetadata) {
+        this.challengeMetadata = challengeMetadata;
     }
 
     public enum GameState {

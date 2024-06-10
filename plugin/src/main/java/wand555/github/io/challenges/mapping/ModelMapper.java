@@ -54,8 +54,6 @@ public class ModelMapper {
 
     public ModelMapper(Context context) {
         this.plugin = context.plugin();
-        this.schemaRoot = schemaRoot;
-        this.resourceBundleContext = resourceBundleContext;
         this.challengeManager = context.challengeManager();
         this.context = context;
     }
@@ -73,7 +71,7 @@ public class ModelMapper {
         context.challengeManager().setGameState(timerRunnable.getTimer() > 0L ? ChallengeManager.GameState.PAUSED : ChallengeManager.GameState.SETUP);
 
         context.challengeManager().setTimerRunnable(timerRunnable);
-
+        context.challengeManager().setChallengeMetadata(json.getMetadata());
         context.challengeManager().setGlobalPunishments(globalPunishments);
         context.challengeManager().setRules(rules);
         context.challengeManager().setGoals(goals);

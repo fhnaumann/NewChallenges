@@ -29,6 +29,8 @@ public class ComponentUtil {
     public static final Function<Component, BinaryOperator<Component>> ACCUMULATOR = spacer -> (component1, component2) -> component1.append(spacer).append(component2);
     public static final BinaryOperator<Component> SPACE_ACCUMULATOR = ACCUMULATOR.apply(Component.space());
 
+    public static final BinaryOperator<Component> NEWLINE_ACCUMULATOR = ACCUMULATOR.apply(Component.newline());
+
     private static Map<String, Component> time2Placeholders(Map<TimerUtil.TimeParts, String> mappedTime) {
         Map<String, Component> placeholders = new HashMap<>();
         if(mappedTime.containsKey(TimerUtil.TimeParts.DAYS)) {

@@ -21,7 +21,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
 
     public BlockBreakRule(Context context, NoBlockBreakRuleConfig config, BlockBreakRuleMessageHelper messageHelper) {
         super(context, config.getPunishments(), PunishableRule.Result.fromJSONString(config.getResult().value()), messageHelper);
-        this.exemptions = new HashSet<>(ModelMapper.str2Mat(config.getExemptions(), material -> true));
+        this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(), config.getExemptions())) : new HashSet<>();
 
         blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfDeny());
     }

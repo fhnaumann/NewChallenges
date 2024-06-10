@@ -5,10 +5,12 @@ import net.kyori.adventure.resource.ResourcePackInfo;
 import net.kyori.adventure.resource.ResourcePackInfoLike;
 import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,19 +18,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.criteria.goals.Progressable;
+import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.utils.ActionHelper;
 
+import javax.annotation.Nullable;
 import java.io.*;
 import java.net.URI;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.*;
@@ -38,6 +37,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
     private Context tempContext;
     private URLReminder urlReminder;
+
+    private ChallengeFilesHandler challengeFilesHandler;
 
     @Override
     public void onEnable() {
@@ -51,6 +52,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
          * #64baaa highlight in text
          */
 
+
+        getCommand("challenges").setExecutor(this);
         getCommand("load").setExecutor(this);
         getCommand("start").setExecutor(this);
         getCommand("cancel").setExecutor(this);
@@ -86,6 +89,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         urlReminder = new URLReminder(tempContext);
         urlReminder.start();
 
+        try {
+            challengeFilesHandler = new ChallengeFilesHandler(Paths.get(getDataFolder().getAbsolutePath(), "settings").toFile());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        /*
         if(!getDataFolder().exists()) {
             boolean created = getDataFolder().mkdir();
         }
@@ -101,6 +111,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         else {
             handleLoad();
         }
+        */
     }
 
     @Override
@@ -135,8 +146,18 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         return Paths.get(getDataFolder().getAbsolutePath(), "settings", "data.json").toFile();
     }
 
-    private void handleLoad() {
-        if(!hasSettingsFileProvided()) {
+    private String challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
+        return statuses.stream()
+                .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(challengeName))
+                .findAny()
+                .orElseThrow()
+                .file().getName();
+    }
+
+    private void handleLoad(@Nullable String challengeNameToLoad) {
+        List<ChallengeFilesHandler.ChallengeLoadStatus> statuses = challengeFilesHandler.getChallengesInFolderStatus();
+
+        if(statuses.isEmpty()) {
             Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
                     tempContext.plugin(),
                     tempContext.resourceBundleContext().commandsResourceBundle(),
@@ -145,6 +166,16 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             Bukkit.broadcast(noSettingsFile);
             return;
         }
+        if(challengeNameToLoad == null && statuses.size() > 1) {
+            Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
+                    tempContext.plugin(),
+                    tempContext.resourceBundleContext().commandsResourceBundle(),
+                    "load.specify_challenge"
+            );
+            Bukkit.broadcast(noSettingsFile);
+            return;
+        }
+
         try {
             ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
                     tempContext.plugin(),
@@ -152,9 +183,11 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     "challenges.validation.start.title"
             ));
 
-            Context context = FileManager.readFromFile(getSettingsFile(), this);
+            String filenameToBeLoaded = challengeName2Filename(challengeNameToLoad, statuses);
+            Context context = FileManager.readFromFile(Paths.get(challengeFilesHandler.getFolderContainingChallenges().getAbsolutePath(), filenameToBeLoaded).toFile(), this);
             tempContext = context;
             urlReminder.setContext(context);
+            challengeFilesHandler.setFileNameBeingPlayed(filenameToBeLoaded);
 
             Component successTitle = ComponentUtil.formatTitleMessage(
                     context.plugin(),
@@ -202,11 +235,31 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         //Main.main(null, file, this);
     }
 
+    private Component formatChallengesInFolders2Component(Context context, ChallengeFilesHandler challengeFilesHandler) {
+        Component fileSymbol = Component.text("\uD83D\uDCDD").appendSpace();
+        return challengeFilesHandler.getChallengesInFolderStatus().stream().map(challengeLoadStatus -> {
+            Map<String, Component> placeholders = new HashMap<>();
+            placeholders.put("name", Component.text(challengeLoadStatus.challengeMetadata().getName()));
+            placeholders.put("mc-version", Component.text(challengeLoadStatus.challengeMetadata().getBuilderMCVersion()));
+            Component formatted = fileSymbol.append(ComponentUtil.formatChatMessage(context.plugin(), context.resourceBundleContext().commandsResourceBundle(), "load.list.name", placeholders, false));
+            if(challengeLoadStatus.file().getName().equals(challengeFilesHandler.getFileNameBeingPlayed())) {
+                formatted = Component.text().decorate(TextDecoration.BOLD).append(formatted).asComponent();
+            }
+            return formatted;
+        }).reduce(Component.empty(), ComponentUtil.NEWLINE_ACCUMULATOR);
+    }
+
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof Player player)) {
             return false;
+        }
+        if(command.getName().equalsIgnoreCase("challenges")) {
+            if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
+                Component component = formatChallengesInFolders2Component(tempContext, challengeFilesHandler);
+                sender.sendMessage(component);
+            }
         }
         if(command.getName().equalsIgnoreCase("load")) {
             if(tempContext.challengeManager().isRunning() || tempContext.challengeManager().isPaused()) {
@@ -217,7 +270,10 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 ));
                 return true;
             }
-            Bukkit.getScheduler().runTaskAsynchronously(this, this::handleLoad);
+
+            Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+                handleLoad(args.length == 1 ? args[0] : null);
+            });
 
         }
         else if(command.getName().equalsIgnoreCase("start")) {
