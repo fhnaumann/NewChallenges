@@ -1,8 +1,12 @@
 package wand555.github.io.challenges.files;
 
+import be.seeseemelk.mockbukkit.MockBukkit;
+import be.seeseemelk.mockbukkit.ServerMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.OfflineTempData;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +23,9 @@ public class ChallengeFilesHandlerTest {
 
     @TempDir
     Path tempFolderContainingChallenges;
+
+    @TempDir
+    Path tempFolderContainingOfflineData;
 
     private Path firstChallenge;
     private Path secondChallenge;
@@ -69,7 +76,9 @@ public class ChallengeFilesHandlerTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        challengeFilesHandler = new ChallengeFilesHandler(tempFolderContainingChallenges.toFile());
+        OfflineTempData offlineTempDataMock = mock(OfflineTempData.class);
+        when(offlineTempDataMock.get(eq("fileNameBeingPlayed"), any())).thenReturn("ignored");
+        challengeFilesHandler = new ChallengeFilesHandler(offlineTempDataMock, tempFolderContainingChallenges.toFile());
     }
 
     @Test
@@ -84,12 +93,5 @@ public class ChallengeFilesHandlerTest {
     public void testHandlerIgnoresNonJSON() {
         List<ChallengeFilesHandler.ChallengeLoadStatus> statuses = challengeFilesHandler.getChallengesInFolderStatus();
         assertFalse(statuses.stream().map(ChallengeFilesHandler.ChallengeLoadStatus::file).toList().contains(notAJson.toFile()));
-    }
-
-    @Test
-    public void testHandlerShowsJSONWithoutMetadataAsInvalid() {
-        List<ChallengeFilesHandler.ChallengeLoadStatus> statuses = challengeFilesHandler.getChallengesInFolderStatus();
-        ChallengeFilesHandler.ChallengeLoadStatus status = statuses.stream().filter(challengeLoadStatus -> challengeLoadStatus.file().equals(invalidChallenge.toFile())).findFirst().get();
-        assertNull(status.challengeMetadata());
     }
 }

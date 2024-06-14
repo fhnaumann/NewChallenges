@@ -56,7 +56,7 @@ public class MobGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager managerMock = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, schemaRootMock, managerMock, new Random());
+        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, schemaRootMock, managerMock, new Random(), new OfflineTempData(plugin));
 
         messageHelper = new MobGoalMessageHelper(context);
         collectedInventory = mock(MobGoalCollectedInventory.class);
@@ -147,6 +147,6 @@ public class MobGoalJSONTest {
 
     @Test
     public void testAllMobGoalJSON2Model() {
-        assertDoesNotThrow(() -> objectMapper.readValue(MobGoalJSONTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), MobGoalConfig.class));
+        assertDoesNotThrow(() -> objectMapper.readValue(MobGoalJSONTest.class.getResourceAsStream("all_mobs_code_mob_goal_isolation.json"), MobGoalConfig.class));
     }
 }

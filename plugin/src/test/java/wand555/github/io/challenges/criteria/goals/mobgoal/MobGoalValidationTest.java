@@ -75,6 +75,6 @@ public class MobGoalValidationTest {
         Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
         ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
-        assertTrue(result.isValid());
+        assertTrue(result.isValid(), "ValidationResult: %s".formatted(result));
     }
 }

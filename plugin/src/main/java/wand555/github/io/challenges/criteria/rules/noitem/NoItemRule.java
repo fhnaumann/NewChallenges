@@ -51,4 +51,8 @@ public class NoItemRule extends PunishableRule<ItemData, Material> implements St
         return data -> !exemptions.contains(data.itemStackInteractedWith().getType());
     }
 
+    @Override
+    public void unload() {
+        itemType.unload();
+    }
 }

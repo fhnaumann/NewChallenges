@@ -34,7 +34,12 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
     }
 
     public void shutdown() {
-        task.cancel();
+        // task may be null under specific circumstances:
+        // 1. A previous challenge was unloaded without ever being started.
+        if(task != null) {
+            task.cancel();
+        }
+
     }
 
     @Override
@@ -67,6 +72,7 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
         if(context.challengeManager().isRunning()) {
             // handle timers for goals (if they exist)
             context.challengeManager().goalsWithSameOrderNumber().forEach(goal -> {
+                goal.getTimer().decrementTime();
                 if(goal.getTimer().isFailedDueTimeLimit()) {
                     context.challengeManager().endChallenge(false);
                 }

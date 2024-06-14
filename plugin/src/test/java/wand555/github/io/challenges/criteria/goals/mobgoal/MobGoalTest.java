@@ -177,7 +177,7 @@ public class MobGoalTest {
 
     @Test
     public void testAllCodes() throws IOException {
-        MobGoalConfig config = new ObjectMapper().readValue(MobGoalTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), MobGoalConfig.class);
+        MobGoalConfig config = new ObjectMapper().readValue(MobGoalTest.class.getResourceAsStream("all_mobs_code_mob_goal_isolation.json"), MobGoalConfig.class);
         assertDoesNotThrow(() -> new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null));
     }
 }

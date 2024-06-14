@@ -1,4 +1,11 @@
 {
+  "metadata": {
+    "builderMCVersion": "",
+    "builderVersion": "",
+    "name": "",
+    "pluginMCVersion": "",
+    "pluginVersion": ""
+  },
   "goals": {
     "blockBreakGoal": {
       "broken": [

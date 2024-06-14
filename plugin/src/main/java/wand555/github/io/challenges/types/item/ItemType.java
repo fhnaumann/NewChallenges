@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
-public class ItemType extends Type<ItemData> implements Listener {
+public class ItemType extends Type<ItemData> {
 
     private final NamespacedKey markedKey;
 

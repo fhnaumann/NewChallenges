@@ -5,6 +5,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import wand555.github.io.challenges.criteria.Loadable;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.Progressable;
@@ -69,10 +70,15 @@ public class ChallengeManager implements StatusInfo {
         context.plugin().getServer().broadcast(toSend);
         goals.stream().filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
-
+        if(timerRunnable != null) {
+            // a previous challenge was unloaded (without restarting the server)
+            timerRunnable.shutdown();
+        }
         timerRunnable = new TimerRunnable(context);
         timerRunnable.start();
     }
+
+
 
     public void pause() {
         gameState = GameState.PAUSED;
@@ -219,6 +225,9 @@ public class ChallengeManager implements StatusInfo {
                 .filter(BossBarDisplay.class::isInstance)
                 .map(BossBarDisplay.class::cast)
                 .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
+
+        // remove active file, so it is not automatically loaded when the server restarts from now on
+        context.offlineTempData().addAndSave("fileNameBeingPlayed", null);
     }
 
     private boolean allGoalsCompleted() {
@@ -312,6 +321,15 @@ public class ChallengeManager implements StatusInfo {
 
     public void setChallengeMetadata(@NotNull ChallengeMetadata challengeMetadata) {
         this.challengeMetadata = challengeMetadata;
+    }
+
+    public void unload() {
+        if(getGoals() != null) {
+            getGoals().forEach(Loadable::unload);
+        }
+        if(getRules() != null) {
+            getRules().forEach(Loadable::unload);
+        }
     }
 
     public enum GameState {

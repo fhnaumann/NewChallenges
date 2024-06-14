@@ -2,13 +2,15 @@ package wand555.github.io.challenges.types;
 
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
 import java.util.Map;
 
-public abstract class Type<T> {
+public abstract class Type<T> implements Listener {
 
     protected final Context context;
 
@@ -26,6 +28,10 @@ public abstract class Type<T> {
         this.triggerCheck = triggerCheck;
         this.whenTriggered = whenTriggered;
         this.eventContainers = eventContainers;
+    }
+
+    public void unload() {
+        HandlerList.unregisterAll(this);
     }
 
     protected <E extends Event & Cancellable> void triggerIfCheckPasses(T data, E event) {

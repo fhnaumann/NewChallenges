@@ -5,5 +5,13 @@
         "exemptions": ["stone", "dirt"]
       }
     }
+  },
+  "metadata": {
+    "builderMCVersion": "",
+    "builderVersion": "",
+    "name": "",
+    "pluginMCVersion": "",
+    "pluginVersion": ""
   }
+}
 }

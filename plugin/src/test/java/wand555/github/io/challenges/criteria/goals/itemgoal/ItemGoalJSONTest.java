@@ -12,12 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.FileManager;
-import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
@@ -68,7 +63,7 @@ public class ItemGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager managerMock = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock, new Random());
+        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock, new Random(), new OfflineTempData(plugin));
 
         messageHelper = mock(ItemGoalMessageHelper.class);
         collectedInventory = mock(ItemGoalCollectedInventory.class);

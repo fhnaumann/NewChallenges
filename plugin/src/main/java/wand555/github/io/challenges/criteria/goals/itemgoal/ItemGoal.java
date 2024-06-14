@@ -71,4 +71,9 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
     public String getNameInResourceBundle() {
         return "itemgoal";
     }
+
+    @Override
+    public void unload() {
+        itemType.unload();
+    }
 }

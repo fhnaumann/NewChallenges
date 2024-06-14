@@ -98,4 +98,9 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
     public String getNameInResourceBundle() {
         return "mobgoal";
     }
+
+    @Override
+    public void unload() {
+        mobType.unload();
+    }
 }

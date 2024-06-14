@@ -39,6 +39,7 @@ public class ChallengeManagerTimerTest {
         server = MockBukkit.getOrCreateMock();
         plugin = MockBukkit.load(Challenges.class);
         when(context.plugin()).thenReturn(plugin);
+        when(context.offlineTempData()).thenReturn(new OfflineTempData(plugin));
         player = server.addPlayer("dummy");
 
 

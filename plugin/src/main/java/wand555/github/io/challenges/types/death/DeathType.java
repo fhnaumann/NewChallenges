@@ -15,7 +15,7 @@ import wand555.github.io.challenges.types.Type;
 
 import java.util.Map;
 
-public class DeathType extends Type<DeathData> implements Listener {
+public class DeathType extends Type<DeathData> {
 
     public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered) {
         super(context, triggerCheck, whenTriggered, Map.of());

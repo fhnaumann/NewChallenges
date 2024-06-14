@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public record Context(Challenges plugin, ResourceBundleContext resourceBundleContext, DataSourceContext dataSourceContext, JsonNode schemaRoot, ChallengeManager challengeManager, Random random) {
+public record Context(Challenges plugin, ResourceBundleContext resourceBundleContext, DataSourceContext dataSourceContext, JsonNode schemaRoot, ChallengeManager challengeManager, Random random, OfflineTempData offlineTempData) {
 
     public static final class Builder {
         private Challenges plugin;
@@ -16,6 +16,7 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
         private ChallengeManager manager;
 
         private Random random;
+        private OfflineTempData offlineTempData;
 
         public Builder() {
             this.resourceBundleContextBuilder = new ResourceBundleContext.Builder();
@@ -77,8 +78,13 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withOfflineTempData(OfflineTempData offlineTempData) {
+            this.offlineTempData = offlineTempData;
+            return this;
+        }
+
         public Context build() {
-            return new Context(plugin, resourceBundleContextBuilder.build(), dataSourceContextBuilder.build(), schemaRoot, manager, random);
+            return new Context(plugin, resourceBundleContextBuilder.build(), dataSourceContextBuilder.build(), schemaRoot, manager, random, offlineTempData);
         }
     }
 

@@ -34,8 +34,7 @@ public class FileManager {
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model Model = new Model(0, goalsConfig, null, null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
-        // TODO set metadata
+        Model Model = new Model(0, goalsConfig, challengeManager.getChallengeMetadata(), null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, Model);
@@ -85,6 +84,7 @@ public class FileManager {
                         .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
                         .withChallengeManager(new ChallengeManager())
                         .withRandom(new Random())
+                        .withOfflineTempData(new OfflineTempData(plugin))
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                 context.challengeManager().setValid(true);

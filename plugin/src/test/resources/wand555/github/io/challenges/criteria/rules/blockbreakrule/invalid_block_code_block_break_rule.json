@@ -5,5 +5,12 @@
         "exemptions": ["vgfdg"]
       }
     }
+  },
+  "metadata": {
+    "builderMCVersion": "",
+    "builderVersion": "",
+    "name": "",
+    "pluginMCVersion": "",
+    "pluginVersion": ""
   }
 }

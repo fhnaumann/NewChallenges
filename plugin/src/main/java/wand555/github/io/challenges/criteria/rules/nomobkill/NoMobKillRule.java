@@ -52,4 +52,8 @@ public class NoMobKillRule extends PunishableRule<MobData, EntityType> implement
         return data -> !exemptions.contains(data.entityInteractedWith());
     }
 
+    @Override
+    public void unload() {
+        mobType.unload();
+    }
 }

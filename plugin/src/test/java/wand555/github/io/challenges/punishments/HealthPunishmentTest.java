@@ -57,7 +57,7 @@ public class HealthPunishmentTest {
         ChallengeManager challengeManager = new ChallengeManager();
         Random randomMock = mock(Random.class);
         when(randomMock.nextInt(anyInt(), anyInt())).thenReturn(3);
-        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager, randomMock);
+        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager, randomMock, new OfflineTempData(plugin));
         challengeManager.setContext(context);
     }
 

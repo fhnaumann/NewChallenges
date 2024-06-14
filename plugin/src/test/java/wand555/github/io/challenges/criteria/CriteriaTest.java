@@ -5,11 +5,7 @@ import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import wand555.github.io.challenges.ChallengeManager;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.ResourceBundleContext;
+import wand555.github.io.challenges.*;
 
 import java.util.Random;
 
@@ -33,7 +29,7 @@ public abstract class CriteriaTest<C, M extends MessageHelper> {
         criteria = createCriteria();
         messageHelper = createMessageHelper();
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, createResourceBundleContext(), createDataSourceContext(), null, manager, new Random());
+        context = new Context(plugin, createResourceBundleContext(), createDataSourceContext(), null, manager, new Random(), new OfflineTempData(plugin));
     }
 
     @AfterEach

@@ -39,6 +39,15 @@ public class Violation {
         return Objects.hash(where, message, level);
     }
 
+    @Override
+    public String toString() {
+        return "Violation{" +
+                "where='" + where + '\'' +
+                ", message='" + message + '\'' +
+                ", level=" + level +
+                '}';
+    }
+
     public enum Level {
         WARNING, ERROR,
     }

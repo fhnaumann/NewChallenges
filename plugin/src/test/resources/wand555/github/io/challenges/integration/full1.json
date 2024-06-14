@@ -1,43 +1,56 @@
 {
+  "metadata": {
+    "builderMCVersion": "",
+    "builderVersion": "",
+    "name": "",
+    "pluginMCVersion": "",
+    "pluginVersion": ""
+  },
   "rules": {
     "enabledRules": {
       "noBlockBreak": {
-        "exemptions": ["stone"]
+        "exemptions": [
+          "stone"
+        ]
       },
       "noItem": {
-        "exemptions": ["carrot"]
+        "exemptions": [
+          "carrot"
+        ]
       },
       "noMobKill": {
-        "exemptions": ["pig"]
+        "exemptions": [
+          "pig"
+        ]
       }
     }
   },
   "goals": {
     "blockBreakGoal": {
-      "broken": [{
-        "collectableName": "dirt",
-        "collectableData": {
-
+      "broken": [
+        {
+          "collectableName": "dirt",
+          "collectableData": {
+          }
         }
-      }
       ]
     },
     "itemGoal": {
-      "items": [{
-        "collectableName": "stick",
-        "collectableData": {
-
+      "items": [
+        {
+          "collectableName": "stick",
+          "collectableData": {
+          }
         }
-      }
       ]
     },
     "mobGoal": {
-      "mobs": [{
-        "collectableName": "ender_dragon",
-        "collectableData": {
-
+      "mobs": [
+        {
+          "collectableName": "ender_dragon",
+          "collectableData": {
+          }
         }
-      }
       ]
     }
   }

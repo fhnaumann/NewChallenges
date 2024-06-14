@@ -232,6 +232,9 @@
                 <useJakartaValidation>true</useJakartaValidation>
                 <includeConstructors>true</includeConstructors>
                 <includeAllPropertiesConstructor>true</includeAllPropertiesConstructor>
+                <formatDates>true</formatDates>
+                <formatTimes>true</formatTimes>
+                <formatDateTimes>true</formatDateTimes>
             </configuration>
             <executions>
                 <execution>

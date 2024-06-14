@@ -17,18 +17,21 @@ import java.util.Objects;
 
 public class ChallengeFilesHandler {
 
+    private final OfflineTempData offlineTempData;
     private final File folderContainingChallenges;
     private final ObjectMapper objectMapper;
 
     private String fileNameBeingPlayed;
 
-    public ChallengeFilesHandler(File folderContainingChallenges) throws IOException {
+    public ChallengeFilesHandler(OfflineTempData offlineTempData, File folderContainingChallenges) throws IOException {
+        this.offlineTempData = offlineTempData;
         this.folderContainingChallenges = folderContainingChallenges;
         if(!this.folderContainingChallenges.exists()) {
             this.folderContainingChallenges.mkdirs();
             Files.createFile(this.folderContainingChallenges.toPath().resolve("MOVE YOUR CHALLENGES IN THIS FOLDER.txt"));
         }
         this.objectMapper = new ObjectMapper();
+        this.fileNameBeingPlayed = offlineTempData.get("fileNameBeingPlayed", String.class);
     }
 
     private List<File> getJSONFilesInFolder() {
@@ -85,7 +88,7 @@ public class ChallengeFilesHandler {
 
     public void setFileNameBeingPlayed(String fileNameBeingPlayed) {
         this.fileNameBeingPlayed = fileNameBeingPlayed;
-        OfflineTempData.getInstance().addAndSave("fileNameBeingPlayed", this.fileNameBeingPlayed);
+        offlineTempData.addAndSave("fileNameBeingPlayed", this.fileNameBeingPlayed);
     }
 
     public File getFolderContainingChallenges() {

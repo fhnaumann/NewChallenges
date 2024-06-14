@@ -21,6 +21,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.utils.ActionHelper;
@@ -39,6 +40,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
     private URLReminder urlReminder;
 
     private ChallengeFilesHandler challengeFilesHandler;
+    private OfflineTempData offlineTempData;
 
     @Override
     public void onEnable() {
@@ -65,6 +67,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
         getServer().getPluginManager().registerEvents(this, this);
 
+
+        offlineTempData = new OfflineTempData(this);
         tempContext = null;
         try {
             tempContext = new Context.Builder()
@@ -79,6 +83,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
                     .withChallengeManager(new ChallengeManager())
                     .withRandom(new Random())
+                    .withOfflineTempData(offlineTempData)
                     .build();
 
         } catch (IOException e) {
@@ -90,9 +95,27 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         urlReminder.start();
 
         try {
-            challengeFilesHandler = new ChallengeFilesHandler(Paths.get(getDataFolder().getAbsolutePath(), "settings").toFile());
+            challengeFilesHandler = new ChallengeFilesHandler(offlineTempData, Paths.get(getDataFolder().getAbsolutePath(), "settings").toFile());
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+
+        boolean success = handleLoad(offlineTempData.get("fileNameBeingPlayed", String.class), true);
+        if(success) {
+            tempContext.challengeManager().setGameState(ChallengeManager.GameState.PAUSED);
+            TimerRunnable timerRunnable = new TimerRunnable(tempContext, tempContext.challengeManager().getTime());
+            timerRunnable.start();
+            tempContext.challengeManager().setTimerRunnable(timerRunnable);
+
+            /*
+            tempContext.challengeManager().getGoals().stream()
+                    .filter(goal -> goal instanceof BossBarDisplay)
+                    .filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == tempContext.challengeManager().getCurrentOrder())
+                    .forEach(goal -> ((BossBarDisplay) goal).showBossBar(tempContext.plugin().getServer().getOnlinePlayers()));
+            */
+        }
+        else {
+
         }
 
         /*
@@ -124,7 +147,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             // Otherwise, the potentially existing data may be wiped because "nothing" is written.
             // When being in setup phase, the server cannot add any potential data, therefore it is not necessary to write something in this case.
             try {
-                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(getSettingsFile()));
+                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
             } catch (IOException e) {
                 Bukkit.broadcast(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
@@ -137,15 +160,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         tempContext.challengeManager().shutdownRunnables();
     }
 
-    private boolean hasSettingsFileProvided() {
-        File file = getSettingsFile();
-        return file.exists() && file.isFile();
-    }
-
-    private File getSettingsFile() {
-        return Paths.get(getDataFolder().getAbsolutePath(), "settings", "data.json").toFile();
-    }
-
     private String challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
         return statuses.stream()
                 .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(challengeName))
@@ -154,7 +168,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 .file().getName();
     }
 
-    private void handleLoad(@Nullable String challengeNameToLoad) {
+    private boolean handleLoad(@Nullable String challengeNameToLoad, boolean asFileName) {
         List<ChallengeFilesHandler.ChallengeLoadStatus> statuses = challengeFilesHandler.getChallengesInFolderStatus();
 
         if(statuses.isEmpty()) {
@@ -164,7 +178,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     "load.settings_missing"
             );
             Bukkit.broadcast(noSettingsFile);
-            return;
+            return false;
         }
         if(challengeNameToLoad == null && statuses.size() > 1) {
             Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
@@ -173,7 +187,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     "load.specify_challenge"
             );
             Bukkit.broadcast(noSettingsFile);
-            return;
+            return false;
         }
 
         try {
@@ -183,8 +197,14 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     "challenges.validation.start.title"
             ));
 
-            String filenameToBeLoaded = challengeName2Filename(challengeNameToLoad, statuses);
+            String filenameToBeLoaded = asFileName ? challengeNameToLoad : challengeName2Filename(challengeNameToLoad, statuses);
             Context context = FileManager.readFromFile(Paths.get(challengeFilesHandler.getFolderContainingChallenges().getAbsolutePath(), filenameToBeLoaded).toFile(), this);
+            if(tempContext.challengeManager().isValid()) {
+                // a previous challenge was loaded, better save it before unloading it
+                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
+                tempContext.challengeManager().unload();
+            }
+
             tempContext = context;
             urlReminder.setContext(context);
             challengeFilesHandler.setFileNameBeingPlayed(filenameToBeLoaded);
@@ -231,8 +251,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             );
             Bukkit.broadcast(failureChat);
             Bukkit.broadcast(e.getValidationResult().asFormattedComponent(tempContext));
+            return false;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         //Main.main(null, file, this);
+        return true;
     }
 
     private Component formatChallengesInFolders2Component(Context context, ChallengeFilesHandler challengeFilesHandler) {
@@ -272,7 +296,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             }
 
             Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
-                handleLoad(args.length == 1 ? args[0] : null);
+                handleLoad(args.length == 1 ? args[0] : null, false);
             });
 
         }
@@ -303,7 +327,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         }
         else if (command.getName().equalsIgnoreCase("save")) {
             try {
-                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(getSettingsFile()));
+                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),

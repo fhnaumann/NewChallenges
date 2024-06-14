@@ -44,4 +44,9 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessageType> imp
     public NoDeathRuleConfig toGeneratedJSONClass() {
         return new NoDeathRuleConfig(toPunishmentsConfig(), NoDeathRuleConfig.Result.fromValue(result.getValue()));
     }
+
+    @Override
+    public void unload() {
+        deathType.unload();
+    }
 }

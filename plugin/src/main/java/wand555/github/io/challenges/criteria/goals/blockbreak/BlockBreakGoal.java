@@ -69,4 +69,9 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
     public String getNameInResourceBundle() {
         return "blockbreakgoal";
     }
+
+    @Override
+    public void unload() {
+        blockBreakType.unload();
+    }
 }

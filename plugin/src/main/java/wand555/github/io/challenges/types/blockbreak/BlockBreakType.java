@@ -3,6 +3,7 @@ package wand555.github.io.challenges.types.blockbreak;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import wand555.github.io.challenges.Context;
@@ -13,7 +14,7 @@ import wand555.github.io.challenges.types.Type;
 
 import java.util.Map;
 
-public class BlockBreakType extends Type<BlockBreakData> implements Listener {
+public class BlockBreakType extends Type<BlockBreakData> {
 
     private final EventContainer<BlockBreakEvent> onBlockBreak;
 

@@ -92,4 +92,9 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
                 )
         );
     }
+
+    @Override
+    public void unload() {
+        blockBreakType.unload();
+    }
 }

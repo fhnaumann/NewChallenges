@@ -12,7 +12,7 @@ import wand555.github.io.challenges.types.Type;
 
 import java.util.Map;
 
-public class MobType extends Type<MobData> implements Listener {
+public class MobType extends Type<MobData> {
 
     public MobType(Context context, TriggerCheck<MobData> triggerCheck, Trigger<MobData> whenTriggered) {
         this(context, triggerCheck, whenTriggered, event -> {});
