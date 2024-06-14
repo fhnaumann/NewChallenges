@@ -3,7 +3,18 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useModelStore = defineStore('stateModel', () => {
-  const model = ref<Model>({})
+  const model = ref<Model>({
+    metadata: {
+      name: 'my-challenge',
+      whenCreated: new Date().toISOString(),
+      lastModified: new Date().toISOString(),
+      createdBy: '-',
+      builderVersion: '0.0.1',
+      builderMCVersion: '1.20.4',
+      pluginVersion: '0.0.1',
+      pluginMCVersion: '1.20.4'
+    }
+  })
 
   function mapIdxAsStringOrIndex(wherePart: string): string | number {
     if (wherePart.startsWith('[') && wherePart.endsWith(']')) {

@@ -11,7 +11,8 @@
     <CriteriaTypeOverview class="customized-goal" criteria-type="goals" />
     <CriteriaTypeOverview class="customized-setting" criteria-type="settings" />
     <div class="fixed inset-x-0 bottom-0">
-      <div class="flex justify-end px-4 py-2">
+      <div class="flex justify-end px-4 py-2 space-x-4">
+        <Button :label="t('general.change_metadata_button')" @click="showChangeMetadata()" />
         <Button :label="t('general.export.download_button')" @click="showCodeDisplay()" />
       </div>
     </div>
@@ -31,6 +32,7 @@
   import Button from 'primevue/button'
   import CodeDisplay from '@/components/CodeDisplay.vue'
   import { useModelStore } from '@/stores/model'
+  import MetadataOverview from '@/components/MetadataOverview.vue'
 
 
   const { t } = useI18n()
@@ -87,6 +89,15 @@
             class: 'w-[64rem] h-5/6 bg-surface-0'
           }
         }
+      }
+    })
+  }
+
+  function showChangeMetadata() {
+    dialog.open(MetadataOverview, {
+      props: {
+        modal: true,
+        draggable: false
       }
     })
   }

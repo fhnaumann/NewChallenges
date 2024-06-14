@@ -9,6 +9,34 @@
       "placeholder": "Search rules, goals, or settings to add",
       "no_matches": "Your search did not match anything."
     },
+    "change_metadata_button": "Modify metadata",
+    "metadata": {
+      "name": {
+        "name": "Challenge Name",
+        "tooltip": ""
+      },
+      "whenCreated": {
+        "name": "Creation Date"
+      },
+      "lastModified": {
+        "name": "Last Modified"
+      },
+      "createdBy": {
+        "name": "Created By"
+      },
+      "builderVersion": {
+        "name": "Builder Version"
+      },
+      "pluginVersion": {
+        "name": "Plugin Version"
+      },
+      "builderMCVersion": {
+        "name": "Builder MC Version"
+      },
+      "pluginMCVersion": {
+        "name": "Plugin MC Version"
+      }
+    },
     "delete_all_criteria": "Clear everything",
     "delete": "Delete",
     "save_changes": "Save changes",

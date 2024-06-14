@@ -34,6 +34,54 @@
             },
             "type": "object"
         },
+        "ChallengeMetadata": {
+            "additionalProperties": false,
+            "properties": {
+                "builderMCVersion": {
+                    "description": "MC Version the challenge builder targets at the time of creation.",
+                    "type": "string"
+                },
+                "builderVersion": {
+                    "description": "Version of the challenge builder used at the time of creation.",
+                    "type": "string"
+                },
+                "createdBy": {
+                    "default": "-",
+                    "description": "Author of the challenge. The user who configured and built the challenge.",
+                    "type": "string"
+                },
+                "lastModified": {
+                    "description": "When the challenge was last modified. Is always set by the challenge builder.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the challenge. Can be set by the user. Used to differentiate between challenges and to load a specific challenge.",
+                    "type": "string"
+                },
+                "pluginMCVersion": {
+                    "description": "MC Version the minecraft plugin targets at the time of loading the first time.",
+                    "type": "string"
+                },
+                "pluginVersion": {
+                    "description": "Version of the minecraft plugin used at the time of loading the first time.",
+                    "type": "string"
+                },
+                "whenCreated": {
+                    "description": "When the challenge was first initially created. Is always set by the challenge builder.",
+                    "format": "date-time",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "builderMCVersion",
+                "builderVersion",
+                "name",
+                "pluginMCVersion",
+                "pluginVersion"
+            ],
+            "type": "object"
+        },
         "CollectableDataConfig": {
             "additionalProperties": false,
             "properties": {
@@ -338,6 +386,10 @@
                 "goals": {
                     "$ref": "#/definitions/GoalsConfig"
                 },
+                "metadata": {
+                    "$ref": "#/definitions/ChallengeMetadata",
+                    "description": "Metadata about the challenge itself and how it was configured and built."
+                },
                 "nextChallenge": {
                     "$ref": "#/definitions/Model"
                 },
@@ -354,6 +406,9 @@
                     "type": "integer"
                 }
             },
+            "required": [
+                "metadata"
+            ],
             "type": "object"
         },
         "NoBlockBreakRuleConfig": {

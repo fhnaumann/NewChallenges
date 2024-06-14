@@ -6,6 +6,9 @@ import type { SettingName, SettingsConfig } from './settings'
 // typescript-json-schema src/models/model.ts Model > "src/assets/challenges_schema.json" --noExtraProps --strictNullChecks --required --defaultNumberType=integer
 // NOTE: Any class that exports an interface may not import any other file (except for other interfaces)!
 
+export type CriteriaKey = GoalName | RuleName | SettingName
+export type CriteriaType = 'rules' | 'goals' | 'settings'
+
 export interface Model {
   rules?: RulesConfig
   goals?: GoalsConfig
@@ -35,8 +38,59 @@ export interface Model {
    */
   timer?: number
 
+  /**
+   * Metadata about the challenge itself and how it was configured and built.
+   */
+  metadata: ChallengeMetadata
+
   nextChallenge?: Model
 }
 
-export type CriteriaKey = GoalName | RuleName | SettingName
-export type CriteriaType = 'rules' | 'goals' | 'settings'
+export interface ChallengeMetadata {
+
+  /**
+   * Name of the challenge. Can be set by the user. Used to differentiate between challenges and to load a specific challenge.
+   */
+  name: string,
+
+  /**
+   * When the challenge was first initially created. Is always set by the challenge builder.
+   *
+   * @TJS-format date-time
+   */
+  whenCreated: string,
+
+  /**
+   * When the challenge was last modified. Is always set by the challenge builder.
+   *
+   * @TJS-format date-time
+   */
+  lastModified: string
+
+  /**
+   * Author of the challenge. The user who configured and built the challenge.
+   *
+   * @default "-"
+   */
+  createdBy: string
+
+  /**
+   * Version of the challenge builder used at the time of creation.
+   */
+  builderVersion: string
+
+  /**
+   * Version of the minecraft plugin used at the time of loading the first time.
+   */
+  pluginVersion: string
+
+  /**
+   * MC Version the challenge builder targets at the time of creation.
+   */
+  builderMCVersion: string
+
+  /**
+   * MC Version the minecraft plugin targets at the time of loading the first time.
+   */
+  pluginMCVersion: string,
+}
