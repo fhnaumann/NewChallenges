@@ -1,0 +1,3 @@
+# Goals
+
+Goals are tasks that have to be completed in order to successfully beat a challenge. A challenge can have multiple goals (even at different times). Goals can be completed throughout the entire challenge. By default, goals have no ordering. Any progress towards any goal can be made at any time. You can change by enablind [timers](timer.md) in goals. Most goals have additional configuration options. The next pages will go over each goal and its configuration options.

@@ -3,7 +3,7 @@
 When End Punishment is selected, the challenge is immediately lost.
 
 !!!info 2nd Chance
-If this punishment is triggered, every player will be put in spectator mode, and the timer will halt. You can purposely ignore this, set your gamemode back to survival and, continue the timer with `/timer resume`. You can play on as if nothing has happened.
+If this punishment is triggered, every player will be put in spectator mode, and the timer will halt. You can purposely ignore this, set your gamemode back to survival, and continue the timer with `/timer resume`. You can play on as if nothing has happened.
 !!!
 
 ## Example Configuration

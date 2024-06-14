@@ -28,7 +28,7 @@ Below are some examples you can directly copy into your server without using the
 
 **Punishments:** The challenge is over for everyone (EndPunishment)
 
-**Goals:** Break 1 beacon (Block Break Goal)
+**Goals:** Break 1 beacon (BlockBreakGoal)
 :::
 
 !!!danger Rename file after download
@@ -44,7 +44,7 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 
 **Punishments:** The challenge is over for everyone (EndPunishment)
 
-**Goals:** Break every obtainable block once in a fixed order (Block Break Goal)
+**Goals:** Break every obtainable block once in a fixed order (BlockBreakGoal)
 :::
 
 !!!danger Rename file after download
