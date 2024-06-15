@@ -16,9 +16,14 @@ describe('Test Files for Docs Generation', () => {
     cy.get('.pt-2 > .relative > .leading-\\[normal\\]').type('bea');
     cy.get('.justify-start > .flex > div').click();
     cy.get('.grow').click();
-    cy.get('.fixed > .flex > .relative > .duration-200').click();
+    // cy.get('.fixed > .flex > .relative > .duration-200').click();
+
+    cy.addMetadata("no_death_end_challenge_block_break_goal_1_beacon")
+
+    cy.get('[aria-label="Download Settings File"] > .duration-200').click();
     cy.get('[aria-label="Download"] > .duration-200').click();
     /* ==== End Cypress Studio ==== */
+
     cy.generateJSON("no_death_end_challenge_block_break_goal_1_beacon")
   })
 
@@ -37,9 +42,14 @@ describe('Test Files for Docs Generation', () => {
     cy.get('#breakAllBlocksOnce').check();
     cy.get(':nth-child(4) > .relative > #goals\\.blockBreakGoal').check();
     cy.get('.grow').click();
-    cy.get('.fixed > .flex > .relative > .duration-200').click();
+    // cy.get('.fixed > .flex > .relative > .duration-200').click();
+
+    cy.addMetadata("no_death_end_challenge_block_break_goal_every_block_once_fixed_order")
+
+    cy.get('[aria-label="Download Settings File"] > .duration-200').click();
     cy.get('[aria-label="Download"] > .duration-200').click();
     /* ==== End Cypress Studio ==== */
+
     cy.generateJSON("no_death_end_challenge_block_break_goal_every_block_once_fixed_order")
   });
 
@@ -56,10 +66,14 @@ describe('Test Files for Docs Generation', () => {
     cy.get('.relative > .w-full').type('item');
     cy.get('.flex-row > .flex > :nth-child(2)').click();
     cy.get('.grow').click();
-    cy.get('.fixed > .flex > .relative > .duration-200').click();
+    // cy.get('.fixed > .flex > .relative > .duration-200').click();
+
+    cy.addMetadata("no_death_end_challenge_item_goal_1_dragon_egg")
+
+    cy.get('[aria-label="Download Settings File"] > .duration-200').click();
     cy.get('[aria-label="Download"] > .duration-200').click();
-    cy.get('.shrink-0').click();
     /* ==== End Cypress Studio ==== */
+
     cy.generateJSON("no_death_end_challenge_item_goal_1_dragon_egg")
   });
 
@@ -78,9 +92,14 @@ describe('Test Files for Docs Generation', () => {
     cy.get('#collectEveryItemOnce').check();
     cy.get(':nth-child(5) > .relative > #goals\\.itemGoal').check();
     cy.get('.grow > .duration-200').click();
-    cy.get('.fixed > .flex > .relative > .duration-200').click();
-    cy.get('[aria-label="Download"]').click();
+    // cy.get('.fixed > .flex > .relative > .duration-200').click();
+
+    cy.addMetadata("no_death_end_challenge_item_goal_every_item_once_fixed_order")
+
+    cy.get('[aria-label="Download Settings File"] > .duration-200').click();
+    cy.get('[aria-label="Download"] > .duration-200').click();
     /* ==== End Cypress Studio ==== */
+
     cy.generateJSON("no_death_end_challenge_item_goal_every_item_once_fixed_order")
   });
 
@@ -98,9 +117,14 @@ describe('Test Files for Docs Generation', () => {
     cy.get('.p-4 > .flex-row').click();
     cy.get(':nth-child(4) > .relative > #goals\\.mobGoal').check();
     cy.get('.grow').click();
-    cy.get('.fixed > .flex > .relative').click();
+    // cy.get('.fixed > .flex > .relative').click();
+
+    cy.addMetadata("no_death_end_challenge_mob_goal_1_ender_dragon")
+
+    cy.get('[aria-label="Download Settings File"] > .duration-200').click();
     cy.get('[aria-label="Download"] > .duration-200').click();
     /* ==== End Cypress Studio ==== */
+
     cy.generateJSON("no_death_end_challenge_mob_goal_1_ender_dragon")
   });
 
@@ -119,9 +143,14 @@ describe('Test Files for Docs Generation', () => {
     cy.get('#killAllMobsOnce').check();
     cy.get(':nth-child(4) > .relative > #goals\\.mobGoal').check();
     cy.get('.grow > .duration-200').click();
-    cy.get('.fixed > .flex > .relative > .duration-200').click();
+    // cy.get('.fixed > .flex > .relative > .duration-200').click();
+
+    cy.addMetadata("no_death_end_challenge_mob_goal_every_mob_once_fixed_order")
+
+    cy.get('[aria-label="Download Settings File"] > .duration-200').click();
     cy.get('[aria-label="Download"] > .duration-200').click();
     /* ==== End Cypress Studio ==== */
+
     cy.generateJSON("no_death_end_challenge_mob_goal_every_mob_once_fixed_order")
   });
 })

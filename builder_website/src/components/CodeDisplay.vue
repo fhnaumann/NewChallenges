@@ -128,7 +128,7 @@
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = 'data.json'
+    link.download = model.metadata.name + ".json"
     document.body.append(link)
     link.click()
     document.body.removeChild(link)

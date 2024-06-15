@@ -15,6 +15,8 @@ builder_website/public/testpack.*
 builder_website/public/themes/
 builder_website/src/assets/aura
 builder_website/src/assets/lara
+builder_website/path/to/
+builder_website/cypress/downloads/
 
 docs/.retype
 docs/node_modules
@@ -30,3 +32,5 @@ plugin/Challenges.iml
 plugin/src/main/resources/rendered_items
 plugin/unicode_mapping/textures/
 plugin/generated_jar/
+
+

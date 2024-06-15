@@ -41,10 +41,21 @@ Cypress.Commands.add('emptySelection', () => {
   cy.get('.w-\\[10rem\\] > .duration-200').click();
 })
 
+Cypress.Commands.add('addMetadata', (challengeName: string) => {
+  cy.visit('/');
+  cy.get('[aria-label="Modify metadata"] > .duration-200').click();
+  cy.get('#challenge-name').clear();
+  cy.get('#challenge-name').type(challengeName);
+  cy.get('#challenge-created-by').clear();
+  cy.get('#challenge-created-by').type('Wiki');
+  cy.get('.inline-block').click();
+})
+
+
 Cypress.Commands.add('generateJSON', (filename) => {
   //cy.get('#code > pre').invoke("text").as("settings")
   //cy.get("@settings").then((text) => cy.writeFile(`path/to/${filename}.json`, text))
-  cy.readFile(`${Cypress.config('downloadsFolder')}/data.json`).then((file) => cy.writeFile(`path/to/${filename}.json`, file))
+  cy.readFile(`${Cypress.config('downloadsFolder')}/${filename}.json`).then((file) => cy.writeFile(`path/to/${filename}.json`, file))
 
 })
 
