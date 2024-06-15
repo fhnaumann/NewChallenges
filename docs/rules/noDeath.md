@@ -20,8 +20,4 @@ Below are some examples you can directly copy into your server without using the
 **Goals:** Kill 1 Enderdragon ([MobGoal](../goals/mobGoal.md))
 :::
 
-!!!danger Rename file after download
-Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
-!!!
-
-[!file Example 1](../static/examples/no_death_end_challenge_mob_goal.json)
+[!file Example 1](../static/examples/no_death_end_challenge_mob_goal_1_ender_dragon.json)

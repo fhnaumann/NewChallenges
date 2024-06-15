@@ -1,4 +1,14 @@
 {
+  "metadata": {
+    "name": "no_death_end_challenge_item_goal_1_dragon_egg",
+    "whenCreated": "2024-06-15T15:16:45.544Z",
+    "lastModified": "2024-06-15T15:16:45.544Z",
+    "createdBy": "Wiki",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
   "rules": {
     "enabledRules": {
       "noDeath": {
@@ -11,16 +21,14 @@
     }
   },
   "goals": {
-    "itemGoal": {
-      "items": [
+    "mobGoal": {
+      "mobs": [
         {
-          "collectableName": "dragon_egg",
-          "collectableData": {
-            "amountNeeded": 1
-          }
+          "collectableName": "ender_dragon",
+          "collectableData": {}
         }
-      ]
+      ],
+      "fixedOrder": true
     }
-  },
-  "settings": {}
+  }
 }

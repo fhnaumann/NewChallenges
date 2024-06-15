@@ -41,10 +41,6 @@ Below are some examples you can directly copy into your server without using the
 **Goals:** Collect 1 dragon egg (Item Goal)
 :::
 
-!!!danger Rename file after download
-Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
-!!!
-
 [!file Example 1](../static/examples/no_death_end_challenge_item_goal_1_dragon_egg.json)
 
 :::example_configuration
@@ -56,9 +52,5 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 
 **Goals:** Collect every obtainable item once in a fixed order (Item Goal)
 :::
-
-!!!danger Rename file after download
-Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
-!!!
 
 [!file Example 2](../static/examples/no_death_end_challenge_item_goal_every_item_once_fixed_order.json)

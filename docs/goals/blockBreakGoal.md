@@ -31,10 +31,6 @@ Below are some examples you can directly copy into your server without using the
 **Goals:** Break 1 beacon (BlockBreakGoal)
 :::
 
-!!!danger Rename file after download
-Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
-!!!
-
 [!file Example 1](../static/examples/no_death_end_challenge_block_break_goal_1_beacon.json)
 
 :::example_configuration
@@ -46,9 +42,5 @@ Rename the file to `data.json` and place it in the `settings` folder! Otherwise 
 
 **Goals:** Break every obtainable block once in a fixed order (BlockBreakGoal)
 :::
-
-!!!danger Rename file after download
-Rename the file to `data.json` and place it in the `settings` folder! Otherwise the plugin won't recognize the file!
-!!!
 
 [!file Example 2](../static/examples/no_death_end_challenge_block_break_goal_every_block_once_fixed_order.json)
