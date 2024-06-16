@@ -9,13 +9,13 @@ The [Item Goal](/goals/itemGoal.md) has the option to only collect blocks. This 
 ## Configuration
 
 [!badge Individual Dropdown Selection]
-:   Select blocks and their necessary amoutns individually wit the dropdown option.
+:   Select blocks and their necessary amounts individually wit the dropdown option.
 
 [!badge Break all blocks]
 :   Every obtainable (mineable) block has to be broken once.
 
 [!badge Fixed random order]
-:   If selected, every block has to be broken in a specific order that is determined when the settings file is generated. Otherwise the blocks can be broken in any order.
+:   If selected, every block has to be broken in a specific order that is determined when the settings file is generated. Otherwise, the blocks can be broken in any order.
 
 ## Example Configuration
 

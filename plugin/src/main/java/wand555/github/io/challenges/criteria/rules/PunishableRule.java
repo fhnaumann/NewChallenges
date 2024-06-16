@@ -42,9 +42,7 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
     }
 
     protected final <E extends Event & Cancellable> EventContainer<E> cancelIfDeny() {
-        return event -> {
-            event.setCancelled(result == Result.DENY);
-        };
+        return event -> event.setCancelled(result == Result.DENY);
     }
 
     @Override

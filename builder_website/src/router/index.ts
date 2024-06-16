@@ -10,6 +10,8 @@ import NoItemRule from '@/components/rules/types/NoItemRule.vue'
 import ItemGoal from '@/components/goals/types/ItemGoal.vue'
 import DeathGoal from '@/components/goals/types/DeathGoal.vue'
 import NoDeathRule from '@/components/rules/types/NoDeathRule.vue'
+import NoBlockPlaceRule from '@/components/rules/types/NoBlockPlaceRule.vue'
+import BlockPlaceGoal from '@/components/goals/types/BlockPlaceGoal.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +20,19 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: AllCriteriaOverview
+    },
+    /*
+    blockplace
+     */
+    {
+      path: '/rules/noBlockPlace',
+      name: 'NoBlockPlace',
+      component: NoBlockPlaceRule
+    },
+    {
+      path: '/goals/blockPlaceGoal',
+      name: 'BlockPlaceGoal',
+      component: BlockPlaceGoal
     },
     /*
     blockbreak

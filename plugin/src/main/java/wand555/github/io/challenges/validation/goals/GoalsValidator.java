@@ -25,6 +25,9 @@ public class GoalsValidator extends ModelValidator {
         if(challengesSchema.getGoals().getBlockBreakGoal() != null) {
             new BlockBreakGoalValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
         }
+        if(challengesSchema.getGoals().getBlockPlaceGoal() != null) {
+            new BlockPlaceGoalValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
+        }
         if(challengesSchema.getGoals().getMobGoal() != null) {
             new MobGoalValidator(dataSourceContext.entityTypeJSONList()).performValidation(builder, challengesSchema);
         }

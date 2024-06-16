@@ -2,10 +2,12 @@ import type { BlockBreakGoalConfig } from './blockbreak'
 import type { MobGoalConfig } from './mob'
 import type { ItemGoalConfig } from './item'
 import type { DeathGoalConfig } from './death'
+import type { BlockPlaceGoalConfig } from './blockplace'
 
 export type GoalName = keyof GoalsConfig
 
 export interface GoalsConfig {
+  blockPlaceGoal?: BlockPlaceGoalConfig
   blockBreakGoal?: BlockBreakGoalConfig
   mobGoal?: MobGoalConfig
   itemGoal?: ItemGoalConfig,

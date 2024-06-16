@@ -16,15 +16,12 @@ import java.util.Map;
 
 public class BlockBreakType extends Type<BlockBreakData> {
 
-    private final EventContainer<BlockBreakEvent> onBlockBreak;
-
     public BlockBreakType(Context context, TriggerCheck<BlockBreakData> triggerCheck, Trigger<BlockBreakData> whenTriggered) {
         this(context, triggerCheck, whenTriggered, event -> {});
     }
 
     public BlockBreakType(Context context, TriggerCheck<BlockBreakData> triggerCheck, Trigger<BlockBreakData> whenTriggered, EventContainer<BlockBreakEvent> onBlockBreak) {
         super(context, triggerCheck, whenTriggered, Map.of(BlockBreakEvent.class, onBlockBreak));
-        this.onBlockBreak = onBlockBreak;
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 

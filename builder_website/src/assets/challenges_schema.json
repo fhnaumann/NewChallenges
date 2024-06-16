@@ -34,6 +34,38 @@
             },
             "type": "object"
         },
+        "BlockPlaceGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "placed": {
+                    "default": [],
+                    "description": "The blocks (more specifically materials) that need to be placed to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
         "ChallengeMetadata": {
             "additionalProperties": false,
             "properties": {
@@ -76,6 +108,7 @@
             "required": [
                 "builderMCVersion",
                 "builderVersion",
+                "createdBy",
                 "name",
                 "pluginMCVersion",
                 "pluginVersion"
@@ -202,6 +235,9 @@
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
                 },
+                "noBlockPlace": {
+                    "$ref": "#/definitions/NoBlockPlaceRuleConfig"
+                },
                 "noDeath": {
                     "$ref": "#/definitions/NoDeathRuleConfig"
                 },
@@ -271,6 +307,9 @@
             "properties": {
                 "blockBreakGoal": {
                     "$ref": "#/definitions/BlockBreakGoalConfig"
+                },
+                "blockPlaceGoal": {
+                    "$ref": "#/definitions/BlockPlaceGoalConfig"
                 },
                 "deathGoal": {
                     "$ref": "#/definitions/DeathGoalConfig"
@@ -412,6 +451,32 @@
             "type": "object"
         },
         "NoBlockBreakRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "result": {
+                    "default": "Deny",
+                    "description": "The result action when the rule is violated.",
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "NoBlockPlaceRuleConfig": {
             "additionalProperties": false,
             "properties": {
                 "exemptions": {

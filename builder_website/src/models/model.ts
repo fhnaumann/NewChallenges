@@ -58,14 +58,14 @@ export interface ChallengeMetadata {
    *
    * @TJS-format date-time
    */
-  whenCreated: string,
+  whenCreated?: string,
 
   /**
    * When the challenge was last modified. Is always set by the challenge builder.
    *
    * @TJS-format date-time
    */
-  lastModified: string
+  lastModified?: string
 
   /**
    * Author of the challenge. The user who configured and built the challenge.

@@ -8,21 +8,21 @@
     "createdBy": "-"
   },
   "goals": {
-    "itemGoal": {
-      "items": [
+    "blockPlaceGoal": {
+      "placed": [
         {
           "collectableData": {
-            "amountNeeded": 100,
+            "amountNeeded": 2,
             "currentAmount": 0
           },
           "collectableName": "stone"
         },
         {
           "collectableData": {
-            "amountNeeded": 100,
+            "amountNeeded": 2,
             "currentAmount": 0
           },
-          "collectableName": "carrot"
+          "collectableName": "dirt"
         }
       ]
     }

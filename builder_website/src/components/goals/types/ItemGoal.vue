@@ -16,17 +16,20 @@
       <div>
         <Checkbox v-model="collectEveryItemOnce" @update:model-value="updateCollectEverythingOnce"
                   input-id="collectEveryItemOnce" binary />
-        <label for="collectEveryItemOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectEverything.name') }}</label>
+        <label for="collectEveryItemOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectEverything.name')
+          }}</label>
       </div>
       <div>
         <Checkbox v-model="collectAllItemsOnce" @update:model-value="updateCollectAllItemsOnce"
                   input-id="collectAllItemsOnce" binary :disabled="collectEveryItemOnce" />
-        <label for="collectAllItemsOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectAllItems.name') }}</label>
+        <label for="collectAllItemsOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectAllItems.name')
+          }}</label>
       </div>
       <div>
         <Checkbox v-model="collectAllBlockItemsOnce" @update:model-value="updateCollectAllBlockItemsOnce"
                   input-id="collectAllBlockItemsOnce" binary :disabled="collectEveryItemOnce" />
-        <label for="collectAllBlockItemsOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectAllBlocks.name') }}</label>
+        <label for="collectAllBlockItemsOnce" class="ml-2">{{ t('goals.types.itemGoal.settings.collectAllBlocks.name')
+          }}</label>
       </div>
       <FixedOrderConfiguration :model-access="baseModelAccess" />
       <TimerConfiguration :model-access="baseModelAccess" />
@@ -57,35 +60,39 @@
   import { watch } from 'vue'
 
   const { t } = useI18n()
-  const { set } = useModelStore()
+  const { model, set } = useModelStore()
   const { collectEveryItemOnce, collectAllItemsOnce, collectAllBlockItemsOnce } = storeToRefs(useVarHelperStore())
 
   const baseModelAccess: ModelAccess<ItemGoalConfig> = {
     get: model => model.goals?.itemGoal,
     where: 'goals.itemGoal',
-    testSchematron: true
+    testSchematron: true,
   }
 
-  set('goals.itemGoal.items', [{
-    collectableName: 'dragon_egg',
-    collectableData: {
-      amountNeeded: 1
-    }
-  } as CollectableEntryConfig], false)
+  // set defaults if nothing is set so far
+  if (model.goals?.itemGoal?.items === undefined) {
+    set('goals.itemGoal.items', [{
+      collectableName: 'dragon_egg',
+      collectableData: {
+        amountNeeded: 1,
+      },
+    } as CollectableEntryConfig], false)
+  }
+
 
   watch(collectEveryItemOnce, newCollectEveryItemOnce => {
-    if(newCollectEveryItemOnce) {
+    if (newCollectEveryItemOnce) {
       collectAllItemsOnce.value = false
       collectAllBlockItemsOnce.value = false
     }
   })
   watch(collectEveryItemOnce, newCollectEveryItemOnce => {
-    if(newCollectEveryItemOnce && collectAllBlockItemsOnce.value) {
+    if (newCollectEveryItemOnce && collectAllBlockItemsOnce.value) {
       collectEveryItemOnce.value = true
     }
   })
   watch(collectAllBlockItemsOnce, newCollectAllBlockItemsOnce => {
-    if(newCollectAllBlockItemsOnce && collectAllItemsOnce.value) {
+    if (newCollectAllBlockItemsOnce && collectAllItemsOnce.value) {
       collectEveryItemOnce.value = true
     }
   })

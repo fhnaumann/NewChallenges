@@ -13,6 +13,21 @@
       "name": "Fixed Order"
     },
     "types": {
+      "blockPlaceGoal": {
+        "name": "BlockPlaceGoal",
+        "alias": ["BlockPlaceGoal", "BlockPlace Goal", "Block PlaceGoal", "Block Place Goal"],
+        "settings": {
+          "dropdown": {
+            "blockPrefix": "Block:",
+            "blockPlaceholder": "Select blocks",
+            "amountPrefix": "Amount:",
+            "noMatch": "No matching blocks found."
+          },
+          "placeAllBlocks": {
+            "name": "Place all blocks once"
+          }
+        }
+      },
       "blockBreakGoal": {
         "name": "BlockBreakGoal",
         "alias": ["BlockBreakGoal", "BlockBreak Goal", "Block BreakGoal", "Block Break Goal"],
