@@ -9,6 +9,7 @@
       display="chip"
       :virtual-scroller-options="{ itemSize: 44 }"
       filter
+      :id="compCurrentlySelected.code"
       class="w-full md:w-80"
     >
       <template #value="slotProps">

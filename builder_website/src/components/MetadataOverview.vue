@@ -9,11 +9,11 @@
       <label for="challenge-created-by">{{ t("general.metadata.createdBy.name") }}</label>
     </FloatLabel>
     <FloatLabel >
-      <InputText id="challenge-whenCreated" v-model="model.metadata.whenCreated" disabled />
+      <InputText id="challenge-whenCreated" v-model="model.metadata.whenCreated" />
       <label for="challenge-whenCreated">{{ t("general.metadata.whenCreated.name") }}</label>
     </FloatLabel>
     <FloatLabel>
-      <InputText id="challenge-lastModified" v-model="model.metadata.lastModified" disabled />
+      <InputText id="challenge-lastModified" v-model="model.metadata.lastModified" />
       <label for="challenge-lastModified">{{ t("general.metadata.lastModified.name") }}</label>
     </FloatLabel>
     <FloatLabel>

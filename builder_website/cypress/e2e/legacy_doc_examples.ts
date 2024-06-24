@@ -21,6 +21,8 @@ describe('Test Files for Docs Generation', () => {
     cy.get(':nth-child(4) > .relative > #goals\\.blockBreakGoal').check();
     cy.get('.grow').click();
     /* ==== End Cypress Studio ==== */
+
+    cy.afterConfiguration('no_death_end_challenge_block_break_goal_1_beacon')
   })
 
   /* ==== Test Created with Cypress Studio ==== */

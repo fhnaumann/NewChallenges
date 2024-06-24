@@ -9,7 +9,7 @@
       <div class="flex items-center space-x-2">
         <p>{{ t(`punishments.affects.affected.name`) }}</p>
         <Dropdown :model-value="affects"
-                  @update:model-value="updateAffects" :options="['all', 'causer']" :disabled="!enabled" >
+                  @update:model-value="updateAffects" :options="['all', 'causer']" :disabled="!enabled" :id="`${punishmentType}.affects`" >
           <template #value="slotProps">
             <div>{{ t(`punishments.affects.affected.types.${slotProps.value}.name`) }}</div>
           </template>

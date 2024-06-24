@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-row items-center">
     <Checkbox :model-value="fixedOrderOrDefault()" @update:model-value="updateFixedOrder" binary
-              :input-id="modelAccess.where" />
-    <label :for="modelAccess.where" class="ml-2">{{ t('goals.fixedOrder.name') }}</label>
+              input-id="fixedOrder" />
+    <label for="fixedOrder" class="ml-2">{{ t('goals.fixedOrder.name') }}</label>
   </div>
 </template>
 

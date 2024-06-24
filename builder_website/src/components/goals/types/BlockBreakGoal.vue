@@ -52,6 +52,7 @@
   import type { ModelAccess } from '@/main'
   import { useVarHelperStore } from '@/stores/var_helper'
   import { storeToRefs } from 'pinia'
+  import type { CollectableEntryConfig } from '@/models/goals'
 
   const { t } = useI18n()
   const route = useRoute()
@@ -62,6 +63,16 @@
     get: model => model.goals?.blockBreakGoal,
     where: 'goals.blockBreakGoal',
     testSchematron: false
+  }
+
+  // set defaults if nothing is set so far
+  if(model.goals?.blockBreakGoal?.broken === undefined) {
+    set('goals.blockBreakGoal.broken', [{
+      collectableName: 'dragon_egg',
+      collectableData: {
+        amountNeeded: 1
+      }
+    } as CollectableEntryConfig], false)
   }
 
   function updateBreakAllBlocksOnce(breakAllBlocksOnce: boolean) {

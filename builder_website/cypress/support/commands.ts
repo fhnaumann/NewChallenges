@@ -36,19 +36,207 @@
 //   }
 // }
 
+import type { Affects, PunishmentName } from '../../src/models/punishments'
+import type { RuleName } from '../../src/models/rules'
+import type { CollectableEntryConfig, GoalName } from '../../src/models/goals'
+import type { MobGoalConfig } from '../../src/models/mob'
+import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
+import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
+import type { ItemGoalConfig } from '../../src/models/item'
+import type { DeathGoalConfig } from '../../src/models/death'
+
 Cypress.Commands.add('emptySelection', () => {
-  cy.visit('/');
-  cy.get('.w-\\[10rem\\] > .duration-200').click();
+  cy.visit('/')
+  return cy.get('.w-\\[10rem\\] > .duration-200').click()
+})
+
+Cypress.Commands.add('backToMainPage', () => {
+  cy.get('.grow > .duration-200').click()
+})
+
+function uncheckAllPunishments() {
+  (['endPunishment', 'healthPunishment'] as PunishmentName[])
+    .map(value => `#${value}`)
+    .forEach(value => cy.get(value).uncheck({ force: true }))
+}
+
+function setAffected(punishmentType: PunishmentName, affects: Affects): void {
+  cy.get(`#${punishmentType}\\.affects > .leading-\\[normal\\]`).click()
+  switch (affects) {
+    case 'all':
+      cy.get(`#${punishmentType}\\.affects_0`).click()
+      break
+    case 'causer':
+      cy.get(`#${punishmentType}\\.affects_1`).click()
+      break
+  }
+}
+
+Cypress.Commands.add('configureHealthPunishment', (rule: RuleName, deselectOthers?: boolean, heartsLost?: number, randomizeHeartsLost?: boolean, affected?: Affects) => {
+  if (deselectOthers) {
+    uncheckAllPunishments()
+  }
+  cy.get('#healthPunishment').check({ force: true })
+  if (heartsLost) {
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.healthPunishment`).clear()
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.healthPunishment`).type(String(heartsLost))
+  }
+  if (randomizeHeartsLost) {
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.healthPunishment\\.randomizeHeartsLost`).check({ force: true })
+  }
+  if (affected) {
+    setAffected('healthPunishment', affected)
+  }
+})
+
+Cypress.Commands.add('configureRandomEffectPunishment', (rule: RuleName, deselectOthers?: boolean, effects?: number, randomizeEffects?: boolean, affected?: Affects) => {
+  if (deselectOthers) {
+    uncheckAllPunishments()
+  }
+  cy.get('#randomEffectPunishment').check({force: true})
+  if(effects) {
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment`).clear()
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment`).type(String(effects))
+  }
+  if(randomizeEffects) {
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment\\.randomizeEffectsAtOnce`).check({force: true})
+  }
+  if(affected) {
+    setAffected('randomEffectPunishment', affected)
+  }
+})
+
+Cypress.Commands.add('configureRule', (ruleName: RuleName) => {
+  cy.get('[aria-label="Browse all Rules"] > .duration-200').click()
+  cy.get('.relative > .w-full').clear()
+  cy.get('.relative > .w-full').type(ruleName)
+  cy.get('.p-4 > .flex-row').click()
+})
+
+Cypress.Commands.add('configureGoal', (goalName: GoalName) => {
+  cy.get('[aria-label="Browse all Goals"] > .duration-200').click()
+  cy.get('.relative > .w-full').clear()
+  cy.get('.relative > .w-full').type(goalName)
+  cy.get('.p-4 > .flex-row').click()
+})
+
+function clearCollectableSelection(): void {
+  // TODO: this is fragile and will break as soon as the default collectables are not exactly one entry
+  cy.get(':nth-child(1) > .bg-goal-100 > .duration-200').click()
+}
+
+function addCollectable(config: CollectableEntryConfig): void {
+  cy.get('#collectableSelection > .leading-\\[normal\\]').click()
+  cy.get('.pt-2 > .relative > .leading-\\[normal\\]').clear()
+  cy.get('.pt-2 > .relative > .leading-\\[normal\\]').type(config.collectableName)
+  cy.get('#collectableSelection_0').click()
+  cy.get(':nth-child(2) > .flex-row > span.inline-flex > .leading-none').clear()
+  cy.get(':nth-child(2) > .flex-row > span.inline-flex > .leading-none').type(String(config.collectableData.amountNeeded))
+}
+
+function setFixedOrder(fixedOrder: boolean): void {
+  if (fixedOrder) {
+    cy.get('#fixedOrder').check({ force: true })
+  } else {
+    cy.get('#fixedOrder').uncheck({ force: true })
+  }
+}
+
+function setKillAllMobs(killAllMobs: boolean): void {
+  if (killAllMobs) {
+    cy.get('#killAllMobsOnce').check({ force: true })
+  } else {
+    cy.get('#killAllMobsOnce').uncheck({ force: true })
+  }
+}
+
+Cypress.Commands.add('configureMobGoal', (mobGoalConfig?: MobGoalConfig, allMobs?: boolean) => {
+  cy.configureGoal('mobGoal')
+  clearCollectableSelection()
+  mobGoalConfig?.mobs?.forEach(value => addCollectable(value))
+  if (mobGoalConfig?.fixedOrder !== undefined) {
+    setFixedOrder(mobGoalConfig.fixedOrder)
+  }
+  if (allMobs !== undefined) {
+    setKillAllMobs(allMobs)
+  }
+})
+
+Cypress.Commands.add('configureMobGoal1EnderDragonFixedOrder', () => {
+  cy.configureMobGoal({
+    mobs: [{ collectableName: 'Ender Dragon', collectableData: { amountNeeded: 1 } }],
+    fixedOrder: true,
+  })
+})
+
+Cypress.Commands.add('configureBlockPlaceGoal', (blockPlaceGoalConfig?: BlockPlaceGoalConfig, allBlocks?: boolean) => {
+  cy.configureGoal('blockPlaceGoal')
+  clearCollectableSelection();
+  blockPlaceGoalConfig?.placed?.forEach(value => addCollectable(value))
+  if(blockPlaceGoalConfig?.fixedOrder !== undefined) {
+    setFixedOrder(blockPlaceGoalConfig.fixedOrder)
+  }
+  if(allBlocks !== undefined) {
+    cy.get('#placeAllBlocksOnce').check({ force: true })
+  }
+})
+
+Cypress.Commands.add('configureBlockBreakGoal', (blockBreakGoalConfig?: BlockBreakGoalConfig, allBlocks?: boolean) => {
+  cy.configureGoal('blockBreakGoal')
+  clearCollectableSelection();
+  blockBreakGoalConfig?.broken?.forEach(value => addCollectable(value))
+  if(blockBreakGoalConfig?.fixedOrder !== undefined) {
+    setFixedOrder(blockBreakGoalConfig.fixedOrder)
+  }
+  if(allBlocks !== undefined) {
+    cy.get('#breakAllBlocksOnce').check({ force: true })
+  }
+})
+
+Cypress.Commands.add('configureItemGoal', (itemGoalConfig?: ItemGoalConfig, everything?: boolean, allItems?: boolean, allBlocks?: boolean) => {
+  cy.configureGoal('itemGoal');
+  clearCollectableSelection();
+  itemGoalConfig?.items?.forEach(value => addCollectable(value));
+  if(itemGoalConfig?.fixedOrder !== undefined) {
+    setFixedOrder(itemGoalConfig.fixedOrder)
+  }
+  if(everything !== undefined) {
+    cy.get('#collectEveryItemOnce').check({ force: true })
+  }
+  if(allItems !== undefined) {
+    cy.get('#collectAllItemsOnce').check({ force: true })
+  }
+  if(allBlocks !== undefined) {
+    cy.get('#collectAllBlockItemsOnce').check({ force: true })
+  }
+})
+
+Cypress.Commands.add('configureDeathGoal', (deathGoalConfig?: DeathGoalConfig) => {
+  cy.configureGoal('deathGoal')
+  if(deathGoalConfig) {
+    if(deathGoalConfig!.deathAmount) {
+      cy.get('#deathAmount').clear()
+      cy.get('#deathAmount').type(String(deathGoalConfig!.deathAmount!))
+    }
+  }
 })
 
 Cypress.Commands.add('addMetadata', (challengeName: string) => {
-  cy.visit('/');
-  cy.get('[aria-label="Modify metadata"] > .duration-200').click();
-  cy.get('#challenge-name').clear();
-  cy.get('#challenge-name').type(challengeName);
-  cy.get('#challenge-created-by').clear();
-  cy.get('#challenge-created-by').type('Wiki');
-  cy.get('.inline-block').click();
+  cy.get('[aria-label="Modify metadata"] > .duration-200').click()
+  cy.get('#challenge-name').clear()
+  cy.get('#challenge-name').type(challengeName)
+  cy.get('#challenge-created-by').clear()
+  cy.get('#challenge-created-by').type('Wiki')
+  cy.get('#challenge-whenCreated').clear()
+  cy.get('#challenge-whenCreated').type('2024-06-23T14:17:48.131Z')
+  cy.get('#challenge-lastModified').clear()
+  cy.get('#challenge-lastModified').type('2024-06-23T14:17:48.131Z')
+  cy.get('.inline-block').click()
+})
+
+Cypress.Commands.add('downloadFile', () => {
+  cy.get('[aria-label="Download Settings File"] > .duration-200').click()
+  cy.get('[aria-label="Download"] > .duration-200').click()
 })
 
 
@@ -56,7 +244,12 @@ Cypress.Commands.add('generateJSON', (filename) => {
   //cy.get('#code > pre').invoke("text").as("settings")
   //cy.get("@settings").then((text) => cy.writeFile(`path/to/${filename}.json`, text))
   cy.readFile(`${Cypress.config('downloadsFolder')}/${filename}.json`).then((file) => cy.writeFile(`path/to/${filename}.json`, file))
+})
 
+Cypress.Commands.add('afterConfiguration', (challengeAndFileName: string) => {
+  cy.addMetadata(challengeAndFileName)
+  cy.downloadFile()
+  cy.generateJSON(challengeAndFileName)
 })
 
 export {}

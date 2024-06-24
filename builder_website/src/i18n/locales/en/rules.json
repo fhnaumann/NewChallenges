@@ -24,6 +24,11 @@
         "alias": ["NoBlockBreak", "No BlockBreak", "NoBlock Break", "No Block Break", "rule"],
         "tooltip": "Breaking blocks is prohibited!"
       },
+      "noBlockPlace": {
+        "name": "NoBlockPlace",
+        "alias": ["NoBlockPlace", "No BlockPlace", "NoBlock Place", "No Block Place", "rule"],
+        "tooltip": "Placing blocks is prohibited!"
+      },
       "noItem": {
         "name": "NoItem",
         "alias": ["NoItem", "rule"],

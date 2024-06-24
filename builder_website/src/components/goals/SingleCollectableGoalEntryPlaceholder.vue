@@ -10,6 +10,7 @@
       display="chip"
       :virtual-scroller-options="{ itemSize: 44 }"
       filter
+      id="collectableSelection"
       class="w-full md:w-80"
       @update:modelValue="
         $emit('transferDataFromPlaceHolderToNewInstance', selectedData!);
