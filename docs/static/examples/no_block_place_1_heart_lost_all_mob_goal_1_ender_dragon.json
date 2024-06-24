@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "name": "no_death_end_challenge_block_place_goal_dragon_egg_fixed_order",
+    "name": "no_block_place_1_heart_lost_all_mob_goal_1_ender_dragon",
     "whenCreated": "2024-06-23T14:17:48.131Z",
     "lastModified": "2024-06-23T14:17:48.131Z",
     "createdBy": "Wiki",
@@ -11,20 +11,22 @@
   },
   "rules": {
     "enabledRules": {
-      "noDeath": {
+      "noBlockPlace": {
+        "exemptions": [
+          "water",
+          "lava"
+        ],
         "punishments": {
-          "endPunishment": {
-            "affects": "all"
-          }
+          "healthPunishment": {}
         }
       }
     }
   },
   "goals": {
-    "blockPlaceGoal": {
-      "placed": [
+    "mobGoal": {
+      "mobs": [
         {
-          "collectableName": "dragon_egg",
+          "collectableName": "ender_dragon",
           "collectableData": {
             "amountNeeded": 1
           }
