@@ -1,6 +1,6 @@
 # No Death Rule
 
-When No Death is selected then players are not allowed to die. 
+When No Death is selected then, players are not allowed to die. 
 
 ## Punishment Trigger
 
