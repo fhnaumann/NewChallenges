@@ -26,7 +26,7 @@ Below are some examples you can directly copy to your server without using the w
 :::example_configuration
 **Example 1**
 
-**Rules:** NoMobKillRule
+**Rules:** NoMobKill
 
 **Punishments:** Every player receives 2 random effects (RandomEffectPunishment)
 

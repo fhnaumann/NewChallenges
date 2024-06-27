@@ -6,6 +6,11 @@ When End Punishment is selected, the challenge is immediately lost.
 If this punishment is triggered, every player will be put in spectator mode, and the timer will halt. You can purposely ignore this, set your gamemode back to survival, and continue the timer with `/timer resume`. You can play on as if nothing has happened.
 !!!
 
+## Configuration
+
+[!badge Affected]
+:   Select who is affected by this punishment.
+
 ## Example Configuration
 
 Below are some examples you can directly copy into your server without using the website.
@@ -20,4 +25,4 @@ Below are some examples you can directly copy into your server without using the
 **Goals:** Kill 1 Enderdragon ([MobGoal](../goals/mobGoal.md))
 :::
 
-[!file Example 1](../static/examples/no_death_end_challenge_mob_goal.json)
+[!file Example 1](../static/examples/no_death_end_challenge_mob_goal_1_ender_dragon.json)
