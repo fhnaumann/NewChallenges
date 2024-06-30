@@ -44,6 +44,7 @@ import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
+import { CustomHealthSettingConfig, SettingName } from '../../src/models/settings'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -217,6 +218,23 @@ Cypress.Commands.add('configureDeathGoal', (deathGoalConfig?: DeathGoalConfig) =
     if(deathGoalConfig!.deathAmount) {
       cy.get('#deathAmount').clear()
       cy.get('#deathAmount').type(String(deathGoalConfig!.deathAmount!))
+    }
+  }
+})
+
+Cypress.Commands.add('configureSetting', (settingName: SettingName) => {
+  cy.get('[aria-label="Browse all Settings"] > .duration-200').click()
+  cy.get('.relative > .w-full').clear()
+  cy.get('.relative > .w-full').type(settingName)
+  cy.get('.p-4 > .flex-row').click()
+})
+
+Cypress.Commands.add('configureCustomHealthSetting', (customHealthSettingConfig?: CustomHealthSettingConfig) => {
+  cy.configureSetting('customHealthSetting')
+  if(customHealthSettingConfig) {
+    if(customHealthSettingConfig.hearts !== undefined) {
+      cy.get('#customHealthSettingHearts').clear()
+      cy.get('#customHealthSettingHearts').type(String(customHealthSettingConfig.hearts))
     }
   }
 })

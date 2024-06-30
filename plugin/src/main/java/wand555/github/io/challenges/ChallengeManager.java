@@ -11,6 +11,7 @@ import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.criteria.goals.Skippable;
 import wand555.github.io.challenges.criteria.rules.Rule;
+import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.punishments.Punishment;
@@ -28,6 +29,8 @@ public class ChallengeManager implements StatusInfo {
     private @NotNull List<Rule> rules;
     private @NotNull List<Punishment> globalPunishments;
     private @NotNull List<BaseGoal> goals;
+
+    private @NotNull List<BaseSetting> settings;
 
     private @NotNull ChallengeMetadata challengeMetadata;
 
@@ -68,8 +71,13 @@ public class ChallengeManager implements StatusInfo {
                 "challenge.start.chat"
         );
         context.plugin().getServer().broadcast(toSend);
-        goals.stream().filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
+
+        goals.forEach(BaseGoal::onStart);
+        //goals.stream().filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
+
+        settings.forEach(BaseSetting::onStart);
+
         if(timerRunnable != null) {
             // a previous challenge was unloaded (without restarting the server)
             timerRunnable.shutdown();
@@ -321,6 +329,14 @@ public class ChallengeManager implements StatusInfo {
 
     public void setChallengeMetadata(@NotNull ChallengeMetadata challengeMetadata) {
         this.challengeMetadata = challengeMetadata;
+    }
+
+    public @NotNull List<BaseSetting> getSettings() {
+        return settings;
+    }
+
+    public void setSettings(@NotNull List<BaseSetting> settings) {
+        this.settings = settings;
     }
 
     public void unload() {

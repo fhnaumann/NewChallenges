@@ -13,8 +13,11 @@ import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> implements Triggable<BlockBreakData>, Storable<NoBlockBreakRuleConfig> {
+
+    private static final Logger logger = ChallengesDebugLogger.getLogger(BlockBreakRule.class);
 
     private final BlockBreakType blockBreakType;
     private final Set<Material> exemptions;
@@ -24,6 +27,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
         this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(), config.getExemptions())) : new HashSet<>();
 
         blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfDeny());
+        logger.fine("Created %s instance.".formatted(blockBreakType.getClass().getSimpleName()));
     }
     @Override
     public TriggerCheck<BlockBreakData> triggerCheck() {

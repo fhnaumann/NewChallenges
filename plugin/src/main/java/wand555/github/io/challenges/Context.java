@@ -1,10 +1,14 @@
 package wand555.github.io.challenges;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.bukkit.plugin.PluginLogger;
 
 import java.io.InputStream;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 public record Context(Challenges plugin, ResourceBundleContext resourceBundleContext, DataSourceContext dataSourceContext, JsonNode schemaRoot, ChallengeManager challengeManager, Random random, OfflineTempData offlineTempData) {
 

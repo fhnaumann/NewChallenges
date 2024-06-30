@@ -5,7 +5,7 @@
     <template #configuration>
       <div class="flex flex-row space-x-2 items-center h-12">
         <label for="customHealthSetting.hearts">{{ t('settings.types.customHealthSetting.settings.hearts.name') }}</label>
-        <InputNumber class="h-8" input-id="customHealthSetting.hearts" show-buttons :min="minHeartsLost" :max="maxHeartsLost" mode="decimal"
+        <InputNumber class="h-8" input-id="customHealthSettingHearts" show-buttons :min="minHeartsLost" :max="maxHeartsLost" mode="decimal"
                      :model-value="modelStore.model.settings?.customHealthSetting?.hearts"
                      @update:model-value="(newHearts: number) => modelStore.set('settings.customHealthSetting.hearts', newHearts, true)" />
       </div>

@@ -23,6 +23,8 @@ import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
 import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRuleMessageHelper;
+import wand555.github.io.challenges.criteria.settings.BaseSetting;
+import wand555.github.io.challenges.criteria.settings.CustomHealthSetting;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
@@ -67,6 +69,9 @@ public class ModelMapper {
 
         List<BaseGoal> goals = mapToGoals(context, json.getGoals());
 
+
+        List<BaseSetting> settings = json.getSettings() != null ? mapToSettings(context, json.getSettings()) : new ArrayList<>();
+
         TimerRunnable timerRunnable = new TimerRunnable(context, json.getTimer());
         // assume that if the data contains a time larger than 0, then the challenge had been previously played and was interrupted before finishing
         // it is important to set the gamestate BEFORE starting the runnable, because the runnable will increment the timer when the gamestate is running
@@ -77,6 +82,15 @@ public class ModelMapper {
         context.challengeManager().setGlobalPunishments(globalPunishments);
         context.challengeManager().setRules(rules);
         context.challengeManager().setGoals(goals);
+        context.challengeManager().setSettings(settings);
+    }
+
+    private static List<BaseSetting> mapToSettings(Context context, SettingsConfig settingsConfig) {
+        List<BaseSetting> settings = new ArrayList<>();
+        if(settingsConfig.getCustomHealthSetting() != null) {
+            settings.add(new CustomHealthSetting(context, settingsConfig.getCustomHealthSetting()));
+        }
+        return settings;
     }
 
     private static List<BaseGoal> mapToGoals(Context context, GoalsConfig goalsConfig) {

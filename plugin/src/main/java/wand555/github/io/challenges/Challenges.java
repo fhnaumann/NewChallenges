@@ -5,8 +5,6 @@ import net.kyori.adventure.resource.ResourcePackInfo;
 import net.kyori.adventure.resource.ResourcePackInfoLike;
 import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -18,10 +16,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.utils.ActionHelper;
@@ -33,6 +31,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Logger;
 
 public class Challenges extends JavaPlugin implements CommandExecutor, Listener {
 
@@ -42,8 +41,16 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
     private ChallengeFilesHandler challengeFilesHandler;
     private OfflineTempData offlineTempData;
 
+    @EventHandler
+    public void test(BlockPlaceEvent event) {
+        System.out.println(event.getBlock().getType());
+    }
+
     @Override
     public void onEnable() {
+        logger = ChallengesDebugLogger.getLogger(Challenges.class);
+        //getLogger().fine("");
+
         /*
          * #8846f2 Only [Challenges]
          * #c9526c Only [Punishment]
@@ -137,6 +144,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         */
     }
 
+    private static Logger logger;
+
     @Override
     public void onDisable() {
         if(tempContext == null) {
@@ -164,12 +173,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         return statuses.stream()
                 .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(challengeName))
                 .findAny()
-                .orElseThrow()
+                .orElseThrow(IllegalArgumentException::new)
                 .file().getName();
     }
 
     private boolean handleLoad(@Nullable String challengeNameToLoad, boolean asFileName) {
         List<ChallengeFilesHandler.ChallengeLoadStatus> statuses = challengeFilesHandler.getChallengesInFolderStatus();
+
 
         if(statuses.isEmpty()) {
             Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
@@ -230,7 +240,11 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
             // don't start yet
             //context.challengeManager().start();
-        } catch (LoadValidationException e) {
+        }
+        catch (IllegalArgumentException e) {
+            // name does not correspond to an existing challenge
+        }
+        catch (LoadValidationException e) {
             Component failureTitle = ComponentUtil.formatSubTitleMessage(
                     tempContext.plugin(),
                     tempContext.resourceBundleContext().miscResourceBundle(),

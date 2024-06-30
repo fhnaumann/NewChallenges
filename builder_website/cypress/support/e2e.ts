@@ -23,6 +23,8 @@ import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
+import CustomHealthSetting from '../../src/components/settings/CustomHealthSetting.vue'
+import type { CustomHealthSettingConfig, SettingName } from '../../src/models/settings'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -152,6 +154,18 @@ declare global {
        * End: Page for customizing a goal
        */
       configureMobGoal1EnderDragonFixedOrder(): Chainable<Subject>
+
+      /**
+       * Start: Main Page
+       * End: Page for customizing a setting
+       */
+      configureSetting(settingName: SettingName): Chainable<Subject>
+
+      /**
+       * Start: Main Page
+       * End: Page for customizing a setting
+       */
+      configureCustomHealthSetting(customHealthSettingConfig?: CustomHealthSettingConfig): Chainable<Subject>
 
       /**
        * Go from a specific criteria page to the main page.
