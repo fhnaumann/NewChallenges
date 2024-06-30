@@ -33,7 +33,9 @@
 
   const dialogRef = inject('dialogRef') as any;
   onMounted(() => {
+
     globalVar.value = dialogRef !== undefined ? dialogRef.value.data.global : false
+    console.log("set globalVar to", globalVar.value)
   })
   const globalVar = ref<boolean>(props.global) // assume local punishment (if global, it will be overridden in onMounted)
 

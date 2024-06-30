@@ -1,7 +1,7 @@
 <template>
   <BasePunishment punishment-type="randomEffectPunishment" :model-access="modelAccess">
     <template #configuration>
-      <RandomizeValue :model-access="randomizeEffectAmountModelAccess">
+      <RandomizeValue :model-access="computedRandomizeEffectAmountModelAccess">
         <template #punishmentDetailConfiguration="detailConfigProps">
           <label :for="modelAccess.where">{{ t(`punishments.types.randomEffectPunishment.settings.effects_at_once.name`)
             }}</label>
@@ -25,16 +25,19 @@
   import RandomizeValue from '@/components/wrappers/RandomizeValue.vue'
   import { useI18n } from 'vue-i18n'
   import InputNumber from 'primevue/inputnumber'
+  import { computed } from 'vue'
 
   const props = defineProps<{
     modelAccess: ModelAccess<RandomEffectPunishmentConfig>
   }>()
 
-  const randomizeEffectAmountModelAccess = {
-    get: model => effectAmountRandomizeOrDefault(model),
-    where: `${props.modelAccess.where}.randomizeEffectsAtOnce`,
-    testSchematron: true,
-  } as ModelAccess<boolean>
+  const computedRandomizeEffectAmountModelAccess = computed(() => {
+    return {
+      get: model => effectAmountRandomizeOrDefault(model),
+      where: `${props.modelAccess.where}.randomizeEffectsAtOnce`,
+      testSchematron: true,
+    } as ModelAccess<boolean>
+  })
 
   const { t } = useI18n()
   const { model, set } = useModelStore()

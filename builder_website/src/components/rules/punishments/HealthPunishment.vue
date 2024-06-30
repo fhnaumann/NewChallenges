@@ -2,7 +2,7 @@
   <BasePunishment punishment-type="healthPunishment" :model-access="modelAccess">
     <template #configuration>
       <RandomizeValue
-        :model-access="randomizeHeartsModelAccess">
+        :model-access="computedRandomizeHeartsModelAccess">
         <template #punishmentDetailConfiguration="detailConfigProps">
           <label :for="modelAccess.where">{{ t(`punishments.types.healthPunishment.settings.hearts_lost.name`)
             }}</label>
@@ -29,16 +29,25 @@
   import RandomizeValue from '@/components/wrappers/RandomizeValue.vue'
   import { useJSONSchemaConfig } from '@/stores/default_model'
   import { useI18n } from 'vue-i18n'
+  import { computed, onMounted } from 'vue'
 
   const props = defineProps<{
     modelAccess: ModelAccess<HealthPunishmentConfig>
   }>()
 
-  const randomizeHeartsModelAccess = {
-    get: ignored => heartsLostRandomizeOrDefault(),
-    where: `${props.modelAccess.where}.randomizeHeartsLost`,
-    testSchematron: true,
-  } as ModelAccess<boolean>
+  onMounted(() => {
+    console.log('ran onmounted health punishment')
+  })
+
+  console.log('created randomizehearts model access')
+
+  const computedRandomizeHeartsModelAccess = computed(() => {
+    return {
+      get: ignored => heartsLostRandomizeOrDefault(),
+      where: `${props.modelAccess.where}.randomizeHeartsLost`,
+      testSchematron: true,
+    } as ModelAccess<boolean>
+  })
 
   const { t } = useI18n()
   const { model, set } = useModelStore()
