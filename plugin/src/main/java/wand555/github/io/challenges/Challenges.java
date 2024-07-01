@@ -1,6 +1,9 @@
 package wand555.github.io.challenges;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.jorel.commandapi.CommandAPI;
+import dev.jorel.commandapi.CommandAPIBukkitConfig;
+import dev.jorel.commandapi.CommandAPICommand;
 import net.kyori.adventure.resource.ResourcePackInfo;
 import net.kyori.adventure.resource.ResourcePackInfoLike;
 import net.kyori.adventure.resource.ResourcePackRequest;
@@ -20,6 +23,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challenges.commands.LoadCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.utils.ActionHelper;
@@ -35,8 +39,8 @@ import java.util.logging.Logger;
 
 public class Challenges extends JavaPlugin implements CommandExecutor, Listener {
 
-    private Context tempContext;
-    private URLReminder urlReminder;
+    public Context tempContext;
+    public URLReminder urlReminder;
 
     private ChallengeFilesHandler challengeFilesHandler;
     private OfflineTempData offlineTempData;
@@ -47,8 +51,22 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
     }
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
         logger = ChallengesDebugLogger.getLogger(Challenges.class);
+
+
+        CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true));
+
+        new CommandAPICommand("ping").executes((sender, args) -> {
+            sender.sendMessage("pong!");
+        }).register();
+    }
+
+    @Override
+    public void onEnable() {
+
+        CommandAPI.onEnable();
+
         //getLogger().fine("");
 
         /*
@@ -62,8 +80,9 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
          */
 
 
+
         getCommand("challenges").setExecutor(this);
-        getCommand("load").setExecutor(this);
+        //getCommand("load").setExecutor(this);
         getCommand("start").setExecutor(this);
         getCommand("cancel").setExecutor(this);
         getCommand("save").setExecutor(this);
@@ -71,6 +90,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("pause").setExecutor(this);
         getCommand("resume").setExecutor(this);
         getCommand("progress").setExecutor(this);
+
+
 
         getServer().getPluginManager().registerEvents(this, this);
 
@@ -106,6 +127,14 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        /*
+        Register commands
+         */
+        LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
+
+
+
 
         boolean success = handleLoad(offlineTempData.get("fileNameBeingPlayed", String.class), true);
         if(success) {
@@ -167,6 +196,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             }
         }
         tempContext.challengeManager().shutdownRunnables();
+
+        CommandAPI.onDisable();
     }
 
     private String challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {

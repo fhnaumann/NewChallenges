@@ -16,13 +16,14 @@ public class ResourceBundleHelper {
             // log to ingame
             String msg = String.format("Key '%s' is not found in resource bundle '%s'.", key, bundle.getBaseBundleName());
             plugin.getServer().getLogger().warning(msg);
-            plugin.getServer().getLogger().log(Level.WARNING, msg, e);
+            //plugin.getServer().getLogger().log(Level.WARNING, msg, e);
         } catch (ClassCastException e) {
             // log to ingame
             String msg = String.format("Key '%s' is not a valid string in resource bundle '%s'.", key, bundle.getBaseBundleName());
             plugin.getServer().getLogger().warning(msg);
-            plugin.getServer().getLogger().log(Level.WARNING, msg, e);
+            //plugin.getServer().getLogger().log(Level.WARNING, msg, e);
         }
-        return "";
+        // return raw key so it is visually noticeable
+        return key;
     }
 }
