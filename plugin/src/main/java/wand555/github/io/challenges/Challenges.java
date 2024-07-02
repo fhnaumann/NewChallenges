@@ -54,18 +54,27 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
     public void onLoad() {
         logger = ChallengesDebugLogger.getLogger(Challenges.class);
 
+        //if(true) {
+        if(!isLoadedFromTests()) {
+            CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true));
 
-        CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true));
+            new CommandAPICommand("ping").executes((sender, args) -> {
+                sender.sendMessage("pong!");
+            }).register();
+        }
 
-        new CommandAPICommand("ping").executes((sender, args) -> {
-            sender.sendMessage("pong!");
-        }).register();
+    }
+
+    private boolean isLoadedFromTests() {
+        return getServer().getClass().getName().contains("ServerMock");
     }
 
     @Override
     public void onEnable() {
 
-        CommandAPI.onEnable();
+        if(!isLoadedFromTests()) {
+            CommandAPI.onEnable();
+        }
 
         //getLogger().fine("");
 
@@ -131,7 +140,10 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         /*
         Register commands
          */
-        LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
+        if(!isLoadedFromTests()) {
+            LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
+        }
+
 
 
 
@@ -197,7 +209,9 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         }
         tempContext.challengeManager().shutdownRunnables();
 
-        CommandAPI.onDisable();
+        if(!isLoadedFromTests()) {
+            CommandAPI.onDisable();
+        }
     }
 
     private String challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
