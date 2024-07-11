@@ -1,0 +1,500 @@
+{
+  "version": "1.20.4",
+  "data": [
+    {
+      "code": "death.attack.anvil",
+      "deathMessage": "(?<player>.*?) was squashed by a falling anvil",
+      "deathMessageWithDummyData": "[player] was squashed by a falling anvil"
+    },
+    {
+      "code": "death.attack.anvil.player",
+      "deathMessage": "(?<player>.*?) was squashed by a falling anvil while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was squashed by a falling anvil while fighting [mob]"
+    },
+    {
+      "code": "death.attack.arrow",
+      "deathMessage": "(?<player>.*?) was shot by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was shot by [mob]"
+    },
+    {
+      "code": "death.attack.arrow.item",
+      "deathMessage": "(?<player>.*?) was shot by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was shot by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.badRespawnPoint.link",
+      "deathMessage": "Intentional Game Design",
+      "deathMessageWithDummyData": "Intentional Game Design"
+    },
+    {
+      "code": "death.attack.badRespawnPoint.message",
+      "deathMessage": "(?<player>.*?) was killed by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was killed by [mob]"
+    },
+    {
+      "code": "death.attack.cactus",
+      "deathMessage": "(?<player>.*?) was pricked to death",
+      "deathMessageWithDummyData": "[player] was pricked to death"
+    },
+    {
+      "code": "death.attack.cactus.player",
+      "deathMessage": "(?<player>.*?) walked into a cactus while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] walked into a cactus while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.cramming",
+      "deathMessage": "(?<player>.*?) was squished too much",
+      "deathMessageWithDummyData": "[player] was squished too much"
+    },
+    {
+      "code": "death.attack.cramming.player",
+      "deathMessage": "(?<player>.*?) was squashed by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was squashed by [mob]"
+    },
+    {
+      "code": "death.attack.dragonBreath",
+      "deathMessage": "(?<player>.*?) was roasted in dragon's breath",
+      "deathMessageWithDummyData": "[player] was roasted in dragon's breath"
+    },
+    {
+      "code": "death.attack.dragonBreath.player",
+      "deathMessage": "(?<player>.*?) was roasted in dragon's breath by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was roasted in dragon's breath by [mob]"
+    },
+    {
+      "code": "death.attack.drown",
+      "deathMessage": "(?<player>.*?) drowned",
+      "deathMessageWithDummyData": "[player] drowned"
+    },
+    {
+      "code": "death.attack.drown.player",
+      "deathMessage": "(?<player>.*?) drowned while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] drowned while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.dryout",
+      "deathMessage": "(?<player>.*?) died from dehydration",
+      "deathMessageWithDummyData": "[player] died from dehydration"
+    },
+    {
+      "code": "death.attack.dryout.player",
+      "deathMessage": "(?<player>.*?) died from dehydration while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] died from dehydration while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.even_more_magic",
+      "deathMessage": "(?<player>.*?) was killed by even more magic",
+      "deathMessageWithDummyData": "[player] was killed by even more magic"
+    },
+    {
+      "code": "death.attack.explosion",
+      "deathMessage": "(?<player>.*?) blew up",
+      "deathMessageWithDummyData": "[player] blew up"
+    },
+    {
+      "code": "death.attack.explosion.player",
+      "deathMessage": "(?<player>.*?) was blown up by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was blown up by [mob]"
+    },
+    {
+      "code": "death.attack.explosion.player.item",
+      "deathMessage": "(?<player>.*?) was blown up by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was blown up by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.fall",
+      "deathMessage": "(?<player>.*?) hit the ground too hard",
+      "deathMessageWithDummyData": "[player] hit the ground too hard"
+    },
+    {
+      "code": "death.attack.fall.player",
+      "deathMessage": "(?<player>.*?) hit the ground too hard while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] hit the ground too hard while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.fallingBlock",
+      "deathMessage": "(?<player>.*?) was squashed by a falling block",
+      "deathMessageWithDummyData": "[player] was squashed by a falling block"
+    },
+    {
+      "code": "death.attack.fallingBlock.player",
+      "deathMessage": "(?<player>.*?) was squashed by a falling block while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was squashed by a falling block while fighting [mob]"
+    },
+    {
+      "code": "death.attack.fallingStalactite",
+      "deathMessage": "(?<player>.*?) was skewered by a falling stalactite",
+      "deathMessageWithDummyData": "[player] was skewered by a falling stalactite"
+    },
+    {
+      "code": "death.attack.fallingStalactite.player",
+      "deathMessage": "(?<player>.*?) was skewered by a falling stalactite while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was skewered by a falling stalactite while fighting [mob]"
+    },
+    {
+      "code": "death.attack.fireball",
+      "deathMessage": "(?<player>.*?) was fireballed by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was fireballed by [mob]"
+    },
+    {
+      "code": "death.attack.fireball.item",
+      "deathMessage": "(?<player>.*?) was fireballed by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was fireballed by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.fireworks",
+      "deathMessage": "(?<player>.*?) went off with a bang",
+      "deathMessageWithDummyData": "[player] went off with a bang"
+    },
+    {
+      "code": "death.attack.fireworks.item",
+      "deathMessage": "(?<player>.*?) went off with a bang due to a firework fired from (?<item>.*?) by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] went off with a bang due to a firework fired from [item] by [mob]"
+    },
+    {
+      "code": "death.attack.fireworks.player",
+      "deathMessage": "(?<player>.*?) went off with a bang while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] went off with a bang while fighting [mob]"
+    },
+    {
+      "code": "death.attack.flyIntoWall",
+      "deathMessage": "(?<player>.*?) experienced kinetic energy",
+      "deathMessageWithDummyData": "[player] experienced kinetic energy"
+    },
+    {
+      "code": "death.attack.flyIntoWall.player",
+      "deathMessage": "(?<player>.*?) experienced kinetic energy while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] experienced kinetic energy while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.freeze",
+      "deathMessage": "(?<player>.*?) froze to death",
+      "deathMessageWithDummyData": "[player] froze to death"
+    },
+    {
+      "code": "death.attack.freeze.player",
+      "deathMessage": "(?<player>.*?) was frozen to death by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was frozen to death by [mob]"
+    },
+    {
+      "code": "death.attack.generic",
+      "deathMessage": "(?<player>.*?) died",
+      "deathMessageWithDummyData": "[player] died"
+    },
+    {
+      "code": "death.attack.generic.player",
+      "deathMessage": "(?<player>.*?) died because of (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] died because of [mob]"
+    },
+    {
+      "code": "death.attack.genericKill",
+      "deathMessage": "(?<player>.*?) was killed",
+      "deathMessageWithDummyData": "[player] was killed"
+    },
+    {
+      "code": "death.attack.genericKill.player",
+      "deathMessage": "(?<player>.*?) was killed while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was killed while fighting [mob]"
+    },
+    {
+      "code": "death.attack.hotFloor",
+      "deathMessage": "(?<player>.*?) discovered the floor was lava",
+      "deathMessageWithDummyData": "[player] discovered the floor was lava"
+    },
+    {
+      "code": "death.attack.hotFloor.player",
+      "deathMessage": "(?<player>.*?) walked into the danger zone due to (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] walked into the danger zone due to [mob]"
+    },
+    {
+      "code": "death.attack.indirectMagic",
+      "deathMessage": "(?<player>.*?) was killed by (?<mob>.*?) using magic",
+      "deathMessageWithDummyData": "[player] was killed by [mob] using magic"
+    },
+    {
+      "code": "death.attack.indirectMagic.item",
+      "deathMessage": "(?<player>.*?) was killed by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was killed by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.inFire",
+      "deathMessage": "(?<player>.*?) went up in flames",
+      "deathMessageWithDummyData": "[player] went up in flames"
+    },
+    {
+      "code": "death.attack.inFire.player",
+      "deathMessage": "(?<player>.*?) walked into fire while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] walked into fire while fighting [mob]"
+    },
+    {
+      "code": "death.attack.inWall",
+      "deathMessage": "(?<player>.*?) suffocated in a wall",
+      "deathMessageWithDummyData": "[player] suffocated in a wall"
+    },
+    {
+      "code": "death.attack.inWall.player",
+      "deathMessage": "(?<player>.*?) suffocated in a wall while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] suffocated in a wall while fighting [mob]"
+    },
+    {
+      "code": "death.attack.lava",
+      "deathMessage": "(?<player>.*?) tried to swim in lava",
+      "deathMessageWithDummyData": "[player] tried to swim in lava"
+    },
+    {
+      "code": "death.attack.lava.player",
+      "deathMessage": "(?<player>.*?) tried to swim in lava to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] tried to swim in lava to escape [mob]"
+    },
+    {
+      "code": "death.attack.lightningBolt",
+      "deathMessage": "(?<player>.*?) was struck by lightning",
+      "deathMessageWithDummyData": "[player] was struck by lightning"
+    },
+    {
+      "code": "death.attack.lightningBolt.player",
+      "deathMessage": "(?<player>.*?) was struck by lightning while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was struck by lightning while fighting [mob]"
+    },
+    {
+      "code": "death.attack.magic",
+      "deathMessage": "(?<player>.*?) was killed by magic",
+      "deathMessageWithDummyData": "[player] was killed by magic"
+    },
+    {
+      "code": "death.attack.magic.player",
+      "deathMessage": "(?<player>.*?) was killed by magic while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was killed by magic while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.message_too_long",
+      "deathMessage": "Actually, the message was too long to deliver fully. Sorry! Here's a stripped version: %s",
+      "deathMessageWithDummyData": "Actually, the message was too long to deliver fully. Sorry! Here's a stripped version: %s"
+    },
+    {
+      "code": "death.attack.mob",
+      "deathMessage": "(?<player>.*?) was slain by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was slain by [mob]"
+    },
+    {
+      "code": "death.attack.mob.item",
+      "deathMessage": "(?<player>.*?) was slain by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was slain by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.onFire",
+      "deathMessage": "(?<player>.*?) burned to death",
+      "deathMessageWithDummyData": "[player] burned to death"
+    },
+    {
+      "code": "death.attack.onFire.item",
+      "deathMessage": "(?<player>.*?) was burned to a crisp while fighting (?<mob>.*?) wielding (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was burned to a crisp while fighting [mob] wielding [item]"
+    },
+    {
+      "code": "death.attack.onFire.player",
+      "deathMessage": "(?<player>.*?) was burned to a crisp while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was burned to a crisp while fighting [mob]"
+    },
+    {
+      "code": "death.attack.outOfWorld",
+      "deathMessage": "(?<player>.*?) fell out of the world",
+      "deathMessageWithDummyData": "[player] fell out of the world"
+    },
+    {
+      "code": "death.attack.outOfWorld.player",
+      "deathMessage": "(?<player>.*?) didn't want to live in the same world as (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] didn't want to live in the same world as [mob]"
+    },
+    {
+      "code": "death.attack.outsideBorder",
+      "deathMessage": "(?<player>.*?) left the confines of this world",
+      "deathMessageWithDummyData": "[player] left the confines of this world"
+    },
+    {
+      "code": "death.attack.outsideBorder.player",
+      "deathMessage": "(?<player>.*?) left the confines of this world while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] left the confines of this world while fighting [mob]"
+    },
+    {
+      "code": "death.attack.player",
+      "deathMessage": "(?<player>.*?) was slain by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was slain by [mob]"
+    },
+    {
+      "code": "death.attack.player.item",
+      "deathMessage": "(?<player>.*?) was slain by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was slain by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.sonic_boom",
+      "deathMessage": "(?<player>.*?) was obliterated by a sonically-charged shriek",
+      "deathMessageWithDummyData": "[player] was obliterated by a sonically-charged shriek"
+    },
+    {
+      "code": "death.attack.sonic_boom.item",
+      "deathMessage": "(?<player>.*?) was obliterated by a sonically-charged shriek while trying to escape (?<mob>.*?) wielding (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was obliterated by a sonically-charged shriek while trying to escape [mob] wielding [item]"
+    },
+    {
+      "code": "death.attack.sonic_boom.player",
+      "deathMessage": "(?<player>.*?) was obliterated by a sonically-charged shriek while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was obliterated by a sonically-charged shriek while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.stalagmite",
+      "deathMessage": "(?<player>.*?) was impaled on a stalagmite",
+      "deathMessageWithDummyData": "[player] was impaled on a stalagmite"
+    },
+    {
+      "code": "death.attack.stalagmite.player",
+      "deathMessage": "(?<player>.*?) was impaled on a stalagmite while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was impaled on a stalagmite while fighting [mob]"
+    },
+    {
+      "code": "death.attack.starve",
+      "deathMessage": "(?<player>.*?) starved to death",
+      "deathMessageWithDummyData": "[player] starved to death"
+    },
+    {
+      "code": "death.attack.starve.player",
+      "deathMessage": "(?<player>.*?) starved to death while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] starved to death while fighting [mob]"
+    },
+    {
+      "code": "death.attack.sting",
+      "deathMessage": "(?<player>.*?) was stung to death",
+      "deathMessageWithDummyData": "[player] was stung to death"
+    },
+    {
+      "code": "death.attack.sting.item",
+      "deathMessage": "(?<player>.*?) was stung to death by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was stung to death by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.sting.player",
+      "deathMessage": "(?<player>.*?) was stung to death by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was stung to death by [mob]"
+    },
+    {
+      "code": "death.attack.sweetBerryBush",
+      "deathMessage": "(?<player>.*?) was poked to death by a sweet berry bush",
+      "deathMessageWithDummyData": "[player] was poked to death by a sweet berry bush"
+    },
+    {
+      "code": "death.attack.sweetBerryBush.player",
+      "deathMessage": "(?<player>.*?) was poked to death by a sweet berry bush while trying to escape (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was poked to death by a sweet berry bush while trying to escape [mob]"
+    },
+    {
+      "code": "death.attack.thorns",
+      "deathMessage": "(?<player>.*?) was killed while trying to hurt (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was killed while trying to hurt [mob]"
+    },
+    {
+      "code": "death.attack.thorns.item",
+      "deathMessage": "(?<player>.*?) was killed by (?<item>.*?) while trying to hurt (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was killed by [item] while trying to hurt [mob]"
+    },
+    {
+      "code": "death.attack.thrown",
+      "deathMessage": "(?<player>.*?) was pummeled by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was pummeled by [mob]"
+    },
+    {
+      "code": "death.attack.thrown.item",
+      "deathMessage": "(?<player>.*?) was pummeled by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was pummeled by [mob] using [item]"
+    },
+    {
+      "code": "death.attack.trident",
+      "deathMessage": "(?<player>.*?) was impaled by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was impaled by [mob]"
+    },
+    {
+      "code": "death.attack.trident.item",
+      "deathMessage": "(?<player>.*?) was impaled by (?<mob>.*?) with (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was impaled by [mob] with [item]"
+    },
+    {
+      "code": "death.attack.wither",
+      "deathMessage": "(?<player>.*?) withered away",
+      "deathMessageWithDummyData": "[player] withered away"
+    },
+    {
+      "code": "death.attack.wither.player",
+      "deathMessage": "(?<player>.*?) withered away while fighting (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] withered away while fighting [mob]"
+    },
+    {
+      "code": "death.attack.witherSkull",
+      "deathMessage": "(?<player>.*?) was shot by a skull from (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was shot by a skull from [mob]"
+    },
+    {
+      "code": "death.attack.witherSkull.item",
+      "deathMessage": "(?<player>.*?) was shot by a skull from (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was shot by a skull from [mob] using [item]"
+    },
+    {
+      "code": "death.fell.accident.generic",
+      "deathMessage": "(?<player>.*?) fell from a high place",
+      "deathMessageWithDummyData": "[player] fell from a high place"
+    },
+    {
+      "code": "death.fell.accident.ladder",
+      "deathMessage": "(?<player>.*?) fell off a ladder",
+      "deathMessageWithDummyData": "[player] fell off a ladder"
+    },
+    {
+      "code": "death.fell.accident.other_climbable",
+      "deathMessage": "(?<player>.*?) fell while climbing",
+      "deathMessageWithDummyData": "[player] fell while climbing"
+    },
+    {
+      "code": "death.fell.accident.scaffolding",
+      "deathMessage": "(?<player>.*?) fell off scaffolding",
+      "deathMessageWithDummyData": "[player] fell off scaffolding"
+    },
+    {
+      "code": "death.fell.accident.twisting_vines",
+      "deathMessage": "(?<player>.*?) fell off some twisting vines",
+      "deathMessageWithDummyData": "[player] fell off some twisting vines"
+    },
+    {
+      "code": "death.fell.accident.vines",
+      "deathMessage": "(?<player>.*?) fell off some vines",
+      "deathMessageWithDummyData": "[player] fell off some vines"
+    },
+    {
+      "code": "death.fell.accident.weeping_vines",
+      "deathMessage": "(?<player>.*?) fell off some weeping vines",
+      "deathMessageWithDummyData": "[player] fell off some weeping vines"
+    },
+    {
+      "code": "death.fell.assist",
+      "deathMessage": "(?<player>.*?) was doomed to fall by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] was doomed to fall by [mob]"
+    },
+    {
+      "code": "death.fell.assist.item",
+      "deathMessage": "(?<player>.*?) was doomed to fall by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] was doomed to fall by [mob] using [item]"
+    },
+    {
+      "code": "death.fell.finish",
+      "deathMessage": "(?<player>.*?) fell too far and was finished by (?<mob>.*?)",
+      "deathMessageWithDummyData": "[player] fell too far and was finished by [mob]"
+    },
+    {
+      "code": "death.fell.finish.item",
+      "deathMessage": "(?<player>.*?) fell too far and was finished by (?<mob>.*?) using (?<item>.*?)",
+      "deathMessageWithDummyData": "[player] fell too far and was finished by [mob] using [item]"
+    },
+    {
+      "code": "death.fell.killer",
+      "deathMessage": "(?<player>.*?) was doomed to fall",
+      "deathMessageWithDummyData": "[player] was doomed to fall"
+    }
+  ]
+}

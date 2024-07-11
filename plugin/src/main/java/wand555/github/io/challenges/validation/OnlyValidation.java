@@ -8,10 +8,8 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.mapping.EntityTypeDataSource;
-import wand555.github.io.challenges.mapping.EntityTypeJSON;
-import wand555.github.io.challenges.mapping.MaterialDataSource;
-import wand555.github.io.challenges.mapping.MaterialJSON;
+import wand555.github.io.challenges.mapping.*;
+import wand555.github.io.challenges.types.death.DeathMessage;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -38,7 +36,8 @@ public class OnlyValidation {
 
             List<MaterialJSON> materialJSONS = objectMapper.readValue(OnlyValidation.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
             List<EntityTypeJSON> entityTypeJSONS = objectMapper.readValue(OnlyValidation.class.getResourceAsStream("/entity_types.json"), EntityTypeDataSource.class).getData();
-            DataSourceContext dataSourceContext = new DataSourceContext(materialJSONS, entityTypeJSONS);
+            List<DeathMessage> deathMessageList = objectMapper.readValue(OnlyValidation.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
+            DataSourceContext dataSourceContext = new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessageList);
 
             File jsonSourcePath = new File(child.getPath());
             String json = objectMapper.writeValueAsString(objectMapper.readValue(jsonSourcePath, Object.class));

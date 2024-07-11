@@ -11,7 +11,7 @@
       :virtual-scroller-options="{ itemSize: 44 }"
       filter
       id="collectableSelection"
-      class="w-full md:w-80"
+      :class="dropdownClass !== undefined ? dropdownClass : 'w-80'"
       @update:modelValue="
         $emit('transferDataFromPlaceHolderToNewInstance', selectedData!);
         selectedData = undefined
@@ -26,6 +26,7 @@
             :translation-key="slotProps.value.mc_translation_key"
             :img-path="slotProps.value.img_path"
             :show-image="showImage"
+            :raw-text="rawText?.(slotProps.value)"
           />
         </div>
       </template>
@@ -35,6 +36,7 @@
             :translation-key="slotProps.option.mc_translation_key"
             :img-path="slotProps.option.img_path"
             :show-image="showImage"
+            :raw-text="rawText?.(slotProps.option)"
           />
         </div>
       </template>
@@ -65,6 +67,8 @@
     collectableAmountPrefix: string
     placeholderText: string
     showImage: boolean
+    rawText?: (dataRow: DataRow) => string
+    dropdownClass?: string
     disabled: boolean
   }>()
 

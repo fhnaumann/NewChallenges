@@ -4,6 +4,8 @@
                                            :placeholder-text="dropdownPlaceholderText" :show-image="showImage"
                                            :disabled="disabled" :possible-data=" !disabled ? removeSelectedDataFromPossibleData() : []"
                                            :collectable-amount-prefix="collectableAmountPrefix"
+                                           :raw-text="rawText"
+                                           :dropdown-class="dropdownClass"
                                            @transferDataFromPlaceHolderToNewInstance="(selectedData: DataRow) => updateSelectedData(undefined, selectedData)"
     />
 
@@ -19,6 +21,8 @@
                                   :collectable-text-prefix="collectableTextPrefix" :show-image="showImage"
                                   :disabled="disabled" :possible-data="removeSelectedDataFromPossibleData()"
                                   :collectable-amount-prefix="collectableAmountPrefix"
+                                  :raw-text="rawText"
+                                  :dropdown-class="dropdownClass"
                                   @updateCurrentlySelected="(newlySelectedData: DataRow) => updateSelectedData(collectableEntryConfig2DataRow(allPossibleData, selected), newlySelectedData)"
                                   @deleteEntry="deleteDataRow"
       />
@@ -46,6 +50,8 @@
     dropdownPlaceholderText: string,
     showImage: boolean
     renderSelection: boolean
+    rawText?: (dataRow: DataRow) => string
+    dropdownClass?: string
     disabled: boolean
   }>()
 

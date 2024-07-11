@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.mapping.*;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
+import wand555.github.io.challenges.types.death.DeathMessage;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +49,8 @@ public class FileManagerTest {
         JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
         List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
         List<EntityTypeJSON> entityTypeJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/entity_types.json"), EntityTypeDataSource.class).getData();
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null, null), new DataSourceContext(materialJSONS, entityTypeJSONS), schemaRoot, new ChallengeManager(), new Random(), new OfflineTempData(plugin));
+        List<DeathMessage> deathMessages = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
+        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null, null, null), new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages), schemaRoot, new ChallengeManager(), new Random(), new OfflineTempData(plugin));
         mapper = new ModelMapper(context);
 
 

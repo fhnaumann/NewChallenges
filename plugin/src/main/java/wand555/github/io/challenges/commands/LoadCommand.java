@@ -103,7 +103,7 @@ public class LoadCommand {
                 // TODO: ugly access
                 context.plugin().tempContext = newContext;
                 context.plugin().urlReminder.setContext(newContext);
-                challengeFilesHandler.setFileNameBeingPlayed(toLoad.challengeMetadata().getName());
+                challengeFilesHandler.setFileNameBeingPlayed(toLoad.file().getName());
 
                 Component successTitle = ComponentUtil.formatTitleMessage(
                         context.plugin(),

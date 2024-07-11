@@ -6,9 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-// deprecated because pretty much nothing works with it. Logging in spigot/paper is a mess
-// and the static JavaPlugin access messes up MockBukkit tests.
-@Deprecated()
 public class ChallengesDebugLogger extends Logger {
 
     // TODO: load value from (static) config helper class
@@ -19,12 +16,18 @@ public class ChallengesDebugLogger extends Logger {
     public ChallengesDebugLogger(Class<?> clazz) {
         super("Challenges", null);
         logPrefix = "%s: ".formatted(clazz.getSimpleName());
-        //setParent(JavaPlugin.getPlugin(Challenges.class).getServer().getLogger());
         setLevel(Level.ALL);
     }
 
     @Override
     public void log(LogRecord record) {
+        if(getParent() == null) {
+            try {
+                setParent(JavaPlugin.getPlugin(Challenges.class).getServer().getLogger());
+            } catch (IllegalArgumentException ignored) {
+                // plugin won't be found during tests, but we don't care about log messages during test runs
+            }
+        }
         // don't log if logging is less important than info and the debug flag is explicitly turned off via the configuration file
         if(!DEBUG && record.getLevel().intValue() < Level.INFO.intValue()) {
             return;

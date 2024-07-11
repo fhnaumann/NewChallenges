@@ -201,6 +201,11 @@
                     "description": "If the goal is completed.",
                     "type": "boolean"
                 },
+                "countTotem": {
+                    "default": true,
+                    "description": "Determines if the usage of a totem counts towards the deathAmount.",
+                    "type": "boolean"
+                },
                 "deathAmount": {
                     "default": 1,
                     "description": "The amount of deaths required to complete the goal.",
@@ -208,8 +213,26 @@
                     "minimum": 1,
                     "type": "integer"
                 },
+                "deathMessages": {
+                    "default": [],
+                    "description": "The death messages that need to be reached to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
                 "goalTimer": {
                     "$ref": "#/definitions/GoalTimer"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
                 }
             },
             "type": "object"
@@ -505,6 +528,11 @@
         "NoDeathRuleConfig": {
             "additionalProperties": false,
             "properties": {
+                "ignoreTotem": {
+                    "default": true,
+                    "description": "Determines if the usage of a totem triggers the punishments or not.\ntrue = no punishments are triggered\nfalse = punishments are triggered",
+                    "type": "boolean"
+                },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
                 },
@@ -669,6 +697,50 @@
             "properties": {
                 "customHealthSetting": {
                     "$ref": "#/definitions/CustomHealthSettingConfig"
+                },
+                "ultraHardcoreSetting": {
+                    "$ref": "#/definitions/UltraHardcoreSettingConfig"
+                }
+            },
+            "type": "object"
+        },
+        "UltraHardcoreSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "allowAbsorptionHearts": {
+                    "default": true,
+                    "description": "Determines if absorption hearts (yellow) should be allowed or immediately removed. They can be gained most noticeably\nby eating a golden apple, an enchanted golden apple or by activating a totem.",
+                    "type": "boolean"
+                },
+                "allowTotems": {
+                    "default": true,
+                    "description": "Determines if totems work.",
+                    "type": "boolean"
+                },
+                "naturalRegeneration": {
+                    "default": false,
+                    "description": "Determines if natural regeneration is enabled. This flag essentially controls the NATURAL_REGENERATION gamerule.",
+                    "type": "boolean"
+                },
+                "regWithEnchantedGoldenApples": {
+                    "default": true,
+                    "description": "Determines if eating an enchanted golden apple provides regeneration.",
+                    "type": "boolean"
+                },
+                "regWithGoldenApples": {
+                    "default": true,
+                    "description": "Determines if eating a golden apple provides regeneration.",
+                    "type": "boolean"
+                },
+                "regWithPotions": {
+                    "default": true,
+                    "description": "Determines if using a healing/instant-health (splash-)potion provides regeneration.",
+                    "type": "boolean"
+                },
+                "regWithSuspiciousStew": {
+                    "default": true,
+                    "description": "Determines if eating a suspicious stew (crafted with an oxeye daisy) provided regeneration.",
+                    "type": "boolean"
                 }
             },
             "type": "object"

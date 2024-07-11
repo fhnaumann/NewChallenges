@@ -31,13 +31,14 @@ public class FileManager {
         challengeManager.getGoals().forEach(goal -> goal.addToGeneratedConfig(goalsConfig));
 
         SettingsConfig settingsConfig = new SettingsConfig();
+        challengeManager.getSettings().forEach(baseSetting -> baseSetting.addToGeneratedConfig(settingsConfig));
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model Model = new Model(0, goalsConfig, challengeManager.getChallengeMetadata(), null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
+        Model model = new Model(0, goalsConfig, challengeManager.getChallengeMetadata(), null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, Model);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, model);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -64,6 +65,7 @@ public class FileManager {
         DataSourceContext sourceContext = new DataSourceContext.Builder()
                 .withMaterialJSONList(FileManager.class.getResourceAsStream("/materials.json"))
                 .withEntityTypeJSONList(FileManager.class.getResourceAsStream("/entity_types.json"))
+                .withDeathMessageList(FileManager.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
                 .build();
         ValidationResult validationResult = Validation.modernValidate(json, schemaStream, schematronStream, sourceContext);
         if(validationResult.isValid()) {
@@ -76,12 +78,14 @@ public class FileManager {
                         .withPlugin(plugin)
                         .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
                         .withGoalResourceBundle(ResourceBundle.getBundle("goals", Locale.US, UTF8ResourceBundleControl.get()))
+                        .withSettingsResourceBundle(ResourceBundle.getBundle("settings", Locale.US, UTF8ResourceBundleControl.get()))
                         .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
                         .withCommandsResourceBundle(ResourceBundle.getBundle("commands", Locale.US, UTF8ResourceBundleControl.get()))
                         .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
                         .withSchemaRoot(schemaRoot)
                         .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                         .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
+                        .withDeathMessageList(FileManager.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
                         .withChallengeManager(new ChallengeManager())
                         .withRandom(new Random())
                         .withOfflineTempData(new OfflineTempData(plugin))

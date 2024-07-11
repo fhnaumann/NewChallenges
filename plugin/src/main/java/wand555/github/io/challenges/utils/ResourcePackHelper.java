@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.types.death.DeathMessage;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -24,14 +25,21 @@ public class ResourcePackHelper {
     private static final Map<Material, String> MATERIAL_UNICODE_MAPPING = fillMatUnicodeMappings();
     public static final Map<EntityType, String> ENTITY_UNICODE_MAPPING = fillEntityUnicodeMappings();
 
-    public static <E extends Enum<E>> Component getUnicodeMapping(E from) {
+    public static <K extends Keyed> Component getUnicodeMapping(K from) {
         if(from instanceof Material material) {
             return getMaterialUnicodeMapping(material);
         }
         if(from instanceof EntityType entityType) {
             return getEntityTypeUnicodeMapping(entityType);
         }
+        if(from instanceof DeathMessage deathMessage) {
+            return getDeathMessageUnicodeMapping(deathMessage);
+        }
         throw new RuntimeException("getUnicodeMapping called with '%s' and that is not an entity type or a material.".formatted(from));
+    }
+
+    public static Component getDeathMessageUnicodeMapping(DeathMessage from) {
+        return Component.text(from.getMessageWithDummyData());
     }
 
     public static Component getMaterialUnicodeMapping(Material from) {

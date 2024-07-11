@@ -5,8 +5,9 @@
       class="w-6"
       :src="BASE_IMG_URL + '/rendered_images/' + imgPath"
       @error="($event.target as HTMLInputElement).src = '/unknown.png'"
-    />
-    <div>{{ translate(translationKey) }}</div>
+     :alt="translationKey"/>
+    <div v-if="rawText === undefined">{{ translate(translationKey) }}</div>
+    <div v-else>{{ rawText }}</div>
   </div>
 </template>
 
@@ -20,14 +21,16 @@
 
   import { BASE_IMG_URL } from '@/constants'
   import { useTranslation } from '@/language'
+  import type { DataRow } from '@/models/data_row'
 
   const props = defineProps<{
     /**
      * The path/name of the image including the file ending (e.g: minecraft_stone.png).
      */
-    imgPath: string
+    imgPath?: string
     translationKey: string
     showImage: boolean
+    rawText?: string
   }>()
 
   const { translate, translateDataRow } = useTranslation()

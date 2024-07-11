@@ -9,10 +9,7 @@ import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.blockplace.BlockPlaceGoal;
-import wand555.github.io.challenges.criteria.goals.factory.BlockBreakGoalFactory;
-import wand555.github.io.challenges.criteria.goals.factory.BlockPlaceGoalFactory;
-import wand555.github.io.challenges.criteria.goals.factory.ItemGoalFactory;
-import wand555.github.io.challenges.criteria.goals.factory.MobGoalFactory;
+import wand555.github.io.challenges.criteria.goals.factory.*;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
@@ -25,6 +22,7 @@ import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
 import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRuleMessageHelper;
 import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.criteria.settings.CustomHealthSetting;
+import wand555.github.io.challenges.criteria.settings.UltraHardcoreSetting;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
@@ -35,6 +33,7 @@ import wand555.github.io.challenges.punishments.RandomEffectPunishment;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.criteria.rules.Rule;
+import wand555.github.io.challenges.types.death.DeathMessage;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
@@ -90,6 +89,9 @@ public class ModelMapper {
         if(settingsConfig.getCustomHealthSetting() != null) {
             settings.add(new CustomHealthSetting(context, settingsConfig.getCustomHealthSetting()));
         }
+        if(settingsConfig.getUltraHardcoreSetting() != null) {
+            settings.add(new UltraHardcoreSetting(context, settingsConfig.getUltraHardcoreSetting()));
+        }
         return settings;
     }
 
@@ -111,6 +113,9 @@ public class ModelMapper {
         if(goalsConfig.getBlockPlaceGoal() != null) {
             goals.add(new BlockPlaceGoalFactory().createGoal(context, goalsConfig.getBlockPlaceGoal()));
         }
+        if(goalsConfig.getDeathGoal() != null) {
+            goals.add(new DeathGoalFactory().createGoal(context, goalsConfig.getDeathGoal()));
+        }
         return goals;
     }
 
@@ -126,6 +131,14 @@ public class ModelMapper {
         else if(keyedType == EntityType.class) {
             return collectables.stream().map(collectableEntryConfig -> {
                 K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.entityTypeJSONList(), collectableEntryConfig.getCollectableName()).toEnum();
+                CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(), CollectableDataConfig.class);
+                Collect collect = new Collect(collectableDataConfig);
+                return Map.entry(enumInstance, collect);
+            }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (collect, collect2) -> collect, LinkedHashMap::new));
+        }
+        else if(keyedType == DeathMessage.class) {
+            return collectables.stream().map(collectableEntryConfig -> {
+                K enumInstance = (K) DataSourceJSON.fromCode(dataSourceContext.deathMessageList(), collectableEntryConfig.getCollectableName()).toEnum();
                 CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(), CollectableDataConfig.class);
                 Collect collect = new Collect(collectableDataConfig);
                 return Map.entry(enumInstance, collect);

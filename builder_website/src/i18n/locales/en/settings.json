@@ -13,6 +13,33 @@
             "tooltip": "Set the maximum number of hearts for every player."
           }
         }
+      },
+      "ultraHardcoreSetting": {
+        "name": "Ultra Hardcore",
+        "alias": ["UltraHardcore", "Ultra Hardcore", "setting", "UltraHardcoreSetting", "UHC", "UUHC", "regeneration", "golden apple", "enchanted golden apple", "potion", "absorption"],
+        "settings": {
+          "naturalRegeneration": {
+            "name": "Natural Regeneration"
+          },
+          "regWithGoldenApples": {
+            "name": "Regenerate with Golden Apples"
+          },
+          "regWithEnchantedGoldenApples": {
+            "name": "Regenerate with Enchanted Golden Apples"
+          },
+          "regWithSuspiciousStew": {
+            "name": "Regenerate with Suspicious Stew"
+          },
+          "regWithPotions": {
+            "name": "Regenerate with Potions"
+          },
+          "allowAbsorptionHearts": {
+            "name": "Allow Absorption Hearts"
+          },
+          "allowTotems": {
+            "name": "Allow Totems"
+          }
+        }
       }
     }
   }

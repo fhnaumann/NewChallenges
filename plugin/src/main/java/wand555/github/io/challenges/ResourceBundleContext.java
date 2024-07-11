@@ -4,10 +4,10 @@ import wand555.github.io.challenges.punishments.Punishment;
 
 import java.util.ResourceBundle;
 
-public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceBundle goalResourceBundle, ResourceBundle punishmentResourceBundle, ResourceBundle commandsResourceBundle, ResourceBundle miscResourceBundle) {
+public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceBundle goalResourceBundle, ResourceBundle settingsResourceBundle, ResourceBundle punishmentResourceBundle, ResourceBundle commandsResourceBundle, ResourceBundle miscResourceBundle) {
 
     public static final class Builder {
-        private ResourceBundle ruleResourceBundle, goalResourceBundle, punishmentResourceBundle, miscResourceBundle, commandsResourceBundle;
+        private ResourceBundle ruleResourceBundle, goalResourceBundle, settingsResourceBundle, punishmentResourceBundle, miscResourceBundle, commandsResourceBundle;
 
         public Builder() {}
 
@@ -18,6 +18,11 @@ public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceB
 
         public Builder withGoalResourceBundle(ResourceBundle goalResourceBundle) {
             this.goalResourceBundle = goalResourceBundle;
+            return this;
+        }
+
+        public Builder withSettingsResourceBundle(ResourceBundle settingsResourceBundle) {
+            this.settingsResourceBundle = settingsResourceBundle;
             return this;
         }
 
@@ -37,7 +42,7 @@ public record ResourceBundleContext(ResourceBundle ruleResourceBundle, ResourceB
         }
 
         public ResourceBundleContext build() {
-            return new ResourceBundleContext(ruleResourceBundle, goalResourceBundle, punishmentResourceBundle, commandsResourceBundle, miscResourceBundle);
+            return new ResourceBundleContext(ruleResourceBundle, goalResourceBundle, settingsResourceBundle, punishmentResourceBundle, commandsResourceBundle, miscResourceBundle);
         }
 
     }

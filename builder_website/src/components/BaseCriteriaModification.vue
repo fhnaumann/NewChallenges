@@ -19,7 +19,7 @@
       <!--p class="bg-gray-200 px-2 w-full text-center">{{ t('general.modification.wiki_banner', { criteria: t(criteriaNameI18NPath) }) }}</p-->
     </div>
     <div class="flex flex-row w-screen justify-between space-x-4 h-96 pt-4">
-      <div class="h-full pl-2">
+      <div class="h-full w-full pl-2">
         <slot name="configuration">
           <p>{{ t('general.criteria.empty_configuration', {criteria: t(`${criteriaType}.types.${criteriaKey}.name`)}) }}</p>
         </slot>

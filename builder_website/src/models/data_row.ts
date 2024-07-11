@@ -1,5 +1,6 @@
 import materials from '@/assets/data_rows/materials.json'
 import entity_types from '@/assets/data_rows/entity_types.json'
+import death_messages from '@/assets/data_rows/death_messages_with_dummy_data_data_source_JSON.json'
 import type { CollectableDataConfig, CollectableEntryConfig } from '@/models/goals'
 
 /**
@@ -27,10 +28,15 @@ export interface EntityTypeDataRow extends DataRow {
   /* Nothing to add for now */
 }
 
+export interface DeathMessageDataRow extends DataRow {
+  deathMessage: string
+}
+
 export const ALL_MATERIAL_DATA: MaterialDataRow[] = materials.data
 export const ALL_IS_ITEM_MATERIAL_DATA: MaterialDataRow[] = ALL_MATERIAL_DATA.filter(value => value.is_item)
 export const ALL_IS_BLOCK_MATERIAL_DATA: MaterialDataRow[] = ALL_MATERIAL_DATA.filter(value => value.is_block)
 export const ALL_ENTITY_TYPE_DATA: EntityTypeDataRow[] = entity_types.data
+export const ALL_DEATH_MESSAGES_DATA: DeathMessageDataRow[] = death_messages.data as any // TODO: death messages require img path and mc translation code, but neither really exists
 
 export function fromCode2DataRow(code: string): DataRow {
   let match: DataRow | undefined = ALL_MATERIAL_DATA.find(value => value.code === code)

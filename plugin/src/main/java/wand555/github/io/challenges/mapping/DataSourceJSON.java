@@ -4,6 +4,7 @@ import org.bukkit.Keyed;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 
 public interface DataSourceJSON<E extends Keyed> {
     E toEnum();
@@ -13,12 +14,16 @@ public interface DataSourceJSON<E extends Keyed> {
     }
 
     static <T extends DataSourceJSON<E>, E extends Keyed> T fromCode(Collection<T> dataSource, String code) {
-        List<T> shouldBeExactlyOne = dataSource.stream().filter(t -> t.getCode().equals(code)).toList();
+        return fromCode(dataSource, code, t -> t.getCode().equals(code));
+    }
+
+    static <T extends DataSourceJSON<E>, E extends Keyed> T fromCode(Collection<T> dataSource, String code, Predicate<T> filter) {
+        List<T> shouldBeExactlyOne = dataSource.stream().filter(filter).toList();
         if(shouldBeExactlyOne.isEmpty()) {
             throw new RuntimeException("'%s' does not exist in data source %s".formatted(code, dataSource));
         }
         if(shouldBeExactlyOne.size() > 1) {
-            throw new RuntimeException("%s exists more than once in data source %s".formatted(code, dataSource));
+            throw new RuntimeException("%s exists more than once in data source, all matches: '%s'".formatted(code, shouldBeExactlyOne));
         }
         return shouldBeExactlyOne.get(0);
     }

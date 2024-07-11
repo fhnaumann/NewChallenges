@@ -12,6 +12,7 @@ import DeathGoal from '@/components/goals/types/DeathGoal.vue'
 import NoDeathRule from '@/components/rules/types/NoDeathRule.vue'
 import NoBlockPlaceRule from '@/components/rules/types/NoBlockPlaceRule.vue'
 import BlockPlaceGoal from '@/components/goals/types/BlockPlaceGoal.vue'
+import UltraHardcoreSetting from '@/components/settings/UltraHardcoreSetting.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,6 +94,11 @@ const router = createRouter({
       path: '/settings/customHealthSetting',
       name: 'Custom Health',
       component: CustomHealthSetting
+    },
+    {
+      path: '/settings/ultraHardcoreSetting',
+      name: 'Ultra Hardcore',
+      component: UltraHardcoreSetting
     },
     {
       path: '/about',

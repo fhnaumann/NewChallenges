@@ -13,4 +13,6 @@ public abstract class BaseSetting implements JSONConfigGroup<SettingsConfig>  {
     }
 
     public abstract void onStart();
+
+    public abstract void onEnd();
 }

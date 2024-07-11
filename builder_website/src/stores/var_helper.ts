@@ -9,5 +9,7 @@ export const useVarHelperStore = defineStore('var_helper', () => {
   const collectEveryItemOnce = ref<boolean>(false)
   const collectAllItemsOnce = ref<boolean>(false)
   const collectAllBlockItemsOnce = ref<boolean>(false)
-  return { killAllMobsOnce, breakAllBlocksOnce, placeAllBlocksOnce, collectEveryItemOnce, collectAllItemsOnce, collectAllBlockItemsOnce }
+
+  const allDeathMessagesOnce = ref<boolean>(false)
+  return { killAllMobsOnce, breakAllBlocksOnce, placeAllBlocksOnce, collectEveryItemOnce, collectAllItemsOnce, collectAllBlockItemsOnce, allDeathMessagesOnce }
 })

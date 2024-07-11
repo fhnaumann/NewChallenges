@@ -85,6 +85,18 @@
         "settings": {
           "deathAmount": {
             "name": "Deaths: "
+          },
+          "individualDeathMessages": {
+            "name": "Enable individual death message selection"
+          },
+          "dropdown": {
+            "deathPrefix": "Death Type:",
+            "deathPlaceholder": "Select Death Types",
+            "amountPrefix": "Amount:",
+            "noMatch": "No matching death types found."
+          },
+          "allDeathMessagesOnce": {
+            "name": "All Death Messages Once"
           }
         }
       }

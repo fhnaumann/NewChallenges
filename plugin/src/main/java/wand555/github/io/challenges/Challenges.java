@@ -15,6 +15,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -69,6 +70,14 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         return getServer().getClass().getName().contains("ServerMock");
     }
 
+    private void addDefaultValuesToConfig() {
+        FileConfiguration fileConfiguration = getConfig();
+        //fileConfiguration.addDefault("worlds", List.of("world", "world_nether", "world_the_end"));
+
+        fileConfiguration.options().copyDefaults(true);
+        saveConfig();
+    }
+
     @Override
     public void onEnable() {
 
@@ -104,6 +113,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
         getServer().getPluginManager().registerEvents(this, this);
 
+        addDefaultValuesToConfig();
 
         offlineTempData = new OfflineTempData(this);
         tempContext = null;
@@ -112,6 +122,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     .withPlugin(this)
                     .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
                     .withGoalResourceBundle(ResourceBundle.getBundle("goals", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withSettingsResourceBundle(ResourceBundle.getBundle("settings", Locale.US, UTF8ResourceBundleControl.get()))
                     .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
                     .withCommandsResourceBundle(ResourceBundle.getBundle("commands", Locale.US, UTF8ResourceBundleControl.get()))
                     .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
@@ -127,7 +138,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             throw new RuntimeException(e);
         }
         tempContext.challengeManager().setContext(tempContext); // immediately set context so it is available in the manager
-
         urlReminder = new URLReminder(tempContext);
         urlReminder.start();
 

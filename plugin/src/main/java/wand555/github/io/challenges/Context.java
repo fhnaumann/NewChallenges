@@ -1,6 +1,8 @@
 package wand555.github.io.challenges;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginLogger;
 
 import java.io.InputStream;
@@ -42,6 +44,11 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
             return this;
         }
 
+        public Builder withSettingsResourceBundle(ResourceBundle settingsResourceBundle) {
+            resourceBundleContextBuilder.withSettingsResourceBundle(settingsResourceBundle);
+            return this;
+        }
+
         public Builder withPunishmentResourceBundle(ResourceBundle punishmentResourceBundle) {
             resourceBundleContextBuilder.withPunishmentResourceBundle(punishmentResourceBundle);
             return this;
@@ -64,6 +71,11 @@ public record Context(Challenges plugin, ResourceBundleContext resourceBundleCon
 
         public Builder withEntityTypeJSONList(InputStream entityTypeJSONInputStream) {
             dataSourceContextBuilder.withEntityTypeJSONList(entityTypeJSONInputStream);
+            return this;
+        }
+
+        public Builder withDeathMessageList(InputStream deathMessageListInputStream) {
+            dataSourceContextBuilder.withDeathMessageList(deathMessageListInputStream);
             return this;
         }
 

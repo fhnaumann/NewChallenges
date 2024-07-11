@@ -4,14 +4,14 @@ import org.bukkit.damage.DeathMessageType;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.types.Data;
 
-public record DeathData(Player player, int amount, DeathMessageType messageType) implements Data<DeathMessageType> {
+public record DeathData(Player player, int amount, DeathMessage deathMessage) implements Data<DeathMessage> {
 
-    public DeathData(Player player, DeathMessageType messageType) {
-        this(player, 1, messageType);
+    public DeathData(Player player, DeathMessage deathMessage) {
+        this(player, 1, deathMessage);
     }
 
     @Override
-    public DeathMessageType mainDataInvolved() {
-        return messageType;
+    public DeathMessage mainDataInvolved() {
+        return deathMessage;
     }
 }

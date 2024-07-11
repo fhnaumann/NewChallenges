@@ -234,6 +234,8 @@ public class ChallengeManager implements StatusInfo {
                 .map(BossBarDisplay.class::cast)
                 .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
 
+        settings.forEach(BaseSetting::onEnd);
+
         // remove active file, so it is not automatically loaded when the server restarts from now on
         context.offlineTempData().addAndSave("fileNameBeingPlayed", null);
     }

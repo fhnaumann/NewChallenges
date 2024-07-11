@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.event.Event;
 import wand555.github.io.challenges.FileManager;
+import wand555.github.io.challenges.mapping.DeathMessageDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 
@@ -55,6 +56,10 @@ public class CriteriaUtil {
 
     public static MaterialDataSource loadMaterials() throws IOException {
         return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream("/materials.json"), MaterialDataSource.class);
+    }
+
+    public static DeathMessageDataSource loadDeathMessages() throws IOException {
+        return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class);
     }
 
     public static void callEvent(ServerMock server, Event event, int n) {

@@ -38,8 +38,12 @@ public class CustomHealthSetting extends BaseSetting implements Storable<CustomH
     }
 
     private void setCustomHeartFor(Player player) {
+        setCustomHeartForWith(player, hearts);
+    }
+
+    private void setCustomHeartForWith(Player player, int amount) {
         AttributeInstance maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        maxHealth.setBaseValue(hearts);
+        maxHealth.setBaseValue(amount);
         player.setHealthScale(player.getHealth());
         player.damage(0);
     }
@@ -47,6 +51,11 @@ public class CustomHealthSetting extends BaseSetting implements Storable<CustomH
     @Override
     public void onStart() {
         setCustomHeartsForAllPlayers();
+    }
+
+    @Override
+    public void onEnd() {
+        Bukkit.getOnlinePlayers().forEach(player -> setCustomHeartForWith(player, 20)); // set health back to 20 (default)
     }
 
     @EventHandler
