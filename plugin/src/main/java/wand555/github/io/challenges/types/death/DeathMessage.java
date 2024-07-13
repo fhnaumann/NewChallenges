@@ -2,6 +2,7 @@ package wand555.github.io.challenges.types.death;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import net.kyori.adventure.key.Key;
+import net.kyori.adventure.translation.Translatable;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +12,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed {
+public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed, Translatable {
 
     private final String key;
     private final String message;
@@ -25,6 +26,7 @@ public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed {
         this.pattern = Pattern.compile(message);
     }
 
+    @Deprecated
     public Matcher getMatcherFor(String deathMessageFromEvent) {
         // message from event contains placeholders
 
@@ -74,5 +76,10 @@ public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed {
                 ", message='" + message + '\'' +
                 ", messageWithDummyData='" + messageWithDummyData + '\'' +
                 '}';
+    }
+
+    @Override
+    public @NotNull String translationKey() {
+        return getCode();
     }
 }

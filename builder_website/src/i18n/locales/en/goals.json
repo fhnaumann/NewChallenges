@@ -86,6 +86,9 @@
           "deathAmount": {
             "name": "Deaths: "
           },
+          "countTotem": {
+            "name": "Count Deaths prevented by Totems"
+          },
           "individualDeathMessages": {
             "name": "Enable individual death message selection"
           },

@@ -119,21 +119,21 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     }
 
     protected Collect updateCollect(D data) {
-        return goalCollector.getToCollect().computeIfPresent(data.mainDataInvolved(), (material, collect) -> {
-            // default behaviour is to add exactly 1 to the collect (data.amount() defaults to 1 unless it is being used to skip something)
-            // subclasses may override this behaviour
-            collect.setCurrentAmount(Math.min(collect.getCurrentAmount() + data.amount(), collect.getAmountNeeded()));
-
-            updateContributorsIn(collect.getCompletionConfig(), data.player(), data.amount());
-            if(collect.isComplete()) {
-                // set the completion time if the collect is now complete
-                collect.getCompletionConfig().setWhenCollectedSeconds((int)context.challengeManager().getTime());
-            }
-            return collect;
-        });
+        return goalCollector.getToCollect().computeIfPresent(data.mainDataInvolved(), (material, collect) -> updateCollect(collect, data));
     }
 
-    private void updateContributorsIn(CompletionConfig completionConfig, Player by, int amount) {
+    protected Collect updateCollect(Collect collect, D data) {
+        collect.setCurrentAmount(Math.min(collect.getCurrentAmount() + data.amount(), collect.getAmountNeeded()));
+
+        updateContributorsIn(collect.getCompletionConfig(), data.player(), data.amount());
+        if(collect.isComplete()) {
+            // set the completion time if the collect is now complete
+            collect.getCompletionConfig().setWhenCollectedSeconds((int)context.challengeManager().getTime());
+        }
+        return collect;
+    }
+
+    protected void updateContributorsIn(CompletionConfig completionConfig, Player by, int amount) {
         if(completionConfig == null) {
             completionConfig = new CompletionConfig();
         }
@@ -157,6 +157,10 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         else {
             bossBarHelper.updateBossBar();
         }
+    }
+
+    protected final boolean hasSomethingToCollect() {
+        return !goalCollector.getToCollect().isEmpty();
     }
 
     @Override

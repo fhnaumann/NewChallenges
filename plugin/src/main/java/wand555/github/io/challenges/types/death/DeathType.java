@@ -1,5 +1,7 @@
 package wand555.github.io.challenges.types.death;
 
+import com.google.common.base.Preconditions;
+import net.kyori.adventure.text.TranslatableComponent;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.Player;
@@ -32,6 +34,8 @@ public class DeathType extends Type<DeathData> {
      */
     private DeathMessage deathMessage;
 
+    private final Map<Player, Boolean> usedTotem = new HashMap<>();
+
     public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered) {
         super(context, triggerCheck, whenTriggered, Map.of());
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
@@ -39,78 +43,30 @@ public class DeathType extends Type<DeathData> {
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event) {
+        Preconditions.checkArgument(usedTotem.containsKey(event.getPlayer()), "PlayerDeathEvent called before EntityResurrectEvent was called for player '%s'.".formatted(event.getPlayer().getName()));
         String plainDeathMessage = PlainTextComponentSerializer.plainText().serializeOrNull(event.deathMessage());
-        logger.info("Received death message '%s'.".formatted(plainDeathMessage));
+        String deathMessageKey = ((TranslatableComponent) event.deathMessage()).key();
+        logger.info("Received death message '%s'.".formatted(deathMessageKey));
 
-        /*
-        Slight dilemma: Some messages contain other message completely. For example:
-        (?<player>.*?) was shot by (?<mob>.*?)
-        (?<player>.*?) was shot by (?<mob>.*?) using (?<item>.*?)
-        If the death message is "wand555 was shot by Skeleton", then the regex matcher would match both, but we only want the first.
-        To circumvent that, we can check if the <item> group matched anything.
-        If it did not match (<item> group returned null), then the death message is the first one.
-        If it did match (<item> group returned not null), then the death message is the second one. This case should still return false
-        in general, because it will match the proper message anyway in the next iteration, because the actual death message contains
-        "using an_item".
-         */
-        /*
-        Predicate<DeathMessage> predicate = sourceDeathMessage -> {
-            Matcher matcher = sourceDeathMessage.getMatcherFor(plainDeathMessage);
-            boolean matches = matcher.matches();
-            try {
-                if (matches) {
+        deathMessage = DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), deathMessageKey);
 
-
-                    try {
-                        // TODO: does not work
-
-                        // probably a very bad approach relying on the error being thrown as model logic...
-                        boolean mobGroupFound = matcher.group("mob") != null;
-                        if (mobGroupFound) {
-                            // it's the long one with a mob, therefore don't match
-                            return false;
-                        }
-                        boolean itemGroupFound = matcher.group("item") != null;
-                        if (itemGroupFound) {
-                            // it's the long one with an item, therefore don't match
-                            return false;
-                        } else {
-                            // it's actually the short one - technically impossible to reach as it should have thrown an exception
-                            return true;
-                        }
-                    } catch (IllegalArgumentException e) {
-                        // it's actually the short one
-                        return true;
-                    }
-
-                } else {
-                    return false;
-                }
-            } catch (IllegalStateException e) {
-                logger.severe("The regex check for %s failed with %s".formatted(plainDeathMessage, e.getMessage()));
-            }
-            // something terrible happened, don't match
-            return false;
-        };*/
-
-        try {
-            deathMessage = matchDeathMessage(context, plainDeathMessage);
-            logger.info("Matched death message entry '%s: %s:'".formatted(deathMessage.getCode(), deathMessage.getMessage()));
-        } catch (Exception e) {
-            logger.severe("Error matching death message '%s'".formatted(plainDeathMessage));
-            logger.severe(e.getMessage());
-        }
+        triggerIfCheckPasses(new DeathData(event.getPlayer(),1, deathMessage, usedTotem.get(event.getPlayer())), event);
+        usedTotem.remove(event.getPlayer());
 
     }
 
     @EventHandler
     public void onPlayerResurrectEvent(EntityResurrectEvent event) {
+        logger.info("Received resurrection.");
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }
-        triggerIfCheckPasses(new DeathData(player, deathMessage), event);
+        usedTotem.put(player, !event.isCancelled());
+
     }
 
+    // TODO: this finally works, but is useless now... It's possible to get the key from the death event...
+    @Deprecated
     private DeathMessage matchDeathMessage(Context context, String plainDeathMessage) {
         DeathMessage actualMatchingDeathMessage;
         List<DeathMessage> matchingMessages = context.dataSourceContext().deathMessageList().stream()
@@ -194,7 +150,6 @@ public class DeathType extends Type<DeathData> {
             "death.attack.cramming.player": "[player] was squashed by [mob]"
             "death.attack.anvil": "[player] was squashed by a falling anvil"
             "death.attack.fallingBlock": "(?<player>.*?) was squashed by a falling block"
-            or one of its variants containing a mob.
             The problem here is, that "[player] was squashed by [mob]" also matches, even if the death message contains explicitly
             "was squashed by a falling anvil" or "was squashed by a falling block", because the regex group for "[mob]"
             matches anything. We need to handle these two cases separately to prevent "[player] was squashed by [mob]" from

@@ -3,12 +3,14 @@ package wand555.github.io.challenges.types.death;
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -64,10 +66,10 @@ public class DeathTypeTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideNoSpaceDeathMessages")
-    public void testPlaceholdersNoSpaceMapped(DeathMessage expectedDeathMessage, PlayerDeathEvent event) {
-        deathType.onPlayerDeathEvent(event);
+    @MethodSource("provideDeathMessages")
+    public void testPlaceholdersMapped(DeathMessage expectedDeathMessage, PlayerDeathEvent event) {
         deathType.onPlayerResurrectEvent(noTotem(event.getPlayer()));
+        deathType.onPlayerDeathEvent(event);
         verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(event.getPlayer(), expectedDeathMessage));
         //assertEquals(expectedDeathMessage, event.getDeathMessage());
     }
@@ -78,45 +80,50 @@ public class DeathTypeTest {
         return event;
     }
 
-    private static Stream<Arguments> provideNoSpaceDeathMessages() {
+    private static EntityResurrectEvent totem(Player player) {
+        return new EntityResurrectEvent(player, null);
+    }
+
+    private static Stream<Arguments> provideDeathMessages() {
         ServerMock serverMock = MockBukkit.getOrCreateMock();
         Player player1 = serverMock.addPlayer("wand555");
         return Stream.of(
-                Arguments.of(death_anvil_attack(), wrap(player1, "wand555 was squashed by a falling anvil")),
-                Arguments.of(death_anvil_attack_player(), wrap(player1, "wand555 was squashed by a falling anvil while fighting Zombie")),
-                Arguments.of(death_attack_fireworks(), wrap(player1, "wand555 went off with a bang")),
-                Arguments.of(death_attack_fireworks_player(), wrap(player1, "wand555 went off with a bang while fighting Zombie")),
-                Arguments.of(death_attack_fireworks_item(), wrap(player1, "wand555 went off with a bang due to a firework fired from MyItem by Zombie")),
-                Arguments.of(death_attack_cramming(), wrap(player1, "wand555 was squished too much"))
+                Arguments.of(death_anvil_attack(), wrap(player1, Component.translatable("death.attack.anvil"))),
+                Arguments.of(death_anvil_attack_player(), wrap(player1, Component.translatable("death.attack.anvil.player"))),
+                Arguments.of(death_attack_fireworks(), wrap(player1, Component.translatable("death.attack.fireworks"))),
+                Arguments.of(death_attack_fireworks_player(), wrap(player1, Component.translatable("death.attack.fireworks.player"))),
+                Arguments.of(death_attack_fireworks_item(), wrap(player1, Component.translatable("death.attack.fireworks.item"))),
+                Arguments.of(death_attack_cramming(), wrap(player1, Component.translatable("death.attack.cramming")))
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("provideWithSpaceDeathMessages")
-    public void testPlaceholdersWithSpaceMapped(DeathMessage expectedDeathMessage, PlayerDeathEvent event) {
-        deathType.onPlayerDeathEvent(event);
-        deathType.onPlayerResurrectEvent(noTotem(event.getPlayer()));
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(event.getPlayer(), expectedDeathMessage));
-        //assertEquals(expectedDeathMessage, event.getDeathMessage());
+    @Test
+    public void testOnDeathNoTotem() {
+        String expectedKey = "death.attack.cactus";
+        DeathMessage expectedDeathMessage = new DeathMessage(expectedKey, "(?<player>.*?) was pricked to death", "[player] was pricked to death");
+        PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
+        deathType.onPlayerResurrectEvent(noTotem(player));
+        deathType.onPlayerDeathEvent(deathEvent);
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(deathEvent.getPlayer(), expectedDeathMessage));
     }
 
-    private static Stream<Arguments> provideWithSpaceDeathMessages() {
-        ServerMock serverMock = MockBukkit.getOrCreateMock();
-        String playerName = "wand555 123";
-        String mobName = "My almighty Zombie";
-        String itemName = "The best crossbow";
-        Player player1 = serverMock.addPlayer(playerName);
-        return Stream.of(
-                Arguments.of(death_anvil_attack(), wrap(player1, "%s was squashed by a falling anvil".formatted(playerName))),
-                Arguments.of(death_anvil_attack_player(), wrap(player1, "%s was squashed by a falling anvil while fighting %s".formatted(playerName, mobName))),
-                Arguments.of(death_attack_fireworks(), wrap(player1, "%s went off with a bang".formatted(playerName))),
-                Arguments.of(death_attack_fireworks_player(), wrap(player1, "%s went off with a bang while fighting %s".formatted(playerName, mobName))),
-                Arguments.of(death_attack_fireworks_item(), wrap(player1, "%s went off with a bang due to a firework fired from %s by %s".formatted(playerName, itemName, mobName))),
-                Arguments.of(death_attack_cramming(), wrap(player1, "%s was squished too much".formatted(playerName)))
-        );
+    @Test
+    public void testOnDeathWithTotem() {
+        /*
+        Verify that a totem itself has no difference to no item when it comes to triggering.
+        The check if totems should be ignored or not, is done in the actual classes depending on deathType via triggerCheck
+         */
+
+        String expectedKey = "death.attack.cactus";
+        DeathMessage expectedDeathMessage = new DeathMessage(expectedKey, "(?<player>.*?) was pricked to death", "[player] was pricked to death");
+        PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
+        deathType.onPlayerResurrectEvent(totem(player));
+        deathType.onPlayerDeathEvent(deathEvent);
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(deathEvent.getPlayer(), 1, expectedDeathMessage, true));
     }
 
-    private static PlayerDeathEvent wrap(Player player, String deathMessage) {
+
+    private static PlayerDeathEvent wrap(Player player, Component deathMessage) {
         return new PlayerDeathEvent(player, List.of(), 3, deathMessage);
     }
 

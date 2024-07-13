@@ -5,9 +5,13 @@
         <div class="flex space-x-2 items-center">
           <label for="deathAmount">{{ t('goals.types.deathGoal.settings.deathAmount.name') }}</label>
           <InputNumber :model-value="deathAmountOrDefault()" @update:model-value="updateDeathAmount"
-                       :min="config.deathAmount.minimum" :max="config.deathAmount.maximum" input-id="deathAmount"
+                       :min="1" :max="100" input-id="deathAmount"
                        :disabled="individualDeathMessages" />
 
+        </div>
+        <div>
+          <Checkbox :model-value="countTotemOrDefault()" @update:model-value="updateCountTotem" binary input-id="countTotem" />
+          <label class="ml-2" for="countTotem">{{ t('goals.types.deathGoal.settings.countTotem.name') }}</label>
         </div>
         <div>
           <Checkbox v-model="individualDeathMessages" binary input-id="individualDeathMessages" />
@@ -83,16 +87,24 @@
   const { translate } = useTranslation()
 
   function updateDeathAmount(value: number) {
-    set('goals.deathGoal.deathAmount', value, false)
+    set('goals.deathGoal.deathAmount.amountNeeded', value, false)
   }
 
   function deathAmountOrDefault(): number {
-    return model.goals?.deathGoal?.deathAmount !== undefined ? model.goals.deathGoal.deathAmount! : config.deathAmount.default
+    return model.goals?.deathGoal?.deathAmount?.amountNeeded !== undefined ? model.goals.deathGoal.deathAmount.amountNeeded! : 1
+  }
+
+  function countTotemOrDefault(): boolean {
+    return model.goals?.deathGoal?.countTotem !== undefined ? model.goals.deathGoal.countTotem : config.countTotem.default
+  }
+
+  function updateCountTotem(value: boolean) {
+    set('goals.deathGoal.countTotem', value, false)
   }
 
   watch(individualDeathMessages, (value) => {
     if (value) {
-      updateDeathAmount(config.deathAmount.default)
+      updateDeathAmount(1)
     }
     else {
       set('goals.deathGoal.deathMessages', undefined, false)

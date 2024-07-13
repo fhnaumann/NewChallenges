@@ -27,12 +27,12 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
 
     public static final String NAME_IN_RB = "deathgoal";
     private final DeathType deathType;
-    private final int deathAmount;
+    private final Collect deathAmount;
     private final boolean countTotem;
 
     public DeathGoal(Context context, DeathGoalConfig config, GoalCollector<DeathMessage> goalCollector, DeathGoalMessageHelper messageHelper, DeathGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
         super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
-        this.deathAmount = config.getDeathAmount();
+        this.deathAmount = new Collect(config.getDeathAmount());
         this.countTotem = config.isCountTotem();
         this.deathType = new DeathType(context, triggerCheck(), trigger());
 
@@ -58,12 +58,36 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
         return new DeathGoalConfig(
                 isComplete(),
                 isCountTotem(),
-                getDeathAmount(),
+                getDeathAmount().toGeneratedJSONClass(),
                 goalCollector.toGeneratedJSONClass(),
                 isFixedOrder(),
                 timer != null ? timer.toGeneratedJSONClass() : null,
                 true
         );
+    }
+
+    @Override
+    protected Collect updateCollect(DeathData data) {
+        if(!hasSomethingToCollect()) {
+            return updateCollect(getDeathAmount(), data);
+        }
+        else {
+            return super.updateCollect(data);
+        }
+
+    }
+
+    @Override
+    public TriggerCheck<DeathData> triggerCheck() {
+        return data -> {
+            if(!hasSomethingToCollect()) {
+                // death goal only has an amount and no individual death messages
+                return !data.usedTotem() || isCountTotem();
+            }
+            else {
+                return super.triggerCheck().applies(data) && (!data.usedTotem() || isCountTotem());
+            }
+        };
     }
 
     @Override
@@ -83,10 +107,10 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
 
     @Override
     protected DeathData createSkipData(Map.Entry<DeathMessage, Collect> toSkip, Player player) {
-        return new DeathData(player, toSkip.getValue().getRemainingToCollect(), toSkip.getKey());
+        return new DeathData(player, toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
     }
 
-    public int getDeathAmount() {
+    public Collect getDeathAmount() {
         return deathAmount;
     }
 

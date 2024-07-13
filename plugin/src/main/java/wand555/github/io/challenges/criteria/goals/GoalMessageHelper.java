@@ -22,19 +22,6 @@ public abstract class GoalMessageHelper<D extends Data<K>, K extends Keyed> exte
         super(context);
     }
 
-    public Component formatBossBarComponent(K data, Collect collect) {
-        return ComponentUtil.formatBossBarMessage(
-                context.plugin(),
-                context.resourceBundleContext().goalResourceBundle(),
-                "%s.bossbar.message".formatted(getGoalNameInResourceBundle()),
-                Map.of(
-                        "amount", Component.text(collect.getCurrentAmount()),
-                        "total_amount", Component.text(collect.getAmountNeeded())
-                ),
-                additionalBossBarPlaceholders(data)
-        );
-    }
-
     protected abstract String getGoalNameInResourceBundle();
 
     protected abstract Map<String, Component> additionalBossBarPlaceholders(K data);

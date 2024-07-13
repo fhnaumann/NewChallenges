@@ -202,16 +202,14 @@
                     "type": "boolean"
                 },
                 "countTotem": {
-                    "default": true,
+                    "default": false,
                     "description": "Determines if the usage of a totem counts towards the deathAmount.",
                     "type": "boolean"
                 },
                 "deathAmount": {
-                    "default": 1,
-                    "description": "The amount of deaths required to complete the goal.",
-                    "maximum": 1000,
-                    "minimum": 1,
-                    "type": "integer"
+                    "$ref": "#/definitions/CollectableDataConfig",
+                    "default": {},
+                    "description": "The amount of deaths required to complete the goal."
                 },
                 "deathMessages": {
                     "default": [],

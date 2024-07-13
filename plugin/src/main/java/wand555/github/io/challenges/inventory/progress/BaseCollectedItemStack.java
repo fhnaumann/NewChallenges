@@ -1,8 +1,6 @@
 package wand555.github.io.challenges.inventory.progress;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Keyed;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleNarrowable;
@@ -12,7 +10,6 @@ import wand555.github.io.challenges.generated.ContributorsConfig;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public abstract class BaseCollectedItemStack<K extends Keyed> implements ResourceBundleNarrowable {
 
@@ -40,17 +37,6 @@ public abstract class BaseCollectedItemStack<K extends Keyed> implements Resourc
         @Override
         public ResourceBundle getSpecificBundle() {
             return null;
-        }
-    };
-
-    public static final BiFunction<Context, Material, ItemStack> DEFAULT_ITEMSTACK_CREATOR = (ignoredForNow, material) -> {
-        if(material.isItem()) {
-            return new ItemStack(material);
-        }
-        else {
-            ItemStack itemStack = new ItemStack(Material.PAPER);
-            itemStack.editMeta(itemMeta -> itemMeta.displayName(Component.translatable(material)));
-            return itemStack;
         }
     };
 

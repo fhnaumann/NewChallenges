@@ -1,5 +1,5 @@
 import type { PunishableRuleConfig } from './rules'
-import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from './goals'
+import type { BaseGoalConfig, CollectableDataConfig, CollectableEntryConfig, Orderable } from './goals'
 
 export interface NoDeathRuleConfig extends PunishableRuleConfig {
 
@@ -17,17 +17,15 @@ export interface DeathGoalConfig extends BaseGoalConfig, Orderable {
 
   /**
    * The amount of deaths required to complete the goal.
-   * @minimum 1
-   * @maximum 1000
-   * @default 1
-   * @TJS-type integer
+   *
+   * @default {}
    */
-  deathAmount?: number
+  deathAmount?: CollectableDataConfig
 
   /**
    * Determines if the usage of a totem counts towards the deathAmount.
    *
-   * @default true
+   * @default false
    */
   countTotem?: boolean
 

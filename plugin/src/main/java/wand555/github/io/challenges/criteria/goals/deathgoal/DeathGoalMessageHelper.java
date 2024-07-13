@@ -5,6 +5,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.GoalMessageHelper;
 import wand555.github.io.challenges.types.death.DeathData;
 import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;
 
@@ -15,16 +16,21 @@ public class DeathGoalMessageHelper extends GoalMessageHelper<DeathData, DeathMe
 
     @Override
     protected String getGoalNameInResourceBundle() {
-        return null;
+        return DeathGoal.NAME_IN_RB;
     }
 
     @Override
     protected Map<String, Component> additionalBossBarPlaceholders(DeathMessage data) {
-        return null;
+        return Map.of(
+                "death_type", ResourcePackHelper.getDeathMessageUnicodeMapping(data.toEnum())
+        );
     }
 
     @Override
     protected Map<String, Component> additionalStepPlaceholders(DeathData data) {
-        return null;
+        return Map.of(
+                "player", Component.text(data.player().getName()),
+                "death_type", Component.translatable(data.deathMessage().getMessageWithDummyData())
+        );
     }
 }

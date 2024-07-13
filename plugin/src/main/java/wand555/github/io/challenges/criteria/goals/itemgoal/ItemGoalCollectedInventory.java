@@ -6,6 +6,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.inventory.progress.CollectedInventory;
+import wand555.github.io.challenges.inventory.progress.CollectedInventoryHelper;
 import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
 import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
 import wand555.github.io.challenges.types.item.ItemData;
@@ -46,7 +47,7 @@ public class ItemGoalCollectedInventory extends CollectedInventory<ItemData, Mat
 
         @Override
         protected ItemStack getBaseItemStack() {
-            return DEFAULT_ITEMSTACK_CREATOR.apply(context, getAbout());
+            return CollectedInventoryHelper.DEFAULT_ITEM_2_ITEMSTACK_CREATOR.apply(context, getAbout());
         }
 
         @Override
@@ -67,7 +68,7 @@ public class ItemGoalCollectedInventory extends CollectedInventory<ItemData, Mat
 
         @Override
         protected ItemStack getBaseItemStack() {
-            return DEFAULT_ITEMSTACK_CREATOR.apply(context, getAbout());
+            return CollectedInventoryHelper.DEFAULT_ITEM_2_ITEMSTACK_CREATOR.apply(context, getAbout());
         }
 
         @Override
