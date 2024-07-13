@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Cache theme files
         id: cache-themes
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: builder_website/src/assets/aura/
           key: ${{ runner.os }}-themes-${{ hashFiles('builder_website/src/assets/aura/*') }}
@@ -49,14 +49,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'adopt'
       - name: Cache Maven dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -77,11 +77,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'adopt'
       - name: Download JSON Artifacts and Plugin Validation JAR
         uses: actions/download-artifact@v4
@@ -115,7 +115,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Download JSON Artifacts
         uses: actions/download-artifact@v4
         with:
