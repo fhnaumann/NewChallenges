@@ -147,7 +147,7 @@ declare global {
        * Start: Main Page
        * End: Page for customizing a goal
        */
-      configureDeathGoal(deathGoalConfig?: DeathGoalConfig): Chainable<Subject>
+      configureDeathGoal(deathGoalConfig?: DeathGoalConfig, allDeathTypes?: boolean): Chainable<Subject>
 
       /**
        * Start: Main Page

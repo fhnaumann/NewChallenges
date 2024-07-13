@@ -44,7 +44,7 @@ import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
-import { CustomHealthSettingConfig, SettingName } from '../../src/models/settings'
+import type { CustomHealthSettingConfig, SettingName } from '../../src/models/settings'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -94,15 +94,15 @@ Cypress.Commands.add('configureRandomEffectPunishment', (rule: RuleName, deselec
   if (deselectOthers) {
     uncheckAllPunishments()
   }
-  cy.get('#randomEffectPunishment').check({force: true})
-  if(effects) {
+  cy.get('#randomEffectPunishment').check({ force: true })
+  if (effects) {
     cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment`).clear()
     cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment`).type(String(effects))
   }
-  if(randomizeEffects) {
-    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment\\.randomizeEffectsAtOnce`).check({force: true})
+  if (randomizeEffects) {
+    cy.get(`#rules\\.enabledRules\\.${rule}\\.punishments\\.randomEffectPunishment\\.randomizeEffectsAtOnce`).check({ force: true })
   }
-  if(affected) {
+  if (affected) {
     setAffected('randomEffectPunishment', affected)
   }
 })
@@ -172,53 +172,61 @@ Cypress.Commands.add('configureMobGoal1EnderDragonFixedOrder', () => {
 
 Cypress.Commands.add('configureBlockPlaceGoal', (blockPlaceGoalConfig?: BlockPlaceGoalConfig, allBlocks?: boolean) => {
   cy.configureGoal('blockPlaceGoal')
-  clearCollectableSelection();
+  clearCollectableSelection()
   blockPlaceGoalConfig?.placed?.forEach(value => addCollectable(value))
-  if(blockPlaceGoalConfig?.fixedOrder !== undefined) {
+  if (blockPlaceGoalConfig?.fixedOrder !== undefined) {
     setFixedOrder(blockPlaceGoalConfig.fixedOrder)
   }
-  if(allBlocks !== undefined) {
+  if (allBlocks !== undefined) {
     cy.get('#placeAllBlocksOnce').check({ force: true })
   }
 })
 
 Cypress.Commands.add('configureBlockBreakGoal', (blockBreakGoalConfig?: BlockBreakGoalConfig, allBlocks?: boolean) => {
   cy.configureGoal('blockBreakGoal')
-  clearCollectableSelection();
+  clearCollectableSelection()
   blockBreakGoalConfig?.broken?.forEach(value => addCollectable(value))
-  if(blockBreakGoalConfig?.fixedOrder !== undefined) {
+  if (blockBreakGoalConfig?.fixedOrder !== undefined) {
     setFixedOrder(blockBreakGoalConfig.fixedOrder)
   }
-  if(allBlocks !== undefined) {
+  if (allBlocks !== undefined) {
     cy.get('#breakAllBlocksOnce').check({ force: true })
   }
 })
 
 Cypress.Commands.add('configureItemGoal', (itemGoalConfig?: ItemGoalConfig, everything?: boolean, allItems?: boolean, allBlocks?: boolean) => {
-  cy.configureGoal('itemGoal');
-  clearCollectableSelection();
-  itemGoalConfig?.items?.forEach(value => addCollectable(value));
-  if(itemGoalConfig?.fixedOrder !== undefined) {
+  cy.configureGoal('itemGoal')
+  clearCollectableSelection()
+  itemGoalConfig?.items?.forEach(value => addCollectable(value))
+  if (itemGoalConfig?.fixedOrder !== undefined) {
     setFixedOrder(itemGoalConfig.fixedOrder)
   }
-  if(everything !== undefined) {
+  if (everything !== undefined) {
     cy.get('#collectEveryItemOnce').check({ force: true })
   }
-  if(allItems !== undefined) {
+  if (allItems !== undefined) {
     cy.get('#collectAllItemsOnce').check({ force: true })
   }
-  if(allBlocks !== undefined) {
+  if (allBlocks !== undefined) {
     cy.get('#collectAllBlockItemsOnce').check({ force: true })
   }
 })
 
-Cypress.Commands.add('configureDeathGoal', (deathGoalConfig?: DeathGoalConfig) => {
+Cypress.Commands.add('configureDeathGoal', (deathGoalConfig?: DeathGoalConfig, allDeathTypes?: boolean) => {
   cy.configureGoal('deathGoal')
-  if(deathGoalConfig) {
-    if(deathGoalConfig!.deathAmount) {
-      cy.get('#deathAmount').clear()
-      cy.get('#deathAmount').type(String(deathGoalConfig!.deathAmount!))
-    }
+  if (deathGoalConfig?.deathMessages !== undefined || allDeathTypes) {
+    cy.get('#individualDeathMessages').check({ force: true })
+  }
+  deathGoalConfig?.deathMessages?.forEach(value => addCollectable(value))
+  if (deathGoalConfig!.deathAmount !== undefined) {
+    cy.get('#deathAmount').clear()
+    cy.get('#deathAmount').type(String(deathGoalConfig!.deathAmount.amountNeeded!))
+  }
+  if(deathGoalConfig?.fixedOrder !== undefined) {
+    setFixedOrder(deathGoalConfig.fixedOrder)
+  }
+  if (allDeathTypes) {
+    cy.get('#allDeathMessagesOnce').check({ force: true })
   }
 })
 
@@ -231,8 +239,8 @@ Cypress.Commands.add('configureSetting', (settingName: SettingName) => {
 
 Cypress.Commands.add('configureCustomHealthSetting', (customHealthSettingConfig?: CustomHealthSettingConfig) => {
   cy.configureSetting('customHealthSetting')
-  if(customHealthSettingConfig) {
-    if(customHealthSettingConfig.hearts !== undefined) {
+  if (customHealthSettingConfig) {
+    if (customHealthSettingConfig.hearts !== undefined) {
       cy.get('#customHealthSettingHearts').clear()
       cy.get('#customHealthSettingHearts').type(String(customHealthSettingConfig.hearts))
     }
