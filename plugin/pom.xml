@@ -95,6 +95,12 @@
             <id>e2e</id>
             <dependencies>
                 <dependency>
+                    <groupId>dev.jorel</groupId>
+                    <artifactId>commandapi-bukkit-shade</artifactId>
+                    <version>9.4.0</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
                     <groupId>io.papermc.paper</groupId>
                     <artifactId>paper-api</artifactId>
                     <version>1.20.4-R0.1-SNAPSHOT</version>
