@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "name": "no_block_place_no_block_break_end_challenge_death_goal_all_death_types_once_fixed_order",
+    "whenCreated": "2024-06-23T14:17:48.131Z",
+    "lastModified": "2024-06-23T14:17:48.131Z",
+    "createdBy": "Wiki",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {
+      "noBlockBreak": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      },
+      "noBlockPlace": {
+        "exemptions": [
+          "water",
+          "lava"
+        ],
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      }
+    }
+  },
+  "goals": {
+    "deathGoal": {
+      "deathAmount": {
+        "amountNeeded": 1
+      },
+      "fixedOrder": true,
+      "deathMessages": [
+        {
+          "collectableName": "death.attack.anvil",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.anvil.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.arrow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.arrow.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.badRespawnPoint.link",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.badRespawnPoint.message",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.cactus",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.cactus.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.cramming",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.cramming.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.dragonBreath",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.dragonBreath.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.drown",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.drown.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.dryout",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.dryout.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.even_more_magic",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.explosion",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.explosion.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.explosion.player.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fall.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fallingBlock",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fallingBlock.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fallingStalactite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fallingStalactite.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fireball",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fireball.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fireworks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fireworks.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.fireworks.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.flyIntoWall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.flyIntoWall.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.freeze",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.freeze.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.generic",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.generic.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.genericKill",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.genericKill.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.hotFloor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.hotFloor.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.indirectMagic",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.indirectMagic.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.inFire",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.inFire.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.inWall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.inWall.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.lava",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.lava.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.lightningBolt",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.lightningBolt.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.magic",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.magic.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.message_too_long",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.mob",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.mob.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.onFire",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.onFire.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.onFire.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.outOfWorld",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.outOfWorld.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.outsideBorder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.outsideBorder.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.player.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sonic_boom",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sonic_boom.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sonic_boom.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.stalagmite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.stalagmite.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.starve",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.starve.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sting.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sting.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sweetBerryBush",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.sweetBerryBush.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.thorns",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.thorns.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.thrown",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.thrown.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.trident",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.trident.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.wither",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.wither.player",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.witherSkull",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.witherSkull.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.generic",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.ladder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.other_climbable",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.scaffolding",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.twisting_vines",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.vines",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.accident.weeping_vines",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.assist",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.assist.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.finish",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.finish.item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.fell.killer",
+          "collectableData": {}
+        }
+      ]
+    }
+  },
+  "settings": {}
+}

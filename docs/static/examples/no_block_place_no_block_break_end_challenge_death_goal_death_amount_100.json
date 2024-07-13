@@ -33,7 +33,9 @@
   },
   "goals": {
     "deathGoal": {
-      "deathAmount": 100
+      "deathAmount": {
+        "amountNeeded": 100
+      }
     }
   },
   "settings": {}
