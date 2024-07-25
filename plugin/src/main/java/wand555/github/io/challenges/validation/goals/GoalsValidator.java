@@ -3,6 +3,7 @@ package wand555.github.io.challenges.validation.goals;
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.validation.ModelValidator;
+import wand555.github.io.challenges.validation.ValidationContainer;
 import wand555.github.io.challenges.validation.ValidationResult;
 
 public class GoalsValidator extends ModelValidator {
@@ -30,6 +31,9 @@ public class GoalsValidator extends ModelValidator {
         }
         if(challengesSchema.getGoals().getMobGoal() != null) {
             new MobGoalValidator(dataSourceContext.entityTypeJSONList()).performValidation(builder, challengesSchema);
+        }
+        if(challengesSchema.getGoals().getDeathGoal() != null) {
+            new DeathGoalValidator(dataSourceContext.deathMessageList()).performValidation(builder, challengesSchema);
         }
         return builder;
     }

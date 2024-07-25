@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "name": "my-challenge",
+    "whenCreated": "2024-07-25T15:50:47.471Z",
+    "lastModified": "2024-07-25T15:50:47.471Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {},
+  "goals": {
+    "deathGoal": {
+      "deathAmount": {
+        "amountNeeded": 1
+      },
+      "deathMessages": [
+        {
+          "collectableName": "death.attack.anvil",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "death.attack.cramming.player",
+          "collectableData": {}
+        }
+      ]
+    }
+  },
+  "settings": {}
+}
