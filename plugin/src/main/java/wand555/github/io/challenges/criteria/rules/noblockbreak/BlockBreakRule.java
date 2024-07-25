@@ -31,7 +31,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
     }
     @Override
     public TriggerCheck<BlockBreakData> triggerCheck() {
-        return data -> !exemptions.contains(data.broken());
+        return TriggerCheck.ignoreIfContains(exemptions);
     }
 
     @Override

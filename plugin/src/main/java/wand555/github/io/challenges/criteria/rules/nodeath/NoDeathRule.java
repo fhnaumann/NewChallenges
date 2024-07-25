@@ -38,7 +38,7 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> impleme
     @Override
     public TriggerCheck<DeathData> triggerCheck() {
         return data -> {
-            int x = 3;
+            // TODO: check if totem was used and test if flag is enabled
             return true;
         };
     }

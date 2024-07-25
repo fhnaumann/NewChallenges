@@ -5,7 +5,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.event.Event;
+import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.FileManager;
+import wand555.github.io.challenges.criteria.rules.Rule;
+import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRule;
+import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.Model;
+import wand555.github.io.challenges.generated.NoBlockPlaceRuleConfig;
+import wand555.github.io.challenges.generated.RulesConfig;
+import wand555.github.io.challenges.mapping.CriteriaMapper;
 import wand555.github.io.challenges.mapping.DeathMessageDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
@@ -14,9 +22,40 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.*;
 public class CriteriaUtil {
+
+    public static Model mockModel(Function<Model, Object> test, Class<?> mockedPart) {
+        Model mockedModel = mock(Model.class);
+        when(test.apply(mockedModel)).thenReturn(mock(mockedPart));
+        return mockedModel;
+    }
+
+    public static Model mockARule() {
+        Model modelMock = mock(Model.class);
+        RulesConfig rulesConfigMock = mock(RulesConfig.class);
+        EnabledRules enabledRulesMock = mock(EnabledRules.class);
+        when(rulesConfigMock.getEnabledRules()).thenReturn(enabledRulesMock);
+        when(modelMock.getRules()).thenReturn(rulesConfigMock);
+        return modelMock;
+    }
+
+
+    public static void mockARule(Consumer<Model> setWhen, Context context, Rule rule) {
+        Model mockModel = CriteriaUtil.mockARule();
+        setWhen.accept(mockModel);
+        CriteriaMapper.Criterias criterias = CriteriaMapper.mapCriterias(context, mockModel);
+        if(criterias.rules().isEmpty()) {
+            fail("Rules list is empty after mapping. Did you forget to add the mapping from the JSON code to the Java classes?");
+        }
+        assertEquals(criterias.rules().getFirst(), rule);
+    }
 
     public static ResourceBundle loadPunishmentResourceBundle() {
         return ResourceBundle.getBundle("punishments", Locale.ENGLISH, UTF8ResourceBundleControl.get());

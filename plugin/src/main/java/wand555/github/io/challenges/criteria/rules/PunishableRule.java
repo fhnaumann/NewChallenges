@@ -9,6 +9,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.mapping.CriteriaMapper;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.types.Data;
@@ -36,7 +37,7 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
 
     public PunishableRule(Context context, PunishmentsConfig punishmentsConfig, Result result, RuleMessageHelper<T> messageHelper) {
         super(context);
-        this.punishments = punishmentsConfig != null ? ModelMapper.mapToPunishments(context, punishmentsConfig) : new ArrayList<>();
+        this.punishments = punishmentsConfig != null ? CriteriaMapper.mapToPunishments(context, punishmentsConfig) : new ArrayList<>();
         this.result = result;
         this.messageHelper = messageHelper;
     }

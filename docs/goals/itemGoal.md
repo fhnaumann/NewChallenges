@@ -25,7 +25,7 @@ The recipe book is disabled on the server as soon as this goal is selected. This
 :   Every item that is considered a block (for example: ![stone](../static/mc-textures/minecraft_stone.png){width=25 height=25}).
 
 [!badge Fixed random order]
-:   If selected, every item has to be collected in a specific order that is determined when the settings file is generated. Otherwise the items can be collected in any order.
+:   If selected, every item has to be collected in a specific order that is determined when the settings file is generated. Otherwise, the items can be collected in any order.
 
 ## Example Configuration
 
