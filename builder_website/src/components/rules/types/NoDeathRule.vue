@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseRuleModification criteria-key="noDeath" relative-u-r-l-to-wiki="rules/nodeath" criteria-type="rules" />
+    <BaseRuleModification criteria-key="noDeath" relative-u-r-l-to-wiki="rules/nodeathrule" criteria-type="rules" />
   </div>
 </template>
 

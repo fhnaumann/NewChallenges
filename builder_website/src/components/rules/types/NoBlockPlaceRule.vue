@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseRuleModification criteria-key="noBlockPlace" relative-u-r-l-to-wiki="rules/noblockplace" criteria-type="rules" >
+    <BaseRuleModification criteria-key="noBlockPlace" relative-u-r-l-to-wiki="rules/noblockplacerule" criteria-type="rules" >
       <template #configuration>
         <ExemptionSelection class="ml-4" :possible-exemptions="ALL_IS_BLOCK_MATERIAL_DATA" :show-images="true" :model-access="{
           get: model => model.rules?.enabledRules?.noBlockPlace?.exemptions!,

@@ -1,5 +1,5 @@
 <template>
-  <BaseCriteriaModification criteria-key="ultraHardcoreSetting" relative-u-r-l-to-wiki="settings/ultrahardcore"
+  <BaseCriteriaModification criteria-key="ultraHardcoreSetting" relative-u-r-l-to-wiki="settings/ultrahardcoresetting"
                             criteria-type="settings">
     <template #configuration>
       <div class="flex flex-col space-y-2">

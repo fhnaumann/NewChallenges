@@ -1,5 +1,5 @@
 <template>
-  <BaseRuleModification criteria-key="noItem" relative-u-r-l-to-wiki="rules/noitem" criteria-type="rules">
+  <BaseRuleModification criteria-key="noItem" relative-u-r-l-to-wiki="rules/noitemrule" criteria-type="rules">
     <template #configuration>
       <ExemptionSelection class="pl-4"
                           :possible-exemptions="ALL_IS_ITEM_MATERIAL_DATA"

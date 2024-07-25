@@ -1,5 +1,5 @@
 <template>
-  <BaseCriteriaModification criteria-key="itemGoal" relative-u-r-l-to-wiki="goals/itemGoal" criteria-type="goals">
+  <BaseCriteriaModification criteria-key="itemGoal" relative-u-r-l-to-wiki="goals/itemgoal" criteria-type="goals">
     <template #configuration>
       <CollectableDropdownConfiguration
         :all-possible-data="ALL_IS_ITEM_MATERIAL_DATA"

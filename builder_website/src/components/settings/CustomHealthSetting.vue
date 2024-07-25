@@ -1,5 +1,5 @@
 <template>
-  <BaseCriteriaModification criteria-key="customHealthSetting" relative-u-r-l-to-wiki="settings/customhealth"
+  <BaseCriteriaModification criteria-key="customHealthSetting" relative-u-r-l-to-wiki="settings/customhealthsetting"
                             criteria-type="settings"
   >
     <template #configuration>

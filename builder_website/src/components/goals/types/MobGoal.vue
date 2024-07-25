@@ -1,5 +1,5 @@
 <template>
-  <BaseCriteriaModification criteria-key="mobGoal" relative-u-r-l-to-wiki="goals/mobGoal" criteria-type="goals">
+  <BaseCriteriaModification criteria-key="mobGoal" relative-u-r-l-to-wiki="goals/mobgoal" criteria-type="goals">
     <template #configuration>
       <CollectableDropdownConfiguration
         :all-possible-data="ALL_ENTITY_TYPE_DATA"

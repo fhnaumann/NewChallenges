@@ -1,5 +1,5 @@
 <template>
-  <BaseRuleModification criteria-key="noMobKill" relative-u-r-l-to-wiki="rules/noMobKill" criteria-type="rules">
+  <BaseRuleModification criteria-key="noMobKill" relative-u-r-l-to-wiki="rules/nomobkillrule" criteria-type="rules">
     <template #configuration>
       <ExemptionSelection class="pl-4"
                           :possible-exemptions="ALL_ENTITY_TYPE_DATA"

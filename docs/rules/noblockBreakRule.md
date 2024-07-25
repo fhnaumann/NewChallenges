@@ -1,4 +1,4 @@
-# No Block Place Rule
+# No Block Break Rule
 
 Players are not allowed to break blocks.
 
