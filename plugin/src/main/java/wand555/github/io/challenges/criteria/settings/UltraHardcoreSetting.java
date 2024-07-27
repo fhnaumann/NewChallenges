@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -18,12 +19,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import wand555.github.io.challenges.ChallengesDebugLogger;
-import wand555.github.io.challenges.ComponentUtil;
-import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.SettingsConfig;
 import wand555.github.io.challenges.generated.UltraHardcoreSettingConfig;
+import wand555.github.io.challenges.types.death.DeathData;
+import wand555.github.io.challenges.types.death.DeathType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +91,9 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     @EventHandler
     public void onPlayerConsumeItemEvent(PlayerItemConsumeEvent event) {
         // handles golden apples, enchanted golden apples, suspicious stews, instant health potions and regeneration potions
+        if (!context.challengeManager().isRunning()) {
+            return;
+        }
 
         ItemStack item = event.getItem();
         boolean cancelAndDecreaseFood = shouldBlockFood(item);
@@ -146,7 +150,6 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
 
     @EventHandler
     public void onPlayerUsePotionEvent(EntityPotionEffectEvent event) {
-        // handles any form of regeneration/instant health effect that was applied from a beacon or command
         logger.info(event.getCause().toString());
         if (!(event.getEntity() instanceof Player player)) {
             return;
@@ -169,11 +172,24 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     }
 
     @EventHandler
+    public void onPlayerResurrectEvent(EntityResurrectEvent event) {
+        logger.info("Received resurrection from UltraHardcoreSetting.");
+        if (!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+        boolean poppedTotem = !event.isCancelled();
+        if(poppedTotem && !config.isAllowTotems()) {
+            // cancel the resurrection
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
     public void onDeathGameRuleChange(WorldGameRuleChangeEvent event) {
         if (event.getGameRule() == GameRule.NATURAL_REGENERATION && Boolean.parseBoolean(event.getValue()) && worldsInConfig.contains(event.getWorld())) {
             // user tries to set the natural regeneration gamerule manually to true, we don't allow this
             event.setCancelled(true);
-            if(event.getCommandSender() != null) {
+            if (event.getCommandSender() != null) {
                 Component warnMessage = ComponentUtil.formatChatMessage(
                         context.plugin(),
                         context.resourceBundleContext().settingsResourceBundle(),

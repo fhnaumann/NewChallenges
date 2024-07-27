@@ -44,7 +44,7 @@ import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
-import type { CustomHealthSettingConfig, SettingName } from '../../src/models/settings'
+import type { CustomHealthSettingConfig, SettingName, UltraHardcoreSettingConfig } from '../../src/models/settings'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -222,7 +222,7 @@ Cypress.Commands.add('configureDeathGoal', (deathGoalConfig?: DeathGoalConfig, a
     cy.get('#deathAmount').clear()
     cy.get('#deathAmount').type(String(deathGoalConfig!.deathAmount.amountNeeded!))
   }
-  if(deathGoalConfig?.fixedOrder !== undefined) {
+  if (deathGoalConfig?.fixedOrder !== undefined) {
     setFixedOrder(deathGoalConfig.fixedOrder)
   }
   if (allDeathTypes) {
@@ -246,6 +246,29 @@ Cypress.Commands.add('configureCustomHealthSetting', (customHealthSettingConfig?
     }
   }
 })
+
+Cypress.Commands.add('configureUltraHardcoreSetting', (ultraHardCoreSettingConfig?: UltraHardcoreSettingConfig) => {
+  cy.configureSetting('ultraHardcoreSetting')
+  if (ultraHardCoreSettingConfig) {
+    handleCheckBox('#naturalRegeneration', ultraHardCoreSettingConfig.naturalRegeneration)
+    handleCheckBox('#regWithGoldenApples', ultraHardCoreSettingConfig.regWithGoldenApples)
+    handleCheckBox('#regWithEnchantedGoldenApples', ultraHardCoreSettingConfig.regWithEnchantedGoldenApples)
+    handleCheckBox('#regWithSuspiciousStew', ultraHardCoreSettingConfig.regWithSuspiciousStew)
+    handleCheckBox('#regWithPotions', ultraHardCoreSettingConfig.regWithPotions)
+    handleCheckBox('#allowAbsorptionHearts', ultraHardCoreSettingConfig.allowAbsorptionHearts)
+    handleCheckBox('#allowTotems', ultraHardCoreSettingConfig.allowTotems)
+  }
+})
+
+function handleCheckBox(selector: string, configValue?: boolean) {
+  if (configValue !== undefined) {
+    if (configValue) {
+      cy.get(selector).check({ force: true })
+    } else {
+      cy.get(selector).uncheck({ force: true })
+    }
+  }
+}
 
 Cypress.Commands.add('addMetadata', (challengeName: string) => {
   cy.get('[aria-label="Modify metadata"] > .duration-200').click()

@@ -6,4 +6,8 @@ import org.bukkit.entity.Player;
 @FunctionalInterface
 public interface Trigger<T> {
     public void actOnTriggered(T data);
+
+    public static <T> Trigger<T> pass() {
+        return data -> {};
+    }
 }
