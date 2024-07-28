@@ -24,9 +24,11 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import wand555.github.io.challenges.commands.ChallengesCommand;
 import wand555.github.io.challenges.commands.LoadCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
+import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.utils.ActionHelper;
 
 import javax.annotation.Nullable;
@@ -39,6 +41,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 public class Challenges extends JavaPlugin implements CommandExecutor, Listener {
+
+    private static final Logger logger = ChallengesDebugLogger.getLogger(Challenges.class);
 
     public Context tempContext;
     public URLReminder urlReminder;
@@ -53,15 +57,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onLoad() {
-        logger = ChallengesDebugLogger.getLogger(Challenges.class);
+        addDefaultValuesToConfig();
+        ChallengesDebugLogger.initLogging(this);
 
         //if(true) {
         if(!isLoadedFromTests()) {
             CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true));
-
-            new CommandAPICommand("ping").executes((sender, args) -> {
-                sender.sendMessage("pong!");
-            }).register();
         }
 
     }
@@ -72,34 +73,18 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
     private void addDefaultValuesToConfig() {
         FileConfiguration fileConfiguration = getConfig();
-        //fileConfiguration.addDefault("worlds", List.of("world", "world_nether", "world_the_end"));
-
+        ConfigValues.addDefaults(fileConfiguration);
         fileConfiguration.options().copyDefaults(true);
         saveConfig();
     }
 
     @Override
     public void onEnable() {
-
         if(!isLoadedFromTests()) {
             CommandAPI.onEnable();
         }
 
-        //getLogger().fine("");
-
-        /*
-         * #8846f2 Only [Challenges]
-         * #c9526c Only [Punishment]
-         * #ffc54d Only [Rules]
-         * #008e6e Only [Goals]
-         *
-         * #fceaff default text
-         * #64baaa highlight in text
-         */
-
-
-
-        getCommand("challenges").setExecutor(this);
+        //getCommand("challenges").setExecutor(this);
         //getCommand("load").setExecutor(this);
         getCommand("start").setExecutor(this);
         getCommand("cancel").setExecutor(this);
@@ -112,8 +97,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
 
         getServer().getPluginManager().registerEvents(this, this);
-
-        addDefaultValuesToConfig();
 
         offlineTempData = new OfflineTempData(this);
         tempContext = null;
@@ -152,50 +135,30 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
          */
         if(!isLoadedFromTests()) {
             LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
+            ChallengesCommand.registerChallengesCommand(tempContext, challengeFilesHandler);
         }
 
 
-
-
-
-        boolean success = handleLoad(offlineTempData.get("fileNameBeingPlayed", String.class), true);
-        if(success) {
-            tempContext.challengeManager().setGameState(ChallengeManager.GameState.PAUSED);
-            TimerRunnable timerRunnable = new TimerRunnable(tempContext, tempContext.challengeManager().getTime());
-            timerRunnable.start();
-            tempContext.challengeManager().setTimerRunnable(timerRunnable);
-
-            /*
-            tempContext.challengeManager().getGoals().stream()
-                    .filter(goal -> goal instanceof BossBarDisplay)
-                    .filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == tempContext.challengeManager().getCurrentOrder())
-                    .forEach(goal -> ((BossBarDisplay) goal).showBossBar(tempContext.plugin().getServer().getOnlinePlayers()));
-            */
-        }
-        else {
-
-        }
-
-        /*
-        if(!getDataFolder().exists()) {
-            boolean created = getDataFolder().mkdir();
-        }
-        File settingsFile = getSettingsFile();
-        if(!settingsFile.exists()) {
+        String fileNameBeingPlayed = offlineTempData.get("fileNameBeingPlayed", String.class);
+        boolean hasFileBeingPlayed = fileNameBeingPlayed != null;
+        if(hasFileBeingPlayed) {
+            logger.fine("Detected a file to load from previous session: " + fileNameBeingPlayed);
             try {
-                Files.createDirectories(Paths.get(settingsFile.getParentFile().toURI()));
-                Files.createFile(settingsFile.toPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                LoadCommand.loadFile(tempContext, challengeFilesHandler, challengeFilesHandler.getFileBeingPlayed());
+                logger.fine("Loaded '%s' from previous session.".formatted(fileNameBeingPlayed));
+
+                // Accessing tempContext after LoadCommand#loadFile was called is a bit misleading.
+                // loadFile reassigns tempContext to the newly (now final) context, so it's the same instance from now on
+
+            } catch (LoadValidationException e) {
+                logger.warning("Failed to load challenge '%s' from previous session.".formatted(fileNameBeingPlayed));
+                logger.warning(e.getValidationResult().asFormattedString());
             }
         }
         else {
-            handleLoad();
+            logger.fine("No previous session exists, don't prematurely load anything.");
         }
-        */
     }
-
-    private static Logger logger;
 
     @Override
     public void onDisable() {
@@ -232,142 +195,10 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 .file().getName();
     }
 
-    private boolean handleLoad(@Nullable String challengeNameToLoad, boolean asFileName) {
-        List<ChallengeFilesHandler.ChallengeLoadStatus> statuses = challengeFilesHandler.getChallengesInFolderStatus();
-
-
-        if(statuses.isEmpty()) {
-            Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
-                    tempContext.plugin(),
-                    tempContext.resourceBundleContext().commandsResourceBundle(),
-                    "load.settings_missing"
-            );
-            Bukkit.broadcast(noSettingsFile);
-            return false;
-        }
-        if(challengeNameToLoad == null && statuses.size() > 1) {
-            Component noSettingsFile = ComponentUtil.formatChallengesPrefixChatMessage(
-                    tempContext.plugin(),
-                    tempContext.resourceBundleContext().commandsResourceBundle(),
-                    "load.specify_challenge"
-            );
-            Bukkit.broadcast(noSettingsFile);
-            return false;
-        }
-
-        try {
-            ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
-                    tempContext.plugin(),
-                    tempContext.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.start.title"
-            ));
-
-            String filenameToBeLoaded = asFileName ? challengeNameToLoad : challengeName2Filename(challengeNameToLoad, statuses);
-            Context context = FileManager.readFromFile(Paths.get(challengeFilesHandler.getFolderContainingChallenges().getAbsolutePath(), filenameToBeLoaded).toFile(), this);
-            if(tempContext.challengeManager().isValid()) {
-                // a previous challenge was loaded, better save it before unloading it
-                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
-                tempContext.challengeManager().unload();
-            }
-
-            tempContext = context;
-            urlReminder.setContext(context);
-            challengeFilesHandler.setFileNameBeingPlayed(filenameToBeLoaded);
-
-            Component successTitle = ComponentUtil.formatTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.success.title"
-            );
-            Component successSubtitle = ComponentUtil.formatSubTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.success.subtitle"
-            );
-            ActionHelper.showAllTitle(successTitle, successSubtitle);
-
-            Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.success.chat"
-            );
-            Bukkit.broadcast(successChat);
-
-            // don't start yet
-            //context.challengeManager().start();
-        }
-        catch (IllegalArgumentException e) {
-            // name does not correspond to an existing challenge
-        }
-        catch (LoadValidationException e) {
-            Component failureTitle = ComponentUtil.formatSubTitleMessage(
-                    tempContext.plugin(),
-                    tempContext.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.failure.title"
-            );
-            Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
-                    tempContext.plugin(),
-                    tempContext.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.failure.subtitle"
-            );
-            ActionHelper.showAllTitle(failureTitle, failureSubtitle, Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(10), Duration.ofSeconds(1)));
-            Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                    tempContext.plugin(),
-                    tempContext.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.failure.chat",
-                    Map.of(),
-                    false
-            );
-            Bukkit.broadcast(failureChat);
-            Bukkit.broadcast(e.getValidationResult().asFormattedComponent(tempContext));
-            return false;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        //Main.main(null, file, this);
-        return true;
-    }
-
-    private Component formatChallengesInFolders2Component(Context context, ChallengeFilesHandler challengeFilesHandler) {
-        Component fileSymbol = Component.text("\uD83D\uDCDD").appendSpace();
-        return challengeFilesHandler.getChallengesInFolderStatus().stream().map(challengeLoadStatus -> {
-            Map<String, Component> placeholders = new HashMap<>();
-            placeholders.put("name", Component.text(challengeLoadStatus.challengeMetadata().getName()));
-            placeholders.put("mc-version", Component.text(challengeLoadStatus.challengeMetadata().getBuilderMCVersion()));
-            Component formatted = fileSymbol.append(ComponentUtil.formatChatMessage(context.plugin(), context.resourceBundleContext().commandsResourceBundle(), "load.list.name", placeholders, false));
-            if(challengeLoadStatus.file().getName().equals(challengeFilesHandler.getFileNameBeingPlayed())) {
-                formatted = Component.text().decorate(TextDecoration.BOLD).append(formatted).asComponent();
-            }
-            return formatted;
-        }).reduce(Component.empty(), ComponentUtil.NEWLINE_ACCUMULATOR);
-    }
-
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof Player player)) {
             return false;
-        }
-        if(command.getName().equalsIgnoreCase("challenges")) {
-            if(args.length == 1 && args[0].equalsIgnoreCase("list")) {
-                Component component = formatChallengesInFolders2Component(tempContext, challengeFilesHandler);
-                sender.sendMessage(component);
-            }
-        }
-        if(command.getName().equalsIgnoreCase("load")) {
-            if(tempContext.challengeManager().isRunning() || tempContext.challengeManager().isPaused()) {
-                sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().commandsResourceBundle(),
-                        "load.already_running"
-                ));
-                return true;
-            }
-
-            Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
-                handleLoad(args.length == 1 ? args[0] : null, false);
-            });
-
         }
         else if(command.getName().equalsIgnoreCase("start")) {
 
@@ -496,7 +327,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void requestRPOnJoin(PlayerJoinEvent event) throws ExecutionException, InterruptedException {
         ResourcePackInfoLike pack = ResourcePackInfo.resourcePackInfo()
-                .uri(URI.create("https://www.mc-challenges.com/resourcepack"))
+                .uri(URI.create("https://challenges-builder.s3.eu-central-1.amazonaws.com/Challenges+Plugin+RP.zip"))
                 .computeHashAndBuild().get();
         ResourcePackRequest request = ResourcePackRequest.resourcePackRequest()
                 .packs(pack)

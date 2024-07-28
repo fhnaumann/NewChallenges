@@ -77,13 +77,6 @@ public class ChallengeManager implements StatusInfo {
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
         settings.forEach(BaseSetting::onStart);
-
-        if(timerRunnable != null) {
-            // a previous challenge was unloaded (without restarting the server)
-            timerRunnable.shutdown();
-        }
-        timerRunnable = new TimerRunnable(context);
-        timerRunnable.start();
     }
 
 
@@ -179,9 +172,6 @@ public class ChallengeManager implements StatusInfo {
     }
 
     public void onGoalCompleted(GoalCompletion goalCompletion) {
-        if(!isRunning()) {
-            throw new RuntimeException("Goal completed while challenge is not running!");
-        }
         if(goalCompletion == GoalCompletion.TIMER_BEATEN && allGoalsWithOrderCurrentNumberComplete()) {
             int nextOrderNumber = nextOrderNumber();
             setCurrentOrder(nextOrderNumber);

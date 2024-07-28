@@ -8,10 +8,13 @@ import java.util.logging.Logger;
 
 public class ChallengesDebugLogger extends Logger {
 
-    // TODO: load value from (static) config helper class
-    private static final boolean DEBUG = true;
+    private static boolean DEBUG = ConfigValues.DEBUG.defaultValue();
 
     private final String logPrefix;
+
+    public static void initLogging(Challenges plugin) {
+        DEBUG = plugin.getConfig().getBoolean(ConfigValues.DEBUG.name());
+    }
 
     public ChallengesDebugLogger(Class<?> clazz) {
         super("Challenges", null);

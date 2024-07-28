@@ -72,6 +72,8 @@ public class ModelMapper {
         context.challengeManager().setGameState(timerRunnable.getTimer() > 0L ? ChallengeManager.GameState.PAUSED : ChallengeManager.GameState.SETUP);
 
         context.challengeManager().setTimerRunnable(timerRunnable);
+        timerRunnable.start();
+
         context.challengeManager().setChallengeMetadata(json.getMetadata());
         context.challengeManager().setGlobalPunishments(criterias.globalPunishments());
         context.challengeManager().setRules(criterias.rules());

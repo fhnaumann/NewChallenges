@@ -41,6 +41,7 @@ public class TimerRunnableGoalTimerTest {
         server = MockBukkit.getOrCreateMock();
         plugin = MockBukkit.load(Challenges.class);
         when(context.plugin()).thenReturn(plugin);
+        plugin.urlReminder = null;
         player = server.addPlayer("dummy");
 
 

@@ -13,6 +13,7 @@ import wand555.github.io.challenges.validation.ValidationResult;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -49,7 +50,7 @@ public class FileManager {
         try {
             json = Files.readString(file.toPath());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new LoadValidationException(new ValidationResult(false, List.of(), e));
         }
         InputStream schemaStream = Main.class.getResourceAsStream("/challenges_schema.json");
         InputStream schematronStream = Main.class.getResourceAsStream("/constraints.sch");

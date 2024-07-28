@@ -101,12 +101,23 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
             event.setCancelled(true);
             getItemInRelevantHand(event.getPlayer(), event.getHand()).setAmount(item.getAmount() - 1);
             logger.fine("Cancelled and decreased %s for %s".formatted(item.getType(), event.getPlayer().getName()));
+            addAbsorptionHeartsIfNecessary(event.getPlayer(), item.getType());
         }
         boolean cancelAndClearPotion = shouldBlockPotion(item);
         if (cancelAndClearPotion) {
             event.setCancelled(true);
             getItemInRelevantHand(event.getPlayer(), event.getHand()).setType(Material.GLASS_BOTTLE);
             logger.fine("Cancelled and replaced %s with empty glass bottle for %s".formatted(item.getType(), event.getPlayer().getName()));
+        }
+    }
+
+    private void addAbsorptionHeartsIfNecessary(Player player, Material material) {
+        // https://minecraft.wiki/w/Absorption
+        if(material == Material.GOLDEN_APPLE) {
+            player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(60*2*20, 0)); // 4 hearts for 2 minutes
+        }
+        if(material == Material.ENCHANTED_GOLDEN_APPLE) {
+            player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(60*2*20, 3)); // 8 hearts for 2 minutes
         }
     }
 

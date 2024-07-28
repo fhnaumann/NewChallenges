@@ -100,8 +100,12 @@ public class ValidationResult {
         StringBuilder builder = new StringBuilder();
         builder.append("Provided configuration is valid? ").append(this.valid);
         // may have violations that are warnings
+
         if(getViolations().isEmpty()) {
-           return builder.toString();
+            if(initialException != null) {
+                builder.append(System.lineSeparator()).append("Additional exception: ").append(initialException);
+            }
+            return builder.toString();
         }
 
         builder.append(System.lineSeparator());
@@ -125,10 +129,6 @@ public class ValidationResult {
                 builder.append("  Where: ").append(violation.getWhere()).append(System.lineSeparator())
                         .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
             });
-        }
-
-        if(initialException != null) {
-            builder.append("Additional exception: ").append(initialException);
         }
         return builder.toString();
     }

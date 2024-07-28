@@ -3,8 +3,6 @@ version: '${project.version}'
 main: wand555.github.io.challenges.Challenges
 api-version: 1.20
 commands:
-  challenges:
-    description: Base command for interacting with the plugin.
   start:
     description: Start a challenge.
   cancel:

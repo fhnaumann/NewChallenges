@@ -12,34 +12,46 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class OfflineTempData {
+
+    private static final Logger logger = ChallengesDebugLogger.getLogger(OfflineTempData.class);
 
     private final Map<String, Object> data;
     private final ObjectMapper objectMapper;
     private final File file;
 
     public OfflineTempData(JavaPlugin plugin) {
+        Map<String, Object> data1;
         objectMapper = new ObjectMapper();
         file = Paths.get(plugin.getDataFolder().getAbsolutePath(), "offline_temp", "offline_temp.json").toFile();
         if(!file.exists()) {
-            data = new HashMap<>();
-            try {
-                Files.createDirectories(file.getParentFile().toPath());
-                Files.createFile(file.toPath());
-                Files.write(file.toPath(), "{}".getBytes());
-                plugin.getLogger().fine("Created offline_temp.json file and parent folders");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            data1 = new HashMap<>();
+            create();
         }
         else {
             try {
-                data = objectMapper.readValue(file, new TypeReference<>() {
+                data1 = objectMapper.readValue(file, new TypeReference<>() {
                 });
             } catch (IOException e) {
-                throw new RuntimeException("Failed to read offline_temp.json! Is it valid JSON syntax?", e);
+                logger.warning("Failed to read offline_temp.json! Is it valid JSON syntax?");
+                logger.fine(e.getMessage());
+                data1 = new HashMap<>();
+                create();
             }
+        }
+        data = data1;
+    }
+
+    private void create() {
+        try {
+            Files.createDirectories(file.getParentFile().toPath());
+            Files.createFile(file.toPath());
+            Files.write(file.toPath(), "{}".getBytes());
+            logger.fine("Created offline_temp.json file and parent folders");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

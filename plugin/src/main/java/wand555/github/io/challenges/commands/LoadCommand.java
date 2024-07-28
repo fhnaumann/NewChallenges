@@ -26,8 +26,11 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 public class LoadCommand {
+
+    private static final Logger logger = ChallengesDebugLogger.getLogger(LoadCommand.class);
 
     private static final String CMD_NODE_NAME = "challenge-name";
 
@@ -60,7 +63,7 @@ public class LoadCommand {
                 .map(challengeLoadStatus -> StringTooltip.ofString(challengeLoadStatus.challengeMetadata().getName(), challengeLoadStatus.file().getPath())).toArray(IStringTooltip[]::new));
     }
 
-    private static void handleLoading(Context context, ChallengeFilesHandler challengeFilesHandler, @Nullable ChallengeFilesHandler.ChallengeLoadStatus toLoad) throws WrapperCommandSyntaxException {
+    public static void handleLoading(Context context, ChallengeFilesHandler challengeFilesHandler, @Nullable ChallengeFilesHandler.ChallengeLoadStatus toLoad) throws WrapperCommandSyntaxException {
         List<ChallengeFilesHandler.ChallengeLoadStatus> loadStatuses = challengeFilesHandler.getChallengesInFolderStatus();
         if (loadStatuses.isEmpty()) {
             // there are 0 challenges on the server
@@ -85,7 +88,8 @@ public class LoadCommand {
                 try {
                     FileManager.writeToFile(context.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
                 } catch (IOException e) {
-                    // TODO: log original error
+                    logger.severe("Failed to save previous challenge to disk!");
+                    logger.severe(e.getMessage());
                     throw failWrapperWith(context, "load.unknown_error");
                 }
                 context.challengeManager().unload();
@@ -99,11 +103,7 @@ public class LoadCommand {
                         "challenges.validation.start.title"
                 ));
 
-                Context newContext = FileManager.readFromFile(toLoad.file(), context.plugin());
-                // TODO: ugly access
-                context.plugin().tempContext = newContext;
-                context.plugin().urlReminder.setContext(newContext);
-                challengeFilesHandler.setFileNameBeingPlayed(toLoad.file().getName());
+                loadFile(context, challengeFilesHandler, toLoad.file());
 
                 Component successTitle = ComponentUtil.formatTitleMessage(
                         context.plugin(),
@@ -148,6 +148,22 @@ public class LoadCommand {
 
                 throw failWrapperWith(context, "load.invalid_challenge");
             }
+    }
+
+    public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) throws LoadValidationException {
+        Context newContext = FileManager.readFromFile(toLoad, context.plugin());
+        // TODO: ugly access
+        context.plugin().tempContext = newContext;
+        challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
+
+        // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
+        // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
+        // restarting the server
+        if(context.plugin().urlReminder != null) {
+            context.plugin().urlReminder.stop();
+            context.plugin().urlReminder = null;
+        }
+
     }
 
     private static @Nullable ChallengeFilesHandler.ChallengeLoadStatus challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {

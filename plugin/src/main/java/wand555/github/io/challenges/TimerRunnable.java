@@ -47,6 +47,11 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
         if(task == null) {
             task = bukkitTask;
         }
+        if(context.plugin().urlReminder != null) {
+            // don't do anything until the urlReminder is stopped
+            return;
+        }
+
         Component formattedTime;
         if(context.challengeManager().isRunning()) {
             timer += 1;

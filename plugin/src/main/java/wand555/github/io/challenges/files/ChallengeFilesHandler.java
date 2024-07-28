@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
@@ -89,6 +90,10 @@ public class ChallengeFilesHandler {
     public void setFileNameBeingPlayed(String fileNameBeingPlayed) {
         this.fileNameBeingPlayed = fileNameBeingPlayed;
         offlineTempData.addAndSave("fileNameBeingPlayed", this.fileNameBeingPlayed);
+    }
+
+    public @Nullable File getFileBeingPlayed() {
+        return getFileNameBeingPlayed() != null ? new File(folderContainingChallenges, fileNameBeingPlayed) : null;
     }
 
     public File getFolderContainingChallenges() {
