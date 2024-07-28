@@ -30,7 +30,8 @@ plugin/server/
 plugin/target/
 plugin/Challenges.iml
 plugin/src/main/resources/rendered_items
-plugin/unicode_mapping/textures/
 plugin/generated_jar/
+
+data_generation/unicode_mapping/textures
 
 
