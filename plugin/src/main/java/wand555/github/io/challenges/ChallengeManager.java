@@ -15,12 +15,12 @@ import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.punishments.Punishment;
+import wand555.github.io.challenges.punishments.InteractionManager;
 import wand555.github.io.challenges.validation.BossBarShower;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class ChallengeManager implements StatusInfo {
 
@@ -80,8 +80,11 @@ public class ChallengeManager implements StatusInfo {
     }
 
 
-
     public void pause() {
+        // abort everything when paused
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            InteractionManager.removeUnableToInteract(context, player, true);
+        });
         gameState = GameState.PAUSED;
     }
 
@@ -198,6 +201,13 @@ public class ChallengeManager implements StatusInfo {
 
     public void endChallenge(boolean success) {
         context.plugin().getServer().getOnlinePlayers().forEach(player -> {
+            // The player might be somewhere they shouldn't be when the challenge is ended.
+            // In that case, behave as if the thing they are busy with (ongoing MLG, ...) is completed.
+            // Currently, this may be the case in two scenarios:
+            // 1. The player is within an ongoing MLG from a punishment.
+            // 2. The player is within an ongoing MLG from a goal.
+            InteractionManager.removeUnableToInteract(context, player, true);
+
             player.setGameMode(GameMode.SPECTATOR);
             player.getActivePotionEffects().clear();
         });

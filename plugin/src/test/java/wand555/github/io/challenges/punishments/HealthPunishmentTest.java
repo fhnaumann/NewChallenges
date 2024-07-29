@@ -15,12 +15,11 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
-import wand555.github.io.challenges.validation.Validation;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;

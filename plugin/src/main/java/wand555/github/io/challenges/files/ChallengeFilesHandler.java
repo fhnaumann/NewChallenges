@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import wand555.github.io.challenges.OfflineTempData;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
 
 import javax.annotation.Nullable;
@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 

@@ -35,14 +35,6 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
     }
 
     @Override
-    public Trigger<BlockBreakData> trigger() {
-        return data -> {
-            messageHelper.sendViolationAction(data);
-            enforcePunishments(data.player());
-        };
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

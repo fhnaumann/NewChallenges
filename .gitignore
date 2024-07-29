@@ -31,7 +31,10 @@ plugin/target/
 plugin/Challenges.iml
 plugin/src/main/resources/rendered_items
 plugin/generated_jar/
+plugin/unicode_mapping
 
 data_generation/unicode_mapping/textures
+data_generation/Challenges Plugin RP/
+data_generation/Challenges Plugin RP.zip
 
 

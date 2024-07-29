@@ -7,6 +7,7 @@ export interface PunishmentsConfig {
   deathPunishment?: DeathPunishmentConfig,
   randomEffectPunishment?: RandomEffectPunishmentConfig,
   randomItemPunishment?: RandomItemPunishmentConfig,
+  mlgPunishment?: MLGPunishmentConfig
 }
 
 export interface BasePunishmentConfig {
@@ -87,4 +88,15 @@ export interface RandomItemPunishmentConfig extends BasePunishmentConfig {
    * @default false
    */
   entireInventoryRemoved?: boolean
+}
+
+export interface MLGPunishmentConfig extends BasePunishmentConfig {
+
+  /**
+   * The height the MLG takes place.
+   *
+   * @default 50
+   * @TSJ-type integer
+   */
+  height: number
 }

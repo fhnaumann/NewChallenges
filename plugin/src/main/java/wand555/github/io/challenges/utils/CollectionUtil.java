@@ -12,11 +12,23 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CollectionUtil {
+
+    public static <T> List<T> filter(Class<T> clazzToFilterAgainst, Collection<?>... collections) {
+        if(collections == null) {
+            throw new RuntimeException("Collections are null!");
+        }
+        return Stream.of(collections)
+                .flatMap(Collection::stream)
+                .filter(clazzToFilterAgainst::isInstance)
+                .map(clazzToFilterAgainst::cast)
+                .toList();
+    }
 
     public static <T> void throwIfContainsNull(@NotNull Collection<T> collection, String throwMsg) throws RuntimeException {
         for(T value : collection) {

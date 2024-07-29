@@ -1,6 +1,5 @@
 package wand555.github.io.challenges.punishments;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -11,10 +10,8 @@ import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mapping.NullHelper;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class HealthPunishment extends Punishment implements Storable<HealthPunishmentConfig> {
 
@@ -33,33 +30,34 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     }
 
     @Override
-    public void enforcePunishment(Player causer) {
+    public void enforceCauserPunishment(Player causer) {
         int damageAmount = getCalculatedHeartsLost();
-
-        String key = "";
-        Map<String, Component> placeholders = new HashMap<>();
-        placeholders.put("amount", Component.text(Integer.toString(damageAmount)));
-        switch(getAffects()) {
-            case CAUSER -> {
-                causer.damage(damageAmount);
-                key = "health.enforced.causer";
-                placeholders.put("player", Component.text(causer.getName()));
-
-            }
-            case ALL -> {
-                Bukkit.getOnlinePlayers().forEach(player -> {
-                    player.damage(damageAmount);
-                });
-                key = "health.enforced.all";
-            }
-        }
+        enforceOnReceiver(causer, damageAmount);
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
-                key,
-                placeholders
+                "health.enforced.causer",
+                Map.of("player", Component.text(causer.getName()),
+                        "amount", Component.text(Integer.toString(damageAmount)))
         );
         context.plugin().getServer().broadcast(toSend);
+    }
+
+    @Override
+    public void enforceAllPunishment() {
+        int damageAmount = getCalculatedHeartsLost();
+        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player, receiver -> enforceOnReceiver(receiver, damageAmount)));
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "health.enforced.all",
+                Map.of("amount", Component.text(Integer.toString(damageAmount)))
+        );
+        context.plugin().getServer().broadcast(toSend);
+    }
+
+    private void enforceOnReceiver(Player receiver, double amount) {
+        receiver.damage(amount);
     }
 
     @Override

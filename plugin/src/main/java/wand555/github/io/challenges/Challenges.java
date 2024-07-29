@@ -3,13 +3,10 @@ package wand555.github.io.challenges;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
-import dev.jorel.commandapi.CommandAPICommand;
 import net.kyori.adventure.resource.ResourcePackInfo;
 import net.kyori.adventure.resource.ResourcePackInfoLike;
 import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
-import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -22,20 +19,19 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.commands.ChallengesCommand;
 import wand555.github.io.challenges.commands.LoadCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
-import wand555.github.io.challenges.generated.ChallengeMetadata;
-import wand555.github.io.challenges.utils.ActionHelper;
+import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 
-import javax.annotation.Nullable;
 import java.io.*;
 import java.net.URI;
 import java.nio.file.Paths;
-import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
@@ -342,5 +338,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 .build();
 
         event.getPlayer().sendResourcePacks(request);
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onPlayerLeave(PlayerQuitEvent event) {
+        // The player might be somewhere they shouldn't be when leaving/rejoining.
+        // In that case, behave as if the thing they are busy with (ongoing MLG, ...) is completed.
+        //TODO: MLG COMPLETE TRIGGER CALL
+
     }
 }

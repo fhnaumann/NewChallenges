@@ -1,12 +1,9 @@
 package wand555.github.io.challenges.files;
 
-import be.seeseemelk.mockbukkit.MockBukkit;
-import be.seeseemelk.mockbukkit.ServerMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.OfflineTempData;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 
 import java.io.File;
 import java.io.IOException;

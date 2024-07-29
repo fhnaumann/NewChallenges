@@ -18,13 +18,22 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
         this.affects = affects;
     }
 
-    public abstract void enforcePunishment(Player causer);
+    public void enforcePunishment(Player causer) {
+        switch (affects) {
+            case CAUSER -> enforceCauserPunishment(causer);
+            case ALL -> enforceAllPunishment();
+        }
+    }
+
+    public abstract void enforceCauserPunishment(Player causer);
+
+    public abstract void enforceAllPunishment();
 
     public Affects getAffects() {
         return affects;
     }
 
-    protected static final <E extends Enum<E>> Affects map(E affectEnum) {
+    protected static <E extends Enum<E>> Affects map(E affectEnum) {
         return Punishment.Affects.fromJSONString(affectEnum.toString());
     }
 
@@ -45,7 +54,7 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
         CAUSER("causer"),
         ALL("all");
 
-        private String value;
+        private final String value;
 
         Affects(String value) {
             this.value = value;

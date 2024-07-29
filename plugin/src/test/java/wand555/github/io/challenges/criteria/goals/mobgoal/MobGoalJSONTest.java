@@ -17,6 +17,7 @@ import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 
 import java.io.IOException;
 import java.util.*;

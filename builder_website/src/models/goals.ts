@@ -3,6 +3,7 @@ import type { MobGoalConfig } from './mob'
 import type { ItemGoalConfig } from './item'
 import type { DeathGoalConfig } from './death'
 import type { BlockPlaceGoalConfig } from './blockplace'
+import type { MLGGoalConfig } from './mlg'
 
 export type GoalName = keyof GoalsConfig
 
@@ -12,6 +13,7 @@ export interface GoalsConfig {
   mobGoal?: MobGoalConfig
   itemGoal?: ItemGoalConfig,
   deathGoal?: DeathGoalConfig,
+  mlgGoal?: MLGGoalConfig
 }
 
 export interface BaseGoalConfig extends Timeable {

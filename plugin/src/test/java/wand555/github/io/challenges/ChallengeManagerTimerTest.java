@@ -13,6 +13,7 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.generated.GoalTimer;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 
 import java.util.List;
 

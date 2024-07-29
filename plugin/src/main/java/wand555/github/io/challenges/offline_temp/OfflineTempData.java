@@ -1,10 +1,11 @@
-package wand555.github.io.challenges;
+package wand555.github.io.challenges.offline_temp;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.bukkit.Bukkit;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import wand555.github.io.challenges.ChallengesDebugLogger;
 
 import java.io.File;
 import java.io.IOException;

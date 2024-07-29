@@ -1,25 +1,21 @@
 package wand555.github.io.challenges.punishments;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
-import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.generated.RandomEffectPunishmentConfig;
 import wand555.github.io.challenges.mapping.NullHelper;
 import wand555.github.io.challenges.utils.CollectionUtil;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
 
 public class RandomEffectPunishment extends Punishment implements Storable<RandomEffectPunishmentConfig> {
 
@@ -37,30 +33,34 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     }
 
     @Override
-    public void enforcePunishment(Player causer) {
+    public void enforceCauserPunishment(Player causer) {
         List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
-
-        String key = "";
-        Map<String, Component> placeholders = new HashMap<>();
-        placeholders.put("amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())));
-        switch (getAffects()) {
-            case CAUSER -> {
-                calculatedEffectsAtOnce.forEach(causer::addPotionEffect);
-                key = "randomeffect.enforced.causer";
-                placeholders.put("player", Component.text(causer.getName()));
-            }
-            case ALL -> {
-                calculatedEffectsAtOnce.forEach(potionEffect -> context.plugin().getServer().getOnlinePlayers().forEach(player -> player.addPotionEffect(potionEffect)));
-                key = "randomeffect.enforced.all";
-            }
-        }
+        enforceOnReceiver(causer, calculatedEffectsAtOnce);
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
-                key,
-                placeholders
+                "randomeffect.enforced.causer",
+                Map.of("player", Component.text(causer.getName()),
+                        "amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())))
         );
         context.plugin().getServer().broadcast(toSend);
+    }
+
+    @Override
+    public void enforceAllPunishment() {
+        List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
+        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player, samePlayer -> enforceOnReceiver(samePlayer, calculatedEffectsAtOnce)));
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "randomeffect.enforced.all",
+                Map.of("amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())))
+        );
+        context.plugin().getServer().broadcast(toSend);
+    }
+
+    private void enforceOnReceiver(Player receiver, List<PotionEffect> effects) {
+        effects.forEach(receiver::addPotionEffect);
     }
 
     private List<PotionEffect> getCalculatedEffectsAtOnce() {

@@ -1,17 +1,16 @@
 package wand555.github.io.challenges;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.validation.BossBarShower;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Locale;

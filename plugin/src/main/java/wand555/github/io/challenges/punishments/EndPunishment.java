@@ -29,28 +29,21 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
     }
 
     @Override
-    public void enforcePunishment(Player causer) {
-        // TODO create backup
+    public void enforceCauserPunishment(Player causer) {
+        causer.setGameMode(GameMode.SPECTATOR);
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "end.enforced.causer",
+                Map.of("player", Component.text(causer.getName()))
+        );
+        context.plugin().getServer().broadcast(toSend);
+    }
 
-        String key = "";
-        Map<String, Component> placeholders = new HashMap<>();
-        switch (getAffects()) {
-            case ALL -> {
-                context.challengeManager().endChallenge(false);
-                // no own message, because the messages about the challenge failure will be sent anyway.
-            }
-            case CAUSER -> {
-                causer.setGameMode(GameMode.SPECTATOR);
-                Component toSend = ComponentUtil.formatChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().punishmentResourceBundle(),
-                        "end.enforced.causer",
-                        Map.of("player", Component.text(causer.getName()))
-                );
-                context.plugin().getServer().broadcast(toSend);
-            }
-        }
-
+    @Override
+    public void enforceAllPunishment() {
+        context.challengeManager().endChallenge(false);
+        // no own message, because the messages about the challenge failure will be sent anyway.
     }
 
     @Override
