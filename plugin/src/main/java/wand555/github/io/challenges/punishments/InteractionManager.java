@@ -59,17 +59,17 @@ public class InteractionManager {
             logger.fine("Abort whatever %s is busy with.".formatted(player.getName()));
             unableInfo.whenAborted.accept(player);
         }
-        else {
-            logger.fine("Applying punishment for %s.".formatted(player.getName()));
-            unableInfo.interaction.accept(player);
 
-            Component delayed = ComponentUtil.formatChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().punishmentResourceBundle(),
-                    "misc.delayed"
-            );
-            player.sendMessage(delayed);
-        }
+        logger.fine("Applying punishment for %s.".formatted(player.getName()));
+        unableInfo.interaction.accept(player);
+
+        Component delayed = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "misc.delayed",
+                false
+        );
+        player.sendMessage(delayed);
 
     }
 

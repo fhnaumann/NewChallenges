@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 public class OfflinePlayerData {
 
@@ -58,8 +59,8 @@ public class OfflinePlayerData {
         sectionForPlayer.set("saturation", player.getSaturation());
         sectionForPlayer.set("experience", player.getTotalExperience());
         sectionForPlayer.set("air", player.getRemainingAir());
-        sectionForPlayer.set("inventory", Arrays.asList(player.getInventory().getContents()));
-        sectionForPlayer.set("effects", player.getActivePotionEffects());
+        sectionForPlayer.set("inventory", Stream.of(player.getInventory().getContents()).toList());
+        sectionForPlayer.set("effects", player.getActivePotionEffects().stream().toList());
         if(player.isInsideVehicle()) {
             sectionForPlayer.set("vehicle.location", player.getVehicle().getLocation());
             sectionForPlayer.set("vehicle.uuid", player.getVehicle().getUniqueId().toString());
@@ -74,8 +75,7 @@ public class OfflinePlayerData {
     public void loadTemporaryPlayerInformationFromDisk(JavaPlugin plugin, Player player) {
         ConfigurationSection sectionForPlayer = cfg.getConfigurationSection(player.getUniqueId().toString());
         if(sectionForPlayer == null) {
-            logger.severe("Attempted to load temporary information for %s but none was found. The challenge is corrupted!".formatted(player));
-            return;
+            throw new RuntimeException("Attempted to load temporary information for %s but none was found. The challenge is corrupted!".formatted(player));
         }
         Location location = sectionForPlayer.getLocation("location");
         GameMode gameMode = GameMode.valueOf(sectionForPlayer.getString("gamemode"));
@@ -88,7 +88,7 @@ public class OfflinePlayerData {
         List<ItemStack> inventory = (List<ItemStack>) sectionForPlayer.getList("inventory");
         List<PotionEffect> effects = (List<PotionEffect>) sectionForPlayer.getList("effects");
         Location vehicleLocation = sectionForPlayer.getLocation("vehicle.location");
-        UUID vehicleUUID = UUID.fromString(sectionForPlayer.getString("vehicle.uuid"));
+        UUID vehicleUUID = sectionForPlayer.getString("vehicle.uuid") != null ? UUID.fromString(sectionForPlayer.getString("vehicle.uuid")) : null;
 
         // delete temp data for this player
         cfg.set(player.getUniqueId().toString(), null);

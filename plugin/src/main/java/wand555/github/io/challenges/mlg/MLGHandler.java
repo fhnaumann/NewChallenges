@@ -8,6 +8,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.ConfigValues;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
@@ -17,21 +18,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.logging.Logger;
 
 public class MLGHandler implements Listener {
+
+    private static final Logger logger = ChallengesDebugLogger.getLogger(MLGHandler.class);
 
     private final Context context;
     private final OfflinePlayerData offlinePlayerData;
     private Map<Player, BiConsumer<Player, Result>> whenFinished = new HashMap<>();
+    private final World mlgWorld;
 
-    public MLGHandler(Context context) {
+    public MLGHandler(Context context, OfflinePlayerData offlinePlayerData) {
         this.context = context;
-        this.offlinePlayerData = new OfflinePlayerData(context.plugin());
+        this.offlinePlayerData = offlinePlayerData;
+        this.mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.name());
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
 
     public void newMLGScenarioFor(Player player, int height, BiConsumer<Player, Result> onFinished) {
+        InteractionManager.applyInteraction(player, samePlayer -> newMLGScenarioImpl(samePlayer, height, onFinished));
+        /*
         if(InteractionManager.isUnableToInteract(player)) {
             // The player is already unable to interact. This could, for example, be the case if they are currently
             // in an MLG and another player (not in an MLG) triggered a MLG punishment for all players. Now this player
@@ -42,7 +50,7 @@ public class MLGHandler implements Listener {
         }
         else {
             newMLGScenarioImpl(player, height, onFinished);
-        }
+        }*/
     }
 
     private void newMLGScenarioImpl(Player player, int height, BiConsumer<Player, Result> onFinished) {
@@ -74,6 +82,7 @@ public class MLGHandler implements Listener {
         if(!whenFinished.containsKey(player)) {
             return;
         }
+        event.setCancelled(true);
         prepareMLGComplete(player, Result.FAILED);
     }
 
@@ -83,13 +92,33 @@ public class MLGHandler implements Listener {
         if(event.getBucket() != Material.WATER_BUCKET) {
             return;
         }
+        if(!event.getPlayer().getWorld().equals(mlgWorld)) {
+            return;
+        }
+        if(!InteractionManager.isUnableToInteract(event.getPlayer())) {
+            logger.severe("MLG complete event triggered by %s, but they're not marked unable. This state should not have been reached!".formatted(event.getPlayer().getName()));
+            return;
+        }
+        // Wait up to a second. If they did not trigger any DamageEvent, then they probably landed the MLG correctly.
+        Bukkit.getScheduler().runTaskLater(context.plugin(), () -> {
+            // If they are still considered unable to receive events, then the MLG complete was never called, because
+            // the player did not take any damage -> they successfully completed it
+            if(InteractionManager.isUnableToInteract(event.getPlayer())) {
+                // Player succeeded MLG
+                prepareMLGComplete(event.getPlayer(), Result.SUCCESS);
+            }
+
+            // No matter the result (success/fail/abort), clean up is necessary
+            event.getBlock().setType(Material.AIR);
+
+        }, 20L);
 
     }
 
     @EventHandler
     public void onPlayerJoinPlayerIsInMLGWorld(PlayerJoinEvent event) {
         // A player might be "stuck" in the MLG world if the server unexpectedly crashed, or they left when they were doing an MLG.
-        if(event.getPlayer().getWorld().equals(Bukkit.getWorld(ConfigValues.MLG_WORLD.name()))) {
+        if(event.getPlayer().getWorld().equals(mlgWorld)) {
             prepareMLGComplete(event.getPlayer(), Result.ABORTED); // abort in favour of fail, it might have been a server crash
         }
     }
@@ -107,8 +136,8 @@ public class MLGHandler implements Listener {
         });
     }
 
-    public void abortMLG(Player player) {
-        getWhenFinished().get(player).accept(player, Result.ABORTED);
+    private void abortMLG(Player player) {
+        prepareMLGComplete(player, Result.ABORTED);
     }
 
     public void abortAllMLGs() {

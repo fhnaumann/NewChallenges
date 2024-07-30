@@ -1,9 +1,11 @@
 package wand555.github.io.challenges.criteria;
 
 import be.seeseemelk.mockbukkit.ServerMock;
+import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.FileManager;
@@ -105,5 +107,18 @@ public class CriteriaUtil {
         IntStream.range(0, n).forEach(ignored -> {
             server.getPluginManager().callEvent(event);
         });
+    }
+
+    public static void reconnect(ServerMock serverMock, PlayerMock player) {
+        boolean disconnected = player.disconnect();
+        if(!disconnected) {
+            fail("Failed to disconnect! Player already disconnected?");
+        }
+        serverMock.getScheduler().performOneTick();
+        boolean reconnected = player.reconnect();
+        if(!reconnected) {
+            fail("Failed to join back!");
+        }
+        serverMock.getScheduler().performOneTick();
     }
 }
