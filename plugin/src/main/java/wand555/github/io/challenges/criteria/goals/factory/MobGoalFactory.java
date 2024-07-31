@@ -12,7 +12,12 @@ import wand555.github.io.challenges.generated.MobGoalConfig;
 public class MobGoalFactory implements GoalFactory<MobGoalConfig> {
     @Override
     public MobGoal createGoal(Context context, MobGoalConfig config) {
-        GoalCollector<EntityType> goalCollector = new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled());
+        GoalCollector<EntityType> goalCollector = new GoalCollector<>(context,
+                                                                      config.getMobs(),
+                                                                      EntityType.class,
+                                                                      config.isFixedOrder(),
+                                                                      config.isShuffled()
+        );
         return new MobGoal(
                 context,
                 config,

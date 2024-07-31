@@ -37,7 +37,9 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
 
     public PunishableRule(Context context, PunishmentsConfig punishmentsConfig, Result result, RuleMessageHelper<T> messageHelper) {
         super(context);
-        this.punishments = punishmentsConfig != null ? CriteriaMapper.mapToPunishments(context, punishmentsConfig) : new ArrayList<>();
+        this.punishments = punishmentsConfig != null
+                           ? CriteriaMapper.mapToPunishments(context, punishmentsConfig)
+                           : new ArrayList<>();
         this.result = result;
         this.messageHelper = messageHelper;
     }
@@ -84,8 +86,12 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
         PunishableRule that = (PunishableRule) o;
         return Objects.equals(punishments, that.punishments);
     }
@@ -110,10 +116,13 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         }
 
         public static Result fromJSONString(String valueInJSONString) {
-            switch (valueInJSONString) {
-                case "Deny": return DENY;
-                case "Allow": return ALLOW;
-                default: throw new RuntimeException();
+            switch(valueInJSONString) {
+                case "Deny":
+                    return DENY;
+                case "Allow":
+                    return ALLOW;
+                default:
+                    throw new RuntimeException();
             }
         }
     }

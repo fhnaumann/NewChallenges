@@ -92,10 +92,10 @@ public class ChallengeManager implements StatusInfo {
         if(gameState == GameState.ENDED) {
             // BossBars were removed when gameState was set to ENDED
             goals.stream()
-                    .filter(BossBarDisplay.class::isInstance)
-                    .filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder())
-                    .map(BossBarDisplay.class::cast)
-                    .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
+                 .filter(BossBarDisplay.class::isInstance)
+                 .filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder())
+                 .map(BossBarDisplay.class::cast)
+                 .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
         }
         gameState = GameState.RUNNING;
     }
@@ -129,7 +129,7 @@ public class ChallengeManager implements StatusInfo {
                     context.resourceBundleContext().commandsResourceBundle(),
                     "skip.success.message"
             ));
-        } catch (UnskippableException e) {
+        } catch(UnskippableException e) {
             player.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().commandsResourceBundle(),
@@ -179,7 +179,8 @@ public class ChallengeManager implements StatusInfo {
             int nextOrderNumber = nextOrderNumber();
             setCurrentOrder(nextOrderNumber);
             // initialize goals that now "start"
-            getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
+            getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(
+                    BaseGoal::onStart);
         }
         if(allGoalsCompleted()) {
             endChallenge(true);
@@ -192,11 +193,11 @@ public class ChallengeManager implements StatusInfo {
 
     private int nextOrderNumber() {
         return getGoals().stream()
-                .filter(BaseGoal::hasTimer)
-                .mapToInt(baseGoal -> baseGoal.getTimer().getOrder())
-                .filter(value -> value > getCurrentOrder())
-                .min()
-                .orElse(-1);
+                         .filter(BaseGoal::hasTimer)
+                         .mapToInt(baseGoal -> baseGoal.getTimer().getOrder())
+                         .filter(value -> value > getCurrentOrder())
+                         .min()
+                         .orElse(-1);
     }
 
     public void endChallenge(boolean success) {
@@ -219,8 +220,7 @@ public class ChallengeManager implements StatusInfo {
                     "challenge.complete.beaten.chat"
             );
             context.plugin().getServer().broadcast(toSend);
-        }
-        else {
+        } else {
             Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().miscResourceBundle(),
@@ -230,9 +230,9 @@ public class ChallengeManager implements StatusInfo {
         }
 
         goals.stream()
-                .filter(BossBarDisplay.class::isInstance)
-                .map(BossBarDisplay.class::cast)
-                .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
+             .filter(BossBarDisplay.class::isInstance)
+             .map(BossBarDisplay.class::cast)
+             .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
 
         settings.forEach(BaseSetting::onEnd);
 
@@ -251,7 +251,10 @@ public class ChallengeManager implements StatusInfo {
     public void setGoals(@NotNull List<BaseGoal> goals) {
         this.goals = goals;
         // goals may have time limits -> set current order to minimum order value that exists in the goals
-        goals.stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresentOrElse(this::setCurrentOrder, () -> setCurrentOrder(-1));
+        goals.stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresentOrElse(
+                this::setCurrentOrder,
+                () -> setCurrentOrder(-1)
+        );
     }
 
     public long getTime() {
@@ -284,7 +287,7 @@ public class ChallengeManager implements StatusInfo {
                 false
         ).append(ComponentUtil.COLON).appendNewline();
 
-        for (Rule rule : rules) {
+        for(Rule rule : rules) {
             ruleComponent = ruleComponent.appendSpace().appendSpace().append(rule.getCurrentStatus()).appendNewline();
         }
         Component goalComponent = ComponentUtil.formatChatMessage(
@@ -293,7 +296,7 @@ public class ChallengeManager implements StatusInfo {
                 "statusinfo.name",
                 false
         ).append(ComponentUtil.COLON).appendNewline();
-        for (BaseGoal goal : goals) {
+        for(BaseGoal goal : goals) {
             goalComponent = goalComponent.appendSpace().appendSpace().append(goal.getCurrentStatus()).appendNewline();
         }
         Component total = ruleComponent.append(goalComponent);
@@ -303,10 +306,10 @@ public class ChallengeManager implements StatusInfo {
 
     public List<Goal> goalsWithSameOrderNumber() {
         return goals.stream()
-                .filter(BaseGoal::hasTimer)
-                .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
-                .map(Goal.class::cast)
-                .toList();
+                    .filter(BaseGoal::hasTimer)
+                    .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
+                    .map(Goal.class::cast)
+                    .toList();
     }
 
     public boolean isValid() {
@@ -351,10 +354,14 @@ public class ChallengeManager implements StatusInfo {
     }
 
     public enum GameState {
-        SETUP, RUNNING, PAUSED, ENDED
+        SETUP,
+        RUNNING,
+        PAUSED,
+        ENDED
     }
 
     public enum GoalCompletion {
-        COMPLETED, TIMER_BEATEN
+        COMPLETED,
+        TIMER_BEATEN
     }
 }

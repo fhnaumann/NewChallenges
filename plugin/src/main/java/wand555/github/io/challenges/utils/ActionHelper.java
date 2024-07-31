@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import org.bukkit.Sound;
 
 import javax.annotation.Nullable;
@@ -23,10 +24,10 @@ import javax.validation.constraints.NotNull;
 public class ActionHelper {
 
     private static final Map<String, Sound> ALL_SOUNDS = Stream.of(Sound.values())
-            .collect(Collectors.toMap(
-                    sound -> sound.getKey().getKey(),
-                    Function.identity()
-            ));
+                                                               .collect(Collectors.toMap(
+                                                                       sound -> sound.getKey().getKey(),
+                                                                       Function.identity()
+                                                               ));
 
     public static void showAllTitle(@NotNull Component title) {
         showAllTitle(title, null, null);
@@ -53,9 +54,9 @@ public class ActionHelper {
         try {
             Sound soundToPlay = str2Sound(soundToPlayKey);
             plugin.getServer().getOnlinePlayers().forEach(onlinePlayer -> {
-                onlinePlayer.playSound(onlinePlayer.getLocation(), soundToPlay, 1f,1f);
+                onlinePlayer.playSound(onlinePlayer.getLocation(), soundToPlay, 1f, 1f);
             });
-        } catch (MissingSoundException e) {
+        } catch(MissingSoundException e) {
             plugin.getLogger().warning("missing sound");
         }
     }

@@ -43,21 +43,25 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
         super(context);
         this.config = config;
         this.worldsInConfig = context.plugin().getConfig().getStringList("worlds").stream().map(s -> {
-                    World world = Bukkit.getWorld(s);
-                    if (world == null) {
-                        logger.warning("World '%s' does not match any existing world in %s. It will be ignored.".formatted(s, Bukkit.getWorlds()));
-                    }
-                    return world;
-                })
-                .filter(Objects::nonNull)
-                .toList();
+                                         World world = Bukkit.getWorld(s);
+                                         if(world == null) {
+                                             logger.warning("World '%s' does not match any existing world in %s. It will be ignored.".formatted(s,
+                                                                                                                                                Bukkit.getWorlds()
+                                             ));
+                                         }
+                                         return world;
+                                     })
+                                     .filter(Objects::nonNull)
+                                     .toList();
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
 
     @Override
     public void onStart() {
-        worldsInConfig.forEach(world -> world.setGameRule(GameRule.NATURAL_REGENERATION, config.isNaturalRegeneration()));
+        worldsInConfig.forEach(world -> world.setGameRule(GameRule.NATURAL_REGENERATION,
+                                                          config.isNaturalRegeneration()
+        ));
     }
 
     @Override
@@ -69,20 +73,20 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     public void onPlayerRegEvent(EntityRegainHealthEvent event) {
         // Should not be called because the gamerule NATURAL_REGENERATION is disabled
         logger.fine("%s triggered.".formatted(event.getEventName()));
-        if (!(event.getEntity() instanceof Player player)) {
+        if(!(event.getEntity() instanceof Player player)) {
             return;
         }
-        if (!context.challengeManager().isRunning()) {
+        if(!context.challengeManager().isRunning()) {
             return;
         }
 
         logger.info("reason %s".formatted(event.getRegainReason()));
         logger.fine("Initial check for %s passes.".formatted(event.getEventName()));
-        if (event.getRegainReason() == EntityRegainHealthEvent.RegainReason.SATIATED) {
+        if(event.getRegainReason() == EntityRegainHealthEvent.RegainReason.SATIATED) {
             logger.fine("Canceling %s for %s.".formatted(event.getEventName(), player));
             event.setCancelled(true);
             player.setSaturation(player.getSaturation() + 1.5f); // eh, approximation is good enough
-        } else if (event.getRegainReason() == EntityRegainHealthEvent.RegainReason.MAGIC) {
+        } else if(event.getRegainReason() == EntityRegainHealthEvent.RegainReason.MAGIC) {
             // regeneration effect could be from any source (potion effects, golden apples or totems)+
         }
 
@@ -91,38 +95,40 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     @EventHandler
     public void onPlayerConsumeItemEvent(PlayerItemConsumeEvent event) {
         // handles golden apples, enchanted golden apples, suspicious stews, instant health potions and regeneration potions
-        if (!context.challengeManager().isRunning()) {
+        if(!context.challengeManager().isRunning()) {
             return;
         }
 
         ItemStack item = event.getItem();
         boolean cancelAndDecreaseFood = shouldBlockFood(item);
-        if (cancelAndDecreaseFood) {
+        if(cancelAndDecreaseFood) {
             event.setCancelled(true);
             getItemInRelevantHand(event.getPlayer(), event.getHand()).setAmount(item.getAmount() - 1);
             logger.fine("Cancelled and decreased %s for %s".formatted(item.getType(), event.getPlayer().getName()));
             addAbsorptionHeartsIfNecessary(event.getPlayer(), item.getType());
         }
         boolean cancelAndClearPotion = shouldBlockPotion(item);
-        if (cancelAndClearPotion) {
+        if(cancelAndClearPotion) {
             event.setCancelled(true);
             getItemInRelevantHand(event.getPlayer(), event.getHand()).setType(Material.GLASS_BOTTLE);
-            logger.fine("Cancelled and replaced %s with empty glass bottle for %s".formatted(item.getType(), event.getPlayer().getName()));
+            logger.fine("Cancelled and replaced %s with empty glass bottle for %s".formatted(item.getType(),
+                                                                                             event.getPlayer().getName()
+            ));
         }
     }
 
     private void addAbsorptionHeartsIfNecessary(Player player, Material material) {
         // https://minecraft.wiki/w/Absorption
         if(material == Material.GOLDEN_APPLE) {
-            player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(60*2*20, 0)); // 4 hearts for 2 minutes
+            player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(60 * 2 * 20, 0)); // 4 hearts for 2 minutes
         }
         if(material == Material.ENCHANTED_GOLDEN_APPLE) {
-            player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(60*2*20, 3)); // 8 hearts for 2 minutes
+            player.addPotionEffect(PotionEffectType.ABSORPTION.createEffect(60 * 2 * 20, 3)); // 8 hearts for 2 minutes
         }
     }
 
     private ItemStack getItemInRelevantHand(Player player, EquipmentSlot hand) {
-        return switch (hand) {
+        return switch(hand) {
             case HAND -> player.getEquipment().getItemInMainHand();
             case OFF_HAND -> player.getEquipment().getItemInOffHand();
             default -> throw new RuntimeException("Not a hand");
@@ -144,15 +150,15 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     }
 
     private boolean isInstantHealthOrRegenerationPotion(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta()) {
+        if(!itemStack.hasItemMeta()) {
             return false;
         }
         ItemMeta meta = itemStack.getItemMeta();
-        if (!(meta instanceof PotionMeta potionMeta)) {
+        if(!(meta instanceof PotionMeta potionMeta)) {
             return false;
         }
         return potionMeta.getBasePotionType().getPotionEffects().stream()
-                .anyMatch(this::isInstantHealthOrRegenerationPotion);
+                         .anyMatch(this::isInstantHealthOrRegenerationPotion);
     }
 
     private boolean isInstantHealthOrRegenerationPotion(PotionEffect potionEffect) {
@@ -162,19 +168,19 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     @EventHandler
     public void onPlayerUsePotionEvent(EntityPotionEffectEvent event) {
         logger.info(event.getCause().toString());
-        if (!(event.getEntity() instanceof Player player)) {
+        if(!(event.getEntity() instanceof Player player)) {
             return;
         }
-        if (event.getAction() == EntityPotionEffectEvent.Action.CLEARED || event.getAction() == EntityPotionEffectEvent.Action.REMOVED) {
+        if(event.getAction() == EntityPotionEffectEvent.Action.CLEARED || event.getAction() == EntityPotionEffectEvent.Action.REMOVED) {
             return;
         }
-        if (!context.challengeManager().isRunning()) {
+        if(!context.challengeManager().isRunning()) {
             return;
         }
-        if (event.getNewEffect() == null) {
+        if(event.getNewEffect() == null) {
             return;
         }
-        if (!config.isRegWithPotions() && isInstantHealthOrRegenerationPotion(event.getNewEffect())
+        if(!config.isRegWithPotions() && isInstantHealthOrRegenerationPotion(event.getNewEffect())
                 || !config.isAllowAbsorptionHearts() && event.getNewEffect().getType() == PotionEffectType.ABSORPTION) {
             // prevent status effects
             event.setCancelled(true);
@@ -185,7 +191,7 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
     @EventHandler
     public void onPlayerResurrectEvent(EntityResurrectEvent event) {
         logger.info("Received resurrection from UltraHardcoreSetting.");
-        if (!(event.getEntity() instanceof Player player)) {
+        if(!(event.getEntity() instanceof Player player)) {
             return;
         }
         boolean poppedTotem = !event.isCancelled();
@@ -197,10 +203,11 @@ public class UltraHardcoreSetting extends BaseSetting implements Storable<UltraH
 
     @EventHandler
     public void onDeathGameRuleChange(WorldGameRuleChangeEvent event) {
-        if (event.getGameRule() == GameRule.NATURAL_REGENERATION && Boolean.parseBoolean(event.getValue()) && worldsInConfig.contains(event.getWorld())) {
+        if(event.getGameRule() == GameRule.NATURAL_REGENERATION && Boolean.parseBoolean(event.getValue()) && worldsInConfig.contains(
+                event.getWorld())) {
             // user tries to set the natural regeneration gamerule manually to true, we don't allow this
             event.setCancelled(true);
-            if (event.getCommandSender() != null) {
+            if(event.getCommandSender() != null) {
                 Component warnMessage = ComponentUtil.formatChatMessage(
                         context.plugin(),
                         context.resourceBundleContext().settingsResourceBundle(),

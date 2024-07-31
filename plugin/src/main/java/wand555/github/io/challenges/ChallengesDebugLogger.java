@@ -27,7 +27,7 @@ public class ChallengesDebugLogger extends Logger {
         if(getParent() == null) {
             try {
                 setParent(JavaPlugin.getPlugin(Challenges.class).getServer().getLogger());
-            } catch (IllegalArgumentException ignored) {
+            } catch(IllegalArgumentException ignored) {
                 // plugin won't be found during tests, but we don't care about log messages during test runs
             }
         }
@@ -39,8 +39,7 @@ public class ChallengesDebugLogger extends Logger {
             // Bukkit forces info level at least
             record.setLevel(Level.INFO);
             record.setMessage(logPrefix + record.getMessage());
-        }
-        else {
+        } else {
             record.setMessage(record.getMessage());
         }
         super.log(record);

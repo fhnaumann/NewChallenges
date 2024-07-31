@@ -7,5 +7,6 @@ import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 public interface Triggable<T> {
 
     public TriggerCheck<T> triggerCheck();
+
     public Trigger<T> trigger();
 }

@@ -76,7 +76,11 @@ public class ItemTypeTest {
     public void testInventoryEvents(Inventory inventory, ClickType clickType, int slot, Material changedMaterial, int expectedCurrentAmount) {
         player.openInventory(inventory);
         InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
-        verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), expectedCurrentAmount, player));
+        verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(
+                createMockMarkedItemStack(changedMaterial, expectedCurrentAmount),
+                expectedCurrentAmount,
+                player
+        ));
     }
 
     @Disabled("fails for crafting inventory for now, because there is no way to simulate clicking in the result slot\n" +
@@ -88,7 +92,10 @@ public class ItemTypeTest {
 
         InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
         assertEquals(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), inventory.getResult());
-        verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), player));
+        verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(
+                createMockMarkedItemStack(changedMaterial, expectedCurrentAmount),
+                player
+        ));
     }
 
     private static ItemStack createMockMarkedItemStack(Material material, int amount) {
@@ -96,16 +103,34 @@ public class ItemTypeTest {
         Challenges plugin = MockBukkit.load(Challenges.class);
         NamespacedKey markedKey = new NamespacedKey(plugin, "marked");
         ItemStack itemStack = new ItemStack(material, amount);
-        itemStack.editMeta(itemMeta -> itemMeta.getPersistentDataContainer().set(markedKey, PersistentDataType.STRING, "marked"));
+        itemStack.editMeta(itemMeta -> itemMeta.getPersistentDataContainer().set(markedKey,
+                                                                                 PersistentDataType.STRING,
+                                                                                 "marked"
+        ));
         return itemStack;
     }
 
     public static Stream<Arguments> provideInventoryClickEvents() {
         MockBukkit.getOrCreateMock();
         return Stream.of(
-                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT)), ClickType.LEFT, 0, Material.CARROT, 1),
-                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT, 10)), ClickType.RIGHT, 0, Material.CARROT, 5), // pick up half
-                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT, 10)), ClickType.DROP, 0, Material.CARROT, 0) // dropping does not count as pick up
+                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT)),
+                             ClickType.LEFT,
+                             0,
+                             Material.CARROT,
+                             1
+                ),
+                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT, 10)),
+                             ClickType.RIGHT,
+                             0,
+                             Material.CARROT,
+                             5
+                ), // pick up half
+                Arguments.of(set(new ChestMock(Material.CHEST).getInventory(), 0, new ItemStack(Material.CARROT, 10)),
+                             ClickType.DROP,
+                             0,
+                             Material.CARROT,
+                             0
+                ) // dropping does not count as pick up
         );
     }
 
@@ -123,12 +148,12 @@ public class ItemTypeTest {
 
     private static CraftingInventory stickCrafting(int amountPerPlank) {
         WorkbenchInventoryMock workbenchInventoryMock = new WorkbenchInventoryMock(null);
-        workbenchInventoryMock.setMatrix(new ItemStack[]{
+        workbenchInventoryMock.setMatrix(new ItemStack[] {
                 null, null, null,
                 null, plank(amountPerPlank), null,
                 null, plank(amountPerPlank), null
         });
-        workbenchInventoryMock.setResult(createMockMarkedItemStack(Material.STICK, Math.min(amountPerPlank*4, 64)));
+        workbenchInventoryMock.setResult(createMockMarkedItemStack(Material.STICK, Math.min(amountPerPlank * 4, 64)));
         return workbenchInventoryMock;
     }
 

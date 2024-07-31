@@ -41,19 +41,21 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
     private final List<BaseCollectedItemStack<K>> collectedItemStacks;
 
 
-
     public CollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType) {
         this.context = context;
         Map<K, Collect> map = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
-        collectedItemStacks = map.entrySet().stream().map(entry -> createFromConfig(entry.getKey(), entry.getValue())).toList();
+        collectedItemStacks = map.entrySet().stream().map(entry -> createFromConfig(entry.getKey(),
+                                                                                    entry.getValue()
+        )).toList();
         this.openInventories = new HashMap<>();
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     public void update(K about, Collect collect) {
-        collectedItemStacks.stream().filter(kBaseCollectedItemStack -> kBaseCollectedItemStack.getAbout().equals(about)).findAny().ifPresent(kBaseCollectedItemStack -> {
-            kBaseCollectedItemStack.update(collect);
-        });
+        collectedItemStacks.stream().filter(kBaseCollectedItemStack -> kBaseCollectedItemStack.getAbout().equals(about)).findAny().ifPresent(
+                kBaseCollectedItemStack -> {
+                    kBaseCollectedItemStack.update(collect);
+                });
     }
 
     protected abstract SingleCollectedItemStack<K> createSingle(K about, Collect collect);
@@ -63,8 +65,7 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
     protected BaseCollectedItemStack<K> createFromConfig(K about, Collect collect) {
         if(collect.getAmountNeeded() == 1) {
             return createSingle(about, collect);
-        }
-        else {
+        } else {
             return createMultiple(about, collect);
         }
     }
@@ -72,13 +73,12 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
     private void fillInventoryPage(Inventory inventory, int page) {
         //paginatedInventories.put(page, inventory);
 
-        for(int i=0; i<USABLE_INV_SPACE; i++) {
+        for(int i = 0; i < USABLE_INV_SPACE; i++) {
             int globalIndex = (USABLE_INV_SPACE * page) + i;
             BaseCollectedItemStack baseCollectedItemStack;
             if(globalIndex < collectedItemStacks.size()) {
                 baseCollectedItemStack = collectedItemStacks.get(globalIndex);
-            }
-            else {
+            } else {
                 baseCollectedItemStack = BaseCollectedItemStack.AIR;
             }
             inventory.setItem(i, baseCollectedItemStack.render());
@@ -90,7 +90,11 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
     }
 
     private void updateOnPageSwap(Player player, int newPage) {
-        InvPage invPage = openInventories.computeIfPresent(player, (player1, invPage1) -> new InvPage(invPage1.inventory, newPage));
+        InvPage invPage = openInventories.computeIfPresent(player,
+                                                           (player1, invPage1) -> new InvPage(invPage1.inventory,
+                                                                                              newPage
+                                                           )
+        );
         fillInventoryPage(invPage.inventory, newPage);
     }
 
@@ -100,7 +104,7 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
                 context.resourceBundleContext().goalResourceBundle(),
                 "%s.name".formatted(getNameInResourceBundle()),
                 false
-                );
+        );
         Inventory inventory = Bukkit.createInventory(null, MAX_INV_SIZE, title);
         fillInventoryPage(inventory, 0);
         openInventories.put(player, new InvPage(inventory, 0));
@@ -108,7 +112,7 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
     }
 
     private boolean hasNextPage(int currentPage) {
-        int currentMaxNumber = ((currentPage+1) * USABLE_INV_SPACE);
+        int currentMaxNumber = ((currentPage + 1) * USABLE_INV_SPACE);
         return currentMaxNumber <= collectedItemStacks.size();
     }
 
@@ -136,11 +140,10 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
             if(currentPage == 0) {
                 return;
             }
-            updateOnPageSwap(player, currentPage-1);
-        }
-        else if(clickedSlot == NEXT_PAGE_IX) {
+            updateOnPageSwap(player, currentPage - 1);
+        } else if(clickedSlot == NEXT_PAGE_IX) {
             if(hasNextPage(currentPage)) {
-                updateOnPageSwap(player, currentPage+1);
+                updateOnPageSwap(player, currentPage + 1);
             }
         }
     }

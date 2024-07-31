@@ -38,7 +38,7 @@ public class CollectedInventoryTest {
     private PlayerMock player1;
     private PlayerMock player2;
 
-    private CollectedInventory<?,?> collectedInventory;
+    private CollectedInventory<?, ?> collectedInventory;
 
     private static Context context;
 
@@ -70,11 +70,11 @@ public class CollectedInventoryTest {
                         new CollectableEntryConfig(new CollectableDataConfig(1, null, 0), "beacon"),
                         new CollectableEntryConfig(new CollectableDataConfig(20, null, 0), "dirt")
                 ),
-                Material.class);
+                Material.class
+        );
 
         player1 = server.addPlayer();
         player2 = server.addPlayer();
-
 
 
     }
@@ -90,7 +90,6 @@ public class CollectedInventoryTest {
         Inventory openInv = player1.getOpenInventory().getTopInventory();
         assertEquals(2, nonEmptyCollectableSize(openInv));
     }
-
 
 
     @Test
@@ -119,7 +118,9 @@ public class CollectedInventoryTest {
         collectedInventory.show(player1);
         player1.simulateInventoryClick(CollectedInventory.NEXT_PAGE_IX);
         Inventory openInv = player1.getOpenInventory().getTopInventory();
-        int expected = Math.min(collectedItems-CollectedInventory.USABLE_INV_SPACE, CollectedInventory.USABLE_INV_SPACE);
+        int expected = Math.min(collectedItems - CollectedInventory.USABLE_INV_SPACE,
+                                CollectedInventory.USABLE_INV_SPACE
+        );
         assertEquals(expected, nonEmptyCollectableSize(openInv));
     }
 
@@ -141,17 +142,16 @@ public class CollectedInventoryTest {
     private int nonEmptyCollectableSize(Inventory inventory) {
         //ignoring last row
         return (int) IntStream.range(0, CollectedInventory.USABLE_INV_SPACE)
-                .mapToObj(inventory::getItem)
-                .filter(itemStack -> itemStack != null && !itemStack.isEmpty())
-                .count();
+                              .mapToObj(inventory::getItem)
+                              .filter(itemStack -> itemStack != null && !itemStack.isEmpty())
+                              .count();
     }
-
 
 
     @Deprecated
     private void fillNTimes(int n) {
 
-        for(int i=0; i<n; i++) {
+        for(int i = 0; i < n; i++) {
             //collectedInventory.addOrUpdate(new BlockBreakData(Material.STONE, player1), new Collect(2, 1));
             //collectedInventory.addCollectedItemStack(new MultipleCollectedItemStack(Material.STONE, "abc", i));
         }

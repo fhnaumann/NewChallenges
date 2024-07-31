@@ -16,7 +16,11 @@ public abstract class CodeableValidator<T extends DataSourceJSON<K>, K extends K
 
     @Override
     public ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
-        CodeValidator<T,K> codeValidator = new CodeValidator<>(dataSource, this::additionalCodeConstraints, getCodes(challengesSchema), getPathToCurrentCollectables());
+        CodeValidator<T, K> codeValidator = new CodeValidator<>(dataSource,
+                                                                this::additionalCodeConstraints,
+                                                                getCodes(challengesSchema),
+                                                                getPathToCurrentCollectables()
+        );
         return codeValidator.performValidation(builder, challengesSchema);
     }
 

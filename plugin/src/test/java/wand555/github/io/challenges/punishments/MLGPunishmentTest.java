@@ -51,8 +51,8 @@ public class MLGPunishmentTest {
         causer = server.addPlayer();
         otherPlayer = server.addPlayer();
         mlgWorld = server.addSimpleWorld("mlgWorld");
-        causer.setLocation(new Location(mlgWorld, 0,0,0));
-        otherPlayer.setLocation(new Location(mlgWorld, 0,0,0));
+        causer.setLocation(new Location(mlgWorld, 0, 0, 0));
+        otherPlayer.setLocation(new Location(mlgWorld, 0, 0, 0));
         mlgHandler = spy(new MLGHandler(context, mock(OfflinePlayerData.class)));
 
     }

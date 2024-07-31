@@ -7,6 +7,7 @@ import wand555.github.io.challenges.types.Data;
 
 /**
  * The amount within the ItemStack is ignored. Only the @amount variable is being used to determine "how many" are involved.
+ *
  * @param itemStackInteractedWith
  * @param amount
  * @param player

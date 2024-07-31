@@ -15,7 +15,12 @@ public class BlockPlaceGoalFactory implements GoalFactory<BlockPlaceGoalConfig> 
 
     @Override
     public BaseGoal createGoal(Context context, BlockPlaceGoalConfig config) {
-        GoalCollector<Material> goalCollector = new GoalCollector<>(context, config.getPlaced(), Material.class, config.isFixedOrder(), config.isShuffled());
+        GoalCollector<Material> goalCollector = new GoalCollector<>(context,
+                                                                    config.getPlaced(),
+                                                                    Material.class,
+                                                                    config.isFixedOrder(),
+                                                                    config.isShuffled()
+        );
         return new BlockPlaceGoal(
                 context,
                 config,

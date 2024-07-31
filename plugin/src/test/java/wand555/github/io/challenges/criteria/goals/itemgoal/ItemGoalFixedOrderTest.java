@@ -106,10 +106,24 @@ public class ItemGoalFixedOrderTest {
                 }
                 """;
         ItemGoalConfig config = new ObjectMapper().readValue(itemGoalJSON, ItemGoalConfig.class);
-        itemGoal = new ItemGoal(context, config, new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled()),messageHelper, collectedInventory, null);
+        itemGoal = new ItemGoal(context,
+                                config,
+                                new GoalCollector<>(context,
+                                                    config.getItems(),
+                                                    Material.class,
+                                                    config.isFixedOrder(),
+                                                    config.isShuffled()
+                                ),
+                                messageHelper,
+                                collectedInventory,
+                                null
+        );
 
         ItemStack toCollect = new ItemStack(Material.CARROT);
-        pickupOneCarrot = new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), toCollect), 0);
+        pickupOneCarrot = new EntityPickupItemEvent(player,
+                                                    new ItemEntityMock(server, UUID.randomUUID(), toCollect),
+                                                    0
+        );
     }
 
     @AfterEach
@@ -137,17 +151,61 @@ public class ItemGoalFixedOrderTest {
     }
 
 
-
     @Test
     public void testCompleteConditionMet() {
         assertFalse(itemGoal.isComplete());
-        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.CARROT, 50)), 0), 1);
-        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.CARROT, 50)), 0), 1);
+        CriteriaUtil.callEvent(server,
+                               new EntityPickupItemEvent(player,
+                                                         new ItemEntityMock(server,
+                                                                            UUID.randomUUID(),
+                                                                            new ItemStack(Material.CARROT, 50)
+                                                         ),
+                                                         0
+                               ),
+                               1
+        );
+        CriteriaUtil.callEvent(server,
+                               new EntityPickupItemEvent(player,
+                                                         new ItemEntityMock(server,
+                                                                            UUID.randomUUID(),
+                                                                            new ItemStack(Material.CARROT, 50)
+                                                         ),
+                                                         0
+                               ),
+                               1
+        );
         assertFalse(itemGoal.isComplete());
-        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STICK, 50)), 0), 1);
-        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STICK, 50)), 0), 1);
+        CriteriaUtil.callEvent(server,
+                               new EntityPickupItemEvent(player,
+                                                         new ItemEntityMock(server,
+                                                                            UUID.randomUUID(),
+                                                                            new ItemStack(Material.STICK, 50)
+                                                         ),
+                                                         0
+                               ),
+                               1
+        );
+        CriteriaUtil.callEvent(server,
+                               new EntityPickupItemEvent(player,
+                                                         new ItemEntityMock(server,
+                                                                            UUID.randomUUID(),
+                                                                            new ItemStack(Material.STICK, 50)
+                                                         ),
+                                                         0
+                               ),
+                               1
+        );
         assertFalse(itemGoal.isComplete());
-        CriteriaUtil.callEvent(server, new EntityPickupItemEvent(player, new ItemEntityMock(server, UUID.randomUUID(), new ItemStack(Material.STONE, 50)), 0), 1);
+        CriteriaUtil.callEvent(server,
+                               new EntityPickupItemEvent(player,
+                                                         new ItemEntityMock(server,
+                                                                            UUID.randomUUID(),
+                                                                            new ItemStack(Material.STONE, 50)
+                                                         ),
+                                                         0
+                               ),
+                               1
+        );
         assertTrue(itemGoal.isComplete());
     }
 }

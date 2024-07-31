@@ -92,7 +92,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("progress").setExecutor(this);
 
 
-
         getServer().getPluginManager().registerEvents(this, this);
 
         // don't load the MLG world in tests, this messes up the test suites, because it assumes mlgWorld is the default world then
@@ -106,12 +105,30 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         try {
             tempContext = new Context.Builder()
                     .withPlugin(this)
-                    .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
-                    .withGoalResourceBundle(ResourceBundle.getBundle("goals", Locale.US, UTF8ResourceBundleControl.get()))
-                    .withSettingsResourceBundle(ResourceBundle.getBundle("settings", Locale.US, UTF8ResourceBundleControl.get()))
-                    .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
-                    .withCommandsResourceBundle(ResourceBundle.getBundle("commands", Locale.US, UTF8ResourceBundleControl.get()))
-                    .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
+                    .withRuleResourceBundle(ResourceBundle.getBundle("rules",
+                                                                     Locale.US,
+                                                                     UTF8ResourceBundleControl.get()
+                    ))
+                    .withGoalResourceBundle(ResourceBundle.getBundle("goals",
+                                                                     Locale.US,
+                                                                     UTF8ResourceBundleControl.get()
+                    ))
+                    .withSettingsResourceBundle(ResourceBundle.getBundle("settings",
+                                                                         Locale.US,
+                                                                         UTF8ResourceBundleControl.get()
+                    ))
+                    .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments",
+                                                                           Locale.US,
+                                                                           UTF8ResourceBundleControl.get()
+                    ))
+                    .withCommandsResourceBundle(ResourceBundle.getBundle("commands",
+                                                                         Locale.US,
+                                                                         UTF8ResourceBundleControl.get()
+                    ))
+                    .withMiscResourceBundle(ResourceBundle.getBundle("misc",
+                                                                     Locale.US,
+                                                                     UTF8ResourceBundleControl.get()
+                    ))
                     .withSchemaRoot(new ObjectMapper().readTree(Main.class.getResourceAsStream("/challenges_schema.json")))
                     .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                     .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
@@ -120,7 +137,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     .withOfflineTempData(offlineTempData)
                     .build();
 
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
         tempContext.challengeManager().setContext(tempContext); // immediately set context so it is available in the manager
@@ -128,8 +145,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         urlReminder.start();
 
         try {
-            challengeFilesHandler = new ChallengeFilesHandler(offlineTempData, Paths.get(getDataFolder().getAbsolutePath(), "settings").toFile());
-        } catch (IOException e) {
+            challengeFilesHandler = new ChallengeFilesHandler(offlineTempData,
+                                                              Paths.get(getDataFolder().getAbsolutePath(),
+                                                                        "settings"
+                                                              ).toFile()
+            );
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -153,12 +174,11 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 // Accessing tempContext after LoadCommand#loadFile was called is a bit misleading.
                 // loadFile reassigns tempContext to the newly (now final) context, so it's the same instance from now on
 
-            } catch (LoadValidationException e) {
+            } catch(LoadValidationException e) {
                 logger.warning("Failed to load challenge '%s' from previous session.".formatted(fileNameBeingPlayed));
                 logger.warning(e.getValidationResult().asFormattedString());
             }
-        }
-        else {
+        } else {
             logger.fine("No previous session exists, don't prematurely load anything.");
         }
     }
@@ -173,8 +193,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             // Otherwise, the potentially existing data may be wiped because "nothing" is written.
             // When being in setup phase, the server cannot add any potential data, therefore it is not necessary to write something in this case.
             try {
-                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
-            } catch (IOException e) {
+                FileManager.writeToFile(tempContext.challengeManager(),
+                                        new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(),
+                                                                challengeFilesHandler.getFileNameBeingPlayed()
+                                        ))
+                );
+            } catch(IOException e) {
                 Bukkit.broadcast(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),
@@ -192,18 +216,18 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
     private String challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
         return statuses.stream()
-                .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(challengeName))
-                .findAny()
-                .orElseThrow(IllegalArgumentException::new)
-                .file().getName();
+                       .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(
+                               challengeName))
+                       .findAny()
+                       .orElseThrow(IllegalArgumentException::new)
+                       .file().getName();
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof Player player)) {
             return false;
-        }
-        else if(command.getName().equalsIgnoreCase("start")) {
+        } else if(command.getName().equalsIgnoreCase("start")) {
 
             if(tempContext.challengeManager().isRunning()) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
@@ -212,8 +236,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                         "start.already_running"
                 ));
                 return true;
-            }
-            else if(!tempContext.challengeManager().isValid()) {
+            } else if(!tempContext.challengeManager().isValid()) {
                 // either invalid or never loaded
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
@@ -223,21 +246,23 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 return true;
             }
             tempContext.challengeManager().start();
-        }
-        else if(command.getName().equalsIgnoreCase("cancel")) {
+        } else if(command.getName().equalsIgnoreCase("cancel")) {
             // artificially end the challenge (as success)
             tempContext.challengeManager().endChallenge(true);
-        }
-        else if (command.getName().equalsIgnoreCase("save")) {
+        } else if(command.getName().equalsIgnoreCase("save")) {
             try {
-                FileManager.writeToFile(tempContext.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
+                FileManager.writeToFile(tempContext.challengeManager(),
+                                        new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(),
+                                                                challengeFilesHandler.getFileNameBeingPlayed()
+                                        ))
+                );
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),
                         "save.saved"
                 ));
                 return true;
-            } catch (IOException e) {
+            } catch(IOException e) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),
@@ -245,15 +270,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 ));
                 throw new RuntimeException(e);
             }
-        }
-        else if(command.getName().equalsIgnoreCase("status")) {
+        } else if(command.getName().equalsIgnoreCase("status")) {
             sender.sendMessage(tempContext.challengeManager().getCurrentStatus());
         }
         // command for skipping
         else if(command.getName().equalsIgnoreCase("skip")) {
             tempContext.challengeManager().onSkip(player);
-        }
-        else if(command.getName().equalsIgnoreCase("pause")) {
+        } else if(command.getName().equalsIgnoreCase("pause")) {
             if(tempContext.challengeManager().isPaused()) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
@@ -261,8 +284,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                         "pause.already_paused"
                 ));
                 return true;
-            }
-            else if(!tempContext.challengeManager().isRunning()) {
+            } else if(!tempContext.challengeManager().isRunning()) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
                         tempContext.resourceBundleContext().commandsResourceBundle(),
@@ -271,8 +293,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 return true;
             }
             tempContext.challengeManager().pause();
-        }
-        else if(command.getName().equalsIgnoreCase("resume")) {
+        } else if(command.getName().equalsIgnoreCase("resume")) {
             if(!tempContext.challengeManager().isPaused() && tempContext.challengeManager().getGameState() != ChallengeManager.GameState.ENDED) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),
@@ -282,9 +303,9 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                 return true;
             }
             tempContext.challengeManager().resume();
-        }
-        else if(command.getName().equalsIgnoreCase("progress")) {
-            List<Progressable> progressables = tempContext.challengeManager().getGoals().stream().filter(Progressable.class::isInstance).map(Progressable.class::cast).toList();
+        } else if(command.getName().equalsIgnoreCase("progress")) {
+            List<Progressable> progressables = tempContext.challengeManager().getGoals().stream().filter(Progressable.class::isInstance).map(
+                    Progressable.class::cast).toList();
             if(progressables.isEmpty()) {
                 // nothing to show progress for
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
@@ -303,17 +324,15 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                             "progress.toomany.message"
                     ));
                     return true;
-                }
-                else {
+                } else {
                     tempContext.challengeManager().onProgress(player, progressables.get(0));
                 }
-            }
-            else if(args.length == 1) {
-                Optional<Progressable> optionalProgressable = progressables.stream().filter(progressable -> progressable.getNameInCommand().equalsIgnoreCase(args[0])).findAny();
+            } else if(args.length == 1) {
+                Optional<Progressable> optionalProgressable = progressables.stream().filter(progressable -> progressable.getNameInCommand().equalsIgnoreCase(
+                        args[0])).findAny();
                 if(optionalProgressable.isPresent()) {
                     tempContext.challengeManager().onProgress(player, optionalProgressable.get());
-                }
-                else {
+                } else {
                     // did not match any progressable goal that is active
                     sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                             tempContext.plugin(),
@@ -336,19 +355,20 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
 
         ResourcePackInfoLike pack = ResourcePackInfo.resourcePackInfo()
-                .uri(URI.create("https://challenges-builder.s3.eu-central-1.amazonaws.com/Challenges+Plugin+RP.zip"))
-                .computeHashAndBuild().get();
+                                                    .uri(URI.create(
+                                                            "https://challenges-builder.s3.eu-central-1.amazonaws.com/Challenges+Plugin+RP.zip"))
+                                                    .computeHashAndBuild().get();
         ResourcePackRequest request = ResourcePackRequest.resourcePackRequest()
-                .packs(pack)
-                .prompt(ComponentUtil.formatChatMessage(
-                        tempContext.plugin(),
-                        tempContext.resourceBundleContext().miscResourceBundle(),
-                        "rp.prompt",
-                        false
-                )
-                )
-                .required(true)
-                .build();
+                                                         .packs(pack)
+                                                         .prompt(ComponentUtil.formatChatMessage(
+                                                                         tempContext.plugin(),
+                                                                         tempContext.resourceBundleContext().miscResourceBundle(),
+                                                                         "rp.prompt",
+                                                                         false
+                                                                 )
+                                                         )
+                                                         .required(true)
+                                                         .build();
 
         event.getPlayer().sendResourcePacks(request);
     }

@@ -13,6 +13,11 @@ public class GoalNameBossBarPart extends BossBarPart<Object> {
 
     @Override
     public Component buildPart() {
-        return Component.text("(").append(ComponentUtil.formatBossBarMessage(context.plugin(), context.resourceBundleContext().goalResourceBundle(), "%s.name".formatted(goalInformation.goalNameInResourceBundle()), Map.of(), Map.of())).append(Component.text(")"));
+        return Component.text("(").append(ComponentUtil.formatBossBarMessage(context.plugin(),
+                                                                             context.resourceBundleContext().goalResourceBundle(),
+                                                                             "%s.name".formatted(goalInformation.goalNameInResourceBundle()),
+                                                                             Map.of(),
+                                                                             Map.of()
+        )).append(Component.text(")"));
     }
 }

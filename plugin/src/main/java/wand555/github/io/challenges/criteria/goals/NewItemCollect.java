@@ -13,7 +13,7 @@ public class NewItemCollect {
     private final boolean never;
 
     private NewItemCollect(int slot, boolean all, boolean never) {
-        this(new int[] { slot }, all, never);
+        this(new int[] {slot}, all, never);
     }
 
     private NewItemCollect(int[] slots, boolean all, boolean never) {

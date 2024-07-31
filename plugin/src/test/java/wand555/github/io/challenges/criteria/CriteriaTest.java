@@ -30,7 +30,14 @@ public abstract class CriteriaTest<C, M extends MessageHelper> {
         criteria = createCriteria();
         messageHelper = createMessageHelper();
         ChallengeManager manager = mock(ChallengeManager.class);
-        context = new Context(plugin, createResourceBundleContext(), createDataSourceContext(), null, manager, new Random(), new OfflineTempData(plugin));
+        context = new Context(plugin,
+                              createResourceBundleContext(),
+                              createDataSourceContext(),
+                              null,
+                              manager,
+                              new Random(),
+                              new OfflineTempData(plugin)
+        );
     }
 
     @AfterEach
@@ -43,5 +50,6 @@ public abstract class CriteriaTest<C, M extends MessageHelper> {
     protected abstract M createMessageHelper();
 
     protected abstract ResourceBundleContext createResourceBundleContext();
+
     protected abstract DataSourceContext createDataSourceContext();
 }

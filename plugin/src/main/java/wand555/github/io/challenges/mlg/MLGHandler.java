@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.mlg;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.util.TriState;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -11,6 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import wand555.github.io.challenges.ChallengesDebugLogger;
+import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.ConfigValues;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
@@ -71,7 +73,7 @@ public class MLGHandler implements Listener {
 
         World mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(context.plugin()));
         List<Player> players = mlgWorld.getPlayers();
-        int xOffset = (int) (height * 0.5 * (players.size()-1));
+        int xOffset = (int) (height * 0.5 * (players.size() - 1));
         Location mlgLocation = new Location(mlgWorld, xOffset, height, 0.5);
         player.teleport(mlgLocation);
     }
@@ -99,7 +101,9 @@ public class MLGHandler implements Listener {
             return;
         }
         if(!InteractionManager.isUnableToInteract(event.getPlayer())) {
-            logger.severe("MLG complete event triggered by %s, but they're not marked unable. This state should not have been reached!".formatted(event.getPlayer().getName()));
+            logger.severe(
+                    "MLG complete event triggered by %s, but they're not marked unable. This state should not have been reached!".formatted(
+                            event.getPlayer().getName()));
             return;
         }
         // Wait up to a second. If they did not trigger any DamageEvent, then they probably landed the MLG correctly.
@@ -125,8 +129,8 @@ public class MLGHandler implements Listener {
         BiConsumer<Player, Result> onFinish = whenFinished.remove(player);
         // run a tick later so the player is actually able to receive punishments with their entire state fully loaded from disk
         Bukkit.getScheduler().runTask(context.plugin(), () -> {
-                // Mark the player to be able to receive punishments. This will call all queued interactions first.
-                InteractionManager.removeUnableToInteract(context, player, result == Result.ABORTED);
+            // Mark the player to be able to receive punishments. This will call all queued interactions first.
+            InteractionManager.removeUnableToInteract(context, player, result == Result.ABORTED);
 
             // Run the logic when it's formally completed
             onFinish.accept(player, result);
@@ -137,8 +141,45 @@ public class MLGHandler implements Listener {
         prepareMLGComplete(player, Result.ABORTED);
     }
 
+    public void handleMLGResult(Player player, MLGHandler.Result mlgResult) {
+        switch(mlgResult) {
+            case SUCCESS -> handleMLGSuccess(player);
+            case FAILED -> handleMLGFailed(player);
+            case ABORTED -> handleMLGAborted(player);
+        }
+    }
+
+    private void handleMLGSuccess(Player player) {
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "mlg.enforced.individual.success"
+        );
+        player.sendMessage(toSend);
+    }
+
+    private void handleMLGFailed(Player player) {
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "mlg.enforced.individual.fail"
+        );
+        player.sendMessage(toSend);
+    }
+
+    private void handleMLGAborted(Player player) {
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "mlg.enforced.individual.abort"
+        );
+        player.sendMessage(toSend);
+    }
+
+
     public static void handlePlayerJoinedInMLGWorld(JavaPlugin plugin, Player player) {
-        logger.warning("Attempting to deal with a player who joined the server being in the MLG world. This shouldn't have happened!");
+        logger.warning(
+                "Attempting to deal with a player who joined the server being in the MLG world. This shouldn't have happened!");
         OfflinePlayerData offlinePlayerData1 = new OfflinePlayerData(plugin);
         if(!offlinePlayerData1.hasOfflinePlayerData(player)) {
             logger.warning("'%s' has no offline data after they left an ongoing MLG.".formatted(player.getName()));
@@ -159,6 +200,7 @@ public class MLGHandler implements Listener {
         return results;
     }
 
+
     public static boolean isInMLGWorld(JavaPlugin plugin, Player player) {
         World mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(plugin));
         return mlgWorld != null && player.getWorld().getName().equals(mlgWorld.getName());
@@ -171,8 +213,7 @@ public class MLGHandler implements Listener {
             logger.info("No MLG World with name '%s' detected. Creating world...".formatted(mlgWorldName));
             createMLGWorld(mlgWorldName);
             logger.info("Created MLG World '%s'!".formatted(mlgWorldName));
-        }
-        else {
+        } else {
             logger.fine("MLG World '%s' detected. Skipping creation.".formatted(mlgWorldName));
         }
 
@@ -193,7 +234,9 @@ public class MLGHandler implements Listener {
     }
 
     public enum Result {
-        SUCCESS, FAILED, ABORTED
+        SUCCESS,
+        FAILED,
+        ABORTED
     }
 
 }

@@ -33,9 +33,11 @@ public class InteractionManager {
             queuedInteractionMap.merge(
                     player,
                     new UnableInfo(interaction, queuedInteractionMap.get(player).whenAborted),
-                    (unableInfo, unableInfo2) -> new UnableInfo(unableInfo.interaction().andThen(unableInfo2.interaction()), unableInfo.whenAborted()));
-        }
-        else {
+                    (unableInfo, unableInfo2) -> new UnableInfo(unableInfo.interaction().andThen(unableInfo2.interaction()),
+                                                                unableInfo.whenAborted()
+                    )
+            );
+        } else {
             logger.fine("%s is able to receive their punishment.".formatted(player.getName()));
             interaction.accept(player);
         }

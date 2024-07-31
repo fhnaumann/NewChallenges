@@ -22,7 +22,11 @@ public class TimerBossBarPart extends BossBarPart<Object> implements BuildProgre
     @Override
     public Component buildPart() {
         Map<TimerUtil.TimeParts, String> mappedTime = TimerUtil.format(timer.getTime());
-        Component timer = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().goalResourceBundle(), "goal.bossbar.time_left", mappedTime);
+        Component timer = ComponentUtil.formatTimer(context.plugin(),
+                                                    context.resourceBundleContext().goalResourceBundle(),
+                                                    "goal.bossbar.time_left",
+                                                    mappedTime
+        );
         return timer;
     }
 

@@ -16,8 +16,7 @@ public class RandomUtil {
     }
 
 
-
-    public static <K,V> Map.Entry<K,V> pickRandom(Map<K,V> from) {
+    public static <K, V> Map.Entry<K, V> pickRandom(Map<K, V> from) {
         if(from.isEmpty()) {
             throw new RuntimeException();
         }

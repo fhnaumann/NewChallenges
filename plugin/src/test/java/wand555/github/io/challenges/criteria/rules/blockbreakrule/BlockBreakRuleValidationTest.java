@@ -46,7 +46,11 @@ public class BlockBreakRuleValidationTest {
     @MethodSource("provideJSONs")
     public void testCodes(String json, ValidationResult expected) {
         //ValidationResult isolated = new BlockBreakRuleValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(), json);
-        ValidationResult full = Validation.modernValidate(json, CriteriaUtil.loadJSONSchemaStream(), CriteriaUtil.loadSchematronStream(), dataSourceContext);
+        ValidationResult full = Validation.modernValidate(json,
+                                                          CriteriaUtil.loadJSONSchemaStream(),
+                                                          CriteriaUtil.loadSchematronStream(),
+                                                          dataSourceContext
+        );
         //ValidationUtil.assertResult(expected, isolated);
         ValidationUtil.assertResult(expected, full);
     }
@@ -60,18 +64,27 @@ public class BlockBreakRuleValidationTest {
     }
 
     private static ValidationResult createExpectedInvalidResult() {
-        return new ValidationResult(false, List.of(new Violation("rules/enabledRules/noBlockBreakRule/exemptions", "", Violation.Level.ERROR)), null);
+        return new ValidationResult(false,
+                                    List.of(new Violation("rules/enabledRules/noBlockBreakRule/exemptions",
+                                                          "",
+                                                          Violation.Level.ERROR
+                                    )),
+                                    null
+        );
     }
 
     private static String loadInvalidCodeBlocks() throws IOException {
-        return objectMapper.writeValueAsString(objectMapper.readValue(BlockBreakRuleValidationTest.class.getResourceAsStream("invalid_block_code_block_break_rule.json"), Object.class));
+        return objectMapper.writeValueAsString(objectMapper.readValue(BlockBreakRuleValidationTest.class.getResourceAsStream(
+                "invalid_block_code_block_break_rule.json"), Object.class));
     }
 
     private static String loadInvalidItemButNotBlockCode() throws IOException {
-        return objectMapper.writeValueAsString(objectMapper.readValue(BlockBreakRuleValidationTest.class.getResourceAsStream("invalid_item_but_not_block_code_block_break_rule.json"), Object.class));
+        return objectMapper.writeValueAsString(objectMapper.readValue(BlockBreakRuleValidationTest.class.getResourceAsStream(
+                "invalid_item_but_not_block_code_block_break_rule.json"), Object.class));
     }
 
     private static String loadMultipleBlocks() throws IOException {
-        return objectMapper.writeValueAsString(objectMapper.readValue(BlockBreakRuleValidationTest.class.getResourceAsStream("multiple_blocks_block_break_rule.json"), Object.class));
+        return objectMapper.writeValueAsString(objectMapper.readValue(BlockBreakRuleValidationTest.class.getResourceAsStream(
+                "multiple_blocks_block_break_rule.json"), Object.class));
     }
 }

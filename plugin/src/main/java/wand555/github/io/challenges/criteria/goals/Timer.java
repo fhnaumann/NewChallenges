@@ -17,7 +17,7 @@ public class Timer implements Storable<GoalTimer> {
             // The time has not been set before by the server. Doing it now.
             int minTime = NullHelper.notNullOrDefault(config.getMinTimeSeconds(), Integer.class);
             int maxTime = NullHelper.notNullOrDefault(config.getMaxTimeSeconds(), Integer.class);
-            int randomizedTime = ThreadLocalRandom.current().nextInt(minTime, maxTime+1);
+            int randomizedTime = ThreadLocalRandom.current().nextInt(minTime, maxTime + 1);
             setTime(randomizedTime);
             setStartingTime(randomizedTime);
         }
@@ -40,7 +40,7 @@ public class Timer implements Storable<GoalTimer> {
     }
 
     public int decrementTime() {
-        setTime(getTime()-1);
+        setTime(getTime() - 1);
         return getTime();
     }
 

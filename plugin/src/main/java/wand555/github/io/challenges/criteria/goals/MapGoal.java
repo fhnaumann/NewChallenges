@@ -17,8 +17,11 @@ import java.util.Map;
 /**
  * Any goal where there may be multiple "mini" goals to complete. For example, this includes potentially many mobs, items, etc.
  * In contrast, something like "collect 10 XP levels" is not a map goal, because it is a singular goal that may be reached.
- * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
- * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
+ *
+ * @param <K>
+ *         The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
+ * @param <D>
+ *         Any data object (BlockBreakData, MobData, ItemData, ...)
  */
 public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, Progressable, BossBarDisplay {
     protected final GoalCollector<K> goalCollector;
@@ -32,8 +35,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         BossBarBuilder bossBarBuilder = new BossBarBuilder();
         if(isFixedOrder()) {
             bossBarBuilder.then(new FixedOrderBossBarPart<>(context, constructGoalInformation(), goalCollector));
-        }
-        else {
+        } else {
             bossBarBuilder.then(new TotalCollectablesBossBarPart(context, getNameInResourceBundle(), goalCollector));
         }
         if(hasTimer()) {
@@ -65,7 +67,9 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             removeBossBar(context.plugin().getServer().getOnlinePlayers());
         }
 
-        notifyManager(hasTimer() ? ChallengeManager.GoalCompletion.TIMER_BEATEN : ChallengeManager.GoalCompletion.COMPLETED);
+        notifyManager(hasTimer()
+                      ? ChallengeManager.GoalCompletion.TIMER_BEATEN
+                      : ChallengeManager.GoalCompletion.COMPLETED);
     }
 
     @Override
@@ -101,8 +105,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
                     // move currentlyToSelect to the next object
                     goalCollector.next();
                 }
-            }
-            else {
+            } else {
                 messageHelper.sendSingleStepAction(data, updatedCollect);
             }
 
@@ -119,7 +122,9 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     }
 
     protected Collect updateCollect(D data) {
-        return goalCollector.getToCollect().computeIfPresent(data.mainDataInvolved(), (material, collect) -> updateCollect(collect, data));
+        return goalCollector.getToCollect().computeIfPresent(data.mainDataInvolved(),
+                                                             (material, collect) -> updateCollect(collect, data)
+        );
     }
 
     protected Collect updateCollect(Collect collect, D data) {
@@ -128,7 +133,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         updateContributorsIn(collect.getCompletionConfig(), data.player(), data.amount());
         if(collect.isComplete()) {
             // set the completion time if the collect is now complete
-            collect.getCompletionConfig().setWhenCollectedSeconds((int)context.challengeManager().getTime());
+            collect.getCompletionConfig().setWhenCollectedSeconds((int) context.challengeManager().getTime());
         }
         return collect;
     }
@@ -153,8 +158,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         if(determineComplete()) {
             // there are no other collects left to complete -> skipping the active collect completes the goal
             onComplete();
-        }
-        else {
+        } else {
             bossBarHelper.updateBossBar();
         }
     }

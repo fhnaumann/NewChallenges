@@ -38,7 +38,9 @@ public class LoadCommand {
         new CommandAPICommand("load")
                 .withOptionalArguments(customLoadArgument(context, challengeFilesHandler))
                 .executesPlayer((sender, args) -> {
-                    ChallengeFilesHandler.ChallengeLoadStatus toLoad = args.getByClass(CMD_NODE_NAME, ChallengeFilesHandler.ChallengeLoadStatus.class);
+                    ChallengeFilesHandler.ChallengeLoadStatus toLoad = args.getByClass(CMD_NODE_NAME,
+                                                                                       ChallengeFilesHandler.ChallengeLoadStatus.class
+                    );
                     handleLoading(context, challengeFilesHandler, toLoad);
                 })
                 .register();
@@ -49,33 +51,39 @@ public class LoadCommand {
         return new CustomArgument<>(new StringArgument(CMD_NODE_NAME), info -> {
             List<ChallengeFilesHandler.ChallengeLoadStatus> loadStatuses = challengeFilesHandler.getChallengesInFolderStatus();
             // attempt to load a challenge by its challenge name (not filename)
-            ChallengeFilesHandler.ChallengeLoadStatus challengeLoadStatus = challengeName2Filename(info.input(), loadStatuses);
+            ChallengeFilesHandler.ChallengeLoadStatus challengeLoadStatus = challengeName2Filename(info.input(),
+                                                                                                   loadStatuses
+            );
             if(challengeLoadStatus == null) {
                 // the user provided challenge name does not match any challenge on the server
                 throw failWith(context, "load.unknown_challenge_name");
             }
             return challengeLoadStatus;
-        }).replaceSuggestions(ArgumentSuggestions.stringsWithTooltipsAsync(commandSenderSuggestionInfo -> loadToolTips(challengeFilesHandler)));
+        }).replaceSuggestions(ArgumentSuggestions.stringsWithTooltipsAsync(commandSenderSuggestionInfo -> loadToolTips(
+                challengeFilesHandler)));
     }
 
     private static CompletableFuture<IStringTooltip[]> loadToolTips(ChallengeFilesHandler challengeFilesHandler) {
         return CompletableFuture.supplyAsync(() -> challengeFilesHandler.getChallengesInFolderStatus().stream()
-                .map(challengeLoadStatus -> StringTooltip.ofString(challengeLoadStatus.challengeMetadata().getName(), challengeLoadStatus.file().getPath())).toArray(IStringTooltip[]::new));
+                                                                        .map(challengeLoadStatus -> StringTooltip.ofString(
+                                                                                challengeLoadStatus.challengeMetadata().getName(),
+                                                                                challengeLoadStatus.file().getPath()
+                                                                        )).toArray(IStringTooltip[]::new));
     }
 
     public static void handleLoading(Context context, ChallengeFilesHandler challengeFilesHandler, @Nullable ChallengeFilesHandler.ChallengeLoadStatus toLoad) throws WrapperCommandSyntaxException {
         List<ChallengeFilesHandler.ChallengeLoadStatus> loadStatuses = challengeFilesHandler.getChallengesInFolderStatus();
-        if (loadStatuses.isEmpty()) {
+        if(loadStatuses.isEmpty()) {
             // there are 0 challenges on the server
             throw failWrapperWith(context, "load.empty_challenge_list");
         }
-        if (toLoad == null) {
+        if(toLoad == null) {
             // attempt to load the only challenge on the server
-            if (loadStatuses.size() > 1) {
+            if(loadStatuses.size() > 1) {
                 // there is more than 1 challenge on the server, but the player did not specify which to load :(
                 throw failWrapperWith(context, "load.specify_challenge_to_load");
             }
-            if (anotherChallengeIsOngoing(context.challengeManager())) {
+            if(anotherChallengeIsOngoing(context.challengeManager())) {
                 // another challenge is ongoing, cancel that first before attempting to load this
                 throw failWrapperWith(context, "load.already_running");
             }
@@ -83,71 +91,81 @@ public class LoadCommand {
             toLoad = loadStatuses.get(0);
         }
 
-            if (context.challengeManager().isValid()) {
-                // a previous challenges was successfully loaded -> save and unload it
-                try {
-                    FileManager.writeToFile(context.challengeManager(), new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(), challengeFilesHandler.getFileNameBeingPlayed())));
-                } catch (IOException e) {
-                    logger.severe("Failed to save previous challenge to disk!");
-                    logger.severe(e.getMessage());
-                    throw failWrapperWith(context, "load.unknown_error");
-                }
-                context.challengeManager().unload();
-            }
-
+        if(context.challengeManager().isValid()) {
+            // a previous challenges was successfully loaded -> save and unload it
             try {
-                // attempt to load the specified challenge
-                ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.start.title"
-                ));
-
-                loadFile(context, challengeFilesHandler, toLoad.file());
-
-                Component successTitle = ComponentUtil.formatTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.success.title"
+                FileManager.writeToFile(context.challengeManager(),
+                                        new FileWriter(new File(challengeFilesHandler.getFolderContainingChallenges(),
+                                                                challengeFilesHandler.getFileNameBeingPlayed()
+                                        ))
                 );
-                Component successSubtitle = ComponentUtil.formatSubTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.success.subtitle"
-                );
-                ActionHelper.showAllTitle(successTitle, successSubtitle);
-
-                Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.success.chat"
-                );
-                Bukkit.broadcast(successChat);
-
-            } catch (LoadValidationException e) {
-                Component failureTitle = ComponentUtil.formatSubTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.failure.title"
-                );
-                Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.failure.subtitle"
-                );
-                ActionHelper.showAllTitle(failureTitle, failureSubtitle, Title.Times.times(Duration.ofSeconds(1), Duration.ofSeconds(10), Duration.ofSeconds(1)));
-                Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().miscResourceBundle(),
-                        "challenges.validation.failure.chat",
-                        Map.of(),
-                        false
-                );
-                Bukkit.broadcast(failureChat);
-                Bukkit.broadcast(e.getValidationResult().asFormattedComponent(context));
-
-                throw failWrapperWith(context, "load.invalid_challenge");
+            } catch(IOException e) {
+                logger.severe("Failed to save previous challenge to disk!");
+                logger.severe(e.getMessage());
+                throw failWrapperWith(context, "load.unknown_error");
             }
+            context.challengeManager().unload();
+        }
+
+        try {
+            // attempt to load the specified challenge
+            ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.start.title"
+            ));
+
+            loadFile(context, challengeFilesHandler, toLoad.file());
+
+            Component successTitle = ComponentUtil.formatTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.title"
+            );
+            Component successSubtitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.subtitle"
+            );
+            ActionHelper.showAllTitle(successTitle, successSubtitle);
+
+            Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.success.chat"
+            );
+            Bukkit.broadcast(successChat);
+
+        } catch(LoadValidationException e) {
+            Component failureTitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.title"
+            );
+            Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.subtitle"
+            );
+            ActionHelper.showAllTitle(failureTitle,
+                                      failureSubtitle,
+                                      Title.Times.times(Duration.ofSeconds(1),
+                                                        Duration.ofSeconds(10),
+                                                        Duration.ofSeconds(1)
+                                      )
+            );
+            Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().miscResourceBundle(),
+                    "challenges.validation.failure.chat",
+                    Map.of(),
+                    false
+            );
+            Bukkit.broadcast(failureChat);
+            Bukkit.broadcast(e.getValidationResult().asFormattedComponent(context));
+
+            throw failWrapperWith(context, "load.invalid_challenge");
+        }
     }
 
     public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) throws LoadValidationException {
@@ -168,9 +186,10 @@ public class LoadCommand {
 
     private static @Nullable ChallengeFilesHandler.ChallengeLoadStatus challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
         return statuses.stream()
-                .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(challengeName))
-                .findAny()
-                .orElse(null);
+                       .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(
+                               challengeName))
+                       .findAny()
+                       .orElse(null);
     }
 
     private static boolean anotherChallengeIsOngoing(ChallengeManager manager) {

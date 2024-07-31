@@ -8,7 +8,8 @@ public record MaterialJSON(
         @JsonProperty("is_block") boolean isBlock,
         @JsonProperty("is_item") boolean isItem,
         @JsonProperty("translation_key") String translationKey,
-        @JsonProperty("img_name") String imgName) implements DataSourceJSON<Material>  {
+        @JsonProperty("img_name") String imgName
+) implements DataSourceJSON<Material> {
 
     @Override
     public Material toEnum() {

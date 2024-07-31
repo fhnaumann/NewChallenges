@@ -24,10 +24,10 @@ public class CollectionUtil {
             throw new RuntimeException("Collections are null!");
         }
         return Stream.of(collections)
-                .flatMap(Collection::stream)
-                .filter(clazzToFilterAgainst::isInstance)
-                .map(clazzToFilterAgainst::cast)
-                .toList();
+                     .flatMap(Collection::stream)
+                     .filter(clazzToFilterAgainst::isInstance)
+                     .map(clazzToFilterAgainst::cast)
+                     .toList();
     }
 
     public static <T> void throwIfContainsNull(@NotNull Collection<T> collection, String throwMsg) throws RuntimeException {
@@ -39,17 +39,17 @@ public class CollectionUtil {
     }
 
     @NotNull
-    public static <K,V> Map<K,V> combine(@NotNull Map<K,V> map1, @NotNull Map<K,V> map2) {
+    public static <K, V> Map<K, V> combine(@NotNull Map<K, V> map1, @NotNull Map<K, V> map2) {
         return Stream.of(map1, map2)
-                .flatMap(m -> m.entrySet().stream())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                     .flatMap(m -> m.entrySet().stream())
+                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     @NotNull
     public static <T> List<T> pickN(@NotNull List<T> from, int n, @NotNull Random random) {
         from = new ArrayList<>(from);
         List<T> picked = new ArrayList<>();
-        for(int i=0; i<n; i++) {
+        for(int i = 0; i < n; i++) {
             int randomIdx = random.nextInt(from.size());
             T randomElement = from.get(randomIdx);
             from.remove(randomIdx);

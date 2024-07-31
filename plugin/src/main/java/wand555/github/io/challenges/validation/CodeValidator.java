@@ -29,8 +29,8 @@ public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends
 
     private ValidationResult.ValidationResultBuilder performCodeValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
         List<String> illegalCodes = codes.stream()
-                .filter(Predicate.not(this::hasValidCode))
-                .toList();
+                                         .filter(Predicate.not(this::hasValidCode))
+                                         .toList();
         illegalCodes.forEach(s -> addCodeViolationToBuilder(builder, s));
         return builder;
     }
@@ -46,7 +46,9 @@ public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends
     private void addCodeViolationToBuilder(ValidationResult.ValidationResultBuilder builder, String illegalCode) {
         builder.addViolation(new Violation(
                 pathToCollectables,
-                "'%s' is not a valid code for the data source '%s'.".formatted(illegalCode, dataSource.get(0).getClass().getSimpleName()),
+                "'%s' is not a valid code for the data source '%s'.".formatted(illegalCode,
+                                                                               dataSource.get(0).getClass().getSimpleName()
+                ),
                 Violation.Level.ERROR
         ));
     }

@@ -56,7 +56,9 @@ public class ItemType extends Type<ItemData> {
 
     private boolean isMarked(ItemStack itemStack) {
         ItemMeta meta = itemStack.getItemMeta();
-        return meta.getPersistentDataContainer().has(markedKey, PersistentDataType.STRING) && meta.getPersistentDataContainer().get(markedKey, PersistentDataType.STRING).equals("marked");
+        return meta.getPersistentDataContainer().has(markedKey,
+                                                     PersistentDataType.STRING
+        ) && meta.getPersistentDataContainer().get(markedKey, PersistentDataType.STRING).equals("marked");
     }
 
     private void markItemStack(ItemStack itemStack) {
@@ -78,7 +80,10 @@ public class ItemType extends Type<ItemData> {
             return;
         }
 
-        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(), event.getItem().getItemStack().getAmount(), player), event);
+        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(),
+                                          event.getItem().getItemStack().getAmount(),
+                                          player
+        ), event);
     }
 
     @EventHandler
@@ -93,7 +98,12 @@ public class ItemType extends Type<ItemData> {
         if(event.getCurrentItem() == null || event.getCurrentItem().getType().isAir()) {
             return;
         }
-        if(Set.of(ClickType.CONTROL_DROP, ClickType.DROP, ClickType.WINDOW_BORDER_LEFT, ClickType.WINDOW_BORDER_RIGHT, ClickType.CREATIVE).contains(event.getClick())) {
+        if(Set.of(ClickType.CONTROL_DROP,
+                  ClickType.DROP,
+                  ClickType.WINDOW_BORDER_LEFT,
+                  ClickType.WINDOW_BORDER_RIGHT,
+                  ClickType.CREATIVE
+        ).contains(event.getClick())) {
             return;
         }
         ItemStack currentItem = event.getCurrentItem();
@@ -112,21 +122,21 @@ public class ItemType extends Type<ItemData> {
                 craftingInventory.setMatrix(fakeMatrix);
 
                 ItemStack fakeResult = new ItemStack(currentItem.getType(), totalResultAmount);
-                triggerIfCheckPasses(new ItemData(fakeResult, totalResultAmount,player), event);
+                triggerIfCheckPasses(new ItemData(fakeResult, totalResultAmount, player), event);
 
                 craftingInventory.setResult(fakeResult);
-            }
-            else {
+            } else {
                 triggerIfCheckPasses(new ItemData(currentItem, currentItem.getAmount(), player), event);
             }
 
-        }
-        else {
+        } else {
             // If a player right clicks (selects half of the current stack amount), then mark only half
             // Right click causing the player to pick up half does not work when used in a crafting result.
             // There it behaves exactly the same as a regular left click.
             if(event.getClick() == ClickType.RIGHT) {
-                currentItem = new ItemStack(currentItem.getType(), (int) Math.ceil((double)currentItem.getAmount()/2));
+                currentItem = new ItemStack(currentItem.getType(),
+                                            (int) Math.ceil((double) currentItem.getAmount() / 2)
+                );
             }
             triggerIfCheckPasses(new ItemData(currentItem, currentItem.getAmount(), player), event);
 
@@ -156,7 +166,7 @@ public class ItemType extends Type<ItemData> {
         players inventory.
          */
         ItemStack[] fakeMatrix = new ItemStack[craftingMatrix.length];
-        for(int i=0; i<fakeMatrix.length; i++) {
+        for(int i = 0; i < fakeMatrix.length; i++) {
             if(craftingMatrix[i] == null || craftingMatrix[i].isEmpty()) {
                 continue;
             }
@@ -171,10 +181,10 @@ public class ItemType extends Type<ItemData> {
 
     private int getLeastIngredientAmount(CraftingInventory craftingInventory) {
         return Arrays.stream(craftingInventory.getMatrix())
-                .filter(itemStack -> itemStack != null && !itemStack.isEmpty())
-                .mapToInt(ItemStack::getAmount)
-                .min()
-                .orElseThrow();
+                     .filter(itemStack -> itemStack != null && !itemStack.isEmpty())
+                     .mapToInt(ItemStack::getAmount)
+                     .min()
+                     .orElseThrow();
     }
 
     private int getTotalResultAmount(CraftingInventory craftingInventory, ItemStack currentItem) {

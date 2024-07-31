@@ -82,7 +82,7 @@ public class OfflinePlayerDataTest {
         player.teleport(location);
         offlinePlayerData.temporarilyStorePlayerInformationOnDisk(player);
         server.getScheduler().performOneTick();
-        player.teleport(location.clone().add(10,0,0));
+        player.teleport(location.clone().add(10, 0, 0));
         offlinePlayerData.loadTemporaryPlayerInformationFromDisk(plugin, player);
         server.getScheduler().performOneTick();
         player.assertTeleported(location, 1e-3);
@@ -110,8 +110,13 @@ public class OfflinePlayerDataTest {
         float saturation = 5f;
         int exp = 365;
         int remainingAir = 3;
-        List<ItemStack> inventory = List.of(new ItemStack(Material.STONE), new ItemStack(Material.DIRT), new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 64));
-        List<PotionEffect> potions = List.of(PotionEffectType.REGENERATION.createEffect(10, 3), PotionEffectType.BLINDNESS.createEffect(20, 1));
+        List<ItemStack> inventory = List.of(new ItemStack(Material.STONE),
+                                            new ItemStack(Material.DIRT),
+                                            new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 64)
+        );
+        List<PotionEffect> potions = List.of(PotionEffectType.REGENERATION.createEffect(10, 3),
+                                             PotionEffectType.BLINDNESS.createEffect(20, 1)
+        );
         BoatMock boatMock = (BoatMock) player.getWorld().spawnEntity(player.getLocation(), EntityType.BOAT);
 
         player.setLocation(location);

@@ -45,12 +45,12 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-    //public static void main(String[] args, File file, Challenges plugin) {
+        //public static void main(String[] args, File file, Challenges plugin) {
         JSONObject fontDefaultJSON = ResourcePackHelper.createFontDefaultJSON();
         File file = new File("default.json");
         //new ObjectMapper().writerWithDefaultPrettyPrinter().writeValue(file, fontDefaultJSON);
-        try( BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-           writer.write(fontDefaultJSON.toString(4));
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(fontDefaultJSON.toString(4));
         }
 
 
@@ -78,17 +78,17 @@ public class Main {
             String json = Files.readString(Paths.get(Main.class.getResource("/dummy_data.json").toURI()));
             //System.out.println(json);
             schema.validate(new JSONObject(json));
-        } catch (ValidationException e) {
+        } catch(ValidationException e) {
             System.out.println(e.toJSON());
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             JsonElement jsonElement = JsonParser.parseString(e.toJSON().toString());
             String out = gson.toJson(jsonElement);
             System.out.println(out);
-        } catch (FileNotFoundException e) {
+        } catch(FileNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
+        } catch(URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -100,7 +100,10 @@ public class Main {
         String xml = XML.toString(object, "root");
         System.out.println(xml);
 
-        SchematronResourcePure schematronResourcePure = SchematronResourcePure.fromInputStream("abc", Main.class.getResourceAsStream("/constraints.sch"));
+        SchematronResourcePure schematronResourcePure = SchematronResourcePure.fromInputStream("abc",
+                                                                                               Main.class.getResourceAsStream(
+                                                                                                       "/constraints.sch")
+        );
         IPSErrorHandler errorHandler = new CollectingPSErrorHandler();
         schematronResourcePure.setErrorHandler(errorHandler);
         Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO

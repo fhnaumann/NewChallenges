@@ -36,10 +36,12 @@ public class SchematronValidator extends Validator {
         try {
             String xml = XML.toString(new JSONObject(json), "root");
             Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
-            SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);
-            ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(schematronOutputType);
+            SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(
+                    streamSource);
+            ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(
+                    schematronOutputType);
             addSchematronViolationsToBuilder(builder, svrlFailedAsserts);
-        } catch (Exception e) {
+        } catch(Exception e) {
             builder.setInitialException(e);
             //throw new RuntimeException(e);
 
@@ -50,7 +52,7 @@ public class SchematronValidator extends Validator {
     private void addSchematronViolationsToBuilder(ValidationResult.ValidationResultBuilder builder, ICommonsList<AbstractSVRLMessage> svrlFailedAsserts) {
         svrlFailedAsserts.forEach(svrlFailedAssert -> {
             Violation.Level level = Violation.Level.ERROR;
-            if (svrlFailedAssert instanceof SVRLSuccessfulReport) {
+            if(svrlFailedAssert instanceof SVRLSuccessfulReport) {
                 level = Violation.Level.WARNING;
             }
             builder.addViolation(new Violation(svrlFailedAssert.getLocation(), svrlFailedAssert.getText(), level));

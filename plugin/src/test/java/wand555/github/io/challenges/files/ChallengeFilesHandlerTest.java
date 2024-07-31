@@ -34,43 +34,46 @@ public class ChallengeFilesHandlerTest {
         try {
             firstChallenge = tempFolderContainingChallenges.resolve("test-challenge-1.json");
             Files.write(firstChallenge,
-                    """
-                    {
-                      "metadata": {
-                        "builderMCVersion": "1.20.4",
-                        "builderVersion": "0.0.1",
-                        "lastModified": "",
-                        "name": "test1",
-                        "pluginMCVersion": "",
-                        "pluginVersion": "",
-                        "whenCreated": ""
-                      }
-                    }
-                    """.getBytes());
+                        """
+                        {
+                          "metadata": {
+                            "builderMCVersion": "1.20.4",
+                            "builderVersion": "0.0.1",
+                            "lastModified": "",
+                            "name": "test1",
+                            "pluginMCVersion": "",
+                            "pluginVersion": "",
+                            "whenCreated": ""
+                          }
+                        }
+                        """.getBytes()
+            );
             secondChallenge = tempFolderContainingChallenges.resolve("test-challenge-2.json");
             Files.write(secondChallenge,
-                    """
-                    {
-                      "metadata": {
-                        "builderMCVersion": "1.21",
-                        "builderVersion": "0.0.5",
-                        "lastModified": "",
-                        "name": "test2",
-                        "pluginMCVersion": "",
-                        "pluginVersion": "",
-                        "whenCreated": ""
-                      }
-                    }
-                    """.getBytes());
+                        """
+                        {
+                          "metadata": {
+                            "builderMCVersion": "1.21",
+                            "builderVersion": "0.0.5",
+                            "lastModified": "",
+                            "name": "test2",
+                            "pluginMCVersion": "",
+                            "pluginVersion": "",
+                            "whenCreated": ""
+                          }
+                        }
+                        """.getBytes()
+            );
             invalidChallenge = tempFolderContainingChallenges.resolve("invalid-challenge.json");
             Files.write(invalidChallenge,
-                    """
-                    {
-                    }
-                    """.getBytes());
+                        """
+                        {
+                        }
+                        """.getBytes()
+            );
             notAJson = tempFolderContainingChallenges.resolve("not-a-json.txt");
             Files.write(notAJson, "I am not JSON content!".getBytes());
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
         OfflineTempData offlineTempDataMock = mock(OfflineTempData.class);

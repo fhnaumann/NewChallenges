@@ -106,7 +106,10 @@ public class MLGHandlerTest {
 
     @Test
     public void testPlayerStateLoaded() {
-        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> verify(offlinePlayerData).loadTemporaryPlayerInformationFromDisk(plugin, player));
+        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> verify(offlinePlayerData).loadTemporaryPlayerInformationFromDisk(
+                plugin,
+                player
+        ));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
         simulateMLGFailHitGround(server, player);
         verify(mlgResult).accept(eq(player), any(MLGHandler.Result.class));
@@ -120,7 +123,8 @@ public class MLGHandlerTest {
 
     @Test
     public void testPlayerIsAbleToInteractAfterMLG() {
-        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertFalse(InteractionManager.isUnableToInteract(player)));
+        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertFalse(
+                InteractionManager.isUnableToInteract(player)));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
         simulateMLGFailHitGround(server, player);
         verify(mlgResult).accept(eq(player), any(MLGHandler.Result.class));
@@ -137,7 +141,9 @@ public class MLGHandlerTest {
 
     @Test
     public void testMLGFailHitGround() {
-        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.FAILED, result));
+        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.FAILED,
+                                                                                                         result
+        ));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
         simulateMLGFailHitGround(server, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.FAILED));
@@ -145,7 +151,9 @@ public class MLGHandlerTest {
 
     @Test
     public void testMLGFailWaterPlacedButMissedLanding() {
-        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.FAILED, result));
+        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.FAILED,
+                                                                                                         result
+        ));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
         simulateMLGFailWaterPlacedButMissedLanding(server, mlgWorld, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.FAILED));
@@ -153,7 +161,9 @@ public class MLGHandlerTest {
 
     @Test
     public void testMLGSuccessWithSuccessStatus() {
-        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.SUCCESS, result));
+        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.SUCCESS,
+                                                                                                         result
+        ));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
         simulateMLGSuccess(server, mlgWorld, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.SUCCESS));
@@ -176,7 +186,10 @@ public class MLGHandlerTest {
 
     @Test
     public void testMLGAbortPlayerStateLoaded() {
-        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> verify(offlinePlayerData).loadTemporaryPlayerInformationFromDisk(plugin, player));
+        BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> verify(offlinePlayerData).loadTemporaryPlayerInformationFromDisk(
+                plugin,
+                player
+        ));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
         simulateMLGAbort(context, server, player);
         verify(mlgResult).accept(eq(player), any(MLGHandler.Result.class));
@@ -185,7 +198,10 @@ public class MLGHandlerTest {
     @Test
     public void testPlayerLeftDuringMLGIsAborted() {
         mlgHandler.newMLGScenarioFor(player, 20, NOTHING);
-        CriteriaUtil.reconnect(server, player, player1 -> player1.teleport(new Location(Bukkit.getWorld("world"), 0, 0,0)));
+        CriteriaUtil.reconnect(server,
+                               player,
+                               player1 -> player1.teleport(new Location(Bukkit.getWorld("world"), 0, 0, 0))
+        );
         // assertNotEquals(mlgWorld, player.getWorld()); cannot test this, as OfflinePlayerData is mocked
         assertFalse(InteractionManager.isUnableToInteract(player));
     }
@@ -217,7 +233,14 @@ public class MLGHandlerTest {
     }
 
     public static void callPlayerBucketEmptyEvent(ServerMock server, World mlgWorld, PlayerMock player) {
-        PlayerBucketEmptyEvent event = new PlayerBucketEmptyEvent(player, mlgWorld.getBlockAt(0, 5, 0), mlgWorld.getBlockAt(0, 4, 0), BlockFace.UP, Material.WATER_BUCKET, new ItemStack(Material.WATER_BUCKET), EquipmentSlot.HAND);
+        PlayerBucketEmptyEvent event = new PlayerBucketEmptyEvent(player,
+                                                                  mlgWorld.getBlockAt(0, 5, 0),
+                                                                  mlgWorld.getBlockAt(0, 4, 0),
+                                                                  BlockFace.UP,
+                                                                  Material.WATER_BUCKET,
+                                                                  new ItemStack(Material.WATER_BUCKET),
+                                                                  EquipmentSlot.HAND
+        );
         CriteriaUtil.callEvent(server, event, 1);
     }
 

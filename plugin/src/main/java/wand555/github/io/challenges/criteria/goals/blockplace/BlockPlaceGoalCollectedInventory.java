@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 public class BlockPlaceGoalCollectedInventory extends CollectedInventory<BlockPlaceData, Material> {
 
 
-
     public BlockPlaceGoalCollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<Material> enumType) {
         super(context, collectables, enumType);
     }
@@ -34,11 +33,21 @@ public class BlockPlaceGoalCollectedInventory extends CollectedInventory<BlockPl
 
     @Override
     protected SingleCollectedItemStack<Material> createSingle(Material about, Collect collect) {
-        return CollectedInventoryHelper.createSingleCollectedItemStack(context, getNameInResourceBundle(), getSpecificBundle(), collect, about);
+        return CollectedInventoryHelper.createSingleCollectedItemStack(context,
+                                                                       getNameInResourceBundle(),
+                                                                       getSpecificBundle(),
+                                                                       collect,
+                                                                       about
+        );
     }
 
     @Override
     protected MultipleCollectedItemStack<Material> createMultiple(Material about, Collect collect) {
-        return CollectedInventoryHelper.createMultipleCollectedItemStack(context, getNameInResourceBundle(), getSpecificBundle(), collect, about);
+        return CollectedInventoryHelper.createMultipleCollectedItemStack(context,
+                                                                         getNameInResourceBundle(),
+                                                                         getSpecificBundle(),
+                                                                         collect,
+                                                                         about
+        );
     }
 }

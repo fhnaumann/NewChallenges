@@ -13,7 +13,12 @@ public class BlockBreakGoalFactory implements GoalFactory<BlockBreakGoalConfig> 
 
     @Override
     public BlockBreakGoal createGoal(Context context, BlockBreakGoalConfig config) {
-        GoalCollector<Material> goalCollector = new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled());
+        GoalCollector<Material> goalCollector = new GoalCollector<>(context,
+                                                                    config.getBroken(),
+                                                                    Material.class,
+                                                                    config.isFixedOrder(),
+                                                                    config.isShuffled()
+        );
         return new BlockBreakGoal(
                 context,
                 config,
@@ -21,6 +26,6 @@ public class BlockBreakGoalFactory implements GoalFactory<BlockBreakGoalConfig> 
                 new BlockBreakGoalMessageHelper(context),
                 new BlockBreakCollectedInventory(context, config.getBroken(), Material.class),
                 config.getGoalTimer() != null ? new Timer(config.getGoalTimer()) : null
-                );
+        );
     }
 }

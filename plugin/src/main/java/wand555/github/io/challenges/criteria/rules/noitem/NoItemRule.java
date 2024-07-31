@@ -22,9 +22,17 @@ public class NoItemRule extends PunishableRule<ItemData, Material> implements St
     private final Set<Material> exemptions;
 
     public NoItemRule(Context context, NoItemCollectRuleConfig config, NoItemRuleMessageHelper messageHelper) {
-        super(context, config.getPunishments(), PunishableRule.Result.fromJSONString(config.getResult().value()), messageHelper);
+        super(context,
+              config.getPunishments(),
+              PunishableRule.Result.fromJSONString(config.getResult().value()),
+              messageHelper
+        );
         this.itemType = new ItemType(context, triggerCheck(), trigger(), cancelIfDeny(), cancelIfDeny());
-        this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(), config.getExemptions())) : new HashSet<>();
+        this.exemptions = config.getExemptions() != null
+                          ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(),
+                                                                    config.getExemptions()
+        ))
+                          : new HashSet<>();
     }
 
     @Override

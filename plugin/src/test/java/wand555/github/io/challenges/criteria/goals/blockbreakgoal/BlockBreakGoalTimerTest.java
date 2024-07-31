@@ -85,7 +85,18 @@ public class BlockBreakGoalTimerTest {
                 """;
         BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
         Timer expectedGoalTimer = new Timer(new GoalTimer(180, 180, 2, -1, -1));
-        blockBreakGoal = new BlockBreakGoal(context, config, new GoalCollector<>(context, config.getBroken(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, expectedGoalTimer);
+        blockBreakGoal = new BlockBreakGoal(context,
+                                            config,
+                                            new GoalCollector<>(context,
+                                                                config.getBroken(),
+                                                                Material.class,
+                                                                config.isFixedOrder(),
+                                                                config.isShuffled()
+                                            ),
+                                            messageHelper,
+                                            collectedInventory,
+                                            expectedGoalTimer
+        );
     }
 
     @AfterEach

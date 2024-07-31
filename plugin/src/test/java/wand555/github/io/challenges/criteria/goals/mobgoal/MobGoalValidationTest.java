@@ -34,15 +34,19 @@ public class MobGoalValidationTest {
 
     @Test
     public void testMobGoalValidatorValidMobCode() throws IOException {
-        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("multiple_mobs_mob_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
+                "multiple_mobs_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = new MobGoalValidator(dataSourceContext.entityTypeJSONList()).validate(new ValidationResult.ValidationResultBuilder(), json);
+        ValidationResult result = new MobGoalValidator(dataSourceContext.entityTypeJSONList()).validate(new ValidationResult.ValidationResultBuilder(),
+                                                                                                        json
+        );
         assertTrue(result.isValid());
     }
 
     @Test
     public void testMobGoalValidatorInvalidMobCode() throws IOException {
-        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("invalid_mob_code_mob_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
+                "invalid_mob_code_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
         MobGoalValidator mobGoalValidator = new MobGoalValidator(dataSourceContext.entityTypeJSONList());
         ValidationResult result = mobGoalValidator.validate(new ValidationResult.ValidationResultBuilder(), json);
@@ -55,26 +59,41 @@ public class MobGoalValidationTest {
 
     @Test
     public void testFullValidMobCode() throws IOException {
-        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("multiple_mobs_mob_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
+                "multiple_mobs_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        ValidationResult result = Validation.modernValidate(json,
+                                                            jsonSchemaStream,
+                                                            schematronSchemaStream,
+                                                            dataSourceContext
+        );
         assertTrue(result.isValid());
     }
 
     @Test
     public void testFullInvalidMobCode() throws IOException {
-        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("invalid_mob_code_mob_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
+                "invalid_mob_code_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        ValidationResult result = Validation.modernValidate(json,
+                                                            jsonSchemaStream,
+                                                            schematronSchemaStream,
+                                                            dataSourceContext
+        );
         assertFalse(result.isValid());
         assertEquals(1, result.getViolations().size());
     }
 
     @Test
     public void testAllMobCode() throws IOException {
-        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream("all_mobs_code_mob_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
+                "all_mobs_code_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        ValidationResult result = Validation.modernValidate(json,
+                                                            jsonSchemaStream,
+                                                            schematronSchemaStream,
+                                                            dataSourceContext
+        );
         assertTrue(result.isValid(), "ValidationResult: %s".formatted(result));
     }
 }

@@ -27,8 +27,16 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
     private final BlockPlaceType blockPlaceType;
 
     public NoBlockPlaceRule(Context context, NoBlockPlaceRuleConfig config, NoBlockPlaceRuleMessageHelper messageHelper) {
-        super(context, config.getPunishments(), PunishableRule.Result.fromJSONString(config.getResult().value()), messageHelper);
-        this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(), config.getExemptions())) : new HashSet<>();
+        super(context,
+              config.getPunishments(),
+              PunishableRule.Result.fromJSONString(config.getResult().value()),
+              messageHelper
+        );
+        this.exemptions = config.getExemptions() != null
+                          ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(),
+                                                                    config.getExemptions()
+        ))
+                          : new HashSet<>();
 
         this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger(), cancelIfDeny());
         logger.fine("Created %s instance.".formatted(blockPlaceType.getClass().getSimpleName()));
@@ -65,9 +73,15 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if(!super.equals(o)) {
+            return false;
+        }
         NoBlockPlaceRule that = (NoBlockPlaceRule) o;
         return Objects.equals(exemptions, that.exemptions);
     }

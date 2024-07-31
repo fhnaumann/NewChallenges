@@ -59,7 +59,9 @@ public class UltraHardcoreSettingTest {
     public void testGameRuleNaturalRegDisabledAfterStartInListedWorlds() {
         UltraHardcoreSetting ultraHardcoreSetting = create(context, false, false, false, false, false, false, false);
         ultraHardcoreSetting.onStart();
-        server.getWorlds().forEach(world -> assertEquals(Boolean.FALSE, world.getGameRuleValue(GameRule.NATURAL_REGENERATION)));
+        server.getWorlds().forEach(world -> assertEquals(Boolean.FALSE,
+                                                         world.getGameRuleValue(GameRule.NATURAL_REGENERATION)
+        ));
     }
 
     @Test
@@ -67,7 +69,9 @@ public class UltraHardcoreSettingTest {
         World unlisted = server.addSimpleWorld("unlisted");
         UltraHardcoreSetting ultraHardcoreSetting = create(context, false, false, false, false, false, false, false);
         ultraHardcoreSetting.onStart();
-        assertEquals(unlisted.getGameRuleDefault(GameRule.NATURAL_REGENERATION), unlisted.getGameRuleValue(GameRule.NATURAL_REGENERATION)); // may fail if the default value is not 'true' in a future update
+        assertEquals(unlisted.getGameRuleDefault(GameRule.NATURAL_REGENERATION),
+                     unlisted.getGameRuleValue(GameRule.NATURAL_REGENERATION)
+        ); // may fail if the default value is not 'true' in a future update
     }
 
     @Test
@@ -160,7 +164,13 @@ public class UltraHardcoreSettingTest {
         UltraHardcoreSetting ultraHardcoreSetting = create(context, false, false, false, false, false, false, false);
         ItemStack consumingFrom = enchantedGoldenApple(10);
         player.simulateConsumeItem(consumingFrom);
-        EntityPotionEffectEvent event = new EntityPotionEffectEvent(player, null, PotionEffectType.ABSORPTION.createEffect(2, 1), EntityPotionEffectEvent.Cause.PLUGIN, EntityPotionEffectEvent.Action.ADDED, false);
+        EntityPotionEffectEvent event = new EntityPotionEffectEvent(player,
+                                                                    null,
+                                                                    PotionEffectType.ABSORPTION.createEffect(2, 1),
+                                                                    EntityPotionEffectEvent.Cause.PLUGIN,
+                                                                    EntityPotionEffectEvent.Action.ADDED,
+                                                                    false
+        );
         server.getPluginManager().callEvent(event);
         assertTrue(event.isCancelled());
         assertNull(player.getPotionEffect(PotionEffectType.ABSORPTION));
@@ -171,7 +181,13 @@ public class UltraHardcoreSettingTest {
         UltraHardcoreSetting ultraHardcoreSetting = create(context, false, false, false, false, false, true, false);
         ItemStack consumingFrom = enchantedGoldenApple(10);
         player.simulateConsumeItem(consumingFrom);
-        EntityPotionEffectEvent event = new EntityPotionEffectEvent(player, null, PotionEffectType.ABSORPTION.createEffect(2, 1), EntityPotionEffectEvent.Cause.PLUGIN, EntityPotionEffectEvent.Action.ADDED, false);
+        EntityPotionEffectEvent event = new EntityPotionEffectEvent(player,
+                                                                    null,
+                                                                    PotionEffectType.ABSORPTION.createEffect(2, 1),
+                                                                    EntityPotionEffectEvent.Cause.PLUGIN,
+                                                                    EntityPotionEffectEvent.Action.ADDED,
+                                                                    false
+        );
         server.getPluginManager().callEvent(event);
         assertFalse(event.isCancelled());
         assertNotNull(player.getPotionEffect(PotionEffectType.ABSORPTION));
@@ -205,11 +221,21 @@ public class UltraHardcoreSettingTest {
     public static ItemStack goldenApple(int amount) {
         return new ItemStack(Material.GOLDEN_APPLE, amount);
     }
+
     public static ItemStack enchantedGoldenApple(int amount) {
         return new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, amount);
     }
 
     private static UltraHardcoreSetting create(Context context, boolean naturalRegeneration, boolean regWithGoldenApples, boolean regWithEnchantedGoldenApples, boolean regWithSuspiciousStew, boolean regWithPotions, boolean allowAbsorptionHearts, boolean allowTotems) {
-        return new UltraHardcoreSetting(context, new UltraHardcoreSettingConfig(allowAbsorptionHearts, allowTotems, naturalRegeneration, regWithEnchantedGoldenApples, regWithGoldenApples, regWithPotions, regWithSuspiciousStew));
+        return new UltraHardcoreSetting(context,
+                                        new UltraHardcoreSettingConfig(allowAbsorptionHearts,
+                                                                       allowTotems,
+                                                                       naturalRegeneration,
+                                                                       regWithEnchantedGoldenApples,
+                                                                       regWithGoldenApples,
+                                                                       regWithPotions,
+                                                                       regWithSuspiciousStew
+                                        )
+        );
     }
 }

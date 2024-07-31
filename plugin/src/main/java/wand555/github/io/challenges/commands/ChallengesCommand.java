@@ -27,7 +27,10 @@ public class ChallengesCommand {
         new CommandAPICommand("challenges")
                 .withArguments(new LiteralArgument(CMD_NODE_LIST))
                 .executes((sender, args) -> {
-                    Component component = formatChallengesInFolders2Component(context, challengeFilesHandler, sender instanceof ConsoleCommandSender);
+                    Component component = formatChallengesInFolders2Component(context,
+                                                                              challengeFilesHandler,
+                                                                              sender instanceof ConsoleCommandSender
+                    );
                     sender.sendMessage(component);
                 })
                 .register();
@@ -38,21 +41,28 @@ public class ChallengesCommand {
         return challengeFilesHandler.getChallengesInFolderStatus().stream().map(challengeLoadStatus -> {
             Map<String, Component> placeholders = new HashMap<>();
             placeholders.put("name", Component.text(challengeLoadStatus.challengeMetadata().getName()));
-            placeholders.put("mc-version", Component.text(challengeLoadStatus.challengeMetadata().getBuilderMCVersion()));
-            Component formatted = fileSymbol.append(ComponentUtil.formatChatMessage(context.plugin(), context.resourceBundleContext().commandsResourceBundle(), "load.list.name", placeholders, false));
+            placeholders.put("mc-version",
+                             Component.text(challengeLoadStatus.challengeMetadata().getBuilderMCVersion())
+            );
+            Component formatted = fileSymbol.append(ComponentUtil.formatChatMessage(context.plugin(),
+                                                                                    context.resourceBundleContext().commandsResourceBundle(),
+                                                                                    "load.list.name",
+                                                                                    placeholders,
+                                                                                    false
+            ));
             if(challengeLoadStatus.file().getName().equals(challengeFilesHandler.getFileNameBeingPlayed())) {
                 formatted = Component.text().decorate(TextDecoration.BOLD).append(formatted).asComponent();
                 if(console) {
                     formatted = formatted.appendSpace().append(Component.text("<- LOADED"));
                 }
-            }
-            else {
+            } else {
                 formatted = formatted.clickEvent(ClickEvent.suggestCommand("/load %s".formatted(challengeLoadStatus.challengeMetadata().getName())))
-                        .hoverEvent(HoverEvent.showText(ComponentUtil.formatChatMessage(
-                                context.plugin(),
-                                context.resourceBundleContext().commandsResourceBundle(),
-                                "load.list.hover",
-                                false)));
+                                     .hoverEvent(HoverEvent.showText(ComponentUtil.formatChatMessage(
+                                             context.plugin(),
+                                             context.resourceBundleContext().commandsResourceBundle(),
+                                             "load.list.hover",
+                                             false
+                                     )));
             }
 
             return formatted;

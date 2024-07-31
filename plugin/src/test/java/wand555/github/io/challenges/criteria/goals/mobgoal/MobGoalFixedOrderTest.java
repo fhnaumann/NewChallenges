@@ -96,7 +96,18 @@ public class MobGoalFixedOrderTest {
                 }
                 """;
         MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
-        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()),messageHelper, collectedInventory, null);
+        mobGoal = new MobGoal(context,
+                              config,
+                              new GoalCollector<>(context,
+                                                  config.getMobs(),
+                                                  EntityType.class,
+                                                  config.isFixedOrder(),
+                                                  config.isShuffled()
+                              ),
+                              messageHelper,
+                              collectedInventory,
+                              null
+        );
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);
@@ -138,19 +149,25 @@ public class MobGoalFixedOrderTest {
     public void testCurrentlyToComplete() {
         assertEquals(Map.entry(EntityType.PIG, new Collect(2, 0)), mobGoal.getGoalCollector().getCurrentlyToCollect());
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        assertEquals(Map.entry(EntityType.PIG, new Collect(2, 1, Map.of("dummy", 1))), mobGoal.getGoalCollector().getCurrentlyToCollect());
+        assertEquals(Map.entry(EntityType.PIG, new Collect(2, 1, Map.of("dummy", 1))),
+                     mobGoal.getGoalCollector().getCurrentlyToCollect()
+        );
     }
 
     @Test
     public void testCurrentlyToCompleteSwitch() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        assertEquals(Map.entry(EntityType.WITHER_SKELETON, new Collect(1, 0)), mobGoal.getGoalCollector().getCurrentlyToCollect());
+        assertEquals(Map.entry(EntityType.WITHER_SKELETON, new Collect(1, 0)),
+                     mobGoal.getGoalCollector().getCurrentlyToCollect()
+        );
     }
 
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 1));
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)),
+                                                             argThat(argument -> argument.getCurrentAmount() == 1)
+        );
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
         verify(messageHelper, never()).sendAllReachedAction();
     }
@@ -158,7 +175,9 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 2));
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)),
+                                                                argThat(argument -> argument.getCurrentAmount() == 2)
+        );
         verify(messageHelper, never()).sendAllReachedAction();
     }
 

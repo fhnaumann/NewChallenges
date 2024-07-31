@@ -44,7 +44,7 @@ public class OfflinePlayerData {
             Files.createDirectories(file.getParentFile().toPath());
             Files.createFile(file.toPath());
             logger.fine("Created offline_player_data.json file and parent folders");
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -67,7 +67,7 @@ public class OfflinePlayerData {
         }
         try {
             cfg.save(file);
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -75,7 +75,9 @@ public class OfflinePlayerData {
     public void loadTemporaryPlayerInformationFromDisk(JavaPlugin plugin, Player player) {
         ConfigurationSection sectionForPlayer = cfg.getConfigurationSection(player.getUniqueId().toString());
         if(sectionForPlayer == null) {
-            throw new RuntimeException("Attempted to load temporary information for %s but none was found. The challenge is corrupted!".formatted(player));
+            throw new RuntimeException(
+                    "Attempted to load temporary information for %s but none was found. The challenge is corrupted!".formatted(
+                            player));
         }
         Location location = sectionForPlayer.getLocation("location");
         GameMode gameMode = GameMode.valueOf(sectionForPlayer.getString("gamemode"));
@@ -88,33 +90,44 @@ public class OfflinePlayerData {
         List<ItemStack> inventory = (List<ItemStack>) sectionForPlayer.getList("inventory");
         List<PotionEffect> effects = (List<PotionEffect>) sectionForPlayer.getList("effects");
         Location vehicleLocation = sectionForPlayer.getLocation("vehicle.location");
-        UUID vehicleUUID = sectionForPlayer.getString("vehicle.uuid") != null ? UUID.fromString(sectionForPlayer.getString("vehicle.uuid")) : null;
+        UUID vehicleUUID = sectionForPlayer.getString("vehicle.uuid") != null
+                           ? UUID.fromString(sectionForPlayer.getString("vehicle.uuid"))
+                           : null;
 
         // delete temp data for this player
         cfg.set(player.getUniqueId().toString(), null);
 
         // running it on a different thread may mess things up later...
         //Bukkit.getScheduler().runTask(plugin, () -> {
-            boolean teleported = player.teleport(location);
-            if(!teleported) {
-                logger.severe("Failed to teleport player %s from the MLG world! The challenge is corrupted!".formatted(player.getName()));
+        boolean teleported = player.teleport(location);
+        if(!teleported) {
+            logger.severe("Failed to teleport player %s from the MLG world! The challenge is corrupted!".formatted(
+                    player.getName()));
+        }
+        player.setGameMode(gameMode);
+        player.setFireTicks(fireticks);
+        player.setHealth(health);
+        player.setFoodLevel(hunger);
+        player.setSaturation((float) saturation);
+        player.setTotalExperience(exp);
+        player.setRemainingAir(remainingAir);
+        player.getInventory().setContents(inventory.stream().toArray(ItemStack[]::new));
+        player.addPotionEffects(effects);
+        if(vehicleLocation != null) {
+            Collection<Entity> entities = vehicleLocation.getWorld().getNearbyEntities(vehicleLocation,
+                                                                                       1,
+                                                                                       1,
+                                                                                       1,
+                                                                                       e -> e.getUniqueId().equals(
+                                                                                               vehicleUUID)
+            );
+            if(entities.isEmpty()) {
+                logger.info("Failed to find the vehicle %s was in. No match found for vehicle %s!".formatted(player.getName(),
+                                                                                                             vehicleUUID.toString()
+                ));
             }
-            player.setGameMode(gameMode);
-            player.setFireTicks(fireticks);
-            player.setHealth(health);
-            player.setFoodLevel(hunger);
-            player.setSaturation((float) saturation);
-            player.setTotalExperience(exp);
-            player.setRemainingAir(remainingAir);
-            player.getInventory().setContents(inventory.stream().toArray(ItemStack[]::new));
-            player.addPotionEffects(effects);
-            if(vehicleLocation != null) {
-                Collection<Entity> entities = vehicleLocation.getWorld().getNearbyEntities(vehicleLocation, 1, 1, 1, e -> e.getUniqueId().equals(vehicleUUID));
-                if(entities.isEmpty()) {
-                    logger.info("Failed to find the vehicle %s was in. No match found for vehicle %s!".formatted(player.getName(), vehicleUUID.toString()));
-                }
-                entities.stream().findFirst().orElseThrow().addPassenger(player);
-            }
+            entities.stream().findFirst().orElseThrow().addPassenger(player);
+        }
         //});
     }
 

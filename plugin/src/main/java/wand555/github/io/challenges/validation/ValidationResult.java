@@ -110,15 +110,15 @@ public class ValidationResult {
 
         builder.append(System.lineSeparator());
         Map<Violation.Level, List<Violation>> groupedByLevel = getViolations().stream()
-                .collect(Collectors.groupingBy(
-                        Violation::getLevel
-                ));
+                                                                              .collect(Collectors.groupingBy(
+                                                                                      Violation::getLevel
+                                                                              ));
         List<Violation> warnings = groupedByLevel.get(Violation.Level.WARNING);
         if(warnings != null && !warnings.isEmpty()) {
             builder.append("Warnings:").append(System.lineSeparator());
             warnings.forEach(violation -> {
                 builder.append("  Where: ").append(violation.getWhere()).append(System.lineSeparator())
-                        .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
+                       .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
             });
         }
 
@@ -127,7 +127,7 @@ public class ValidationResult {
             builder.append("Violations:").append(System.lineSeparator());
             errors.forEach(violation -> {
                 builder.append("  Where: ").append(violation.getWhere()).append(System.lineSeparator())
-                        .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
+                       .append("    Message: ").append(violation.getMessage()).append(System.lineSeparator());
             });
         }
         return builder.toString();
@@ -168,6 +168,7 @@ public class ValidationResult {
             violations.add(violation);
             return this;
         }
+
         public ValidationResultBuilder addViolations(Violation... violations) {
             List.of(violations).forEach(this::addViolation);
             return this;

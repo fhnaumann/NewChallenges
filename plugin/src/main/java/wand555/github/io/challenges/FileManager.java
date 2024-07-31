@@ -24,7 +24,8 @@ public class FileManager {
         EnabledRules enabledRulesConfig = new EnabledRules();
         challengeManager.getRules().forEach(rule -> rule.addToGeneratedConfig(enabledRulesConfig));
         PunishmentsConfig globalPunishmentsConfig = new PunishmentsConfig();
-        challengeManager.getGlobalPunishments().forEach(punishment -> punishment.addToGeneratedConfig(globalPunishmentsConfig));
+        challengeManager.getGlobalPunishments().forEach(punishment -> punishment.addToGeneratedConfig(
+                globalPunishmentsConfig));
         RulesConfig rulesConfig = new RulesConfig(globalPunishmentsConfig, enabledRulesConfig);
 
         GoalsConfig goalsConfig = new GoalsConfig();
@@ -35,11 +36,18 @@ public class FileManager {
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model model = new Model(0, goalsConfig, challengeManager.getChallengeMetadata(), null, rulesConfig, settingsConfig, (int) challengeManager.getTime());
+        Model model = new Model(0,
+                                goalsConfig,
+                                challengeManager.getChallengeMetadata(),
+                                null,
+                                rulesConfig,
+                                settingsConfig,
+                                (int) challengeManager.getTime()
+        );
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, model);
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -48,7 +56,7 @@ public class FileManager {
         String json = null;
         try {
             json = Files.readString(file.toPath());
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new LoadValidationException(new ValidationResult(false, List.of(), e));
         }
         InputStream schemaStream = Main.class.getResourceAsStream("/challenges_schema.json");
@@ -59,7 +67,7 @@ public class FileManager {
 
         try {
             schemaRoot = new ObjectMapper().readTree(Main.class.getResourceAsStream("/challenges_schema.json"));
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
         DataSourceContext sourceContext = new DataSourceContext.Builder()
@@ -67,7 +75,11 @@ public class FileManager {
                 .withEntityTypeJSONList(FileManager.class.getResourceAsStream("/entity_types.json"))
                 .withDeathMessageList(FileManager.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
                 .build();
-        ValidationResult validationResult = Validation.modernValidate(json, schemaStream, schematronStream, sourceContext);
+        ValidationResult validationResult = Validation.modernValidate(json,
+                                                                      schemaStream,
+                                                                      schematronStream,
+                                                                      sourceContext
+        );
         if(validationResult.isValid()) {
             ObjectMapper objectMapper = new ObjectMapper();
             Model challengesSchema = null;
@@ -76,16 +88,35 @@ public class FileManager {
 
                 Context context = new Context.Builder()
                         .withPlugin(plugin)
-                        .withRuleResourceBundle(ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get()))
-                        .withGoalResourceBundle(ResourceBundle.getBundle("goals", Locale.US, UTF8ResourceBundleControl.get()))
-                        .withSettingsResourceBundle(ResourceBundle.getBundle("settings", Locale.US, UTF8ResourceBundleControl.get()))
-                        .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments", Locale.US, UTF8ResourceBundleControl.get()))
-                        .withCommandsResourceBundle(ResourceBundle.getBundle("commands", Locale.US, UTF8ResourceBundleControl.get()))
-                        .withMiscResourceBundle(ResourceBundle.getBundle("misc", Locale.US, UTF8ResourceBundleControl.get()))
+                        .withRuleResourceBundle(ResourceBundle.getBundle("rules",
+                                                                         Locale.US,
+                                                                         UTF8ResourceBundleControl.get()
+                        ))
+                        .withGoalResourceBundle(ResourceBundle.getBundle("goals",
+                                                                         Locale.US,
+                                                                         UTF8ResourceBundleControl.get()
+                        ))
+                        .withSettingsResourceBundle(ResourceBundle.getBundle("settings",
+                                                                             Locale.US,
+                                                                             UTF8ResourceBundleControl.get()
+                        ))
+                        .withPunishmentResourceBundle(ResourceBundle.getBundle("punishments",
+                                                                               Locale.US,
+                                                                               UTF8ResourceBundleControl.get()
+                        ))
+                        .withCommandsResourceBundle(ResourceBundle.getBundle("commands",
+                                                                             Locale.US,
+                                                                             UTF8ResourceBundleControl.get()
+                        ))
+                        .withMiscResourceBundle(ResourceBundle.getBundle("misc",
+                                                                         Locale.US,
+                                                                         UTF8ResourceBundleControl.get()
+                        ))
                         .withSchemaRoot(schemaRoot)
                         .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                         .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
-                        .withDeathMessageList(FileManager.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
+                        .withDeathMessageList(FileManager.class.getResourceAsStream(
+                                "/death_messages_as_data_source_JSON.json"))
                         .withChallengeManager(new ChallengeManager())
                         .withRandom(new Random())
                         .withOfflineTempData(new OfflineTempData(plugin))
@@ -98,7 +129,7 @@ public class FileManager {
 
 
                 return context;
-            } catch (Exception e) {
+            } catch(Exception e) {
                 // should never happen because it was validated first.
 
                 // Case where it may be thrown: A code (material, entityType, ...) is in the source json files, but does
@@ -107,8 +138,7 @@ public class FileManager {
                 // 2. I forgot to update the source jsons when changing the supported server version.
                 throw new RuntimeException(e);
             }
-        }
-        else {
+        } else {
             throw new LoadValidationException(validationResult);
         }
     }

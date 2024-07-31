@@ -31,6 +31,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
+
 public class CriteriaUtil {
 
     public static Model mockModel(Function<Model, Object> test, Class<?> mockedPart) {
@@ -82,7 +83,7 @@ public class CriteriaUtil {
     public static JsonNode loadJSONSchemaStreamAsJSONNode() {
         try {
             return new ObjectMapper().readTree(loadJSONSchemaStream());
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -92,15 +93,20 @@ public class CriteriaUtil {
     }
 
     public static EntityTypeDataSource loadEntities() throws IOException {
-        return new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/entity_types.json"), EntityTypeDataSource.class);
+        return new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/entity_types.json"),
+                                            EntityTypeDataSource.class
+        );
     }
 
     public static MaterialDataSource loadMaterials() throws IOException {
-        return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream("/materials.json"), MaterialDataSource.class);
+        return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream("/materials.json"),
+                                            MaterialDataSource.class
+        );
     }
 
     public static DeathMessageDataSource loadDeathMessages() throws IOException {
-        return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class);
+        return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream(
+                "/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class);
     }
 
     public static void callEvent(ServerMock server, Event event, int n) {

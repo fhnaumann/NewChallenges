@@ -14,7 +14,12 @@ import wand555.github.io.challenges.types.death.DeathMessage;
 public class DeathGoalFactory implements GoalFactory<DeathGoalConfig> {
     @Override
     public BaseGoal createGoal(Context context, DeathGoalConfig config) {
-        GoalCollector<DeathMessage> goalCollector = new GoalCollector<>(context, config.getDeathMessages(), DeathMessage.class, config.isFixedOrder(), config.isShuffled());
+        GoalCollector<DeathMessage> goalCollector = new GoalCollector<>(context,
+                                                                        config.getDeathMessages(),
+                                                                        DeathMessage.class,
+                                                                        config.isFixedOrder(),
+                                                                        config.isShuffled()
+        );
         return new DeathGoal(
                 context,
                 config,

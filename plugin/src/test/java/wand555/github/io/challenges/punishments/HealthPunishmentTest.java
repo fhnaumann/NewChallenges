@@ -40,12 +40,16 @@ public class HealthPunishmentTest {
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("punishments", Locale.ENGLISH, UTF8ResourceBundleControl.get());
+        ResourceBundle bundle = ResourceBundle.getBundle("punishments",
+                                                         Locale.ENGLISH,
+                                                         UTF8ResourceBundleControl.get()
+        );
         resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.punishmentResourceBundle()).thenReturn(bundle);
         when(resourceBundleContext.miscResourceBundle()).thenReturn(CriteriaUtil.loadMiscResourceBundle());
         schemaRoot = new ObjectMapper().readTree(Challenges.class.getResource("/challenges_schema.json"));
-        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream(
+                "/materials.json"), MaterialDataSource.class).getData();
         dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.materialJSONList()).thenReturn(materialJSONS);
     }
@@ -58,7 +62,14 @@ public class HealthPunishmentTest {
         ChallengeManager challengeManager = new ChallengeManager();
         Random randomMock = mock(Random.class);
         when(randomMock.nextInt(anyInt(), anyInt())).thenReturn(3);
-        context = new Context(plugin, resourceBundleContext, dataSourceContext, schemaRoot, challengeManager, randomMock, new OfflineTempData(plugin));
+        context = new Context(plugin,
+                              resourceBundleContext,
+                              dataSourceContext,
+                              schemaRoot,
+                              challengeManager,
+                              randomMock,
+                              new OfflineTempData(plugin)
+        );
         challengeManager.setContext(context);
     }
 
@@ -76,7 +87,7 @@ public class HealthPunishmentTest {
         when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(false);
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
         heartsLostPunishment.enforcePunishment(player);
-        assertEquals(player.getMaxHealth()-heartsLost, player.getHealth(), 1e-3);
+        assertEquals(player.getMaxHealth() - heartsLost, player.getHealth(), 1e-3);
 
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(1);
         when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(true);
@@ -99,9 +110,18 @@ public class HealthPunishmentTest {
 
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
         heartsLostPunishment.enforcePunishment(player);
-        assertEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, player.getHealth(), 1e-3);
-        assertEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, secondPlayer.getHealth(), 1e-3);
-        assertEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, thirdPlayer.getHealth(), 1e-3);
+        assertEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     player.getHealth(),
+                     1e-3
+        );
+        assertEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     secondPlayer.getHealth(),
+                     1e-3
+        );
+        assertEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     thirdPlayer.getHealth(),
+                     1e-3
+        );
 
 
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(1);
@@ -109,8 +129,14 @@ public class HealthPunishmentTest {
         randomHeartLostPunishment.enforcePunishment(player);
         // only test that the players lost any health
         assertNotEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), player.getHealth(), 1e-3);
-        assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), secondPlayer.getHealth(), 1e-3);
-        assertNotEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), thirdPlayer.getHealth(), 1e-3);
+        assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(),
+                        secondPlayer.getHealth(),
+                        1e-3
+        );
+        assertNotEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(),
+                        thirdPlayer.getHealth(),
+                        1e-3
+        );
     }
 
     @Test
@@ -128,16 +154,31 @@ public class HealthPunishmentTest {
 
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
         heartsLostPunishment.enforcePunishment(player);
-        assertEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, player.getHealth(), 1e-3);
-        assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, secondPlayer.getHealth(), 1e-3);
-        assertNotEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, thirdPlayer.getHealth(), 1e-3);
+        assertEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     player.getHealth(),
+                     1e-3
+        );
+        assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                        secondPlayer.getHealth(),
+                        1e-3
+        );
+        assertNotEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                        thirdPlayer.getHealth(),
+                        1e-3
+        );
 
         server.getScheduler().performTicks(20);
         InteractionManager.removeUnableToInteract(context, secondPlayer, false);
         InteractionManager.removeUnableToInteract(context, thirdPlayer, false);
-        assertEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, secondPlayer.getHealth(), 1e-3);
+        assertEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     secondPlayer.getHealth(),
+                     1e-3
+        );
 
-        assertEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()-heartsLost, thirdPlayer.getHealth(), 1e-3);
+        assertEquals(thirdPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     thirdPlayer.getHealth(),
+                     1e-3
+        );
 
 
     }

@@ -38,7 +38,8 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
                 context.resourceBundleContext().punishmentResourceBundle(),
                 "health.enforced.causer",
                 Map.of("player", Component.text(causer.getName()),
-                        "amount", Component.text(Integer.toString(damageAmount)))
+                       "amount", Component.text(Integer.toString(damageAmount))
+                )
         );
         context.plugin().getServer().broadcast(toSend);
     }
@@ -46,7 +47,12 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     @Override
     public void enforceAllPunishment() {
         int damageAmount = getCalculatedHeartsLost();
-        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player, receiver -> enforceOnReceiver(receiver, damageAmount)));
+        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+                                                                                        receiver -> enforceOnReceiver(
+                                                                                                receiver,
+                                                                                                damageAmount
+                                                                                        )
+        ));
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
@@ -69,14 +75,20 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         if(!randomizeHeartsLost) {
             return heartsLost;
         }
-        return context.random().nextInt(minimumHeartsLost, maximumHeartsLost+1);
+        return context.random().nextInt(minimumHeartsLost, maximumHeartsLost + 1);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if(!super.equals(o)) {
+            return false;
+        }
         HealthPunishment that = (HealthPunishment) o;
         return heartsLost == that.heartsLost && randomizeHeartsLost == that.randomizeHeartsLost && minimumHeartsLost == that.minimumHeartsLost && maximumHeartsLost == that.maximumHeartsLost;
     }
@@ -98,21 +110,21 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     @Override
     public Component getCurrentStatus() {
         return ComponentUtil.formatChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().punishmentResourceBundle(),
-                        "health.name"
-                )
-                .append(Component.text(": "))
-                .append(
-                ComponentUtil.formatChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().ruleResourceBundle(),
-                    "health.statusinfo",
-                    Map.of(
-                            "affects", Component.text(getAffects().getValue()),
-                            "amount", Component.text(heartsLost)
-                    )
-                )
-                );
+                                    context.plugin(),
+                                    context.resourceBundleContext().punishmentResourceBundle(),
+                                    "health.name"
+                            )
+                            .append(Component.text(": "))
+                            .append(
+                                    ComponentUtil.formatChatMessage(
+                                            context.plugin(),
+                                            context.resourceBundleContext().ruleResourceBundle(),
+                                            "health.statusinfo",
+                                            Map.of(
+                                                    "affects", Component.text(getAffects().getValue()),
+                                                    "amount", Component.text(heartsLost)
+                                            )
+                                    )
+                            );
     }
 }

@@ -35,31 +35,32 @@ public class ChallengeFilesHandler {
     }
 
     private List<File> getJSONFilesInFolder() {
-        return List.of(Objects.requireNonNull(folderContainingChallenges.listFiles(pathname -> pathname.isFile() && isJSONFile(pathname))));
+        return List.of(Objects.requireNonNull(folderContainingChallenges.listFiles(pathname -> pathname.isFile() && isJSONFile(
+                pathname))));
     }
 
     public List<ChallengeLoadStatus> getChallengesInFolderStatus() {
         JsonFactory jsonFactory = new JsonFactory();
         return getJSONFilesInFolder().stream()
-                .map(file -> file2LoadStatus(file, jsonFactory))
-                .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null)
-                .toList();
+                                     .map(file -> file2LoadStatus(file, jsonFactory))
+                                     .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null)
+                                     .toList();
     }
 
     private ChallengeLoadStatus file2LoadStatus(File file, JsonFactory jsonFactory) {
-        try (JsonParser jsonParser = jsonFactory.createParser(file)) {
+        try(JsonParser jsonParser = jsonFactory.createParser(file)) {
             // Move to the root element
             JsonToken jsonToken = jsonParser.nextToken();
 
-            if (JsonToken.START_OBJECT.equals(jsonToken)) {
-                while (!jsonParser.isClosed()) {
+            if(JsonToken.START_OBJECT.equals(jsonToken)) {
+                while(!jsonParser.isClosed()) {
                     jsonToken = jsonParser.nextToken();
 
-                    if (JsonToken.FIELD_NAME.equals(jsonToken)) {
+                    if(JsonToken.FIELD_NAME.equals(jsonToken)) {
                         String fieldName = jsonParser.getCurrentName();
 
                         // Check if the current field is the target key
-                        if ("metadata".equals(fieldName)) {
+                        if("metadata".equals(fieldName)) {
                             // Move to the value of the target key
                             jsonToken = jsonParser.nextToken();
 
@@ -70,7 +71,7 @@ public class ChallengeFilesHandler {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
             return new ChallengeLoadStatus(file, null);
         }

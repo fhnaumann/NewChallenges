@@ -55,7 +55,9 @@ public class CustomHealthSetting extends BaseSetting implements Storable<CustomH
 
     @Override
     public void onEnd() {
-        Bukkit.getOnlinePlayers().forEach(player -> setCustomHeartForWith(player, 20)); // set health back to 20 (default)
+        Bukkit.getOnlinePlayers().forEach(player -> setCustomHeartForWith(player,
+                                                                          20
+        )); // set health back to 20 (default)
     }
 
     @EventHandler

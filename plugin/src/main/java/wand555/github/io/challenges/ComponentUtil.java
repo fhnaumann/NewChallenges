@@ -26,7 +26,8 @@ public class ComponentUtil {
     public static final Component BUILDER_LINK = Component.text(DISPLAY_URL).clickEvent(ClickEvent.openUrl(ACTUAL_URL));
     public static final Component COLON = Component.text(":");
 
-    public static final Function<Component, BinaryOperator<Component>> ACCUMULATOR = spacer -> (component1, component2) -> component1.append(spacer).append(component2);
+    public static final Function<Component, BinaryOperator<Component>> ACCUMULATOR = spacer -> (component1, component2) -> component1.append(
+            spacer).append(component2);
     public static final BinaryOperator<Component> SPACE_ACCUMULATOR = ACCUMULATOR.apply(Component.space());
 
     public static final BinaryOperator<Component> NEWLINE_ACCUMULATOR = ACCUMULATOR.apply(Component.newline());
@@ -53,27 +54,27 @@ public class ComponentUtil {
         Map<String, Component> placeholders = new HashMap<>();
         if(mappedTime.containsKey(TimerUtil.TimeParts.DAYS)) {
             placeholders.put("days", Component.text(mappedTime.get(TimerUtil.TimeParts.DAYS)));
-        }
-        else {
+        } else {
             split[0] = null;
         }
         if(mappedTime.containsKey(TimerUtil.TimeParts.HOURS)) {
             placeholders.put("hours", Component.text(mappedTime.get(TimerUtil.TimeParts.HOURS)));
-        }
-        else {
+        } else {
             split[1] = null;
         }
         if(mappedTime.containsKey(TimerUtil.TimeParts.MINUTES)) {
             placeholders.put("minutes", Component.text(mappedTime.get(TimerUtil.TimeParts.MINUTES)));
-        }
-        else {
+        } else {
             split[2] = null;
         }
         placeholders.put("seconds", Component.text(mappedTime.get(TimerUtil.TimeParts.SECONDS)));
 
-        String removedUnneededPlaceholders = Arrays.stream(split).filter(Objects::nonNull).collect(Collectors.joining(" "));
+        String removedUnneededPlaceholders = Arrays.stream(split).filter(Objects::nonNull).collect(Collectors.joining(
+                " "));
         TagResolver.Single[] mappedPlaceholders = mapPlaceHolders(placeholders, ""); // no highlight color
-        Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(removedUnneededPlaceholders, mappedPlaceholders);
+        Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(removedUnneededPlaceholders,
+                                                                                     mappedPlaceholders
+        );
         return mappedPlaceHolderComponent;
     }
 
@@ -83,9 +84,13 @@ public class ComponentUtil {
         String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
         String highlightColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight");
 
-        TagResolver.Single[] mappedPlaceholdersWithHighlightColor = mapPlaceHolders(placeholdersWithHighlightColor, highlightColor);
+        TagResolver.Single[] mappedPlaceholdersWithHighlightColor = mapPlaceHolders(placeholdersWithHighlightColor,
+                                                                                    highlightColor
+        );
         TagResolver.Single[] mappedPlaceholdersNoHighlightColor = mapPlaceHolders(placeholdersNoHighlightColor, "");
-        TagResolver.Single[] placeholders = Stream.of(mappedPlaceholdersWithHighlightColor, mappedPlaceholdersNoHighlightColor).flatMap(Stream::of).toArray(TagResolver.Single[]::new);
+        TagResolver.Single[] placeholders = Stream.of(mappedPlaceholdersWithHighlightColor,
+                                                      mappedPlaceholdersNoHighlightColor
+        ).flatMap(Stream::of).toArray(TagResolver.Single[]::new);
         Component mappedPlaceHolderComponent = MiniMessage.miniMessage().deserialize(rawText, placeholders);
         return mappedPlaceHolderComponent.color(TextColor.fromHexString(defaultColor));
     }
@@ -95,7 +100,10 @@ public class ComponentUtil {
 
         String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
         String highlightColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight");
-        String defaultGradientEndColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default.gradient_end");
+        String defaultGradientEndColor = ResourceBundleHelper.getFromBundle(plugin,
+                                                                            bundle,
+                                                                            "chat.color.default.gradient_end"
+        );
 
         return null; // TODO change
     }
@@ -129,6 +137,7 @@ public class ComponentUtil {
     public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
         return formatChatMessage(plugin, bundle, key, Map.of());
     }
+
     @NotNull
     public static Component formatChatMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, @NotNull Map<String, Component> placeholders, boolean prefix) {
         return formatChatMessage(plugin, bundle, key, placeholders, true, prefix, false);
@@ -144,7 +153,10 @@ public class ComponentUtil {
 
         String prefixColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.prefix");
         String defaultColor = ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.default");
-        String highlightColor = highlightPlaceholders ? ResourceBundleHelper.getFromBundle(plugin, bundle, "chat.color.highlight") : "";
+        String highlightColor = highlightPlaceholders ? ResourceBundleHelper.getFromBundle(plugin,
+                                                                                           bundle,
+                                                                                           "chat.color.highlight"
+        ) : "";
 
         TagResolver.Single[] mappedPlaceholders = mapPlaceHolders(placeholders, highlightColor);
 
@@ -164,7 +176,10 @@ public class ComponentUtil {
         String[] split = key.split("\\.");
 
         if(split.length == 0) {
-            plugin.getLogger().warning(String.format("Base name is missing for key '%s' in resource bundle '%s'.", key, bundle.getBaseBundleName()));
+            plugin.getLogger().warning(String.format("Base name is missing for key '%s' in resource bundle '%s'.",
+                                                     key,
+                                                     bundle.getBaseBundleName()
+            ));
             return Component.empty();
         }
         String baseName = split[0];
@@ -174,11 +189,12 @@ public class ComponentUtil {
 
     private static TagResolver.Single[] mapPlaceHolders(@NotNull Map<String, Component> placeholders, @NotNull String highlightColor) {
         return placeholders.entrySet().stream()
-                .map(entry -> Placeholder.component(
-                        entry.getKey(),
-                        entry.getValue().color(TextColor.fromHexString(highlightColor)))
-                )
-                .toArray(TagResolver.Single[]::new);
+                           .map(entry -> Placeholder.component(
+                                        entry.getKey(),
+                                        entry.getValue().color(TextColor.fromHexString(highlightColor))
+                                )
+                           )
+                           .toArray(TagResolver.Single[]::new);
     }
 
     public static Component formatTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
@@ -196,8 +212,10 @@ public class ComponentUtil {
     }
 
     @Deprecated
-    public static  <E extends Enum<E>> Component translate(Collection<E> enumCollectionToTranslate) {
-        return enumCollectionToTranslate.stream().map(ComponentUtil::translate).reduce(Component.empty(), Component::append);
+    public static <E extends Enum<E>> Component translate(Collection<E> enumCollectionToTranslate) {
+        return enumCollectionToTranslate.stream().map(ComponentUtil::translate).reduce(Component.empty(),
+                                                                                       Component::append
+        );
     }
 
     @Deprecated()
@@ -206,17 +224,20 @@ public class ComponentUtil {
         if(enumToTranslate instanceof Material material) {
             if(material.isBlock()) {
                 prefix = "block";
-            }
-            else if (material.isItem()) {
+            } else if(material.isItem()) {
                 prefix = "item";
             }
-        }
-        else if(enumToTranslate instanceof EntityType) {
+        } else if(enumToTranslate instanceof EntityType) {
             prefix = "entity";
         }
         if(prefix == null) {
-            throw new RuntimeException(String.format("Failed to map enum %s to translatable component!", enumToTranslate));
+            throw new RuntimeException(String.format("Failed to map enum %s to translatable component!",
+                                                     enumToTranslate
+            ));
         }
-        return Component.translatable(String.format("%s.minecraft.%s", prefix, enumToTranslate.toString().toLowerCase()));
+        return Component.translatable(String.format("%s.minecraft.%s",
+                                                    prefix,
+                                                    enumToTranslate.toString().toLowerCase()
+        ));
     }
 }

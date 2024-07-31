@@ -53,7 +53,14 @@ public class BlockBreakGoalJSONTest {
         plugin = MockBukkit.load(Challenges.class);
 
         ChallengeManager managerMock = mock(ChallengeManager.class);
-        context = new Context(plugin, resourceBundleContextMock, dataSourceContextMock, null, managerMock, new Random(), new OfflineTempData(plugin));
+        context = new Context(plugin,
+                              resourceBundleContextMock,
+                              dataSourceContextMock,
+                              null,
+                              managerMock,
+                              new Random(),
+                              new OfflineTempData(plugin)
+        );
 
         messageHelper = new BlockBreakGoalMessageHelper(context);
 
@@ -92,8 +99,8 @@ public class BlockBreakGoalJSONTest {
         BlockBreakGoalConfig config = objectMapper.readValue(json, BlockBreakGoalConfig.class);
         BlockBreakGoal blockBreakGoal = new BlockBreakGoalFactory().createGoal(context, config);
         Map<Material, Collect> expected = new HashMap<>();
-        expected.put(Material.STONE, new Collect(2,0));
-        expected.put(Material.DIRT, new Collect(2,0));
+        expected.put(Material.STONE, new Collect(2, 0));
+        expected.put(Material.DIRT, new Collect(2, 0));
         assertEquals(expected, blockBreakGoal.getGoalCollector().getToCollect());
     }
 
@@ -125,11 +132,14 @@ public class BlockBreakGoalJSONTest {
         assertDoesNotThrow(() -> objectMapper.readValue(json, BlockBreakGoalConfig.class));
         BlockBreakGoalConfig config = objectMapper.readValue(json, BlockBreakGoalConfig.class);
         BlockBreakGoal blockBreakGoal = new BlockBreakGoalFactory().createGoal(context, config);
-        assertEquals(Map.entry(Material.STONE, new Collect(2,0)), blockBreakGoal.getGoalCollector().getCurrentlyToCollect());
+        assertEquals(Map.entry(Material.STONE, new Collect(2, 0)),
+                     blockBreakGoal.getGoalCollector().getCurrentlyToCollect()
+        );
     }
 
     @Test
     public void testAllBlockBreakGoalJSON2Model() {
-        assertDoesNotThrow(() -> objectMapper.readValue(BlockBreakGoalJSONTest.class.getResourceAsStream("all_blocks_code_block_break_goal.json"), BlockBreakGoalConfig.class));
+        assertDoesNotThrow(() -> objectMapper.readValue(BlockBreakGoalJSONTest.class.getResourceAsStream(
+                "all_blocks_code_block_break_goal.json"), BlockBreakGoalConfig.class));
     }
 }

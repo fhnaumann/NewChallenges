@@ -43,14 +43,19 @@ public class DeathType extends Type<DeathData> {
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event) {
-        Preconditions.checkArgument(usedTotem.containsKey(event.getPlayer()), "PlayerDeathEvent called before EntityResurrectEvent was called for player '%s'.".formatted(event.getPlayer().getName()));
+        Preconditions.checkArgument(usedTotem.containsKey(event.getPlayer()),
+                                    "PlayerDeathEvent called before EntityResurrectEvent was called for player '%s'.".formatted(
+                                            event.getPlayer().getName())
+        );
         String plainDeathMessage = PlainTextComponentSerializer.plainText().serializeOrNull(event.deathMessage());
         String deathMessageKey = ((TranslatableComponent) event.deathMessage()).key();
         logger.info("Received death message '%s'.".formatted(deathMessageKey));
 
         deathMessage = DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), deathMessageKey);
 
-        triggerIfCheckPasses(new DeathData(event.getPlayer(),1, deathMessage, usedTotem.get(event.getPlayer())), event);
+        triggerIfCheckPasses(new DeathData(event.getPlayer(), 1, deathMessage, usedTotem.get(event.getPlayer())),
+                             event
+        );
         usedTotem.remove(event.getPlayer());
 
     }
@@ -58,7 +63,7 @@ public class DeathType extends Type<DeathData> {
     @EventHandler
     public void onPlayerResurrectEvent(EntityResurrectEvent event) {
         logger.info("Received resurrection.");
-        if (!(event.getEntity() instanceof Player player)) {
+        if(!(event.getEntity() instanceof Player player)) {
             return;
         }
         usedTotem.put(player, !event.isCancelled());
@@ -70,8 +75,9 @@ public class DeathType extends Type<DeathData> {
     private DeathMessage matchDeathMessage(Context context, String plainDeathMessage) {
         DeathMessage actualMatchingDeathMessage;
         List<DeathMessage> matchingMessages = context.dataSourceContext().deathMessageList().stream()
-                .filter(deathMessage -> deathMessage.getMatcherFor(plainDeathMessage).matches())
-                .toList();
+                                                     .filter(deathMessage -> deathMessage.getMatcherFor(
+                                                             plainDeathMessage).matches())
+                                                     .toList();
 
         /*
         If the actual message is "wand555 went off with a bang", then it could be:
@@ -84,12 +90,13 @@ public class DeathType extends Type<DeathData> {
         then it's the third. If only item exists, then throw an error. If none exist, then it's the first
          */
         List<DeathMessage> sortedByGroupCount = matchingMessages.stream()
-                //.map(deathMessage -> deathMessage.getMatcherFor(plainDeathMessage).groupCount())
-                .sorted(Collections.reverseOrder(Comparator.comparingInt(value -> value.getMatcherFor(plainDeathMessage).groupCount())))
-                .toList();
-        if (sortedByGroupCount.isEmpty()) {
+                                                                //.map(deathMessage -> deathMessage.getMatcherFor(plainDeathMessage).groupCount())
+                                                                .sorted(Collections.reverseOrder(Comparator.comparingInt(
+                                                                        value -> value.getMatcherFor(plainDeathMessage).groupCount())))
+                                                                .toList();
+        if(sortedByGroupCount.isEmpty()) {
             throw new RuntimeException("No death message found for '%s'".formatted(plainDeathMessage));
-        } else if (sortedByGroupCount.size() == 1) {
+        } else if(sortedByGroupCount.size() == 1) {
             actualMatchingDeathMessage = sortedByGroupCount.get(0); // easy,there is only one match
         } else {
             /*
@@ -103,21 +110,22 @@ public class DeathType extends Type<DeathData> {
             DeathMessage deathMessageWithMostGroups = sortedByGroupCount.get(0);
             Matcher matcher = deathMessageWithMostGroups.getMatcherFor(plainDeathMessage);
             matcher.matches(); // re-run so group checks work
-            actualMatchingDeathMessage = switch (matcher.groupCount()) {
+            actualMatchingDeathMessage = switch(matcher.groupCount()) {
                 case 3 -> {
                     // deathMessage could be: [player] went off with a bang due to a firework fired from [item] by [mob]
                     // that means the sortedByGroupCount list has 3 entries because when a message with an item exist, that
                     // automatically means that another message with just the mob exists
                     boolean itemGroup = matcher.group("item") != null;
                     boolean mobGroup = matcher.group("mob") != null;
-                    if (itemGroup && mobGroup) {
+                    if(itemGroup && mobGroup) {
                         // both mob and item exist, it can only be the long one
                         yield deathMessageWithMostGroups;
-                    } else if (!itemGroup && mobGroup) {
+                    } else if(!itemGroup && mobGroup) {
                         // only mob exists, it can only be the middle one
                         yield sortedByGroupCount.get(1);
-                    } else if (itemGroup) {
-                        throw new RuntimeException("'%s' has an [item] placeholder, but no '[mob]' placeholder!".formatted(deathMessageWithMostGroups));
+                    } else if(itemGroup) {
+                        throw new RuntimeException("'%s' has an [item] placeholder, but no '[mob]' placeholder!".formatted(
+                                deathMessageWithMostGroups));
                     } else {
                         // neither one exists, it can only be the short one
                         yield sortedByGroupCount.get(2);
@@ -128,7 +136,7 @@ public class DeathType extends Type<DeathData> {
                     // that means the sortedByGroupCount list has 2 entries because when a message with a mob exist, but not with an item,
                     // there is also the "base" version without the mob
                     boolean mobGroup = matcher.group("mob") != null;
-                    if (mobGroup) {
+                    if(mobGroup) {
                         // mob exists, it can only be the first entry from the list
                         yield deathMessageWithMostGroups;
                     } else {
@@ -136,10 +144,12 @@ public class DeathType extends Type<DeathData> {
                         yield sortedByGroupCount.get(1);
                     }
                 }
-                case 1, 0 ->
-                        throw new RuntimeException("Death message '%s' has 0 or 1 group. It should have matched earlier and never come to this stage!".formatted(deathMessageWithMostGroups));
+                case 1, 0 -> throw new RuntimeException(
+                        "Death message '%s' has 0 or 1 group. It should have matched earlier and never come to this stage!".formatted(
+                                deathMessageWithMostGroups));
                 default ->
-                        throw new RuntimeException("Death message '%s' has more groups (>4) than expected!".formatted(deathMessageWithMostGroups));
+                        throw new RuntimeException("Death message '%s' has more groups (>4) than expected!".formatted(
+                                deathMessageWithMostGroups));
             };
         }
 
@@ -160,11 +170,11 @@ public class DeathType extends Type<DeathData> {
              */
             if(plainDeathMessage.endsWith("falling anvil")) {
                 return DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), "death.attack.anvil");
-            }
-            else if(plainDeathMessage.endsWith("a falling block")) {
-                return DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), "death.attack.fallingBlock");
-            }
-            else {
+            } else if(plainDeathMessage.endsWith("a falling block")) {
+                return DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(),
+                                               "death.attack.fallingBlock"
+                );
+            } else {
                 return actualMatchingDeathMessage;
             }
         }

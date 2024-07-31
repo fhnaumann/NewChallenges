@@ -70,8 +70,7 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
     protected Collect updateCollect(DeathData data) {
         if(!hasSomethingToCollect()) {
             return updateCollect(getDeathAmount(), data);
-        }
-        else {
+        } else {
             return super.updateCollect(data);
         }
 
@@ -83,8 +82,7 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
             if(!hasSomethingToCollect()) {
                 // death goal only has an amount and no individual death messages
                 return !data.usedTotem() || isCountTotem();
-            }
-            else {
+            } else {
                 return super.triggerCheck().applies(data) && (!data.usedTotem() || isCountTotem());
             }
         };
@@ -102,7 +100,11 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
 
     @Override
     protected BossBarPart.GoalInformation<DeathMessage> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(), data -> Map.of("death_type", ResourcePackHelper.getDeathMessageUnicodeMapping(data.toEnum())));
+        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(),
+                                                 data -> Map.of("death_type",
+                                                                ResourcePackHelper.getDeathMessageUnicodeMapping(data.toEnum())
+                                                 )
+        );
     }
 
     @Override

@@ -40,7 +40,9 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
 
     @Override
     public void enforceAllPunishment() {
-        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player, this::enforceCauserPunishment));
+        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+                                                                                        this::enforceCauserPunishment
+        ));
     }
 
     private void enforceOnReceiver(Player receiver, int height) {
@@ -48,39 +50,8 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
     }
 
     private void handleMLGResult(Player player, MLGHandler.Result mlgResult) {
-        switch(mlgResult) {
-            case SUCCESS -> handleMLGSuccess(player);
-            case FAILED -> handleMLGFailed(player);
-            case ABORTED -> handleMLGAborted(player);
-        }
+        mlgHandler.handleMLGResult(player, mlgResult);
         actWhenAllResultsAreIn();
-    }
-
-    private void handleMLGSuccess(Player player) {
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                "mlg.enforced.individual.success"
-        );
-        player.sendMessage(toSend);
-    }
-
-    private void handleMLGFailed(Player player) {
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                "mlg.enforced.individual.fail"
-        );
-        player.sendMessage(toSend);
-    }
-
-    private void handleMLGAborted(Player player) {
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                "mlg.enforced.individual.abort"
-        );
-        player.sendMessage(toSend);
     }
 
     private void actWhenAllResultsAreIn() {
@@ -93,17 +64,20 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
                     context.plugin(),
                     context.resourceBundleContext().punishmentResourceBundle(),
                     "mlg.enforced.fail",
-                    Map.of("player", Component.text(mlgHandler.getResults().keySet().stream().map(Player::getName).collect(Collectors.joining(","))))
+                    Map.of("player",
+                           Component.text(mlgHandler.getResults().keySet().stream().map(Player::getName).collect(
+                                   Collectors.joining(",")))
+                    )
             );
             Bukkit.broadcast(toSend);
 
-            switch (getAffects()) {
+            switch(getAffects()) {
                 case CAUSER -> {
                     mlgHandler.getResults().keySet()
-                            .stream()
-                            .findFirst()
-                            .orElseThrow(() -> new RuntimeException("Causer not found in MLG result handler!"))
-                            .setGameMode(GameMode.SPECTATOR);
+                              .stream()
+                              .findFirst()
+                              .orElseThrow(() -> new RuntimeException("Causer not found in MLG result handler!"))
+                              .setGameMode(GameMode.SPECTATOR);
                 }
                 case ALL -> {
                     Bukkit.getScheduler().runTask(context.plugin(), () -> {
@@ -112,9 +86,8 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
                     });
                 }
             }
-        }
-        else {
-            switch (getAffects()) {
+        } else {
+            switch(getAffects()) {
                 case CAUSER -> {
                     Component toSend = ComponentUtil.formatChatMessage(
                             context.plugin(),
@@ -133,7 +106,6 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
                 }
             }
         }
-
     }
 
     @Override

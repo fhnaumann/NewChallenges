@@ -23,30 +23,28 @@ public class EnumConverterHelper {
         // TODO: remove try-catch, it is only here to catch MockBukkit#UnimplementedOperationException when testing
         try {
             return Component.translatable(e.translationKey());
-        } catch (Exception exception) {
+        } catch(Exception exception) {
             return Component.empty();
         }
     }
 
-    public static <E extends  Enum<E> & Keyed & Translatable> Component enum2Comp(E e, TextColor enumTextColor, boolean translate) {
+    public static <E extends Enum<E> & Keyed & Translatable> Component enum2Comp(E e, TextColor enumTextColor, boolean translate) {
         if(translate) {
             return translateEnum(e).color(enumTextColor);
-        }
-        else {
+        } else {
             return Component.text(enum2Str(e, false)).color(enumTextColor);
         }
     }
 
-    public static <E extends  Enum<E> & Keyed & Translatable> Component enum2Comp(E e, boolean translate) {
+    public static <E extends Enum<E> & Keyed & Translatable> Component enum2Comp(E e, boolean translate) {
         return enum2Comp(e, null, translate);
     }
-
 
 
     public static <E extends Enum<E> & Keyed & Translatable> Component enum2Comp(Collection<E> enumCollection, TextColor enumTextColor, Component prefix, Component suffix, Component delimiter, boolean translate) {
         Component component = Component.empty().append(prefix);
         Iterator<E> iterator = enumCollection.iterator();
-        while (iterator.hasNext()) {
+        while(iterator.hasNext()) {
             Component enumAsComp = enum2Comp(iterator.next(), enumTextColor, translate);
             component = component.append(enumAsComp);
             if(iterator.hasNext()) {
@@ -60,8 +58,7 @@ public class EnumConverterHelper {
     public static <E extends Enum<E> & Keyed> String enum2Str(E e, boolean includeNamespace) {
         if(includeNamespace) {
             return e.getKey().asString();
-        }
-        else {
+        } else {
             return e.getKey().asMinimalString();
         }
     }
@@ -84,8 +81,10 @@ public class EnumConverterHelper {
         try {
             Key key = Key.key(enumString);
             return Enum.valueOf(enumClazz, key.value());
-        } catch (InvalidKeyException | IllegalArgumentException e) {
-            throw new RuntimeException(String.format("Failed to map '%s' to enum class '%s'.", enumString, enumClazz), e);
+        } catch(InvalidKeyException | IllegalArgumentException e) {
+            throw new RuntimeException(String.format("Failed to map '%s' to enum class '%s'.", enumString, enumClazz),
+                                       e
+            );
         }
     }
 

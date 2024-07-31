@@ -8,7 +8,8 @@ import org.bukkit.entity.EntityType;
 public record EntityTypeJSON(
         @JsonProperty("code") String code,
         @JsonProperty("translation_key") String translationKey,
-        @JsonProperty("img_name") String imgName) implements DataSourceJSON<EntityType> {
+        @JsonProperty("img_name") String imgName
+) implements DataSourceJSON<EntityType> {
     @Override
     public EntityType toEnum() {
         return EntityType.fromName(code);

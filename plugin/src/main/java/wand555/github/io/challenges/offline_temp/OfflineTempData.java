@@ -30,12 +30,11 @@ public class OfflineTempData {
         if(!file.exists()) {
             data1 = new HashMap<>();
             create();
-        }
-        else {
+        } else {
             try {
                 data1 = objectMapper.readValue(file, new TypeReference<>() {
                 });
-            } catch (IOException e) {
+            } catch(IOException e) {
                 logger.warning("Failed to read offline_temp.json! Is it valid JSON syntax?");
                 logger.fine(e.getMessage());
                 data1 = new HashMap<>();
@@ -51,7 +50,7 @@ public class OfflineTempData {
             Files.createFile(file.toPath());
             Files.write(file.toPath(), "{}".getBytes());
             logger.fine("Created offline_temp.json file and parent folders");
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -60,7 +59,7 @@ public class OfflineTempData {
         data.put(where, what);
         try {
             objectMapper.writeValue(file, data);
-        } catch (IOException e) {
+        } catch(IOException e) {
             throw new RuntimeException(e);
         }
     }

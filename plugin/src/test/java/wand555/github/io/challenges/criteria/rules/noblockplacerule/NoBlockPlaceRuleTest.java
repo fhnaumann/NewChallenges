@@ -48,7 +48,6 @@ public class NoBlockPlaceRuleTest {
     private NoBlockPlaceRuleMessageHelper messageHelper;
 
 
-
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -80,7 +79,10 @@ public class NoBlockPlaceRuleTest {
                     "result": "Deny"
                 }
                 """;
-        rule = new NoBlockPlaceRule(context, new ObjectMapper().readValue(noblockPlaceRuleJSON, NoBlockPlaceRuleConfig.class), messageHelper);
+        rule = new NoBlockPlaceRule(context,
+                                    new ObjectMapper().readValue(noblockPlaceRuleJSON, NoBlockPlaceRuleConfig.class),
+                                    messageHelper
+        );
 
     }
 
@@ -95,7 +97,8 @@ public class NoBlockPlaceRuleTest {
         CriteriaUtil.mockARule(
                 model -> when(model.getRules().getEnabledRules().getNoBlockPlace()).thenReturn(config),
                 context,
-                new NoBlockPlaceRule(context, config, messageHelper));
+                new NoBlockPlaceRule(context, config, messageHelper)
+        );
     }
 
     @Test

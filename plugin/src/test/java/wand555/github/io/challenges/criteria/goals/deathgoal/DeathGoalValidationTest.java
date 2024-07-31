@@ -32,21 +32,26 @@ public class DeathGoalValidationTest {
         dataSourceContext = new DataSourceContext.Builder()
                 .withMaterialJSONList(DeathGoalValidationTest.class.getResourceAsStream("/materials.json"))
                 .withEntityTypeJSONList(DeathGoalValidationTest.class.getResourceAsStream("/entity_types.json"))
-                .withDeathMessageList(DeathGoalValidationTest.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
+                .withDeathMessageList(DeathGoalValidationTest.class.getResourceAsStream(
+                        "/death_messages_as_data_source_JSON.json"))
                 .build();
     }
 
     @Test
     public void testDeathGoalValidatorValidDeathMessageCode() throws IOException {
-        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream("multiple_death_types_death_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
+                "multiple_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = new DeathGoalValidator(dataSourceContext.deathMessageList()).validate(new ValidationResult.ValidationResultBuilder(), json);
+        ValidationResult result = new DeathGoalValidator(dataSourceContext.deathMessageList()).validate(new ValidationResult.ValidationResultBuilder(),
+                                                                                                        json
+        );
         assertTrue(result.isValid());
     }
 
     @Test
     public void testDeathGoalValidatorInvalidDeathMessageCode() throws IOException {
-        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream("invalid_death_types_death_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
+                "invalid_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
         DeathGoalValidator deathGoalValidator = new DeathGoalValidator(dataSourceContext.deathMessageList());
         ValidationResult result = deathGoalValidator.validate(new ValidationResult.ValidationResultBuilder(), json);
@@ -59,26 +64,41 @@ public class DeathGoalValidationTest {
 
     @Test
     public void testFullValidDeathMessageCode() throws IOException {
-        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream("multiple_death_types_death_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
+                "multiple_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        ValidationResult result = Validation.modernValidate(json,
+                                                            jsonSchemaStream,
+                                                            schematronSchemaStream,
+                                                            dataSourceContext
+        );
         assertTrue(result.isValid());
     }
 
     @Test
     public void testFullInvalidDeathMessageCode() throws IOException {
-        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream("invalid_death_types_death_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
+                "invalid_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        ValidationResult result = Validation.modernValidate(json,
+                                                            jsonSchemaStream,
+                                                            schematronSchemaStream,
+                                                            dataSourceContext
+        );
         assertFalse(result.isValid());
         assertEquals(1, result.getViolations().size());
     }
 
     @Test
     public void testAllDeathMessageCode() throws IOException {
-        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream("all_death_types_death_goal.json"), Object.class);
+        Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
+                "all_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronSchemaStream, dataSourceContext);
+        ValidationResult result = Validation.modernValidate(json,
+                                                            jsonSchemaStream,
+                                                            schematronSchemaStream,
+                                                            dataSourceContext
+        );
         assertTrue(result.isValid(), "ValidationResult: %s".formatted(result));
     }
 }

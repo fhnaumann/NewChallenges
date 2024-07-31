@@ -109,14 +109,27 @@ public class DeathGoalTest {
         return new DeathGoal(
                 context,
                 config,
-                new GoalCollector<>(context, config.getDeathMessages(), DeathMessage.class, config.isFixedOrder(), config.isShuffled()),
+                new GoalCollector<>(context,
+                                    config.getDeathMessages(),
+                                    DeathMessage.class,
+                                    config.isFixedOrder(),
+                                    config.isShuffled()
+                ),
                 messageHelper,
                 collectedInventory,
-                config.getGoalTimer() != null ? new Timer(config.getGoalTimer()) : null);
+                config.getGoalTimer() != null ? new Timer(config.getGoalTimer()) : null
+        );
     }
 
     private static DeathGoal simple(int deathAmount, boolean countTotem) {
-        return deathGoal(new DeathGoalConfig(false, countTotem, new CollectableDataConfig(deathAmount, null, 0), List.of(), false, null, false));
+        return deathGoal(new DeathGoalConfig(false,
+                                             countTotem,
+                                             new CollectableDataConfig(deathAmount, null, 0),
+                                             List.of(),
+                                             false,
+                                             null,
+                                             false
+        ));
     }
 
     private static DeathGoal simple(boolean countTotem) {
@@ -139,7 +152,10 @@ public class DeathGoalTest {
         return new DeathData(
                 player,
                 1,
-                new DeathMessage("death.attack.cactus", "(?<player>.*?) was pricked to death", "[player] was pricked to death"),
+                new DeathMessage("death.attack.cactus",
+                                 "(?<player>.*?) was pricked to death",
+                                 "[player] was pricked to death"
+                ),
                 usedTotem
         );
     }
@@ -148,7 +164,10 @@ public class DeathGoalTest {
         return new DeathData(
                 player,
                 1,
-                new DeathMessage("death.attack.cactus", "(?<player>.*?) was pricked to death", "[player] was pricked to death"),
+                new DeathMessage("death.attack.cactus",
+                                 "(?<player>.*?) was pricked to death",
+                                 "[player] was pricked to death"
+                ),
                 usedTotem
         );
     }

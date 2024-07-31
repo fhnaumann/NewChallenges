@@ -58,8 +58,14 @@ public class RandomEffectPunishmentTest {
 
     @Test
     public void testCauserFixedNumberOfRandomEffectPunishment() {
-        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(RandomEffectPunishmentConfig.Affects.CAUSER, 1, false);
-        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context, randomEffectPunishmentConfig);
+        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(
+                RandomEffectPunishmentConfig.Affects.CAUSER,
+                1,
+                false
+        );
+        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
+                                                                                   randomEffectPunishmentConfig
+        );
         randomEffectPunishment.enforcePunishment(causer);
         // expect the causer to have one random effect
         assertEquals(1, causer.getActivePotionEffects().size());
@@ -69,8 +75,14 @@ public class RandomEffectPunishmentTest {
     @Test
     public void testCauserRandomNumberOfRandomEffectPunishment() {
         when(context.random().nextInt(anyInt(), anyInt())).thenReturn(2); // effect amount
-        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(RandomEffectPunishmentConfig.Affects.CAUSER, 0, true);
-        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context, randomEffectPunishmentConfig);
+        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(
+                RandomEffectPunishmentConfig.Affects.CAUSER,
+                0,
+                true
+        );
+        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
+                                                                                   randomEffectPunishmentConfig
+        );
         randomEffectPunishment.enforcePunishment(causer);
         assertEquals(2, causer.getActivePotionEffects().size());
         assertEquals(0, other.getActivePotionEffects().size());
@@ -79,8 +91,14 @@ public class RandomEffectPunishmentTest {
 
     @Test
     public void testAllFixedNumberOfRandomEffectPunishment() {
-        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(RandomEffectPunishmentConfig.Affects.ALL, 3, false);
-        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context, randomEffectPunishmentConfig);
+        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(
+                RandomEffectPunishmentConfig.Affects.ALL,
+                3,
+                false
+        );
+        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
+                                                                                   randomEffectPunishmentConfig
+        );
         randomEffectPunishment.enforcePunishment(causer);
         assertEquals(3, causer.getActivePotionEffects().size());
         assertEquals(3, other.getActivePotionEffects().size());
@@ -90,8 +108,14 @@ public class RandomEffectPunishmentTest {
     @Test
     public void testAllRandomNumberOfRandomEffectPunishment() {
         when(context.random().nextInt(anyInt(), anyInt())).thenReturn(2); // effect amount
-        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(RandomEffectPunishmentConfig.Affects.ALL, 0, true);
-        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context, randomEffectPunishmentConfig);
+        RandomEffectPunishmentConfig randomEffectPunishmentConfig = new RandomEffectPunishmentConfig(
+                RandomEffectPunishmentConfig.Affects.ALL,
+                0,
+                true
+        );
+        RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
+                                                                                   randomEffectPunishmentConfig
+        );
         randomEffectPunishment.enforcePunishment(causer);
         assertEquals(2, causer.getActivePotionEffects().size());
         assertEquals(2, other.getActivePotionEffects().size());

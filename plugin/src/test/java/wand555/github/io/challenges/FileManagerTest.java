@@ -47,13 +47,23 @@ public class FileManagerTest {
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
         bundle = ResourceBundle.getBundle("rules", Locale.US, UTF8ResourceBundleControl.get());
-        JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream("/challenges_schema.json"));
-        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
-        List<EntityTypeJSON> entityTypeJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/entity_types.json"), EntityTypeDataSource.class).getData();
-        List<DeathMessage> deathMessages = new ObjectMapper().readValue(FileManager.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
-        context = new Context(plugin, new ResourceBundleContext(bundle, null, null, null, null, null), new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages), schemaRoot, new ChallengeManager(), new Random(), new OfflineTempData(plugin));
+        JsonNode schemaRoot = new ObjectMapper().readTree(FileManager.class.getResourceAsStream(
+                "/challenges_schema.json"));
+        List<MaterialJSON> materialJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream(
+                "/materials.json"), MaterialDataSource.class).getData();
+        List<EntityTypeJSON> entityTypeJSONS = new ObjectMapper().readValue(FileManager.class.getResourceAsStream(
+                "/entity_types.json"), EntityTypeDataSource.class).getData();
+        List<DeathMessage> deathMessages = new ObjectMapper().readValue(FileManager.class.getResourceAsStream(
+                "/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
+        context = new Context(plugin,
+                              new ResourceBundleContext(bundle, null, null, null, null, null),
+                              new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages),
+                              schemaRoot,
+                              new ChallengeManager(),
+                              new Random(),
+                              new OfflineTempData(plugin)
+        );
         mapper = new ModelMapper(context);
-
 
 
         challengeManager = mock(ChallengeManager.class);
@@ -71,7 +81,8 @@ public class FileManagerTest {
 
     @Test
     public void testWriteRead() throws IOException, URISyntaxException, LoadValidationException {
-        String readJSON = objectMapper.writeValueAsString(objectMapper.readValue(FileManagerTest.class.getResourceAsStream("integration/full1.json"), Object.class));
+        String readJSON = objectMapper.writeValueAsString(objectMapper.readValue(FileManagerTest.class.getResourceAsStream(
+                "integration/full1.json"), Object.class));
         File file = Paths.get(FileManagerTest.class.getResource("integration/full1.json").toURI()).toFile();
         assertDoesNotThrow(() -> FileManager.readFromFile(file, plugin));
         ChallengeManager manager = FileManager.readFromFile(file, plugin).challengeManager();

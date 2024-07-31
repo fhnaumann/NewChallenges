@@ -53,27 +53,32 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
                 context.resourceBundleContext().goalResourceBundle(),
                 "mobgoal.name",
                 false
-        ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(), context.resourceBundleContext().goalResourceBundle()));
+        ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(),
+                                                                         context.resourceBundleContext().goalResourceBundle()
+        ));
         Component entities = Component.empty().appendNewline();
-        for (Map.Entry<EntityType, Collect> entry : goalCollector.getToCollect().entrySet()) {
+        for(Map.Entry<EntityType, Collect> entry : goalCollector.getToCollect().entrySet()) {
             EntityType entityType = entry.getKey();
             Collect collect = entry.getValue();
             Component entityCollectInfo = Component.empty()
-                    .appendSpace()
-                    .appendSpace()
-                    .appendSpace()
-                    .appendSpace()
-                    .append(ComponentUtil.formatChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().goalResourceBundle(),
-                    "mobgoal.statusinfo.mob",
-                    Map.of(
-                            "entity", Component.translatable(entityType),
-                            "amount", Component.text(collect.getCurrentAmount()),
-                            "total_amount", Component.text(collect.getAmountNeeded())
-                    ),
-                    false
-            ));
+                                                   .appendSpace()
+                                                   .appendSpace()
+                                                   .appendSpace()
+                                                   .appendSpace()
+                                                   .append(ComponentUtil.formatChatMessage(
+                                                           context.plugin(),
+                                                           context.resourceBundleContext().goalResourceBundle(),
+                                                           "mobgoal.statusinfo.mob",
+                                                           Map.of(
+                                                                   "entity",
+                                                                   Component.translatable(entityType),
+                                                                   "amount",
+                                                                   Component.text(collect.getCurrentAmount()),
+                                                                   "total_amount",
+                                                                   Component.text(collect.getAmountNeeded())
+                                                           ),
+                                                           false
+                                                   ));
             entities = entities.append(entityCollectInfo).appendNewline();
         }
         return mobGoalName.append(entities);
@@ -81,7 +86,11 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     @Override
     protected BossBarPart.GoalInformation<EntityType> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(), data -> Map.of("entity", ResourcePackHelper.getEntityTypeUnicodeMapping(data)));
+        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(),
+                                                 data -> Map.of("entity",
+                                                                ResourcePackHelper.getEntityTypeUnicodeMapping(data)
+                                                 )
+        );
     }
 
     @Override

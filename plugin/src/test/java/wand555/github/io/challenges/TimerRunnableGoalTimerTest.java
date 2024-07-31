@@ -105,7 +105,7 @@ public class TimerRunnableGoalTimerTest {
 
     private static BlockBreakGoal blockBreakGoalMock(int order) {
         BlockBreakGoal blockBreakGoal = mock(BlockBreakGoal.class);
-        when(blockBreakGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1,-1)));
+        when(blockBreakGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1, -1)));
         when(blockBreakGoal.hasTimer()).thenReturn(true);
         when(blockBreakGoal.isComplete()).thenReturn(false);
         BossBarHelper bossBarHelper = mock(BossBarHelper.class);

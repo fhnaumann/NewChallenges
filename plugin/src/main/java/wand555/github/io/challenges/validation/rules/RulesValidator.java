@@ -25,10 +25,14 @@ public class RulesValidator extends ModelValidator {
             new NoItemRuleValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
         }
         if(enabledRules.getNoBlockBreak() != null) {
-            new BlockBreakRuleValidator(dataSourceContext.materialJSONList()).performValidation(builder, challengesSchema);
+            new BlockBreakRuleValidator(dataSourceContext.materialJSONList()).performValidation(builder,
+                                                                                                challengesSchema
+            );
         }
         if(enabledRules.getNoMobKill() != null) {
-            new NoMobKillRuleValidator(dataSourceContext.entityTypeJSONList()).performValidation(builder, challengesSchema);
+            new NoMobKillRuleValidator(dataSourceContext.entityTypeJSONList()).performValidation(builder,
+                                                                                                 challengesSchema
+            );
         }
         return builder;
     }

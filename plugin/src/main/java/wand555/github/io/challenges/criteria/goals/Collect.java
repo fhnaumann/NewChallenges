@@ -67,8 +67,12 @@ public class Collect implements Storable<CollectableDataConfig> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Collect collect = (Collect) o;
         return config.equals(collect.config);
     }

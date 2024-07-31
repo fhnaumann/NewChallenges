@@ -18,7 +18,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public record DataSourceContext(List<MaterialJSON> materialJSONList, List<EntityTypeJSON> entityTypeJSONList, List<DeathMessage> deathMessageList) {
+public record DataSourceContext(
+        List<MaterialJSON> materialJSONList, List<EntityTypeJSON> entityTypeJSONList,
+        List<DeathMessage> deathMessageList
+) {
 
     public <T extends DataSourceJSON<K>, K extends Keyed> List<T> getTypedList(T dataSourceElement) {
         MaterialJSON materialJSON = materialJSONList.get(0);
@@ -28,9 +31,12 @@ public record DataSourceContext(List<MaterialJSON> materialJSONList, List<Entity
         }
         if(dataSourceElement.getClass() == entityTypeJSON.getClass()) {
             return (List<T>) entityTypeJSONList;
-        }
-        else {
-            throw new RuntimeException("'%s' is not a valid class. Valid classes are %s".formatted(dataSourceElement, List.of(materialJSON.getClass(), entityTypeJSON.getClass())));
+        } else {
+            throw new RuntimeException("'%s' is not a valid class. Valid classes are %s".formatted(dataSourceElement,
+                                                                                                   List.of(materialJSON.getClass(),
+                                                                                                           entityTypeJSON.getClass()
+                                                                                                   )
+            ));
         }
     }
 
@@ -41,26 +47,32 @@ public record DataSourceContext(List<MaterialJSON> materialJSONList, List<Entity
 
         public Builder withMaterialJSONList(InputStream materialJSONInputStream) {
             try {
-                this.materialJSONList = new ObjectMapper().readValue(materialJSONInputStream, MaterialDataSource.class).getData();
+                this.materialJSONList = new ObjectMapper().readValue(materialJSONInputStream,
+                                                                     MaterialDataSource.class
+                ).getData();
                 return this;
-            } catch (IOException e) {
+            } catch(IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
         public Builder withEntityTypeJSONList(InputStream entityTypeJSONInputStream) {
             try {
-                this.entityTypeJSONList = new ObjectMapper().readValue(entityTypeJSONInputStream, EntityTypeDataSource.class).getData();
+                this.entityTypeJSONList = new ObjectMapper().readValue(entityTypeJSONInputStream,
+                                                                       EntityTypeDataSource.class
+                ).getData();
                 return this;
-            } catch (IOException e) {
+            } catch(IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
         public Builder withDeathMessageList(InputStream deathMessageListInputStream) {
             try {
-                this.deathMessageList = new ObjectMapper().readValue(deathMessageListInputStream, DeathMessageDataSource.class).getData();
-            } catch (IOException e) {
+                this.deathMessageList = new ObjectMapper().readValue(deathMessageListInputStream,
+                                                                     DeathMessageDataSource.class
+                ).getData();
+            } catch(IOException e) {
                 throw new RuntimeException(e);
             }
             return this;

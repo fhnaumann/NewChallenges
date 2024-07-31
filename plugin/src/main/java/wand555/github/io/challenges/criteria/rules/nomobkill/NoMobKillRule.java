@@ -25,7 +25,11 @@ public class NoMobKillRule extends PunishableRule<MobData, EntityType> implement
     public NoMobKillRule(Context context, NoMobKillRuleConfig config, NoMobKillRuleMessageHelper messageHelper) {
         super(context, config.getPunishments(), Result.fromJSONString(config.getResult().value()), messageHelper);
         this.mobType = new MobType(context, triggerCheck(), trigger(), cancelIfDeny());
-        this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2EntityType(context.dataSourceContext().entityTypeJSONList(), config.getExemptions())) : new HashSet<>();
+        this.exemptions = config.getExemptions() != null
+                          ? new HashSet<>(ModelMapper.str2EntityType(context.dataSourceContext().entityTypeJSONList(),
+                                                                     config.getExemptions()
+        ))
+                          : new HashSet<>();
     }
 
     @Override

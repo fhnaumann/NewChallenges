@@ -35,7 +35,8 @@ public class ResourcePackHelper {
         if(from instanceof DeathMessage deathMessage) {
             return getDeathMessageUnicodeMapping(deathMessage);
         }
-        throw new RuntimeException("getUnicodeMapping called with '%s' and that is not an entity type or a material.".formatted(from));
+        throw new RuntimeException("getUnicodeMapping called with '%s' and that is not an entity type or a material.".formatted(
+                from));
     }
 
     public static Component getDeathMessageUnicodeMapping(DeathMessage from) {
@@ -45,9 +46,10 @@ public class ResourcePackHelper {
     public static Component getMaterialUnicodeMapping(Material from) {
         String unicode = MATERIAL_UNICODE_MAPPING.get(from);
         if(unicode != null) {
-            return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from, true)).append(Component.text(")")));
-        }
-        else {
+            return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from,
+                                                                                                            true
+            )).append(Component.text(")")));
+        } else {
             return EnumConverterHelper.enum2Comp(from, null, true);
         }
     }
@@ -55,9 +57,10 @@ public class ResourcePackHelper {
     public static Component getEntityTypeUnicodeMapping(EntityType from) {
         String unicode = ENTITY_UNICODE_MAPPING.get(from);
         if(unicode != null) {
-            return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from, true)).append(Component.text(")")));
-        }
-        else {
+            return Component.text(unicode).append(Component.text(" (").append(EnumConverterHelper.enum2Comp(from,
+                                                                                                            true
+            )).append(Component.text(")")));
+        } else {
             return EnumConverterHelper.enum2Comp(from, null, true);
         }
     }
@@ -82,7 +85,9 @@ public class ResourcePackHelper {
 
         System.out.println(unicode);
 
-        String fileName = (customNameSpace == null ? key.key().asString() : customNameSpace + ":" + key.key().value()) + ".png";
+        String fileName = (customNameSpace == null
+                           ? key.key().asString()
+                           : customNameSpace + ":" + key.key().value()) + ".png";
         providerEntry.put("file", fileName);
         JSONArray chars = new JSONArray();
         chars.put(Integer.toHexString(Integer.parseInt(unicode)));
@@ -96,9 +101,12 @@ public class ResourcePackHelper {
 
     private static Map<Material, String> fillMatUnicodeMappings() {
         Map<Material, String> map = new HashMap<>();
-        try(Scanner scanner = new Scanner(Challenges.class.getResourceAsStream("/material_unicode_mapping.csv"), "UTF-8")) {
+        try(Scanner scanner = new Scanner(Challenges.class.getResourceAsStream("/material_unicode_mapping.csv"),
+                                          "UTF-8"
+        )
+        ) {
             scanner.nextLine(); // skip first row
-            while (scanner.hasNextLine()) {
+            while(scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] split = line.split(",");
                 //String unescapedUnicode = split[1].replace("'", "");

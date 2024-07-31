@@ -44,8 +44,14 @@ public class ItemGoalValidationTest {
     @ParameterizedTest
     @MethodSource("provideJSONs")
     public void testCodes(String json, ValidationResult expected) {
-        ValidationResult isolated = new ItemGoalValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(), json);
-        ValidationResult full = Validation.modernValidate(json, CriteriaUtil.loadJSONSchemaStream(), CriteriaUtil.loadSchematronStream(), dataSourceContext);
+        ValidationResult isolated = new ItemGoalValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(),
+                                                                                                         json
+        );
+        ValidationResult full = Validation.modernValidate(json,
+                                                          CriteriaUtil.loadJSONSchemaStream(),
+                                                          CriteriaUtil.loadSchematronStream(),
+                                                          dataSourceContext
+        );
         ValidationUtil.assertResult(expected, isolated);
         ValidationUtil.assertResult(expected, full);
     }
@@ -59,19 +65,25 @@ public class ItemGoalValidationTest {
     }
 
     private static ValidationResult createExpectedInvalidResult() {
-        return new ValidationResult(false, List.of(new Violation("goals/itemGoal/items", "", Violation.Level.ERROR)), null);
+        return new ValidationResult(false,
+                                    List.of(new Violation("goals/itemGoal/items", "", Violation.Level.ERROR)),
+                                    null
+        );
     }
 
     private static String loadInvalidCodeItems() throws IOException {
-        return objectMapper.writeValueAsString(objectMapper.readValue(ItemGoalValidationTest.class.getResourceAsStream("invalid_item_code_item_goal.json"), Object.class));
+        return objectMapper.writeValueAsString(objectMapper.readValue(ItemGoalValidationTest.class.getResourceAsStream(
+                "invalid_item_code_item_goal.json"), Object.class));
     }
 
     private static String loadInvalidBlockButNotItemCode() throws IOException {
-        return objectMapper.writeValueAsString(objectMapper.readValue(ItemGoalValidationTest.class.getResourceAsStream("invalid_block_but_not_item_code_item_goal.json"), Object.class));
+        return objectMapper.writeValueAsString(objectMapper.readValue(ItemGoalValidationTest.class.getResourceAsStream(
+                "invalid_block_but_not_item_code_item_goal.json"), Object.class));
     }
 
 
     private static String loadMultipleItems() throws IOException {
-        return objectMapper.writeValueAsString(objectMapper.readValue(ItemGoalValidationTest.class.getResourceAsStream("multiple_items_item_goal.json"), Object.class));
+        return objectMapper.writeValueAsString(objectMapper.readValue(ItemGoalValidationTest.class.getResourceAsStream(
+                "multiple_items_item_goal.json"), Object.class));
     }
 }

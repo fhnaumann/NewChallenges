@@ -19,7 +19,9 @@ public abstract class BossBarPart<T> {
 
     public abstract Component buildPart();
 
-    public static record GoalInformation<T>(String goalNameInResourceBundle, AdditionalPlaceholderInformation<T> additionalPlaceholderInformation) {
+    public static record GoalInformation<T>(
+            String goalNameInResourceBundle, AdditionalPlaceholderInformation<T> additionalPlaceholderInformation
+    ) {
 
     }
 

@@ -42,7 +42,6 @@ public class BlockBreakRuleTest {
     private BlockBreakRuleMessageHelper messageHelper;
 
 
-
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -74,7 +73,10 @@ public class BlockBreakRuleTest {
                     "result": "Deny"
                 }
                 """;
-        rule = new BlockBreakRule(context, new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class), messageHelper);
+        rule = new BlockBreakRule(context,
+                                  new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class),
+                                  messageHelper
+        );
 
     }
 
@@ -112,7 +114,10 @@ public class BlockBreakRuleTest {
                     "result": "Deny"
                 }
                 """;
-        rule = new BlockBreakRule(context, new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class), messageHelper);
+        rule = new BlockBreakRule(context,
+                                  new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class),
+                                  messageHelper
+        );
         BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
         assertTrue(event.isCancelled());
     }
@@ -126,7 +131,10 @@ public class BlockBreakRuleTest {
                     "result": "Allow"
                 }
                 """;
-        rule = new BlockBreakRule(context, new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class), messageHelper);
+        rule = new BlockBreakRule(context,
+                                  new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class),
+                                  messageHelper
+        );
         BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
         assertFalse(event.isCancelled());
     }

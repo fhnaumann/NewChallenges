@@ -19,7 +19,7 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
     }
 
     public void enforcePunishment(Player causer) {
-        switch (affects) {
+        switch(affects) {
             case CAUSER -> enforceCauserPunishment(causer);
             case ALL -> enforceAllPunishment();
         }
@@ -39,8 +39,12 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Punishment that = (Punishment) o;
         return affects == that.affects;
     }
@@ -65,7 +69,7 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
         }
 
         public static Affects fromJSONString(String valueInJSONString) {
-            return switch (valueInJSONString) {
+            return switch(valueInJSONString) {
                 case "all" -> ALL;
                 case "causer" -> CAUSER;
                 default -> throw new RuntimeException("Failed to match %s".formatted(valueInJSONString));

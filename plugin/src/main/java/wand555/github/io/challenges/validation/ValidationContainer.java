@@ -26,7 +26,7 @@ public class ValidationContainer {
     public ValidationResult validate(ValidationResult.ValidationResultBuilder builder, String json) {
         logger.fine("Validating with %s".formatted(validators.toString()));
         // builder is being mutated in each validate call
-        for (Validator validator : validators) {
+        for(Validator validator : validators) {
             ValidationResult intermediate = validator.validate(builder, json);
             if(!intermediate.isValid()) {
                 return builder.build();

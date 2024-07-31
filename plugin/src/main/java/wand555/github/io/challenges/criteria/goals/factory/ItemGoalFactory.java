@@ -12,7 +12,12 @@ import wand555.github.io.challenges.generated.ItemGoalConfig;
 public class ItemGoalFactory implements GoalFactory<ItemGoalConfig> {
     @Override
     public ItemGoal createGoal(Context context, ItemGoalConfig config) {
-        GoalCollector<Material> goalCollector = new GoalCollector<>(context, config.getItems(), Material.class, config.isFixedOrder(), config.isShuffled());
+        GoalCollector<Material> goalCollector = new GoalCollector<>(context,
+                                                                    config.getItems(),
+                                                                    Material.class,
+                                                                    config.isFixedOrder(),
+                                                                    config.isShuffled()
+        );
         return new ItemGoal(
                 context,
                 config,

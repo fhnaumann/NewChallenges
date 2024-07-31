@@ -13,9 +13,10 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- *
- * @param <D> Any data object (BlockBreakData, MobData, ItemData, ...)
- * @param <K> The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
+ * @param <D>
+ *         Any data object (BlockBreakData, MobData, ItemData, ...)
+ * @param <K>
+ *         The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  */
 public abstract class GoalMessageHelper<D extends Data<K>, K extends Keyed> extends MessageHelper {
     public GoalMessageHelper(Context context) {
@@ -61,6 +62,7 @@ public abstract class GoalMessageHelper<D extends Data<K>, K extends Keyed> exte
                 "%s.single.reached.sound".formatted(getGoalNameInResourceBundle())
         );
     }
+
     public void sendAllReachedAction() {
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),

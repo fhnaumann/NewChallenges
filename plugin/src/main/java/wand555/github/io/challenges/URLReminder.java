@@ -57,9 +57,13 @@ public class URLReminder implements Consumer<BukkitTask>, Listener {
 
     public void start() {
         try {
-            context.plugin().getServer().getScheduler().runTaskTimerAsynchronously(context.plugin(), this, 5*20L, 30*20L);
+            context.plugin().getServer().getScheduler().runTaskTimerAsynchronously(context.plugin(),
+                                                                                   this,
+                                                                                   5 * 20L,
+                                                                                   30 * 20L
+            );
             context.plugin().getServer().getScheduler().runTaskTimer(context.plugin(), urlActionBar, 0L, 20L);
-        } catch (Exception ignored) {
+        } catch(Exception ignored) {
             // MockBukkit throws UnimplentedOperationException for async timers
         }
 

@@ -24,7 +24,9 @@ public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, St
         this.timer = timer;
         BossBarBuilder bossBarBuilder = new BossBarBuilder();
         if(hasTimer()) {
-            bossBarBuilder.then(new TimerBossBarPart(context, timer)).then(new GoalNameBossBarPart(context, getNameInResourceBundle()));
+            bossBarBuilder.then(new TimerBossBarPart(context, timer)).then(new GoalNameBossBarPart(context,
+                                                                                                   getNameInResourceBundle()
+            ));
         }
         this.bossBarHelper = new BossBarHelper(context, bossBarBuilder.getParts());
     }

@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- *
- * @param <T> Any data object (BlockBreakData, MobData, ItemData, ...)
+ * @param <T>
+ *         Any data object (BlockBreakData, MobData, ItemData, ...)
  */
 public abstract class RuleMessageHelper<T> extends MessageHelper {
     public RuleMessageHelper(Context context) {

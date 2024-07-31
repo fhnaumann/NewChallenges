@@ -98,7 +98,18 @@ public class MobGoalTest {
                 }
                 """;
         MobGoalConfig config = new ObjectMapper().readValue(mobGoalJSON, MobGoalConfig.class);
-        mobGoal = new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
+        mobGoal = new MobGoal(context,
+                              config,
+                              new GoalCollector<>(context,
+                                                  config.getMobs(),
+                                                  EntityType.class,
+                                                  config.isFixedOrder(),
+                                                  config.isShuffled()
+                              ),
+                              messageHelper,
+                              collectedInventory,
+                              null
+        );
 
         LivingEntity pigMock = new PigMock(server, UUID.randomUUID());
         pigMock.setKiller(player);
@@ -139,7 +150,9 @@ public class MobGoalTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 1));
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)),
+                                                             argThat(argument -> argument.getCurrentAmount() == 1)
+        );
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
         verify(messageHelper, never()).sendAllReachedAction();
     }
@@ -147,7 +160,9 @@ public class MobGoalTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)), argThat(argument -> argument.getCurrentAmount() == 2));
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)),
+                                                                argThat(argument -> argument.getCurrentAmount() == 2)
+        );
         verify(messageHelper, never()).sendAllReachedAction();
     }
 
@@ -177,7 +192,19 @@ public class MobGoalTest {
 
     @Test
     public void testAllCodes() throws IOException {
-        MobGoalConfig config = new ObjectMapper().readValue(MobGoalTest.class.getResourceAsStream("all_mobs_code_mob_goal_isolation.json"), MobGoalConfig.class);
-        assertDoesNotThrow(() -> new MobGoal(context, config, new GoalCollector<>(context, config.getMobs(), EntityType.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null));
+        MobGoalConfig config = new ObjectMapper().readValue(MobGoalTest.class.getResourceAsStream(
+                "all_mobs_code_mob_goal_isolation.json"), MobGoalConfig.class);
+        assertDoesNotThrow(() -> new MobGoal(context,
+                                             config,
+                                             new GoalCollector<>(context,
+                                                                 config.getMobs(),
+                                                                 EntityType.class,
+                                                                 config.isFixedOrder(),
+                                                                 config.isShuffled()
+                                             ),
+                                             messageHelper,
+                                             collectedInventory,
+                                             null
+        ));
     }
 }

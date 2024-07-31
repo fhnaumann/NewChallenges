@@ -58,10 +58,17 @@ public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed, Transl
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DeathMessage that = (DeathMessage) o;
-        return Objects.equals(key, that.key) && Objects.equals(message, that.message) && Objects.equals(messageWithDummyData, that.messageWithDummyData);
+        return Objects.equals(key, that.key) && Objects.equals(message, that.message) && Objects.equals(
+                messageWithDummyData,
+                that.messageWithDummyData
+        );
     }
 
     @Override

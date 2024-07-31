@@ -23,7 +23,9 @@ public interface DataSourceJSON<E extends Keyed> {
             throw new RuntimeException("'%s' does not exist in data source %s".formatted(code, dataSource));
         }
         if(shouldBeExactlyOne.size() > 1) {
-            throw new RuntimeException("%s exists more than once in data source, all matches: '%s'".formatted(code, shouldBeExactlyOne));
+            throw new RuntimeException("%s exists more than once in data source, all matches: '%s'".formatted(code,
+                                                                                                              shouldBeExactlyOne
+            ));
         }
         return shouldBeExactlyOne.get(0);
     }

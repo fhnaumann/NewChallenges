@@ -24,8 +24,7 @@ public class CollectedInventoryHelper {
     public static final BiFunction<Context, Material, ItemStack> DEFAULT_ITEM_2_ITEMSTACK_CREATOR = (ignoredForNow, material) -> {
         if(material.isItem()) {
             return new ItemStack(material);
-        }
-        else {
+        } else {
             return getDefaultItemStackCreator().apply(ignoredForNow, material);
         }
     };
@@ -50,7 +49,13 @@ public class CollectedInventoryHelper {
     }
 
     public static SingleCollectedItemStack<Material> createSingleCollectedItemStack(Context context, String nameInResourceBundle, ResourceBundle specificBundle, Collect collect, Material about) {
-        return createSingleCollectedItemStack(context, nameInResourceBundle, specificBundle, collect, about, DEFAULT_ITEM_2_ITEMSTACK_CREATOR);
+        return createSingleCollectedItemStack(context,
+                                              nameInResourceBundle,
+                                              specificBundle,
+                                              collect,
+                                              about,
+                                              DEFAULT_ITEM_2_ITEMSTACK_CREATOR
+        );
     }
 
     public static <T extends Keyed> MultipleCollectedItemStack<T> createMultipleCollectedItemStack(Context context, String nameInResourceBundle, ResourceBundle specificBundle, Collect collect, T about, BiFunction<Context, T, ItemStack> aboutMapper) {
@@ -73,6 +78,12 @@ public class CollectedInventoryHelper {
     }
 
     public static MultipleCollectedItemStack<Material> createMultipleCollectedItemStack(Context context, String nameInResourceBundle, ResourceBundle specificBundle, Collect collect, Material about) {
-        return createMultipleCollectedItemStack(context, nameInResourceBundle, specificBundle, collect, about, DEFAULT_ITEM_2_ITEMSTACK_CREATOR);
+        return createMultipleCollectedItemStack(context,
+                                                nameInResourceBundle,
+                                                specificBundle,
+                                                collect,
+                                                about,
+                                                DEFAULT_ITEM_2_ITEMSTACK_CREATOR
+        );
     }
 }

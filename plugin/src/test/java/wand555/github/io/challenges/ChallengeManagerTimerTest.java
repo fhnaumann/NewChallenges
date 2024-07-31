@@ -112,7 +112,7 @@ public class ChallengeManagerTimerTest {
 
     private static BlockBreakGoal blockBreakGoalMock(int order) {
         BlockBreakGoal blockBreakGoal = mock(BlockBreakGoal.class);
-        when(blockBreakGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1,-1)));
+        when(blockBreakGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1, -1)));
         when(blockBreakGoal.hasTimer()).thenReturn(true);
         when(blockBreakGoal.isComplete()).thenReturn(true);
         return blockBreakGoal;
@@ -120,7 +120,7 @@ public class ChallengeManagerTimerTest {
 
     private static ItemGoal itemGoalMock(int order) {
         ItemGoal itemGoal = mock(ItemGoal.class);
-        when(itemGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1,-1)));
+        when(itemGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1, -1)));
         when(itemGoal.hasTimer()).thenReturn(true);
         when(itemGoal.isComplete()).thenReturn(true);
         return itemGoal;

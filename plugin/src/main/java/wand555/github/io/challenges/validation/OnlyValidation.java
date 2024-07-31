@@ -34,14 +34,24 @@ public class OnlyValidation {
             InputStream jsonSchemaStream = OnlyValidation.class.getResourceAsStream("/challenges_schema.json");
             InputStream schematronStream = OnlyValidation.class.getResourceAsStream("/constraints.sch");
 
-            List<MaterialJSON> materialJSONS = objectMapper.readValue(OnlyValidation.class.getResourceAsStream("/materials.json"), MaterialDataSource.class).getData();
-            List<EntityTypeJSON> entityTypeJSONS = objectMapper.readValue(OnlyValidation.class.getResourceAsStream("/entity_types.json"), EntityTypeDataSource.class).getData();
-            List<DeathMessage> deathMessageList = objectMapper.readValue(OnlyValidation.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
-            DataSourceContext dataSourceContext = new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessageList);
+            List<MaterialJSON> materialJSONS = objectMapper.readValue(OnlyValidation.class.getResourceAsStream(
+                    "/materials.json"), MaterialDataSource.class).getData();
+            List<EntityTypeJSON> entityTypeJSONS = objectMapper.readValue(OnlyValidation.class.getResourceAsStream(
+                    "/entity_types.json"), EntityTypeDataSource.class).getData();
+            List<DeathMessage> deathMessageList = objectMapper.readValue(OnlyValidation.class.getResourceAsStream(
+                    "/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
+            DataSourceContext dataSourceContext = new DataSourceContext(materialJSONS,
+                                                                        entityTypeJSONS,
+                                                                        deathMessageList
+            );
 
             File jsonSourcePath = new File(child.getPath());
             String json = objectMapper.writeValueAsString(objectMapper.readValue(jsonSourcePath, Object.class));
-            ValidationResult result = Validation.modernValidate(json, jsonSchemaStream, schematronStream, dataSourceContext);
+            ValidationResult result = Validation.modernValidate(json,
+                                                                jsonSchemaStream,
+                                                                schematronStream,
+                                                                dataSourceContext
+            );
             JsonObject entry = new JsonObject();
             entry.addProperty("filename", child.getName());
             entry.addProperty("valid", result.isValid());
@@ -54,7 +64,7 @@ public class OnlyValidation {
         try(Writer writer = new FileWriter(jsonResult)) {
             String json = gson.toJson(validationData);
             writer.write(json);
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
         }
     }

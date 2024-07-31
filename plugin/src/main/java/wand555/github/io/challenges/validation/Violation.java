@@ -28,10 +28,16 @@ public class Violation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Violation violation = (Violation) o;
-        return Objects.equals(where, violation.where) && Objects.equals(message, violation.message) && level == violation.level;
+        return Objects.equals(where, violation.where) && Objects.equals(message,
+                                                                        violation.message
+        ) && level == violation.level;
     }
 
     @Override
@@ -49,6 +55,7 @@ public class Violation {
     }
 
     public enum Level {
-        WARNING, ERROR,
+        WARNING,
+        ERROR,
     }
 }

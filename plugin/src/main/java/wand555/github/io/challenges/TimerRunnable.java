@@ -56,13 +56,15 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
         if(context.challengeManager().isRunning()) {
             timer += 1;
             Map<TimerUtil.TimeParts, String> mappedTime = TimerUtil.format(timer);
-            formattedTime = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().miscResourceBundle(), "timer.format", mappedTime);
-        }
-        else if(context.challengeManager().isSetup()) {
+            formattedTime = ComponentUtil.formatTimer(context.plugin(),
+                                                      context.resourceBundleContext().miscResourceBundle(),
+                                                      "timer.format",
+                                                      mappedTime
+            );
+        } else if(context.challengeManager().isSetup()) {
             // don't do anything in this case, as the URLReminder is showing something already
             return;
-        }
-        else {
+        } else {
             formattedTime = ComponentUtil.formatChatMessage(
                     context.plugin(),
                     context.resourceBundleContext().miscResourceBundle(),
@@ -80,8 +82,7 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
                 goal.getTimer().decrementTime();
                 if(goal.getTimer().isFailedDueTimeLimit()) {
                     context.challengeManager().endChallenge(false);
-                }
-                else {
+                } else {
                     goal.getBossBarHelper().updateBossBar();
                 }
             });

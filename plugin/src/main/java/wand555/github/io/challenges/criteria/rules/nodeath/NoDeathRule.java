@@ -20,7 +20,11 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> impleme
     private final boolean ignoreTotem;
 
     public NoDeathRule(Context context, NoDeathRuleConfig config, NoDeathRuleMessageHelper messageHelper) {
-        super(context, config.getPunishments(), PunishableRule.Result.fromJSONString(config.getResult().value()), messageHelper);
+        super(context,
+              config.getPunishments(),
+              PunishableRule.Result.fromJSONString(config.getResult().value()),
+              messageHelper
+        );
         this.deathType = new DeathType(context, triggerCheck(), trigger());
         this.ignoreTotem = config.isIgnoreTotem();
     }
@@ -45,7 +49,10 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> impleme
 
     @Override
     public NoDeathRuleConfig toGeneratedJSONClass() {
-        return new NoDeathRuleConfig(ignoreTotem, toPunishmentsConfig(), NoDeathRuleConfig.Result.fromValue(result.getValue()));
+        return new NoDeathRuleConfig(ignoreTotem,
+                                     toPunishmentsConfig(),
+                                     NoDeathRuleConfig.Result.fromValue(result.getValue())
+        );
     }
 
     @Override

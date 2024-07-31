@@ -54,15 +54,14 @@ public class NullHelper {
                 }
                 if(field.getType().equals(List.class)) {
 
-                }
-                else {
+                } else {
                     field.trySetAccessible();
                     T fieldObject = (T) field.get(newObjectInConfig);
                     field.set(newObjectInConfig, notNullOrDefault(fieldObject, (Class<T>) fieldObject.getClass()));
                 }
             }
             return newObjectInConfig;
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch(InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 public class MessageHelper {
 
     protected final Context context;
+
     public MessageHelper(Context context) {
         this.context = context;
     }

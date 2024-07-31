@@ -28,8 +28,14 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
         super(context, map(config.getAffects()));
         this.effectsAtOnce = config.getEffectsAtOnce();
         this.randomizeEffectsAtOnce = config.isRandomizeEffectsAtOnce();
-        this.minimumEffectsAtOnce = NullHelper.minValue(context.schemaRoot(), "RandomEffectPunishmentConfig", "effectsAtOnce");
-        this.maximumEffectsAtOnce = NullHelper.maxValue(context.schemaRoot(), "RandomEffectPunishmentConfig", "effectsAtOnce");
+        this.minimumEffectsAtOnce = NullHelper.minValue(context.schemaRoot(),
+                                                        "RandomEffectPunishmentConfig",
+                                                        "effectsAtOnce"
+        );
+        this.maximumEffectsAtOnce = NullHelper.maxValue(context.schemaRoot(),
+                                                        "RandomEffectPunishmentConfig",
+                                                        "effectsAtOnce"
+        );
     }
 
     @Override
@@ -41,7 +47,8 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
                 context.resourceBundleContext().punishmentResourceBundle(),
                 "randomeffect.enforced.causer",
                 Map.of("player", Component.text(causer.getName()),
-                        "amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())))
+                       "amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size()))
+                )
         );
         context.plugin().getServer().broadcast(toSend);
     }
@@ -49,7 +56,12 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     @Override
     public void enforceAllPunishment() {
         List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
-        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player, samePlayer -> enforceOnReceiver(samePlayer, calculatedEffectsAtOnce)));
+        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+                                                                                        samePlayer -> enforceOnReceiver(
+                                                                                                samePlayer,
+                                                                                                calculatedEffectsAtOnce
+                                                                                        )
+        ));
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
@@ -67,21 +79,23 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
         int amount;
         if(!randomizeEffectsAtOnce) {
             amount = effectsAtOnce;
-        }
-        else {
+        } else {
             amount = context.random().nextInt(minimumEffectsAtOnce, maximumEffectsAtOnce);
         }
         return createNEffects(amount);
     }
 
     private List<PotionEffect> createNEffects(int n) {
-        List<PotionEffectType> toApply = CollectionUtil.pickN(Arrays.asList(PotionEffectType.values()), n, context.random());
+        List<PotionEffectType> toApply = CollectionUtil.pickN(Arrays.asList(PotionEffectType.values()),
+                                                              n,
+                                                              context.random()
+        );
         return toApply.stream().map(this::potionEffect).toList();
     }
 
     private PotionEffect potionEffect(PotionEffectType type) {
         return type.createEffect(
-                context.random().nextInt(10,60*10+1) * 20, // between 10 seconds and 10 minutes
+                context.random().nextInt(10, 60 * 10 + 1) * 20, // between 10 seconds and 10 minutes
                 context.random().nextInt(6)
         );
     }

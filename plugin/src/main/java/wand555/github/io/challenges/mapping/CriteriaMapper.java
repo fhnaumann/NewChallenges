@@ -17,6 +17,7 @@ import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
 import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRuleMessageHelper;
 import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.criteria.settings.CustomHealthSetting;
+import wand555.github.io.challenges.criteria.settings.MLGSetting;
 import wand555.github.io.challenges.criteria.settings.UltraHardcoreSetting;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mlg.MLGHandler;
@@ -31,10 +32,16 @@ import java.util.List;
 public class CriteriaMapper {
 
     public static Criterias mapCriterias(Context context, Model model) {
-        List<Rule> rules = model.getRules() != null && model.getRules().getEnabledRules() != null ? mapToRules(context, model.getRules().getEnabledRules()) : new ArrayList<>();
-        List<Punishment> globalPunishments = model.getRules() != null ? mapToPunishments(context, model.getRules().getEnabledGlobalPunishments()) : new ArrayList<>();
+        List<Rule> rules = model.getRules() != null && model.getRules().getEnabledRules() != null ? mapToRules(context,
+                                                                                                               model.getRules().getEnabledRules()
+        ) : new ArrayList<>();
+        List<Punishment> globalPunishments = model.getRules() != null ? mapToPunishments(context,
+                                                                                         model.getRules().getEnabledGlobalPunishments()
+        ) : new ArrayList<>();
         List<BaseGoal> goals = model.getGoals() != null ? mapToGoals(context, model.getGoals()) : new ArrayList<>();
-        List<BaseSetting> settings = model.getSettings() != null ? mapToSettings(context, model.getSettings()) : new ArrayList<>();
+        List<BaseSetting> settings = model.getSettings() != null
+                                     ? mapToSettings(context, model.getSettings())
+                                     : new ArrayList<>();
         return new Criterias(rules, globalPunishments, goals, settings);
     }
 
@@ -48,10 +55,16 @@ public class CriteriaMapper {
             rules.add(new BlockBreakRule(context, noBlockBreakRuleConfig, new BlockBreakRuleMessageHelper(context)));
         }
         if(enabledRulesConfig.getNoBlockPlace() != null) {
-            rules.add(new NoBlockPlaceRule(context, enabledRulesConfig.getNoBlockPlace(), new NoBlockPlaceRuleMessageHelper(context)));
+            rules.add(new NoBlockPlaceRule(context,
+                                           enabledRulesConfig.getNoBlockPlace(),
+                                           new NoBlockPlaceRuleMessageHelper(context)
+            ));
         }
         if(enabledRulesConfig.getNoMobKill() != null) {
-            rules.add(new NoMobKillRule(context, enabledRulesConfig.getNoMobKill(), new NoMobKillRuleMessageHelper(context)));
+            rules.add(new NoMobKillRule(context,
+                                        enabledRulesConfig.getNoMobKill(),
+                                        new NoMobKillRuleMessageHelper(context)
+            ));
         }
         if(enabledRulesConfig.getNoItem() != null) {
             rules.add(new NoItemRule(context, enabledRulesConfig.getNoItem(), new NoItemRuleMessageHelper(context)));
@@ -94,6 +107,12 @@ public class CriteriaMapper {
         if(settingsConfig.getUltraHardcoreSetting() != null) {
             settings.add(new UltraHardcoreSetting(context, settingsConfig.getUltraHardcoreSetting()));
         }
+        if(settingsConfig.getMlgSetting() != null) {
+            settings.add(new MLGSetting(context,
+                                        settingsConfig.getMlgSetting(),
+                                        new MLGHandler(context, new OfflinePlayerData(context.plugin()))
+            ));
+        }
         return settings;
     }
 
@@ -114,10 +133,15 @@ public class CriteriaMapper {
             punishments.add(new RandomEffectPunishment(context, randomEffectPunishmentConfig));
         }
         if(punishmentsConfig.getMlgPunishment() != null) {
-            punishments.add(new MLGPunishment(context, punishmentsConfig.getMlgPunishment(), new MLGHandler(context, new OfflinePlayerData(context.plugin()))));
+            punishments.add(new MLGPunishment(context,
+                                              punishmentsConfig.getMlgPunishment(),
+                                              new MLGHandler(context, new OfflinePlayerData(context.plugin()))
+            ));
         }
         return punishments;
     }
 
-    public record Criterias(List<Rule> rules, List<Punishment> globalPunishments, List<BaseGoal> goals, List<BaseSetting> settings) {}
+    public record Criterias(
+            List<Rule> rules, List<Punishment> globalPunishments, List<BaseGoal> goals, List<BaseSetting> settings
+    ) {}
 }

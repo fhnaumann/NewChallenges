@@ -23,12 +23,21 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
     private final Set<Material> exemptions;
 
     public BlockBreakRule(Context context, NoBlockBreakRuleConfig config, BlockBreakRuleMessageHelper messageHelper) {
-        super(context, config.getPunishments(), PunishableRule.Result.fromJSONString(config.getResult().value()), messageHelper);
-        this.exemptions = config.getExemptions() != null ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(), config.getExemptions())) : new HashSet<>();
+        super(context,
+              config.getPunishments(),
+              PunishableRule.Result.fromJSONString(config.getResult().value()),
+              messageHelper
+        );
+        this.exemptions = config.getExemptions() != null
+                          ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(),
+                                                                    config.getExemptions()
+        ))
+                          : new HashSet<>();
 
         blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfDeny());
         logger.fine("Created %s instance.".formatted(blockBreakType.getClass().getSimpleName()));
     }
+
     @Override
     public TriggerCheck<BlockBreakData> triggerCheck() {
         return TriggerCheck.ignoreIfContains(exemptions);
@@ -36,9 +45,15 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if(!super.equals(o)) {
+            return false;
+        }
         BlockBreakRule that = (BlockBreakRule) o;
         return Objects.equals(exemptions, that.exemptions);
     }
@@ -51,7 +66,8 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
     @Override
     public NoBlockBreakRuleConfig toGeneratedJSONClass() {
         return new NoBlockBreakRuleConfig(
-                exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(), // always sort when moving from set to list
+                exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(),
+                // always sort when moving from set to list
                 toPunishmentsConfig(),
                 NoBlockBreakRuleConfig.Result.fromValue(getResult().getValue())
         );
@@ -69,7 +85,9 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
                 context.resourceBundleContext().ruleResourceBundle(),
                 "noblockbreak.name",
                 false
-        ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(), context.resourceBundleContext().ruleResourceBundle()));
+        ).append(ComponentUtil.COLON).color(ComponentUtil.getPrefixColor(context.plugin(),
+                                                                         context.resourceBundleContext().ruleResourceBundle()
+        ));
         return noBlockBreakRuleName
                 .appendNewline()
                 .appendSpace()
@@ -77,16 +95,16 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
                 .appendSpace()
                 .appendSpace()
                 .append(
-                ComponentUtil.formatChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().ruleResourceBundle(),
-                        "noblockbreak.statusinfo",
-                        Map.of(
-                                "exemptions", ComponentUtil.translate(exemptions)
-                        ),
-                        false
-                )
-        );
+                        ComponentUtil.formatChatMessage(
+                                context.plugin(),
+                                context.resourceBundleContext().ruleResourceBundle(),
+                                "noblockbreak.statusinfo",
+                                Map.of(
+                                        "exemptions", ComponentUtil.translate(exemptions)
+                                ),
+                                false
+                        )
+                );
     }
 
     @Override

@@ -79,7 +79,7 @@ public class Validation {
         Schema schema = SchemaLoader.load(jsonSchema);
         try {
             schema.validate(new JSONObject(json));
-        } catch (ValidationException e) {
+        } catch(ValidationException e) {
             JSONObject errors = e.toJSON();
             addJSONViolationsToBuilder(errors);
         }
@@ -88,10 +88,13 @@ public class Validation {
 
     private void addJSONViolationsToBuilder(JSONObject errors) {
         JSONArray causingExceptions = errors.getJSONArray("causingExceptions");
-        if (causingExceptions.isEmpty()) {
-            builder.addViolation(new Violation(errors.getString("pointerToViolation"), errors.getString("message"), Violation.Level.ERROR));
+        if(causingExceptions.isEmpty()) {
+            builder.addViolation(new Violation(errors.getString("pointerToViolation"),
+                                               errors.getString("message"),
+                                               Violation.Level.ERROR
+            ));
         }
-        for (Object obj : causingExceptions) {
+        for(Object obj : causingExceptions) {
             JSONObject jsonException = (JSONObject) obj;
             String where = jsonException.getString("pointerToViolation");
             String message = jsonException.getString("message");
@@ -111,13 +114,15 @@ public class Validation {
             //schematronResourcePure = SchematronResourcePure.fromInputStream("ignored", Challenges.class.getResourceAsStream("/constraints.sch"));
             Source streamSource = new StreamSource(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))); // TODO
 
-            SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(streamSource);
+            SchematronOutputType schematronOutputType = schematronResourcePure.applySchematronValidationToSVRL(
+                    streamSource);
 
 
             List<Object> failedAsserts = schematronOutputType.getActivePatternAndFiredRuleAndFailedAssert();
-            ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(schematronOutputType);
+            ICommonsList<AbstractSVRLMessage> svrlFailedAsserts = SVRLHelper.getAllFailedAssertionsAndSuccessfulReports(
+                    schematronOutputType);
             addSchematronViolationsToBuilder(svrlFailedAsserts);
-        } catch (Exception e) {
+        } catch(Exception e) {
             builder.setInitialException(e);
             throw new RuntimeException(e);
 
@@ -128,7 +133,7 @@ public class Validation {
     private void addSchematronViolationsToBuilder(ICommonsList<AbstractSVRLMessage> svrlFailedAsserts) {
         svrlFailedAsserts.forEach(svrlFailedAssert -> {
             Violation.Level level = Violation.Level.ERROR;
-            if (svrlFailedAssert instanceof SVRLSuccessfulReport) {
+            if(svrlFailedAssert instanceof SVRLSuccessfulReport) {
                 level = Violation.Level.WARNING;
             }
             builder.addViolation(new Violation(svrlFailedAssert.getLocation(), svrlFailedAssert.getText(), level));

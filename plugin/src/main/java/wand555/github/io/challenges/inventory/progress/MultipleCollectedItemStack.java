@@ -68,8 +68,8 @@ public abstract class MultipleCollectedItemStack<K extends Keyed> extends BaseCo
 
     private List<Component> getContributorsComponent() {
         return getContributors().entrySet().stream()
-                .map(this::contributorComponent)
-                .toList();
+                                .map(this::contributorComponent)
+                                .toList();
     }
 
     private Component contributorComponent(Map.Entry<String, Integer> entry) {

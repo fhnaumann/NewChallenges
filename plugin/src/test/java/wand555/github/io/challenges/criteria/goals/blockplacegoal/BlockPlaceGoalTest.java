@@ -90,7 +90,18 @@ public class BlockPlaceGoalTest {
                 }
                 """;
         BlockPlaceGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockPlaceGoalConfig.class);
-        blockPlaceGoal = new BlockPlaceGoal(context, config, new GoalCollector<>(context, config.getPlaced(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null);
+        blockPlaceGoal = new BlockPlaceGoal(context,
+                                            config,
+                                            new GoalCollector<>(context,
+                                                                config.getPlaced(),
+                                                                Material.class,
+                                                                config.isFixedOrder(),
+                                                                config.isShuffled()
+                                            ),
+                                            messageHelper,
+                                            collectedInventory,
+                                            null
+        );
     }
 
     @AfterEach
@@ -123,7 +134,19 @@ public class BlockPlaceGoalTest {
 
     @Test
     public void testAllCodes() throws IOException {
-        BlockPlaceGoalConfig config = new ObjectMapper().readValue(BlockPlaceGoalTest.class.getResourceAsStream("all_blocks_code_block_place_goal.json"), BlockPlaceGoalConfig.class);
-        assertDoesNotThrow(() -> new BlockPlaceGoal(context, config, new GoalCollector<>(context, config.getPlaced(), Material.class, config.isFixedOrder(), config.isShuffled()), messageHelper, collectedInventory, null));
+        BlockPlaceGoalConfig config = new ObjectMapper().readValue(BlockPlaceGoalTest.class.getResourceAsStream(
+                "all_blocks_code_block_place_goal.json"), BlockPlaceGoalConfig.class);
+        assertDoesNotThrow(() -> new BlockPlaceGoal(context,
+                                                    config,
+                                                    new GoalCollector<>(context,
+                                                                        config.getPlaced(),
+                                                                        Material.class,
+                                                                        config.isFixedOrder(),
+                                                                        config.isShuffled()
+                                                    ),
+                                                    messageHelper,
+                                                    collectedInventory,
+                                                    null
+        ));
     }
 }

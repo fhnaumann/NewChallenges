@@ -52,6 +52,7 @@ public abstract class BaseCollectedItemStack<K extends Keyed> implements Resourc
 
     /**
      * Get the base ItemStack (no lore, etc.) from the data information that is supplied in the subclasses respectively.
+     *
      * @return An ItemStack with just a Material (and possibly an amount), but no lore.
      */
     protected abstract ItemStack getBaseItemStack();
@@ -62,8 +63,7 @@ public abstract class BaseCollectedItemStack<K extends Keyed> implements Resourc
         }
         if(getCollect().isComplete()) {
             return renderComplete();
-        }
-        else {
+        } else {
             return renderOngoing();
         }
     }
