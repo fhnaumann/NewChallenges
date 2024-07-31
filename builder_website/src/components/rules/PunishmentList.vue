@@ -4,6 +4,7 @@
       <EndPunishment :model-access="createModelAccess('endPunishment')" />
       <HealthPunishment class="shrink" :model-access="createModelAccess('healthPunishment')" />
       <RandomEffectPunishment :model-access="createModelAccess('randomEffectPunishment')" />
+      <MLGPunishment :model-access="createModelAccess('mlgPunishment')" />
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@
   import RandomEffectPunishment from '@/components/rules/punishments/RandomEffectPunishment.vue'
   import EndPunishment from '@/components/rules/punishments/EndPunishment.vue'
   import { inject, onMounted, ref } from 'vue'
+  import MLGPunishment from '@/components/rules/punishments/MLGPunishment.vue'
 
   /*
   PunishmentList can be instantiated from two places:

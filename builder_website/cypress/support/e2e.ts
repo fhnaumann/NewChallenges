@@ -107,6 +107,14 @@ declare global {
       configureRandomEffectPunishment(rule: RuleName, deselectOthers?: boolean, effects?: number, randomizeEffects?: boolean, affected?: Affects): Chainable<Subject>
 
       /**
+       * Enable MLG punishment (and disable the default end punishment).
+       *
+       * Start: Page for customizing a rule
+       * End: Page for customizing a rule
+       */
+      configureMLGPunishment(rule: RuleName, deselectOthers?: boolean, height?: number, affected?: Affects): Chainable<Subject>
+
+      /**
        * Customize MobGoal.
        *
        * Start: Main Page

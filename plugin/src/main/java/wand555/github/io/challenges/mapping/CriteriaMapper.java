@@ -19,10 +19,9 @@ import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.criteria.settings.CustomHealthSetting;
 import wand555.github.io.challenges.criteria.settings.UltraHardcoreSetting;
 import wand555.github.io.challenges.generated.*;
-import wand555.github.io.challenges.punishments.EndPunishment;
-import wand555.github.io.challenges.punishments.HealthPunishment;
-import wand555.github.io.challenges.punishments.Punishment;
-import wand555.github.io.challenges.punishments.RandomEffectPunishment;
+import wand555.github.io.challenges.mlg.MLGHandler;
+import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
+import wand555.github.io.challenges.punishments.*;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
@@ -113,6 +112,9 @@ public class CriteriaMapper {
         if(punishmentsConfig.getRandomEffectPunishment() != null) {
             RandomEffectPunishmentConfig randomEffectPunishmentConfig = punishmentsConfig.getRandomEffectPunishment();
             punishments.add(new RandomEffectPunishment(context, randomEffectPunishmentConfig));
+        }
+        if(punishmentsConfig.getMlgPunishment() != null) {
+            punishments.add(new MLGPunishment(context, punishmentsConfig.getMlgPunishment(), new MLGHandler(context, new OfflinePlayerData(context.plugin()))));
         }
         return punishments;
     }

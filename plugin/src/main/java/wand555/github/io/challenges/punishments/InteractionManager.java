@@ -63,13 +63,14 @@ public class InteractionManager {
         logger.fine("Applying punishment for %s.".formatted(player.getName()));
         unableInfo.interaction.accept(player);
 
+        /*
         Component delayed = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().miscResourceBundle(),
                 "misc.delayed",
                 false
         );
-        player.sendMessage(delayed);
+        player.sendMessage(delayed);*/
 
     }
 

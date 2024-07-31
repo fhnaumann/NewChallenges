@@ -107,6 +107,20 @@ Cypress.Commands.add('configureRandomEffectPunishment', (rule: RuleName, deselec
   }
 })
 
+Cypress.Commands.add('configureMLGPunishment', (rule: RuleName, deselectOthers?: boolean, height?: number, affected?: Affects) => {
+  if (deselectOthers) {
+    uncheckAllPunishments()
+  }
+  cy.get('#mlgPunishment').check({ force: true })
+  if (height !== undefined) {
+    cy.get('#mlgPunishment.height').clear()
+    cy.get('#mlgPunishment.height').type(String(height))
+  }
+  if (affected) {
+    setAffected('mlgPunishment', affected)
+  }
+})
+
 Cypress.Commands.add('configureRule', (ruleName: RuleName) => {
   cy.get('[aria-label="Browse all Rules"] > .duration-200').click()
   cy.get('.relative > .w-full').clear()

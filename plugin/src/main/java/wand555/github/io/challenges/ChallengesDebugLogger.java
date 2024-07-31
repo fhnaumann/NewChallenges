@@ -13,7 +13,7 @@ public class ChallengesDebugLogger extends Logger {
     private final String logPrefix;
 
     public static void initLogging(Challenges plugin) {
-        DEBUG = plugin.getConfig().getBoolean(ConfigValues.DEBUG.name());
+        DEBUG = ConfigValues.DEBUG.getValueOrDefault(plugin);
     }
 
     public ChallengesDebugLogger(Class<?> clazz) {

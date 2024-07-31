@@ -4,9 +4,7 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.WorldMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.damage.DamageSource;
 import org.bukkit.damage.DamageType;
@@ -54,9 +52,10 @@ public class MLGHandlerTest {
     public void setUp() {
         server = MockBukkit.getOrCreateMock();
         plugin = MockBukkit.load(Challenges.class);
+        World defaultWorld = server.addSimpleWorld("world");
         player = server.addPlayer();
-        // add world after adding a player, so the player is initially spawned in the default 'world'
-        mlgWorld = server.addSimpleWorld(ConfigValues.MLG_WORLD.name());
+        player.setLocation(new Location(defaultWorld, 0, 0, 0));
+        mlgWorld = server.addSimpleWorld(ConfigValues.MLG_WORLD.getValueOrDefault(plugin));
 
         context = mock(Context.class);
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -76,7 +75,7 @@ public class MLGHandlerTest {
     public void testPlayerIsTeleportedToMLGWorld() {
         int height = 20;
         mlgHandler.newMLGScenarioFor(player, height, NOTHING);
-        assertEquals(mlgWorld, player.getWorld());
+        assertEquals(mlgWorld.getName(), player.getWorld().getName());
     }
 
     @Test
@@ -109,7 +108,7 @@ public class MLGHandlerTest {
     public void testPlayerStateLoaded() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> verify(offlinePlayerData).loadTemporaryPlayerInformationFromDisk(plugin, player));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGFailHitGround();
+        simulateMLGFailHitGround(server, player);
         verify(mlgResult).accept(eq(player), any(MLGHandler.Result.class));
     }
 
@@ -123,7 +122,7 @@ public class MLGHandlerTest {
     public void testPlayerIsAbleToInteractAfterMLG() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertFalse(InteractionManager.isUnableToInteract(player)));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGFailHitGround();
+        simulateMLGFailHitGround(server, player);
         verify(mlgResult).accept(eq(player), any(MLGHandler.Result.class));
     }
 
@@ -131,16 +130,16 @@ public class MLGHandlerTest {
     public void testNewMLGScheduledIfPlayerUnableToInteract() {
         InteractionManager.setUnableToInteract(player, player1 -> {});
         mlgHandler.newMLGScenarioFor(player, 20, NOTHING);
-        assertNotEquals(mlgWorld, player.getWorld());
+        assertNotEquals(mlgWorld.getName(), player.getWorld().getName());
         InteractionManager.removeUnableToInteract(context, player, false);
-        assertEquals(mlgWorld, player.getWorld());
+        assertEquals(mlgWorld.getName(), player.getWorld().getName());
     }
 
     @Test
     public void testMLGFailHitGround() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.FAILED, result));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGFailHitGround();
+        simulateMLGFailHitGround(server, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.FAILED));
     }
 
@@ -148,7 +147,7 @@ public class MLGHandlerTest {
     public void testMLGFailWaterPlacedButMissedLanding() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.FAILED, result));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGFailWaterPlacedButMissedLanding();
+        simulateMLGFailWaterPlacedButMissedLanding(server, mlgWorld, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.FAILED));
     }
 
@@ -156,7 +155,7 @@ public class MLGHandlerTest {
     public void testMLGSuccessWithSuccessStatus() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> assertEquals(MLGHandler.Result.SUCCESS, result));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGSuccess();
+        simulateMLGSuccess(server, mlgWorld, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.SUCCESS));
     }
 
@@ -164,14 +163,14 @@ public class MLGHandlerTest {
     public void testMLGAbortWithAbortStatus() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy(NOTHING);
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGAbort();
+        simulateMLGAbort(context, server, player);
         verify(mlgResult).accept(eq(player), eq(MLGHandler.Result.ABORTED));
     }
 
     @Test
     public void testMLGAbortPlayerIsNowAbleToInteract() {
         mlgHandler.newMLGScenarioFor(player, 20, NOTHING);
-        simulateMLGAbort();
+        simulateMLGAbort(context, server, player);
         assertFalse(InteractionManager.isUnableToInteract(player));
     }
 
@@ -179,50 +178,45 @@ public class MLGHandlerTest {
     public void testMLGAbortPlayerStateLoaded() {
         BiConsumer<Player, MLGHandler.Result> mlgResult = mlgFinishSpy((player1, result) -> verify(offlinePlayerData).loadTemporaryPlayerInformationFromDisk(plugin, player));
         mlgHandler.newMLGScenarioFor(player, 20, mlgResult);
-        simulateMLGAbort();
+        simulateMLGAbort(context, server, player);
         verify(mlgResult).accept(eq(player), any(MLGHandler.Result.class));
     }
 
     @Test
-    public void testPlayerLeftDuringMLG() {
+    public void testPlayerLeftDuringMLGIsAborted() {
         mlgHandler.newMLGScenarioFor(player, 20, NOTHING);
-        CriteriaUtil.reconnect(server, player);
+        CriteriaUtil.reconnect(server, player, player1 -> player1.teleport(new Location(Bukkit.getWorld("world"), 0, 0,0)));
         // assertNotEquals(mlgWorld, player.getWorld()); cannot test this, as OfflinePlayerData is mocked
         assertFalse(InteractionManager.isUnableToInteract(player));
     }
 
-    @Test
-    public void testPlayerNotInMLGWorldNotTriggerListener() {
-
-    }
-
-    private void simulateMLGFailHitGround() {
+    public static void simulateMLGFailHitGround(ServerMock server, PlayerMock player) {
         player.simulateDamage(30d, (Entity) null);
         server.getScheduler().performOneTick();
     }
 
-    private void simulateMLGFailWaterPlacedButMissedLanding() {
-        callPlayerBucketEmptyEvent();
+    public static void simulateMLGFailWaterPlacedButMissedLanding(ServerMock server, World mlgWorld, PlayerMock player) {
+        callPlayerBucketEmptyEvent(server, mlgWorld, player);
 
-        simulateMLGFailHitGround();
+        simulateMLGFailHitGround(server, player);
         // scheduler to check for received damage is now called
         server.getScheduler().performTicks(19);
     }
 
-    private void simulateMLGSuccess() {
-        callPlayerBucketEmptyEvent();
+    public static void simulateMLGSuccess(ServerMock server, World mlgWorld, PlayerMock player) {
+        callPlayerBucketEmptyEvent(server, mlgWorld, player);
         // scheduler to check for received damage is now called
         server.getScheduler().performTicks(20);
         server.getScheduler().performOneTick();
     }
 
-    private void simulateMLGAbort() {
+    public static void simulateMLGAbort(Context context, ServerMock server, Player player) {
         server.getScheduler().performOneTick();
         InteractionManager.removeUnableToInteract(context, player, true);
         server.getScheduler().performOneTick();
     }
 
-    private void callPlayerBucketEmptyEvent() {
+    public static void callPlayerBucketEmptyEvent(ServerMock server, World mlgWorld, PlayerMock player) {
         PlayerBucketEmptyEvent event = new PlayerBucketEmptyEvent(player, mlgWorld.getBlockAt(0, 5, 0), mlgWorld.getBlockAt(0, 4, 0), BlockFace.UP, Material.WATER_BUCKET, new ItemStack(Material.WATER_BUCKET), EquipmentSlot.HAND);
         CriteriaUtil.callEvent(server, event, 1);
     }

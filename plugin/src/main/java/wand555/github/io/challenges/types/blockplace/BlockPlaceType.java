@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
@@ -26,6 +27,10 @@ public class BlockPlaceType extends Type<BlockPlaceData> {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         if(!context.challengeManager().isRunning()) {
+            return;
+        }
+        if(MLGHandler.isInMLGWorld(context.plugin(), event.getPlayer())) {
+            // don't act when the player placed a bucket from performing an MLG
             return;
         }
         Player player = event.getPlayer();

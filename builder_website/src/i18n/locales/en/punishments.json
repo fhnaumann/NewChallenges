@@ -52,6 +52,16 @@
                         "tooltip": "The amount of effects is randomized every time!"
                     }
                 }
+            },
+            "mlgPunishment": {
+                "name": "MLG",
+                "tooltip": "Players have to land MLGs!",
+                "settings": {
+                    "height": {
+                        "name": "Height:",
+                        "tooltip": ""
+                    }
+                }
             }
         }
     }

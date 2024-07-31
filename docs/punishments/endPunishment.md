@@ -18,7 +18,7 @@ Below are some examples you can directly copy into your server without using the
 :::example_configuration
 **Example 1**
 
-**Rules:** [NoDeath](../rules/noDeath.md)
+**Rules:** [NoDeath](../rules/noDeathRule)
 
 **Punishments:** The challenge is over for everyone (EndPunishment)
 

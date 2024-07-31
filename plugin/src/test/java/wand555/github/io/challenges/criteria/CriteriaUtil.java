@@ -109,7 +109,8 @@ public class CriteriaUtil {
         });
     }
 
-    public static void reconnect(ServerMock serverMock, PlayerMock player) {
+    public static void reconnect(ServerMock serverMock, PlayerMock player, Consumer<Player> rightBeforeLeave) {
+        rightBeforeLeave.accept(player);
         boolean disconnected = player.disconnect();
         if(!disconnected) {
             fail("Failed to disconnect! Player already disconnected?");

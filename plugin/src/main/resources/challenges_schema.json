@@ -338,9 +338,6 @@
                 "itemGoal": {
                     "$ref": "#/definitions/ItemGoalConfig"
                 },
-                "mlgGoal": {
-                    "$ref": "#/definitions/MLGGoalConfig"
-                },
                 "mobGoal": {
                     "$ref": "#/definitions/MobGoalConfig"
                 }
@@ -406,17 +403,31 @@
             },
             "type": "object"
         },
-        "MLGGoalConfig": {
+        "MLGPunishmentConfig": {
             "additionalProperties": false,
             "properties": {
-                "complete": {
-                    "default": false,
-                    "description": "If the goal is completed.",
-                    "type": "boolean"
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
                 },
-                "goalTimer": {
-                    "$ref": "#/definitions/GoalTimer"
-                },
+                "height": {
+                    "default": 50,
+                    "description": "The height the MLG takes place.",
+                    "maximum": 100,
+                    "minimum": 10,
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "MLGSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
                 "height": {
                     "default": 50,
                     "description": "The height the MLG takes place.",
@@ -437,41 +448,11 @@
                     "maximum": 86400,
                     "minimum": 60,
                     "type": "integer"
-                },
-                "numberOfMLGs": {
-                    "$ref": "#/definitions/CollectableDataConfig",
-                    "default": {},
-                    "description": "The number of MLGs that need to be (successfully) completed to beat this goal."
                 }
             },
             "required": [
-                "height",
                 "maxTime",
-                "minTime",
-                "numberOfMLGs"
-            ],
-            "type": "object"
-        },
-        "MLGPunishmentConfig": {
-            "additionalProperties": false,
-            "properties": {
-                "affects": {
-                    "default": "all",
-                    "description": "Who is affected by the punishment.",
-                    "enum": [
-                        "all",
-                        "causer"
-                    ],
-                    "type": "string"
-                },
-                "height": {
-                    "default": 50,
-                    "description": "The height the MLG takes place.",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "height"
+                "minTime"
             ],
             "type": "object"
         },
@@ -770,6 +751,9 @@
             "properties": {
                 "customHealthSetting": {
                     "$ref": "#/definitions/CustomHealthSettingConfig"
+                },
+                "mlgSetting": {
+                    "$ref": "#/definitions/MLGSettingConfig"
                 },
                 "ultraHardcoreSetting": {
                     "$ref": "#/definitions/UltraHardcoreSettingConfig"

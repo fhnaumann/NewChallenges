@@ -1,6 +1,7 @@
 package wand555.github.io.challenges;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class ConfigValues {
     }
 
     public record Value<T>(String name, T defaultValue) {
-
+        public T getValueOrDefault(JavaPlugin plugin) {
+            return (T) plugin.getConfig().get(name, defaultValue);
+        }
     }
 }

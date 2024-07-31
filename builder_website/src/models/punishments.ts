@@ -95,8 +95,10 @@ export interface MLGPunishmentConfig extends BasePunishmentConfig {
   /**
    * The height the MLG takes place.
    *
+   * @minimum 10
+   * @maximum 100
    * @default 50
    * @TSJ-type integer
    */
-  height: number
+  height?: number
 }

@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.mlg;
 
+import net.kyori.adventure.util.TriState;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,6 +9,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.ConfigValues;
 import wand555.github.io.challenges.Context;
@@ -27,12 +29,13 @@ public class MLGHandler implements Listener {
     private final Context context;
     private final OfflinePlayerData offlinePlayerData;
     private Map<Player, BiConsumer<Player, Result>> whenFinished = new HashMap<>();
+    private Map<Player, Result> results = new HashMap<>();
     private final World mlgWorld;
 
     public MLGHandler(Context context, OfflinePlayerData offlinePlayerData) {
         this.context = context;
         this.offlinePlayerData = offlinePlayerData;
-        this.mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.name());
+        this.mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(context.plugin()));
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
@@ -66,7 +69,7 @@ public class MLGHandler implements Listener {
         player.getInventory().setItemInMainHand(new ItemStack(Material.WATER_BUCKET));
         player.setGameMode(GameMode.SURVIVAL);
 
-        World mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.name());
+        World mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(context.plugin()));
         List<Player> players = mlgWorld.getPlayers();
         int xOffset = (int) (height * 0.5 * (players.size()-1));
         Location mlgLocation = new Location(mlgWorld, xOffset, height, 0.5);
@@ -124,13 +127,15 @@ public class MLGHandler implements Listener {
     }
 
     private void prepareMLGComplete(Player player, Result result) {
+        this.results.put(player, result);
         offlinePlayerData.loadTemporaryPlayerInformationFromDisk(context.plugin(), player);
 
-        BiConsumer<Player, Result> onFinish = whenFinished.get(player);
+        BiConsumer<Player, Result> onFinish = whenFinished.remove(player);
         // run a tick later so the player is actually able to receive punishments with their entire state fully loaded from disk
         Bukkit.getScheduler().runTask(context.plugin(), () -> {
-            // Mark the player to be able to receive punishments. This will call all queued interactions first.
-            InteractionManager.removeUnableToInteract(context, player, result == Result.ABORTED);
+                // Mark the player to be able to receive punishments. This will call all queued interactions first.
+                InteractionManager.removeUnableToInteract(context, player, result == Result.ABORTED);
+
             // Run the logic when it's formally completed
             onFinish.accept(player, result);
         });
@@ -146,6 +151,46 @@ public class MLGHandler implements Listener {
 
     public Map<Player, BiConsumer<Player, Result>> getWhenFinished() {
         return whenFinished;
+    }
+
+    public boolean hasAtLeastOnePlayerFailed() {
+        return results.values().stream().anyMatch(result -> result == Result.FAILED);
+    }
+
+    public Map<Player, Result> getResults() {
+        return results;
+    }
+
+    public static boolean isInMLGWorld(JavaPlugin plugin, Player player) {
+        return player.getWorld().getName().equals(Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(plugin)).getName());
+    }
+
+    public static void createOrLoadMLGWorld(JavaPlugin plugin) {
+        String mlgWorldName = ConfigValues.MLG_WORLD.getValueOrDefault(plugin);
+        boolean mlgWorldExists = Bukkit.getWorld(mlgWorldName) != null;
+        if(!mlgWorldExists) {
+            logger.info("No MLG World with name '%s' detected. Creating world...".formatted(mlgWorldName));
+            createMLGWorld(mlgWorldName);
+            logger.info("Created MLG World '%s'!".formatted(mlgWorldName));
+        }
+        else {
+            logger.fine("MLG World '%s' detected. Skipping creation.".formatted(mlgWorldName));
+        }
+
+
+    }
+
+    private static World createMLGWorld(String name) {
+        World world = new WorldCreator(name)
+                .environment(World.Environment.NORMAL)
+                .type(WorldType.FLAT)
+                .generateStructures(false)
+                .keepSpawnLoaded(TriState.TRUE)
+                .createWorld();
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        world.setDifficulty(Difficulty.PEACEFUL);
+        world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        return world;
     }
 
     public enum Result {

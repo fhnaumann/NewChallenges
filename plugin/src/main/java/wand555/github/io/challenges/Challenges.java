@@ -26,8 +26,10 @@ import wand555.github.io.challenges.commands.ChallengesCommand;
 import wand555.github.io.challenges.commands.LoadCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
+import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
+import wand555.github.io.challenges.punishments.InteractionManager;
 
 import java.io.*;
 import java.net.URI;
@@ -60,7 +62,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         if(!isLoadedFromTests()) {
             CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true));
         }
-
     }
 
     private boolean isLoadedFromTests() {
@@ -93,6 +94,9 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
 
         getServer().getPluginManager().registerEvents(this, this);
+
+        MLGHandler.createOrLoadMLGWorld(this);
+
 
         offlineTempData = new OfflineTempData(this);
         tempContext = null;
@@ -344,7 +348,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
     public void onPlayerLeave(PlayerQuitEvent event) {
         // The player might be somewhere they shouldn't be when leaving/rejoining.
         // In that case, behave as if the thing they are busy with (ongoing MLG, ...) is completed.
-        //TODO: MLG COMPLETE TRIGGER CALL
-
+        if(InteractionManager.isUnableToInteract(event.getPlayer())) {
+            InteractionManager.removeUnableToInteract(tempContext, event.getPlayer(), true);
+        }
     }
 }
