@@ -118,14 +118,6 @@ public class MLGHandler implements Listener {
 
     }
 
-    @EventHandler
-    public void onPlayerJoinPlayerIsInMLGWorld(PlayerJoinEvent event) {
-        // A player might be "stuck" in the MLG world if the server unexpectedly crashed, or they left when they were doing an MLG.
-        if(event.getPlayer().getWorld().equals(mlgWorld)) {
-            prepareMLGComplete(event.getPlayer(), Result.ABORTED); // abort in favour of fail, it might have been a server crash
-        }
-    }
-
     private void prepareMLGComplete(Player player, Result result) {
         this.results.put(player, result);
         offlinePlayerData.loadTemporaryPlayerInformationFromDisk(context.plugin(), player);
@@ -145,6 +137,16 @@ public class MLGHandler implements Listener {
         prepareMLGComplete(player, Result.ABORTED);
     }
 
+    public static void handlePlayerJoinedInMLGWorld(JavaPlugin plugin, Player player) {
+        logger.warning("Attempting to deal with a player who joined the server being in the MLG world. This shouldn't have happened!");
+        OfflinePlayerData offlinePlayerData1 = new OfflinePlayerData(plugin);
+        if(!offlinePlayerData1.hasOfflinePlayerData(player)) {
+            logger.warning("'%s' has no offline data after they left an ongoing MLG.".formatted(player.getName()));
+            return;
+        }
+        offlinePlayerData1.loadTemporaryPlayerInformationFromDisk(plugin, player);
+    }
+
     public void abortAllMLGs() {
         getWhenFinished().forEach((player, resultConsumer) -> resultConsumer.accept(player, Result.ABORTED));
     }
@@ -162,7 +164,8 @@ public class MLGHandler implements Listener {
     }
 
     public static boolean isInMLGWorld(JavaPlugin plugin, Player player) {
-        return player.getWorld().getName().equals(Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(plugin)).getName());
+        World mlgWorld = Bukkit.getWorld(ConfigValues.MLG_WORLD.getValueOrDefault(plugin));
+        return mlgWorld != null && player.getWorld().getName().equals(mlgWorld.getName());
     }
 
     public static void createOrLoadMLGWorld(JavaPlugin plugin) {

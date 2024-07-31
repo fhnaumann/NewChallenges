@@ -95,7 +95,10 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
         getServer().getPluginManager().registerEvents(this, this);
 
-        MLGHandler.createOrLoadMLGWorld(this);
+        // don't load the MLG world in tests, this messes up the test suites, because it assumes mlgWorld is the default world then
+        if(!isLoadedFromTests()) {
+            MLGHandler.createOrLoadMLGWorld(this);
+        }
 
 
         offlineTempData = new OfflineTempData(this);
@@ -326,6 +329,12 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void requestRPOnJoin(PlayerJoinEvent event) throws ExecutionException, InterruptedException {
+        // A player might be "stuck" in the MLG world if the server unexpectedly crashed, or they left when they were doing an MLG.
+        if(MLGHandler.isInMLGWorld(this, event.getPlayer())) {
+            MLGHandler.handlePlayerJoinedInMLGWorld(this, event.getPlayer());
+        }
+
+
         ResourcePackInfoLike pack = ResourcePackInfo.resourcePackInfo()
                 .uri(URI.create("https://challenges-builder.s3.eu-central-1.amazonaws.com/Challenges+Plugin+RP.zip"))
                 .computeHashAndBuild().get();
