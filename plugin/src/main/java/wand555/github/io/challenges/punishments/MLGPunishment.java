@@ -12,7 +12,7 @@ import wand555.github.io.challenges.mlg.MLGHandler;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class MLGPunishment extends Punishment implements Abortable, Storable<MLGPunishmentConfig> {
+public class MLGPunishment extends Punishment implements Storable<MLGPunishmentConfig> {
 
     private final int height;
     private final MLGHandler mlgHandler;
@@ -134,11 +134,6 @@ public class MLGPunishment extends Punishment implements Abortable, Storable<MLG
             }
         }
 
-    }
-
-    @Override
-    public void abort() {
-        //mlgHandler.abortAllMLGs();
     }
 
     @Override

@@ -147,10 +147,6 @@ public class MLGHandler implements Listener {
         offlinePlayerData1.loadTemporaryPlayerInformationFromDisk(plugin, player);
     }
 
-    public void abortAllMLGs() {
-        getWhenFinished().forEach((player, resultConsumer) -> resultConsumer.accept(player, Result.ABORTED));
-    }
-
     public Map<Player, BiConsumer<Player, Result>> getWhenFinished() {
         return whenFinished;
     }
