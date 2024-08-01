@@ -291,14 +291,14 @@
             "properties": {
                 "maxTimeSeconds": {
                     "default": 600,
-                    "description": "The upper bound for determining the time that is allowed to complete a goal.\nCannot be smaller than minTimeSeconds.",
+                    "description": "The upper bound.",
                     "maximum": 86400,
                     "minimum": 10,
                     "type": "integer"
                 },
                 "minTimeSeconds": {
                     "default": 180,
-                    "description": "The lower bound for determining the time that is allowed to complete a goal.\nCannot be bigger than maxTimeSeconds.",
+                    "description": "The lower bound.",
                     "maximum": 86400,
                     "minimum": 10,
                     "type": "integer"
@@ -435,25 +435,21 @@
                     "minimum": 10,
                     "type": "integer"
                 },
-                "maxTime": {
+                "maxTimeSeconds": {
                     "default": 600,
-                    "description": "The upper bound for determining when to trigger an MLG in seconds.",
+                    "description": "The upper bound.",
                     "maximum": 86400,
-                    "minimum": 60,
+                    "minimum": 10,
                     "type": "integer"
                 },
-                "minTime": {
+                "minTimeSeconds": {
                     "default": 180,
-                    "description": "The lower bound for determining when to trigger an MLG in seconds.",
+                    "description": "The lower bound.",
                     "maximum": 86400,
-                    "minimum": 60,
+                    "minimum": 10,
                     "type": "integer"
                 }
             },
-            "required": [
-                "maxTime",
-                "minTime"
-            ],
             "type": "object"
         },
         "MobGoalConfig": {

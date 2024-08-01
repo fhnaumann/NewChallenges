@@ -9,6 +9,10 @@
       "placeholder": "Search rules, goals, or settings to add",
       "no_matches": "Your search did not match anything."
     },
+    "minMaxRange": {
+      "minValue": "Minimum:",
+      "maxValue": "Maximum:"
+    },
     "change_metadata_button": "Modify metadata",
     "metadata": {
       "name": {

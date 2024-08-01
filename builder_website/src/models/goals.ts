@@ -3,6 +3,7 @@ import type { MobGoalConfig } from './mob'
 import type { ItemGoalConfig } from './item'
 import type { DeathGoalConfig } from './death'
 import type { BlockPlaceGoalConfig } from './blockplace'
+import type { MinMaxRangeConfig } from './model'
 
 export type GoalName = keyof GoalsConfig
 
@@ -48,7 +49,7 @@ export interface Timeable {
   goalTimer?: GoalTimer
 }
 
-export interface GoalTimer {
+export interface GoalTimer extends MinMaxRangeConfig {
 
   /**
    * The actual timer decrementing every second when the challenge is running. -1 is the default value set by the builder website.
@@ -65,28 +66,6 @@ export interface GoalTimer {
    * @TSJ-type integer
    */
   startingTime: number
-
-  /**
-   * The lower bound for determining the time that is allowed to complete a goal.
-   * Cannot be bigger than maxTimeSeconds.
-   *
-   * @minimum 10
-   * @maximum 86400
-   * @default 180
-   * @TSJ-type integer
-   */
-  minTimeSeconds?: number
-
-  /**
-   * The upper bound for determining the time that is allowed to complete a goal.
-   * Cannot be smaller than minTimeSeconds.
-   *
-   * @minimum 10
-   * @maximum 86400
-   * @default 600
-   * @TSJ-type integer
-   */
-  maxTimeSeconds?: number
 
   /**
    * Defines the ordering of other timeable goals within the same challenge.

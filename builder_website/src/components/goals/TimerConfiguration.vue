@@ -45,7 +45,7 @@
   const jsonSchemaConfig = useJSONSchemaConfig()
   const { t } = useI18n()
 
-  const enabled = ref<boolean>(false)
+  const enabled = ref<boolean>(props.modelAccess.get(model)?.goalTimer != undefined)
 
   watch(() => enabled.value, value => {
     if (value) {

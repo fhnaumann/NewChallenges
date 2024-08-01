@@ -24,7 +24,12 @@ import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
 import CustomHealthSetting from '../../src/components/settings/CustomHealthSetting.vue'
-import type { CustomHealthSettingConfig, SettingName, UltraHardcoreSettingConfig } from '../../src/models/settings'
+import type {
+  CustomHealthSettingConfig,
+  MLGSettingConfig,
+  SettingName,
+  UltraHardcoreSettingConfig,
+} from '../../src/models/settings'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -180,6 +185,12 @@ declare global {
        * End: page for customizing a setting
        */
       configureUltraHardcoreSetting(ultraHardCoreSettingConfig?: UltraHardcoreSettingConfig): Chainable<Subject>
+
+      /**
+       * Start: Main Page
+       * End: page for customizing a setting
+       */
+      configureMLGSetting(mlgSettingConfig?: MLGSettingConfig): Chainable<Subject>
 
       /**
        * Go from a specific criteria page to the main page.

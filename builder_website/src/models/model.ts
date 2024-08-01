@@ -94,3 +94,26 @@ export interface ChallengeMetadata {
    */
   pluginMCVersion: string,
 }
+
+export interface MinMaxRangeConfig {
+
+  /**
+   * The lower bound.
+   *
+   * @minimum 10
+   * @maximum 86400
+   * @default 180
+   * @TSJ-type integer
+   */
+  minTimeSeconds?: number
+
+  /**
+   * The upper bound.
+   *
+   * @minimum 10
+   * @maximum 86400
+   * @default 600
+   * @TSJ-type integer
+   */
+  maxTimeSeconds?: number
+}

@@ -44,7 +44,12 @@ import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
-import type { CustomHealthSettingConfig, SettingName, UltraHardcoreSettingConfig } from '../../src/models/settings'
+import type {
+  CustomHealthSettingConfig,
+  MLGSettingConfig,
+  SettingName,
+  UltraHardcoreSettingConfig,
+} from '../../src/models/settings'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -274,6 +279,15 @@ Cypress.Commands.add('configureUltraHardcoreSetting', (ultraHardCoreSettingConfi
   }
 })
 
+Cypress.Commands.add('configureMLGSetting', (mlgSettingConfig?: MLGSettingConfig) => {
+  cy.configureSetting('mlgSetting')
+  if(mlgSettingConfig !== undefined) {
+    handleTextfield('#settings\\.mlgSetting\\.min', mlgSettingConfig.minTimeSeconds)
+    handleTextfield('#settings\\.mlgSetting\\.max', mlgSettingConfig.maxTimeSeconds)
+    handleTextfield('#mlgSetting\\.height', mlgSettingConfig.height)
+  }
+})
+
 function handleCheckBox(selector: string, configValue?: boolean) {
   if (configValue !== undefined) {
     if (configValue) {
@@ -281,6 +295,13 @@ function handleCheckBox(selector: string, configValue?: boolean) {
     } else {
       cy.get(selector).uncheck({ force: true })
     }
+  }
+}
+
+function handleTextfield(selector: string, configValue: number | string | undefined) {
+  if(configValue !== undefined) {
+    cy.get(selector).clear()
+    cy.get(selector).type(String(configValue))
   }
 }
 

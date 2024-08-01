@@ -40,6 +40,15 @@
             "name": "Allow Totems"
           }
         }
+      },
+      "mlgSetting": {
+        "name": "Random MLGs",
+        "alias": ["MLG", "Random MLG", "RandomMLG", "water", "setting", "MLGSetting"],
+        "settings": {
+          "height": {
+            "name": "Height:"
+          }
+        }
       }
     }
   }

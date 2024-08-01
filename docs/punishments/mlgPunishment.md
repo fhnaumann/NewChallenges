@@ -6,7 +6,7 @@ then the challenge is automatically lost.
 ## Configuration
 
 [!badge Height]
-:   Select the height the MLG starts. Little height requires quick reaction time and big height requires good timing.
+:   Select the height (in blocks) the MLG starts. Little height requires quick reaction time and big height requires good timing.
 
 [!badge Affected]
 :   Select who is affected by this punishment.

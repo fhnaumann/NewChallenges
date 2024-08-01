@@ -13,6 +13,7 @@ import NoDeathRule from '@/components/rules/types/NoDeathRule.vue'
 import NoBlockPlaceRule from '@/components/rules/types/NoBlockPlaceRule.vue'
 import BlockPlaceGoal from '@/components/goals/types/BlockPlaceGoal.vue'
 import UltraHardcoreSetting from '@/components/settings/UltraHardcoreSetting.vue'
+import MLGSetting from '@/components/settings/MLGSetting.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -99,6 +100,11 @@ const router = createRouter({
       path: '/settings/ultraHardcoreSetting',
       name: 'Ultra Hardcore',
       component: UltraHardcoreSetting
+    },
+    {
+      path: '/settings/mlgSetting',
+      name: 'MLG',
+      component: MLGSetting
     },
     {
       path: '/about',
