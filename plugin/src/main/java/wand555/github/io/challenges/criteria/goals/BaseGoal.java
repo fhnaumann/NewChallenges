@@ -31,8 +31,6 @@ public abstract class BaseGoal implements Goal, JSONConfigGroup<GoalsConfig>, St
         this.bossBarHelper = new BossBarHelper(context, bossBarBuilder.getParts());
     }
 
-    public abstract void onStart();
-
     public void onComplete() {
         setComplete(true);
     }

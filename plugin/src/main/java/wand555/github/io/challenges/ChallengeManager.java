@@ -5,6 +5,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import wand555.github.io.challenges.criteria.Criteria;
 import wand555.github.io.challenges.criteria.Loadable;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.Goal;
@@ -16,11 +17,15 @@ import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.InteractionManager;
+import wand555.github.io.challenges.utils.CollectionUtil;
 import wand555.github.io.challenges.validation.BossBarShower;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public class ChallengeManager implements StatusInfo {
 
@@ -86,6 +91,7 @@ public class ChallengeManager implements StatusInfo {
             InteractionManager.removeUnableToInteract(context, player, true);
         });
         gameState = GameState.PAUSED;
+        allCriterias().forEach(Criteria::onPause);
     }
 
     public void resume() {
@@ -98,6 +104,7 @@ public class ChallengeManager implements StatusInfo {
                  .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
         }
         gameState = GameState.RUNNING;
+        allCriterias().forEach(Criteria::onResume);
     }
 
     public void onProgress(Player player, Progressable progressable) {
@@ -234,7 +241,7 @@ public class ChallengeManager implements StatusInfo {
              .map(BossBarDisplay.class::cast)
              .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
 
-        settings.forEach(BaseSetting::onEnd);
+        allCriterias().forEach(Criteria::onEnd);
 
         // remove active file, so it is not automatically loaded when the server restarts from now on
         context.offlineTempData().addAndSave("fileNameBeingPlayed", null);
@@ -351,6 +358,14 @@ public class ChallengeManager implements StatusInfo {
         if(getRules() != null) {
             getRules().forEach(Loadable::unload);
         }
+    }
+
+    public Collection<Criteria> allCriterias() {
+        return Stream.of(rules, globalPunishments, goals, settings)
+                     .flatMap(Collection::stream)
+                     .filter(Objects::nonNull)
+                     .map(Criteria.class::cast)
+                     .toList();
     }
 
     public enum GameState {

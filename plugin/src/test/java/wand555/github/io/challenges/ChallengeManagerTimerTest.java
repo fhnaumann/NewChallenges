@@ -47,6 +47,8 @@ public class ChallengeManagerTimerTest {
         manager = spy(new ChallengeManager());
         manager.setGoals(List.of(blockBreakGoalMock(1)));
         manager.setSettings(List.of());
+        manager.setRules(List.of());
+        manager.setGlobalPunishments(List.of());
         manager.setContext(context);
         manager.setGameState(ChallengeManager.GameState.RUNNING);
         TimerRunnable timerRunnable = new TimerRunnable(context, 0L);

@@ -1,18 +1,17 @@
 package wand555.github.io.challenges.criteria.settings;
 
+import com.google.common.base.Preconditions;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.MLGSettingConfig;
 import wand555.github.io.challenges.generated.SettingsConfig;
 import wand555.github.io.challenges.mlg.MLGHandler;
 
 import java.util.Map;
-import java.util.function.Consumer;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -22,13 +21,13 @@ public class MLGSetting extends BaseSetting implements Storable<MLGSettingConfig
 
     private final MLGSettingConfig config;
     private final MLGHandler mlgHandler;
-    private final MLGTimer mlgTimer;
+    private MLGTimer mlgTimer;
+    private int taskID;
 
     public MLGSetting(Context context, MLGSettingConfig config, MLGHandler mlgHandler) {
         super(context);
         this.config = config;
         this.mlgHandler = mlgHandler;
-        this.mlgTimer = new MLGTimer();
     }
 
     @Override
@@ -51,9 +50,25 @@ public class MLGSetting extends BaseSetting implements Storable<MLGSettingConfig
     }
 
     private void scheduleNewTimer() {
-        int time = context.random().nextInt(config.getMinTime(), config.getMaxTime() + 1);
+        int time = context.random().nextInt(config.getMinTimeSeconds(), config.getMaxTimeSeconds() + 1);
+        mlgTimer = new MLGTimer();
         logger.fine("Scheduled new MLG timer for in %s seconds".formatted(time));
-        mlgTimer.runTaskLater(context.plugin(), time);
+        taskID = mlgTimer.runTaskLater(context.plugin(), time*20L).getTaskId();
+    }
+
+    public int getTaskID() {
+        Preconditions.checkNotNull(mlgTimer, "No new timer was scheduled yet!");
+        return taskID;
+    }
+
+    @Override
+    public void onPause() {
+        mlgTimer.cancel();
+    }
+
+    @Override
+    public void onResume() {
+        scheduleNewTimer();
     }
 
     @Override
@@ -102,9 +117,8 @@ public class MLGSetting extends BaseSetting implements Storable<MLGSettingConfig
                         "mlg.enforced.all.success"
                 );
                 Bukkit.broadcast(toSend);
+                scheduleNewTimer();
             }
-
-            scheduleNewTimer();
         }
     }
 }

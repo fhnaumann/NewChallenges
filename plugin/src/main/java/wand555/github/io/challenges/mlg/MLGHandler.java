@@ -119,7 +119,6 @@ public class MLGHandler implements Listener {
             event.getBlock().setType(Material.AIR);
 
         }, 20L);
-
     }
 
     private void prepareMLGComplete(Player player, Result result) {

@@ -2,7 +2,6 @@ package wand555.github.io.challenges.mapping;
 
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.factory.*;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
@@ -108,9 +107,10 @@ public class CriteriaMapper {
             settings.add(new UltraHardcoreSetting(context, settingsConfig.getUltraHardcoreSetting()));
         }
         if(settingsConfig.getMlgSetting() != null) {
+            MLGHandler mlgHandler = new MLGHandler(context, new OfflinePlayerData(context.plugin()));
             settings.add(new MLGSetting(context,
                                         settingsConfig.getMlgSetting(),
-                                        new MLGHandler(context, new OfflinePlayerData(context.plugin()))
+                                        mlgHandler
             ));
         }
         return settings;
