@@ -304,6 +304,8 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             }
             tempContext.challengeManager().resume();
         } else if(command.getName().equalsIgnoreCase("progress")) {
+
+            // TODO: redo progress command to take teams into account
             List<Progressable> progressables = tempContext.challengeManager().getGoals().stream().filter(Progressable.class::isInstance).map(
                     Progressable.class::cast).toList();
             if(progressables.isEmpty()) {

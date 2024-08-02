@@ -1,15 +1,10 @@
 package wand555.github.io.challenges;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.utils.ResourceBundleHelper;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.utils.TimerUtil;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -78,13 +73,17 @@ public class TimerRunnable implements Consumer<BukkitTask>, Storable<Integer> {
 
         if(context.challengeManager().isRunning()) {
             // handle timers for goals (if they exist)
-            context.challengeManager().goalsWithSameOrderNumber().forEach(goal -> {
-                goal.getTimer().decrementTime();
-                if(goal.getTimer().isFailedDueTimeLimit()) {
-                    context.challengeManager().endChallenge(false);
-                } else {
-                    goal.getBossBarHelper().updateBossBar();
-                }
+            Team.goalsWithSameOrderNumberAcrossAllTeams(context.challengeManager()).forEach((team, goals) -> {
+                goals.forEach(goal -> {
+                    goal.getTimer().decrementTime();
+                    if(goal.getTimer().isFailedDueTimeLimit()) {
+                        context.challengeManager().failChallengeFor(team);
+                    }
+                    else {
+                        goal.getBossBarHelper().updateBossBar();
+                    }
+
+                });
             });
         }
     }

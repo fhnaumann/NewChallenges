@@ -8,19 +8,22 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.criteria.goals.GoalCompletion;
 import wand555.github.io.challenges.criteria.goals.Timer;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.generated.GoalTimer;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ChallengeManagerTimerTest {
+public class GlobalGoalTimerTest {
 
     private ServerMock server;
     private Challenges plugin;
@@ -43,6 +46,7 @@ public class ChallengeManagerTimerTest {
         when(context.offlineTempData()).thenReturn(new OfflineTempData(plugin));
         player = server.addPlayer("dummy");
 
+        Team.initAllTeam(context, 1);
 
         manager = spy(new ChallengeManager());
         manager.setGoals(List.of(blockBreakGoalMock(1)));
@@ -54,6 +58,9 @@ public class ChallengeManagerTimerTest {
         TimerRunnable timerRunnable = new TimerRunnable(context, 0L);
         timerRunnable.start();
         manager.setTimerRunnable(timerRunnable);
+        manager.setTeams(List.of());
+
+        when(context.challengeManager()).thenReturn(manager);
     }
 
     @AfterEach
@@ -63,18 +70,9 @@ public class ChallengeManagerTimerTest {
 
     @Test
     public void testCurrentOrderNumber() {
-        assertEquals(1, manager.getCurrentOrder());
+        assertEquals(1, Team.getGlobalCurrentOrder());
         manager.setGoals(List.of(blockBreakGoalMock(1), itemGoalMock(2)));
-        assertEquals(1, manager.getCurrentOrder());
-    }
-
-    @Test
-    public void testOnGoalCompletedTimerBeatenOrderNumberIncreaseToNextNumber() {
-        BlockBreakGoal blockBreakGoal = blockBreakGoalMock(1);
-        ItemGoal itemGoal = itemGoalMock(2);
-        manager.setGoals(List.of(blockBreakGoal, itemGoal));
-        manager.onGoalCompleted(ChallengeManager.GoalCompletion.TIMER_BEATEN);
-        assertEquals(manager.getCurrentOrder(), 2);
+        assertEquals(1, Team.getGlobalCurrentOrder());
     }
 
     @Test
@@ -84,19 +82,7 @@ public class ChallengeManagerTimerTest {
             playerMock.assertGameMode(GameMode.SPECTATOR);
             assertTrue(playerMock.getBossBars().isEmpty());
         });
-        assertEquals(manager.getGameState(), ChallengeManager.GameState.ENDED);
-    }
-
-    @Test
-    public void testOnlyGoalsActiveWithCurrentOrderNumber() {
-        BlockBreakGoal firstGoal = blockBreakGoalMock(1);
-        ItemGoal firstGoal2 = itemGoalMock(1);
-        BlockBreakGoal secondGoal = blockBreakGoalMock(2);
-        manager.setGoals(List.of(firstGoal, firstGoal2, secondGoal));
-
-        assertIterableEquals(List.of(firstGoal, firstGoal2), manager.goalsWithSameOrderNumber());
-        manager.onGoalCompleted(ChallengeManager.GoalCompletion.TIMER_BEATEN);
-        assertIterableEquals(List.of(secondGoal), manager.goalsWithSameOrderNumber());
+        assertEquals(ChallengeManager.GameState.ENDED, manager.getGameState());
     }
 
     @Test
@@ -108,11 +94,13 @@ public class ChallengeManagerTimerTest {
         when(noTimerGoal.hasTimer()).thenReturn(false);
         when(noTimerGoal.isComplete()).thenReturn(true);
         manager.setGoals(List.of(firstGoal, firstGoal2, secondGoal, noTimerGoal));
-        manager.onGoalCompleted(ChallengeManager.GoalCompletion.COMPLETED);
-        assertEquals(1, manager.getCurrentOrder());
+        Team.onGoalComplete(context, player, GoalCompletion.COMPLETED);
+        assertEquals(1, Team.getGlobalCurrentOrder());
     }
 
-    private static BlockBreakGoal blockBreakGoalMock(int order) {
+
+
+    public static BlockBreakGoal blockBreakGoalMock(int order) {
         BlockBreakGoal blockBreakGoal = mock(BlockBreakGoal.class);
         when(blockBreakGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1, -1)));
         when(blockBreakGoal.hasTimer()).thenReturn(true);
@@ -120,7 +108,7 @@ public class ChallengeManagerTimerTest {
         return blockBreakGoal;
     }
 
-    private static ItemGoal itemGoalMock(int order) {
+    public static ItemGoal itemGoalMock(int order) {
         ItemGoal itemGoal = mock(ItemGoal.class);
         when(itemGoal.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, order, -1, -1)));
         when(itemGoal.hasTimer()).thenReturn(true);

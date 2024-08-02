@@ -55,18 +55,23 @@ public class FileManagerTest {
                 "/entity_types.json"), EntityTypeDataSource.class).getData();
         List<DeathMessage> deathMessages = new ObjectMapper().readValue(FileManager.class.getResourceAsStream(
                 "/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
+
+        challengeManager = mock(ChallengeManager.class);
+        when(challengeManager.getGoals()).thenReturn(List.of());
+        when(challengeManager.getTeams()).thenReturn(List.of());
+
         context = new Context(plugin,
                               new ResourceBundleContext(bundle, null, null, null, null, null),
                               new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages),
                               schemaRoot,
-                              new ChallengeManager(),
+                              challengeManager,
                               new Random(),
                               new OfflineTempData(plugin)
         );
         mapper = new ModelMapper(context);
 
 
-        challengeManager = mock(ChallengeManager.class);
+
 
         //noBlockBreakRule = new NoBlockBreakRule(plugin, bundle, Set.of(Material.STONE));
         //when(noBlockBreakRule.toGeneratedJSONClass()).thenAnswer(invocation -> noBlockBreakRule.toGeneratedJSONClass());

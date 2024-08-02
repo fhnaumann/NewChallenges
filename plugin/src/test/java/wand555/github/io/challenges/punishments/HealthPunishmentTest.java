@@ -17,6 +17,7 @@ import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
+import wand555.github.io.challenges.teams.Team;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -59,7 +60,9 @@ public class HealthPunishmentTest {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
         player = server.addPlayer();
-        ChallengeManager challengeManager = new ChallengeManager();
+        ChallengeManager challengeManager = mock(ChallengeManager.class);
+        challengeManager.setContext(context);
+        when(challengeManager.getGoals()).thenReturn(List.of());
         Random randomMock = mock(Random.class);
         when(randomMock.nextInt(anyInt(), anyInt())).thenReturn(3);
         context = new Context(plugin,
@@ -70,7 +73,7 @@ public class HealthPunishmentTest {
                               randomMock,
                               new OfflineTempData(plugin)
         );
-        challengeManager.setContext(context);
+        Team.initAllTeam(context, -1);
     }
 
     @AfterEach

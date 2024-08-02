@@ -7,10 +7,9 @@ import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.EndPunishmentConfig;
-import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.teams.Team;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class EndPunishment extends Punishment implements Storable<EndPunishmentConfig> {
@@ -41,8 +40,8 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
     }
 
     @Override
-    public void enforceAllPunishment() {
-        context.challengeManager().endChallenge(false);
+    public void enforceAllPunishment(Team team) {
+        context.challengeManager().failChallengeFor(team);
         // no own message, because the messages about the challenge failure will be sent anyway.
     }
 

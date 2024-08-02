@@ -9,6 +9,7 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mapping.NullHelper;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
 import java.util.Objects;
@@ -45,9 +46,9 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     }
 
     @Override
-    public void enforceAllPunishment() {
+    public void enforceAllPunishment(Team team) {
         int damageAmount = getCalculatedHeartsLost();
-        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
                                                                                         receiver -> enforceOnReceiver(
                                                                                                 receiver,
                                                                                                 damageAmount

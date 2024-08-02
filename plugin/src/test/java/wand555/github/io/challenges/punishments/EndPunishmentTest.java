@@ -16,6 +16,7 @@ import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.generated.EndPunishmentConfig;
+import wand555.github.io.challenges.teams.Team;
 
 import java.io.IOException;
 
@@ -74,6 +75,6 @@ public class EndPunishmentTest {
         EndPunishmentConfig endPunishmentConfig = new EndPunishmentConfig(EndPunishmentConfig.Affects.ALL);
         EndPunishment endPunishment = new EndPunishment(context, endPunishmentConfig);
         endPunishment.enforcePunishment(causer);
-        verify(context.challengeManager()).endChallenge(false);
+        verify(context.challengeManager()).failChallengeFor(Team.ALL_TEAM);
     }
 }

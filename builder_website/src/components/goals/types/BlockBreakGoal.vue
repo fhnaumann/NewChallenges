@@ -3,11 +3,7 @@
     <template #configuration>
       <div>
         <CollectableDropdownConfiguration
-          :model-access="{
-        get: modelInFunc => modelInFunc.goals?.blockBreakGoal?.broken,
-        where: 'goals.blockBreakGoal.broken',
-        testSchematron: false
-        }"
+          :model-access="brokenModelAccess"
           :dropdown-placeholder-text="t('goals.types.blockBreakGoal.settings.dropdown.blockPlaceholder')"
           :collectable-text-prefix="t('goals.types.blockBreakGoal.settings.dropdown.blockPrefix')"
           :show-image="true"
@@ -41,7 +37,7 @@
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import { useRoute } from 'vue-router'
-  import { ref, watch } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import type { BlockBreakGoalConfig } from '@/models/blockbreak'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
@@ -55,19 +51,27 @@
   import type { CollectableEntryConfig } from '@/models/goals'
 
   const { t } = useI18n()
-  const route = useRoute()
+
+
   const { model, set } = useModelStore()
   const { breakAllBlocksOnce } = storeToRefs(useVarHelperStore())
 
+
   const baseModelAcces: ModelAccess<BlockBreakGoalConfig> = {
     get: model => model.goals?.blockBreakGoal,
-    where: 'goals.blockBreakGoal',
+    where: `goals.blockBreakGoal`,
     testSchematron: false
   }
 
+  const brokenModelAccess: ModelAccess<CollectableEntryConfig[]> = {
+    get: model1 => baseModelAcces.get(model1)?.broken,
+    where: `${baseModelAcces.where}.broken`,
+    testSchematron: false
+  }
   // set defaults if nothing is set so far
-  if(model.goals?.blockBreakGoal?.broken === undefined) {
-    set('goals.blockBreakGoal.broken', [{
+  if(brokenModelAccess.get(model) === undefined) {
+    console.log("set default because it was empty")
+    set(brokenModelAccess.where, [{
       collectableName: 'dragon_egg',
       collectableData: {
         amountNeeded: 1
@@ -76,7 +80,7 @@
   }
 
   function updateBreakAllBlocksOnce(breakAllBlocksOnce: boolean) {
-    set('goals.blockBreakGoal.broken', breakAllBlocksOnce ? fromDataRowArray2CollectableEntryArray(ALL_IS_BLOCK_MATERIAL_DATA) : undefined, true)
+    set(brokenModelAccess.where, breakAllBlocksOnce ? fromDataRowArray2CollectableEntryArray(ALL_IS_BLOCK_MATERIAL_DATA) : undefined, true)
   }
 
 </script>

@@ -6,15 +6,17 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.Goal;
 import wand555.github.io.challenges.criteria.goals.Timer;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarHelper;
 import wand555.github.io.challenges.generated.GoalTimer;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -50,10 +52,11 @@ public class TimerRunnableGoalTimerTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         manager = mock(ChallengeManager.class);
         when(manager.getGoals()).thenReturn(fakeGoals());
-        when(manager.getCurrentOrder()).thenReturn(1);
         when(manager.isRunning()).thenReturn(true);
 
         when(context.challengeManager()).thenReturn(manager);
+
+        Team.initAllTeam(context, 1);
 
         timerRunnable = new TimerRunnable(context, 0L);
         timerRunnable.start();
@@ -66,37 +69,55 @@ public class TimerRunnableGoalTimerTest {
 
     @Test
     public void testDecrementTimeInTimer() {
-        when(manager.goalsWithSameOrderNumber()).thenReturn(List.of(goalFirstOrder1, goalFirstOrder2));
-        server.getScheduler().performTicks(20);
+        try(MockedStatic<Team> teamMockedStatic = mockStatic(Team.class)) {
+            teamMockedStatic.when(() -> Team.goalsWithSameOrderNumberAcrossAllTeams(manager)).thenReturn(Map.of(Team.ALL_TEAM, List.of(goalFirstOrder1, goalFirstOrder2)));
+            server.getScheduler().performTicks(20);
 
-        assertEquals(179, goalFirstOrder1.getTimer().getTime());
-        assertEquals(179, goalFirstOrder2.getTimer().getTime());
+            assertEquals(179, goalFirstOrder1.getTimer().getTime());
+            assertEquals(179, goalFirstOrder2.getTimer().getTime());
+        }
+
 
     }
 
     @Test
     public void testNoDecrementTimeInTimerWithDifferentOrderNumber() {
-        when(manager.goalsWithSameOrderNumber()).thenReturn(List.of(goalFirstOrder1, goalFirstOrder2));
-        server.getScheduler().performTicks(20);
-        assertEquals(180, goalSecondOrder1.getTimer().getTime());
+        try(MockedStatic<Team> teamMockedStatic = mockStatic(Team.class)) {
+            teamMockedStatic.when(() -> Team.goalsWithSameOrderNumberAcrossAllTeams(manager)).thenReturn(Map.of(Team.ALL_TEAM, List.of(goalFirstOrder1, goalFirstOrder2)));
+            server.getScheduler().performTicks(20);
+            assertEquals(180, goalSecondOrder1.getTimer().getTime());
+        }
     }
 
     @Test
     public void testUpdateBossBarEverySecond() {
-        when(manager.goalsWithSameOrderNumber()).thenReturn(List.of(goalFirstOrder1, goalFirstOrder2));
-        server.getScheduler().performTicks(20);
+        try(MockedStatic<Team> teamMockedStatic = mockStatic(Team.class)) {
+            teamMockedStatic.when(() -> Team.goalsWithSameOrderNumberAcrossAllTeams(manager)).thenReturn(Map.of(Team.ALL_TEAM,
+                                                                                                                List.of(goalFirstOrder1,
+                                                                                                                        goalFirstOrder2
+                                                                                                                )
+            ));
+            server.getScheduler().performTicks(20);
 
-        verify(goalFirstOrder1.getBossBarHelper(), times(1)).updateBossBar();
-        verify(goalFirstOrder2.getBossBarHelper(), times(1)).updateBossBar();
+            verify(goalFirstOrder1.getBossBarHelper(), times(1)).updateBossBar();
+            verify(goalFirstOrder2.getBossBarHelper(), times(1)).updateBossBar();
+        }
+
     }
 
     @Test
     public void testFailedChallengeDueTimeLimit() {
-        when(manager.goalsWithSameOrderNumber()).thenReturn(List.of(goalFirstOrder1, goalFirstOrder2));
-        when(goalFirstOrder1.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, 1, 180, 0)));
-        server.getScheduler().performTicks(20);
+        try(MockedStatic<Team> teamMockedStatic = mockStatic(Team.class)) {
+            teamMockedStatic.when(() -> Team.goalsWithSameOrderNumberAcrossAllTeams(manager)).thenReturn(Map.of(Team.ALL_TEAM,
+                                                                                                                List.of(goalFirstOrder1,
+                                                                                                                        goalFirstOrder2
+                                                                                                                )
+            ));
+            when(goalFirstOrder1.getTimer()).thenReturn(new Timer(new GoalTimer(180, 180, 1, 180, 0)));
+            server.getScheduler().performTicks(20);
 
-        verify(manager, times(1)).endChallenge(false);
+            verify(manager, times(1)).failChallengeFor(eq(Team.ALL_TEAM));
+        }
     }
 
     private List<BaseGoal> fakeGoals() {

@@ -489,7 +489,7 @@
             "properties": {
                 "currentOrder": {
                     "default": -1,
-                    "description": "The number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
+                    "description": "ONLY RELEVANT IF THERE ARE NO TEAMS! Otherwise, look for the same property in an individual team.\n\nThe number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
                     "type": "integer"
                 },
                 "goals": {
@@ -507,6 +507,14 @@
                 },
                 "settings": {
                     "$ref": "#/definitions/SettingsConfig"
+                },
+                "teams": {
+                    "default": [],
+                    "description": "Contains the team names for this challenge. If at least one team exists, then the goals from the goals config\nwill be moved to here, where each team has their own goals' config.\nIn a way this list may be used check if this challenge has teams:\nList is empty     -> No teams, everything goal related is in the goals property\nList is not empty -> Teams, everything goal related is in the goals property for the individual teams. The \"global\"\n                     goals property is empty/undefined.",
+                    "items": {
+                        "$ref": "#/definitions/TeamConfig"
+                    },
+                    "type": "array"
                 },
                 "timer": {
                     "default": 0,
@@ -755,6 +763,35 @@
                     "$ref": "#/definitions/UltraHardcoreSettingConfig"
                 }
             },
+            "type": "object"
+        },
+        "TeamConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "currentOrder": {
+                    "default": -1,
+                    "description": "ONLY RELEVANT IF THERE ARE TEAMS! Otherwise, look for the same property in the \"global\" goals config.\n\nThe number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
+                    "type": "integer"
+                },
+                "goals": {
+                    "$ref": "#/definitions/GoalsConfig"
+                },
+                "playerUUIDs": {
+                    "default": [],
+                    "description": "The UUIDs of the players that are in this team.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "teamName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "goals",
+                "teamName"
+            ],
             "type": "object"
         },
         "UltraHardcoreSettingConfig": {

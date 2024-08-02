@@ -22,6 +22,7 @@ import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
 import wand555.github.io.challenges.punishments.*;
+import wand555.github.io.challenges.teams.Team;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
@@ -37,11 +38,18 @@ public class CriteriaMapper {
         List<Punishment> globalPunishments = model.getRules() != null ? mapToPunishments(context,
                                                                                          model.getRules().getEnabledGlobalPunishments()
         ) : new ArrayList<>();
+
+        List<Team> teams = model.getTeams() != null ? mapToTeams(context, model.getTeams()) : new ArrayList<>();
+
         List<BaseGoal> goals = model.getGoals() != null ? mapToGoals(context, model.getGoals()) : new ArrayList<>();
         List<BaseSetting> settings = model.getSettings() != null
                                      ? mapToSettings(context, model.getSettings())
                                      : new ArrayList<>();
-        return new Criterias(rules, globalPunishments, goals, settings);
+        return new Criterias(rules, globalPunishments, goals, settings, teams);
+    }
+
+    private static List<Team> mapToTeams(Context context, List<TeamConfig> teamsConfig) {
+        return teamsConfig.stream().map(teamConfig -> new Team(context, teamConfig)).toList();
     }
 
     private static List<Rule> mapToRules(@NotNull Context context, EnabledRules enabledRulesConfig) {
@@ -74,7 +82,7 @@ public class CriteriaMapper {
         return rules;
     }
 
-    private static List<BaseGoal> mapToGoals(Context context, GoalsConfig goalsConfig) {
+    public static List<BaseGoal> mapToGoals(Context context, GoalsConfig goalsConfig) {
         List<BaseGoal> goals = new ArrayList<>();
         if(goalsConfig == null) {
             return goals;
@@ -142,6 +150,7 @@ public class CriteriaMapper {
     }
 
     public record Criterias(
-            List<Rule> rules, List<Punishment> globalPunishments, List<BaseGoal> goals, List<BaseSetting> settings
+            List<Rule> rules, List<Punishment> globalPunishments, List<BaseGoal> goals, List<BaseSetting> settings,
+            List<Team> teams
     ) {}
 }

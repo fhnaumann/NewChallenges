@@ -5,6 +5,7 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.JSONConfigGroup;
 import wand555.github.io.challenges.StatusInfo;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.Objects;
 
@@ -21,13 +22,13 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
     public void enforcePunishment(Player causer) {
         switch(affects) {
             case CAUSER -> enforceCauserPunishment(causer);
-            case ALL -> enforceAllPunishment();
+            case ALL -> enforceAllPunishment(Team.getTeamPlayerIn(context, causer.getUniqueId()));
         }
     }
 
     public abstract void enforceCauserPunishment(Player causer);
 
-    public abstract void enforceAllPunishment();
+    public abstract void enforceAllPunishment(Team team);
 
     public Affects getAffects() {
         return affects;

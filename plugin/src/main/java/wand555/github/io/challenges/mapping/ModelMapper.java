@@ -35,6 +35,7 @@ import wand555.github.io.challenges.punishments.RandomEffectPunishment;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.criteria.rules.Rule;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.types.death.DeathMessage;
 
 import javax.annotation.Nullable;
@@ -81,6 +82,13 @@ public class ModelMapper {
         context.challengeManager().setRules(criterias.rules());
         context.challengeManager().setGoals(criterias.goals());
         context.challengeManager().setSettings(criterias.settings());
+        context.challengeManager().setTeams(mapTeams(context, json.getTeams()));
+    }
+
+    private static List<Team> mapTeams(Context context, List<TeamConfig> teamConfigs) {
+        return teamConfigs.stream()
+                .map(teamConfig -> new Team(context, teamConfig))
+                .toList();
     }
 
     public static <K extends Keyed> LinkedHashMap<K, Collect> str2Collectable(List<CollectableEntryConfig> collectables, DataSourceContext dataSourceContext, Class<K> keyedType) {

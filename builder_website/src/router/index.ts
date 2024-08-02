@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteParams } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NoBlockBreakRule from '@/components/rules/types/NoBlockBreakRule.vue'
 import AllCriteriaOverview from '@/components/AllCriteriaOverview.vue'
@@ -47,7 +47,7 @@ const router = createRouter({
     {
       path: '/goals/blockBreakGoal',
       name: 'BlockBreakGoal',
-      component: BlockBreakGoal
+      component: BlockBreakGoal,
     },
     /*
     mob

@@ -13,8 +13,10 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.ResourceBundleContext;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.generated.RandomEffectPunishmentConfig;
+import wand555.github.io.challenges.teams.Team;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import static org.mockito.Mockito.*;
@@ -39,7 +41,7 @@ public class RandomEffectPunishmentTest {
         when(context.random()).thenReturn(random);
         ChallengeManager manager = mock(ChallengeManager.class);
         when(context.challengeManager()).thenReturn(manager);
-
+        when(manager.getGoals()).thenReturn(List.of());
     }
 
     @BeforeEach
@@ -49,6 +51,8 @@ public class RandomEffectPunishmentTest {
         when(context.plugin()).thenReturn(plugin);
         causer = server.addPlayer();
         other = server.addPlayer();
+
+        Team.initAllTeam(context, -1);
     }
 
     @AfterEach

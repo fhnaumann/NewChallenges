@@ -10,6 +10,7 @@ import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.CompletionConfig;
 import wand555.github.io.challenges.generated.ContributorsConfig;
 import wand555.github.io.challenges.inventory.progress.CollectedInventory;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.types.Data;
 
 import java.util.Map;
@@ -54,22 +55,27 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     }
 
     @Override
-    public void onStart() {
-        showBossBar(context.plugin().getServer().getOnlinePlayers());
+    public void onStart(Team team) {
+        showBossBar(team.getAllOnlinePlayers());
     }
 
     @Override
-    public void onComplete() {
-        super.onComplete();
+    public void onEnd(Team team) {
+        removeBossBar(team.getAllOnlinePlayers());
+    }
+
+    @Override
+    public void onComplete(Player lastCompletionStepProvidedBy) {
+        super.onComplete(lastCompletionStepProvidedBy);
         messageHelper.sendAllReachedAction();
 
         if(bossBarHelper.getBossBar() != null) {
-            removeBossBar(context.plugin().getServer().getOnlinePlayers());
+            removeBossBar(Team.getTeamPlayerIn(context, lastCompletionStepProvidedBy.getUniqueId()).getAllOnlinePlayers());
         }
 
-        notifyManager(hasTimer()
-                      ? ChallengeManager.GoalCompletion.TIMER_BEATEN
-                      : ChallengeManager.GoalCompletion.COMPLETED);
+        notifyGoalCompleted(lastCompletionStepProvidedBy, hasTimer()
+                      ? GoalCompletion.TIMER_BEATEN
+                      : GoalCompletion.COMPLETED);
     }
 
     @Override
@@ -78,7 +84,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             if(isComplete()) {
                 return false;
             }
-            if(hasTimer() && context.challengeManager().getCurrentOrder() != getTimer().getOrder()) {
+            if(hasTimer() && Team.getTeamPlayerIn(context, data.player().getUniqueId()).getCurrentOrder() != getTimer().getOrder()) {
                 // the goal has a timer and its order number is bigger than the current order number, meaning
                 // this goal is yet "active". It only becomes active if preceding goals are completed and
                 // the order number is increases.
@@ -115,7 +121,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
             collectedInventory.update(data.mainDataInvolved(), updatedCollect);
 
             if(determineComplete()) {
-                onComplete();
+                onComplete(data.player());
             }
             bossBarHelper.updateBossBar();
         };
@@ -157,7 +163,7 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         trigger().actOnTriggered(createSkipData(goalCollector.getCurrentlyToCollect(), player));
         if(determineComplete()) {
             // there are no other collects left to complete -> skipping the active collect completes the goal
-            onComplete();
+            onComplete(player);
         } else {
             bossBarHelper.updateBossBar();
         }

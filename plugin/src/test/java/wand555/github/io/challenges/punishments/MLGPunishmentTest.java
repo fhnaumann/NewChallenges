@@ -17,6 +17,9 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.generated.MLGPunishmentConfig;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
+import wand555.github.io.challenges.teams.Team;
+
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -48,13 +51,14 @@ public class MLGPunishmentTest {
         when(context.plugin()).thenReturn(plugin);
         challengeManager = mock(ChallengeManager.class);
         when(context.challengeManager()).thenReturn(challengeManager);
+        when(challengeManager.getGoals()).thenReturn(List.of());
         causer = server.addPlayer();
         otherPlayer = server.addPlayer();
         mlgWorld = server.addSimpleWorld("mlgWorld");
         causer.setLocation(new Location(mlgWorld, 0, 0, 0));
         otherPlayer.setLocation(new Location(mlgWorld, 0, 0, 0));
         mlgHandler = spy(new MLGHandler(context, mock(OfflinePlayerData.class)));
-
+        Team.initAllTeam(context, -1);
     }
 
     @AfterEach
@@ -104,7 +108,7 @@ public class MLGPunishmentTest {
         MLGHandlerTest.simulateMLGFailHitGround(server, causer);
         MLGHandlerTest.simulateMLGSuccess(server, mlgWorld, otherPlayer);
         server.getScheduler().performOneTick();
-        verify(challengeManager).endChallenge(eq(false));
+        verify(challengeManager).failChallengeFor(Team.ALL_TEAM);
     }
 
     @Test

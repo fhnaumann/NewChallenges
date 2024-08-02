@@ -18,7 +18,6 @@ public class BossBarHelper {
 
     protected final Context context;
     protected BossBar bossBar;
-    protected boolean hasTimer;
 
     protected final List<BossBarPart<?>> parts;
 
@@ -37,21 +36,4 @@ public class BossBarHelper {
         bossBar.name(bossBarBuilder.buildName());
         bossBar.progress(bossBarBuilder.buildProgress());
     }
-
-    /*
-    private BossBar createTimerBossBar(int time) {
-        Component formattedBossBarComponent = formatTimeLimitBossBarComponent(time).appendSpace().append(formatGoalNameAsPrefix());
-        return BossBar.bossBar(formattedBossBarComponent, 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
-    }
-
-    protected Component formatTimeLimitBossBarComponent(int time) {
-        Map<TimerUtil.TimeParts, String> mappedTime = TimerUtil.format(time);
-        Component timer = ComponentUtil.formatTimer(context.plugin(), context.resourceBundleContext().goalResourceBundle(), "goal.bossbar.time_left", mappedTime);
-        return timer;
-    }
-
-    protected Component formatGoalNameAsPrefix() {
-        return Component.text("(").append(ComponentUtil.formatBossBarMessage(context.plugin(), context.resourceBundleContext().goalResourceBundle(), "%s.name".formatted(getGoalNameInResourceBundle()), Map.of(), Map.of())).append(Component.text(")"));
-    }*/
-
 }

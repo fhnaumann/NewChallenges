@@ -6,6 +6,7 @@ import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.validation.BossBarShower;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
@@ -36,13 +37,14 @@ public class FileManager {
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model model = new Model(0,
+        Model model = new Model(Team.getGlobalCurrentOrder(),
                                 goalsConfig,
                                 challengeManager.getChallengeMetadata(),
                                 null,
                                 rulesConfig,
                                 settingsConfig,
-                                (int) challengeManager.getTime()
+                                challengeManager.getTeams().stream().map(Team::toGeneratedJSONClass).toList(),
+                                (int)challengeManager.getTime()
         );
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -124,7 +126,8 @@ public class FileManager {
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                 context.challengeManager().setValid(true);
                 context.challengeManager().setBossBarShower(new BossBarShower(context));
-                context.challengeManager().setCurrentOrder(challengesSchema.getCurrentOrder());
+
+                Team.initAllTeam(context, challengesSchema.getCurrentOrder());
                 ModelMapper.map2ModelClasses(context, challengesSchema);
 
 

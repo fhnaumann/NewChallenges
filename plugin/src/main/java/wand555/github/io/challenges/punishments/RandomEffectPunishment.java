@@ -11,6 +11,7 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.generated.RandomEffectPunishmentConfig;
 import wand555.github.io.challenges.mapping.NullHelper;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.utils.CollectionUtil;
 
 import java.util.Arrays;
@@ -54,9 +55,9 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     }
 
     @Override
-    public void enforceAllPunishment() {
+    public void enforceAllPunishment(Team team) {
         List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
-        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
                                                                                         samePlayer -> enforceOnReceiver(
                                                                                                 samePlayer,
                                                                                                 calculatedEffectsAtOnce

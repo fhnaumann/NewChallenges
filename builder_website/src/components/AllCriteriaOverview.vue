@@ -12,6 +12,7 @@
     <CriteriaTypeOverview class="customized-setting" criteria-type="settings" />
     <div class="fixed inset-x-0 bottom-0">
       <div class="flex justify-end px-4 py-2 space-x-4">
+        <Button :label="t('general.team.modify_teams')" @click="showChangeTeams()"/>
         <Button :label="t('general.change_metadata_button')" @click="showChangeMetadata()" />
         <Button :label="t('general.export.download_button')" @click="showCodeDisplay()" />
       </div>
@@ -25,7 +26,7 @@
   import Dialog from 'primevue/dialog'
   import InputText from 'primevue/inputtext'
   import { useI18n } from 'vue-i18n'
-  import { ref } from 'vue'
+  import { ref, toRaw } from 'vue'
   import { useDialog } from 'primevue/usedialog'
   import { root } from 'postcss'
   import { useRouter } from 'vue-router'
@@ -33,12 +34,14 @@
   import CodeDisplay from '@/components/CodeDisplay.vue'
   import { useModelStore } from '@/stores/model'
   import MetadataOverview from '@/components/MetadataOverview.vue'
+  import type { Model } from '@/models/model'
+  import TeamOverview from '@/components/teams/TeamOverview.vue'
 
 
   const { t } = useI18n()
   const router = useRouter()
   const dialog = useDialog()
-  const { set } = useModelStore()
+  const { set, model } = useModelStore()
 
   function clearAllCriteria() {
     set('rules', {}, false)
@@ -78,6 +81,9 @@
   }
 
   function showCodeDisplay() {
+    // map goals to a per-team basis
+    mapGoals2PerTeamBasis(model)
+
     dialog.open(CodeDisplay, {
       props: {
         modal: true,
@@ -93,8 +99,27 @@
     })
   }
 
+  function mapGoals2PerTeamBasis(model: Model) {
+    if(model.teams !== undefined && model.teams!.length > 0) {
+      model.teams?.forEach(team => {
+        team.goals = structuredClone(toRaw(model.goals!))
+      })
+      model.goals = {}
+    }
+
+  }
+
   function showChangeMetadata() {
     dialog.open(MetadataOverview, {
+      props: {
+        modal: true,
+        draggable: false
+      }
+    })
+  }
+
+  function showChangeTeams() {
+    dialog.open(TeamOverview, {
       props: {
         modal: true,
         draggable: false

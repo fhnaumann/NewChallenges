@@ -7,17 +7,14 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import wand555.github.io.challenges.criteria.Criteria;
 import wand555.github.io.challenges.criteria.Loadable;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.Goal;
-import wand555.github.io.challenges.criteria.goals.Progressable;
-import wand555.github.io.challenges.criteria.goals.Skippable;
+import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.InteractionManager;
-import wand555.github.io.challenges.utils.CollectionUtil;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.validation.BossBarShower;
 
 import javax.validation.constraints.NotNull;
@@ -39,6 +36,8 @@ public class ChallengeManager implements StatusInfo {
 
     private @NotNull ChallengeMetadata challengeMetadata;
 
+    private @NotNull List<Team> teams;
+
     private boolean valid;
 
     private GameState gameState;
@@ -46,8 +45,6 @@ public class ChallengeManager implements StatusInfo {
     private TimerRunnable timerRunnable;
 
     private BossBarShower bossBarShower;
-
-    private int currentOrder;
 
     public ChallengeManager() {
         gameState = GameState.SETUP;
@@ -77,11 +74,11 @@ public class ChallengeManager implements StatusInfo {
         );
         context.plugin().getServer().broadcast(toSend);
 
-        goals.forEach(BaseGoal::onStart);
+        goals.forEach(baseGoal -> baseGoal.onStart(Team.ALL_TEAM));
         //goals.stream().filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
-        settings.forEach(BaseSetting::onStart);
+        settings.forEach(baseSetting -> baseSetting.onStart(Team.ALL_TEAM));
     }
 
 
@@ -97,11 +94,14 @@ public class ChallengeManager implements StatusInfo {
     public void resume() {
         if(gameState == GameState.ENDED) {
             // BossBars were removed when gameState was set to ENDED
-            goals.stream()
-                 .filter(BossBarDisplay.class::isInstance)
-                 .filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder())
-                 .map(BossBarDisplay.class::cast)
-                 .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(Bukkit.getOnlinePlayers()));
+            teams.forEach(team -> {
+                team.getGoals().stream()
+                     .filter(BossBarDisplay.class::isInstance)
+                     .filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == team.getCurrentOrder())
+                     .map(BossBarDisplay.class::cast)
+                     .forEach(bossBarDisplay -> bossBarDisplay.showBossBar(team.getAllOnlinePlayers()));
+            });
+
         }
         gameState = GameState.RUNNING;
         allCriterias().forEach(Criteria::onResume);
@@ -173,41 +173,31 @@ public class ChallengeManager implements StatusInfo {
         this.rules = rules;
     }
 
-    public List<Punishment> getGlobalPunishments() {
+    public @NotNull List<Punishment> getGlobalPunishments() {
         return globalPunishments;
     }
 
-    public void setGlobalPunishments(List<Punishment> globalPunishments) {
+    public void setGlobalPunishments(@NotNull List<Punishment> globalPunishments) {
         this.globalPunishments = globalPunishments;
     }
 
-    public void onGoalCompleted(GoalCompletion goalCompletion) {
-        if(goalCompletion == GoalCompletion.TIMER_BEATEN && allGoalsWithOrderCurrentNumberComplete()) {
-            int nextOrderNumber = nextOrderNumber();
-            setCurrentOrder(nextOrderNumber);
-            // initialize goals that now "start"
-            getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(
-                    BaseGoal::onStart);
+    public void failChallengeFor(Team team) {
+        if(team == Team.ALL_TEAM) {
+            endChallenge(false);
         }
-        if(allGoalsCompleted()) {
-            endChallenge(true);
+        else {
+            team.getAllOnlinePlayers().forEach(player -> {
+                InteractionManager.removeUnableToInteract(context, player, true);
+
+                player.setGameMode(GameMode.SPECTATOR);
+                player.getActivePotionEffects().clear();
+            });
+
+            team.getGoals().forEach(baseGoal -> baseGoal.onEnd(team));
         }
     }
 
-    private boolean allGoalsWithOrderCurrentNumberComplete() {
-        return goalsWithSameOrderNumber().stream().allMatch(Goal::isComplete);
-    }
-
-    private int nextOrderNumber() {
-        return getGoals().stream()
-                         .filter(BaseGoal::hasTimer)
-                         .mapToInt(baseGoal -> baseGoal.getTimer().getOrder())
-                         .filter(value -> value > getCurrentOrder())
-                         .min()
-                         .orElse(-1);
-    }
-
-    public void endChallenge(boolean success) {
+    public void endChallenge(boolean success, Team winnerTeam) {
         context.plugin().getServer().getOnlinePlayers().forEach(player -> {
             // The player might be somewhere they shouldn't be when the challenge is ended.
             // In that case, behave as if the thing they are busy with (ongoing MLG, ...) is completed.
@@ -247,8 +237,8 @@ public class ChallengeManager implements StatusInfo {
         context.offlineTempData().addAndSave("fileNameBeingPlayed", null);
     }
 
-    private boolean allGoalsCompleted() {
-        return goals.stream().allMatch(BaseGoal::isComplete);
+    public void endChallenge(boolean success) {
+        endChallenge(success, null);
     }
 
     public @NotNull List<BaseGoal> getGoals() {
@@ -258,10 +248,10 @@ public class ChallengeManager implements StatusInfo {
     public void setGoals(@NotNull List<BaseGoal> goals) {
         this.goals = goals;
         // goals may have time limits -> set current order to minimum order value that exists in the goals
-        goals.stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresentOrElse(
-                this::setCurrentOrder,
-                () -> setCurrentOrder(-1)
-        );
+        if(Team.getGlobalCurrentOrder() == -1) {
+            Team.setCurrentOrderIfNotYetSetToMinOrderValueThatExistsIn(Team.ALL_TEAM);
+        }
+
     }
 
     public long getTime() {
@@ -311,28 +301,12 @@ public class ChallengeManager implements StatusInfo {
         return total.append(Component.text("\uE000"));
     }
 
-    public List<Goal> goalsWithSameOrderNumber() {
-        return goals.stream()
-                    .filter(BaseGoal::hasTimer)
-                    .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
-                    .map(Goal.class::cast)
-                    .toList();
-    }
-
     public boolean isValid() {
         return valid;
     }
 
     public void setValid(boolean valid) {
         this.valid = valid;
-    }
-
-    public int getCurrentOrder() {
-        return currentOrder;
-    }
-
-    public void setCurrentOrder(int currentOrder) {
-        this.currentOrder = currentOrder;
     }
 
     public @NotNull ChallengeMetadata getChallengeMetadata() {
@@ -351,10 +325,22 @@ public class ChallengeManager implements StatusInfo {
         this.settings = settings;
     }
 
+    public @NotNull List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(@NotNull List<Team> teams) {
+        this.teams = teams;
+    }
+
+    public boolean hasTeams() {
+        return !teams.isEmpty();
+    }
+
     public void unload() {
-        if(getGoals() != null) {
-            getGoals().forEach(Loadable::unload);
-        }
+        getTeams().forEach(team -> {
+            team.getGoals().forEach(Loadable::unload);
+        });
         if(getRules() != null) {
             getRules().forEach(Loadable::unload);
         }
@@ -375,8 +361,4 @@ public class ChallengeManager implements StatusInfo {
         ENDED
     }
 
-    public enum GoalCompletion {
-        COMPLETED,
-        TIMER_BEATEN
-    }
 }

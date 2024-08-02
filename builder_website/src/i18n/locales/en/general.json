@@ -13,6 +13,11 @@
       "minValue": "Minimum:",
       "maxValue": "Maximum:"
     },
+    "team": {
+      "modify_teams": "Modify teams",
+      "add": "Add new team:",
+      "already_exists": "Team with that name already exists!"
+    },
     "change_metadata_button": "Modify metadata",
     "metadata": {
       "name": {

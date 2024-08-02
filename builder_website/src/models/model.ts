@@ -15,6 +15,20 @@ export interface Model {
   settings?: SettingsConfig
 
   /**
+   * Contains the team names for this challenge. If at least one team exists, then the goals from the goals config
+   * will be moved to here, where each team has their own goals' config.
+   * In a way this list may be used check if this challenge has teams:
+   * List is empty     -> No teams, everything goal related is in the goals property
+   * List is not empty -> Teams, everything goal related is in the goals property for the individual teams. The "global"
+   *                      goals property is empty/undefined.
+   *
+   * @default []
+   */
+  teams?: TeamConfig[]
+
+  /**
+   * ONLY RELEVANT IF THERE ARE NO TEAMS! Otherwise, look for the same property in an individual team.
+   *
    * The number that represents the current order progress. Starts at 0 and increases as
    * goals with their order number are completed.
    * Start: Complete all goals with order number 0.
@@ -117,3 +131,32 @@ export interface MinMaxRangeConfig {
    */
   maxTimeSeconds?: number
 }
+
+export interface TeamConfig {
+  teamName: string
+  /**
+   * The UUIDs of the players that are in this team.
+   *
+   * @default []
+   */
+  playerUUIDs?: string[]
+  goals: GoalsConfig
+
+  /**
+   * ONLY RELEVANT IF THERE ARE TEAMS! Otherwise, look for the same property in the "global" goals config.
+   *
+   * The number that represents the current order progress. Starts at 0 and increases as
+   * goals with their order number are completed.
+   * Start: Complete all goals with order number 0.
+   * Next: Increase currentOrder if all goals with order number 0 are completed.
+   * Next: Increase currentOrder if all goals with order number 1 are completed.
+   * End: There are no challenges with a higher orderNumber left to complete.
+   * currentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit
+   * and goals can be completed whenever (the challenge is over if all goals are completed).
+   *
+   * @default -1
+   * @TJS-type integer
+   */
+  currentOrder?: number
+}
+

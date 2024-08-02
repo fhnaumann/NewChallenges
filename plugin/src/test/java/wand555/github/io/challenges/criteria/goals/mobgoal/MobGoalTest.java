@@ -27,6 +27,7 @@ import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.types.mob.MobData;
 
 import java.io.IOException;
@@ -61,12 +62,15 @@ public class MobGoalTest {
         when(dataSourceContext.entityTypeJSONList()).thenReturn(CriteriaUtil.loadEntities().getData());
         ChallengeManager manager = mock(ChallengeManager.class);
         when(manager.isRunning()).thenReturn(true);
+        when(manager.getGoals()).thenReturn(List.of());
         context = mock(Context.class);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = mock(MobGoalMessageHelper.class);
         collectedInventory = mock(MobGoalCollectedInventory.class);
+
+        Team.initAllTeam(context, -1);
     }
 
     @BeforeEach

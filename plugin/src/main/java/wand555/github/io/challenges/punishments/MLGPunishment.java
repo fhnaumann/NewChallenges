@@ -8,6 +8,7 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.MLGPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mlg.MLGHandler;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,8 +40,8 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
     }
 
     @Override
-    public void enforceAllPunishment() {
-        Bukkit.getOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+    public void enforceAllPunishment(Team team) {
+        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
                                                                                         this::enforceCauserPunishment
         ));
     }
@@ -71,18 +72,20 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
             );
             Bukkit.broadcast(toSend);
 
+            Player causer = mlgHandler.getResults().keySet()
+                                      .stream()
+                                      .findFirst()
+                                      .orElseThrow(() -> new RuntimeException("Causer not found in MLG result handler!"));
+
             switch(getAffects()) {
+
                 case CAUSER -> {
-                    mlgHandler.getResults().keySet()
-                              .stream()
-                              .findFirst()
-                              .orElseThrow(() -> new RuntimeException("Causer not found in MLG result handler!"))
-                              .setGameMode(GameMode.SPECTATOR);
+                    causer.setGameMode(GameMode.SPECTATOR);
                 }
                 case ALL -> {
                     Bukkit.getScheduler().runTask(context.plugin(), () -> {
                         // end challenge as soon as one MLG has failed (after all have been completed)
-                        context.challengeManager().endChallenge(false);
+                        context.challengeManager().failChallengeFor(Team.getTeamPlayerIn(context, causer.getUniqueId()));
                     });
                 }
             }
