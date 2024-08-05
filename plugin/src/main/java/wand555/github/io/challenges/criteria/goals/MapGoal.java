@@ -66,6 +66,16 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     }
 
     @Override
+    public void onPlayerJoinTeamInOnGoingChallenge(Player player) {
+        showBossBar(player);
+    }
+
+    @Override
+    public void onPlayerLeaveTeamInOnGoingChallenge(Player player) {
+        removeBossBar(player);
+    }
+
+    @Override
     public void onComplete(Player lastCompletionStepProvidedBy) {
         super.onComplete(lastCompletionStepProvidedBy);
         messageHelper.sendAllReachedAction();

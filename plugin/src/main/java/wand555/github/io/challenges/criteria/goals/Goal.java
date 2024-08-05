@@ -24,7 +24,11 @@ public interface Goal extends Criteria, ResourceBundleNarrowable, Loadable {
         throw new RuntimeException("Criteria may not be called without a team!");
     }
 
-    public abstract void onComplete(Player lastCompletionStepProvidedBy);
+    public void onPlayerJoinTeamInOnGoingChallenge(Player player);
+
+    public void onPlayerLeaveTeamInOnGoingChallenge(Player player);
+
+    public void onComplete(Player lastCompletionStepProvidedBy);
 
     public boolean hasTimer();
 

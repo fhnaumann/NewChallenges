@@ -64,11 +64,13 @@ public class Team implements Storable<TeamConfig> {
     public void addPlayer(Player player) {
         players.add(player.getUniqueId());
         Bukkit.getScoreboardManager().getMainScoreboard().getTeam(getTeamName()).addPlayer(player);
+        getGoals().forEach(baseGoal -> baseGoal.onPlayerJoinTeamInOnGoingChallenge(player));
     }
 
     public void removePlayer(Player player) {
         players.remove(player.getUniqueId());
         Bukkit.getScoreboardManager().getMainScoreboard().getTeam(getTeamName()).removePlayer(player);
+        getGoals().forEach(baseGoal -> baseGoal.onPlayerLeaveTeamInOnGoingChallenge(player));
     }
 
     public String getTeamName() {
