@@ -12,6 +12,7 @@ import wand555.github.io.challenges.generated.ContributorsConfig;
 import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.types.Data;
+import wand555.github.io.challenges.types.Type;
 
 import java.util.Map;
 
@@ -69,9 +70,11 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         super.onComplete(lastCompletionStepProvidedBy);
         messageHelper.sendAllReachedAction();
 
+        /*
+        Should be handled when onEnd is called
         if(bossBarHelper.getBossBar() != null) {
             removeBossBar(Team.getTeamPlayerIn(context, lastCompletionStepProvidedBy.getUniqueId()).getAllOnlinePlayers());
-        }
+        }*/
 
         notifyGoalCompleted(lastCompletionStepProvidedBy, hasTimer()
                       ? GoalCompletion.TIMER_BEATEN
@@ -81,6 +84,9 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     @Override
     public TriggerCheck<D> triggerCheck() {
         return data -> {
+            if(!Type.sameTeamCheck(context, this, data.player())) {
+                return false;
+            }
             if(isComplete()) {
                 return false;
             }

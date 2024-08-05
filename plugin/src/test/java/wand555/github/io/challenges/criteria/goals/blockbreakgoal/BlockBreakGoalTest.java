@@ -7,6 +7,7 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -24,9 +25,12 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.ContributorsConfig;
+import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.teams.TeamTest;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -44,19 +48,19 @@ public class BlockBreakGoalTest {
     private static BlockBreakGoalMessageHelper messageHelper;
     private static BlockBreakCollectedInventory collectedInventory;
 
+    private BlockBreakGoalConfig config;
+    private ChallengeManager manager;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.goalResourceBundle()).thenReturn(CriteriaUtil.loadGoalResourceBundle());
         DataSourceContext dataSourceContext = mock(DataSourceContext.class);
         when(dataSourceContext.materialJSONList()).thenReturn(CriteriaUtil.loadMaterials().getData());
-        ChallengeManager manager = mock(ChallengeManager.class);
-        when(manager.isRunning()).thenReturn(true);
 
         context = mock(Context.class);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
-        when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new BlockBreakGoalMessageHelper(context));
         collectedInventory = mock(BlockBreakCollectedInventory.class);
     }
@@ -68,6 +72,10 @@ public class BlockBreakGoalTest {
         when(context.plugin()).thenReturn(plugin);
         player = server.addPlayer("dummy");
 
+        manager = mock(ChallengeManager.class);
+        when(manager.isRunning()).thenReturn(true);
+        when(manager.canTakeEffect(any(), any())).thenReturn(true);
+        when(context.challengeManager()).thenReturn(manager);
         String blockBreakGoalJSON =
                 """
                 {
@@ -89,7 +97,7 @@ public class BlockBreakGoalTest {
                   ]
                 }
                 """;
-        BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
+        config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
         blockBreakGoal = new BlockBreakGoal(context,
                                             config,
                                             new GoalCollector<>(context,
@@ -166,5 +174,52 @@ public class BlockBreakGoalTest {
                                                     collectedInventory,
                                                     null
         ));
+    }
+
+    @Test
+    public void testWithTeamsProgressOnlyCountedTowardsTeamGoal() throws JsonProcessingException {
+        Player player2 = server.addPlayer();
+
+        String blockBreakGoalJSON =
+                """
+                {
+                  "broken": [
+                    {
+                      "collectableName": "stone",
+                      "collectableData": {
+                        "amountNeeded": 2,
+                        "currentAmount": 0
+                      }
+                    },
+                    {
+                      "collectableName": "dirt",
+                      "collectableData": {
+                        "currentAmount": 0,
+                        "amountNeeded": 1
+                      }
+                    }
+                  ]
+                }
+                """;
+        BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
+        BlockBreakGoal blockBreakGoal2 = new BlockBreakGoal(context,
+                                            config,
+                                            new GoalCollector<>(context,
+                                                                config.getBroken(),
+                                                                Material.class,
+                                                                config.isFixedOrder(),
+                                                                config.isShuffled()
+                                            ),
+                                            messageHelper,
+                                            collectedInventory,
+                                            null
+        );
+
+        Team team1 = new Team("team1", List.of(blockBreakGoal), List.of(player), -1);
+        Team team2 = new Team("team2", List.of(blockBreakGoal2), List.of(player2), -1);
+        when(manager.getTeams()).thenReturn(List.of(team1, team2));
+        player.simulateBlockBreak(new BlockMock(Material.STONE));
+        assertEquals(1, blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
+        assertEquals(0, blockBreakGoal2.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
     }
 }

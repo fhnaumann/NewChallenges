@@ -43,6 +43,7 @@ public class BlockBreakTypeTest {
         blockBreakEvent = new BlockBreakEvent(new BlockMock(Material.DIRT), player);
         ChallengeManager manager = mock(ChallengeManager.class);
         when(manager.isRunning()).thenReturn(true);
+        when(manager.canTakeEffect(any(), any())).thenReturn(true);
         Context mockedContext = mock(Context.class);
         when(mockedContext.plugin()).thenReturn(plugin);
         when(mockedContext.challengeManager()).thenReturn(manager);

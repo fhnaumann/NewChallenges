@@ -54,7 +54,7 @@ public class FileManager {
         }
     }
 
-    public static Context readFromFile(File file, Challenges plugin) throws LoadValidationException {
+    public static void readFromFile(File file, Context context) throws LoadValidationException {
         String json = null;
         try {
             json = Files.readString(file.toPath());
@@ -88,8 +88,8 @@ public class FileManager {
             try {
                 challengesSchema = objectMapper.readValue(json, Model.class);
 
-                Context context = new Context.Builder()
-                        .withPlugin(plugin)
+                Context newContext = new Context.Builder()
+                        .withPlugin(context.plugin())
                         .withRuleResourceBundle(ResourceBundle.getBundle("rules",
                                                                          Locale.US,
                                                                          UTF8ResourceBundleControl.get()
@@ -121,7 +121,7 @@ public class FileManager {
                                 "/death_messages_as_data_source_JSON.json"))
                         .withChallengeManager(new ChallengeManager())
                         .withRandom(new Random())
-                        .withOfflineTempData(new OfflineTempData(plugin))
+                        .withOfflineTempData(new OfflineTempData(context.plugin()))
                         .build();
                 context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                 context.challengeManager().setValid(true);
@@ -131,7 +131,7 @@ public class FileManager {
                 ModelMapper.map2ModelClasses(context, challengesSchema);
 
 
-                return context;
+                context = newContext;
             } catch(Exception e) {
                 // should never happen because it was validated first.
 

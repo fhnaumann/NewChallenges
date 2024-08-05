@@ -10,6 +10,7 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.MLGSettingConfig;
 import wand555.github.io.challenges.generated.SettingsConfig;
 import wand555.github.io.challenges.mlg.MLGHandler;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
 import java.util.logging.Logger;
@@ -53,7 +54,7 @@ public class MLGSetting extends BaseSetting implements Storable<MLGSettingConfig
         int time = context.random().nextInt(config.getMinTimeSeconds(), config.getMaxTimeSeconds() + 1);
         mlgTimer = new MLGTimer();
         logger.fine("Scheduled new MLG timer for in %s seconds".formatted(time));
-        taskID = mlgTimer.runTaskLater(context.plugin(), time*20L).getTaskId();
+        taskID = mlgTimer.runTaskLater(context.plugin(), time * 20L).getTaskId();
     }
 
     public int getTaskID() {
@@ -107,8 +108,10 @@ public class MLGSetting extends BaseSetting implements Storable<MLGSettingConfig
                 );
                 Bukkit.broadcast(toSend);
                 Bukkit.getScheduler().runTask(context.plugin(), () -> {
-                    // end challenge as soon as one MLG has failed (after all have been completed)
-                    context.challengeManager().endChallenge(false);
+                    context.challengeManager().failChallengeFor(Team.getTeamPlayerIn(context,
+                                                                                     mlgHandler.getResults().keySet().stream().findFirst().orElseThrow().getUniqueId()
+                    ));
+                    // context.challengeManager().endChallenge(false);
                 });
             } else {
                 Component toSend = ComponentUtil.formatChatMessage(

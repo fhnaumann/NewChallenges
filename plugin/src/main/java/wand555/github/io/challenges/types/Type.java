@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.types;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -9,8 +10,12 @@ import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.criteria.goals.BaseGoal;
+import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 public abstract class Type<T> implements Listener {
@@ -21,6 +26,11 @@ public abstract class Type<T> implements Listener {
 
     protected final TriggerCheck<T> triggerCheck;
     protected final Trigger<T> whenTriggered;
+
+    public static <T extends Data<K>, K> boolean sameTeamCheck(Context context, BaseGoal baseGoal, Player player) {
+        Team team = Team.getTeamPlayerIn(context, player.getUniqueId());
+        return team == Team.ALL_TEAM || team.getGoals().contains(baseGoal);
+    }
 
     protected final Map<Class<? extends Event>, EventContainer<? extends Event>> eventContainers;
 

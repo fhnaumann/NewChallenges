@@ -13,9 +13,14 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
 import org.jetbrains.annotations.Nullable;
 import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.commands.team.TeamOverviewPrinter;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.utils.ActionHelper;
 
 import java.io.File;
@@ -27,6 +32,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+
+import static wand555.github.io.challenges.commands.CommandUtil.failWith;
+import static wand555.github.io.challenges.commands.CommandUtil.failWrapperWith;
 
 public class LoadCommand {
 
@@ -115,6 +123,21 @@ public class LoadCommand {
                     "challenges.validation.start.title"
             ));
 
+            // reset scoreboard teams
+            Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+
+            scoreboard.getTeams().forEach(org.bukkit.scoreboard.Team::unregister);
+            Objective objective = scoreboard.getObjective("teams");
+            if(objective != null) {
+                objective.unregister();
+            }
+
+            // how the hell is "/scoreboard objectives setdisplay list" achieved using the spigot API???
+            Objective objective1 = scoreboard.getObjective(DisplaySlot.PLAYER_LIST);
+            if(objective1 != null) {
+                objective1.unregister();
+            }
+
             loadFile(context, challengeFilesHandler, toLoad.file());
 
             Component successTitle = ComponentUtil.formatTitleMessage(
@@ -135,6 +158,13 @@ public class LoadCommand {
                     "challenges.validation.success.chat"
             );
             Bukkit.broadcast(successChat);
+            if(context.challengeManager().hasTeams()) {
+                Bukkit.getOnlinePlayers().forEach(player -> {
+                    Team team = Team.getTeamPlayerIn(context, player.getUniqueId());
+                    Component teamOverview = TeamOverviewPrinter.createTeamsOverviewForPlayer(context, player, team != Team.ALL_TEAM ? team : null);
+                    player.sendMessage(teamOverview);
+                });
+            }
 
         } catch(LoadValidationException e) {
             Component failureTitle = ComponentUtil.formatSubTitleMessage(
@@ -169,9 +199,10 @@ public class LoadCommand {
     }
 
     public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) throws LoadValidationException {
-        Context newContext = FileManager.readFromFile(toLoad, context.plugin());
+        FileManager.readFromFile(toLoad, context);
         // TODO: ugly access
-        context.plugin().tempContext = newContext;
+        // context.plugin().tempContext = newContext;
+
         challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
 
         // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
@@ -181,7 +212,7 @@ public class LoadCommand {
             context.plugin().urlReminder.stop();
             context.plugin().urlReminder = null;
         }
-
+        // return newContext;
     }
 
     private static @Nullable ChallengeFilesHandler.ChallengeLoadStatus challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
@@ -194,28 +225,5 @@ public class LoadCommand {
 
     private static boolean anotherChallengeIsOngoing(ChallengeManager manager) {
         return manager.isRunning() || manager.isPaused();
-    }
-
-    private static WrapperCommandSyntaxException failWrapperWith(Context context, String pathInResourceBundle) {
-        return CommandAPI.failWithString(
-                PlainTextComponentSerializer.plainText().serialize(
-                        ComponentUtil.formatChallengesPrefixChatMessage(
-                                context.plugin(),
-                                context.resourceBundleContext().commandsResourceBundle(),
-                                pathInResourceBundle
-                        )
-                )
-        );
-    }
-
-    private static CustomArgument.CustomArgumentException failWith(Context context, String pathInResourceBundle) {
-        return CustomArgument.CustomArgumentException.fromAdventureComponent(
-                ComponentUtil.formatChatMessage(
-                        context.plugin(),
-                        context.resourceBundleContext().commandsResourceBundle(),
-                        pathInResourceBundle,
-                        true
-                )
-        );
     }
 }

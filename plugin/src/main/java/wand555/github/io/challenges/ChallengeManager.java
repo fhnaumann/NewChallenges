@@ -18,10 +18,7 @@ import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.validation.BossBarShower;
 
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ChallengeManager implements StatusInfo {
@@ -74,7 +71,13 @@ public class ChallengeManager implements StatusInfo {
         );
         context.plugin().getServer().broadcast(toSend);
 
-        goals.forEach(baseGoal -> baseGoal.onStart(Team.ALL_TEAM));
+        if(hasTeams()) {
+            getTeams().forEach(team -> team.getGoals().forEach(baseGoal -> baseGoal.onStart(team)));
+        }
+        else {
+            goals.forEach(baseGoal -> baseGoal.onStart(Team.ALL_TEAM));
+        }
+
         //goals.stream().filter(baseGoal -> !baseGoal.hasTimer() || baseGoal.getTimer().getOrder() == getCurrentOrder()).forEach(BaseGoal::onStart);
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
@@ -211,12 +214,24 @@ public class ChallengeManager implements StatusInfo {
         });
         gameState = GameState.ENDED;
         if(success) {
-            Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenge.complete.beaten.chat"
-            );
-            context.plugin().getServer().broadcast(toSend);
+            if(winnerTeam != null) {
+                Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().miscResourceBundle(),
+                        "challenge.complete.team.won.chat",
+                        Map.of("teamname", Component.text(winnerTeam.getTeamName()))
+                );
+                context.plugin().getServer().broadcast(toSend);
+            }
+            else {
+                Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
+                        context.plugin(),
+                        context.resourceBundleContext().miscResourceBundle(),
+                        "challenge.complete.beaten.chat"
+                );
+                context.plugin().getServer().broadcast(toSend);
+            }
+
         } else {
             Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
                     context.plugin(),
@@ -226,10 +241,14 @@ public class ChallengeManager implements StatusInfo {
             context.plugin().getServer().broadcast(toSend);
         }
 
-        goals.stream()
-             .filter(BossBarDisplay.class::isInstance)
-             .map(BossBarDisplay.class::cast)
-             .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
+        getTeams().forEach(team -> {
+            team.getGoals().stream()
+                      .filter(BossBarDisplay.class::isInstance)
+                      .map(BossBarDisplay.class::cast)
+                      .forEach(bossBarDisplay -> bossBarDisplay.removeBossBar(Bukkit.getOnlinePlayers()));
+        });
+
+
 
         allCriterias().forEach(Criteria::onEnd);
 
@@ -352,6 +371,11 @@ public class ChallengeManager implements StatusInfo {
                      .filter(Objects::nonNull)
                      .map(Criteria.class::cast)
                      .toList();
+    }
+
+    public boolean canTakeEffect(Context context, Player player) {
+        // TODO: replace every trigger call with a check to this method
+        return isRunning() && (!hasTeams() || (hasTeams() && Team.getTeamPlayerIn(context, player.getUniqueId()) != Team.ALL_TEAM));
     }
 
     public enum GameState {

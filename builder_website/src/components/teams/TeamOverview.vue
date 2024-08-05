@@ -52,6 +52,6 @@
   }
 
   function isValidTeamName(attemptedTeamName: string) {
-    return !teamWithSameNameAlreadyExists.value && attemptedTeamName.trim().length !== 0
+    return !teamWithSameNameAlreadyExists.value && attemptedTeamName.trim().length !== 0 && !attemptedTeamName.includes(" ")
   }
 </script>

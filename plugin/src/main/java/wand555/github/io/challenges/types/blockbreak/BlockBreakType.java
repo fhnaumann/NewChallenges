@@ -35,7 +35,7 @@ public class BlockBreakType extends Type<BlockBreakData> {
     public void onBlockBreak(BlockBreakEvent event) {
         String eventClassName = event.getEventName();
         logger.fine("%s triggered in %s.".formatted(eventClassName, getClass().getSimpleName()));
-        if(!context.challengeManager().isRunning()) {
+        if(!context.challengeManager().canTakeEffect(context, event.getPlayer())) {
             return;
         }
         logger.fine("Initial check for %s passes.".formatted(eventClassName));

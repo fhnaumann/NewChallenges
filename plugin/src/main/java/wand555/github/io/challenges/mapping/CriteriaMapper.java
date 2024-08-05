@@ -1,5 +1,10 @@
 package wand555.github.io.challenges.mapping;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import org.bukkit.Bukkit;
+import org.bukkit.scoreboard.*;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.factory.*;
@@ -23,6 +28,7 @@ import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
 import wand555.github.io.challenges.punishments.*;
 import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.utils.CollectionUtil;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
@@ -49,7 +55,32 @@ public class CriteriaMapper {
     }
 
     private static List<Team> mapToTeams(Context context, List<TeamConfig> teamsConfig) {
-        return teamsConfig.stream().map(teamConfig -> new Team(context, teamConfig)).toList();
+        List<Team> teams = teamsConfig.stream().map(teamConfig -> new Team(context, teamConfig)).toList();
+
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        Objective objective = scoreboard.getObjective("teams");
+        if(objective == null) {
+            objective = scoreboard.registerNewObjective("teams", Criteria.DUMMY, Component.text("teams"),
+                                                                  RenderType.INTEGER
+            );
+        }
+
+        objective.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+
+        List<NamedTextColor> colors = List.of(NamedTextColor.RED, NamedTextColor.BLUE, NamedTextColor.YELLOW, NamedTextColor.GREEN, NamedTextColor.WHITE);
+        for(int i=0; i< teams.size(); i++) {
+            Team team = teams.get(i);
+            NamedTextColor color = colors.get(i);
+            org.bukkit.scoreboard.Team scTeam = scoreboard.getTeam(team.getTeamName());
+            if(scTeam == null) {
+                scTeam = scoreboard.registerNewTeam(team.getTeamName());
+                team.getPlayers().stream().map(Bukkit::getOfflinePlayer).forEach(scTeam::addPlayer);
+                scTeam.color(color);
+                scTeam.prefix(Component.text("[%s] ".formatted(team.getTeamName())));
+            }
+        }
+
+        return teams;
     }
 
     private static List<Rule> mapToRules(@NotNull Context context, EnabledRules enabledRulesConfig) {

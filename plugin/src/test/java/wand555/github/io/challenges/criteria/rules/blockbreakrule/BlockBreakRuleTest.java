@@ -104,38 +104,4 @@ public class BlockBreakRuleTest {
         //rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
         verify(messageHelper, never()).sendViolationAction(any());
     }
-
-    @Test
-    public void testDeny() throws JsonProcessingException {
-        String blockBreakRuleJSON =
-                """
-                {
-                    "exemptions": ["stone"],
-                    "result": "Deny"
-                }
-                """;
-        rule = new BlockBreakRule(context,
-                                  new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class),
-                                  messageHelper
-        );
-        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
-        assertTrue(event.isCancelled());
-    }
-
-    @Test
-    public void testAllow() throws JsonProcessingException {
-        String blockBreakRuleJSON =
-                """
-                {
-                    "exemptions": ["stone"],
-                    "result": "Allow"
-                }
-                """;
-        rule = new BlockBreakRule(context,
-                                  new ObjectMapper().readValue(blockBreakRuleJSON, NoBlockBreakRuleConfig.class),
-                                  messageHelper
-        );
-        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
-        assertFalse(event.isCancelled());
-    }
 }

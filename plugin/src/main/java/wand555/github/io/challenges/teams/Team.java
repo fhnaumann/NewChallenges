@@ -33,7 +33,7 @@ public class Team implements Storable<TeamConfig> {
     public Team(Context context, TeamConfig config) {
         this.context = context;
         this.teamName = config.getTeamName();
-        this.players = config.getPlayerUUIDs().stream().map(UUID::fromString).toList();
+        this.players = new ArrayList<>(config.getPlayerUUIDs().stream().map(UUID::fromString).toList());
         this.goals = CriteriaMapper.mapToGoals(context, config.getGoals());
         this.currentOrder = config.getCurrentOrder();
         if(currentOrder == -1) {
@@ -59,6 +59,16 @@ public class Team implements Storable<TeamConfig> {
         // In the case that this is ALL_TEAM, the value will be set when the goals are set in the challenges manager
         this.currentOrder = globalCurrentOrder;
 
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player.getUniqueId());
+        Bukkit.getScoreboardManager().getMainScoreboard().getTeam(getTeamName()).addPlayer(player);
+    }
+
+    public void removePlayer(Player player) {
+        players.remove(player.getUniqueId());
+        Bukkit.getScoreboardManager().getMainScoreboard().getTeam(getTeamName()).removePlayer(player);
     }
 
     public String getTeamName() {
@@ -90,13 +100,15 @@ public class Team implements Storable<TeamConfig> {
         Team team = Team.getTeamPlayerIn(context, lastCompletionStepProvidedBy.getUniqueId());
 
         if(goalCompletion == GoalCompletion.TIMER_BEATEN && team.allGoalsWithOrderCurrentNumberComplete()) {
+            team.getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == team.getCurrentOrder()).forEach(baseGoal -> baseGoal.onEnd(team));
+
             int nextOrderNumber = team.nextOrderNumber();
             // Will be -1 if there is no next order number, because all goals are now complete.
             // In that case the challenge will be ended a few lines below anyway.
             team.setCurrentOrder(nextOrderNumber);
             // initialize goals that now "start"
             team.getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == team.getCurrentOrder()).forEach(
-                    BaseGoal::onStart);
+                    baseGoal -> baseGoal.onStart(team));
         }
         if(team.allGoalsCompleted()) {
             context.challengeManager().endChallenge(true, team != ALL_TEAM ? team : null);
@@ -104,15 +116,15 @@ public class Team implements Storable<TeamConfig> {
     }
 
     private boolean allGoalsWithOrderCurrentNumberComplete() {
-        return goalsWithSameOrderNumber().stream().allMatch(Goal::isComplete);
+        return goalsWithSameOrderNumber(getGoals(), getCurrentOrder()).stream().allMatch(Goal::isComplete);
     }
 
     private boolean allGoalsCompleted() {
         return getGoals().stream().allMatch(BaseGoal::isComplete);
     }
 
-    private List<Goal> goalsWithSameOrderNumber() {
-        return getGoals().stream()
+    private static List<Goal> goalsWithSameOrderNumber(List<BaseGoal> goals, int currentOrder) {
+        return goals.stream()
                          .filter(BaseGoal::hasTimer)
                          .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
                          .map(Goal.class::cast)
@@ -122,7 +134,7 @@ public class Team implements Storable<TeamConfig> {
     public static Map<Team, List<Goal>> goalsWithSameOrderNumberAcrossAllTeams(ChallengeManager manager) {
         return manager.getTeams()
                       .stream()
-                      .collect(Collectors.toMap(Function.identity(), Team::goalsWithSameOrderNumber));
+                      .collect(Collectors.toMap(Function.identity(), team -> Team.goalsWithSameOrderNumber(team.getGoals(), team.getCurrentOrder())));
     }
 
     private int nextOrderNumber() {
@@ -182,6 +194,16 @@ public class Team implements Storable<TeamConfig> {
             @Override
             public List<BaseGoal> getGoals() {
                 return context.challengeManager().getGoals();
+            }
+
+            @Override
+            public void addPlayer(Player player) {
+                throw new RuntimeException("Cannot add players to ALL_TEAM");
+            }
+
+            @Override
+            public void removePlayer(Player player) {
+                throw new RuntimeException("Cannot remove players from ALL_TEAM");
             }
         };
     }

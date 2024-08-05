@@ -24,10 +24,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.commands.ChallengesCommand;
 import wand555.github.io.challenges.commands.LoadCommand;
+import wand555.github.io.challenges.commands.team.TeamCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.mlg.MLGHandler;
-import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.punishments.InteractionManager;
 
@@ -160,6 +160,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         if(!isLoadedFromTests()) {
             LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
             ChallengesCommand.registerChallengesCommand(tempContext, challengeFilesHandler);
+            TeamCommand.registerTeamCommand(tempContext);
         }
 
 

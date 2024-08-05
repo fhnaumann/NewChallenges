@@ -9,6 +9,7 @@ import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.mapping.*;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
@@ -61,7 +62,7 @@ public class FileManagerTest {
         when(challengeManager.getTeams()).thenReturn(List.of());
 
         context = new Context(plugin,
-                              new ResourceBundleContext(bundle, null, null, null, null, null),
+                              new ResourceBundleContext(bundle, CriteriaUtil.loadGoalResourceBundle(), null, null, null, null),
                               new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages),
                               schemaRoot,
                               challengeManager,
@@ -89,8 +90,8 @@ public class FileManagerTest {
         String readJSON = objectMapper.writeValueAsString(objectMapper.readValue(FileManagerTest.class.getResourceAsStream(
                 "integration/full1.json"), Object.class));
         File file = Paths.get(FileManagerTest.class.getResource("integration/full1.json").toURI()).toFile();
-        assertDoesNotThrow(() -> FileManager.readFromFile(file, plugin));
-        ChallengeManager manager = FileManager.readFromFile(file, plugin).challengeManager();
+        assertDoesNotThrow(() -> FileManager.readFromFile(file, context));
+        FileManager.readFromFile(file, context);
         // TODO create expectations programmatically and compare
         assertDoesNotThrow(() -> FileManager.writeToFile(challengeManager, new StringWriter()));
     }
