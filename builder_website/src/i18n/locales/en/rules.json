@@ -17,7 +17,12 @@
       "noDeath": {
         "name": "NoDeath",
         "alias": ["NoDeath", "No Death", "rule"],
-        "tooltip": "Dying is prohibited!"
+        "tooltip": "Dying is prohibited!",
+        "settings": {
+          "ignoreTotems": {
+            "name": "No Punishments if Totem used"
+          }
+        }
       },
       "noBlockBreak": {
         "name": "NoBlockBreak",

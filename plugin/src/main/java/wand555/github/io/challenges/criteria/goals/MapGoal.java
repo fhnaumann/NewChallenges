@@ -33,7 +33,6 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
     public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, CollectedInventory<D, K> collectedInventory, Timer timer) {
         super(context, complete, timer);
         this.goalCollector = goalCollector;
-
         BossBarBuilder bossBarBuilder = new BossBarBuilder();
         if(isFixedOrder()) {
             bossBarBuilder.then(new FixedOrderBossBarPart<>(context, constructGoalInformation(), goalCollector));

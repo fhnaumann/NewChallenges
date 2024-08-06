@@ -1,6 +1,7 @@
 package wand555.github.io.challenges.criteria.goals;
 
 import org.bukkit.Keyed;
+import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.CollectableDataConfig;
@@ -13,9 +14,12 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class GoalCollector<K extends Keyed> implements Storable<List<CollectableEntryConfig>> {
+
+    private static final Logger logger = ChallengesDebugLogger.getLogger(GoalCollector.class);
 
     private final Context context;
     private final Map<K, Collect> toCollect;
@@ -25,13 +29,21 @@ public class GoalCollector<K extends Keyed> implements Storable<List<Collectable
 
     public GoalCollector(Context context, List<CollectableEntryConfig> collectables, Class<K> enumType, boolean fixedOrder, boolean shuffled) {
         this.context = context;
+        if(collectables.size() == 1) {
+            logger.info("Detected that goal using %s as keys has only one collectable. Ignoring actual 'fixedOrder' value and setting it to true.".formatted(enumType.getSimpleName()));
+            this.fixedOrder = true;
+        }
+        else {
+            this.fixedOrder = fixedOrder;
+        }
         if(fixedOrder && !shuffled) {
+            logger.fine("Shuffling collectables.");
             Collections.shuffle(collectables);
         }
         this.toCollect = ModelMapper.str2Collectable(collectables, context.dataSourceContext(), enumType);
-        this.iterator = fixedOrder ? this.toCollect.entrySet().iterator() : null;
-        this.currentlyToCollect = fixedOrder ? (iterator.hasNext() ? iterator.next() : null) : null;
-        this.fixedOrder = fixedOrder;
+        this.iterator =  this.fixedOrder ? this.toCollect.entrySet().iterator() : null;
+        this.currentlyToCollect =  this.fixedOrder ? (iterator.hasNext() ? iterator.next() : null) : null;
+
     }
 
     public boolean hasNext() {

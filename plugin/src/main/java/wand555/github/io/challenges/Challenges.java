@@ -132,6 +132,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     .withSchemaRoot(new ObjectMapper().readTree(Main.class.getResourceAsStream("/challenges_schema.json")))
                     .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                     .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
+                    .withDeathMessageList(Main.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
                     .withChallengeManager(new ChallengeManager())
                     .withRandom(new Random())
                     .withOfflineTempData(offlineTempData)

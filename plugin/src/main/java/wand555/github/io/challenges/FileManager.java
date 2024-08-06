@@ -117,7 +117,7 @@ public class FileManager {
                         .withSchemaRoot(schemaRoot)
                         .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                         .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
-                        .withDeathMessageList(FileManager.class.getResourceAsStream(
+                        .withDeathMessageList(Main.class.getResourceAsStream(
                                 "/death_messages_as_data_source_JSON.json"))
                         .withChallengeManager(new ChallengeManager())
                         .withRandom(new Random())
