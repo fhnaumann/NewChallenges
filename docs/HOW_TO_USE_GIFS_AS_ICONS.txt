@@ -1,0 +1,1 @@
+Rename .gif to .png file. Add icon with .png file. Retype will display the GIF
