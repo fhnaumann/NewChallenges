@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +26,8 @@ import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.NoBlockPlaceRuleConfig;
 import wand555.github.io.challenges.mapping.CriteriaMapper;
+import wand555.github.io.challenges.punishments.CancelPunishment;
+import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockplace.BlockPlaceData;
 
@@ -118,5 +121,19 @@ public class NoBlockPlaceRuleTest {
         player.simulateBlockPlace(Material.STONE, player.getLocation());
         //rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
         verify(messageHelper, never()).sendViolationAction(any());
+    }
+
+    @Test
+    public void testIsAllowedIfNoCancelPunishment() {
+        rule.setPunishments(List.of(mock(HealthPunishment.class)));
+        BlockPlaceEvent event = player.simulateBlockPlace(Material.DIRT, player.getLocation());
+        assertFalse(event.isCancelled());
+    }
+
+    @Test
+    public void testIsDisallowedIfCancelPunishment() {
+        rule.setPunishments(List.of(mock(CancelPunishment.class)));
+        BlockPlaceEvent event = player.simulateBlockPlace(Material.DIRT, player.getLocation());
+        assertTrue(event.isCancelled());
     }
 }

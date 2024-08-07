@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +19,15 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
+import wand555.github.io.challenges.punishments.CancelPunishment;
+import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BlockBreakRuleTest {
 
@@ -50,6 +54,7 @@ public class BlockBreakRuleTest {
         when(dataSourceContext.materialJSONList()).thenReturn(CriteriaUtil.loadMaterials().getData());
         ChallengeManager manager = mock(ChallengeManager.class);
         when(manager.isRunning()).thenReturn(true);
+        when(manager.canTakeEffect(any(), any())).thenReturn(true);
 
         context = mock(Context.class);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
@@ -102,5 +107,19 @@ public class BlockBreakRuleTest {
         player.simulateBlockBreak(toBeBroken);
         //rule.onBlockBreak(new BlockBreakEvent(toBeBroken, player));
         verify(messageHelper, never()).sendViolationAction(any());
+    }
+
+    @Test
+    public void testIsAllowedIfNoCancelPunishment() {
+        rule.setPunishments(List.of(mock(HealthPunishment.class)));
+        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
+        assertFalse(event.isCancelled());
+    }
+
+    @Test
+    public void testIsDisallowedIfCancelPunishment() {
+        rule.setPunishments(List.of(mock(CancelPunishment.class)));
+        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
+        assertTrue(event.isCancelled());
     }
 }

@@ -54,4 +54,8 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> impleme
     public void unload() {
         deathType.unload();
     }
+
+    public DeathType getDeathType() {
+        return deathType;
+    }
 }

@@ -38,5 +38,4 @@ public class BlockPlaceType extends Type<BlockPlaceData> {
         BlockPlaceData blockPlaceData = new BlockPlaceData(placed, player);
         triggerIfCheckPasses(blockPlaceData, event);
     }
-
 }
