@@ -66,6 +66,10 @@
             },
             "type": "object"
         },
+        "CancelPunishmentConfig": {
+            "additionalProperties": false,
+            "type": "object"
+        },
         "ChallengeMetadata": {
             "additionalProperties": false,
             "properties": {
@@ -541,15 +545,6 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
-                },
-                "result": {
-                    "default": "Deny",
-                    "description": "The result action when the rule is violated.",
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ],
-                    "type": "string"
                 }
             },
             "type": "object"
@@ -567,15 +562,6 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
-                },
-                "result": {
-                    "default": "Deny",
-                    "description": "The result action when the rule is violated.",
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ],
-                    "type": "string"
                 }
             },
             "type": "object"
@@ -590,15 +576,6 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
-                },
-                "result": {
-                    "default": "Deny",
-                    "description": "The result action when the rule is violated.",
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ],
-                    "type": "string"
                 }
             },
             "type": "object"
@@ -616,15 +593,6 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
-                },
-                "result": {
-                    "default": "Deny",
-                    "description": "The result action when the rule is violated.",
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ],
-                    "type": "string"
                 }
             },
             "type": "object"
@@ -642,15 +610,6 @@
                 },
                 "punishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
-                },
-                "result": {
-                    "default": "Deny",
-                    "description": "The result action when the rule is violated.",
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ],
-                    "type": "string"
                 }
             },
             "type": "object"
@@ -658,6 +617,9 @@
         "PunishmentsConfig": {
             "additionalProperties": false,
             "properties": {
+                "cancelPunishment": {
+                    "$ref": "#/definitions/CancelPunishmentConfig"
+                },
                 "deathPunishment": {
                     "$ref": "#/definitions/DeathPunishmentConfig"
                 },

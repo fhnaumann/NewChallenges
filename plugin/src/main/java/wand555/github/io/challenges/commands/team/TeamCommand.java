@@ -32,73 +32,73 @@ public class TeamCommand {
     private static final String CMD_NODE_TEAM_ACTION = "team_action";
     private static final String CMD_NODE_TEAM_ID = "team_name";
 
-public static void registerTeamCommand(Context context) {
-    new CommandAPICommand(BASE_CMD)
-            .withOptionalArguments(new MultiLiteralArgument(CMD_NODE_TEAM_ACTION,
-                                                            "join",
-                                                            "leave"
-            ).combineWith(customTeamArgument(context)))
-            .executesPlayer((sender, args) -> {
-                Team team = args.getByClass(CMD_NODE_TEAM_ID, Team.class);
-                if(!challengeHasTeams(context)) {
-                    throw failWrapperWith(context, "team.challenge_has_no_teams");
-                }
+    public static void registerTeamCommand(Context context) {
+        new CommandAPICommand(BASE_CMD)
+                .withOptionalArguments(new MultiLiteralArgument(CMD_NODE_TEAM_ACTION,
+                                                                "join",
+                                                                "leave"
+                ).combineWith(customTeamArgument(context)))
+                .executesPlayer((sender, args) -> {
+                    Team team = args.getByClass(CMD_NODE_TEAM_ID, Team.class);
+                    if(!challengeHasTeams(context)) {
+                        throw failWrapperWith(context, "team.challenge_has_no_teams");
+                    }
 
-                String teamAction = (String) args.get(CMD_NODE_TEAM_ACTION);
-                if(teamAction == null) {
-                    // list all available teams with clickable components to join them (or to leave the current team)
-                    handleTeamsOverview(context, sender);
-                    return;
-                }
-                if(!challengeIsValidAndLoadedWhenAttemptingToJoinATeam(context)) {
-                    throw failWrapperWith(context, "team.not_loaded_or_valid");
-                }
-                if(teamAction.equals("join")) {
-                    handleJoinTeam(context, sender, team);
-                } else if(teamAction.equals("leave")) {
-                    handleTeamLeave(context, sender);
-                } else {
-                    throw new RuntimeException();
-                }
-            })
-            .register();
-}
+                    String teamAction = (String) args.get(CMD_NODE_TEAM_ACTION);
+                    if(teamAction == null) {
+                        // list all available teams with clickable components to join them (or to leave the current team)
+                        handleTeamsOverview(context, sender);
+                        return;
+                    }
+                    if(!challengeIsValidAndLoadedWhenAttemptingToJoinATeam(context)) {
+                        throw failWrapperWith(context, "team.not_loaded_or_valid");
+                    }
+                    if(teamAction.equals("join")) {
+                        handleJoinTeam(context, sender, team);
+                    } else if(teamAction.equals("leave")) {
+                        handleTeamLeave(context, sender);
+                    } else {
+                        throw new RuntimeException();
+                    }
+                })
+                .register();
+    }
 
-private static Argument<Team> customTeamArgument(Context context) {
-    return new CustomArgument<>(new StringArgument(CMD_NODE_TEAM_ID),
-                                info -> {
-                                    return getTeamFromTeamName(context, info.input());
-                                }
-    ).replaceSuggestions(ArgumentSuggestions.stringsAsync(senderSuggestionInfo -> loadToolTips(context,
-                                                                                               senderSuggestionInfo
-    )));
-}
+    private static Argument<Team> customTeamArgument(Context context) {
+        return new CustomArgument<>(new StringArgument(CMD_NODE_TEAM_ID),
+                                    info -> {
+                                        return getTeamFromTeamName(context, info.input());
+                                    }
+        ).replaceSuggestions(ArgumentSuggestions.stringsAsync(senderSuggestionInfo -> loadToolTips(context,
+                                                                                                   senderSuggestionInfo
+        )));
+    }
 
-private static Team getTeamFromTeamName(Context context, String teamName) throws CustomArgument.CustomArgumentException {
-    Preconditions.checkArgument(challengeIsValidAndLoadedWhenAttemptingToJoinATeam(context),
-                                "Cannot get the team name when the challenge hasn't been loaded yet (and is valid)!"
-    );
-    return context.challengeManager().getTeams()
-                  .stream()
-                  .filter(team -> team.getTeamName().equals(teamName))
-                  .findFirst()
-                  .orElseThrow(() -> failWith(context, "team.team_does_not_exist"));
-}
+    private static Team getTeamFromTeamName(Context context, String teamName) throws CustomArgument.CustomArgumentException {
+        Preconditions.checkArgument(challengeIsValidAndLoadedWhenAttemptingToJoinATeam(context),
+                                    "Cannot get the team name when the challenge hasn't been loaded yet (and is valid)!"
+        );
+        return context.challengeManager().getTeams()
+                      .stream()
+                      .filter(team -> team.getTeamName().equals(teamName))
+                      .findFirst()
+                      .orElseThrow(() -> failWith(context, "team.team_does_not_exist"));
+    }
 
-private static CompletableFuture<String[]> loadToolTips(Context context, SuggestionInfo<CommandSender> senderSuggestionInfo) {
-    return CompletableFuture.supplyAsync(() -> {
-        if(!(senderSuggestionInfo.sender() instanceof Player player)) {
-            throw new RuntimeException("Not a player");
-        }
-        List<Team> allTeams = context.challengeManager().getTeams();
-        Team teamPlayerIsIn = Team.getTeamPlayerIn(context, player.getUniqueId());
-        if(teamPlayerIsIn == Team.ALL_TEAM) {
-            return suggestTeams(allTeams);
-        } else {
-            return new String[] {};
-        }
-    });
-}
+    private static CompletableFuture<String[]> loadToolTips(Context context, SuggestionInfo<CommandSender> senderSuggestionInfo) {
+        return CompletableFuture.supplyAsync(() -> {
+            if(!(senderSuggestionInfo.sender() instanceof Player player)) {
+                throw new RuntimeException("Not a player");
+            }
+            List<Team> allTeams = context.challengeManager().getTeams();
+            Team teamPlayerIsIn = Team.getTeamPlayerIn(context, player.getUniqueId());
+            if(teamPlayerIsIn == Team.ALL_TEAM) {
+                return suggestTeams(allTeams);
+            } else {
+                return new String[] {};
+            }
+        });
+    }
 
     private static String[] suggestTeams(List<Team> teams) {
         return teams.stream().map(Team::getTeamName).toArray(String[]::new);
@@ -106,7 +106,12 @@ private static CompletableFuture<String[]> loadToolTips(Context context, Suggest
 
     private static void handleTeamsOverview(Context context, Player player) {
         Team teamPlayerIsIn = Team.getTeamPlayerIn(context, player.getUniqueId());
-        Component toSend = TeamOverviewPrinter.createTeamsOverviewForPlayer(context, player, teamPlayerIsIn != Team.ALL_TEAM ? teamPlayerIsIn : null);
+        Component toSend = TeamOverviewPrinter.createTeamsOverviewForPlayer(context,
+                                                                            player,
+                                                                            teamPlayerIsIn != Team.ALL_TEAM
+                                                                            ? teamPlayerIsIn
+                                                                            : null
+        );
         player.sendMessage(toSend);
     }
 

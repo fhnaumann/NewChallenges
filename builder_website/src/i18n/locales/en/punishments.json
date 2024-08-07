@@ -21,6 +21,10 @@
             }
         },
         "types": {
+            "cancelPunishment": {
+                "name": "Cancel",
+                "tooltip": "The action that caused this punishment is cancelled!"
+            },
             "endPunishment": {
                 "name": "End",
                 "tooltip": "The challenge ends!"

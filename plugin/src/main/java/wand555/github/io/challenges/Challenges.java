@@ -24,6 +24,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.commands.ChallengesCommand;
 import wand555.github.io.challenges.commands.LoadCommand;
+import wand555.github.io.challenges.commands.SkipCommand;
 import wand555.github.io.challenges.commands.team.TeamCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
@@ -86,7 +87,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getCommand("start").setExecutor(this);
         getCommand("cancel").setExecutor(this);
         getCommand("save").setExecutor(this);
-        getCommand("skip").setExecutor(this);
         getCommand("pause").setExecutor(this);
         getCommand("resume").setExecutor(this);
         getCommand("progress").setExecutor(this);
@@ -162,6 +162,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
             ChallengesCommand.registerChallengesCommand(tempContext, challengeFilesHandler);
             TeamCommand.registerTeamCommand(tempContext);
+            SkipCommand.registerSkipCommand(tempContext);
         }
 
 
@@ -274,10 +275,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             }
         } else if(command.getName().equalsIgnoreCase("status")) {
             sender.sendMessage(tempContext.challengeManager().getCurrentStatus());
-        }
-        // command for skipping
-        else if(command.getName().equalsIgnoreCase("skip")) {
-            tempContext.challengeManager().onSkip(player);
         } else if(command.getName().equalsIgnoreCase("pause")) {
             if(tempContext.challengeManager().isPaused()) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(

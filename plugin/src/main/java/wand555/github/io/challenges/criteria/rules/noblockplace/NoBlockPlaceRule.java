@@ -29,7 +29,6 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
     public NoBlockPlaceRule(Context context, NoBlockPlaceRuleConfig config, NoBlockPlaceRuleMessageHelper messageHelper) {
         super(context,
               config.getPunishments(),
-              PunishableRule.Result.fromJSONString(config.getResult().value()),
               messageHelper
         );
         this.exemptions = config.getExemptions() != null
@@ -38,7 +37,7 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
         ))
                           : new HashSet<>();
 
-        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger(), cancelIfDeny());
+        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive());
         logger.fine("Created %s instance.".formatted(blockPlaceType.getClass().getSimpleName()));
     }
 
@@ -56,8 +55,7 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
     public NoBlockPlaceRuleConfig toGeneratedJSONClass() {
         return new NoBlockPlaceRuleConfig(
                 exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(),
-                toPunishmentsConfig(),
-                NoBlockPlaceRuleConfig.Result.fromValue(getResult().getValue())
+                toPunishmentsConfig()
         );
     }
 

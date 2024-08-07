@@ -25,7 +25,6 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
     public BlockBreakRule(Context context, NoBlockBreakRuleConfig config, BlockBreakRuleMessageHelper messageHelper) {
         super(context,
               config.getPunishments(),
-              PunishableRule.Result.fromJSONString(config.getResult().value()),
               messageHelper
         );
         this.exemptions = config.getExemptions() != null
@@ -34,7 +33,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
         ))
                           : new HashSet<>();
 
-        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfDeny());
+        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive());
         logger.fine("Created %s instance.".formatted(blockBreakType.getClass().getSimpleName()));
     }
 
@@ -68,8 +67,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
         return new NoBlockBreakRuleConfig(
                 exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(),
                 // always sort when moving from set to list
-                toPunishmentsConfig(),
-                NoBlockBreakRuleConfig.Result.fromValue(getResult().getValue())
+                toPunishmentsConfig()
         );
     }
 

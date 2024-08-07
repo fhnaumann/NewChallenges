@@ -241,6 +241,7 @@ public class ChallengeManager implements StatusInfo {
             context.plugin().getServer().broadcast(toSend);
         }
 
+        // TODO: potentially not needed?
         getTeams().forEach(team -> {
             team.getGoals().stream()
                       .filter(BossBarDisplay.class::isInstance)
@@ -249,8 +250,8 @@ public class ChallengeManager implements StatusInfo {
         });
 
 
-
-        allCriterias().forEach(Criteria::onEnd);
+        // goals were handled separately earlier
+        allCriterias().stream().filter(criteria -> !(criteria instanceof Goal)).forEach(Criteria::onEnd);
 
         // remove active file, so it is not automatically loaded when the server restarts from now on
         context.offlineTempData().addAndSave("fileNameBeingPlayed", null);

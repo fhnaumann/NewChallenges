@@ -25,10 +25,5 @@ export type Result = 'Deny' | 'Allow'
 
 export interface PunishableRuleConfig extends BaseRuleConfig {
   punishments?: PunishmentsConfig
-  /**
-   * The result action when the rule is violated.
-   *
-   * @default "Deny"
-   */
-  result?: Result
+
 }

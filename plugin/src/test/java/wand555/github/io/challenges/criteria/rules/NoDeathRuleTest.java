@@ -72,8 +72,8 @@ public class NoDeathRuleTest {
         player = server.addPlayer("dummy");
 
 
-        countTotemsRule = new NoDeathRule(context, new NoDeathRuleConfig(false, new PunishmentsConfig(), NoDeathRuleConfig.Result.DENY), messageHelper);
-        ignoreTotemRule = new NoDeathRule(context, new NoDeathRuleConfig(false, new PunishmentsConfig(), NoDeathRuleConfig.Result.DENY), messageHelper);
+        countTotemsRule = new NoDeathRule(context, new NoDeathRuleConfig(false, new PunishmentsConfig()), messageHelper);
+        ignoreTotemRule = new NoDeathRule(context, new NoDeathRuleConfig(false, new PunishmentsConfig()), messageHelper);
 
     }
 
@@ -98,7 +98,7 @@ public class NoDeathRuleTest {
     }
 
     private static Supplier<NoDeathRule> noDeathRule(boolean ignoreTotems) {
-        return () -> new NoDeathRule(context, new NoDeathRuleConfig(ignoreTotems, new PunishmentsConfig(), NoDeathRuleConfig.Result.DENY), messageHelper);
+        return () -> new NoDeathRule(context, new NoDeathRuleConfig(ignoreTotems, new PunishmentsConfig()), messageHelper);
     }
 
     private static Function<Player, DeathData> dummyDeathData(boolean usedTotem) {

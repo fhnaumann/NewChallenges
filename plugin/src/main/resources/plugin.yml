@@ -12,8 +12,6 @@ commands:
     description: Cancel/Abort a challenge.
   save:
     description: Manually save a challenge.
-  skip:
-    description: Some goals may be skipped.
   pause:
     description: Pause a challenge.
   resume:

@@ -37,8 +37,13 @@ public class DeathType extends Type<DeathData> {
     private final Map<Player, Boolean> usedTotem = new HashMap<>();
 
     public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered) {
-        super(context, triggerCheck, whenTriggered, Map.of());
+        this(context, triggerCheck, whenTriggered, event -> {});
+    }
+
+    public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered, EventContainer<PlayerDeathEvent> onPlayerDeath) {
+        super(context, triggerCheck, whenTriggered, Map.of(PlayerDeathEvent.class, onPlayerDeath));
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
+        logger.fine("Registered listeners for %s.".formatted(getClass().getSimpleName()));
     }
 
     @EventHandler

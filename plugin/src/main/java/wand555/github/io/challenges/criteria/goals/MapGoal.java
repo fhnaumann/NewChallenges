@@ -79,11 +79,9 @@ public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGo
         super.onComplete(lastCompletionStepProvidedBy);
         messageHelper.sendAllReachedAction();
 
-        /*
-        Should be handled when onEnd is called
         if(bossBarHelper.getBossBar() != null) {
             removeBossBar(Team.getTeamPlayerIn(context, lastCompletionStepProvidedBy.getUniqueId()).getAllOnlinePlayers());
-        }*/
+        }
 
         notifyGoalCompleted(lastCompletionStepProvidedBy, hasTimer()
                       ? GoalCompletion.TIMER_BEATEN

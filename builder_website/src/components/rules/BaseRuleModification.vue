@@ -18,7 +18,6 @@
   import PunishmentList from '@/components/rules/PunishmentList.vue'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
-  import type EndPunishment from '@/components/rules/punishments/EndPunishment.vue'
   import type { EndPunishmentConfig } from '@/models/punishments'
 
   const props = defineProps<{

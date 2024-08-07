@@ -69,8 +69,7 @@ public class BlockBreakRuleTest {
         String blockBreakRuleJSON =
                 """
                 {
-                    "exemptions": ["stone"],
-                    "result": "Deny"
+                    "exemptions": ["stone"]
                 }
                 """;
         rule = new BlockBreakRule(context,

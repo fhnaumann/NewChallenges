@@ -6,7 +6,7 @@
                   @update:model-value="setPunishmentEnabled" binary :input-id="punishmentType" />
         <label :for="punishmentType">{{ t(`punishments.types.${punishmentType}.name`) }}</label>
       </div>
-      <div class="flex items-center space-x-2">
+      <div v-if="!hideAffected" class="flex items-center space-x-2">
         <p>{{ t(`punishments.affects.affected.name`) }}</p>
         <Dropdown :model-value="affects"
                   @update:model-value="updateAffects" :options="['all', 'causer']" :disabled="!enabled" :id="`${punishmentType}.affects`" >
@@ -41,6 +41,7 @@
   const props = defineProps<{
     modelAccess: ModelAccess<BasePunishmentConfig>
     punishmentType: PunishmentName
+    hideAffected?: boolean
   }>()
 
   const { t } = useI18n()

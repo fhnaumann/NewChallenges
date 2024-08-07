@@ -24,10 +24,9 @@ public class NoItemRule extends PunishableRule<ItemData, Material> implements St
     public NoItemRule(Context context, NoItemCollectRuleConfig config, NoItemRuleMessageHelper messageHelper) {
         super(context,
               config.getPunishments(),
-              PunishableRule.Result.fromJSONString(config.getResult().value()),
               messageHelper
         );
-        this.itemType = new ItemType(context, triggerCheck(), trigger(), cancelIfDeny(), cancelIfDeny());
+        this.itemType = new ItemType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive(), cancelIfCancelPunishmentActive());
         this.exemptions = config.getExemptions() != null
                           ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(),
                                                                     config.getExemptions()
@@ -49,8 +48,7 @@ public class NoItemRule extends PunishableRule<ItemData, Material> implements St
     public NoItemCollectRuleConfig toGeneratedJSONClass() {
         return new NoItemCollectRuleConfig(
                 exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(),
-                toPunishmentsConfig(),
-                NoItemCollectRuleConfig.Result.fromValue(result.getValue())
+                toPunishmentsConfig()
         );
     }
 

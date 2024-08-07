@@ -23,8 +23,8 @@ public class NoMobKillRule extends PunishableRule<MobData, EntityType> implement
     private final Set<EntityType> exemptions;
 
     public NoMobKillRule(Context context, NoMobKillRuleConfig config, NoMobKillRuleMessageHelper messageHelper) {
-        super(context, config.getPunishments(), Result.fromJSONString(config.getResult().value()), messageHelper);
-        this.mobType = new MobType(context, triggerCheck(), trigger(), cancelIfDeny());
+        super(context, config.getPunishments(), messageHelper);
+        this.mobType = new MobType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive());
         this.exemptions = config.getExemptions() != null
                           ? new HashSet<>(ModelMapper.str2EntityType(context.dataSourceContext().entityTypeJSONList(),
                                                                      config.getExemptions()
@@ -46,8 +46,7 @@ public class NoMobKillRule extends PunishableRule<MobData, EntityType> implement
     public NoMobKillRuleConfig toGeneratedJSONClass() {
         return new NoMobKillRuleConfig(
                 exemptions.stream().map(DataSourceJSON::toCode).sorted().toList(),
-                toPunishmentsConfig(),
-                NoMobKillRuleConfig.Result.fromValue(result.getValue())
+                toPunishmentsConfig()
         );
     }
 

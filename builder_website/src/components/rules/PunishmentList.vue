@@ -1,6 +1,7 @@
 <template>
   <div :class="globalVar ? 'customized-rule' : ''">
     <div class="flex flex-col space-y-4 mx-2 w-[32rem]">
+      <CancelPunishment :model-access="createModelAccess('cancelPunishment')" />
       <EndPunishment :model-access="createModelAccess('endPunishment')" />
       <HealthPunishment class="shrink" :model-access="createModelAccess('healthPunishment')" />
       <RandomEffectPunishment :model-access="createModelAccess('randomEffectPunishment')" />
@@ -20,6 +21,7 @@
   import EndPunishment from '@/components/rules/punishments/EndPunishment.vue'
   import { inject, onMounted, ref } from 'vue'
   import MLGPunishment from '@/components/rules/punishments/MLGPunishment.vue'
+  import CancelPunishment from '@/components/rules/punishments/CancelPunishment.vue'
 
   /*
   PunishmentList can be instantiated from two places:

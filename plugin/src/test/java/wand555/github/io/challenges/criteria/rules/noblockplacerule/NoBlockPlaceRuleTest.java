@@ -75,8 +75,7 @@ public class NoBlockPlaceRuleTest {
         String noblockPlaceRuleJSON =
                 """
                 {
-                    "exemptions": ["stone"],
-                    "result": "Deny"
+                    "exemptions": ["stone"]
                 }
                 """;
         rule = new NoBlockPlaceRule(context,

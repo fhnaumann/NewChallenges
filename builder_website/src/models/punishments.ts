@@ -2,6 +2,7 @@ export type PunishmentName = keyof PunishmentsConfig
 export type Affects = "causer" | "all"
 
 export interface PunishmentsConfig {
+  cancelPunishment?: CancelPunishmentConfig
   endPunishment?: EndPunishmentConfig,
   healthPunishment?: HealthPunishmentConfig,
   deathPunishment?: DeathPunishmentConfig,
@@ -18,6 +19,11 @@ export interface BasePunishmentConfig {
    */
   affects?: Affects
 }
+
+export interface CancelPunishmentConfig {
+
+}
+
 export interface EndPunishmentConfig extends BasePunishmentConfig {
 
 }

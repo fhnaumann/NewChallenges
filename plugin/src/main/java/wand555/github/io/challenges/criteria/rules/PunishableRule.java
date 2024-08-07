@@ -11,6 +11,7 @@ import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mapping.CriteriaMapper;
 import wand555.github.io.challenges.mapping.ModelMapper;
+import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.types.Data;
 import wand555.github.io.challenges.types.EventContainer;
@@ -19,33 +20,38 @@ import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public abstract class PunishableRule<T extends Data<K>, K> extends Rule implements Triggable<T> {
 
     protected @NotNull List<Punishment> punishments;
 
-    protected final Result result;
-
     protected final RuleMessageHelper<T> messageHelper;
 
 
-    public PunishableRule(Context context, Result result, RuleMessageHelper<T> messageHelper) {
-        this(context, null, result, messageHelper);
+    public PunishableRule(Context context, RuleMessageHelper<T> messageHelper) {
+        this(context, null, messageHelper);
     }
 
-    public PunishableRule(Context context, PunishmentsConfig punishmentsConfig, Result result, RuleMessageHelper<T> messageHelper) {
+    public PunishableRule(Context context, PunishmentsConfig punishmentsConfig, RuleMessageHelper<T> messageHelper) {
         super(context);
         this.punishments = punishmentsConfig != null
                            ? CriteriaMapper.mapToPunishments(context, punishmentsConfig)
                            : new ArrayList<>();
-        this.result = result;
         this.messageHelper = messageHelper;
     }
 
-    protected final <E extends Event & Cancellable> EventContainer<E> cancelIfDeny() {
-        return event -> event.setCancelled(result == Result.DENY);
+    protected final  <E extends Event & Cancellable> EventContainer<E> cancelIfCancelPunishmentActive() {
+        return event -> {
+            boolean cancel = Stream.of(context.challengeManager().getGlobalPunishments(), getPunishments())
+                                   .flatMap(Collection::stream)
+                                   .anyMatch(punishment -> punishment instanceof CancelPunishment);
+            event.setCancelled(cancel);
+        };
+
     }
 
     @Override
@@ -80,10 +86,6 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         this.punishments = punishments;
     }
 
-    public Result getResult() {
-        return result;
-    }
-
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -99,31 +101,5 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
     @Override
     public int hashCode() {
         return Objects.hash(punishments);
-    }
-
-    public enum Result {
-        DENY("Deny"),
-        ALLOW("Allow");
-
-        private String value;
-
-        Result(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public static Result fromJSONString(String valueInJSONString) {
-            switch(valueInJSONString) {
-                case "Deny":
-                    return DENY;
-                case "Allow":
-                    return ALLOW;
-                default:
-                    throw new RuntimeException();
-            }
-        }
     }
 }

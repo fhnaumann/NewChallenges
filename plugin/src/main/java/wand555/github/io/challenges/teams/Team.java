@@ -102,7 +102,8 @@ public class Team implements Storable<TeamConfig> {
         Team team = Team.getTeamPlayerIn(context, lastCompletionStepProvidedBy.getUniqueId());
 
         if(goalCompletion == GoalCompletion.TIMER_BEATEN && team.allGoalsWithOrderCurrentNumberComplete()) {
-            team.getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == team.getCurrentOrder()).forEach(baseGoal -> baseGoal.onEnd(team));
+            team.getGoals().stream().filter(baseGoal -> baseGoal.hasTimer() && baseGoal.getTimer().getOrder() == team.getCurrentOrder()).forEach(
+                    baseGoal -> baseGoal.onEnd(team));
 
             int nextOrderNumber = team.nextOrderNumber();
             // Will be -1 if there is no next order number, because all goals are now complete.
@@ -127,16 +128,20 @@ public class Team implements Storable<TeamConfig> {
 
     private static List<Goal> goalsWithSameOrderNumber(List<BaseGoal> goals, int currentOrder) {
         return goals.stream()
-                         .filter(BaseGoal::hasTimer)
-                         .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
-                         .map(Goal.class::cast)
-                         .toList();
+                    .filter(BaseGoal::hasTimer)
+                    .filter(baseGoal -> baseGoal.getTimer().getOrder() == currentOrder)
+                    .map(Goal.class::cast)
+                    .toList();
     }
 
     public static Map<Team, List<Goal>> goalsWithSameOrderNumberAcrossAllTeams(ChallengeManager manager) {
         return manager.getTeams()
                       .stream()
-                      .collect(Collectors.toMap(Function.identity(), team -> Team.goalsWithSameOrderNumber(team.getGoals(), team.getCurrentOrder())));
+                      .collect(Collectors.toMap(Function.identity(),
+                                                team -> Team.goalsWithSameOrderNumber(team.getGoals(),
+                                                                                      team.getCurrentOrder()
+                                                )
+                      ));
     }
 
     private int nextOrderNumber() {
