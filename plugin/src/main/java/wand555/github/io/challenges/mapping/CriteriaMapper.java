@@ -23,6 +23,7 @@ import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.criteria.settings.CustomHealthSetting;
 import wand555.github.io.challenges.criteria.settings.MLGSetting;
 import wand555.github.io.challenges.criteria.settings.UltraHardcoreSetting;
+import wand555.github.io.challenges.criteria.settings.floorislava.FloorIsLavaSetting;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
@@ -151,6 +152,9 @@ public class CriteriaMapper {
                                         settingsConfig.getMlgSetting(),
                                         mlgHandler
             ));
+        }
+        if(settingsConfig.getFloorIsLavaSetting() != null) {
+            settings.add(new FloorIsLavaSetting(context, settingsConfig.getFloorIsLavaSetting()));
         }
         return settings;
     }

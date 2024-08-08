@@ -49,6 +49,18 @@
             "name": "Height:"
           }
         }
+      },
+      "floorIsLavaSetting": {
+        "name": "Floor is Lava",
+        "alias": ["Floor", "Lava", "Floor is Lava", "FloorIsLava", "Ground", "GroundIsLava", "setting", "FloorIsLavaSetting"],
+        "settings": {
+          "timeToNextBlockChangeInTicks": {
+            "name": "Time until block change:"
+          },
+          "lavaRemainsPermanently": {
+            "name": "Lava remains permanently"
+          }
+        }
       }
     }
   }

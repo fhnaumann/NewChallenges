@@ -25,7 +25,7 @@ import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
 import CustomHealthSetting from '../../src/components/settings/CustomHealthSetting.vue'
 import type {
-  CustomHealthSettingConfig,
+  CustomHealthSettingConfig, FloorIsLavaSettingConfig,
   MLGSettingConfig,
   SettingName,
   UltraHardcoreSettingConfig,
@@ -191,6 +191,12 @@ declare global {
        * End: page for customizing a setting
        */
       configureMLGSetting(mlgSettingConfig?: MLGSettingConfig): Chainable<Subject>
+
+      /**
+       * Start: Main Page
+       * End: Page for customizing a setting
+       */
+      configureFloorIsLavaSetting(floorIsLavaSettingConfig?: FloorIsLavaSettingConfig): Chainable<Subject>
 
       /**
        * Go from a specific criteria page to the main page.

@@ -104,6 +104,7 @@
       model.teams?.forEach(team => {
         team.goals = structuredClone(toRaw(model.goals!))
       })
+      // TODO: If a user closes the popup containing the code while its still loading, then all goals may be lost
       model.goals = {}
     }
 

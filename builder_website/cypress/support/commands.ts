@@ -45,7 +45,7 @@ import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
 import type { ItemGoalConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
 import type {
-  CustomHealthSettingConfig,
+  CustomHealthSettingConfig, FloorIsLavaSettingConfig,
   MLGSettingConfig,
   SettingName,
   UltraHardcoreSettingConfig,
@@ -276,6 +276,14 @@ Cypress.Commands.add('configureUltraHardcoreSetting', (ultraHardCoreSettingConfi
     handleCheckBox('#regWithPotions', ultraHardCoreSettingConfig.regWithPotions)
     handleCheckBox('#allowAbsorptionHearts', ultraHardCoreSettingConfig.allowAbsorptionHearts)
     handleCheckBox('#allowTotems', ultraHardCoreSettingConfig.allowTotems)
+  }
+})
+
+Cypress.Commands.add('configureFloorIsLavaSetting', (floorIsLavaSetting?: FloorIsLavaSettingConfig) => {
+  cy.configureSetting('floorIsLavaSetting')
+  if(floorIsLavaSetting !== undefined) {
+    handleTextfield('#timeToNextBlockChangeInTicks', floorIsLavaSetting.timeToNextBlockChangeInTicks)
+    handleCheckBox('#lavaRemainsPermanently', floorIsLavaSetting.lavaRemainsPermanently)
   }
 })
 

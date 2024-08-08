@@ -9,6 +9,7 @@ import net.kyori.adventure.resource.ResourcePackRequest;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -60,13 +61,13 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         ChallengesDebugLogger.initLogging(this);
 
         //if(true) {
-        if(!isLoadedFromTests()) {
+        if(!isLoadedFromTests(getServer())) {
             CommandAPI.onLoad(new CommandAPIBukkitConfig(this).verboseOutput(true));
         }
     }
 
-    private boolean isLoadedFromTests() {
-        return getServer().getClass().getName().contains("ServerMock");
+    public static boolean isLoadedFromTests(Server server) {
+        return server.getClass().getName().contains("ServerMock");
     }
 
     private void addDefaultValuesToConfig() {
@@ -78,7 +79,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
 
     @Override
     public void onEnable() {
-        if(!isLoadedFromTests()) {
+        if(!isLoadedFromTests(getServer())) {
             CommandAPI.onEnable();
         }
 
@@ -95,7 +96,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         getServer().getPluginManager().registerEvents(this, this);
 
         // don't load the MLG world in tests, this messes up the test suites, because it assumes mlgWorld is the default world then
-        if(!isLoadedFromTests()) {
+        if(!isLoadedFromTests(getServer())) {
             MLGHandler.createOrLoadMLGWorld(this);
         }
 
@@ -158,7 +159,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         /*
         Register commands
          */
-        if(!isLoadedFromTests()) {
+        if(!isLoadedFromTests(getServer())) {
             LoadCommand.registerLoadCommand(tempContext, challengeFilesHandler);
             ChallengesCommand.registerChallengesCommand(tempContext, challengeFilesHandler);
             TeamCommand.registerTeamCommand(tempContext);
@@ -212,7 +213,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         }
         tempContext.challengeManager().shutdownRunnables();
 
-        if(!isLoadedFromTests()) {
+        if(!isLoadedFromTests(getServer())) {
             CommandAPI.onDisable();
         }
     }

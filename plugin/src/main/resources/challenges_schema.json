@@ -290,6 +290,24 @@
             },
             "type": "object"
         },
+        "FloorIsLavaSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "lavaRemainsPermanently": {
+                    "default": false,
+                    "description": "Determines if lava remains permanently or is transformed back to the original block.",
+                    "type": "boolean"
+                },
+                "timeToNextBlockChangeInTicks": {
+                    "default": 30,
+                    "description": "The time until regular block -> magma block OR magma block -> lava in ticks.",
+                    "maximum": 200,
+                    "minimum": 10,
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
         "GoalTimer": {
             "additionalProperties": false,
             "properties": {
@@ -717,6 +735,9 @@
             "properties": {
                 "customHealthSetting": {
                     "$ref": "#/definitions/CustomHealthSettingConfig"
+                },
+                "floorIsLavaSetting": {
+                    "$ref": "#/definitions/FloorIsLavaSettingConfig"
                 },
                 "mlgSetting": {
                     "$ref": "#/definitions/MLGSettingConfig"

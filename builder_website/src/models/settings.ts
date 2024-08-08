@@ -6,6 +6,7 @@ export interface SettingsConfig {
   customHealthSetting?: CustomHealthSettingConfig
   ultraHardcoreSetting?: UltraHardcoreSettingConfig
   mlgSetting?: MLGSettingConfig
+  floorIsLavaSetting?: FloorIsLavaSettingConfig
 }
 
 export interface BaseSettingConfig {
@@ -89,4 +90,24 @@ export interface MLGSettingConfig extends BaseSettingConfig, MinMaxRangeConfig {
    * @TSJ-type integer
    */
   height?: number
+}
+
+export interface FloorIsLavaSettingConfig extends BaseSettingConfig {
+
+  /**
+   * The time until regular block -> magma block OR magma block -> lava in ticks.
+   *
+   * @minimum 10
+   * @maximum 200
+   * @default 30
+   * @TSJ-type integer
+   */
+  timeToNextBlockChangeInTicks?: number
+
+  /**
+   * Determines if lava remains permanently or is transformed back to the original block.
+   *
+   * @default false
+   */
+  lavaRemainsPermanently?: boolean
 }

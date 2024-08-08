@@ -14,6 +14,7 @@ import NoBlockPlaceRule from '@/components/rules/types/NoBlockPlaceRule.vue'
 import BlockPlaceGoal from '@/components/goals/types/BlockPlaceGoal.vue'
 import UltraHardcoreSetting from '@/components/settings/UltraHardcoreSetting.vue'
 import MLGSetting from '@/components/settings/MLGSetting.vue'
+import FloorIsLavaSetting from '@/components/settings/FloorIsLavaSetting.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -105,6 +106,11 @@ const router = createRouter({
       path: '/settings/mlgSetting',
       name: 'MLG',
       component: MLGSetting
+    },
+    {
+      path: '/settings/floorIsLavaSetting',
+      name: 'Floor Is Lava',
+      component: FloorIsLavaSetting
     },
     {
       path: '/about',
