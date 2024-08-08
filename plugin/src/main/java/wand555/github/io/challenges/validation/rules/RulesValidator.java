@@ -34,6 +34,9 @@ public class RulesValidator extends ModelValidator {
                                                                                                  challengesSchema
             );
         }
+        if(enabledRules.getNoCrafting() != null) {
+            new NoCraftingRuleValidator(dataSourceContext.craftingTypeJSONList()).performValidation(builder, challengesSchema);
+        }
         return builder;
     }
 }

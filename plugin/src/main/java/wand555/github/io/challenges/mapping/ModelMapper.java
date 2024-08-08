@@ -6,39 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
-import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
-import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
-import wand555.github.io.challenges.criteria.goals.blockplace.BlockPlaceGoal;
-import wand555.github.io.challenges.criteria.goals.factory.*;
-import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
-import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoalMessageHelper;
-import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalMessageHelper;
-import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
-import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRule;
-import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRuleMessageHelper;
-import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRule;
-import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRuleMessageHelper;
-import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
-import wand555.github.io.challenges.criteria.rules.noitem.NoItemRuleMessageHelper;
-import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRule;
-import wand555.github.io.challenges.criteria.rules.nomobkill.NoMobKillRuleMessageHelper;
-import wand555.github.io.challenges.criteria.settings.BaseSetting;
-import wand555.github.io.challenges.criteria.settings.CustomHealthSetting;
-import wand555.github.io.challenges.criteria.settings.UltraHardcoreSetting;
 import wand555.github.io.challenges.generated.*;
-import wand555.github.io.challenges.criteria.goals.BaseGoal;
-import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
-import wand555.github.io.challenges.punishments.EndPunishment;
-import wand555.github.io.challenges.punishments.HealthPunishment;
-import wand555.github.io.challenges.punishments.Punishment;
-import wand555.github.io.challenges.punishments.RandomEffectPunishment;
-import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
-import wand555.github.io.challenges.criteria.rules.PunishableRule;
-import wand555.github.io.challenges.criteria.rules.Rule;
-import wand555.github.io.challenges.teams.Team;
-import wand555.github.io.challenges.types.death.DeathMessage;
 
-import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.function.Predicate;
@@ -131,9 +100,28 @@ public class ModelMapper {
                                         (collect, collect2) -> collect,
                                         LinkedHashMap::new
             ));
+        } else if(keyedType == CraftingTypeJSON.class) {
+            return (LinkedHashMap<K, Collect>) _str2Collectable(collectables, dataSourceContext.craftingTypeJSONList());
         } else {
             throw new RuntimeException("Unknown how to handle '%s' when mapping to collectable.".formatted(keyedType));
         }
+    }
+
+    private static <T extends DataSourceJSON<K>, K extends Keyed> LinkedHashMap<K, Collect> _str2Collectable(List<CollectableEntryConfig> collectables, List<T> dataSourceList) {
+        return collectables.stream().map(collectableEntryConfig -> {
+            K enumInstance = DataSourceJSON.fromCode(dataSourceList,
+                                                     collectableEntryConfig.getCollectableName()
+            ).toEnum();
+            CollectableDataConfig collectableDataConfig = NullHelper.notNullOrDefault(collectableEntryConfig.getCollectableData(),
+                                                                                      CollectableDataConfig.class
+            );
+            Collect collect = new Collect(collectableDataConfig);
+            return Map.entry(enumInstance, collect);
+        }).collect(Collectors.toMap(Map.Entry::getKey,
+                                    Map.Entry::getValue,
+                                    (collect, collect2) -> collect,
+                                    LinkedHashMap::new
+        ));
     }
 
     public static List<String> collectables2Codes(List<CollectableEntryConfig> collectables) {
@@ -162,5 +150,15 @@ public class ModelMapper {
 
     public static EntityTypeJSON str2EntityType(@NotNull Collection<EntityTypeJSON> dataSource, @NotNull String entityTypeAsCode) {
         return dataSource.stream().filter(entityTypeJSON -> entityTypeJSON.getCode().equals(entityTypeAsCode)).findFirst().orElseThrow();
+    }
+
+    public static CraftingTypeJSON str2CraftingTypeJSON(@NotNull Collection<CraftingTypeJSON> dataSource, @NotNull String craftingTypeAsCode) {
+        return dataSource.stream().filter(craftingTypeJSON -> craftingTypeJSON.getCode().equals(craftingTypeAsCode)).findFirst().orElseThrow();
+    }
+
+    public static Collection<CraftingTypeJSON> str2CraftingTypeJSONs(@NotNull Collection<CraftingTypeJSON> dataSource, @NotNull List<String> craftingTypesAsCodes) {
+        return craftingTypesAsCodes.stream()
+                .map(string -> str2CraftingTypeJSON(dataSource, string))
+                .toList();
     }
 }

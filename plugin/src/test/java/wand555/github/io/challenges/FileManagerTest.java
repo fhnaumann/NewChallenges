@@ -13,7 +13,7 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.mapping.*;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class FileManagerTest {
 
         context = new Context(plugin,
                               new ResourceBundleContext(bundle, CriteriaUtil.loadGoalResourceBundle(), null, null, null, null),
-                              new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages),
+                              new DataSourceContext(materialJSONS, entityTypeJSONS, deathMessages, CriteriaUtil.loadCraftingTypes().getData()),
                               schemaRoot,
                               challengeManager,
                               new Random(),

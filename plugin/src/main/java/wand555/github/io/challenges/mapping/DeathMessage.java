@@ -1,12 +1,10 @@
-package wand555.github.io.challenges.types.death;
+package wand555.github.io.challenges.mapping;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import net.kyori.adventure.key.Key;
 import net.kyori.adventure.translation.Translatable;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
-import wand555.github.io.challenges.mapping.DataSourceJSON;
 
 import java.util.Objects;
 import java.util.regex.Matcher;

@@ -3,12 +3,8 @@ package wand555.github.io.challenges.types.death;
 import com.google.common.base.Preconditions;
 import net.kyori.adventure.text.TranslatableComponent;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import wand555.github.io.challenges.ChallengesDebugLogger;
@@ -16,11 +12,11 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
+import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 

@@ -1,24 +1,18 @@
 package wand555.github.io.challenges.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import wand555.github.io.challenges.Challenges;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 import javax.annotation.Nullable;
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class ResourcePackHelper {
 

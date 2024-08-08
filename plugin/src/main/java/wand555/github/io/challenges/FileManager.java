@@ -119,6 +119,7 @@ public class FileManager {
                         .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
                         .withDeathMessageList(Main.class.getResourceAsStream(
                                 "/death_messages_as_data_source_JSON.json"))
+                        .withCraftingTypeJSONList(Main.class.getResourceAsStream("/craftables.json"))
                         .withChallengeManager(new ChallengeManager())
                         .withRandom(new Random())
                         .withOfflineTempData(new OfflineTempData(context.plugin()))

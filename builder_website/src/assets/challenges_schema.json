@@ -32,6 +32,13 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "broken",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
             "type": "object"
         },
         "BlockPlaceGoalConfig": {
@@ -64,10 +71,18 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "placed",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
             "type": "object"
         },
         "CancelPunishmentConfig": {
             "additionalProperties": false,
+            "propertyOrder": [],
             "type": "object"
         },
         "ChallengeMetadata": {
@@ -109,6 +124,16 @@
                     "type": "string"
                 }
             },
+            "propertyOrder": [
+                "name",
+                "whenCreated",
+                "lastModified",
+                "createdBy",
+                "builderVersion",
+                "pluginVersion",
+                "builderMCVersion",
+                "pluginMCVersion"
+            ],
             "required": [
                 "builderMCVersion",
                 "builderVersion",
@@ -139,6 +164,11 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "amountNeeded",
+                "currentAmount",
+                "completion"
+            ],
             "type": "object"
         },
         "CollectableEntryConfig": {
@@ -154,6 +184,10 @@
                     "type": "string"
                 }
             },
+            "propertyOrder": [
+                "collectableName",
+                "collectableData"
+            ],
             "required": [
                 "collectableData",
                 "collectableName"
@@ -173,6 +207,10 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "whenCollectedSeconds",
+                "contributors"
+            ],
             "required": [
                 "whenCollectedSeconds"
             ],
@@ -182,6 +220,46 @@
             "additionalProperties": {
                 "type": "integer"
             },
+            "propertyOrder": [],
+            "type": "object"
+        },
+        "CraftingGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "crafted": {
+                    "default": [],
+                    "description": "The crafting recipes that need to be crafted to beat this goal. This also includes smelting, cooking over a campfire, etc.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "crafted",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
             "type": "object"
         },
         "CustomHealthSettingConfig": {
@@ -195,6 +273,9 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "hearts"
+            ],
             "type": "object"
         },
         "DeathGoalConfig": {
@@ -237,6 +318,15 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "deathAmount",
+                "countTotem",
+                "deathMessages",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
             "type": "object"
         },
         "DeathPunishmentConfig": {
@@ -252,6 +342,9 @@
                     "type": "string"
                 }
             },
+            "propertyOrder": [
+                "affects"
+            ],
             "type": "object"
         },
         "EnabledRules": {
@@ -263,6 +356,9 @@
                 "noBlockPlace": {
                     "$ref": "#/definitions/NoBlockPlaceRuleConfig"
                 },
+                "noCrafting": {
+                    "$ref": "#/definitions/NoCraftingRuleConfig"
+                },
                 "noDeath": {
                     "$ref": "#/definitions/NoDeathRuleConfig"
                 },
@@ -273,6 +369,14 @@
                     "$ref": "#/definitions/NoMobKillRuleConfig"
                 }
             },
+            "propertyOrder": [
+                "noBlockPlace",
+                "noBlockBreak",
+                "noMobKill",
+                "noItem",
+                "noDeath",
+                "noCrafting"
+            ],
             "type": "object"
         },
         "EndPunishmentConfig": {
@@ -288,6 +392,9 @@
                     "type": "string"
                 }
             },
+            "propertyOrder": [
+                "affects"
+            ],
             "type": "object"
         },
         "FloorIsLavaSettingConfig": {
@@ -306,6 +413,10 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "timeToNextBlockChangeInTicks",
+                "lavaRemainsPermanently"
+            ],
             "type": "object"
         },
         "GoalTimer": {
@@ -339,6 +450,13 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "time",
+                "startingTime",
+                "order",
+                "minTimeSeconds",
+                "maxTimeSeconds"
+            ],
             "required": [
                 "startingTime",
                 "time"
@@ -354,6 +472,9 @@
                 "blockPlaceGoal": {
                     "$ref": "#/definitions/BlockPlaceGoalConfig"
                 },
+                "craftingGoal": {
+                    "$ref": "#/definitions/CraftingGoalConfig"
+                },
                 "deathGoal": {
                     "$ref": "#/definitions/DeathGoalConfig"
                 },
@@ -364,6 +485,14 @@
                     "$ref": "#/definitions/MobGoalConfig"
                 }
             },
+            "propertyOrder": [
+                "blockPlaceGoal",
+                "blockBreakGoal",
+                "mobGoal",
+                "itemGoal",
+                "deathGoal",
+                "craftingGoal"
+            ],
             "type": "object"
         },
         "HealthPunishmentConfig": {
@@ -391,6 +520,11 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "heartsLost",
+                "randomizeHeartsLost",
+                "affects"
+            ],
             "type": "object"
         },
         "ItemGoalConfig": {
@@ -423,6 +557,13 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "items",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
             "type": "object"
         },
         "MLGPunishmentConfig": {
@@ -445,6 +586,10 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "height",
+                "affects"
+            ],
             "type": "object"
         },
         "MLGSettingConfig": {
@@ -472,6 +617,11 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "height",
+                "minTimeSeconds",
+                "maxTimeSeconds"
+            ],
             "type": "object"
         },
         "MobGoalConfig": {
@@ -504,6 +654,13 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "mobs",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
             "type": "object"
         },
         "Model": {
@@ -545,6 +702,16 @@
                     "type": "integer"
                 }
             },
+            "propertyOrder": [
+                "rules",
+                "goals",
+                "settings",
+                "teams",
+                "currentOrder",
+                "timer",
+                "metadata",
+                "nextChallenge"
+            ],
             "required": [
                 "metadata"
             ],
@@ -565,6 +732,10 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
             "type": "object"
         },
         "NoBlockPlaceRuleConfig": {
@@ -582,6 +753,67 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "NoCraftingRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "campfireCooking": {
+                    "default": true,
+                    "description": "Determines if cooking an item in a campfire is allowed or not.",
+                    "type": "boolean"
+                },
+                "exemptions": {
+                    "default": [],
+                    "description": "List of crafting results (materials) that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "furnaceSmelting": {
+                    "default": true,
+                    "description": "Determines if smelting an item in a furnace (furnace, blast-furnace, smoker) is allowed or not.",
+                    "type": "boolean"
+                },
+                "internalCrafting": {
+                    "default": false,
+                    "description": "Determines if crafting in the internal 2x2 crafting grid is allowed or not.",
+                    "type": "boolean"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "smithing": {
+                    "default": true,
+                    "description": "Determines if using a smithing table is allowed or not.",
+                    "type": "boolean"
+                },
+                "stonecutter": {
+                    "default": false,
+                    "description": "Determines if using a stonecutter is allowed or not.",
+                    "type": "boolean"
+                },
+                "workbenchCrafting": {
+                    "default": false,
+                    "description": "Determines if crafting in the 3x3 crafting grid is allowed or not.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "exemptions",
+                "internalCrafting",
+                "workbenchCrafting",
+                "furnaceSmelting",
+                "campfireCooking",
+                "smithing",
+                "stonecutter",
+                "punishments"
+            ],
             "type": "object"
         },
         "NoDeathRuleConfig": {
@@ -596,6 +828,10 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
+            "propertyOrder": [
+                "ignoreTotem",
+                "punishments"
+            ],
             "type": "object"
         },
         "NoItemCollectRuleConfig": {
@@ -613,6 +849,10 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
             "type": "object"
         },
         "NoMobKillRuleConfig": {
@@ -630,6 +870,10 @@
                     "$ref": "#/definitions/PunishmentsConfig"
                 }
             },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
             "type": "object"
         },
         "PunishmentsConfig": {
@@ -657,6 +901,15 @@
                     "$ref": "#/definitions/RandomItemPunishmentConfig"
                 }
             },
+            "propertyOrder": [
+                "cancelPunishment",
+                "endPunishment",
+                "healthPunishment",
+                "deathPunishment",
+                "randomEffectPunishment",
+                "randomItemPunishment",
+                "mlgPunishment"
+            ],
             "type": "object"
         },
         "RandomEffectPunishmentConfig": {
@@ -684,6 +937,11 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "effectsAtOnce",
+                "randomizeEffectsAtOnce",
+                "affects"
+            ],
             "type": "object"
         },
         "RandomItemPunishmentConfig": {
@@ -716,6 +974,12 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "itemsRemovedAtOnce",
+                "randomizeItemsRemovedAtOnce",
+                "entireInventoryRemoved",
+                "affects"
+            ],
             "type": "object"
         },
         "RulesConfig": {
@@ -728,6 +992,10 @@
                     "$ref": "#/definitions/EnabledRules"
                 }
             },
+            "propertyOrder": [
+                "enabledRules",
+                "enabledGlobalPunishments"
+            ],
             "type": "object"
         },
         "SettingsConfig": {
@@ -746,6 +1014,12 @@
                     "$ref": "#/definitions/UltraHardcoreSettingConfig"
                 }
             },
+            "propertyOrder": [
+                "customHealthSetting",
+                "ultraHardcoreSetting",
+                "mlgSetting",
+                "floorIsLavaSetting"
+            ],
             "type": "object"
         },
         "TeamConfig": {
@@ -771,6 +1045,12 @@
                     "type": "string"
                 }
             },
+            "propertyOrder": [
+                "teamName",
+                "playerUUIDs",
+                "goals",
+                "currentOrder"
+            ],
             "required": [
                 "goals",
                 "teamName"
@@ -816,6 +1096,15 @@
                     "type": "boolean"
                 }
             },
+            "propertyOrder": [
+                "naturalRegeneration",
+                "regWithGoldenApples",
+                "regWithEnchantedGoldenApples",
+                "regWithSuspiciousStew",
+                "regWithPotions",
+                "allowAbsorptionHearts",
+                "allowTotems"
+            ],
             "type": "object"
         }
     }

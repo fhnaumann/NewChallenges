@@ -15,10 +15,7 @@ import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.NoBlockPlaceRuleConfig;
 import wand555.github.io.challenges.generated.RulesConfig;
-import wand555.github.io.challenges.mapping.CriteriaMapper;
-import wand555.github.io.challenges.mapping.DeathMessageDataSource;
-import wand555.github.io.challenges.mapping.EntityTypeDataSource;
-import wand555.github.io.challenges.mapping.MaterialDataSource;
+import wand555.github.io.challenges.mapping.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -107,6 +104,10 @@ public class CriteriaUtil {
     public static DeathMessageDataSource loadDeathMessages() throws IOException {
         return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream(
                 "/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class);
+    }
+
+    public static CraftingTypeDataSource loadCraftingTypes() throws IOException {
+        return new ObjectMapper().readValue(CriteriaUtil.class.getResourceAsStream("/craftables.json"), CraftingTypeDataSource.class);
     }
 
     public static void callEvent(ServerMock server, Event event, int n) {

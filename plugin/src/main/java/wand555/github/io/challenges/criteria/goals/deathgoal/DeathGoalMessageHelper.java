@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.GoalMessageHelper;
 import wand555.github.io.challenges.types.death.DeathData;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;

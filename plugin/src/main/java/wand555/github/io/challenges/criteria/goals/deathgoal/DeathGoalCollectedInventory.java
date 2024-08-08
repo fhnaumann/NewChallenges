@@ -5,7 +5,7 @@ import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.inventory.progress.*;
 import wand555.github.io.challenges.types.death.DeathData;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 import java.util.List;
 import java.util.ResourceBundle;

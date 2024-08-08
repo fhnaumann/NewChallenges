@@ -1,26 +1,17 @@
 package wand555.github.io.challenges;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.bukkit.Keyed;
-import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import wand555.github.io.challenges.mapping.*;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public record DataSourceContext(
         List<MaterialJSON> materialJSONList, List<EntityTypeJSON> entityTypeJSONList,
-        List<DeathMessage> deathMessageList
+        List<DeathMessage> deathMessageList, List<CraftingTypeJSON> craftingTypeJSONList
 ) {
 
     public <T extends DataSourceJSON<K>, K extends Keyed> List<T> getTypedList(T dataSourceElement) {
@@ -44,6 +35,7 @@ public record DataSourceContext(
         private List<MaterialJSON> materialJSONList;
         private List<EntityTypeJSON> entityTypeJSONList;
         private List<DeathMessage> deathMessageList;
+        private List<CraftingTypeJSON> craftingTypeJSONList;
 
         public Builder withMaterialJSONList(InputStream materialJSONInputStream) {
             try {
@@ -78,8 +70,19 @@ public record DataSourceContext(
             return this;
         }
 
+        public Builder withCraftingTypeJSONList(InputStream craftingTypeJSONListInputStream) {
+            try {
+                this.craftingTypeJSONList = new ObjectMapper().readValue(craftingTypeJSONListInputStream,
+                                                                     CraftingTypeDataSource.class
+                ).getData();
+            } catch(IOException e) {
+                throw new RuntimeException(e);
+            }
+            return this;
+        }
+
         public DataSourceContext build() {
-            return new DataSourceContext(materialJSONList, entityTypeJSONList, deathMessageList);
+            return new DataSourceContext(materialJSONList, entityTypeJSONList, deathMessageList, craftingTypeJSONList);
         }
     }
 

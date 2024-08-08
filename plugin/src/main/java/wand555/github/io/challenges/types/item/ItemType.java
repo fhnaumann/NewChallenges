@@ -46,7 +46,7 @@ public class ItemType extends Type<ItemData> {
     }
 
     @Override
-    protected <E extends Event & Cancellable> void triggerIfCheckPasses(ItemData data, E event) {
+    public <E extends Event & Cancellable> void triggerIfCheckPasses(ItemData data, E event) {
         if(triggerCheck.applies(data) && !isMarked(data.itemStackInteractedWith())) {
             callEventInContainer(event);
             markItemStack(data.itemStackInteractedWith());
@@ -114,7 +114,6 @@ public class ItemType extends Type<ItemData> {
         if(event.getClickedInventory() instanceof CraftingInventory craftingInventory && event.getSlot() == 0) {
             // handle shift clicks
             if(event.isShiftClick()) {
-                Bukkit.broadcastMessage("shift click: " + currentItem.getType() + currentItem.getAmount());
                 int totalResultAmount = getTotalResultAmount(craftingInventory, currentItem);
                 int leastIngredientAmount = getLeastIngredientAmount(craftingInventory);
                 ItemStack[] craftingMatrix = craftingInventory.getMatrix();

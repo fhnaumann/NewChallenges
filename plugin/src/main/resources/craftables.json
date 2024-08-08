@@ -1,0 +1,5730 @@
+{
+  "version": "1.20.4",
+  "data": [
+    {
+      "code": "diorite_wall_from_diorite_stonecutting",
+      "result": "diorite_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_slab_from_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "weathered_cut_copper_from_weathered_copper_stonecutting",
+      "result": "weathered_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_wall_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_sandstone_slab_from_cut_sandstone_stonecutting",
+      "result": "cut_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "nether_brick_slab_from_nether_bricks_stonecutting",
+      "result": "nether_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_cut_copper_slab_from_waxed_cut_copper_stonecutting",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_copper_slab_from_copper_block_stonecutting",
+      "result": "cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_granite_from_granite_stonecutting",
+      "result": "polished_granite",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_stone_bricks_from_stone_bricks_stonecutting",
+      "result": "chiseled_stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_bricks_from_blackstone_stonecutting",
+      "result": "polished_blackstone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "oxidized_cut_copper_stairs_from_oxidized_copper_stonecutting",
+      "result": "oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_brick_slab_from_end_stone_brick_stonecutting",
+      "result": "end_stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_wall_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "sandstone_slab_from_sandstone_stonecutting",
+      "result": "sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_sandstone_from_sandstone_stonecutting",
+      "result": "chiseled_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_brick_stairs_from_stone_bricks_stonecutting",
+      "result": "stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_copper_stairs_from_cut_copper_stonecutting",
+      "result": "cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "prismarine_brick_stairs_from_prismarine_stonecutting",
+      "result": "prismarine_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_wall_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "andesite_wall_from_andesite_stonecutting",
+      "result": "andesite_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "exposed_cut_copper_slab_from_exposed_copper_stonecutting",
+      "result": "exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "nether_brick_wall_from_nether_bricks_stonecutting",
+      "result": "nether_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "oxidized_cut_copper_slab_from_oxidized_cut_copper_stonecutting",
+      "result": "oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_red_sandstone_slab_from_smooth_red_sandstone_stonecutting",
+      "result": "smooth_red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_copper_stairs_from_copper_block_stonecutting",
+      "result": "cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_stairs_from_polished_deepslate_stonecutting",
+      "result": "polished_deepslate_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_basalt_from_basalt_stonecutting",
+      "result": "polished_basalt",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_sandstone_stairs_from_smooth_sandstone_stonecutting",
+      "result": "smooth_sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "granite_wall_from_granite_stonecutting",
+      "result": "granite_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_granite_slab_from_polished_granite_stonecutting",
+      "result": "polished_granite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "red_nether_brick_wall_from_red_nether_bricks_stonecutting",
+      "result": "red_nether_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_stairs_from_waxed_weathered_cut_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "andesite_slab_from_andesite_stonecutting",
+      "result": "andesite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_stairs_from_polished_deepslate_stonecutting",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "exposed_cut_copper_slab_from_exposed_cut_copper_stonecutting",
+      "result": "exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cobblestone_wall_from_cobblestone_stonecutting",
+      "result": "cobblestone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_andesite_from_andesite_stonecutting",
+      "result": "polished_andesite",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mud_brick_slab_from_mud_bricks_stonecutting",
+      "result": "mud_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_red_sandstone_from_red_sandstone_stonecutting",
+      "result": "cut_red_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_slab_from_waxed_weathered_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_wall_from_blackstone_stonecutting",
+      "result": "polished_blackstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_stone_slab_from_smooth_stone_stonecutting",
+      "result": "smooth_stone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "blackstone_wall_from_blackstone_stonecutting",
+      "result": "blackstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_slab_from_polished_deepslate_stonecutting",
+      "result": "polished_deepslate_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "granite_slab_from_granite_stonecutting",
+      "result": "granite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "granite_stairs_from_granite_stonecutting",
+      "result": "granite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_slab_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "oxidized_cut_copper_stairs_from_oxidized_cut_copper_stonecutting",
+      "result": "oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_andesite_slab_from_andesite_stonecutting",
+      "result": "polished_andesite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_diorite_slab_from_diorite_stonecutting",
+      "result": "polished_diorite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_nether_bricks_from_nether_bricks_stonecutting",
+      "result": "chiseled_nether_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "sandstone_wall_from_sandstone_stonecutting",
+      "result": "sandstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "brick_slab_from_bricks_stonecutting",
+      "result": "brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_bricks_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "quartz_slab_from_stonecutting",
+      "result": "quartz_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_slab_from_blackstone_stonecutting",
+      "result": "polished_blackstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "red_nether_brick_slab_from_red_nether_bricks_stonecutting",
+      "result": "red_nether_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "dark_prismarine_slab_from_dark_prismarine_stonecutting",
+      "result": "dark_prismarine_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_slab_from_polished_deepslate_stonecutting",
+      "result": "deepslate_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_stone_bricks_stone_from_stonecutting",
+      "result": "chiseled_stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_wall_from_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_slab_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_granite_stairs_from_granite_stonecutting",
+      "result": "polished_granite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "red_sandstone_slab_from_red_sandstone_stonecutting",
+      "result": "red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_stairs_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "red_nether_brick_stairs_from_red_nether_bricks_stonecutting",
+      "result": "red_nether_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tiles_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tiles",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_slab_from_deepslate_tiles_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "prismarine_brick_slab_from_prismarine_stonecutting",
+      "result": "prismarine_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_stairs_from_waxed_oxidized_cut_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_slab_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_wall_from_deepslate_tiles_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_bricks_from_end_stone_stonecutting",
+      "result": "end_stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mossy_stone_brick_slab_from_mossy_stone_brick_stonecutting",
+      "result": "mossy_stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_bricks_from_stone_stonecutting",
+      "result": "stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_quartz_slab_from_smooth_quartz_stonecutting",
+      "result": "smooth_quartz_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "purpur_stairs_from_purpur_block_stonecutting",
+      "result": "purpur_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_bricks_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_slab_from_waxed_oxidized_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "oxidized_cut_copper_slab_from_oxidized_copper_stonecutting",
+      "result": "oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "brick_wall_from_bricks_stonecutting",
+      "result": "brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_brick_slab_from_end_stone_stonecutting",
+      "result": "end_stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_slab_from_waxed_exposed_cut_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_from_blackstone_stonecutting",
+      "result": "polished_blackstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_deepslate_from_cobbled_deepslate_stonecutting",
+      "result": "chiseled_deepslate",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_stairs_from_polished_blackstone_bricks_stonecutting",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "prismarine_stairs_from_prismarine_stonecutting",
+      "result": "prismarine_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "quartz_stairs_from_quartz_block_stonecutting",
+      "result": "quartz_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "exposed_cut_copper_stairs_from_exposed_copper_stonecutting",
+      "result": "exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "red_sandstone_stairs_from_red_sandstone_stonecutting",
+      "result": "red_sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_slab_from_polished_blackstone_bricks_stonecutting",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_sandstone_slab_from_smooth_sandstone_stonecutting",
+      "result": "smooth_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_red_sandstone_slab_from_red_sandstone_stonecutting",
+      "result": "cut_red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_wall_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "prismarine_slab_from_prismarine_stonecutting",
+      "result": "prismarine_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_slab_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_wall_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_from_waxed_oxidized_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mud_brick_stairs_from_mud_bricks_stonecutting",
+      "result": "mud_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "weathered_cut_copper_stairs_from_weathered_cut_copper_stonecutting",
+      "result": "weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_diorite_slab_from_polished_diorite_stonecutting",
+      "result": "polished_diorite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_stairs_from_waxed_weathered_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "blackstone_stairs_from_blackstone_stonecutting",
+      "result": "blackstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_from_waxed_weathered_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "weathered_cut_copper_slab_from_weathered_copper_stonecutting",
+      "result": "weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_red_sandstone_slab_from_cut_red_sandstone_stonecutting",
+      "result": "cut_red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mossy_cobblestone_stairs_from_mossy_cobblestone_stonecutting",
+      "result": "mossy_cobblestone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_polished_blackstone_from_blackstone_stonecutting",
+      "result": "chiseled_polished_blackstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "diorite_stairs_from_diorite_stonecutting",
+      "result": "diorite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_sandstone_from_sandstone_stonecutting",
+      "result": "cut_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_stairs_from_stone_stonecutting",
+      "result": "stone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_cut_copper_slab_from_waxed_copper_block_stonecutting",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_andesite_stairs_from_andesite_stonecutting",
+      "result": "polished_andesite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "blackstone_slab_from_blackstone_stonecutting",
+      "result": "blackstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "brick_stairs_from_bricks_stonecutting",
+      "result": "brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_stairs_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_andesite_slab_from_polished_andesite_stonecutting",
+      "result": "polished_andesite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "red_sandstone_wall_from_red_sandstone_stonecutting",
+      "result": "red_sandstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mud_brick_wall_from_mud_bricks_stonecutting",
+      "result": "mud_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_stairs_from_waxed_exposed_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tiles_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tiles",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_brick_wall_from_end_stone_brick_stonecutting",
+      "result": "end_stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_wall_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_copper_from_copper_block_stonecutting",
+      "result": "cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "diorite_slab_from_diorite_stonecutting",
+      "result": "diorite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_andesite_stairs_from_polished_andesite_stonecutting",
+      "result": "polished_andesite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_stairs_from_deepslate_tiles_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mossy_stone_brick_wall_from_mossy_stone_brick_stonecutting",
+      "result": "mossy_stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "oxidized_cut_copper_from_oxidized_copper_stonecutting",
+      "result": "oxidized_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_brick_wall_from_end_stone_stonecutting",
+      "result": "end_stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cobbled_deepslate_slab_from_cobbled_deepslate_stonecutting",
+      "result": "cobbled_deepslate_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_slab_from_waxed_exposed_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_slab_from_stone_stonecutting",
+      "result": "stone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_brick_slab_from_stone_stonecutting",
+      "result": "stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_quartz_stairs_from_smooth_quartz_stonecutting",
+      "result": "smooth_quartz_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_polished_blackstone_from_polished_blackstone_stonecutting",
+      "result": "chiseled_polished_blackstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_brick_stairs_from_stone_stonecutting",
+      "result": "stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_diorite_stairs_from_diorite_stonecutting",
+      "result": "polished_diorite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "weathered_cut_copper_stairs_from_weathered_copper_stonecutting",
+      "result": "weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_diorite_from_diorite_stonecutting",
+      "result": "polished_diorite",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_stairs_from_waxed_exposed_cut_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "prismarine_wall_from_prismarine_stonecutting",
+      "result": "prismarine_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_slab_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_slab_from_waxed_oxidized_cut_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_wall_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_slab_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "exposed_cut_copper_from_exposed_copper_stonecutting",
+      "result": "exposed_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mossy_cobblestone_slab_from_mossy_cobblestone_stonecutting",
+      "result": "mossy_cobblestone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "andesite_stairs_from_andesite_stonecutting",
+      "result": "andesite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_brick_slab_from_stone_bricks_stonecutting",
+      "result": "stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_slab_from_waxed_weathered_cut_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_granite_stairs_from_polished_granite_stonecutting",
+      "result": "polished_granite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_stairs_from_blackstone_stonecutting",
+      "result": "polished_blackstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "sandstone_stairs_from_sandstone_stonecutting",
+      "result": "sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_wall_from_polished_blackstone_bricks_stonecutting",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "smooth_red_sandstone_stairs_from_smooth_red_sandstone_stonecutting",
+      "result": "smooth_red_sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cobbled_deepslate_wall_from_cobbled_deepslate_stonecutting",
+      "result": "cobbled_deepslate_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_slab_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_stairs_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_stairs_from_waxed_oxidized_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "purpur_slab_from_purpur_block_stonecutting",
+      "result": "purpur_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_brick_stairs_from_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cobbled_deepslate_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "cobbled_deepslate_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_granite_slab_from_granite_stonecutting",
+      "result": "polished_granite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_deepslate_wall_from_polished_deepslate_stonecutting",
+      "result": "polished_deepslate_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cobblestone_slab_from_cobblestone_stonecutting",
+      "result": "cobblestone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mossy_stone_brick_stairs_from_mossy_stone_brick_stonecutting",
+      "result": "mossy_stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "quartz_bricks_from_quartz_block_stonecutting",
+      "result": "quartz_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "exposed_cut_copper_stairs_from_exposed_cut_copper_stonecutting",
+      "result": "exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_bricks_from_polished_deepslate_stonecutting",
+      "result": "deepslate_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_slab_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cobblestone_stairs_from_cobblestone_stonecutting",
+      "result": "cobblestone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_brick_stairs_from_end_stone_brick_stonecutting",
+      "result": "end_stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_quartz_block_from_quartz_block_stonecutting",
+      "result": "chiseled_quartz_block",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_brick_wall_from_stone_bricks_stonecutting",
+      "result": "stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_cut_copper_stairs_from_waxed_copper_block_stonecutting",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_copper_slab_from_cut_copper_stonecutting",
+      "result": "cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "dark_prismarine_stairs_from_dark_prismarine_stonecutting",
+      "result": "dark_prismarine_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "purpur_pillar_from_purpur_block_stonecutting",
+      "result": "purpur_pillar",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_diorite_stairs_from_polished_diorite_stonecutting",
+      "result": "polished_diorite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_brick_wall_from_polished_deepslate_stonecutting",
+      "result": "deepslate_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "weathered_cut_copper_slab_from_weathered_cut_copper_stonecutting",
+      "result": "weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_from_waxed_exposed_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "end_stone_brick_stairs_from_end_stone_stonecutting",
+      "result": "end_stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_wall_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "quartz_pillar_from_quartz_block_stonecutting",
+      "result": "quartz_pillar",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_cut_copper_stairs_from_waxed_cut_copper_stonecutting",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tile_stairs_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "deepslate_tiles_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tiles",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "mossy_cobblestone_wall_from_mossy_cobblestone_stonecutting",
+      "result": "mossy_cobblestone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "nether_brick_stairs_from_nether_bricks_stonecutting",
+      "result": "nether_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "cut_sandstone_slab_from_sandstone_stonecutting",
+      "result": "cut_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "polished_blackstone_stairs_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "stone_brick_walls_from_stone_stonecutting",
+      "result": "stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "waxed_cut_copper_from_waxed_copper_block_stonecutting",
+      "result": "waxed_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "chiseled_red_sandstone_from_red_sandstone_stonecutting",
+      "result": "chiseled_red_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "gold_nugget_from_blasting",
+      "result": "gold_nugget",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "copper_ingot_from_blasting_deepslate_copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "coal_from_blasting_coal_ore",
+      "result": "coal",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "diamond_from_blasting_diamond_ore",
+      "result": "diamond",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "redstone_from_blasting_redstone_ore",
+      "result": "redstone",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "lapis_lazuli_from_blasting_deepslate_lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "diamond_from_blasting_deepslate_diamond_ore",
+      "result": "diamond",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "redstone_from_blasting_deepslate_redstone_ore",
+      "result": "redstone",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "netherite_scrap_from_blasting",
+      "result": "netherite_scrap",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "iron_ingot_from_blasting_deepslate_iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "copper_ingot_from_blasting_copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "emerald_from_blasting_deepslate_emerald_ore",
+      "result": "emerald",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "gold_ingot_from_blasting_raw_gold",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "iron_nugget_from_blasting",
+      "result": "iron_nugget",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "gold_ingot_from_blasting_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "quartz_from_blasting",
+      "result": "quartz",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "iron_ingot_from_blasting_iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "gold_ingot_from_blasting_nether_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "gold_ingot_from_blasting_deepslate_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "emerald_from_blasting_emerald_ore",
+      "result": "emerald",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "iron_ingot_from_blasting_raw_iron",
+      "result": "iron_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "lapis_lazuli_from_blasting_lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "copper_ingot_from_blasting_raw_copper",
+      "result": "copper_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "coal_from_blasting_deepslate_coal_ore",
+      "result": "coal",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "netherite_shovel_smithing",
+      "result": "netherite_shovel",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_boots_smithing",
+      "result": "netherite_boots",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_axe_smithing",
+      "result": "netherite_axe",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_sword_smithing",
+      "result": "netherite_sword",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_hoe_smithing",
+      "result": "netherite_hoe",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_chestplate_smithing",
+      "result": "netherite_chestplate",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_pickaxe_smithing",
+      "result": "netherite_pickaxe",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_leggings_smithing",
+      "result": "netherite_leggings",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "netherite_helmet_smithing",
+      "result": "netherite_helmet",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "yellow_dye_from_dandelion",
+      "result": "yellow_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_button",
+      "result": "dark_oak_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_brick_slab",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_deepslate",
+      "result": "chiseled_deepslate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_candle",
+      "result": "gray_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "rabbit_stew_from_brown_mushroom",
+      "result": "rabbit_stew",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_dark_oak_wood",
+      "result": "stripped_dark_oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stonecutter",
+      "result": "stonecutter",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "soul_torch",
+      "result": "soul_torch",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bone_block",
+      "result": "bone_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raw_iron",
+      "result": "raw_iron",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "eye_armor_trim_smithing_template",
+      "result": "eye_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_nugget",
+      "result": "iron_nugget",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "melon",
+      "result": "melon",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_fence",
+      "result": "birch_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_nether_brick_slab",
+      "result": "red_nether_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_from_honeycomb",
+      "result": "waxed_oxidized_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_fence_gate",
+      "result": "warped_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "nether_wart_block",
+      "result": "nether_wart_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_fence_gate",
+      "result": "bamboo_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_banner",
+      "result": "magenta_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cobblestone_wall",
+      "result": "cobblestone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_dye",
+      "result": "gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_stained_glass_pane",
+      "result": "lime_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_fence_gate",
+      "result": "mangrove_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_pressure_plate",
+      "result": "warped_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_cut_copper_slab",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "coal_block",
+      "result": "coal_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raw_copper",
+      "result": "raw_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sugar_from_honey_bottle",
+      "result": "sugar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_button",
+      "result": "mangrove_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "slime_ball",
+      "result": "slime_ball",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_fence_gate",
+      "result": "spruce_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "leather_chestplate",
+      "result": "leather_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_bed",
+      "result": "yellow_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_block",
+      "result": "iron_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "beehive",
+      "result": "beehive",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "map_extending",
+      "result": "map",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_sign",
+      "result": "spruce_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_stained_glass_pane_from_glass_pane",
+      "result": "white_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_door",
+      "result": "dark_oak_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_light_gray_wool",
+      "result": "light_gray_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "writable_book",
+      "result": "writable_book",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_wood",
+      "result": "birch_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_dye_from_pitcher_plant",
+      "result": "cyan_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "glow_item_frame",
+      "result": "glow_item_frame",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "leather_helmet",
+      "result": "leather_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_bed",
+      "result": "light_blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_mosaic",
+      "result": "bamboo_mosaic",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_wood",
+      "result": "oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "scaffolding",
+      "result": "scaffolding",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "emerald_block",
+      "result": "emerald_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_apple",
+      "result": "golden_apple",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_nether_bricks",
+      "result": "chiseled_nether_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_pickaxe",
+      "result": "diamond_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "flower_pot",
+      "result": "flower_pot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_button",
+      "result": "acacia_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_dye_from_oxeye_daisy",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_stained_glass_pane",
+      "result": "magenta_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "copper_block",
+      "result": "copper_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "nether_brick_stairs",
+      "result": "nether_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_candle",
+      "result": "purple_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "recovery_compass",
+      "result": "recovery_compass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_bed",
+      "result": "magenta_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_sword",
+      "result": "iron_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_wood",
+      "result": "spruce_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_stained_glass",
+      "result": "green_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_dye_from_blue_red_white_dye",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_fence",
+      "result": "spruce_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_fence",
+      "result": "cherry_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_stone_brick_slab",
+      "result": "mossy_stone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "andesite_slab",
+      "result": "andesite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_chest_raft",
+      "result": "bamboo_chest_raft",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_prismarine_slab",
+      "result": "dark_prismarine_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "honey_block",
+      "result": "honey_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_planks",
+      "result": "bamboo_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_terracotta",
+      "result": "pink_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_stairs",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_stained_glass",
+      "result": "orange_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "exposed_cut_copper_slab",
+      "result": "exposed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_wall",
+      "result": "polished_blackstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cobblestone_stairs",
+      "result": "cobblestone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_sandstone_slab",
+      "result": "cut_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_red_sandstone_slab",
+      "result": "smooth_red_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_pressure_plate",
+      "result": "bamboo_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_door",
+      "result": "cherry_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_trapdoor",
+      "result": "birch_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "weathered_cut_copper_slab",
+      "result": "weathered_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_copper_from_honeycomb",
+      "result": "waxed_weathered_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_boots",
+      "result": "golden_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_dye_from_red_white_dye",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_door",
+      "result": "acacia_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_wood",
+      "result": "mangrove_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_basalt",
+      "result": "polished_basalt",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine_stairs",
+      "result": "prismarine_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_concrete_powder",
+      "result": "cyan_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "conduit",
+      "result": "conduit",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_green_carpet",
+      "result": "green_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mojang_banner_pattern",
+      "result": "mojang_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_granite_slab",
+      "result": "polished_granite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_pink_wool",
+      "result": "pink_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "fire_charge",
+      "result": "fire_charge",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_hoe",
+      "result": "golden_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sticky_piston",
+      "result": "sticky_piston",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sentry_armor_trim_smithing_template",
+      "result": "sentry_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_dye",
+      "result": "white_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "redstone",
+      "result": "redstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "emerald",
+      "result": "emerald",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_andesite_slab",
+      "result": "polished_andesite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_green_bed",
+      "result": "green_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wooden_pickaxe",
+      "result": "wooden_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_planks",
+      "result": "cherry_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "powered_rail",
+      "result": "powered_rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_hanging_sign",
+      "result": "warped_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_concrete_powder",
+      "result": "green_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_stairs",
+      "result": "oak_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "silence_armor_trim_smithing_template",
+      "result": "silence_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_dye_from_torchflower",
+      "result": "orange_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_white_bed",
+      "result": "white_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_button",
+      "result": "stone_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_brick_stairs",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_stained_glass",
+      "result": "brown_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stick_from_bamboo_item",
+      "result": "stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "tinted_glass",
+      "result": "tinted_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_terracotta",
+      "result": "blue_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_candle",
+      "result": "yellow_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_oak_wood",
+      "result": "stripped_oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sandstone",
+      "result": "sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_concrete_powder",
+      "result": "yellow_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_terracotta",
+      "result": "gray_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_fence_gate",
+      "result": "jungle_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "comparator",
+      "result": "comparator",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lodestone",
+      "result": "lodestone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "repeater",
+      "result": "repeater",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_concrete_powder",
+      "result": "red_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purpur_block",
+      "result": "purpur_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_slab",
+      "result": "polished_blackstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_stairs",
+      "result": "stone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "fishing_rod",
+      "result": "fishing_rod",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dried_kelp_block",
+      "result": "dried_kelp_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "end_stone_brick_stairs",
+      "result": "end_stone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_leggings",
+      "result": "iron_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_crimson_hyphae",
+      "result": "stripped_crimson_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_carpet",
+      "result": "cyan_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "nether_brick_wall",
+      "result": "nether_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_concrete_powder",
+      "result": "gray_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_concrete_powder",
+      "result": "light_blue_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wayfinder_armor_trim_smithing_template",
+      "result": "wayfinder_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_light_blue_bed",
+      "result": "light_blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "granite_stairs",
+      "result": "granite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_terracotta",
+      "result": "cyan_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_red_sandstone",
+      "result": "cut_red_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mushroom_stew",
+      "result": "mushroom_stew",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_fence",
+      "result": "mangrove_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_dye_from_tulip",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_planks",
+      "result": "warped_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_candle",
+      "result": "lime_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_dye_from_beetroot",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "beacon",
+      "result": "beacon",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "tnt",
+      "result": "tnt",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_stone_bricks_from_vine",
+      "result": "mossy_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_white_carpet",
+      "result": "white_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_yellow_bed",
+      "result": "yellow_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_bed",
+      "result": "light_gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "flint_and_steel",
+      "result": "flint_and_steel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_candle",
+      "result": "red_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_dye_from_orange_tulip",
+      "result": "orange_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_carpet",
+      "result": "brown_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_door",
+      "result": "jungle_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_dye",
+      "result": "black_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_stained_glass_pane",
+      "result": "black_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine_brick_slab",
+      "result": "prismarine_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine_bricks",
+      "result": "prismarine_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "nether_bricks",
+      "result": "nether_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_carpet",
+      "result": "blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_door",
+      "result": "bamboo_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_chestplate",
+      "result": "iron_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_fence",
+      "result": "crimson_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_bricks",
+      "result": "stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oxidized_cut_copper_slab",
+      "result": "oxidized_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_stairs",
+      "result": "birch_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "vex_armor_trim_smithing_template",
+      "result": "vex_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_orange_wool",
+      "result": "orange_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_stained_glass",
+      "result": "light_gray_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_wool_from_string",
+      "result": "white_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_chest_boat",
+      "result": "spruce_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_stained_glass_pane",
+      "result": "white_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_axe",
+      "result": "golden_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_stairs",
+      "result": "crimson_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_light_blue_wool",
+      "result": "light_blue_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "decorated_pot_simple",
+      "result": "decorated_pot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_stained_glass_pane",
+      "result": "light_blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_concrete_powder",
+      "result": "brown_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_stained_glass",
+      "result": "cyan_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_pressure_plate",
+      "result": "oak_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_brick_stairs",
+      "result": "stone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_sword",
+      "result": "stone_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_dye_from_sunflower",
+      "result": "yellow_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diorite",
+      "result": "diorite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_fence",
+      "result": "acacia_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_hyphae",
+      "result": "crimson_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_slab",
+      "result": "oak_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_banner",
+      "result": "cyan_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dripstone_block",
+      "result": "dripstone_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "glistering_melon_slice",
+      "result": "glistering_melon_slice",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_chest_boat",
+      "result": "mangrove_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_button",
+      "result": "crimson_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_door",
+      "result": "warped_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_hoe",
+      "result": "iron_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_ingot_from_iron_block",
+      "result": "iron_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_hanging_sign",
+      "result": "jungle_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_planks",
+      "result": "jungle_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "snow",
+      "result": "snow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_fence_gate",
+      "result": "acacia_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "clock",
+      "result": "clock",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_sign",
+      "result": "mangrove_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_yellow_wool",
+      "result": "yellow_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_carpet",
+      "result": "magenta_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_stained_glass_pane_from_glass_pane",
+      "result": "orange_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_trapdoor",
+      "result": "jungle_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "grindstone",
+      "result": "grindstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_ice",
+      "result": "blue_ice",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_nether_bricks",
+      "result": "red_nether_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_brown_carpet",
+      "result": "brown_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "glass_pane",
+      "result": "glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_leggings",
+      "result": "diamond_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_slab",
+      "result": "warped_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lectern",
+      "result": "lectern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_stairs",
+      "result": "mangrove_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine",
+      "result": "prismarine",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_sword",
+      "result": "golden_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_stained_glass",
+      "result": "purple_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_ingot_from_nuggets",
+      "result": "iron_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_sandstone",
+      "result": "chiseled_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "clay",
+      "result": "clay",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_pickaxe",
+      "result": "golden_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_copper_stairs",
+      "result": "cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_raft",
+      "result": "bamboo_raft",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_bookshelf",
+      "result": "chiseled_bookshelf",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_dye_from_allium",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_stone_slab",
+      "result": "smooth_stone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "ladder",
+      "result": "ladder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_lime_wool",
+      "result": "lime_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "redstone_torch",
+      "result": "redstone_torch",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "moss_carpet",
+      "result": "moss_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_cobblestone_slab",
+      "result": "mossy_cobblestone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_black_bed",
+      "result": "black_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "furnace_minecart",
+      "result": "furnace_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_cobblestone_from_vine",
+      "result": "mossy_cobblestone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "target",
+      "result": "target",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_concrete_powder",
+      "result": "white_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_terracotta",
+      "result": "yellow_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_carpet",
+      "result": "orange_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_stone_bricks_from_moss_block",
+      "result": "mossy_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper",
+      "result": "waxed_weathered_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cake",
+      "result": "cake",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_bed",
+      "result": "gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_banner",
+      "result": "orange_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_sign",
+      "result": "dark_oak_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "granite_slab",
+      "result": "granite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_boat",
+      "result": "cherry_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mud_brick_stairs",
+      "result": "mud_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_terracotta",
+      "result": "white_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "leather_boots",
+      "result": "leather_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "netherite_ingot_from_netherite_block",
+      "result": "netherite_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_hanging_sign",
+      "result": "oak_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "armor_stand",
+      "result": "armor_stand",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_stained_glass_pane",
+      "result": "pink_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_concrete_powder",
+      "result": "lime_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_slab",
+      "result": "mangrove_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "leather_leggings",
+      "result": "leather_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_dye_from_cornflower",
+      "result": "blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_cherry_wood",
+      "result": "stripped_cherry_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_banner",
+      "result": "brown_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "barrel",
+      "result": "barrel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_pressure_plate",
+      "result": "cherry_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_button",
+      "result": "polished_blackstone_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_hyphae",
+      "result": "warped_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_chest_boat",
+      "result": "jungle_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_stained_glass_pane_from_glass_pane",
+      "result": "lime_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_black_carpet",
+      "result": "black_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "book",
+      "result": "book",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_stone_bricks",
+      "result": "chiseled_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wooden_shovel",
+      "result": "wooden_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "end_stone_brick_slab",
+      "result": "end_stone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smithing_table",
+      "result": "smithing_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_bed",
+      "result": "green_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_gray_carpet",
+      "result": "gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magma_block",
+      "result": "magma_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "shaper_armor_trim_smithing_template",
+      "result": "shaper_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_pressure_plate",
+      "result": "spruce_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_terracotta",
+      "result": "purple_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cauldron",
+      "result": "cauldron",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_concrete_powder",
+      "result": "pink_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_trapdoor",
+      "result": "bamboo_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_copper_block_from_honeycomb",
+      "result": "waxed_copper_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brush",
+      "result": "brush",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_concrete_powder",
+      "result": "magenta_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_dye_from_poppy",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_shovel",
+      "result": "diamond_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_fungus_on_a_stick",
+      "result": "warped_fungus_on_a_stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_slab_from_honeycomb",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "andesite_wall",
+      "result": "andesite_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sandstone_slab",
+      "result": "sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "hay_block",
+      "result": "hay_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_candle",
+      "result": "light_blue_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cobblestone_slab",
+      "result": "cobblestone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_banner",
+      "result": "gray_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_stairs",
+      "result": "warped_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_hanging_sign",
+      "result": "spruce_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wild_armor_trim_smithing_template",
+      "result": "wild_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "snout_armor_trim_smithing_template",
+      "result": "snout_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "minecart",
+      "result": "minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_sandstone_slab",
+      "result": "smooth_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chest",
+      "result": "chest",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_stained_glass",
+      "result": "gray_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "rail",
+      "result": "rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_candle",
+      "result": "pink_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_sword",
+      "result": "diamond_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_terracotta",
+      "result": "red_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_banner",
+      "result": "yellow_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "creeper_banner_pattern",
+      "result": "creeper_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_slab",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_bed",
+      "result": "red_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_fence",
+      "result": "dark_oak_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_shovel",
+      "result": "golden_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_copper",
+      "result": "cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_tile_stairs",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_gray_wool",
+      "result": "gray_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "soul_lantern",
+      "result": "soul_lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "copper_ingot",
+      "result": "copper_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_slab",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_dye_from_lily_of_the_valley",
+      "result": "white_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_trapdoor",
+      "result": "crimson_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_dye_from_pink_petals",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_gray_bed",
+      "result": "gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "end_stone_brick_wall",
+      "result": "end_stone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_diorite_slab",
+      "result": "polished_diorite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_light_gray_bed",
+      "result": "light_gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_stairs",
+      "result": "bamboo_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_sandstone_stairs",
+      "result": "smooth_sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blaze_powder",
+      "result": "blaze_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chain",
+      "result": "chain",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_concrete_powder",
+      "result": "blue_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_stained_glass",
+      "result": "blue_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_fence",
+      "result": "oak_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_trapdoor",
+      "result": "warped_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "rabbit_stew_from_red_mushroom",
+      "result": "rabbit_stew",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_boots",
+      "result": "iron_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine_brick_stairs",
+      "result": "prismarine_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_chestplate",
+      "result": "diamond_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_chestplate",
+      "result": "golden_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_planks",
+      "result": "crimson_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_sign",
+      "result": "oak_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_candle",
+      "result": "blue_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "netherite_ingot",
+      "result": "netherite_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_sign",
+      "result": "birch_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_pressure_plate",
+      "result": "birch_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "flower_banner_pattern",
+      "result": "flower_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "netherite_block",
+      "result": "netherite_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_terracotta",
+      "result": "light_blue_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_dye_from_red_yellow",
+      "result": "orange_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_stairs",
+      "result": "spruce_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_planks",
+      "result": "mangrove_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_bed",
+      "result": "black_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_sign",
+      "result": "jungle_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_candle",
+      "result": "cyan_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crossbow",
+      "result": "crossbow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_dye_from_azure_bluet",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_dye_from_white_tulip",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "calibrated_sculk_sensor",
+      "result": "calibrated_sculk_sensor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bowl",
+      "result": "bowl",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond",
+      "result": "diamond",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_candle",
+      "result": "magenta_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_stained_glass_pane",
+      "result": "green_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_slab",
+      "result": "crimson_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_dye_from_blue_red_pink",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_concrete_powder",
+      "result": "black_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_carpet",
+      "result": "lime_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_banner",
+      "result": "purple_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_concrete_powder",
+      "result": "purple_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sugar_from_sugar_cane",
+      "result": "sugar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_planks",
+      "result": "birch_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_dye_from_black_white_dye",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_stained_glass_pane",
+      "result": "light_gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spectral_arrow",
+      "result": "spectral_arrow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_terracotta",
+      "result": "green_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "tnt_minecart",
+      "result": "tnt_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_carpet",
+      "result": "red_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_stained_glass",
+      "result": "white_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_planks",
+      "result": "acacia_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "slime_block",
+      "result": "slime_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wooden_hoe",
+      "result": "wooden_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "quartz_pillar",
+      "result": "quartz_pillar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_red_wool",
+      "result": "red_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_button",
+      "result": "cherry_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mud_bricks",
+      "result": "mud_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_magenta_bed",
+      "result": "magenta_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "netherite_upgrade_smithing_template",
+      "result": "netherite_upgrade_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_cut_copper_from_honeycomb",
+      "result": "waxed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_magenta_carpet",
+      "result": "magenta_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purpur_stairs",
+      "result": "purpur_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_terracotta",
+      "result": "brown_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_stairs",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_block",
+      "result": "bamboo_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_cobblestone_stairs",
+      "result": "mossy_cobblestone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "note_block",
+      "result": "note_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_orange_bed",
+      "result": "orange_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_dye",
+      "result": "blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_hanging_sign",
+      "result": "acacia_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "muddy_mangrove_roots",
+      "result": "muddy_mangrove_roots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "piston",
+      "result": "piston",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_bed",
+      "result": "brown_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_bed",
+      "result": "blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "ward_armor_trim_smithing_template",
+      "result": "ward_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_carpet",
+      "result": "light_gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_banner",
+      "result": "white_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "end_crystal",
+      "result": "end_crystal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_stained_glass_pane_from_glass_pane",
+      "result": "magenta_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_red_sandstone_stairs",
+      "result": "smooth_red_sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_banner",
+      "result": "light_gray_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_pickaxe",
+      "result": "stone_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "shulker_box",
+      "result": "shulker_box",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dispenser",
+      "result": "dispenser",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wooden_axe",
+      "result": "wooden_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_stained_glass_pane",
+      "result": "cyan_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "daylight_detector",
+      "result": "daylight_detector",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "quartz_stairs",
+      "result": "quartz_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diorite_wall",
+      "result": "diorite_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_carpet",
+      "result": "white_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_planks",
+      "result": "spruce_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_stained_glass",
+      "result": "red_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_stained_glass_pane_from_glass_pane",
+      "result": "light_gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_carpet",
+      "result": "green_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_bricks",
+      "result": "polished_blackstone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purpur_slab",
+      "result": "purpur_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_from_honeycomb",
+      "result": "waxed_exposed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_cobblestone_from_moss_block",
+      "result": "mossy_cobblestone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jack_o_lantern",
+      "result": "jack_o_lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "tripwire_hook",
+      "result": "tripwire_hook",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "trapped_chest",
+      "result": "trapped_chest",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "hopper",
+      "result": "hopper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lantern",
+      "result": "lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raw_gold",
+      "result": "raw_gold",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_banner",
+      "result": "green_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dried_kelp",
+      "result": "dried_kelp",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "ender_chest",
+      "result": "ender_chest",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_stained_glass",
+      "result": "magenta_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gold_nugget",
+      "result": "gold_nugget",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_bars",
+      "result": "iron_bars",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "beetroot_soup",
+      "result": "beetroot_soup",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_trapdoor",
+      "result": "iron_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_candle",
+      "result": "brown_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_brick_wall",
+      "result": "deepslate_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_terracotta",
+      "result": "lime_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_axe",
+      "result": "diamond_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_helmet",
+      "result": "iron_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_wood",
+      "result": "jungle_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper",
+      "result": "waxed_oxidized_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cartography_table",
+      "result": "cartography_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_stained_glass_pane_from_glass_pane",
+      "result": "gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_diorite",
+      "result": "polished_diorite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_slab",
+      "result": "stone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_pressure_plate",
+      "result": "acacia_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_bed",
+      "result": "lime_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_pressure_plate",
+      "result": "dark_oak_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_blue_wool",
+      "result": "blue_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_slab",
+      "result": "acacia_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_stairs",
+      "result": "jungle_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blast_furnace",
+      "result": "blast_furnace",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_andesite_stairs",
+      "result": "polished_andesite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_stained_glass_pane_from_glass_pane",
+      "result": "light_blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_dye_from_lilac",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_from_honeycomb",
+      "result": "waxed_weathered_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_red_bed",
+      "result": "red_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_chest_boat",
+      "result": "cherry_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_cut_copper",
+      "result": "waxed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_stained_glass_pane_from_glass_pane",
+      "result": "blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_carpet",
+      "result": "light_blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_polished_blackstone",
+      "result": "chiseled_polished_blackstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "turtle_helmet",
+      "result": "turtle_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cobbled_deepslate_stairs",
+      "result": "cobbled_deepslate_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "fletching_table",
+      "result": "fletching_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_banner",
+      "result": "light_blue_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_lime_bed",
+      "result": "lime_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_dye_from_gray_white_dye",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_cobblestone_wall",
+      "result": "mossy_cobblestone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spyglass",
+      "result": "spyglass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_dye_from_purple_and_pink",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_banner",
+      "result": "red_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purpur_pillar",
+      "result": "purpur_pillar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "heavy_weighted_pressure_plate",
+      "result": "heavy_weighted_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_tile_slab",
+      "result": "deepslate_tile_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_stained_glass",
+      "result": "pink_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_shovel",
+      "result": "stone_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_leggings",
+      "result": "golden_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_chest_boat",
+      "result": "oak_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_birch_wood",
+      "result": "stripped_birch_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_slab",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_stairs",
+      "result": "polished_blackstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_banner",
+      "result": "lime_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_brick_stairs",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_pressure_plate",
+      "result": "stone_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dropper",
+      "result": "dropper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "redstone_lamp",
+      "result": "redstone_lamp",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_stained_glass_pane",
+      "result": "yellow_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_carpet",
+      "result": "black_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "end_rod",
+      "result": "end_rod",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_magenta_wool",
+      "result": "magenta_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raiser_armor_trim_smithing_template",
+      "result": "raiser_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_mosaic_stairs",
+      "result": "bamboo_mosaic_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_helmet",
+      "result": "golden_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_dye_from_blue_orchid",
+      "result": "light_blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "weathered_cut_copper_stairs",
+      "result": "weathered_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_button",
+      "result": "warped_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_cut_copper_slab_from_honeycomb",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_deepslate",
+      "result": "polished_deepslate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bone_meal_from_bone_block",
+      "result": "bone_meal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bread",
+      "result": "bread",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_boat",
+      "result": "mangrove_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "torch",
+      "result": "torch",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_granite_stairs",
+      "result": "polished_granite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_boat",
+      "result": "acacia_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lever",
+      "result": "lever",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_blue_bed",
+      "result": "blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "map",
+      "result": "map",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "detector_rail",
+      "result": "detector_rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_bed",
+      "result": "pink_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "shield",
+      "result": "shield",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blackstone_slab",
+      "result": "blackstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_light_blue_carpet",
+      "result": "light_blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_slab",
+      "result": "bamboo_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_sign",
+      "result": "crimson_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_stained_glass_pane_from_glass_pane",
+      "result": "cyan_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_chest_boat",
+      "result": "dark_oak_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_trapdoor",
+      "result": "dark_oak_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_banner",
+      "result": "black_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "painting",
+      "result": "painting",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_shovel",
+      "result": "iron_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_red_carpet",
+      "result": "red_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_brick_slab",
+      "result": "stone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_pressure_plate",
+      "result": "polished_blackstone_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "quartz_bricks",
+      "result": "quartz_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crafting_table",
+      "result": "crafting_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sandstone_wall",
+      "result": "sandstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_stained_glass_pane_from_glass_pane",
+      "result": "green_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_deepslate_slab",
+      "result": "polished_deepslate_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_sandstone_wall",
+      "result": "red_sandstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_chest_boat",
+      "result": "acacia_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_copper_slab",
+      "result": "cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_wood",
+      "result": "dark_oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_hanging_sign",
+      "result": "birch_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_carpet",
+      "result": "pink_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_stairs",
+      "result": "acacia_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_slab",
+      "result": "cherry_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_bricks",
+      "result": "deepslate_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raw_gold_block",
+      "result": "raw_gold_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_door",
+      "result": "birch_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_copper_from_honeycomb",
+      "result": "waxed_exposed_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "anvil",
+      "result": "anvil",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_acacia_wood",
+      "result": "stripped_acacia_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_stairs",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gold_ingot_from_nuggets",
+      "result": "gold_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_stone_brick_stairs",
+      "result": "mossy_stone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_trapdoor",
+      "result": "oak_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "amethyst_block",
+      "result": "amethyst_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_door",
+      "result": "oak_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_cut_copper_slab_from_honeycomb",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_bed",
+      "result": "orange_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_button",
+      "result": "birch_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wooden_sword",
+      "result": "wooden_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_fence_gate",
+      "result": "birch_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bone_meal",
+      "result": "bone_meal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "honey_bottle",
+      "result": "honey_bottle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_bed",
+      "result": "cyan_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_quartz_slab",
+      "result": "smooth_quartz_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_door",
+      "result": "spruce_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "carrot_on_a_stick",
+      "result": "carrot_on_a_stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_stained_glass_pane",
+      "result": "red_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brick_wall",
+      "result": "brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raw_copper_block",
+      "result": "raw_copper_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_bed",
+      "result": "purple_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mud_brick_wall",
+      "result": "mud_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_prismarine",
+      "result": "dark_prismarine",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_stained_glass_pane_from_glass_pane",
+      "result": "purple_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "leather_horse_armor",
+      "result": "leather_horse_armor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cookie",
+      "result": "cookie",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "raw_iron_block",
+      "result": "raw_iron_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_planks",
+      "result": "dark_oak_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lapis_lazuli",
+      "result": "lapis_lazuli",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "candle",
+      "result": "candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lightning_rod",
+      "result": "lightning_rod",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_stained_glass_pane_from_glass_pane",
+      "result": "brown_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_button",
+      "result": "oak_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "granite_wall",
+      "result": "granite_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_concrete_powder",
+      "result": "orange_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_hanging_sign",
+      "result": "dark_oak_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "redstone_block",
+      "result": "redstone_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "shears",
+      "result": "shears",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "wheat",
+      "result": "wheat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "honeycomb_block",
+      "result": "honeycomb_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_stained_glass_pane",
+      "result": "orange_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "quartz_block",
+      "result": "quartz_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_stained_glass_pane_from_glass_pane",
+      "result": "yellow_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "music_disc_5",
+      "result": "music_disc_5",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_helmet",
+      "result": "diamond_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_fence",
+      "result": "warped_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bow",
+      "result": "bow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_fence_gate",
+      "result": "dark_oak_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper",
+      "result": "waxed_exposed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "coal",
+      "result": "coal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "compass",
+      "result": "compass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_pink_bed",
+      "result": "pink_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "andesite_stairs",
+      "result": "andesite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "item_frame",
+      "result": "item_frame",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_slab",
+      "result": "jungle_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "loom",
+      "result": "loom",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smoker",
+      "result": "smoker",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "skull_banner_pattern",
+      "result": "skull_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_boat",
+      "result": "dark_oak_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "coast_armor_trim_smithing_template",
+      "result": "coast_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_dye_from_pink_tulip",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "arrow",
+      "result": "arrow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dune_armor_trim_smithing_template",
+      "result": "dune_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_fence_gate",
+      "result": "oak_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mossy_stone_brick_wall",
+      "result": "mossy_stone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_dye",
+      "result": "brown_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "granite",
+      "result": "granite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "melon_seeds",
+      "result": "melon_seeds",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_cyan_carpet",
+      "result": "cyan_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brick_slab",
+      "result": "brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "firework_rocket_simple",
+      "result": "firework_rocket",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_dye_from_wither_rose",
+      "result": "black_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_sandstone_stairs",
+      "result": "red_sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bricks",
+      "result": "bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_sandstone_slab",
+      "result": "red_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_stained_glass_pane",
+      "result": "gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gray_carpet",
+      "result": "gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oxidized_cut_copper_stairs",
+      "result": "oxidized_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_trapdoor",
+      "result": "mangrove_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "andesite",
+      "result": "andesite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_boots",
+      "result": "diamond_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_hanging_sign",
+      "result": "crimson_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_tile_wall",
+      "result": "deepslate_tile_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_deepslate_stairs",
+      "result": "polished_deepslate_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "exposed_cut_copper",
+      "result": "exposed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone",
+      "result": "polished_blackstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_hanging_sign",
+      "result": "mangrove_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_exposed_cut_copper_slab_from_honeycomb",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stick",
+      "result": "stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_nether_brick_stairs",
+      "result": "red_nether_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_stairs",
+      "result": "dark_oak_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_pressure_plate",
+      "result": "jungle_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brewing_stand",
+      "result": "brewing_stand",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_yellow_carpet",
+      "result": "yellow_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_candle",
+      "result": "white_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_mosaic_slab",
+      "result": "bamboo_mosaic_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "host_armor_trim_smithing_template",
+      "result": "host_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_white_wool",
+      "result": "white_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_light_gray_carpet",
+      "result": "light_gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spire_armor_trim_smithing_template",
+      "result": "spire_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_blackstone_brick_wall",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_axe",
+      "result": "stone_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_button",
+      "result": "jungle_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "packed_ice",
+      "result": "packed_ice",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "golden_carrot",
+      "result": "golden_carrot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blackstone_stairs",
+      "result": "blackstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_banner",
+      "result": "blue_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_purple_carpet",
+      "result": "purple_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_orange_carpet",
+      "result": "orange_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine_wall",
+      "result": "prismarine_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_block",
+      "result": "diamond_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_cyan_bed",
+      "result": "cyan_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_oxidized_copper_from_honeycomb",
+      "result": "waxed_oxidized_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diorite_slab",
+      "result": "diorite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_trapdoor",
+      "result": "spruce_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_stained_glass",
+      "result": "yellow_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_stained_glass",
+      "result": "light_blue_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "glowstone",
+      "result": "glowstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "respawn_anchor",
+      "result": "respawn_anchor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pumpkin_seeds",
+      "result": "pumpkin_seeds",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cobbled_deepslate_wall",
+      "result": "cobbled_deepslate_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_brick_slab",
+      "result": "deepslate_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_nether_brick_wall",
+      "result": "red_nether_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_red_sandstone",
+      "result": "chiseled_red_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "nether_brick_fence",
+      "result": "nether_brick_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magma_cream",
+      "result": "magma_cream",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blackstone_wall",
+      "result": "blackstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bookshelf",
+      "result": "bookshelf",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_prismarine_stairs",
+      "result": "dark_prismarine_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_candle",
+      "result": "light_gray_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lapis_block",
+      "result": "lapis_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_carpet",
+      "result": "purple_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_chest_boat",
+      "result": "birch_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brown_stained_glass_pane",
+      "result": "brown_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_terracotta",
+      "result": "black_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "snow_block",
+      "result": "snow_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_sign",
+      "result": "cherry_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_axe",
+      "result": "iron_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_lime_carpet",
+      "result": "lime_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "composter",
+      "result": "composter",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "ender_eye",
+      "result": "ender_eye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sandstone_stairs",
+      "result": "sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jukebox",
+      "result": "jukebox",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_terracotta",
+      "result": "light_gray_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "white_bed",
+      "result": "white_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_slab",
+      "result": "birch_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_slab",
+      "result": "spruce_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_sign",
+      "result": "acacia_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "coarse_dirt",
+      "result": "coarse_dirt",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chest_minecart",
+      "result": "chest_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_boat",
+      "result": "oak_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_cut_copper_stairs",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "sea_lantern",
+      "result": "sea_lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "yellow_carpet",
+      "result": "yellow_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "green_candle",
+      "result": "green_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_blue_carpet",
+      "result": "blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_weathered_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_stained_glass_pane_from_glass_pane",
+      "result": "pink_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "prismarine_slab",
+      "result": "prismarine_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_dye_from_rose_bush",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "exposed_cut_copper_stairs",
+      "result": "exposed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "fermented_spider_eye",
+      "result": "fermented_spider_eye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "magenta_terracotta",
+      "result": "magenta_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_hoe",
+      "result": "stone_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diamond_hoe",
+      "result": "diamond_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_boat",
+      "result": "jungle_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_cyan_wool",
+      "result": "cyan_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pumpkin_pie",
+      "result": "pumpkin_pie",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_mangrove_wood",
+      "result": "stripped_mangrove_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gold_ingot_from_gold_block",
+      "result": "gold_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "jungle_fence",
+      "result": "jungle_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_weighted_pressure_plate",
+      "result": "light_weighted_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cobbled_deepslate_slab",
+      "result": "cobbled_deepslate_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "tide_armor_trim_smithing_template",
+      "result": "tide_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "glass_bottle",
+      "result": "glass_bottle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "weathered_cut_copper",
+      "result": "weathered_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_black_wool",
+      "result": "black_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_green_wool",
+      "result": "green_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_door",
+      "result": "iron_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_stained_glass_pane",
+      "result": "purple_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_granite",
+      "result": "polished_granite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mud_brick_slab",
+      "result": "mud_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "hopper_minecart",
+      "result": "hopper_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "blue_stained_glass_pane",
+      "result": "blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_stained_glass_pane_from_glass_pane",
+      "result": "black_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oxidized_cut_copper",
+      "result": "oxidized_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_banner",
+      "result": "pink_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "chiseled_quartz_block",
+      "result": "chiseled_quartz_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "soul_campfire",
+      "result": "soul_campfire",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_warped_hyphae",
+      "result": "stripped_warped_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_button",
+      "result": "bamboo_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_door",
+      "result": "crimson_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "copper_ingot_from_waxed_copper_block",
+      "result": "copper_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_pink_carpet",
+      "result": "pink_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "leather",
+      "result": "leather",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_hanging_sign",
+      "result": "cherry_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_trapdoor",
+      "result": "cherry_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "end_stone_bricks",
+      "result": "end_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "waxed_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_brown_bed",
+      "result": "brown_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_stained_glass_pane_from_glass_pane",
+      "result": "red_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_trapdoor",
+      "result": "acacia_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_candle",
+      "result": "black_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_gray_concrete_powder",
+      "result": "light_gray_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "smooth_quartz_stairs",
+      "result": "smooth_quartz_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "furnace",
+      "result": "furnace",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "diorite_stairs",
+      "result": "diorite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_pressure_plate",
+      "result": "mangrove_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_fence_gate",
+      "result": "crimson_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_brown_wool",
+      "result": "brown_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "activator_rail",
+      "result": "activator_rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_dye",
+      "result": "lime_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_hanging_sign",
+      "result": "bamboo_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "crimson_pressure_plate",
+      "result": "crimson_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "oak_planks",
+      "result": "oak_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_candle",
+      "result": "orange_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "warped_sign",
+      "result": "warped_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "rib_armor_trim_smithing_template",
+      "result": "rib_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "mangrove_door",
+      "result": "mangrove_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_stairs",
+      "result": "cherry_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "purple_dye",
+      "result": "purple_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "red_sandstone",
+      "result": "red_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stone_brick_wall",
+      "result": "stone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "iron_pickaxe",
+      "result": "iron_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "quartz_slab",
+      "result": "quartz_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_sandstone",
+      "result": "cut_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_sign",
+      "result": "bamboo_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_button",
+      "result": "spruce_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "light_blue_dye_from_blue_white_dye",
+      "result": "light_blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "nether_brick_slab",
+      "result": "nether_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cyan_dye",
+      "result": "cyan_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "deepslate_tiles",
+      "result": "deepslate_tiles",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "orange_terracotta",
+      "result": "orange_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bamboo_fence",
+      "result": "bamboo_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "enchanting_table",
+      "result": "enchanting_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lead",
+      "result": "lead",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "birch_boat",
+      "result": "birch_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "gold_block",
+      "result": "gold_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "spruce_boat",
+      "result": "spruce_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_diorite_stairs",
+      "result": "polished_diorite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "observer",
+      "result": "observer",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "campfire",
+      "result": "campfire",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "paper",
+      "result": "paper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_deepslate_wall",
+      "result": "polished_deepslate_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_wood",
+      "result": "cherry_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dark_oak_slab",
+      "result": "dark_oak_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "packed_mud",
+      "result": "packed_mud",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "brick_stairs",
+      "result": "brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_purple_bed",
+      "result": "purple_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "lime_stained_glass",
+      "result": "lime_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_spruce_wood",
+      "result": "stripped_spruce_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "acacia_wood",
+      "result": "acacia_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cherry_fence_gate",
+      "result": "cherry_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "stripped_jungle_wood",
+      "result": "stripped_jungle_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "pink_dye_from_peony",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "bucket",
+      "result": "bucket",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cut_red_sandstone_slab",
+      "result": "cut_red_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "black_stained_glass",
+      "result": "black_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "dye_purple_wool",
+      "result": "purple_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "polished_andesite",
+      "result": "polished_andesite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "cooked_salmon_from_campfire_cooking",
+      "result": "cooked_salmon",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "cooked_beef_from_campfire_cooking",
+      "result": "cooked_beef",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "cooked_rabbit_from_campfire_cooking",
+      "result": "cooked_rabbit",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "cooked_porkchop_from_campfire_cooking",
+      "result": "cooked_porkchop",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "dried_kelp_from_campfire_cooking",
+      "result": "dried_kelp",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "baked_potato_from_campfire_cooking",
+      "result": "baked_potato",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "cooked_mutton_from_campfire_cooking",
+      "result": "cooked_mutton",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "cooked_chicken_from_campfire_cooking",
+      "result": "cooked_chicken",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "cooked_cod_from_campfire_cooking",
+      "result": "cooked_cod",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "charcoal",
+      "result": "charcoal",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "emerald_from_smelting_deepslate_emerald_ore",
+      "result": "emerald",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cracked_deepslate_tiles",
+      "result": "cracked_deepslate_tiles",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_rabbit",
+      "result": "cooked_rabbit",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_porkchop",
+      "result": "cooked_porkchop",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "lapis_lazuli_from_smelting_deepslate_lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "green_dye",
+      "result": "green_dye",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "pink_glazed_terracotta",
+      "result": "pink_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "redstone_from_smelting_redstone_ore",
+      "result": "redstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "blue_glazed_terracotta",
+      "result": "blue_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cracked_deepslate_bricks",
+      "result": "cracked_deepslate_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "glass",
+      "result": "glass",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "terracotta",
+      "result": "terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "quartz",
+      "result": "quartz",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cyan_glazed_terracotta",
+      "result": "cyan_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "coal_from_smelting_coal_ore",
+      "result": "coal",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "emerald_from_smelting_emerald_ore",
+      "result": "emerald",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "magenta_glazed_terracotta",
+      "result": "magenta_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "redstone_from_smelting_deepslate_redstone_ore",
+      "result": "redstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "gold_ingot_from_smelting_raw_gold",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "gold_ingot_from_smelting_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cracked_polished_blackstone_bricks",
+      "result": "cracked_polished_blackstone_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "popped_chorus_fruit",
+      "result": "popped_chorus_fruit",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "brown_glazed_terracotta",
+      "result": "brown_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "smooth_basalt",
+      "result": "smooth_basalt",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "iron_ingot_from_smelting_deepslate_iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "copper_ingot_from_smelting_raw_copper",
+      "result": "copper_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "smooth_red_sandstone",
+      "result": "smooth_red_sandstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "diamond_from_smelting_deepslate_diamond_ore",
+      "result": "diamond",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "deepslate",
+      "result": "deepslate",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "diamond_from_smelting_diamond_ore",
+      "result": "diamond",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "smooth_quartz",
+      "result": "smooth_quartz",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "smooth_sandstone",
+      "result": "smooth_sandstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "light_blue_glazed_terracotta",
+      "result": "light_blue_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "sponge",
+      "result": "sponge",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "purple_glazed_terracotta",
+      "result": "purple_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cracked_stone_bricks",
+      "result": "cracked_stone_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "green_glazed_terracotta",
+      "result": "green_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_cod",
+      "result": "cooked_cod",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "gold_ingot_from_smelting_deepslate_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "baked_potato",
+      "result": "baked_potato",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_salmon",
+      "result": "cooked_salmon",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "lime_dye_from_smelting",
+      "result": "lime_dye",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "orange_glazed_terracotta",
+      "result": "orange_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "gray_glazed_terracotta",
+      "result": "gray_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "iron_nugget_from_smelting",
+      "result": "iron_nugget",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_chicken",
+      "result": "cooked_chicken",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "nether_brick",
+      "result": "nether_brick",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "black_glazed_terracotta",
+      "result": "black_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "lapis_lazuli_from_smelting_lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "brick",
+      "result": "brick",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "iron_ingot_from_smelting_iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "copper_ingot_from_smelting_deepslate_copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "yellow_glazed_terracotta",
+      "result": "yellow_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "stone",
+      "result": "stone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "smooth_stone",
+      "result": "smooth_stone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_mutton",
+      "result": "cooked_mutton",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "dried_kelp_from_smelting",
+      "result": "dried_kelp",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "light_gray_glazed_terracotta",
+      "result": "light_gray_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "coal_from_smelting_deepslate_coal_ore",
+      "result": "coal",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "iron_ingot_from_smelting_raw_iron",
+      "result": "iron_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_beef",
+      "result": "cooked_beef",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "gold_ingot_from_smelting_nether_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "gold_nugget_from_smelting",
+      "result": "gold_nugget",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cracked_nether_bricks",
+      "result": "cracked_nether_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "copper_ingot_from_smelting_copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "netherite_scrap",
+      "result": "netherite_scrap",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "red_glazed_terracotta",
+      "result": "red_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "white_glazed_terracotta",
+      "result": "white_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "lime_glazed_terracotta",
+      "result": "lime_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "cooked_salmon_from_smoking",
+      "result": "cooked_salmon",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "dried_kelp_from_smoking",
+      "result": "dried_kelp",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "cooked_beef_from_smoking",
+      "result": "cooked_beef",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "cooked_chicken_from_smoking",
+      "result": "cooked_chicken",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "baked_potato_from_smoking",
+      "result": "baked_potato",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "cooked_cod_from_smoking",
+      "result": "cooked_cod",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "cooked_porkchop_from_smoking",
+      "result": "cooked_porkchop",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "cooked_rabbit_from_smoking",
+      "result": "cooked_rabbit",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "cooked_mutton_from_smoking",
+      "result": "cooked_mutton",
+      "recipeType": "smoking"
+    }
+  ]
+}

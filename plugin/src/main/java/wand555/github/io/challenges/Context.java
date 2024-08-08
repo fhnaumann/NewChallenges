@@ -77,6 +77,11 @@ public record Context(
             return this;
         }
 
+        public Builder withCraftingTypeJSONList(InputStream craftingTypeJSONListInputStream) {
+            dataSourceContextBuilder.withCraftingTypeJSONList(craftingTypeJSONListInputStream);
+            return this;
+        }
+
         public Builder withSchemaRoot(JsonNode schemaRoot) {
             this.schemaRoot = schemaRoot;
             return this;

@@ -1,27 +1,20 @@
 package wand555.github.io.challenges.criteria.goals.deathgoal;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import wand555.github.io.challenges.*;
-import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.*;
-import wand555.github.io.challenges.criteria.goals.bossbar.BossBarBuilder;
-import wand555.github.io.challenges.criteria.goals.bossbar.BossBarHelper;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.DeathGoalConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.types.death.DeathData;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.types.death.DeathType;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import javax.annotation.Nullable;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Listener, Storable<DeathGoalConfig> {
 

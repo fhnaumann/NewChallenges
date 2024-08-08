@@ -5,17 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.mapping.*;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Objects;
 
 public class OnlyValidation {
 
@@ -40,9 +35,12 @@ public class OnlyValidation {
                     "/entity_types.json"), EntityTypeDataSource.class).getData();
             List<DeathMessage> deathMessageList = objectMapper.readValue(OnlyValidation.class.getResourceAsStream(
                     "/death_messages_as_data_source_JSON.json"), DeathMessageDataSource.class).getData();
+            List<CraftingTypeJSON> craftingTypeJSONList = objectMapper.readValue(OnlyValidation.class.getResourceAsStream(
+                    "/craftables.json"), CraftingTypeDataSource.class).getData();
             DataSourceContext dataSourceContext = new DataSourceContext(materialJSONS,
                                                                         entityTypeJSONS,
-                                                                        deathMessageList
+                                                                        deathMessageList,
+                                                                        craftingTypeJSONList
             );
 
             File jsonSourcePath = new File(child.getPath());

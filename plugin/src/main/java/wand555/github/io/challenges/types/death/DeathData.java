@@ -1,7 +1,7 @@
 package wand555.github.io.challenges.types.death;
 
-import org.bukkit.damage.DeathMessageType;
 import org.bukkit.entity.Player;
+import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.types.Data;
 
 public record DeathData(

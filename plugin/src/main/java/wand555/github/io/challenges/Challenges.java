@@ -28,7 +28,9 @@ import wand555.github.io.challenges.commands.LoadCommand;
 import wand555.github.io.challenges.commands.SkipCommand;
 import wand555.github.io.challenges.commands.team.TeamCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
+import wand555.github.io.challenges.criteria.rules.nocrafting.NoCraftingRule;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
+import wand555.github.io.challenges.generated.NoCraftingRuleConfig;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.punishments.InteractionManager;
@@ -134,6 +136,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     .withMaterialJSONList(Main.class.getResourceAsStream("/materials.json"))
                     .withEntityTypeJSONList(Main.class.getResourceAsStream("/entity_types.json"))
                     .withDeathMessageList(Main.class.getResourceAsStream("/death_messages_as_data_source_JSON.json"))
+                    .withCraftingTypeJSONList(Main.class.getResourceAsStream("/craftables.json"))
                     .withChallengeManager(new ChallengeManager())
                     .withRandom(new Random())
                     .withOfflineTempData(offlineTempData)
@@ -185,6 +188,9 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         } else {
             logger.fine("No previous session exists, don't prematurely load anything.");
         }
+
+        // TODO remove, only for testing
+        new NoCraftingRule(tempContext, new NoCraftingRuleConfig(), null);
     }
 
     @Override

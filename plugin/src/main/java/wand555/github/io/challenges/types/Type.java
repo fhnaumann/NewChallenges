@@ -49,7 +49,7 @@ public abstract class Type<T> implements Listener {
         HandlerList.unregisterAll(this);
     }
 
-    protected <E extends Event & Cancellable> void triggerIfCheckPasses(T data, E event) {
+    public <E extends Event & Cancellable> void triggerIfCheckPasses(T data, E event) {
         if(triggerCheck.applies(data)) {
             logger.fine("Trigger check applies for %s with data '%s'.".formatted(event.getEventName(), data));
             callEventInContainer(event);

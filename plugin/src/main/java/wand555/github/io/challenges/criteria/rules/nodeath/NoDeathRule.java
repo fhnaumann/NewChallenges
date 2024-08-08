@@ -1,17 +1,14 @@
 package wand555.github.io.challenges.criteria.rules.nodeath;
 
 import net.kyori.adventure.text.Component;
-import org.bukkit.damage.DeathMessageType;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
-import wand555.github.io.challenges.criteria.rules.RuleMessageHelper;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.NoDeathRuleConfig;
 import wand555.github.io.challenges.types.death.DeathData;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.types.death.DeathType;
 
 public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> implements Storable<NoDeathRuleConfig> {

@@ -16,6 +16,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 import java.io.IOException;
 import java.util.List;

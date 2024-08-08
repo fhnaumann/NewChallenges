@@ -4,6 +4,7 @@ import type { ItemGoalConfig } from './item'
 import type { DeathGoalConfig } from './death'
 import type { BlockPlaceGoalConfig } from './blockplace'
 import type { MinMaxRangeConfig } from './model'
+import type { CraftingGoalConfig } from './crafting'
 
 export type GoalName = keyof GoalsConfig
 
@@ -13,6 +14,7 @@ export interface GoalsConfig {
   mobGoal?: MobGoalConfig
   itemGoal?: ItemGoalConfig,
   deathGoal?: DeathGoalConfig,
+  craftingGoal?: CraftingGoalConfig
 }
 
 export interface BaseGoalConfig extends Timeable {

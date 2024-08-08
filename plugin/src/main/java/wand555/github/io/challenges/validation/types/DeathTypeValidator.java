@@ -1,6 +1,6 @@
 package wand555.github.io.challenges.validation.types;
 
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.validation.CodeableValidator;
 
 import java.util.List;

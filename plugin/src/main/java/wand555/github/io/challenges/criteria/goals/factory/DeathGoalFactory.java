@@ -4,12 +4,11 @@ import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.BaseGoal;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.Timer;
-import wand555.github.io.challenges.criteria.goals.blockplace.BlockPlaceGoalMessageHelper;
 import wand555.github.io.challenges.criteria.goals.deathgoal.DeathGoal;
 import wand555.github.io.challenges.criteria.goals.deathgoal.DeathGoalCollectedInventory;
 import wand555.github.io.challenges.criteria.goals.deathgoal.DeathGoalMessageHelper;
 import wand555.github.io.challenges.generated.DeathGoalConfig;
-import wand555.github.io.challenges.types.death.DeathMessage;
+import wand555.github.io.challenges.mapping.DeathMessage;
 
 public class DeathGoalFactory implements GoalFactory<DeathGoalConfig> {
     @Override
