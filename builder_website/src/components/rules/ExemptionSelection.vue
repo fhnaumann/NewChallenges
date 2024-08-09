@@ -33,10 +33,15 @@
     >
       <template #option="slotProps">
         <DataRowVisual
-          :img-path="(slotProps.option as DataRow).img_path"
-          :translation-key="(slotProps.option as DataRow).mc_translation_key"
+          :img-path="(slotProps.option as DataRow).img_name"
+          :translation-key="(slotProps.option as DataRow).translation_key"
           :show-image="showImages"
-        />
+          :raw-text="rawText?.(slotProps.option)"
+        >
+          <template #row>
+            <slot name="row" :dataRow="slotProps.option as DataRow"></slot>
+          </template>
+        </DataRowVisual>
       </template>
     </MultiSelect>
   </div>
@@ -57,6 +62,7 @@
     possibleExemptions: DataRow[]
     modelAccess: ModelAccess<string[]>
     showImages: boolean
+    rawText?: (dataRow: DataRow) => string
   }>()
 
   const modelStore = useModelStore()

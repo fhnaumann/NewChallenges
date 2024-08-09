@@ -85,7 +85,6 @@ public class NoBlockPlaceRuleTest {
                                     new ObjectMapper().readValue(noblockPlaceRuleJSON, NoBlockPlaceRuleConfig.class),
                                     messageHelper
         );
-
     }
 
     @AfterEach

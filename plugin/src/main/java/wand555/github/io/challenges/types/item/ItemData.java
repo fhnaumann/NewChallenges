@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.types.Data;
 
+import java.util.UUID;
+
 /**
  * The amount within the ItemStack is ignored. Only the @amount variable is being used to determine "how many" are involved.
  *
@@ -16,6 +18,11 @@ public record ItemData(ItemStack itemStackInteractedWith, int amount, Player pla
 
     public ItemData(ItemStack itemStackInteractedWith, Player player) {
         this(itemStackInteractedWith, 1, player);
+    }
+
+    @Override
+    public UUID playerUUID() {
+        return player.getUniqueId();
     }
 
     @Override

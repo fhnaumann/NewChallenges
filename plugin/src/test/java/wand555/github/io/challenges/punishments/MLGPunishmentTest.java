@@ -70,7 +70,7 @@ public class MLGPunishmentTest {
     public void testCauserIsPunishmentStartedToMLGWorld() {
         MLGPunishmentConfig config = new MLGPunishmentConfig(MLGPunishmentConfig.Affects.CAUSER, 50);
         MLGPunishment mlgPunishment = new MLGPunishment(context, config, mlgHandler);
-        mlgPunishment.enforcePunishment(causer);
+        mlgPunishment.enforcePunishment(causer.getUniqueId());
         verify(mlgHandler).newMLGScenarioFor(eq(causer), eq(50), any());
     }
 
@@ -78,7 +78,7 @@ public class MLGPunishmentTest {
     public void testOtherPlayerIsNotPunishedWhenAffectedIsCauser() {
         MLGPunishmentConfig config = new MLGPunishmentConfig(MLGPunishmentConfig.Affects.CAUSER, 50);
         MLGPunishment mlgPunishment = new MLGPunishment(context, config, mlgHandler);
-        mlgPunishment.enforcePunishment(causer);
+        mlgPunishment.enforcePunishment(causer.getUniqueId());
         verify(mlgHandler, never()).newMLGScenarioFor(eq(otherPlayer), anyInt(), any());
     }
 
@@ -86,7 +86,7 @@ public class MLGPunishmentTest {
     public void testAllPlayersArePunishedWhenAffectedIsAll() {
         MLGPunishmentConfig config = new MLGPunishmentConfig(MLGPunishmentConfig.Affects.ALL, 50);
         MLGPunishment mlgPunishment = new MLGPunishment(context, config, mlgHandler);
-        mlgPunishment.enforcePunishment(causer);
+        mlgPunishment.enforcePunishment(causer.getUniqueId());
         verify(mlgHandler).newMLGScenarioFor(eq(causer), eq(50), any());
         verify(mlgHandler).newMLGScenarioFor(eq(otherPlayer), eq(50), any());
     }
@@ -95,7 +95,7 @@ public class MLGPunishmentTest {
     public void testCauserChallengeOverWhenMLGFailed() {
         MLGPunishmentConfig config = new MLGPunishmentConfig(MLGPunishmentConfig.Affects.CAUSER, 50);
         MLGPunishment mlgPunishment = new MLGPunishment(context, config, mlgHandler);
-        mlgPunishment.enforcePunishment(causer);
+        mlgPunishment.enforcePunishment(causer.getUniqueId());
         MLGHandlerTest.simulateMLGFailHitGround(server, causer);
         causer.assertGameMode(GameMode.SPECTATOR);
     }
@@ -104,7 +104,7 @@ public class MLGPunishmentTest {
     public void testAllChallengeOverWhenAnyMLGFailed() {
         MLGPunishmentConfig config = new MLGPunishmentConfig(MLGPunishmentConfig.Affects.ALL, 50);
         MLGPunishment mlgPunishment = new MLGPunishment(context, config, mlgHandler);
-        mlgPunishment.enforcePunishment(causer);
+        mlgPunishment.enforcePunishment(causer.getUniqueId());
         MLGHandlerTest.simulateMLGFailHitGround(server, causer);
         MLGHandlerTest.simulateMLGSuccess(server, mlgWorld, otherPlayer);
         server.getScheduler().performOneTick();
@@ -115,7 +115,7 @@ public class MLGPunishmentTest {
     public void testAllChallengeOverNotUntilAllMLGsComplete() {
         MLGPunishmentConfig config = new MLGPunishmentConfig(MLGPunishmentConfig.Affects.ALL, 50);
         MLGPunishment mlgPunishment = new MLGPunishment(context, config, mlgHandler);
-        mlgPunishment.enforcePunishment(causer);
+        mlgPunishment.enforcePunishment(causer.getUniqueId());
         MLGHandlerTest.simulateMLGFailHitGround(server, causer);
         verify(challengeManager, never()).endChallenge(anyBoolean());
     }

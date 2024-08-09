@@ -13,6 +13,8 @@ import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRule;
 import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRuleMessageHelper;
+import wand555.github.io.challenges.criteria.rules.nocrafting.NoCraftingRule;
+import wand555.github.io.challenges.criteria.rules.nocrafting.NoCraftingRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRule;
 import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRuleMessageHelper;
 import wand555.github.io.challenges.criteria.rules.noitem.NoItemRule;
@@ -110,6 +112,9 @@ public class CriteriaMapper {
         }
         if(enabledRulesConfig.getNoDeath() != null) {
             rules.add(new NoDeathRule(context, enabledRulesConfig.getNoDeath(), new NoDeathRuleMessageHelper(context)));
+        }
+        if(enabledRulesConfig.getNoCrafting() != null) {
+            rules.add(new NoCraftingRule(context, enabledRulesConfig.getNoCrafting(), new NoCraftingRuleMessageHelper(context)));
         }
         return rules;
     }

@@ -11,6 +11,7 @@ import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class MLGPunishment extends Punishment implements Storable<MLGPunishmentConfig> {
@@ -35,19 +36,22 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
     }
 
     @Override
-    public void enforceCauserPunishment(Player causer) {
+    public void enforceCauserPunishment(UUID causer) {
         enforceOnReceiver(causer, height);
     }
 
     @Override
     public void enforceAllPunishment(Team team) {
         team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
-                                                                                        this::enforceCauserPunishment
+                                                                                        player1 -> enforceCauserPunishment(player1.getUniqueId())
         ));
     }
 
-    private void enforceOnReceiver(Player receiver, int height) {
-        mlgHandler.newMLGScenarioFor(receiver.getPlayer(), height, this::handleMLGResult);
+    private void enforceOnReceiver(UUID receiver, int height) {
+        if(Bukkit.getPlayer(receiver) != null) {
+            mlgHandler.newMLGScenarioFor(Bukkit.getPlayer(receiver), height, this::handleMLGResult);
+        }
+
     }
 
     private void handleMLGResult(Player player, MLGHandler.Result mlgResult) {

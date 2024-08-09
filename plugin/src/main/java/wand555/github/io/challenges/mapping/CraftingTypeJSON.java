@@ -6,6 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class CraftingTypeJSON implements DataSourceJSON<CraftingTypeJSON>, Keyed {
 
     private final String key;
@@ -68,6 +70,34 @@ public class CraftingTypeJSON implements DataSourceJSON<CraftingTypeJSON>, Keyed
             }
             default -> throw new RuntimeException("Unknown recipe type '%s'!".formatted(string));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) {
+            return true;
+        }
+        if(o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CraftingTypeJSON that = (CraftingTypeJSON) o;
+        return Objects.equals(key,
+                              that.key
+        ) && craftingResult == that.craftingResult && recipeType == that.recipeType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, craftingResult, recipeType);
+    }
+
+    @Override
+    public String toString() {
+        return "CraftingTypeJSON{" +
+                "key='" + key + '\'' +
+                ", craftingResult=" + craftingResult +
+                ", recipeType=" + recipeType +
+                '}';
     }
 
     public enum RecipeType {

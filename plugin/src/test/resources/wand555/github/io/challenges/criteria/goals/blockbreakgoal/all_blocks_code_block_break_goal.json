@@ -1765,10 +1765,6 @@
       "collectableData": {}
     },
     {
-      "collectableName": "barrier",
-      "collectableData": {}
-    },
-    {
       "collectableName": "hay_block",
       "collectableData": {}
     },
@@ -3334,6 +3330,10 @@
     },
     {
       "collectableName": "composter",
+      "collectableData": {}
+    },
+    {
+      "collectableName": "barrel",
       "collectableData": {}
     },
     {

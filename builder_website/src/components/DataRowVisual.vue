@@ -1,14 +1,17 @@
 <template>
-  <div class="flex justify-center space-x-2">
-    <img
-      v-if="showImage"
-      class="w-6"
-      :src="BASE_IMG_URL + '/rendered_images/' + imgPath"
-      @error="($event.target as HTMLInputElement).src = '/unknown.png'"
-     :alt="translationKey"/>
-    <div v-if="rawText === undefined">{{ translate(translationKey) }}</div>
-    <div v-else>{{ rawText }}</div>
-  </div>
+
+  <slot name="row">
+    <div class="flex justify-center space-x-2">
+      <img
+        v-if="showImage"
+        class="w-6"
+        :src="BASE_IMG_URL + '/rendered_images/' + imgPath"
+        @error="($event.target as HTMLInputElement).src = '/unknown.png'"
+        :alt="translationKey" />
+      <div v-if="rawText === undefined">{{ translationKey !== undefined ? translate(translationKey) : 'translation key missing'}}</div>
+      <div v-else>{{ rawText }}</div>
+    </div>
+  </slot>
 </template>
 
 <script setup lang="ts">
@@ -28,7 +31,7 @@
      * The path/name of the image including the file ending (e.g: minecraft_stone.png).
      */
     imgPath?: string
-    translationKey: string
+    translationKey?: string
     showImage: boolean
     rawText?: string
   }>()

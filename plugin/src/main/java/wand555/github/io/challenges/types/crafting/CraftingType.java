@@ -27,6 +27,7 @@ import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.types.EmptyEvent;
+import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 import wand555.github.io.challenges.types.crafting.detectors.*;
 
@@ -49,7 +50,11 @@ public class CraftingType extends Type<CraftingData> {
 
 
     public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered) {
-        super(context, triggerCheck, whenTriggered);
+        this(context, triggerCheck, whenTriggered, event -> {}, event -> {}, event -> {});
+    }
+
+    public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered, EventContainer<CraftItemEvent> onCraftItem, EventContainer<BlockCookEvent> onFurnaceLikeSmeltOrCampfireCook, EventContainer<InventoryClickEvent> onSmithingFinishOrStoneCuttingFinish) {
+        super(context, triggerCheck, whenTriggered, Map.of(CraftItemEvent.class, onCraftItem, BlockCookEvent.class, onFurnaceLikeSmeltOrCampfireCook, InventoryClickEvent.class, onSmithingFinishOrStoneCuttingFinish));
         this.markedKey = new NamespacedKey(context.plugin(), "lastOpenedBy");
         this.itemCraftingDetector = new ItemCraftingDetector(context, this);
         context.plugin().getServer().getPluginManager().registerEvents(itemCraftingDetector, context.plugin());
@@ -66,8 +71,10 @@ public class CraftingType extends Type<CraftingData> {
     }
 
     public CraftingData constructCraftingData(Keyed keyedRecipe, UUID playerUUID, boolean internallyCrafted) {
-        String code = keyedRecipe.key().value();
-        CraftingTypeJSON craftingTypeJSON = DataSourceJSON.fromCode(context.dataSourceContext().craftingTypeJSONList(), code);
+        String code = "challenges-" + keyedRecipe.key().value(); // the datasource has a 'challenges-' prefix here
+        CraftingTypeJSON craftingTypeJSON = DataSourceJSON.fromCode(context.dataSourceContext().craftingTypeJSONList(),
+                                                                    code
+        );
         return new CraftingData(playerUUID, craftingTypeJSON, internallyCrafted);
     }
 
@@ -76,9 +83,16 @@ public class CraftingType extends Type<CraftingData> {
         String playerUUIDAsString = player.getUniqueId().toString();
         String lastOpenedBy = pdc.get(markedKey, PersistentDataType.STRING);
         if(isMarked(tileState)) {
-            logger.fine("Overriding %s with %s for blockstate %s at %s".formatted(lastOpenedBy, playerUUIDAsString, tileState, tileState.getLocation()));
+            logger.fine("Overriding %s with %s for blockstate %s at %s".formatted(lastOpenedBy,
+                                                                                  playerUUIDAsString,
+                                                                                  tileState,
+                                                                                  tileState.getLocation()
+            ));
         }
-        logger.fine("Marking blockstate %s with %s at %s".formatted(tileState, playerUUIDAsString, tileState.getLocation()));
+        logger.fine("Marking blockstate %s with %s at %s".formatted(tileState,
+                                                                    playerUUIDAsString,
+                                                                    tileState.getLocation()
+        ));
         pdc.set(markedKey, PersistentDataType.STRING, playerUUIDAsString);
         tileState.update();
     }

@@ -13,6 +13,7 @@ import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class HealthPunishment extends Punishment implements Storable<HealthPunishmentConfig> {
 
@@ -31,14 +32,14 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
     }
 
     @Override
-    public void enforceCauserPunishment(Player causer) {
+    public void enforceCauserPunishment(UUID causer) {
         int damageAmount = getCalculatedHeartsLost();
         enforceOnReceiver(causer, damageAmount);
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
                 "health.enforced.causer",
-                Map.of("player", Component.text(causer.getName()),
+                Map.of("player", Component.text(Bukkit.getOfflinePlayer(causer).getName()),
                        "amount", Component.text(Integer.toString(damageAmount))
                 )
         );
@@ -50,7 +51,7 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         int damageAmount = getCalculatedHeartsLost();
         team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
                                                                                         receiver -> enforceOnReceiver(
-                                                                                                receiver,
+                                                                                                receiver.getUniqueId(),
                                                                                                 damageAmount
                                                                                         )
         ));
@@ -63,8 +64,11 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         context.plugin().getServer().broadcast(toSend);
     }
 
-    private void enforceOnReceiver(Player receiver, double amount) {
-        receiver.damage(amount);
+    private void enforceOnReceiver(UUID receiver, double amount) {
+        if(Bukkit.getPlayer(receiver) != null) {
+            Bukkit.getPlayer(receiver).damage(amount);
+        }
+
     }
 
     @Override

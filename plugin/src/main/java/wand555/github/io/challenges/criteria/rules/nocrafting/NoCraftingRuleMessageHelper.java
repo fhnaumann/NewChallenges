@@ -14,11 +14,14 @@ public class NoCraftingRuleMessageHelper extends RuleMessageHelper<CraftingData>
 
     @Override
     public Map<String, Component> additionalViolationPlaceholders(CraftingData data) {
-        return null;
+        return Map.of(
+                "player", Component.text(data.playerName()),
+                "item", Component.translatable(data.mainDataInvolved().getCraftingResult())
+        );
     }
 
     @Override
     protected String getRuleNameInResourceBundle() {
-        return null;
+        return "nocrafting";
     }
 }

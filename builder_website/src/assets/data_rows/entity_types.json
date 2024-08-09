@@ -3,413 +3,413 @@
   "data": [
     {
       "code": "elder_guardian",
-      "mc_translation_key": "entity.minecraft.elder_guardian",
-      "img_path": "minecraft_elder_guardian.png"
+      "translation_key": "entity.minecraft.elder_guardian",
+      "img_name": "minecraft_elder_guardian.png"
     },
     {
       "code": "wither_skeleton",
-      "mc_translation_key": "entity.minecraft.wither_skeleton",
-      "img_path": "minecraft_wither_skeleton.png"
+      "translation_key": "entity.minecraft.wither_skeleton",
+      "img_name": "minecraft_wither_skeleton.png"
     },
     {
       "code": "stray",
-      "mc_translation_key": "entity.minecraft.stray",
-      "img_path": "minecraft_stray.png"
+      "translation_key": "entity.minecraft.stray",
+      "img_name": "minecraft_stray.png"
     },
     {
       "code": "husk",
-      "mc_translation_key": "entity.minecraft.husk",
-      "img_path": "minecraft_husk.png"
+      "translation_key": "entity.minecraft.husk",
+      "img_name": "minecraft_husk.png"
     },
     {
       "code": "zombie_villager",
-      "mc_translation_key": "entity.minecraft.zombie_villager",
-      "img_path": "minecraft_zombie_villager.png"
+      "translation_key": "entity.minecraft.zombie_villager",
+      "img_name": "minecraft_zombie_villager.png"
     },
     {
       "code": "skeleton_horse",
-      "mc_translation_key": "entity.minecraft.skeleton_horse",
-      "img_path": "minecraft_skeleton_horse.png"
+      "translation_key": "entity.minecraft.skeleton_horse",
+      "img_name": "minecraft_skeleton_horse.png"
     },
     {
       "code": "zombie_horse",
-      "mc_translation_key": "entity.minecraft.zombie_horse",
-      "img_path": "minecraft_zombie_horse.png"
+      "translation_key": "entity.minecraft.zombie_horse",
+      "img_name": "minecraft_zombie_horse.png"
     },
     {
       "code": "armor_stand",
-      "mc_translation_key": "entity.minecraft.armor_stand",
-      "img_path": "minecraft_armor_stand.png"
+      "translation_key": "entity.minecraft.armor_stand",
+      "img_name": "minecraft_armor_stand.png"
     },
     {
       "code": "donkey",
-      "mc_translation_key": "entity.minecraft.donkey",
-      "img_path": "minecraft_donkey.png"
+      "translation_key": "entity.minecraft.donkey",
+      "img_name": "minecraft_donkey.png"
     },
     {
       "code": "mule",
-      "mc_translation_key": "entity.minecraft.mule",
-      "img_path": "minecraft_mule.png"
+      "translation_key": "entity.minecraft.mule",
+      "img_name": "minecraft_mule.png"
     },
     {
       "code": "evoker",
-      "mc_translation_key": "entity.minecraft.evoker",
-      "img_path": "minecraft_evoker.png"
+      "translation_key": "entity.minecraft.evoker",
+      "img_name": "minecraft_evoker.png"
     },
     {
       "code": "vex",
-      "mc_translation_key": "entity.minecraft.vex",
-      "img_path": "minecraft_vex.png"
+      "translation_key": "entity.minecraft.vex",
+      "img_name": "minecraft_vex.png"
     },
     {
       "code": "vindicator",
-      "mc_translation_key": "entity.minecraft.vindicator",
-      "img_path": "minecraft_vindicator.png"
+      "translation_key": "entity.minecraft.vindicator",
+      "img_name": "minecraft_vindicator.png"
     },
     {
       "code": "illusioner",
-      "mc_translation_key": "entity.minecraft.illusioner",
-      "img_path": "minecraft_illusioner.png"
+      "translation_key": "entity.minecraft.illusioner",
+      "img_name": "minecraft_illusioner.png"
     },
     {
       "code": "creeper",
-      "mc_translation_key": "entity.minecraft.creeper",
-      "img_path": "minecraft_creeper.png"
+      "translation_key": "entity.minecraft.creeper",
+      "img_name": "minecraft_creeper.png"
     },
     {
       "code": "skeleton",
-      "mc_translation_key": "entity.minecraft.skeleton",
-      "img_path": "minecraft_skeleton.png"
+      "translation_key": "entity.minecraft.skeleton",
+      "img_name": "minecraft_skeleton.png"
     },
     {
       "code": "spider",
-      "mc_translation_key": "entity.minecraft.spider",
-      "img_path": "minecraft_spider.png"
+      "translation_key": "entity.minecraft.spider",
+      "img_name": "minecraft_spider.png"
     },
     {
       "code": "giant",
-      "mc_translation_key": "entity.minecraft.giant",
-      "img_path": "minecraft_giant.png"
+      "translation_key": "entity.minecraft.giant",
+      "img_name": "minecraft_giant.png"
     },
     {
       "code": "zombie",
-      "mc_translation_key": "entity.minecraft.zombie",
-      "img_path": "minecraft_zombie.png"
+      "translation_key": "entity.minecraft.zombie",
+      "img_name": "minecraft_zombie.png"
     },
     {
       "code": "slime",
-      "mc_translation_key": "entity.minecraft.slime",
-      "img_path": "minecraft_slime.png"
+      "translation_key": "entity.minecraft.slime",
+      "img_name": "minecraft_slime.png"
     },
     {
       "code": "ghast",
-      "mc_translation_key": "entity.minecraft.ghast",
-      "img_path": "minecraft_ghast.png"
+      "translation_key": "entity.minecraft.ghast",
+      "img_name": "minecraft_ghast.png"
     },
     {
       "code": "zombified_piglin",
-      "mc_translation_key": "entity.minecraft.zombified_piglin",
-      "img_path": "minecraft_zombified_piglin.png"
+      "translation_key": "entity.minecraft.zombified_piglin",
+      "img_name": "minecraft_zombified_piglin.png"
     },
     {
       "code": "enderman",
-      "mc_translation_key": "entity.minecraft.enderman",
-      "img_path": "minecraft_enderman.png"
+      "translation_key": "entity.minecraft.enderman",
+      "img_name": "minecraft_enderman.png"
     },
     {
       "code": "cave_spider",
-      "mc_translation_key": "entity.minecraft.cave_spider",
-      "img_path": "minecraft_cave_spider.png"
+      "translation_key": "entity.minecraft.cave_spider",
+      "img_name": "minecraft_cave_spider.png"
     },
     {
       "code": "silverfish",
-      "mc_translation_key": "entity.minecraft.silverfish",
-      "img_path": "minecraft_silverfish.png"
+      "translation_key": "entity.minecraft.silverfish",
+      "img_name": "minecraft_silverfish.png"
     },
     {
       "code": "blaze",
-      "mc_translation_key": "entity.minecraft.blaze",
-      "img_path": "minecraft_blaze.png"
+      "translation_key": "entity.minecraft.blaze",
+      "img_name": "minecraft_blaze.png"
     },
     {
       "code": "magma_cube",
-      "mc_translation_key": "entity.minecraft.magma_cube",
-      "img_path": "minecraft_magma_cube.png"
+      "translation_key": "entity.minecraft.magma_cube",
+      "img_name": "minecraft_magma_cube.png"
     },
     {
       "code": "ender_dragon",
-      "mc_translation_key": "entity.minecraft.ender_dragon",
-      "img_path": "minecraft_ender_dragon.png"
+      "translation_key": "entity.minecraft.ender_dragon",
+      "img_name": "minecraft_ender_dragon.png"
     },
     {
       "code": "wither",
-      "mc_translation_key": "entity.minecraft.wither",
-      "img_path": "minecraft_wither.png"
+      "translation_key": "entity.minecraft.wither",
+      "img_name": "minecraft_wither.png"
     },
     {
       "code": "bat",
-      "mc_translation_key": "entity.minecraft.bat",
-      "img_path": "minecraft_bat.png"
+      "translation_key": "entity.minecraft.bat",
+      "img_name": "minecraft_bat.png"
     },
     {
       "code": "witch",
-      "mc_translation_key": "entity.minecraft.witch",
-      "img_path": "minecraft_witch.png"
+      "translation_key": "entity.minecraft.witch",
+      "img_name": "minecraft_witch.png"
     },
     {
       "code": "endermite",
-      "mc_translation_key": "entity.minecraft.endermite",
-      "img_path": "minecraft_endermite.png"
+      "translation_key": "entity.minecraft.endermite",
+      "img_name": "minecraft_endermite.png"
     },
     {
       "code": "guardian",
-      "mc_translation_key": "entity.minecraft.guardian",
-      "img_path": "minecraft_guardian.png"
+      "translation_key": "entity.minecraft.guardian",
+      "img_name": "minecraft_guardian.png"
     },
     {
       "code": "shulker",
-      "mc_translation_key": "entity.minecraft.shulker",
-      "img_path": "minecraft_shulker.png"
+      "translation_key": "entity.minecraft.shulker",
+      "img_name": "minecraft_shulker.png"
     },
     {
       "code": "pig",
-      "mc_translation_key": "entity.minecraft.pig",
-      "img_path": "minecraft_pig.png"
+      "translation_key": "entity.minecraft.pig",
+      "img_name": "minecraft_pig.png"
     },
     {
       "code": "sheep",
-      "mc_translation_key": "entity.minecraft.sheep",
-      "img_path": "minecraft_sheep.png"
+      "translation_key": "entity.minecraft.sheep",
+      "img_name": "minecraft_sheep.png"
     },
     {
       "code": "cow",
-      "mc_translation_key": "entity.minecraft.cow",
-      "img_path": "minecraft_cow.png"
+      "translation_key": "entity.minecraft.cow",
+      "img_name": "minecraft_cow.png"
     },
     {
       "code": "chicken",
-      "mc_translation_key": "entity.minecraft.chicken",
-      "img_path": "minecraft_chicken.png"
+      "translation_key": "entity.minecraft.chicken",
+      "img_name": "minecraft_chicken.png"
     },
     {
       "code": "squid",
-      "mc_translation_key": "entity.minecraft.squid",
-      "img_path": "minecraft_squid.png"
+      "translation_key": "entity.minecraft.squid",
+      "img_name": "minecraft_squid.png"
     },
     {
       "code": "wolf",
-      "mc_translation_key": "entity.minecraft.wolf",
-      "img_path": "minecraft_wolf.png"
+      "translation_key": "entity.minecraft.wolf",
+      "img_name": "minecraft_wolf.png"
     },
     {
       "code": "mooshroom",
-      "mc_translation_key": "entity.minecraft.mooshroom",
-      "img_path": "minecraft_mooshroom.png"
+      "translation_key": "entity.minecraft.mooshroom",
+      "img_name": "minecraft_mooshroom.png"
     },
     {
       "code": "snow_golem",
-      "mc_translation_key": "entity.minecraft.snow_golem",
-      "img_path": "minecraft_snow_golem.png"
+      "translation_key": "entity.minecraft.snow_golem",
+      "img_name": "minecraft_snow_golem.png"
     },
     {
       "code": "ocelot",
-      "mc_translation_key": "entity.minecraft.ocelot",
-      "img_path": "minecraft_ocelot.png"
+      "translation_key": "entity.minecraft.ocelot",
+      "img_name": "minecraft_ocelot.png"
     },
     {
       "code": "iron_golem",
-      "mc_translation_key": "entity.minecraft.iron_golem",
-      "img_path": "minecraft_iron_golem.png"
+      "translation_key": "entity.minecraft.iron_golem",
+      "img_name": "minecraft_iron_golem.png"
     },
     {
       "code": "horse",
-      "mc_translation_key": "entity.minecraft.horse",
-      "img_path": "minecraft_horse.png"
+      "translation_key": "entity.minecraft.horse",
+      "img_name": "minecraft_horse.png"
     },
     {
       "code": "rabbit",
-      "mc_translation_key": "entity.minecraft.rabbit",
-      "img_path": "minecraft_rabbit.png"
+      "translation_key": "entity.minecraft.rabbit",
+      "img_name": "minecraft_rabbit.png"
     },
     {
       "code": "polar_bear",
-      "mc_translation_key": "entity.minecraft.polar_bear",
-      "img_path": "minecraft_polar_bear.png"
+      "translation_key": "entity.minecraft.polar_bear",
+      "img_name": "minecraft_polar_bear.png"
     },
     {
       "code": "llama",
-      "mc_translation_key": "entity.minecraft.llama",
-      "img_path": "minecraft_llama.png"
+      "translation_key": "entity.minecraft.llama",
+      "img_name": "minecraft_llama.png"
     },
     {
       "code": "parrot",
-      "mc_translation_key": "entity.minecraft.parrot",
-      "img_path": "minecraft_parrot.png"
+      "translation_key": "entity.minecraft.parrot",
+      "img_name": "minecraft_parrot.png"
     },
     {
       "code": "villager",
-      "mc_translation_key": "entity.minecraft.villager",
-      "img_path": "minecraft_villager.png"
+      "translation_key": "entity.minecraft.villager",
+      "img_name": "minecraft_villager.png"
     },
     {
       "code": "turtle",
-      "mc_translation_key": "entity.minecraft.turtle",
-      "img_path": "minecraft_turtle.png"
+      "translation_key": "entity.minecraft.turtle",
+      "img_name": "minecraft_turtle.png"
     },
     {
       "code": "phantom",
-      "mc_translation_key": "entity.minecraft.phantom",
-      "img_path": "minecraft_phantom.png"
+      "translation_key": "entity.minecraft.phantom",
+      "img_name": "minecraft_phantom.png"
     },
     {
       "code": "cod",
-      "mc_translation_key": "entity.minecraft.cod",
-      "img_path": "minecraft_cod.png"
+      "translation_key": "entity.minecraft.cod",
+      "img_name": "minecraft_cod.png"
     },
     {
       "code": "salmon",
-      "mc_translation_key": "entity.minecraft.salmon",
-      "img_path": "minecraft_salmon.png"
+      "translation_key": "entity.minecraft.salmon",
+      "img_name": "minecraft_salmon.png"
     },
     {
       "code": "pufferfish",
-      "mc_translation_key": "entity.minecraft.pufferfish",
-      "img_path": "minecraft_pufferfish.png"
+      "translation_key": "entity.minecraft.pufferfish",
+      "img_name": "minecraft_pufferfish.png"
     },
     {
       "code": "tropical_fish",
-      "mc_translation_key": "entity.minecraft.tropical_fish",
-      "img_path": "minecraft_tropical_fish.png"
+      "translation_key": "entity.minecraft.tropical_fish",
+      "img_name": "minecraft_tropical_fish.png"
     },
     {
       "code": "drowned",
-      "mc_translation_key": "entity.minecraft.drowned",
-      "img_path": "minecraft_drowned.png"
+      "translation_key": "entity.minecraft.drowned",
+      "img_name": "minecraft_drowned.png"
     },
     {
       "code": "dolphin",
-      "mc_translation_key": "entity.minecraft.dolphin",
-      "img_path": "minecraft_dolphin.png"
+      "translation_key": "entity.minecraft.dolphin",
+      "img_name": "minecraft_dolphin.png"
     },
     {
       "code": "cat",
-      "mc_translation_key": "entity.minecraft.cat",
-      "img_path": "minecraft_cat.png"
+      "translation_key": "entity.minecraft.cat",
+      "img_name": "minecraft_cat.png"
     },
     {
       "code": "panda",
-      "mc_translation_key": "entity.minecraft.panda",
-      "img_path": "minecraft_panda.png"
+      "translation_key": "entity.minecraft.panda",
+      "img_name": "minecraft_panda.png"
     },
     {
       "code": "pillager",
-      "mc_translation_key": "entity.minecraft.pillager",
-      "img_path": "minecraft_pillager.png"
+      "translation_key": "entity.minecraft.pillager",
+      "img_name": "minecraft_pillager.png"
     },
     {
       "code": "ravager",
-      "mc_translation_key": "entity.minecraft.ravager",
-      "img_path": "minecraft_ravager.png"
+      "translation_key": "entity.minecraft.ravager",
+      "img_name": "minecraft_ravager.png"
     },
     {
       "code": "trader_llama",
-      "mc_translation_key": "entity.minecraft.trader_llama",
-      "img_path": "minecraft_trader_llama.png"
+      "translation_key": "entity.minecraft.trader_llama",
+      "img_name": "minecraft_trader_llama.png"
     },
     {
       "code": "wandering_trader",
-      "mc_translation_key": "entity.minecraft.wandering_trader",
-      "img_path": "minecraft_wandering_trader.png"
+      "translation_key": "entity.minecraft.wandering_trader",
+      "img_name": "minecraft_wandering_trader.png"
     },
     {
       "code": "fox",
-      "mc_translation_key": "entity.minecraft.fox",
-      "img_path": "minecraft_fox.png"
+      "translation_key": "entity.minecraft.fox",
+      "img_name": "minecraft_fox.png"
     },
     {
       "code": "bee",
-      "mc_translation_key": "entity.minecraft.bee",
-      "img_path": "minecraft_bee.png"
+      "translation_key": "entity.minecraft.bee",
+      "img_name": "minecraft_bee.png"
     },
     {
       "code": "hoglin",
-      "mc_translation_key": "entity.minecraft.hoglin",
-      "img_path": "minecraft_hoglin.png"
+      "translation_key": "entity.minecraft.hoglin",
+      "img_name": "minecraft_hoglin.png"
     },
     {
       "code": "piglin",
-      "mc_translation_key": "entity.minecraft.piglin",
-      "img_path": "minecraft_piglin.png"
+      "translation_key": "entity.minecraft.piglin",
+      "img_name": "minecraft_piglin.png"
     },
     {
       "code": "strider",
-      "mc_translation_key": "entity.minecraft.strider",
-      "img_path": "minecraft_strider.png"
+      "translation_key": "entity.minecraft.strider",
+      "img_name": "minecraft_strider.png"
     },
     {
       "code": "zoglin",
-      "mc_translation_key": "entity.minecraft.zoglin",
-      "img_path": "minecraft_zoglin.png"
+      "translation_key": "entity.minecraft.zoglin",
+      "img_name": "minecraft_zoglin.png"
     },
     {
       "code": "piglin_brute",
-      "mc_translation_key": "entity.minecraft.piglin_brute",
-      "img_path": "minecraft_piglin_brute.png"
+      "translation_key": "entity.minecraft.piglin_brute",
+      "img_name": "minecraft_piglin_brute.png"
     },
     {
       "code": "axolotl",
-      "mc_translation_key": "entity.minecraft.axolotl",
-      "img_path": "minecraft_axolotl.png"
+      "translation_key": "entity.minecraft.axolotl",
+      "img_name": "minecraft_axolotl.png"
     },
     {
       "code": "glow_squid",
-      "mc_translation_key": "entity.minecraft.glow_squid",
-      "img_path": "minecraft_glow_squid.png"
+      "translation_key": "entity.minecraft.glow_squid",
+      "img_name": "minecraft_glow_squid.png"
     },
     {
       "code": "goat",
-      "mc_translation_key": "entity.minecraft.goat",
-      "img_path": "minecraft_goat.png"
+      "translation_key": "entity.minecraft.goat",
+      "img_name": "minecraft_goat.png"
     },
     {
       "code": "allay",
-      "mc_translation_key": "entity.minecraft.allay",
-      "img_path": "minecraft_allay.png"
+      "translation_key": "entity.minecraft.allay",
+      "img_name": "minecraft_allay.png"
     },
     {
       "code": "frog",
-      "mc_translation_key": "entity.minecraft.frog",
-      "img_path": "minecraft_frog.png"
+      "translation_key": "entity.minecraft.frog",
+      "img_name": "minecraft_frog.png"
     },
     {
       "code": "tadpole",
-      "mc_translation_key": "entity.minecraft.tadpole",
-      "img_path": "minecraft_tadpole.png"
+      "translation_key": "entity.minecraft.tadpole",
+      "img_name": "minecraft_tadpole.png"
     },
     {
       "code": "warden",
-      "mc_translation_key": "entity.minecraft.warden",
-      "img_path": "minecraft_warden.png"
+      "translation_key": "entity.minecraft.warden",
+      "img_name": "minecraft_warden.png"
     },
     {
       "code": "camel",
-      "mc_translation_key": "entity.minecraft.camel",
-      "img_path": "minecraft_camel.png"
+      "translation_key": "entity.minecraft.camel",
+      "img_name": "minecraft_camel.png"
     },
     {
       "code": "sniffer",
-      "mc_translation_key": "entity.minecraft.sniffer",
-      "img_path": "minecraft_sniffer.png"
+      "translation_key": "entity.minecraft.sniffer",
+      "img_name": "minecraft_sniffer.png"
     },
     {
       "code": "breeze",
-      "mc_translation_key": "entity.minecraft.breeze",
-      "img_path": "minecraft_breeze.png"
+      "translation_key": "entity.minecraft.breeze",
+      "img_name": "minecraft_breeze.png"
     },
     {
       "code": "player",
-      "mc_translation_key": "entity.minecraft.player",
-      "img_path": "minecraft_player.png"
+      "translation_key": "entity.minecraft.player",
+      "img_name": "minecraft_player.png"
     }
   ]
 }

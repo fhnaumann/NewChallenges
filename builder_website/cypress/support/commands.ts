@@ -42,7 +42,7 @@ import type { CollectableEntryConfig, GoalName } from '../../src/models/goals'
 import type { MobGoalConfig } from '../../src/models/mob'
 import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
-import type { ItemGoalConfig } from '../../src/models/item'
+import type { ItemGoalConfig, NoItemCollectRuleConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
 import type {
   CustomHealthSettingConfig, FloorIsLavaSettingConfig,
@@ -50,6 +50,7 @@ import type {
   SettingName,
   UltraHardcoreSettingConfig,
 } from '../../src/models/settings'
+import type { NoCraftingRuleConfig } from '../../src/models/crafting'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -138,6 +139,18 @@ Cypress.Commands.add('configureGoal', (goalName: GoalName) => {
   cy.get('.relative > .w-full').clear()
   cy.get('.relative > .w-full').type(goalName)
   cy.get('.p-4 > .flex-row').click()
+})
+
+Cypress.Commands.add('configureNoCraftingRule', (noCraftingRuleConfig?: NoCraftingRuleConfig) => {
+  cy.configureRule('noCrafting')
+  if(noCraftingRuleConfig !== undefined) {
+    handleCheckBox('#internalCrafting', noCraftingRuleConfig.internalCrafting)
+    handleCheckBox('#workbenchCrafting', noCraftingRuleConfig.workbenchCrafting)
+    handleCheckBox('#furnaceSmelting', noCraftingRuleConfig.furnaceSmelting)
+    handleCheckBox('#campfireCooking', noCraftingRuleConfig.campfireCooking)
+    handleCheckBox('#smithing', noCraftingRuleConfig.smithing)
+    handleCheckBox('#stonecutter', noCraftingRuleConfig.stonecutter)
+  }
 })
 
 function clearCollectableSelection(): void {

@@ -25,14 +25,20 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
     private final Set<CraftingTypeJSON> exemptions;
 
     public NoCraftingRule(Context context, NoCraftingRuleConfig config, NoCraftingRuleMessageHelper messageHelper) {
-        super(context, messageHelper);
+        super(context, config.getPunishments(), messageHelper);
         this.config = config;
         this.exemptions = config.getExemptions() != null
                           ? new HashSet<>(ModelMapper.str2CraftingTypeJSONs(context.dataSourceContext().craftingTypeJSONList(),
                                                                             config.getExemptions()
         ))
                           : new HashSet<>();
-        this.craftingType = new CraftingType(context, triggerCheck(), trigger());
+        this.craftingType = new CraftingType(context,
+                                             triggerCheck(),
+                                             trigger(),
+                                             cancelIfCancelPunishmentActive(),
+                                             cancelIfCancelPunishmentActive(),
+                                             cancelIfCancelPunishmentActive()
+        );
     }
 
     @Override
@@ -47,24 +53,24 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
 
     @Override
     public void unload() {
-
+        craftingType.unload();
     }
 
     @Override
     public TriggerCheck<CraftingData> triggerCheck() {
         return data -> {
             if(exemptions.contains(data.mainDataInvolved())) {
-                return true;
+                return false;
             }
             if(data.internallyCrafted()) {
-                return config.isInternalCrafting();
+                return !config.isInternalCrafting();
             }
-            return switch(data.craftingTypeJSON().getRecipeType()) {
+            return !switch(data.craftingTypeJSON().getRecipeType()) {
                 case CRAFTING ->
                         config.isWorkbenchCrafting(); // 2x2 internal crafting was handled earlier with the additional flag
                 case FURNACE, BLASTING, SMOKING -> config.isFurnaceSmelting();
                 case CAMPFIRE -> config.isCampfireCooking();
-                case SMITHING -> config.isInternalCrafting();
+                case SMITHING -> config.isSmithing();
                 case STONECUTTING -> config.isStonecutter();
             };
         };

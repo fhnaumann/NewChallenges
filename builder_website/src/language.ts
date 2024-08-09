@@ -1,6 +1,8 @@
 import lang_en from '../public/language/en_us.json'
-import death_messages_en from '../public/language/death_messages_as_data_source_JSON.json'
-import type { DataRow } from '@/models/data_row'
+import death_messages_en from '@/assets/data_rows/death_messages_with_dummy_data_data_source_JSON.json'
+import craftables_en from '@/assets/data_rows/craftables.json'
+import { type DataRow, fromCode2DataRow } from '@/models/data_row'
+import { useI18n } from 'vue-i18n'
 
 export type Language = 'en' | 'de'
 
@@ -14,11 +16,16 @@ let selectedLanguage: Language = 'en'
 
 export function useTranslation() {
 
+  const { t } = useI18n()
+
   const language_data = {
     'en': Object.assign({},
       lang_en,
-      death_messages_en.data.reduce((acc, { code, deathMessageWithDummyData }) => ({ ...acc, [code]: deathMessageWithDummyData }), {}))
+      death_messages_en.data.reduce((acc, { code, deathMessage }) => ({ ...acc, [code]: deathMessage }), {}),
+    )
   }
+  // assign later because it uses variables that are assigned above
+  Object.assign(language_data.en, craftables_en.data.reduce((acc, { code, result, recipeType }) => ({ ...acc, [code]: `${translateDataRow(fromCode2DataRow(result))} from ${recipeType}` }), {}))
 
   function translate(translationKey: string): string {
     try {
@@ -40,8 +47,8 @@ export function useTranslation() {
   }
 
   function translateDataRow(dataRow: DataRow): string {
-    if(dataRow.mc_translation_key !== undefined) {
-      return translate(dataRow.mc_translation_key)
+    if(dataRow.translation_key !== undefined) {
+      return translate(dataRow.translation_key)
     }
     else {
       return translate(dataRow.code)

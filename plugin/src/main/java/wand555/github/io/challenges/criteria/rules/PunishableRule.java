@@ -19,10 +19,7 @@ import wand555.github.io.challenges.types.EventContainer;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 public abstract class PunishableRule<T extends Data<K>, K> extends Rule implements Triggable<T> {
@@ -58,11 +55,11 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
     public Trigger<T> trigger() {
         return data -> {
             messageHelper.sendViolationAction(data);
-            enforcePunishments(data.player());
+            enforcePunishments(data.playerUUID());
         };
     }
 
-    public void enforcePunishments(Player causer) {
+    public void enforcePunishments(UUID causer) {
         // enforce local punishments
         getPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
         // enforce global punishments

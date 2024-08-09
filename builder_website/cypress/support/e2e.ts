@@ -21,7 +21,7 @@ import type { GoalName } from '../../src/models/goals'
 import type { MobGoalConfig } from '../../src/models/mob'
 import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
 import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
-import type { ItemGoalConfig } from '../../src/models/item'
+import type { ItemGoalConfig, NoItemCollectRuleConfig } from '../../src/models/item'
 import type { DeathGoalConfig } from '../../src/models/death'
 import CustomHealthSetting from '../../src/components/settings/CustomHealthSetting.vue'
 import type {
@@ -30,6 +30,7 @@ import type {
   SettingName,
   UltraHardcoreSettingConfig,
 } from '../../src/models/settings'
+import type { NoCraftingRuleConfig } from '../../src/models/crafting'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -86,6 +87,14 @@ declare global {
        * End: Page for customizing the rule that is/was added.
        */
       configureRule(ruleName: RuleName): Chainable<Subject>
+
+      /**
+       * Customize NoCraftingRule
+       *
+       * Start: Main Page
+       * End: Page for customizing the rule
+       */
+      configureNoCraftingRule(noCraftingRuleConfig?: NoCraftingRuleConfig): Chainable<Subject>
 
       /**
        * Adds a goal.

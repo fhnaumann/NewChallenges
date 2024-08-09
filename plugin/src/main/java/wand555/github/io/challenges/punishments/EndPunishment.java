@@ -1,8 +1,8 @@
 package wand555.github.io.challenges.punishments;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
@@ -11,6 +11,7 @@ import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
+import java.util.UUID;
 
 public class EndPunishment extends Punishment implements Storable<EndPunishmentConfig> {
     public EndPunishment(Context context, EndPunishmentConfig config) {
@@ -28,15 +29,18 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
     }
 
     @Override
-    public void enforceCauserPunishment(Player causer) {
-        causer.setGameMode(GameMode.SPECTATOR);
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                "end.enforced.causer",
-                Map.of("player", Component.text(causer.getName()))
-        );
-        context.plugin().getServer().broadcast(toSend);
+    public void enforceCauserPunishment(UUID causer) {
+        if(Bukkit.getPlayer(causer) != null) {
+            Bukkit.getPlayer(causer).setGameMode(GameMode.SPECTATOR);
+            Component toSend = ComponentUtil.formatChatMessage(
+                    context.plugin(),
+                    context.resourceBundleContext().punishmentResourceBundle(),
+                    "end.enforced.causer",
+                    Map.of("player", Component.text(Bukkit.getPlayer(causer).getName()))
+            );
+            context.plugin().getServer().broadcast(toSend);
+        }
+
     }
 
     @Override

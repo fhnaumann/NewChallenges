@@ -1,6 +1,5 @@
 package wand555.github.io.challenges.punishments;
 
-import org.bukkit.entity.Player;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.JSONConfigGroup;
 import wand555.github.io.challenges.StatusInfo;
@@ -8,6 +7,7 @@ import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.teams.Team;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, StatusInfo {
 
@@ -19,14 +19,14 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
         this.affects = affects;
     }
 
-    public void enforcePunishment(Player causer) {
+    public void enforcePunishment(UUID causer) {
         switch(affects) {
             case CAUSER -> enforceCauserPunishment(causer);
-            case ALL -> enforceAllPunishment(Team.getTeamPlayerIn(context, causer.getUniqueId()));
+            case ALL -> enforceAllPunishment(Team.getTeamPlayerIn(context, causer));
         }
     }
 
-    public abstract void enforceCauserPunishment(Player causer);
+    public abstract void enforceCauserPunishment(UUID causer);
 
     public abstract void enforceAllPunishment(Team team);
 

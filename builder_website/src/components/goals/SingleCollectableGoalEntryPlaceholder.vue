@@ -23,8 +23,8 @@
           class="flex justify-start items-center space-x-2"
         >
           <DataRowVisual
-            :translation-key="slotProps.value.mc_translation_key"
-            :img-path="slotProps.value.img_path"
+            :translation-key="slotProps.value.translation_key"
+            :img-path="slotProps.value.img_name"
             :show-image="showImage"
             :raw-text="rawText?.(slotProps.value)"
           />
@@ -33,8 +33,8 @@
       <template #option="slotProps">
         <div class="flex justify-start items-center space-x-2">
           <DataRowVisual
-            :translation-key="slotProps.option.mc_translation_key"
-            :img-path="slotProps.option.img_path"
+            :translation-key="slotProps.option.translation_key"
+            :img-path="slotProps.option.img_name"
             :show-image="showImage"
             :raw-text="rawText?.(slotProps.option)"
           />

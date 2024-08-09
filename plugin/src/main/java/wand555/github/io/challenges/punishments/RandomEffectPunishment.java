@@ -17,6 +17,7 @@ import wand555.github.io.challenges.utils.CollectionUtil;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class RandomEffectPunishment extends Punishment implements Storable<RandomEffectPunishmentConfig> {
 
@@ -40,14 +41,14 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     }
 
     @Override
-    public void enforceCauserPunishment(Player causer) {
+    public void enforceCauserPunishment(UUID causer) {
         List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
         enforceOnReceiver(causer, calculatedEffectsAtOnce);
         Component toSend = ComponentUtil.formatChatMessage(
                 context.plugin(),
                 context.resourceBundleContext().punishmentResourceBundle(),
                 "randomeffect.enforced.causer",
-                Map.of("player", Component.text(causer.getName()),
+                Map.of("player", Component.text(Bukkit.getOfflinePlayer(causer).getName()),
                        "amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size()))
                 )
         );
@@ -59,7 +60,7 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
         List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
         team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
                                                                                         samePlayer -> enforceOnReceiver(
-                                                                                                samePlayer,
+                                                                                                samePlayer.getUniqueId(),
                                                                                                 calculatedEffectsAtOnce
                                                                                         )
         ));
@@ -72,8 +73,11 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
         context.plugin().getServer().broadcast(toSend);
     }
 
-    private void enforceOnReceiver(Player receiver, List<PotionEffect> effects) {
-        effects.forEach(receiver::addPotionEffect);
+    private void enforceOnReceiver(UUID receiver, List<PotionEffect> effects) {
+        if(Bukkit.getPlayer(receiver) != null) {
+            effects.forEach(Bukkit.getPlayer(receiver)::addPotionEffect);
+        }
+
     }
 
     private List<PotionEffect> getCalculatedEffectsAtOnce() {

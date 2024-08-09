@@ -6,6 +6,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.Recipe;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.types.crafting.CraftingData;
 import wand555.github.io.challenges.types.crafting.CraftingType;
@@ -37,7 +39,7 @@ public class ItemCraftingDetector implements Listener {
         }
         // CRAFTING = 2x2 internal
         // WORKBENCH = 3x3 workbench with crafting table
-        boolean internallyCrafted = event.getInventory().getType() == InventoryType.CRAFTING;
+        boolean internallyCrafted = event.getClickedInventory().getType() == InventoryType.CRAFTING;
         CraftingData craftingData = craftingType.constructCraftingData(keyedRecipe, player.getUniqueId(), internallyCrafted);
         craftingType.triggerIfCheckPasses(craftingData, event);
     }

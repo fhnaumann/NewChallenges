@@ -1,4 +1,5 @@
 {
+  "version": "1.20.4",
   "data": [
     {
       "code": "stone",
@@ -3086,13 +3087,6 @@
       "is_item": true,
       "translation_key": "block.minecraft.black_terracotta",
       "img_name": "minecraft_black_terracotta.png"
-    },
-    {
-      "code": "barrier",
-      "is_block": true,
-      "is_item": true,
-      "translation_key": "block.minecraft.barrier",
-      "img_name": "minecraft_barrier.png"
     },
     {
       "code": "hay_block",
@@ -8329,6 +8323,13 @@
       "is_item": true,
       "translation_key": "block.minecraft.composter",
       "img_name": "minecraft_composter.png"
+    },
+    {
+      "code": "barrel",
+      "is_block": true,
+      "is_item": true,
+      "translation_key": "block.minecraft.barrel",
+      "img_name": "minecraft_barrel.png"
     },
     {
       "code": "smoker",

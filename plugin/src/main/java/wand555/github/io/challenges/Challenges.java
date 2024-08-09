@@ -188,9 +188,6 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
         } else {
             logger.fine("No previous session exists, don't prematurely load anything.");
         }
-
-        // TODO remove, only for testing
-        new NoCraftingRule(tempContext, new NoCraftingRuleConfig(), null);
     }
 
     @Override

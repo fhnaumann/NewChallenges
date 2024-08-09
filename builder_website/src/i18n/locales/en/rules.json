@@ -43,6 +43,31 @@
         "name": "NoMobKill",
         "alias": ["NoMobKill", "No MobKill", "NoMob Kill", "entity", "rule"],
         "tooltip": "Killings mobs is prohibited!"
+      },
+      "noCrafting": {
+        "name": "NoCrafting",
+        "alias": ["NoCrafting", "No Crafting", "crafting", "workbench", "crafting table", "furnace", "smelting", "blast", "blastfurnace", "smoker", "cooking", "campfire", "smithing", "stonecutter", "cutter", "rule"],
+        "tooltip": "Crafting, smelting or cooking is prohibited!",
+        "settings": {
+          "internalCrafting": {
+            "name": "Allow 2x2 crafting"
+          },
+          "workbenchCrafting": {
+            "name": "Allow workbench crafting"
+          },
+          "furnaceSmelting": {
+            "name": "Allow furnace smelting"
+          },
+          "campfireCooking": {
+            "name": "Allow campfire cooking"
+          },
+          "smithing": {
+            "name": "Allow smithing table"
+          },
+          "stonecutter": {
+            "name": "Allow stonecutter"
+          }
+        }
       }
     }
   }
