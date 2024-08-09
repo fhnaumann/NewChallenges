@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "name": "no_crafting_nothing_1_heart_lost_all_mob_goal_1_ender_dragon",
+    "whenCreated": "2024-06-23T14:17:48.131Z",
+    "lastModified": "2024-06-23T14:17:48.131Z",
+    "createdBy": "Wiki",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {
+      "noCrafting": {
+        "punishments": {
+          "healthPunishment": {}
+        },
+        "furnaceSmelting": false,
+        "campfireCooking": false,
+        "smithing": false
+      }
+    }
+  },
+  "goals": {
+    "mobGoal": {
+      "mobs": [
+        {
+          "collectableName": "ender_dragon",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        }
+      ],
+      "fixedOrder": true
+    }
+  },
+  "settings": {}
+}
