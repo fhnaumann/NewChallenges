@@ -53,19 +53,19 @@
             "name": "Allow 2x2 crafting"
           },
           "workbenchCrafting": {
-            "name": "Allow workbench crafting"
+            "name": "Allow Crafting Table crafting"
           },
           "furnaceSmelting": {
-            "name": "Allow furnace smelting"
+            "name": "Allow Furnace smelting"
           },
           "campfireCooking": {
-            "name": "Allow campfire cooking"
+            "name": "Allow Campfire cooking"
           },
           "smithing": {
-            "name": "Allow smithing table"
+            "name": "Allow Smithing Table"
           },
           "stonecutter": {
-            "name": "Allow stonecutter"
+            "name": "Allow Stonecutter"
           }
         }
       }
