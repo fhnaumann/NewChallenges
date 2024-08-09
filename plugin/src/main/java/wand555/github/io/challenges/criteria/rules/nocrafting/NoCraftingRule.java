@@ -37,6 +37,7 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
                                              trigger(),
                                              cancelIfCancelPunishmentActive(),
                                              cancelIfCancelPunishmentActive(),
+                                             cancelIfCancelPunishmentActive(),
                                              cancelIfCancelPunishmentActive()
         );
     }

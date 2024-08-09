@@ -50,11 +50,23 @@ public class CraftingType extends Type<CraftingData> {
 
 
     public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered) {
-        this(context, triggerCheck, whenTriggered, event -> {}, event -> {}, event -> {});
+        this(context, triggerCheck, whenTriggered, event -> {}, event -> {}, event -> {}, event -> {});
     }
 
-    public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered, EventContainer<CraftItemEvent> onCraftItem, EventContainer<BlockCookEvent> onFurnaceLikeSmeltOrCampfireCook, EventContainer<InventoryClickEvent> onSmithingFinishOrStoneCuttingFinish) {
-        super(context, triggerCheck, whenTriggered, Map.of(CraftItemEvent.class, onCraftItem, BlockCookEvent.class, onFurnaceLikeSmeltOrCampfireCook, InventoryClickEvent.class, onSmithingFinishOrStoneCuttingFinish));
+    public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered, EventContainer<CraftItemEvent> onCraftItem, EventContainer<FurnaceSmeltEvent> onFurnaceSmeltEvent, EventContainer<BlockCookEvent> onCampfireCook, EventContainer<InventoryClickEvent> onSmithingFinishOrStoneCuttingFinish) {
+        super(context,
+              triggerCheck,
+              whenTriggered,
+              Map.of(CraftItemEvent.class,
+                     onCraftItem,
+                     FurnaceSmeltEvent.class,
+                     onFurnaceSmeltEvent,
+                     BlockCookEvent.class,
+                     onCampfireCook,
+                     InventoryClickEvent.class,
+                     onSmithingFinishOrStoneCuttingFinish
+              )
+        );
         this.markedKey = new NamespacedKey(context.plugin(), "lastOpenedBy");
         this.itemCraftingDetector = new ItemCraftingDetector(context, this);
         context.plugin().getServer().getPluginManager().registerEvents(itemCraftingDetector, context.plugin());

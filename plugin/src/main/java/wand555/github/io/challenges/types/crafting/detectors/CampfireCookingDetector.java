@@ -1,5 +1,6 @@
 package wand555.github.io.challenges.types.crafting.detectors;
 
+import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Campfire;
 import org.bukkit.block.TileState;
@@ -10,6 +11,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockCookEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.CampfireRecipe;
+import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.types.crafting.CraftingData;
 import wand555.github.io.challenges.types.crafting.CraftingType;
@@ -54,6 +57,16 @@ public class CampfireCookingDetector implements Listener {
     @EventHandler
     public void onPlayerCampfireSmeltFinishEvent(BlockCookEvent event) {
         // covers CAMPFIRE
+        if(!(event.getRecipe() instanceof CampfireRecipe)) {
+            return;
+        }
         craftingType.handleBlockCookEvent(event);
+        // Fix: If the event is canceled (CancelPunishment), then this leads to an infinite spiral call.
+        // Manually intervene and spawn the original itemstack in the world
+        if(event.isCancelled()) {
+            event.setCancelled(false); // prevent infinite spiral
+            event.setResult(new ItemStack(Material.AIR));
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), event.getSource());
+        }
     }
 }
