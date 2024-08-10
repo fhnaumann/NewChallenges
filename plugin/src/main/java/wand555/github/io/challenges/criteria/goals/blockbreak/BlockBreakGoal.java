@@ -51,15 +51,6 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
     }
 
     @Override
-    protected BossBarPart.GoalInformation<Material> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(),
-                                                 data -> Map.of("block",
-                                                                ResourcePackHelper.getMaterialUnicodeMapping(data)
-                                                 )
-        );
-    }
-
-    @Override
     protected BlockBreakData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
         return new BlockBreakData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }

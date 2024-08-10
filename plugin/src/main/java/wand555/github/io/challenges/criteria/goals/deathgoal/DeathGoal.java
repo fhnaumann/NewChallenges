@@ -92,15 +92,6 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
     }
 
     @Override
-    protected BossBarPart.GoalInformation<DeathMessage> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(),
-                                                 data -> Map.of("death_type",
-                                                                ResourcePackHelper.getDeathMessageUnicodeMapping(data.toEnum())
-                                                 )
-        );
-    }
-
-    @Override
     protected DeathData createSkipData(Map.Entry<DeathMessage, Collect> toSkip, Player player) {
         return new DeathData(player, toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
     }

@@ -1,4 +1,4 @@
-package wand555.github.io.challenges.criteria.rules.nocrafting;
+package wand555.github.io.challenges.criteria.rules.nocraftingrule;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
@@ -19,6 +19,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.criteria.rules.nocrafting.NoCraftingRule;
+import wand555.github.io.challenges.criteria.rules.nocrafting.NoCraftingRuleMessageHelper;
 import wand555.github.io.challenges.generated.CancelPunishmentConfig;
 import wand555.github.io.challenges.generated.NoCraftingRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;

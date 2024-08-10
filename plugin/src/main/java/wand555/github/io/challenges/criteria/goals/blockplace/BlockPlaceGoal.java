@@ -68,15 +68,6 @@ public class BlockPlaceGoal extends MapGoal<BlockPlaceData, Material> implements
     }
 
     @Override
-    protected BossBarPart.GoalInformation<Material> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(),
-                                                 data -> Map.of("block",
-                                                                ResourcePackHelper.getMaterialUnicodeMapping(data)
-                                                 )
-        );
-    }
-
-    @Override
     protected BlockPlaceData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
         return new BlockPlaceData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }

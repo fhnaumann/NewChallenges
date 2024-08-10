@@ -17,9 +17,9 @@
         <InputNumber :model-value="sec2Minutes(maxTimeSecOrDefault())" @update:model-value="updateMax"
                      :min="sec2Minutes(minTimeSecOrDefault())" :max="sec2Minutes(config.maxTimeSeconds.maximum)" />
       </div>
-      <Slider class="w-96" :model-value="[sec2Minutes(minTimeSecOrDefault()), sec2Minutes(maxTimeSecOrDefault())]"
+      <!--Slider class="w-96" :model-value="[sec2Minutes(minTimeSecOrDefault()), sec2Minutes(maxTimeSecOrDefault())]"
               @update:model-value="updateModel" range
-              :min="sec2Minutes(config.minTimeSeconds.minimum)" :max="sec2Minutes(config.maxTimeSeconds.maximum)" />
+              :min="sec2Minutes(config.minTimeSeconds.minimum)" :max="sec2Minutes(config.maxTimeSeconds.maximum)" /-->
     </div>
   </div>
 </template>

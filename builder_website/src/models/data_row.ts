@@ -36,6 +36,7 @@ export interface DeathMessageDataRow extends DataRow {
 export interface CraftingTypeDataRow extends DataRow {
   result: string,
   recipeType: string
+  source?: string
 }
 
 export const ALL_MATERIAL_DATA: MaterialDataRow[] = materials.data

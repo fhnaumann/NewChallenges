@@ -30,7 +30,7 @@ import type {
   SettingName,
   UltraHardcoreSettingConfig,
 } from '../../src/models/settings'
-import type { NoCraftingRuleConfig } from '../../src/models/crafting'
+import type { CraftingGoalConfig, NoCraftingRuleConfig } from '../../src/models/crafting'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -170,6 +170,14 @@ declare global {
        * End: Page for customizing a goal
        */
       configureDeathGoal(deathGoalConfig?: DeathGoalConfig, allDeathTypes?: boolean): Chainable<Subject>
+
+      /**
+       * Customize CraftingGoal
+       *
+       * Start: Main Page
+       * End: Page for customizing a goal
+       */
+      configureCraftingGoal(craftingGoalConfig?: CraftingGoalConfig, allRecipesOnce?: boolean, allCraftingRecipesOnce?: boolean, allSmeltingRecipesOnce?: boolean, allSmithingUpgradesOnce?: boolean): Chainable<Subject>
 
       /**
        * Start: Main Page

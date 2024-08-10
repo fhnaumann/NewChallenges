@@ -25,7 +25,7 @@ public abstract class GoalMessageHelper<D extends Data<K>, K extends Keyed> exte
 
     protected abstract String getGoalNameInResourceBundle();
 
-    protected abstract Map<String, Component> additionalBossBarPlaceholders(K data);
+    public abstract Map<String, Component> additionalBossBarPlaceholders(K data);
 
     protected abstract Map<String, Component> additionalStepPlaceholders(D data);
 

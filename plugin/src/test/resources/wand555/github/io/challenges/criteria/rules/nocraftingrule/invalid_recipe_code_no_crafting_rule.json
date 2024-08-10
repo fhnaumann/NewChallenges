@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "name": "my-challenge",
+    "whenCreated": "2024-08-10T15:49:13.251Z",
+    "lastModified": "2024-08-10T15:49:13.251Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {
+      "noCrafting": {
+        "exemptions": [
+          "challenges-diorite_wall_from_diorite_stonecutting",
+          "challenges-DOES_NOT_EXIST_RECIPE"
+        ]
+      }
+    }
+  }
+}

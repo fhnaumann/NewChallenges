@@ -24,6 +24,6 @@ public class NoCraftingRuleValidator extends CraftingTypeValidator {
 
     @Override
     protected String getPathToCurrentCollectables() {
-        return TypeValidatorHelper.rulePath("/noCraftingRule/exemptions");
+        return TypeValidatorHelper.rulePath("noCraftingRule/exemptions");
     }
 }

@@ -20,7 +20,7 @@ public class DeathGoalMessageHelper extends GoalMessageHelper<DeathData, DeathMe
     }
 
     @Override
-    protected Map<String, Component> additionalBossBarPlaceholders(DeathMessage data) {
+    public Map<String, Component> additionalBossBarPlaceholders(DeathMessage data) {
         return Map.of(
                 "death_type", ResourcePackHelper.getDeathMessageUnicodeMapping(data.toEnum())
         );

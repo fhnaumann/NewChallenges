@@ -7,7 +7,11 @@
                                            :raw-text="rawText"
                                            :dropdown-class="dropdownClass"
                                            @transferDataFromPlaceHolderToNewInstance="(selectedData: DataRow) => updateSelectedData(undefined, selectedData)"
-    />
+    >
+      <template #row="rowProps">
+        <slot name="row" :dataRow="rowProps.dataRow"></slot>
+      </template>
+    </SingleCollectableGoalEntryPlaceholder>
 
     <div v-if="renderSelection">
       <SingleCollectableGoalEntry v-for="selected in modelAccess.get(model)" :key="selected.collectableName"
@@ -25,7 +29,11 @@
                                   :dropdown-class="dropdownClass"
                                   @updateCurrentlySelected="(newlySelectedData: DataRow) => updateSelectedData(collectableEntryConfig2DataRow(allPossibleData, selected), newlySelectedData)"
                                   @deleteEntry="deleteDataRow"
-      />
+      >
+        <template #row="rowProps">
+          <slot name="row" :dataRow="rowProps.dataRow"></slot>
+        </template>
+      </SingleCollectableGoalEntry>
     </div>
   </div>
 

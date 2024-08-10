@@ -102,6 +102,30 @@
             "name": "All Death Messages Once"
           }
         }
+      },
+      "craftingGoal": {
+        "name": "CraftingGoal",
+        "alias": ["CraftingGoal", "Crafting Goal", "workbench", "crafting table", "furnace", "smelting", "blast", "blastfurnace", "smoker", "cooking", "campfire", "smithing", "stonecutter", "cutter", "rule"],
+        "settings": {
+          "dropdown": {
+            "recipePrefix": "Recipe:",
+            "recipePlaceholder": "Select recipes",
+            "amountPrefix": "Amount:",
+            "noMatch": "No matching recipes found."
+          },
+          "allRecipesOnce": {
+            "name": "All Recipes Once"
+          },
+          "allCraftingRecipesOnce": {
+            "name": "All Crafting Recipes Once"
+          },
+          "allSmeltingRecipesOnce": {
+            "name": "All Smelting/Cooking Recipes Once"
+          },
+          "allSmithingUpgradesOnce": {
+            "name": "All Netherite Smithing Upgrades Once"
+          }
+        }
       }
     }
   }

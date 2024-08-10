@@ -85,15 +85,6 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
     }
 
     @Override
-    protected BossBarPart.GoalInformation<EntityType> constructGoalInformation() {
-        return new BossBarPart.GoalInformation<>(getNameInResourceBundle(),
-                                                 data -> Map.of("entity",
-                                                                ResourcePackHelper.getEntityTypeUnicodeMapping(data)
-                                                 )
-        );
-    }
-
-    @Override
     protected MobData createSkipData(Map.Entry<EntityType, Collect> toSkip, Player player) {
         return new MobData(toSkip.getKey(), player);
     }

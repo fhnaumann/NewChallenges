@@ -1008,121 +1008,145 @@
     },
     {
       "code": "challenges-gold_nugget_from_blasting",
+      "source": "golden_pickaxe",
       "result": "gold_nugget",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-copper_ingot_from_blasting_deepslate_copper_ore",
+      "source": "deepslate_copper_ore",
       "result": "copper_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-coal_from_blasting_coal_ore",
+      "source": "coal_ore",
       "result": "coal",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-diamond_from_blasting_diamond_ore",
+      "source": "diamond_ore",
       "result": "diamond",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-redstone_from_blasting_redstone_ore",
+      "source": "redstone_ore",
       "result": "redstone",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-lapis_lazuli_from_blasting_deepslate_lapis_ore",
+      "source": "deepslate_lapis_ore",
       "result": "lapis_lazuli",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-diamond_from_blasting_deepslate_diamond_ore",
+      "source": "deepslate_diamond_ore",
       "result": "diamond",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-redstone_from_blasting_deepslate_redstone_ore",
+      "source": "deepslate_redstone_ore",
       "result": "redstone",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-netherite_scrap_from_blasting",
+      "source": "ancient_debris",
       "result": "netherite_scrap",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-iron_ingot_from_blasting_deepslate_iron_ore",
+      "source": "deepslate_iron_ore",
       "result": "iron_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-copper_ingot_from_blasting_copper_ore",
+      "source": "copper_ore",
       "result": "copper_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-emerald_from_blasting_deepslate_emerald_ore",
+      "source": "deepslate_emerald_ore",
       "result": "emerald",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-gold_ingot_from_blasting_raw_gold",
+      "source": "raw_gold",
       "result": "gold_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-iron_nugget_from_blasting",
+      "source": "iron_pickaxe",
       "result": "iron_nugget",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-gold_ingot_from_blasting_gold_ore",
+      "source": "gold_ore",
       "result": "gold_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-quartz_from_blasting",
+      "source": "nether_quartz_ore",
       "result": "quartz",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-iron_ingot_from_blasting_iron_ore",
+      "source": "iron_ore",
       "result": "iron_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-gold_ingot_from_blasting_nether_gold_ore",
+      "source": "nether_gold_ore",
       "result": "gold_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-gold_ingot_from_blasting_deepslate_gold_ore",
+      "source": "deepslate_gold_ore",
       "result": "gold_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-emerald_from_blasting_emerald_ore",
+      "source": "emerald_ore",
       "result": "emerald",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-iron_ingot_from_blasting_raw_iron",
+      "source": "raw_iron",
       "result": "iron_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-lapis_lazuli_from_blasting_lapis_ore",
+      "source": "lapis_ore",
       "result": "lapis_lazuli",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-copper_ingot_from_blasting_raw_copper",
+      "source": "raw_copper",
       "result": "copper_ingot",
       "recipeType": "blasting"
     },
     {
       "code": "challenges-coal_from_blasting_deepslate_coal_ore",
+      "source": "deepslate_coal_ore",
       "result": "coal",
       "recipeType": "blasting"
     },
@@ -5288,441 +5312,529 @@
     },
     {
       "code": "challenges-cooked_salmon_from_campfire_cooking",
+      "source": "salmon",
       "result": "cooked_salmon",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-cooked_beef_from_campfire_cooking",
+      "source": "beef",
       "result": "cooked_beef",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-cooked_rabbit_from_campfire_cooking",
+      "source": "rabbit",
       "result": "cooked_rabbit",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-cooked_porkchop_from_campfire_cooking",
+      "source": "porkchop",
       "result": "cooked_porkchop",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-dried_kelp_from_campfire_cooking",
+      "source": "kelp",
       "result": "dried_kelp",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-baked_potato_from_campfire_cooking",
+      "source": "potato",
       "result": "baked_potato",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-cooked_mutton_from_campfire_cooking",
+      "source": "mutton",
       "result": "cooked_mutton",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-cooked_chicken_from_campfire_cooking",
+      "source": "chicken",
       "result": "cooked_chicken",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-cooked_cod_from_campfire_cooking",
+      "source": "cod",
       "result": "cooked_cod",
       "recipeType": "campfire"
     },
     {
       "code": "challenges-charcoal",
+      "source": "dark_oak_log",
       "result": "charcoal",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-emerald_from_smelting_deepslate_emerald_ore",
+      "source": "deepslate_emerald_ore",
       "result": "emerald",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cracked_deepslate_tiles",
+      "source": "deepslate_tiles",
       "result": "cracked_deepslate_tiles",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_rabbit",
+      "source": "rabbit",
       "result": "cooked_rabbit",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_porkchop",
+      "source": "porkchop",
       "result": "cooked_porkchop",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-lapis_lazuli_from_smelting_deepslate_lapis_ore",
+      "source": "deepslate_lapis_ore",
       "result": "lapis_lazuli",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-green_dye",
+      "source": "cactus",
       "result": "green_dye",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-pink_glazed_terracotta",
+      "source": "pink_terracotta",
       "result": "pink_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-redstone_from_smelting_redstone_ore",
+      "source": "redstone_ore",
       "result": "redstone",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-blue_glazed_terracotta",
+      "source": "blue_terracotta",
       "result": "blue_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cracked_deepslate_bricks",
+      "source": "deepslate_bricks",
       "result": "cracked_deepslate_bricks",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-glass",
+      "source": "sand",
       "result": "glass",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-terracotta",
+      "source": "clay",
       "result": "terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-quartz",
+      "source": "nether_quartz_ore",
       "result": "quartz",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cyan_glazed_terracotta",
+      "source": "cyan_terracotta",
       "result": "cyan_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-coal_from_smelting_coal_ore",
+      "source": "coal_ore",
       "result": "coal",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-emerald_from_smelting_emerald_ore",
+      "source": "emerald_ore",
       "result": "emerald",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-magenta_glazed_terracotta",
+      "source": "magenta_terracotta",
       "result": "magenta_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-redstone_from_smelting_deepslate_redstone_ore",
+      "source": "deepslate_redstone_ore",
       "result": "redstone",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-gold_ingot_from_smelting_raw_gold",
+      "source": "raw_gold",
       "result": "gold_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-gold_ingot_from_smelting_gold_ore",
+      "source": "gold_ore",
       "result": "gold_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cracked_polished_blackstone_bricks",
+      "source": "polished_blackstone_bricks",
       "result": "cracked_polished_blackstone_bricks",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-popped_chorus_fruit",
+      "source": "chorus_fruit",
       "result": "popped_chorus_fruit",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-brown_glazed_terracotta",
+      "source": "brown_terracotta",
       "result": "brown_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-smooth_basalt",
+      "source": "basalt",
       "result": "smooth_basalt",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-iron_ingot_from_smelting_deepslate_iron_ore",
+      "source": "deepslate_iron_ore",
       "result": "iron_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-copper_ingot_from_smelting_raw_copper",
+      "source": "raw_copper",
       "result": "copper_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-smooth_red_sandstone",
+      "source": "red_sandstone",
       "result": "smooth_red_sandstone",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-diamond_from_smelting_deepslate_diamond_ore",
+      "source": "deepslate_diamond_ore",
       "result": "diamond",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-deepslate",
+      "source": "cobbled_deepslate",
       "result": "deepslate",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-diamond_from_smelting_diamond_ore",
+      "source": "diamond_ore",
       "result": "diamond",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-smooth_quartz",
+      "source": "quartz_block",
       "result": "smooth_quartz",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-smooth_sandstone",
+      "source": "sandstone",
       "result": "smooth_sandstone",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-light_blue_glazed_terracotta",
+      "source": "light_blue_terracotta",
       "result": "light_blue_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-sponge",
+      "source": "wet_sponge",
       "result": "sponge",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-purple_glazed_terracotta",
+      "source": "purple_terracotta",
       "result": "purple_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cracked_stone_bricks",
+      "source": "stone_bricks",
       "result": "cracked_stone_bricks",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-green_glazed_terracotta",
+      "source": "green_terracotta",
       "result": "green_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_cod",
+      "source": "cod",
       "result": "cooked_cod",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-gold_ingot_from_smelting_deepslate_gold_ore",
+      "source": "deepslate_gold_ore",
       "result": "gold_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-baked_potato",
+      "source": "potato",
       "result": "baked_potato",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_salmon",
+      "source": "salmon",
       "result": "cooked_salmon",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-lime_dye_from_smelting",
+      "source": "sea_pickle",
       "result": "lime_dye",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-orange_glazed_terracotta",
+      "source": "orange_terracotta",
       "result": "orange_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-gray_glazed_terracotta",
+      "source": "gray_terracotta",
       "result": "gray_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-iron_nugget_from_smelting",
+      "source": "iron_pickaxe",
       "result": "iron_nugget",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_chicken",
+      "source": "chicken",
       "result": "cooked_chicken",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-nether_brick",
+      "source": "netherrack",
       "result": "nether_brick",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-black_glazed_terracotta",
+      "source": "black_terracotta",
       "result": "black_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-lapis_lazuli_from_smelting_lapis_ore",
+      "source": "lapis_ore",
       "result": "lapis_lazuli",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-brick",
+      "source": "clay_ball",
       "result": "brick",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-iron_ingot_from_smelting_iron_ore",
+      "source": "iron_ore",
       "result": "iron_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-copper_ingot_from_smelting_deepslate_copper_ore",
+      "source": "deepslate_copper_ore",
       "result": "copper_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-yellow_glazed_terracotta",
+      "source": "yellow_terracotta",
       "result": "yellow_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-stone",
+      "source": "cobblestone",
       "result": "stone",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-smooth_stone",
+      "source": "stone",
       "result": "smooth_stone",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_mutton",
+      "source": "mutton",
       "result": "cooked_mutton",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-dried_kelp_from_smelting",
+      "source": "kelp",
       "result": "dried_kelp",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-light_gray_glazed_terracotta",
+      "source": "light_gray_terracotta",
       "result": "light_gray_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-coal_from_smelting_deepslate_coal_ore",
+      "source": "deepslate_coal_ore",
       "result": "coal",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-iron_ingot_from_smelting_raw_iron",
+      "source": "raw_iron",
       "result": "iron_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_beef",
+      "source": "beef",
       "result": "cooked_beef",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-gold_ingot_from_smelting_nether_gold_ore",
+      "source": "nether_gold_ore",
       "result": "gold_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-gold_nugget_from_smelting",
+      "source": "golden_pickaxe",
       "result": "gold_nugget",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cracked_nether_bricks",
+      "source": "nether_bricks",
       "result": "cracked_nether_bricks",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-copper_ingot_from_smelting_copper_ore",
+      "source": "copper_ore",
       "result": "copper_ingot",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-netherite_scrap",
+      "source": "ancient_debris",
       "result": "netherite_scrap",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-red_glazed_terracotta",
+      "source": "red_terracotta",
       "result": "red_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-white_glazed_terracotta",
+      "source": "white_terracotta",
       "result": "white_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-lime_glazed_terracotta",
+      "source": "lime_terracotta",
       "result": "lime_glazed_terracotta",
       "recipeType": "furnace"
     },
     {
       "code": "challenges-cooked_salmon_from_smoking",
+      "source": "salmon",
       "result": "cooked_salmon",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-dried_kelp_from_smoking",
+      "source": "kelp",
       "result": "dried_kelp",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-cooked_beef_from_smoking",
+      "source": "beef",
       "result": "cooked_beef",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-cooked_chicken_from_smoking",
+      "source": "chicken",
       "result": "cooked_chicken",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-baked_potato_from_smoking",
+      "source": "potato",
       "result": "baked_potato",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-cooked_cod_from_smoking",
+      "source": "cod",
       "result": "cooked_cod",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-cooked_porkchop_from_smoking",
+      "source": "porkchop",
       "result": "cooked_porkchop",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-cooked_rabbit_from_smoking",
+      "source": "rabbit",
       "result": "cooked_rabbit",
       "recipeType": "smoking"
     },
     {
       "code": "challenges-cooked_mutton_from_smoking",
+      "source": "mutton",
       "result": "cooked_mutton",
       "recipeType": "smoking"
     }

@@ -297,6 +297,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             }
             tempContext.challengeManager().pause();
         } else if(command.getName().equalsIgnoreCase("resume")) {
+            if(tempContext.challengeManager().getGameState() == ChallengeManager.GameState.PAUSED)
             if(!tempContext.challengeManager().isPaused() && tempContext.challengeManager().getGameState() != ChallengeManager.GameState.ENDED) {
                 sender.sendMessage(ComponentUtil.formatChallengesPrefixChatMessage(
                         tempContext.plugin(),

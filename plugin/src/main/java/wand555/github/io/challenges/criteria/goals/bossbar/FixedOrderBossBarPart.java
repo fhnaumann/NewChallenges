@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class FixedOrderBossBarPart<K extends Keyed> extends BossBarPart<K> {
 
-    private final GoalCollector<K> goalCollector;
+    protected final GoalCollector<K> goalCollector;
 
     public FixedOrderBossBarPart(Context context, GoalInformation<K> goalInformation, GoalCollector<K> goalCollector) {
         super(context, goalInformation);

@@ -4,10 +4,8 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalMessageHelper;
 import wand555.github.io.challenges.types.item.ItemData;
-import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;
@@ -23,7 +21,7 @@ public class ItemGoalMessageHelper extends GoalMessageHelper<ItemData, Material>
     }
 
     @Override
-    protected Map<String, Component> additionalBossBarPlaceholders(Material data) {
+    public Map<String, Component> additionalBossBarPlaceholders(Material data) {
         return Map.of(
                 "item", ResourcePackHelper.getMaterialUnicodeMapping(data)
         );

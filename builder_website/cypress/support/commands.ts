@@ -50,7 +50,7 @@ import type {
   SettingName,
   UltraHardcoreSettingConfig,
 } from '../../src/models/settings'
-import type { NoCraftingRuleConfig } from '../../src/models/crafting'
+import type { CraftingGoalConfig, NoCraftingRuleConfig } from '../../src/models/crafting'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -260,6 +260,19 @@ Cypress.Commands.add('configureDeathGoal', (deathGoalConfig?: DeathGoalConfig, a
   if (allDeathTypes) {
     cy.get('#allDeathMessagesOnce').check({ force: true })
   }
+})
+
+Cypress.Commands.add('configureCraftingGoal', (craftingGoalConfig?: CraftingGoalConfig, allRecipesOnce?: boolean, allCraftingRecipesOnce?: boolean, allSmeltingRecipesOnce?: boolean, allSmithingUpgradesOnce?: boolean) => {
+  cy.configureGoal('craftingGoal')
+  // clearCollectableSelection() don't clear, because its empty by default
+  craftingGoalConfig?.crafted?.forEach(value => addCollectable(value))
+  if(craftingGoalConfig?.fixedOrder !== undefined) {
+    setFixedOrder(craftingGoalConfig.fixedOrder!)
+  }
+  handleCheckBox('#allRecipesOnce', allRecipesOnce)
+  handleCheckBox('#allCraftingRecipesOnce', allCraftingRecipesOnce)
+  handleCheckBox('#allSmeltingRecipesOnce', allSmeltingRecipesOnce)
+  handleCheckBox('#allSmithingUpgradesOnce', allSmithingUpgradesOnce)
 })
 
 Cypress.Commands.add('configureSetting', (settingName: SettingName) => {

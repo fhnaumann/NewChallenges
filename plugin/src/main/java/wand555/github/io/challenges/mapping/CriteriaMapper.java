@@ -2,7 +2,6 @@ package wand555.github.io.challenges.mapping;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.*;
 import wand555.github.io.challenges.Context;
@@ -31,7 +30,6 @@ import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflinePlayerData;
 import wand555.github.io.challenges.punishments.*;
 import wand555.github.io.challenges.teams.Team;
-import wand555.github.io.challenges.utils.CollectionUtil;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
@@ -139,6 +137,9 @@ public class CriteriaMapper {
         }
         if(goalsConfig.getDeathGoal() != null) {
             goals.add(new DeathGoalFactory().createGoal(context, goalsConfig.getDeathGoal()));
+        }
+        if(goalsConfig.getCraftingGoal() != null) {
+            goals.add(new CraftingGoalFactory().createGoal(context, goalsConfig.getCraftingGoal()));
         }
         return goals;
     }

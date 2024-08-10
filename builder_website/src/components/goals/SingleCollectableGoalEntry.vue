@@ -22,7 +22,11 @@
             :img-path="slotProps.value.img_name"
             :show-image="showImage"
             :raw-text="rawText?.(slotProps.value)"
-          />
+          >
+            <template #row>
+              <slot name="row" :dataRow="slotProps.value as DataRow"></slot>
+            </template>
+          </DataRowVisual>
         </div>
       </template>
       <template #option="slotProps">
@@ -32,7 +36,11 @@
             :img-path="slotProps.option.img_name"
             :show-image="showImage"
             :raw-text="rawText?.(slotProps.option)"
-          />
+          >
+            <template #row>
+              <slot name="row" :dataRow="slotProps.option as DataRow"></slot>
+            </template>
+          </DataRowVisual>
         </div>
       </template>
     </Dropdown>

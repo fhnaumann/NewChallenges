@@ -18,7 +18,6 @@
                  @error="($event.target as HTMLInputElement).src = '/unknown.png'"
                  :alt="craftingType2DataRow((rowProps.dataRow as CraftingTypeDataRow).recipeType).code" />
           </div>
-
         </template>
       </ExemptionSelection>
       <div>
@@ -77,23 +76,10 @@
   }
 
   const { t } = useI18n()
-  const { translate, translateDataRow } = useTranslation()
+  const { translate, translateDataRow, craftingType2DataRow } = useTranslation()
 
   const {set, model } = useModelStore()
   const defaultConfig = useJSONSchemaConfig().NoCraftingRuleConfig.properties
-
-  function craftingType2DataRow(craftingType: string): DataRow {
-    switch(craftingType) {
-      case "crafting": return ALL_MATERIAL_DATA.find(value => value.code === 'crafting_table')!
-      case "furnace": return ALL_MATERIAL_DATA.find(value => value.code === 'furnace')!
-      case "blasting": return ALL_MATERIAL_DATA.find(value => value.code === 'blast_furnace')!
-      case "campfire": return ALL_MATERIAL_DATA.find(value => value.code === 'campfire')!
-      case "smithing": return ALL_MATERIAL_DATA.find(value => value.code === 'smithing_table')!
-      case "smoking": return ALL_MATERIAL_DATA.find(value => value.code === 'smoker')!
-      case "stonecutting": return ALL_MATERIAL_DATA.find(value => value.code === 'stonecutter')!
-      default: return ALL_MATERIAL_DATA.find(value => value.code === 'paper')!
-    }
-  }
 
   function internalCraftingOrDefault(): boolean {
     return baseModelAccess.get(model)?.internalCrafting ?? defaultConfig.internalCrafting.default
