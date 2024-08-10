@@ -49,6 +49,6 @@ public class ItemCraftingDetectorTest extends CraftingDetectorTest {
     }
 
     private CraftingTypeJSON stickCraftingTypeJSON() {
-        return new CraftingTypeJSON("stick", "stick", "crafting");
+        return new CraftingTypeJSON(null, "stick", "stick", "crafting");
     }
 }

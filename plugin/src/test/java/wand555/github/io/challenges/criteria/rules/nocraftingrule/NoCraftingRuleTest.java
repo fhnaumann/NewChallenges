@@ -202,22 +202,22 @@ public class NoCraftingRuleTest {
     }
 
     private static CraftingTypeJSON stickCraftingCraftingTypeJSON() {
-        return new CraftingTypeJSON("challenges-stick", "stick", "crafting");
+        return new CraftingTypeJSON(null, "challenges-stick", "stick", "crafting");
     }
 
     private static CraftingTypeJSON  charcoalFurnaceCraftingTypeJSON() {
-        return new CraftingTypeJSON("challenges-charcoal", "charcoal", "furnace");
+        return new CraftingTypeJSON("dark_oak_log","challenges-charcoal", "charcoal", "furnace");
     }
 
     private static CraftingTypeJSON  cooked_salmon_from_campfire_cookingFurnaceCraftingTypeJSON() {
-        return new CraftingTypeJSON("challenges-cooked_salmon_from_campfire_cooking", "cooked_salmon", "campfire");
+        return new CraftingTypeJSON("salmon", "challenges-cooked_salmon_from_campfire_cooking", "cooked_salmon", "campfire");
     }
 
     private static CraftingTypeJSON netherite_shovel_smithingSmithingCraftingTypeJSON() {
-        return new CraftingTypeJSON("challenges-netherite_shovel_smithing", "netherite_shovel", "smithing");
+        return new CraftingTypeJSON(null, "challenges-netherite_shovel_smithing", "netherite_shovel", "smithing");
     }
 
     private static CraftingTypeJSON diorite_wall_from_diorite_stonecuttingStonecuttingCraftingTypeJSON() {
-        return new CraftingTypeJSON("challenges-diorite_wall_from_diorite_stonecutting", "diorite_wall", "stonecutting");
+        return new CraftingTypeJSON(null, "challenges-diorite_wall_from_diorite_stonecutting", "diorite_wall", "stonecutting");
     }
 }
