@@ -44,8 +44,11 @@ public class BlockBreakGoalValidationTest {
     @ParameterizedTest
     @MethodSource("provideJSONs")
     public void testCodes(String json, ValidationResult expected) {
-        ValidationResult isolated = new BlockBreakGoalValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(),
-                                                                                                               json
+        ValidationResult isolated = new BlockBreakGoalValidator(dataSourceContext.materialJSONList(),
+                                                                -1
+        ).validate(new ValidationResult.ValidationResultBuilder(),
+                   json,
+                   progress -> {}
         );
         ValidationResult full = Validation.modernValidate(json,
                                                           CriteriaUtil.loadJSONSchemaStream(),

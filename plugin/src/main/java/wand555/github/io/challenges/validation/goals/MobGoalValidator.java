@@ -7,22 +7,27 @@ import wand555.github.io.challenges.mapping.EntityTypeJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.validation.CodeableValidator;
 import wand555.github.io.challenges.validation.ModelValidator;
+import wand555.github.io.challenges.validation.TypeValidatorHelper;
 import wand555.github.io.challenges.validation.types.MobTypeValidator;
 
 import java.util.List;
 
 public class MobGoalValidator extends MobTypeValidator {
-    public MobGoalValidator(List<EntityTypeJSON> dataSource) {
+
+    private final int teamIdx;
+
+    public MobGoalValidator(List<EntityTypeJSON> dataSource, int teamIdx) {
         super(dataSource);
+        this.teamIdx = teamIdx;
     }
 
     @Override
     protected List<String> getCodes(Model challengesSchema) {
-        return ModelMapper.collectables2Codes(challengesSchema.getGoals().getMobGoal().getMobs());
+        return TypeValidatorHelper.codes(challengesSchema, teamIdx, goalsConfig -> goalsConfig.getMobGoal().getMobs());
     }
 
     @Override
     protected String getPathToCurrentCollectables() {
-        return "goals/mobGoal/mobs";
+        return TypeValidatorHelper.goalPath("mobGoal/mobs", teamIdx);
     }
 }

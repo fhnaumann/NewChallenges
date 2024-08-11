@@ -19,8 +19,7 @@ def main():
 
 def _transform_death_message(key, message):
     return {
-        "code": key,
-        "deathMessage": _replace_with_regex(message),
+        "code": key.lower(),
         "deathMessageWithDummyData": _replace_with_dummy(message)
     }
 def _replace_with_regex(message):

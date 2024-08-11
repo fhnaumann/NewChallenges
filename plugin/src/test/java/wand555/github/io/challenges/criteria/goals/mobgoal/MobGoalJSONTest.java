@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
+import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;

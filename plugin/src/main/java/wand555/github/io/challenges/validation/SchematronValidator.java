@@ -10,14 +10,13 @@ import com.helger.schematron.svrl.SVRLSuccessfulReport;
 import com.helger.schematron.svrl.jaxb.SchematronOutputType;
 import org.json.JSONObject;
 import org.json.XML;
-import wand555.github.io.challenges.Challenges;
+import wand555.github.io.challenges.files.ProgressListener;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public class SchematronValidator extends Validator {
 
@@ -31,7 +30,7 @@ public class SchematronValidator extends Validator {
     }
 
     @Override
-    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, String json) {
+    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, String json, ProgressListener progressListener) {
 
         try {
             String xml = XML.toString(new JSONObject(json), "root");

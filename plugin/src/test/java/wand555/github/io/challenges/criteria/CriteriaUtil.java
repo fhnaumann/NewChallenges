@@ -8,12 +8,10 @@ import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import wand555.github.io.challenges.Context;
-import wand555.github.io.challenges.FileManager;
+import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.criteria.rules.Rule;
-import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRule;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.Model;
-import wand555.github.io.challenges.generated.NoBlockPlaceRuleConfig;
 import wand555.github.io.challenges.generated.RulesConfig;
 import wand555.github.io.challenges.mapping.*;
 

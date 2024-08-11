@@ -4,13 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.DataSourceContext;
-import wand555.github.io.challenges.criteria.CriteriaUtil;
-import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoalValidationTest;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
 import wand555.github.io.challenges.validation.Violation;
 import wand555.github.io.challenges.validation.goals.DeathGoalValidator;
-import wand555.github.io.challenges.validation.goals.MobGoalValidator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,8 +39,10 @@ public class DeathGoalValidationTest {
         Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
                 "multiple_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = new DeathGoalValidator(dataSourceContext.deathMessageList()).validate(new ValidationResult.ValidationResultBuilder(),
-                                                                                                        json
+        ValidationResult result = new DeathGoalValidator(dataSourceContext.deathMessageList(),
+                                                         -1
+        ).validate(new ValidationResult.ValidationResultBuilder(),
+                   json, progress -> {}
         );
         assertTrue(result.isValid());
     }
@@ -53,8 +52,8 @@ public class DeathGoalValidationTest {
         Object objJSON = objectMapper.readValue(DeathGoalValidationTest.class.getResourceAsStream(
                 "invalid_death_types_death_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        DeathGoalValidator deathGoalValidator = new DeathGoalValidator(dataSourceContext.deathMessageList());
-        ValidationResult result = deathGoalValidator.validate(new ValidationResult.ValidationResultBuilder(), json);
+        DeathGoalValidator deathGoalValidator = new DeathGoalValidator(dataSourceContext.deathMessageList(), -1);
+        ValidationResult result = deathGoalValidator.validate(new ValidationResult.ValidationResultBuilder(), json, progress -> {});
         assertFalse(result.isValid());
         assertEquals(1, result.getViolations().size());
         Violation violation = result.getViolations().get(0);

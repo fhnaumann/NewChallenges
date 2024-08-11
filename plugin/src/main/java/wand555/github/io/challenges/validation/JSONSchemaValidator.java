@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+import wand555.github.io.challenges.files.ProgressListener;
 
 import java.io.InputStream;
 
@@ -19,7 +20,7 @@ public class JSONSchemaValidator extends Validator {
     }
 
     @Override
-    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, String json) {
+    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, String json, ProgressListener progressListener) {
         Schema schema = SchemaLoader.load(jsonSchema);
         try {
             schema.validate(new JSONObject(json));

@@ -14,18 +14,22 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class BlockBreakGoalValidator extends BlockBreakTypeValidator {
-    public BlockBreakGoalValidator(List<MaterialJSON> dataSource) {
+
+    private final int teamIdx;
+
+    public BlockBreakGoalValidator(List<MaterialJSON> dataSource, int teamIdx) {
         super(dataSource);
+        this.teamIdx = teamIdx;
     }
 
     @Override
     protected List<String> getCodes(Model challengesSchema) {
-        return ModelMapper.collectables2Codes(challengesSchema.getGoals().getBlockBreakGoal().getBroken());
+        return TypeValidatorHelper.codes(challengesSchema, teamIdx, goalsConfig -> goalsConfig.getBlockBreakGoal().getBroken());
     }
 
 
     @Override
     protected String getPathToCurrentCollectables() {
-        return "goals/blockBreakGoal/broken";
+        return TypeValidatorHelper.goalPath("blockBreakGoal/broken", teamIdx);
     }
 }

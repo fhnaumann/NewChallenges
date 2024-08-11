@@ -9,11 +9,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import wand555.github.io.challenges.DataSourceContext;
 import wand555.github.io.challenges.ValidationUtil;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
-import wand555.github.io.challenges.criteria.goals.blockbreakgoal.BlockBreakGoalValidationTest;
 import wand555.github.io.challenges.validation.Validation;
 import wand555.github.io.challenges.validation.ValidationResult;
 import wand555.github.io.challenges.validation.Violation;
-import wand555.github.io.challenges.validation.goals.BlockBreakGoalValidator;
 import wand555.github.io.challenges.validation.goals.BlockPlaceGoalValidator;
 
 import java.io.IOException;
@@ -47,8 +45,11 @@ public class BlockPlaceGoalValidationTest {
     @ParameterizedTest
     @MethodSource("provideJSONs")
     public void testCodes(String json, ValidationResult expected) {
-        ValidationResult isolated = new BlockPlaceGoalValidator(dataSourceContext.materialJSONList()).validate(new ValidationResult.ValidationResultBuilder(),
-                                                                                                               json
+        ValidationResult isolated = new BlockPlaceGoalValidator(dataSourceContext.materialJSONList(),
+                                                                -1
+        ).validate(new ValidationResult.ValidationResultBuilder(),
+                   json,
+                   progress -> {}
         );
         ValidationResult full = Validation.modernValidate(json,
                                                           CriteriaUtil.loadJSONSchemaStream(),

@@ -75,20 +75,26 @@
   import { useToast } from 'primevue/usetoast'
   import { useModelStore } from '@/stores/model'
   import Ajv from 'ajv'
-  import { onMounted, ref } from 'vue'
+  import { inject, onMounted, ref } from 'vue'
+  import type { Model } from '@/models/model'
 
   const toast = useToast()
-  const { model } = useModelStore()
 
   const validJSON = ref(false)
   const errorMessages = ref<string>('')
   const ajv = new Ajv({ allErrors: true })
 
+  const model = ref<Model | null>(null)
+
+  const dialogRef = inject('dialogRef');
+
   onMounted(() => {
-    validateConsistency()
+    const params = (dialogRef as any).value.data
+    model.value = params.copyModel
+    validateConsistency(model.value!)
   })
 
-  function validateConsistency() {
+  function validateConsistency(model: Model) {
     const validate = ajv.compile(challengesSchema)
     const isValid = validate(model)
     validJSON.value = isValid as boolean
@@ -120,7 +126,7 @@
   }
 
   function jsonifyConfigSettings() {
-    return JSON.stringify(model, null, 2)
+    return JSON.stringify(model.value, null, 2)
   }
 
   function downloadAsFile() {
@@ -128,7 +134,7 @@
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = model.metadata.name + ".json"
+    link.download = model.value!.metadata.name + ".json"
     document.body.append(link)
     link.click()
     document.body.removeChild(link)

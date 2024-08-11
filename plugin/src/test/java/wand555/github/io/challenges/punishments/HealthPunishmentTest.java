@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
 import wand555.github.io.challenges.mapping.MaterialJSON;

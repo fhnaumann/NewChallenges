@@ -1,8 +1,8 @@
 package wand555.github.io.challenges.validation;
 
 import org.bukkit.Keyed;
+import wand555.github.io.challenges.files.ProgressListener;
 import wand555.github.io.challenges.generated.Model;
-import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class CodeValidator<T extends DataSourceJSON<K>, K extends Keyed> extends
     }
 
     @Override
-    protected ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema) {
+    public ValidationResult.ValidationResultBuilder performValidation(ValidationResult.ValidationResultBuilder builder, Model challengesSchema, ProgressListener progressListener) {
         return performCodeValidation(builder, challengesSchema);
     }
 

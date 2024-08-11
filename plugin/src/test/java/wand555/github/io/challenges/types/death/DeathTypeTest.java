@@ -108,7 +108,6 @@ public class DeathTypeTest {
     public void testOnDeathNoTotem() {
         String expectedKey = "death.attack.cactus";
         DeathMessage expectedDeathMessage = new DeathMessage(expectedKey,
-                                                             "(?<player>.*?) was pricked to death",
                                                              "[player] was pricked to death"
         );
         PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
@@ -126,7 +125,6 @@ public class DeathTypeTest {
 
         String expectedKey = "death.attack.cactus";
         DeathMessage expectedDeathMessage = new DeathMessage(expectedKey,
-                                                             "(?<player>.*?) was pricked to death",
                                                              "[player] was pricked to death"
         );
         PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
@@ -147,7 +145,6 @@ public class DeathTypeTest {
     private static DeathMessage death_attack_cramming() {
         return new DeathMessage(
                 "death.attack.cramming",
-                "(?<player>.*?) was squished too much",
                 "[player] was squished too much"
         );
     }
@@ -155,7 +152,6 @@ public class DeathTypeTest {
     private static DeathMessage death_attack_fireworks() {
         return new DeathMessage(
                 "death.attack.fireworks",
-                "(?<player>.*?) went off with a bang",
                 "[player] went off with a bang"
         );
     }
@@ -163,7 +159,6 @@ public class DeathTypeTest {
     private static DeathMessage death_attack_fireworks_player() {
         return new DeathMessage(
                 "death.attack.fireworks.player",
-                "(?<player>.*?) went off with a bang while fighting (?<mob>.*?)",
                 "[player] went off with a bang while fighting [mob]"
         );
     }
@@ -171,7 +166,6 @@ public class DeathTypeTest {
     private static DeathMessage death_attack_fireworks_item() {
         return new DeathMessage(
                 "death.attack.fireworks.item",
-                "(?<player>.*?) went off with a bang due to a firework fired from (?<item>.*?) by (?<mob>.*?)",
                 "[player] went off with a bang due to a firework fired from [item] by [mob]"
         );
     }
@@ -179,7 +173,6 @@ public class DeathTypeTest {
     private static DeathMessage death_anvil_attack() {
         return new DeathMessage(
                 "death.attack.anvil",
-                "(?<player>.*?) was squashed by a falling anvil",
                 "[player] was squashed by a falling anvil"
         );
     }
@@ -187,7 +180,6 @@ public class DeathTypeTest {
     private static DeathMessage death_anvil_attack_player() {
         return new DeathMessage(
                 "death.attack.anvil.player",
-                "(?<player>.*?) was squashed by a falling anvil while fighting (?<mob>.*?)",
                 "[player] was squashed by a falling anvil while fighting [mob]"
         );
     }

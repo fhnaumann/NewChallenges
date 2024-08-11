@@ -52,7 +52,9 @@ public class DeathType extends Type<DeathData> {
         String deathMessageKey = ((TranslatableComponent) event.deathMessage()).key();
         logger.info("Received death message '%s'.".formatted(deathMessageKey));
 
-        deathMessage = DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), deathMessageKey);
+        // fix: the default death message keys contain upper-case letters, which are not allowed as keys in minecraft.
+        // The data source is already prepared to expect everything in lower case.
+        deathMessage = DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), deathMessageKey.toLowerCase());
 
         triggerIfCheckPasses(new DeathData(event.getPlayer(), 1, deathMessage, usedTotem.get(event.getPlayer())),
                              event

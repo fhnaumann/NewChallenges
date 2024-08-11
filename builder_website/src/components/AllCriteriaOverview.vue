@@ -82,7 +82,7 @@
 
   function showCodeDisplay() {
     // map goals to a per-team basis
-    mapGoals2PerTeamBasis(model)
+    const copy = mapGoals2PerTeamBasis(model)
 
     dialog.open(CodeDisplay, {
       props: {
@@ -95,19 +95,22 @@
             class: 'w-[64rem] h-5/6 bg-surface-0'
           }
         }
+      },
+      data: {
+        copyModel: copy
       }
     })
   }
 
-  function mapGoals2PerTeamBasis(model: Model) {
-    if(model.teams !== undefined && model.teams!.length > 0) {
-      model.teams?.forEach(team => {
-        team.goals = structuredClone(toRaw(model.goals!))
+  function mapGoals2PerTeamBasis(model: Model): Model {
+    const copy = structuredClone(toRaw(model))
+    if(copy.teams !== undefined && copy.teams!.length > 0) {
+      copy.teams?.forEach(team => {
+        team.goals = structuredClone(toRaw(copy.goals!))
       })
-      // TODO: If a user closes the popup containing the code while its still loading, then all goals may be lost
-      model.goals = {}
+      copy.goals = {}
     }
-
+    return copy
   }
 
   function showChangeMetadata() {

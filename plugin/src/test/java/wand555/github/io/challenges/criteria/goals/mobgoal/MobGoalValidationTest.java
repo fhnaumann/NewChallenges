@@ -37,8 +37,11 @@ public class MobGoalValidationTest {
         Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
                 "multiple_mobs_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        ValidationResult result = new MobGoalValidator(dataSourceContext.entityTypeJSONList()).validate(new ValidationResult.ValidationResultBuilder(),
-                                                                                                        json
+        ValidationResult result = new MobGoalValidator(dataSourceContext.entityTypeJSONList(),
+                                                       -1
+        ).validate(new ValidationResult.ValidationResultBuilder(),
+                   json,
+                   progress -> {}
         );
         assertTrue(result.isValid());
     }
@@ -48,8 +51,11 @@ public class MobGoalValidationTest {
         Object objJSON = objectMapper.readValue(MobGoalValidationTest.class.getResourceAsStream(
                 "invalid_mob_code_mob_goal.json"), Object.class);
         String json = objectMapper.writeValueAsString(objJSON);
-        MobGoalValidator mobGoalValidator = new MobGoalValidator(dataSourceContext.entityTypeJSONList());
-        ValidationResult result = mobGoalValidator.validate(new ValidationResult.ValidationResultBuilder(), json);
+        MobGoalValidator mobGoalValidator = new MobGoalValidator(dataSourceContext.entityTypeJSONList(), -1);
+        ValidationResult result = mobGoalValidator.validate(new ValidationResult.ValidationResultBuilder(),
+                                                            json,
+                                                            progress -> {}
+        );
         assertFalse(result.isValid());
         assertEquals(1, result.getViolations().size());
         Violation violation = result.getViolations().get(0);

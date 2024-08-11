@@ -13,26 +13,17 @@ import java.util.regex.Pattern;
 public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed, Translatable {
 
     private final String key;
-    private final String message;
     private final String messageWithDummyData;
-    private final Pattern pattern;
 
-    public DeathMessage(@JsonProperty("code") String key, @JsonProperty("deathMessage") String message, @JsonProperty("deathMessageWithDummyData") String messageWithDummyData) {
+    public DeathMessage(@JsonProperty("code") String key, @JsonProperty("deathMessageWithDummyData") String messageWithDummyData) {
         this.key = key;
-        this.message = message;
         this.messageWithDummyData = messageWithDummyData;
-        this.pattern = Pattern.compile(message);
     }
 
     @Deprecated
     public Matcher getMatcherFor(String deathMessageFromEvent) {
         // message from event contains placeholders
-
-        return pattern.matcher(deathMessageFromEvent);
-    }
-
-    public String getMessage() {
-        return message;
+        return null;
     }
 
     public String getMessageWithDummyData() {
@@ -63,7 +54,7 @@ public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed, Transl
             return false;
         }
         DeathMessage that = (DeathMessage) o;
-        return Objects.equals(key, that.key) && Objects.equals(message, that.message) && Objects.equals(
+        return Objects.equals(key, that.key) && Objects.equals(
                 messageWithDummyData,
                 that.messageWithDummyData
         );
@@ -71,14 +62,13 @@ public class DeathMessage implements DataSourceJSON<DeathMessage>, Keyed, Transl
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, message, messageWithDummyData);
+        return Objects.hash(key, messageWithDummyData);
     }
 
     @Override
     public String toString() {
         return "DeathMessage{" +
                 "key='" + key + '\'' +
-                ", message='" + message + '\'' +
                 ", messageWithDummyData='" + messageWithDummyData + '\'' +
                 '}';
     }

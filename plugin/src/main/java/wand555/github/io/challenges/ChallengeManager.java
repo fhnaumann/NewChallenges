@@ -1,5 +1,6 @@
 package wand555.github.io.challenges;
 
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -63,6 +64,9 @@ public class ChallengeManager implements StatusInfo {
             //throw new RuntimeException("No goals specified!");
         }
         gameState = GameState.RUNNING;
+
+        // clear any title and subtitle messages from when the challenge was loaded
+        Bukkit.getOnlinePlayers().forEach(Audience::clearTitle);
 
         Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
                 context.plugin(),

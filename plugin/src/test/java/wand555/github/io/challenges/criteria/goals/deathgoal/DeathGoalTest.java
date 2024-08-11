@@ -149,7 +149,6 @@ public class DeathGoalTest {
                 player,
                 1,
                 new DeathMessage("death.attack.cactus",
-                                 "(?<player>.*?) was pricked to death",
                                  "[player] was pricked to death"
                 ),
                 usedTotem
@@ -161,7 +160,6 @@ public class DeathGoalTest {
                 player,
                 1,
                 new DeathMessage("death.attack.cactus",
-                                 "(?<player>.*?) was pricked to death",
                                  "[player] was pricked to death"
                 ),
                 usedTotem

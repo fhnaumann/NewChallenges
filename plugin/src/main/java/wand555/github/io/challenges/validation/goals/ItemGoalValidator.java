@@ -13,17 +13,20 @@ import java.util.List;
 
 public class ItemGoalValidator extends ItemTypeValidator {
 
-    public ItemGoalValidator(List<MaterialJSON> dataSource) {
+    private final int teamIdx;
+
+    public ItemGoalValidator(List<MaterialJSON> dataSource, int teamIdx) {
         super(dataSource);
+        this.teamIdx = teamIdx;
     }
 
     @Override
     protected List<String> getCodes(Model challengesSchema) {
-        return ModelMapper.collectables2Codes(challengesSchema.getGoals().getItemGoal().getItems());
+        return TypeValidatorHelper.codes(challengesSchema, teamIdx, goalsConfig -> goalsConfig.getItemGoal().getItems());
     }
 
     @Override
     protected String getPathToCurrentCollectables() {
-        return "goals/itemGoal/items";
+        return TypeValidatorHelper.goalPath("itemGoal/items");
     }
 }

@@ -22,6 +22,7 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.types.mob.MobData;
 
 import java.io.IOException;
@@ -57,10 +58,12 @@ public class MobGoalFixedOrderTest {
         when(dataSourceContext.entityTypeJSONList()).thenReturn(CriteriaUtil.loadEntities().getData());
         ChallengeManager manager = mock(ChallengeManager.class);
         when(manager.isRunning()).thenReturn(true);
+        when(manager.getTeams()).thenReturn(List.of());
         context = mock(Context.class);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
+        Team.initAllTeam(context, -1);
         messageHelper = spy(new MobGoalMessageHelper(context));
         collectedInventory = mock(MobGoalCollectedInventory.class);
     }

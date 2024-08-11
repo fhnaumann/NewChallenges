@@ -1,6 +1,6 @@
 package wand555.github.io.challenges.commands;
 
-import dev.jorel.commandapi.CommandAPI;
+import com.google.common.base.Strings;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.IStringTooltip;
 import dev.jorel.commandapi.StringTooltip;
@@ -10,7 +10,8 @@ import dev.jorel.commandapi.arguments.CustomArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 import dev.jorel.commandapi.exceptions.WrapperCommandSyntaxException;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -20,18 +21,23 @@ import org.jetbrains.annotations.Nullable;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.commands.team.TeamOverviewPrinter;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
+import wand555.github.io.challenges.files.FileManager;
+import wand555.github.io.challenges.files.ProgressListener;
 import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.utils.ActionHelper;
+import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static wand555.github.io.challenges.commands.CommandUtil.failWith;
 import static wand555.github.io.challenges.commands.CommandUtil.failWrapperWith;
@@ -42,10 +48,15 @@ public class LoadCommand {
 
     private static final String CMD_NODE_NAME = "challenge-name";
 
+    private static CompletableFuture<Context> loadingFuture;
+
     public static void registerLoadCommand(Context context, ChallengeFilesHandler challengeFilesHandler) {
         new CommandAPICommand("load")
                 .withOptionalArguments(customLoadArgument(context, challengeFilesHandler))
                 .executesPlayer((sender, args) -> {
+                    if(loadingFuture != null && !loadingFuture.isDone()) {
+                        throw failWrapperWith(context, "load.already_loading");
+                    }
                     ChallengeFilesHandler.ChallengeLoadStatus toLoad = args.getByClass(CMD_NODE_NAME,
                                                                                        ChallengeFilesHandler.ChallengeLoadStatus.class
                     );
@@ -115,104 +126,167 @@ public class LoadCommand {
             context.challengeManager().unload();
         }
 
-        try {
-            // attempt to load the specified challenge
-            ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.start.title"
-            ));
+        loadFile(context, challengeFilesHandler, toLoad.file());
+    }
 
-            // reset scoreboard teams
-            Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+    private static void sendLoadingStarted(Context context) {
+        // attempt to load the specified challenge
+        ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.start.title"
+        ));
+    }
 
-            scoreboard.getTeams().forEach(org.bukkit.scoreboard.Team::unregister);
-            Objective objective = scoreboard.getObjective("teams");
-            if(objective != null) {
-                objective.unregister();
-            }
+    private static void resetScoreboard() {
+        // reset scoreboard teams
+        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
 
-            // how the hell is "/scoreboard objectives setdisplay list" achieved using the spigot API???
-            Objective objective1 = scoreboard.getObjective(DisplaySlot.PLAYER_LIST);
-            if(objective1 != null) {
-                objective1.unregister();
-            }
+        scoreboard.getTeams().forEach(org.bukkit.scoreboard.Team::unregister);
+        Objective objective = scoreboard.getObjective("teams");
+        if(objective != null) {
+            objective.unregister();
+        }
 
-            loadFile(context, challengeFilesHandler, toLoad.file());
-
-            Component successTitle = ComponentUtil.formatTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.success.title"
-            );
-            Component successSubtitle = ComponentUtil.formatSubTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.success.subtitle"
-            );
-            ActionHelper.showAllTitle(successTitle, successSubtitle);
-
-            Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.success.chat"
-            );
-            Bukkit.broadcast(successChat);
-            if(context.challengeManager().hasTeams()) {
-                Bukkit.getOnlinePlayers().forEach(player -> {
-                    Team team = Team.getTeamPlayerIn(context, player.getUniqueId());
-                    Component teamOverview = TeamOverviewPrinter.createTeamsOverviewForPlayer(context, player, team != Team.ALL_TEAM ? team : null);
-                    player.sendMessage(teamOverview);
-                });
-            }
-
-        } catch(LoadValidationException e) {
-            Component failureTitle = ComponentUtil.formatSubTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.failure.title"
-            );
-            Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.failure.subtitle"
-            );
-            ActionHelper.showAllTitle(failureTitle,
-                                      failureSubtitle,
-                                      Title.Times.times(Duration.ofSeconds(1),
-                                                        Duration.ofSeconds(10),
-                                                        Duration.ofSeconds(1)
-                                      )
-            );
-            Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                    context.plugin(),
-                    context.resourceBundleContext().miscResourceBundle(),
-                    "challenges.validation.failure.chat",
-                    Map.of(),
-                    false
-            );
-            Bukkit.broadcast(failureChat);
-            Bukkit.broadcast(e.getValidationResult().asFormattedComponent(context));
-
-            throw failWrapperWith(context, "load.invalid_challenge");
+        // how the hell is "/scoreboard objectives setdisplay list" achieved using the spigot API???
+        Objective objective1 = scoreboard.getObjective(DisplaySlot.PLAYER_LIST);
+        if(objective1 != null) {
+            objective1.unregister();
         }
     }
 
-    public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) throws LoadValidationException {
-        FileManager.readFromFile(toLoad, context);
-        // TODO: ugly access
-        // context.plugin().tempContext = newContext;
+    private static void sendLoadingSuccess(Context context) {
+        Component successTitle = ComponentUtil.formatTitleMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.success.title"
+        );
+        Component successSubtitle = ComponentUtil.formatSubTitleMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.success.subtitle"
+        );
+        ActionHelper.showAllTitle(successTitle, successSubtitle);
 
-        challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
-
-        // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
-        // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
-        // restarting the server
-        if(context.plugin().urlReminder != null) {
-            context.plugin().urlReminder.stop();
-            context.plugin().urlReminder = null;
+        Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.success.chat"
+        );
+        Bukkit.broadcast(successChat);
+        if(context.challengeManager().hasTeams()) {
+            Bukkit.getOnlinePlayers().forEach(player -> {
+                Team team = Team.getTeamPlayerIn(context, player.getUniqueId());
+                Component teamOverview = TeamOverviewPrinter.createTeamsOverviewForPlayer(context,
+                                                                                          player,
+                                                                                          team != Team.ALL_TEAM
+                                                                                          ? team
+                                                                                          : null
+                );
+                player.sendMessage(teamOverview);
+            });
         }
-        // return newContext;
+    }
+
+    private static void sendLoadingFailed(Context context, LoadValidationException e) {
+        Component failureTitle = ComponentUtil.formatSubTitleMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.failure.title"
+        );
+        Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.failure.subtitle"
+        );
+        ActionHelper.showAllTitle(failureTitle,
+                                  failureSubtitle,
+                                  Title.Times.times(Duration.ofSeconds(1),
+                                                    Duration.ofSeconds(10),
+                                                    Duration.ofSeconds(1)
+                                  )
+        );
+        Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.failure.chat",
+                Map.of(),
+                false
+        );
+        Bukkit.broadcast(failureChat);
+        Bukkit.broadcast(e.getValidationResult().asFormattedComponent(context));
+    }
+
+    private static void reassignContext(Context old, Context newContext) {
+        // Do not delete (this is so ugly...)
+        old = newContext;
+    }
+
+    private static void handleProgress(Context context, double progress) {
+        logger.fine("Loading progress: %s".formatted(progress));
+        Component title = ComponentUtil.formatTitleMessage(
+                context.plugin(),
+                context.resourceBundleContext().miscResourceBundle(),
+                "challenges.validation.start.title"
+        );
+        Component subtitle = progressBar(context, progress);
+        ActionHelper.showAllTitle(title,
+                                  subtitle,
+                                  Title.Times.times(Duration.ZERO, Duration.ofMinutes(2), Duration.ZERO)
+        );
+    }
+
+    private static Component progressBar(Context context, double current) {
+        int currentInt = (int) (current * 100);
+        Component completed = Component.text(IntStream.range(0,
+                                                             currentInt
+                                             ).mapToObj(i -> ":").collect(Collectors.joining("")),
+                                             TextColor.fromHexString(ResourceBundleHelper.getFromBundle(context.plugin(),
+                                                                                                        context.resourceBundleContext().commandsResourceBundle(),
+                                                                                                        "chat.color.highlight"
+                                             ))
+        );
+        Component missing = Component.text(IntStream.range(currentInt,
+                                                           100
+                                           ).mapToObj(i -> ":").collect(Collectors.joining("")),
+                                           TextColor.fromHexString(ResourceBundleHelper.getFromBundle(context.plugin(),
+                                                                                                      context.resourceBundleContext().commandsResourceBundle(),
+                                                                                                      "chat.color.default"
+                                           ))
+        );
+        return completed.append(missing);
+    }
+
+    public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) {
+        sendLoadingStarted(context);
+        resetScoreboard();
+        loadingFuture = FileManager.readFromFile(toLoad, context, progress -> handleProgress(context, progress))
+                   .exceptionally(throwable -> {
+                       if(throwable instanceof LoadValidationException loadValidationException) {
+                           sendLoadingFailed(context, loadValidationException);
+                           return context;
+                       } else {
+                           logger.severe("Loading failed: %s".formatted(throwable.getMessage()));
+                           return null;
+                       }
+                   })
+
+                   .whenComplete((newContext, throwable) -> {
+                       if(newContext == null) {
+                           return;
+                       }
+                       reassignContext(context, newContext);
+                       challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
+
+                       // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
+                       // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
+                       // restarting the server
+                       if(context.plugin().urlReminder != null) {
+                           context.plugin().urlReminder.stop();
+                           context.plugin().urlReminder = null;
+                       }
+                       sendLoadingSuccess(context);
+                   });
     }
 
     private static @Nullable ChallengeFilesHandler.ChallengeLoadStatus challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {

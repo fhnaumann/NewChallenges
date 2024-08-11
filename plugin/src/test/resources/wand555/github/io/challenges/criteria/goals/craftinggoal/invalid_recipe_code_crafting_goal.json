@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "name": "my-challenge",
+    "whenCreated": "2024-08-11T10:43:40.074Z",
+    "lastModified": "2024-08-11T10:43:40.074Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {}
+  },
+  "goals": {
+    "craftingGoal": {
+      "crafted": [
+        {
+          "collectableName": "challenges-NOT_A_VALID_RECIPE",
+          "collectableData": {}
+        }
+      ]
+    }
+  }
+}

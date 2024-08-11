@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.mapping.*;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
@@ -90,8 +91,8 @@ public class FileManagerTest {
         String readJSON = objectMapper.writeValueAsString(objectMapper.readValue(FileManagerTest.class.getResourceAsStream(
                 "integration/full1.json"), Object.class));
         File file = Paths.get(FileManagerTest.class.getResource("integration/full1.json").toURI()).toFile();
-        assertDoesNotThrow(() -> FileManager.readFromFile(file, context));
-        FileManager.readFromFile(file, context);
+        assertDoesNotThrow(() -> FileManager.readFromFile(file, context, progress -> {}));
+        FileManager.readFromFile(file, context, progress -> {});
         // TODO create expectations programmatically and compare
         assertDoesNotThrow(() -> FileManager.writeToFile(challengeManager, new StringWriter()));
     }
