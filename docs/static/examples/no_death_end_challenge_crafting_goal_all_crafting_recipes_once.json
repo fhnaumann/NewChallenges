@@ -1,0 +1,4127 @@
+{
+  "metadata": {
+    "name": "no_death_end_challenge_crafting_goal_all_crafting_recipes_once.json",
+    "whenCreated": "2024-06-23T14:17:48.131Z",
+    "lastModified": "2024-06-23T14:17:48.131Z",
+    "createdBy": "Wiki",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      }
+    }
+  },
+  "goals": {
+    "craftingGoal": {
+      "crafted": [
+        {
+          "collectableName": "challenges-diorite_wall_from_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_stairs_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_slab_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_from_weathered_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_wall_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_sandstone_slab_from_cut_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_slab_from_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_slab_from_waxed_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_slab_from_copper_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_from_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_stone_bricks_from_stone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_bricks_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_stairs_from_oxidized_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_slab_from_end_stone_brick_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_wall_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone_slab_from_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_sandstone_from_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_stairs_from_stone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_stairs_from_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_brick_stairs_from_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_wall_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite_wall_from_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_slab_from_exposed_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_wall_from_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_slab_from_oxidized_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_red_sandstone_slab_from_smooth_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_stairs_from_copper_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_stairs_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_basalt_from_basalt_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_sandstone_stairs_from_smooth_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite_wall_from_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_slab_from_polished_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_brick_wall_from_red_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_stairs_from_waxed_weathered_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite_slab_from_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_stairs_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_slab_from_exposed_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobblestone_wall_from_cobblestone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_from_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_brick_slab_from_mud_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_red_sandstone_from_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_slab_from_waxed_weathered_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_wall_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_stone_slab_from_smooth_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blackstone_wall_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_slab_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite_slab_from_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite_stairs_from_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_slab_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_stairs_from_oxidized_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_slab_from_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_slab_from_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_nether_bricks_from_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone_wall_from_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brick_slab_from_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_bricks_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_slab_from_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_slab_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_brick_slab_from_red_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_prismarine_slab_from_dark_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_slab_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_stone_bricks_stone_from_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_wall_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_slab_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_stairs_from_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone_slab_from_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_stairs_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_brick_stairs_from_red_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tiles_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_slab_from_deepslate_tiles_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_brick_slab_from_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_stairs_from_waxed_oxidized_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_slab_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_wall_from_deepslate_tiles_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_bricks_from_end_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_brick_slab_from_mossy_stone_brick_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_bricks_from_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_quartz_slab_from_smooth_quartz_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_stairs_from_purpur_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_bricks_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_slab_from_waxed_oxidized_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_slab_from_oxidized_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brick_wall_from_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_slab_from_end_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_slab_from_waxed_exposed_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_deepslate_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_stairs_from_polished_blackstone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_stairs_from_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_stairs_from_quartz_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_stairs_from_exposed_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone_stairs_from_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_slab_from_polished_blackstone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_sandstone_slab_from_smooth_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_red_sandstone_slab_from_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_wall_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_slab_from_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_slab_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_wall_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_from_waxed_oxidized_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_brick_stairs_from_mud_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_stairs_from_weathered_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_slab_from_polished_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_stairs_from_waxed_weathered_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blackstone_stairs_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_from_waxed_weathered_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_slab_from_weathered_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_red_sandstone_slab_from_cut_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_stairs_from_mossy_cobblestone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_polished_blackstone_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diorite_stairs_from_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_sandstone_from_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_stairs_from_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_slab_from_waxed_copper_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_stairs_from_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blackstone_slab_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brick_stairs_from_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_stairs_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_slab_from_polished_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone_wall_from_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_brick_wall_from_mud_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_stairs_from_waxed_exposed_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tiles_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_wall_from_end_stone_brick_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_wall_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_from_copper_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diorite_slab_from_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_stairs_from_polished_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_stairs_from_deepslate_tiles_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_brick_wall_from_mossy_stone_brick_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_from_oxidized_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_wall_from_end_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobbled_deepslate_slab_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_slab_from_waxed_exposed_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_slab_from_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_slab_from_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_quartz_stairs_from_smooth_quartz_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_polished_blackstone_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_stairs_from_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_stairs_from_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_stairs_from_weathered_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_from_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_stairs_from_waxed_exposed_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_wall_from_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_slab_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_slab_from_waxed_oxidized_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_wall_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_slab_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_from_exposed_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_slab_from_mossy_cobblestone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite_stairs_from_andesite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_slab_from_stone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_slab_from_waxed_weathered_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_stairs_from_polished_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_stairs_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone_stairs_from_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_wall_from_polished_blackstone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_red_sandstone_stairs_from_smooth_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobbled_deepslate_wall_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_slab_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_stairs_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_stairs_from_waxed_oxidized_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_slab_from_purpur_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_stairs_from_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobbled_deepslate_stairs_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_stairs_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_slab_from_granite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_wall_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_stairs_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobblestone_slab_from_cobblestone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_brick_stairs_from_mossy_stone_brick_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_bricks_from_quartz_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_stairs_from_exposed_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_bricks_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_slab_from_deepslate_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobblestone_stairs_from_cobblestone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_stairs_from_end_stone_brick_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_quartz_block_from_quartz_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_wall_from_stone_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_stairs_from_waxed_copper_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_slab_from_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_prismarine_stairs_from_dark_prismarine_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_pillar_from_purpur_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_stairs_from_polished_diorite_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_wall_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_slab_from_weathered_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_from_waxed_exposed_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_stairs_from_end_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_wall_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_pillar_from_quartz_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_stairs_from_waxed_cut_copper_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_stairs_from_polished_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tiles_from_cobbled_deepslate_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_wall_from_mossy_cobblestone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_stairs_from_nether_bricks_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_sandstone_slab_from_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_stairs_from_polished_blackstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_walls_from_stone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_from_waxed_copper_block_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_red_sandstone_from_red_sandstone_stonecutting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_dye_from_dandelion",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_deepslate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-rabbit_stew_from_brown_mushroom",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_dark_oak_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stonecutter",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-soul_torch",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bone_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raw_iron",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-eye_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_nugget",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-melon",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_wart_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobblestone_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-coal_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raw_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sugar_from_honey_bottle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-slime_ball",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-leather_chestplate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-beehive",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-map_extending",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_light_gray_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-writable_book",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_dye_from_pitcher_plant",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-glow_item_frame",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-leather_helmet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_mosaic",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-scaffolding",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-emerald_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_apple",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_nether_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_pickaxe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-flower_pot",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_dye_from_oxeye_daisy",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-copper_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-recovery_compass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_sword",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_dye_from_blue_red_white_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_chest_raft",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_prismarine_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-honey_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobblestone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_sandstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_red_sandstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_boots",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_dye_from_red_white_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_basalt",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-conduit",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_green_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mojang_banner_pattern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_pink_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-fire_charge",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_hoe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sticky_piston",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sentry_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-redstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-emerald",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_green_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wooden_pickaxe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-powered_rail",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-silence_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_dye_from_torchflower",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_white_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stick_from_bamboo_item",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-tinted_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_oak_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-comparator",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lodestone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-repeater",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-fishing_rod",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dried_kelp_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_leggings",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_crimson_hyphae",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wayfinder_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_light_blue_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_red_sandstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mushroom_stew",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_dye_from_tulip",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_dye_from_beetroot",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-beacon",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-tnt",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_bricks_from_vine",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_white_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_yellow_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-flint_and_steel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_dye_from_orange_tulip",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_chestplate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-vex_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_orange_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_wool_from_string",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_axe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_light_blue_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-decorated_pot_simple",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_sword",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_dye_from_sunflower",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diorite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_hyphae",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dripstone_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-glistering_melon_slice",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_hoe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_ingot_from_iron_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-snow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-clock",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_yellow_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-grindstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_ice",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_brown_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_leggings",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lectern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_sword",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_ingot_from_nuggets",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_sandstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-clay",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_pickaxe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_raft",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_bookshelf",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_dye_from_allium",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_stone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-ladder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_lime_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-redstone_torch",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-moss_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_black_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-furnace_minecart",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_from_vine",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-target",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_bricks_from_moss_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cake",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-leather_boots",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-netherite_ingot_from_netherite_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-armor_stand",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-leather_leggings",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_dye_from_cornflower",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_cherry_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-barrel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_hyphae",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_black_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-book",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_stone_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wooden_shovel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smithing_table",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_gray_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magma_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-shaper_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cauldron",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_copper_block_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brush",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_dye_from_poppy",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_shovel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_fungus_on_a_stick",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_slab_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-hay_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobblestone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wild_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-snout_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-minecart",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_sandstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chest",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-rail",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_sword",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-creeper_banner_pattern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_shovel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_gray_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-soul_lantern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-copper_ingot",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_dye_from_lily_of_the_valley",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_dye_from_pink_petals",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_gray_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_light_gray_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_sandstone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blaze_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chain",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-rabbit_stew_from_red_mushroom",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_boots",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_chestplate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_stairs_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_chestplate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-netherite_ingot",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-flower_banner_pattern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-netherite_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_dye_from_red_yellow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crossbow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_dye_from_azure_bluet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_dye_from_white_tulip",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-calibrated_sculk_sensor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bowl",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_dye_from_blue_red_pink",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sugar_from_sugar_cane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_dye_from_black_white_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spectral_arrow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-tnt_minecart",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-slime_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wooden_hoe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_pillar",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_red_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_magenta_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-netherite_upgrade_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_magenta_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-note_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_orange_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-muddy_mangrove_roots",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-piston",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-ward_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_crystal",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_red_sandstone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_pickaxe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-shulker_box",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dispenser",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wooden_axe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-daylight_detector",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diorite_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_from_moss_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jack_o_lantern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-tripwire_hook",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-trapped_chest",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-hopper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lantern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raw_gold",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dried_kelp",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-ender_chest",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gold_nugget",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_bars",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-beetroot_soup",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_axe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_helmet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cartography_table",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_blue_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blast_furnace",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_dye_from_lilac",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_red_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_polished_blackstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-turtle_helmet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobbled_deepslate_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-fletching_table",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_lime_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_dye_from_gray_white_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_cobblestone_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spyglass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_dye_from_purple_and_pink",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purpur_pillar",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-heavy_weighted_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_shovel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_leggings",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_birch_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dropper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-redstone_lamp",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_rod",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_magenta_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raiser_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_mosaic_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_helmet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_dye_from_blue_orchid",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_cut_copper_slab_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bone_meal_from_bone_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bread",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-torch",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lever",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_blue_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-map",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-detector_rail",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-shield",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blackstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_light_blue_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-painting",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_shovel",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_red_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crafting_table",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_copper_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raw_gold_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-anvil",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_acacia_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gold_ingot_from_nuggets",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-amethyst_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_slab_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wooden_sword",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bone_meal",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-honey_bottle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_quartz_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-carrot_on_a_stick",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raw_copper_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_prismarine",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-leather_horse_armor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cookie",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-raw_iron_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lapis_lazuli",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lightning_rod",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-redstone_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-shears",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-wheat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-honeycomb_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-music_disc_5",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_helmet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-coal",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-compass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_pink_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-item_frame",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-loom",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smoker",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-skull_banner_pattern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-coast_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_dye_from_pink_tulip",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-arrow",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dune_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mossy_stone_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-granite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-melon_seeds",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_stairs_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_cyan_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-firework_rocket_simple",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_dye_from_wither_rose",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gray_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-andesite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_boots",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tile_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_exposed_cut_copper_slab_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stick",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brewing_stand",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_yellow_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_mosaic_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-host_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_white_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_light_gray_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spire_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_blackstone_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_axe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-packed_ice",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-golden_carrot",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blackstone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_purple_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_orange_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_cyan_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_oxidized_copper_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diorite_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-glowstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-respawn_anchor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pumpkin_seeds",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobbled_deepslate_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_nether_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_red_sandstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magma_cream",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blackstone_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bookshelf",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_prismarine_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lapis_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_chest_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brown_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-snow_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_axe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_lime_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-composter",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-ender_eye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sandstone_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jukebox",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-white_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-coarse_dirt",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chest_minecart",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-sea_lantern",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-yellow_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-green_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_blue_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_weathered_cut_copper_stairs_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-prismarine_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_dye_from_rose_bush",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-exposed_cut_copper_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-fermented_spider_eye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-magenta_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_hoe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diamond_hoe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_cyan_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pumpkin_pie",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_mangrove_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gold_ingot_from_gold_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-jungle_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_weighted_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cobbled_deepslate_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-tide_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-glass_bottle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-weathered_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_black_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_green_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_granite",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mud_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-hopper_minecart",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-blue_stained_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oxidized_cut_copper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_banner",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-chiseled_quartz_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-soul_campfire",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_warped_hyphae",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-copper_ingot_from_waxed_copper_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_pink_carpet",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-leather",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-end_stone_bricks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-waxed_cut_copper_stairs_from_honeycomb",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_brown_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_stained_glass_pane_from_glass_pane",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_trapdoor",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_gray_concrete_powder",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-smooth_quartz_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-furnace",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-diorite_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_brown_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-activator_rail",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_hanging_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-crimson_pressure_plate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-oak_planks",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_candle",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-warped_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-rib_armor_trim_smithing_template",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-mangrove_door",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-purple_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-red_sandstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stone_brick_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-iron_pickaxe",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-quartz_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_sandstone",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_sign",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_button",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-light_blue_dye_from_blue_white_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-nether_brick_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cyan_dye",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-deepslate_tiles",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-orange_terracotta",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bamboo_fence",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-enchanting_table",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lead",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-birch_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-gold_block",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-spruce_boat",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_diorite_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-observer",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-campfire",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-paper",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_deepslate_wall",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dark_oak_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-packed_mud",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-brick_stairs",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_purple_bed",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-lime_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_spruce_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-acacia_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cherry_fence_gate",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-stripped_jungle_wood",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-pink_dye_from_peony",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-bucket",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-cut_red_sandstone_slab",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-black_stained_glass",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-dye_purple_wool",
+          "collectableData": {}
+        },
+        {
+          "collectableName": "challenges-polished_andesite",
+          "collectableData": {}
+        }
+      ],
+      "fixedOrder": true
+    }
+  },
+  "settings": {}
+}

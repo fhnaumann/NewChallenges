@@ -21,7 +21,7 @@ export function useTranslation() {
   const language_data = {
     'en': Object.assign({},
       lang_en,
-      death_messages_en.data.reduce((acc, { code, deathMessage }) => ({ ...acc, [code]: deathMessage }), {}),
+      death_messages_en.data.reduce((acc, { code, deathMessageWithDummyData }) => ({ ...acc, [code]: deathMessageWithDummyData }), {}),
     )
   }
   // assign later because it uses variables that are assigned above
