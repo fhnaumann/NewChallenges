@@ -11,7 +11,7 @@ the plugin is enabled by entering `/plugins`. You should also see a generated `p
 
 ### 2) Create your challenge
 
-Head over to the [challenges builder](https://www.mc-challenges.com/) and configure your challenge. You can use the
+Head over to the [challenges builder](https://www.builder.mc-challenges.com/) and configure your challenge. You can use the
 search bar at the top to search for anything by keyword. Once you have your challenge built, click on "Modify Metadata"
 at the bottom of the page and **give your challenge an individual name**. This name will be used on the server 
 to identify the challenge. Optionally you can set yourself as the author. 

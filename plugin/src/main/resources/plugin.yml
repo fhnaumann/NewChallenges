@@ -2,7 +2,7 @@ name: Challenges
 version: '${project.version}'
 author: wand555
 description: Create custom goals to complete while having rules to follow.
-website: https://mc-challenges.com
+website: https://www.builder.mc-challenges.com
 main: wand555.github.io.challenges.Challenges
 api-version: 1.20
 commands:

@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 public class ComponentUtil {
 
-    public static final String DISPLAY_URL = "mc-challenges.com";
+    public static final String DISPLAY_URL = "builder.mc-challenges.com";
     public static final String ACTUAL_URL = "https://www.%s/".formatted(DISPLAY_URL);
     public static final Component BUILDER_LINK = Component.text(DISPLAY_URL).clickEvent(ClickEvent.openUrl(ACTUAL_URL));
     public static final Component COLON = Component.text(":");
@@ -205,10 +205,6 @@ public class ComponentUtil {
     public static Component formatSubTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key) {
         String rawText = ResourceBundleHelper.getFromBundle(plugin, bundle, key);
         return MiniMessage.miniMessage().deserialize(rawText);
-    }
-
-    public static Component formatSubTitleMessage(@NotNull Challenges plugin, @NotNull ResourceBundle bundle, @NotNull String key, double progress) {
-        throw new NotImplementedException();
     }
 
     @Deprecated

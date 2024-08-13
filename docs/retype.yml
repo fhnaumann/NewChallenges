@@ -6,7 +6,7 @@ branding:
   label: Wiki
 links:
   - text: Challenge Builder
-    link: https://mc-challenges.com/
+    link: https://builder.mc-challenges.com/
   - text: Challenge Plugin
     link: https://hangar.papermc.io/wand555/Challenges/
 footer:

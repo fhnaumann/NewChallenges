@@ -4,7 +4,7 @@
   <groupId>wand555.github.io</groupId>
   <artifactId>Challenges</artifactId>
   <name>Challenges</name>
-  <version>alpha-0.0.3</version>
+  <version>alpha-0.0.4</version>
   <build>
     <resources>
       <resource>
