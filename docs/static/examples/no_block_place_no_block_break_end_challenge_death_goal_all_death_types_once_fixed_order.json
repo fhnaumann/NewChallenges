@@ -55,11 +55,11 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.badRespawnPoint.link",
+          "collectableName": "death.attack.badrespawnpoint.link",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.badRespawnPoint.message",
+          "collectableName": "death.attack.badrespawnpoint.message",
           "collectableData": {}
         },
         {
@@ -79,11 +79,11 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.dragonBreath",
+          "collectableName": "death.attack.dragonbreath",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.dragonBreath.player",
+          "collectableName": "death.attack.dragonbreath.player",
           "collectableData": {}
         },
         {
@@ -127,19 +127,19 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.fallingBlock",
+          "collectableName": "death.attack.fallingblock",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.fallingBlock.player",
+          "collectableName": "death.attack.fallingblock.player",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.fallingStalactite",
+          "collectableName": "death.attack.fallingstalactite",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.fallingStalactite.player",
+          "collectableName": "death.attack.fallingstalactite.player",
           "collectableData": {}
         },
         {
@@ -163,11 +163,11 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.flyIntoWall",
+          "collectableName": "death.attack.flyintowall",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.flyIntoWall.player",
+          "collectableName": "death.attack.flyintowall.player",
           "collectableData": {}
         },
         {
@@ -187,43 +187,43 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.genericKill",
+          "collectableName": "death.attack.generickill",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.genericKill.player",
+          "collectableName": "death.attack.generickill.player",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.hotFloor",
+          "collectableName": "death.attack.hotfloor",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.hotFloor.player",
+          "collectableName": "death.attack.hotfloor.player",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.indirectMagic",
+          "collectableName": "death.attack.indirectmagic",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.indirectMagic.item",
+          "collectableName": "death.attack.indirectmagic.item",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.inFire",
+          "collectableName": "death.attack.infire",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.inFire.player",
+          "collectableName": "death.attack.infire.player",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.inWall",
+          "collectableName": "death.attack.inwall",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.inWall.player",
+          "collectableName": "death.attack.inwall.player",
           "collectableData": {}
         },
         {
@@ -235,11 +235,11 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.lightningBolt",
+          "collectableName": "death.attack.lightningbolt",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.lightningBolt.player",
+          "collectableName": "death.attack.lightningbolt.player",
           "collectableData": {}
         },
         {
@@ -263,31 +263,31 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.onFire",
+          "collectableName": "death.attack.onfire",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.onFire.item",
+          "collectableName": "death.attack.onfire.item",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.onFire.player",
+          "collectableName": "death.attack.onfire.player",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.outOfWorld",
+          "collectableName": "death.attack.outofworld",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.outOfWorld.player",
+          "collectableName": "death.attack.outofworld.player",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.outsideBorder",
+          "collectableName": "death.attack.outsideborder",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.outsideBorder.player",
+          "collectableName": "death.attack.outsideborder.player",
           "collectableData": {}
         },
         {
@@ -339,11 +339,11 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.sweetBerryBush",
+          "collectableName": "death.attack.sweetberrybush",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.sweetBerryBush.player",
+          "collectableName": "death.attack.sweetberrybush.player",
           "collectableData": {}
         },
         {
@@ -379,11 +379,11 @@
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.witherSkull",
+          "collectableName": "death.attack.witherskull",
           "collectableData": {}
         },
         {
-          "collectableName": "death.attack.witherSkull.item",
+          "collectableName": "death.attack.witherskull.item",
           "collectableData": {}
         },
         {
