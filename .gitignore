@@ -2,8 +2,6 @@
 
 legacy_builder_website/
 
-builder_website/package.json
-builder_website/package-lock.json
 builder_website/.idea/
 builder_website/node_modules/
 builder_website/public/minecraft/
@@ -17,6 +15,20 @@ builder_website/src/assets/aura
 builder_website/src/assets/lara
 builder_website/path/to/
 builder_website/cypress/downloads/
+
+live_website/node_modules
+live_website/src/assets/aura
+live_website/src/assets/lara
+
+criteria-interfaces/build
+criteria-interfaces/node_modules
+
+homepage/
+
+live_triggers/
+
+flow.md
+test.json
 
 docs/.retype
 docs/node_modules
