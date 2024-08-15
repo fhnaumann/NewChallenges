@@ -1,0 +1,19 @@
+{
+  "name": "criteria-interfaces",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "rimraf ./build && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "rimraf": "^6.0.1"
+  }
+}
