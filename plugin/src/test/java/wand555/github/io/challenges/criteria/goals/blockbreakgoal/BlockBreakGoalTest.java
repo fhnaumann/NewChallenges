@@ -51,6 +51,8 @@ public class BlockBreakGoalTest {
     private BlockBreakGoalConfig config;
     private ChallengeManager manager;
 
+    private static BlockBreakEvent emptyMockEvent;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -63,6 +65,8 @@ public class BlockBreakGoalTest {
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         messageHelper = spy(new BlockBreakGoalMessageHelper(context));
         collectedInventory = mock(BlockBreakCollectedInventory.class);
+
+        emptyMockEvent = mock(BlockBreakEvent.class);
     }
 
     @BeforeEach
@@ -119,25 +123,25 @@ public class BlockBreakGoalTest {
 
     @Test
     public void testBlockBreakGoalTriggerCheck() {
-        assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(Material.STONE, player)));
-        assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(Material.DIRT, player)));
-        assertFalse(blockBreakGoal.triggerCheck().applies(new BlockBreakData(Material.ANDESITE, player)));
+        assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.STONE, player)));
+        assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.DIRT, player)));
+        assertFalse(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.ANDESITE, player)));
     }
 
     @Test
     public void testBlockBrokenTracked() {
-        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(Material.STONE, player));
+        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(emptyMockEvent, Material.STONE, player));
         assertEquals(1, blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
         assertEquals(0, blockBreakGoal.getGoalCollector().getToCollect().get(Material.DIRT).getCurrentAmount());
 
-        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(Material.STONE, player));
+        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(emptyMockEvent, Material.STONE, player));
         assertEquals(2, blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
         assertEquals(0, blockBreakGoal.getGoalCollector().getToCollect().get(Material.DIRT).getCurrentAmount());
     }
 
     @Test
     public void testContributionTracked() {
-        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(Material.STONE, player));
+        blockBreakGoal.trigger().actOnTriggered(new BlockBreakData(emptyMockEvent, Material.STONE, player));
         ContributorsConfig contributorsConfig = blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCompletionConfig().getContributors();
         assertTrue(contributorsConfig.getAdditionalProperties().containsKey(player.getName()));
         assertEquals(1, contributorsConfig.getAdditionalProperties().get(player.getName()));

@@ -2,6 +2,7 @@ package wand555.github.io.challenges.criteria.goals;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Keyed;
+import org.bukkit.event.Event;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.MessageHelper;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
  * @param <K>
  *         The underlying enum in the data object (BlockBreakData -> Material, MobData -> EntityType, ...)
  */
-public abstract class GoalMessageHelper<D extends Data<K>, K extends Keyed> extends MessageHelper {
+public abstract class GoalMessageHelper<D extends Data<?, K>, K extends Keyed> extends MessageHelper {
     public GoalMessageHelper(Context context) {
         super(context);
     }

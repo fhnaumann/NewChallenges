@@ -63,6 +63,11 @@ export interface Model {
 export interface ChallengeMetadata {
 
   /**
+   * Unique identifies the challenge across all challenges.
+   */
+  challengeID: string
+
+  /**
    * Name of the challenge. Can be set by the user. Used to differentiate between challenges and to load a specific challenge.
    */
   name: string,

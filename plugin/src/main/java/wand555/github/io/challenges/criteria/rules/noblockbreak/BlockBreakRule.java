@@ -33,7 +33,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
         ))
                           : new HashSet<>();
 
-        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive());
+        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
         logger.fine("Created %s instance.".formatted(blockBreakType.getClass().getSimpleName()));
     }
 

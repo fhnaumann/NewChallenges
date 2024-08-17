@@ -16,7 +16,7 @@ import wand555.github.io.challenges.utils.ResourcePackHelper;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Listener, Storable<DeathGoalConfig> {
+public class DeathGoal extends MapGoal<DeathData,DeathMessage> implements Listener, Storable<DeathGoalConfig> {
 
     public static final String NAME_IN_RB = "deathgoal";
     private final DeathType deathType;
@@ -91,9 +91,10 @@ public class DeathGoal extends MapGoal<DeathData, DeathMessage> implements Liste
         return "death";
     }
 
+
     @Override
     protected DeathData createSkipData(Map.Entry<DeathMessage, Collect> toSkip, Player player) {
-        return new DeathData(player, toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
+        return new DeathData(null, player, toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
     }
 
     public Collect getDeathAmount() {

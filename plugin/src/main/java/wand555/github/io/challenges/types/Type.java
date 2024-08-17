@@ -27,7 +27,7 @@ public abstract class Type<T> implements Listener {
     protected final TriggerCheck<T> triggerCheck;
     protected final Trigger<T> whenTriggered;
 
-    public static <T extends Data<K>, K> boolean sameTeamCheck(Context context, BaseGoal baseGoal, Player player) {
+    public static boolean sameTeamCheck(Context context, BaseGoal baseGoal, Player player) {
         Team team = Team.getTeamPlayerIn(context, player.getUniqueId());
         return team == Team.ALL_TEAM || team.getGoals().contains(baseGoal);
     }
@@ -49,7 +49,7 @@ public abstract class Type<T> implements Listener {
         HandlerList.unregisterAll(this);
     }
 
-    public <E extends Event & Cancellable> void triggerIfCheckPasses(T data, E event) {
+    public <E extends Event> void triggerIfCheckPasses(T data, E event) {
         if(triggerCheck.applies(data)) {
             logger.fine("Trigger check applies for %s with data '%s'.".formatted(event.getEventName(), data));
             callEventInContainer(event);
@@ -57,7 +57,7 @@ public abstract class Type<T> implements Listener {
         }
     }
 
-    protected final <E extends Event & Cancellable> void callEventInContainer(E event) {
+    protected final <E extends Event> void callEventInContainer(E event) {
         EventContainer<E> eventContainer = (EventContainer<E>) eventContainers.get(event.getClass());
         if(eventContainer != null) {
             logger.fine("Additional action event detected... Calling it now.");

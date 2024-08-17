@@ -35,7 +35,7 @@ public class BlockPlaceType extends Type<BlockPlaceData> {
         }
         Player player = event.getPlayer();
         Material placed = event.getBlockPlaced().getType();
-        BlockPlaceData blockPlaceData = new BlockPlaceData(placed, player);
+        BlockPlaceData blockPlaceData = new BlockPlaceData(event, placed, player);
         triggerIfCheckPasses(blockPlaceData, event);
     }
 }

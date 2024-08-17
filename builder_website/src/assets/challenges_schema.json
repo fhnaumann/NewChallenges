@@ -96,6 +96,10 @@
                     "description": "Version of the challenge builder used at the time of creation.",
                     "type": "string"
                 },
+                "challengeID": {
+                    "description": "Unique identifies the challenge across all challenges.",
+                    "type": "string"
+                },
                 "createdBy": {
                     "default": "-",
                     "description": "Author of the challenge. The user who configured and built the challenge.",
@@ -125,6 +129,7 @@
                 }
             },
             "propertyOrder": [
+                "challengeID",
                 "name",
                 "whenCreated",
                 "lastModified",
@@ -137,6 +142,7 @@
             "required": [
                 "builderMCVersion",
                 "builderVersion",
+                "challengeID",
                 "createdBy",
                 "name",
                 "pluginMCVersion",

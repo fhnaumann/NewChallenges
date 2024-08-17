@@ -7,6 +7,7 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import be.seeseemelk.mockbukkit.inventory.WorkbenchInventoryMock;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.event.Event;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -45,8 +46,10 @@ public class ItemTypeTest {
 
     private ItemType itemType;
 
-    private TriggerCheck<ItemData> mockedTriggerCheck;
-    private Trigger<ItemData> mockedTrigger;
+    private TriggerCheck<ItemData<?>> mockedTriggerCheck;
+    private Trigger<ItemData<?>> mockedTrigger;
+
+    private static Event emptyMockEvent;
 
     @BeforeEach
     public void setUp() {
@@ -64,6 +67,8 @@ public class ItemTypeTest {
         when(mockedContext.challengeManager()).thenReturn(mockedManager);
         itemType = spy(new ItemType(mockedContext, mockedTriggerCheck, mockedTrigger));
 
+        emptyMockEvent = mock(Event.class);
+
     }
 
     @AfterEach
@@ -77,6 +82,7 @@ public class ItemTypeTest {
         player.openInventory(inventory);
         InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
         verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(
+                emptyMockEvent,
                 createMockMarkedItemStack(changedMaterial, expectedCurrentAmount),
                 expectedCurrentAmount,
                 player
@@ -93,6 +99,7 @@ public class ItemTypeTest {
         InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
         assertEquals(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), inventory.getResult());
         verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(
+                emptyMockEvent,
                 createMockMarkedItemStack(changedMaterial, expectedCurrentAmount),
                 player
         ));

@@ -37,7 +37,7 @@ public class HealthPunishmentTest {
 
     private ServerMock server;
     private Challenges plugin;
-    private PlayerMock player;
+    private PlayerMock causer;
     private Context context;
 
     @BeforeAll
@@ -60,7 +60,7 @@ public class HealthPunishmentTest {
     public void setUp() throws IOException {
         server = MockBukkit.mock();
         plugin = MockBukkit.load(Challenges.class);
-        player = server.addPlayer();
+        causer = server.addPlayer();
         ChallengeManager challengeManager = mock(ChallengeManager.class);
         challengeManager.setContext(context);
         when(challengeManager.getGoals()).thenReturn(List.of());
@@ -90,15 +90,15 @@ public class HealthPunishmentTest {
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(heartsLost);
         when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(false);
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
-        heartsLostPunishment.enforcePunishment(player.getUniqueId());
-        assertEquals(player.getMaxHealth() - heartsLost, player.getHealth(), 1e-3);
+        heartsLostPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
+        assertEquals(causer.getMaxHealth() - heartsLost, causer.getHealth(), 1e-3);
 
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(1);
         when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(true);
         HealthPunishment randomHeartLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
-        randomHeartLostPunishment.enforcePunishment(player.getUniqueId());
+        randomHeartLostPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
         // only test that the player lost any health
-        assertNotEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), player.getHealth(), 1e-3);
+        assertNotEquals(causer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), causer.getHealth(), 1e-3);
     }
 
     @Test
@@ -113,9 +113,9 @@ public class HealthPunishmentTest {
         when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(false);
 
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
-        heartsLostPunishment.enforcePunishment(player.getUniqueId());
-        assertEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
-                     player.getHealth(),
+        heartsLostPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
+        assertEquals(causer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     causer.getHealth(),
                      1e-3
         );
         assertEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
@@ -130,9 +130,9 @@ public class HealthPunishmentTest {
 
         when(healthPunishmentConfigMock.getHeartsLost()).thenReturn(1);
         HealthPunishment randomHeartLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
-        randomHeartLostPunishment.enforcePunishment(player.getUniqueId());
+        randomHeartLostPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
         // only test that the players lost any health
-        assertNotEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), player.getHealth(), 1e-3);
+        assertNotEquals(causer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(), causer.getHealth(), 1e-3);
         assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue(),
                         secondPlayer.getHealth(),
                         1e-3
@@ -157,9 +157,9 @@ public class HealthPunishmentTest {
         when(healthPunishmentConfigMock.isRandomizeHeartsLost()).thenReturn(false);
 
         HealthPunishment heartsLostPunishment = new HealthPunishment(context, healthPunishmentConfigMock);
-        heartsLostPunishment.enforcePunishment(player.getUniqueId());
-        assertEquals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
-                     player.getHealth(),
+        heartsLostPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
+        assertEquals(causer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,
+                     causer.getHealth(),
                      1e-3
         );
         assertNotEquals(secondPlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue() - heartsLost,

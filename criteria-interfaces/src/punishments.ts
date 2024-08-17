@@ -108,3 +108,10 @@ export interface MLGPunishmentConfig extends BasePunishmentConfig {
    */
   height?: number
 }
+
+export interface PunishmentData {
+  /**
+   * List of
+   */
+  affected: string[]
+}

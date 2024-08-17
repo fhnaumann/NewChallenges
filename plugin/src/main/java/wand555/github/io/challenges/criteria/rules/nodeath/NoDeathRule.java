@@ -21,7 +21,7 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> impleme
               config.getPunishments(),
               messageHelper
         );
-        this.deathType = new DeathType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive());
+        this.deathType = new DeathType(context, triggerCheck(), trigger());
         this.ignoreTotem = config.isIgnoreTotem();
     }
 

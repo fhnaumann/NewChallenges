@@ -4,11 +4,13 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.MLGPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.types.Data;
 
 import java.util.Map;
 import java.util.UUID;
@@ -33,18 +35,6 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
     @Override
     public Component getCurrentStatus() {
         return null;
-    }
-
-    @Override
-    public void enforceCauserPunishment(UUID causer) {
-        enforceOnReceiver(causer, height);
-    }
-
-    @Override
-    public void enforceAllPunishment(Team team) {
-        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
-                                                                                        player1 -> enforceCauserPunishment(player1.getUniqueId())
-        ));
     }
 
     private void enforceOnReceiver(UUID receiver, int height) {
@@ -121,5 +111,17 @@ public class MLGPunishment extends Punishment implements Storable<MLGPunishmentC
                 MLGPunishmentConfig.Affects.fromValue(getAffects().getValue()),
                 height
         );
+    }
+
+    @Override
+    public <E extends Event, K> void enforceCauserPunishment(Data<E, K> data) {
+        enforceOnReceiver(data.playerUUID(), height);
+    }
+
+    @Override
+    public <E extends Event, K> void enforceAllPunishment(Data<E, K> data, Team team) {
+        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+                                                                                         player1 -> enforceOnReceiver(player1.getUniqueId(), height)
+        ));
     }
 }

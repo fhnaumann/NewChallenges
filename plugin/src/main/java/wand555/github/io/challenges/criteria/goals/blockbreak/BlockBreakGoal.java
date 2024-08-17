@@ -52,7 +52,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     @Override
     protected BlockBreakData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new BlockBreakData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
+        return new BlockBreakData(null, toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }
 
     @Override

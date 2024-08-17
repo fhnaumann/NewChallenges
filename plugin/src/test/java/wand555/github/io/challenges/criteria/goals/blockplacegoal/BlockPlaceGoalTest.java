@@ -44,6 +44,8 @@ public class BlockPlaceGoalTest {
     private static BlockPlaceGoalMessageHelper messageHelper;
     private static BlockPlaceGoalCollectedInventory collectedInventory;
 
+    private static BlockPlaceEvent emptyMockEvent;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -59,6 +61,8 @@ public class BlockPlaceGoalTest {
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new BlockPlaceGoalMessageHelper(context));
         collectedInventory = mock(BlockPlaceGoalCollectedInventory.class);
+
+        emptyMockEvent = mock(BlockPlaceEvent.class);
     }
 
     @BeforeEach
@@ -111,7 +115,7 @@ public class BlockPlaceGoalTest {
 
     @Test
     public void testContributionTracked() {
-        blockPlaceGoal.trigger().actOnTriggered(new BlockPlaceData(Material.STONE, player));
+        blockPlaceGoal.trigger().actOnTriggered(new BlockPlaceData(emptyMockEvent, Material.STONE, player));
         ContributorsConfig contributorsConfig = blockPlaceGoal.getGoalCollector().getToCollect().get(Material.STONE).getCompletionConfig().getContributors();
         assertTrue(contributorsConfig.getAdditionalProperties().containsKey(player.getName()));
         assertEquals(1, contributorsConfig.getAdditionalProperties().get(player.getName()));

@@ -17,7 +17,7 @@ import wand555.github.io.challenges.types.crafting.CraftingType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSON> implements Storable<NoCraftingRuleConfig> {
+public class NoCraftingRule extends PunishableRule<CraftingData<?>, CraftingTypeJSON> implements Storable<NoCraftingRuleConfig> {
 
     private final CraftingType craftingType;
 
@@ -34,11 +34,7 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
                           : new HashSet<>();
         this.craftingType = new CraftingType(context,
                                              triggerCheck(),
-                                             trigger(),
-                                             cancelIfCancelPunishmentActive(),
-                                             cancelIfCancelPunishmentActive(),
-                                             cancelIfCancelPunishmentActive(),
-                                             cancelIfCancelPunishmentActive()
+                                             trigger()
         );
     }
 
@@ -58,7 +54,7 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
     }
 
     @Override
-    public TriggerCheck<CraftingData> triggerCheck() {
+    public TriggerCheck<CraftingData<?>> triggerCheck() {
         return data -> {
             if(exemptions.contains(data.mainDataInvolved())) {
                 return false;

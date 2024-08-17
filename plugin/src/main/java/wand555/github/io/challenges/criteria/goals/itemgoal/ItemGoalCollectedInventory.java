@@ -9,12 +9,11 @@ import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.inventory.progress.CollectedInventoryHelper;
 import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
 import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
-import wand555.github.io.challenges.types.item.ItemData;
 
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ItemGoalCollectedInventory extends CollectedInventory<ItemData, Material> {
+public class ItemGoalCollectedInventory extends CollectedInventory<Material> {
 
     public ItemGoalCollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<Material> enumType) {
         super(context, collectables, enumType);

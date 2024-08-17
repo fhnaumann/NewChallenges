@@ -63,6 +63,11 @@ export interface Model {
 export interface ChallengeMetadata {
 
   /**
+   * Unique identifies the challenge across all challenges.
+   */
+  challengeID: string
+
+  /**
    * Name of the challenge. Can be set by the user. Used to differentiate between challenges and to load a specific challenge.
    */
   name: string,
@@ -159,4 +164,38 @@ export interface TeamConfig {
    */
   currentOrder?: number
 }
+
+export interface MCEvent<T> {
+
+  /**
+   * The unique ID to identify the challenge this event originated from.
+   */
+  challengeID: string,
+
+  /**
+   * The unique ID to identify the event in this challenge.
+   */
+  eventID: string,
+
+  /**
+   * @TSJ-type integer
+   */
+  timestamp: number,
+
+  /**
+   * The event type. Depending on the type, additional data may be transmitted.
+   */
+  eventType: CriteriaKey
+
+  /**
+   * Potential additional data involved.
+   */
+  data?: T
+}
+
+export interface Data {
+  playerUUID: string
+}
+
+
 

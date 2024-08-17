@@ -52,6 +52,8 @@ public class NoDeathRuleTest {
     private static Context context;
     private static NoDeathRuleMessageHelper messageHelper;
 
+    private static PlayerDeathEvent emptyMockEvent;
+
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -69,6 +71,8 @@ public class NoDeathRuleTest {
         when(context.challengeManager()).thenReturn(manager);
 
         messageHelper = spy(new NoDeathRuleMessageHelper(context));
+
+        emptyMockEvent = mock(PlayerDeathEvent.class);
     }
 
     @BeforeEach
@@ -111,13 +115,6 @@ public class NoDeathRuleTest {
         assertFalse(deathEvent.isCancelled());
     }
 
-    @Test
-    public void testIsDisallowedIfCancelPunishment() {
-        countTotemsRule.setPunishments(List.of(mock(CancelPunishment.class)));
-        PlayerDeathEvent deathEvent = simulatePlayerDeathWithoutTotem(player);
-        assertTrue(deathEvent.isCancelled());
-    }
-
     private PlayerDeathEvent simulatePlayerDeathWithoutTotem(Player player) {
         EntityResurrectEvent resurrectEvent = new EntityResurrectEvent(player, EquipmentSlot.HAND);
         resurrectEvent.setCancelled(true);
@@ -132,6 +129,6 @@ public class NoDeathRuleTest {
     }
 
     private static Function<Player, DeathData> dummyDeathData(boolean usedTotem) {
-        return player1 -> new DeathData(player1, 1, mock(DeathMessage.class), usedTotem);
+        return player1 -> new DeathData(emptyMockEvent, player1, 1, mock(DeathMessage.class), usedTotem);
     }
 }

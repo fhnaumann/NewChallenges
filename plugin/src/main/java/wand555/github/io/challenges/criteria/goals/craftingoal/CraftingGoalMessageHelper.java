@@ -8,13 +8,12 @@ import wand555.github.io.challenges.criteria.goals.GoalMessageHelper;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.types.crafting.CraftingData;
 import wand555.github.io.challenges.utils.ActionHelper;
-import wand555.github.io.challenges.utils.CollectionUtil;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CraftingGoalMessageHelper extends GoalMessageHelper<CraftingData, CraftingTypeJSON> {
+public class CraftingGoalMessageHelper extends GoalMessageHelper<CraftingData<?>, CraftingTypeJSON> {
     public CraftingGoalMessageHelper(Context context) {
         super(context);
     }
@@ -25,7 +24,7 @@ public class CraftingGoalMessageHelper extends GoalMessageHelper<CraftingData, C
     }
 
     @Override
-    public void sendSingleStepAction(CraftingData data, Collect collect) {
+    public void sendSingleStepAction(CraftingData<?> data, Collect collect) {
         String key = "%s.single.step.without_source.message".formatted(getGoalNameInResourceBundle());
         Map<String, Component> placeholders = new HashMap<>();
         Map<String, Component> commonPlaceholder = Map.of(
@@ -53,10 +52,9 @@ public class CraftingGoalMessageHelper extends GoalMessageHelper<CraftingData, C
     }
 
     @Override
-    public void sendSingleReachedAction(CraftingData data, Collect collect) {
+    public void sendSingleReachedAction(CraftingData<?> data, Collect collect) {
         String key = "%s.single.reached.without_source.message".formatted(getGoalNameInResourceBundle());
-        Map<String, Component> placeholders = new HashMap<>();
-        placeholders.putAll(additionalStepPlaceholders(data));
+        Map<String, Component> placeholders = new HashMap<>(additionalStepPlaceholders(data));
         if(data.mainDataInvolved().getSource() != null) {
             key = "%s.single.reached.with_source.message".formatted(getGoalNameInResourceBundle());
             placeholders.put("recipe_source", ResourcePackHelper.getMaterialUnicodeMapping(data.mainDataInvolved().getSource()));
@@ -86,7 +84,7 @@ public class CraftingGoalMessageHelper extends GoalMessageHelper<CraftingData, C
     }
 
     @Override
-    protected Map<String, Component> additionalStepPlaceholders(CraftingData data) {
+    protected Map<String, Component> additionalStepPlaceholders(CraftingData<?> data) {
         return Map.of(
                 "player",
                 Component.text(data.playerName()),

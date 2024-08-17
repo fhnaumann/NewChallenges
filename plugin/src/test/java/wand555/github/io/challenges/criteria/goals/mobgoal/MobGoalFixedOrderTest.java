@@ -8,6 +8,7 @@ import be.seeseemelk.mockbukkit.entity.WitherSkeletonMock;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -50,6 +51,8 @@ public class MobGoalFixedOrderTest {
 
     private EntityDeathEvent pigDeathEvent;
 
+    private static EntityDeathEvent emptyMockEvent;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -66,6 +69,8 @@ public class MobGoalFixedOrderTest {
         Team.initAllTeam(context, -1);
         messageHelper = spy(new MobGoalMessageHelper(context));
         collectedInventory = mock(MobGoalCollectedInventory.class);
+
+        emptyMockEvent = mock(EntityDeathEvent.class);
     }
 
     @BeforeEach
@@ -124,16 +129,16 @@ public class MobGoalFixedOrderTest {
 
     @Test
     public void testMobGoalTriggerCheck() {
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(EntityType.PIG, player)));
-        assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.WITHER_SKELETON, player)));
-        assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.ENDER_DRAGON, player)));
+        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.PIG, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.WITHER_SKELETON, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.ENDER_DRAGON, player)));
     }
 
     @Test
     public void testMobGoalTrigger() {
-        mobGoal.trigger().actOnTriggered(new MobData(EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, EntityType.PIG, player));
         assertEquals(1, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
-        mobGoal.trigger().actOnTriggered(new MobData(EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, EntityType.PIG, player));
         assertEquals(2, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
     }
 
@@ -168,7 +173,7 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(emptyMockEvent, EntityType.PIG, player)),
                                                              argThat(argument -> argument.getCurrentAmount() == 1)
         );
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
@@ -178,7 +183,7 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(emptyMockEvent, EntityType.PIG, player)),
                                                                 argThat(argument -> argument.getCurrentAmount() == 2)
         );
         verify(messageHelper, never()).sendAllReachedAction();

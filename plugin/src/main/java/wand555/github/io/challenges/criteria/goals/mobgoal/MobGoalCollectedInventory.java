@@ -10,12 +10,11 @@ import wand555.github.io.challenges.generated.CollectableEntryConfig;
 import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
 import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
-import wand555.github.io.challenges.types.mob.MobData;
 
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MobGoalCollectedInventory extends CollectedInventory<MobData, EntityType> {
+public class MobGoalCollectedInventory extends CollectedInventory<EntityType> {
 
     public MobGoalCollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<EntityType> enumType) {
         super(context, collectables, enumType);

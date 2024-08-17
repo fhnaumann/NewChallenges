@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.junit.jupiter.api.AfterEach;
@@ -45,6 +46,8 @@ public class ItemGoalTest {
     private static ItemGoalMessageHelper messageHelper;
     private static ItemGoalCollectedInventory collectedInventory;
 
+    private static Event emptyMockEvent;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -60,6 +63,8 @@ public class ItemGoalTest {
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new ItemGoalMessageHelper(context));
         collectedInventory = mock(ItemGoalCollectedInventory.class);
+
+        emptyMockEvent = mock(Event.class);
     }
 
     @BeforeEach
@@ -120,18 +125,18 @@ public class ItemGoalTest {
 
     @Test
     public void testItemGoalTriggerCheck() {
-        assertTrue(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.CARROT), player)));
-        assertTrue(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.STONE), player)));
-        assertFalse(itemGoal.triggerCheck().applies(new ItemData(new ItemStack(Material.DIRT), player)));
+        assertTrue(itemGoal.triggerCheck().applies(new ItemData<>(emptyMockEvent, new ItemStack(Material.CARROT), player)));
+        assertTrue(itemGoal.triggerCheck().applies(new ItemData<>(emptyMockEvent, new ItemStack(Material.STONE), player)));
+        assertFalse(itemGoal.triggerCheck().applies(new ItemData<>(emptyMockEvent, new ItemStack(Material.DIRT), player)));
     }
 
     @Test
     public void testItemCollectedTracked() {
-        itemGoal.trigger().actOnTriggered(new ItemData(new ItemStack(Material.CARROT), player));
+        itemGoal.trigger().actOnTriggered(new ItemData<>(emptyMockEvent, new ItemStack(Material.CARROT), player));
         assertEquals(1, itemGoal.getToCollect().get(Material.CARROT).getCurrentAmount());
         assertEquals(0, itemGoal.getToCollect().get(Material.STONE).getCurrentAmount());
 
-        itemGoal.trigger().actOnTriggered(new ItemData(new ItemStack(Material.CARROT), player));
+        itemGoal.trigger().actOnTriggered(new ItemData<>(emptyMockEvent, new ItemStack(Material.CARROT), player));
 
         assertEquals(2, itemGoal.getToCollect().get(Material.CARROT).getCurrentAmount());
         assertEquals(0, itemGoal.getToCollect().get(Material.STONE).getCurrentAmount());

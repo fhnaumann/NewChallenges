@@ -54,6 +54,8 @@ public class MobGoalTest {
 
     private EntityDeathEvent pigDeathEvent;
 
+    private static EntityDeathEvent emptyMockEvent;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -71,6 +73,8 @@ public class MobGoalTest {
         collectedInventory = mock(MobGoalCollectedInventory.class);
 
         Team.initAllTeam(context, -1);
+
+        emptyMockEvent = mock(EntityDeathEvent.class);
     }
 
     @BeforeEach
@@ -127,16 +131,16 @@ public class MobGoalTest {
 
     @Test
     public void testMobGoalTriggerCheck() {
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(EntityType.PIG, player)));
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(EntityType.WITHER_SKELETON, player)));
-        assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.ENDER_DRAGON, player)));
+        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.PIG, player)));
+        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.WITHER_SKELETON, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.ENDER_DRAGON, player)));
     }
 
     @Test
     public void testMobGoalTrigger() {
-        mobGoal.trigger().actOnTriggered(new MobData(EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, EntityType.PIG, player));
         assertEquals(1, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
-        mobGoal.trigger().actOnTriggered(new MobData(EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, EntityType.PIG, player));
         assertEquals(2, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
     }
 
@@ -154,7 +158,7 @@ public class MobGoalTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(emptyMockEvent, EntityType.PIG, player)),
                                                              argThat(argument -> argument.getCurrentAmount() == 1)
         );
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
@@ -164,7 +168,7 @@ public class MobGoalTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(emptyMockEvent, EntityType.PIG, player)),
                                                                 argThat(argument -> argument.getCurrentAmount() == 2)
         );
         verify(messageHelper, never()).sendAllReachedAction();

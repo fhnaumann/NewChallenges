@@ -34,7 +34,7 @@ public class ItemCraftingDetectorTest extends CraftingDetectorTest {
     @Test
     public void testPlayerSelectsResultInInternalCrafting() {
         simulateStickCrafting(server, player);
-        verify(mockedTriggerCheck).applies(new CraftingData(player, stickCraftingTypeJSON(), true));
+        verify(mockedTriggerCheck).applies(new CraftingData<>(null, player, stickCraftingTypeJSON(), true));
     }
 
     public static void simulateStickCrafting(ServerMock server, Player player) {

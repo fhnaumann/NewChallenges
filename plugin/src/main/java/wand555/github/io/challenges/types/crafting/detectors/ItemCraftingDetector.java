@@ -40,7 +40,7 @@ public class ItemCraftingDetector implements Listener {
         // CRAFTING = 2x2 internal
         // WORKBENCH = 3x3 workbench with crafting table
         boolean internallyCrafted = event.getClickedInventory().getType() == InventoryType.CRAFTING;
-        CraftingData craftingData = craftingType.constructCraftingData(keyedRecipe, player.getUniqueId(), internallyCrafted);
+        CraftingData<CraftItemEvent> craftingData = craftingType.constructCraftingData(event, keyedRecipe, player.getUniqueId(), internallyCrafted);
         craftingType.triggerIfCheckPasses(craftingData, event);
     }
 }

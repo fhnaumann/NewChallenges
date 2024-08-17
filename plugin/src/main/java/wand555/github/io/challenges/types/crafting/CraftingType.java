@@ -11,6 +11,7 @@ import org.bukkit.block.Campfire;
 import org.bukkit.block.Furnace;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.*;
 import org.bukkit.event.inventory.*;
@@ -36,7 +37,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-public class CraftingType extends Type<CraftingData> {
+public class CraftingType extends Type<CraftingData<?>> {
 
     private static final Logger logger = ChallengesDebugLogger.getLogger(CraftingType.class);
 
@@ -49,11 +50,11 @@ public class CraftingType extends Type<CraftingData> {
     private final StoneCuttingDetector stoneCuttingDetector;
 
 
-    public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered) {
+    public CraftingType(Context context, TriggerCheck<CraftingData<?>> triggerCheck, Trigger<CraftingData<?>> whenTriggered) {
         this(context, triggerCheck, whenTriggered, event -> {}, event -> {}, event -> {}, event -> {});
     }
 
-    public CraftingType(Context context, TriggerCheck<CraftingData> triggerCheck, Trigger<CraftingData> whenTriggered, EventContainer<CraftItemEvent> onCraftItem, EventContainer<FurnaceSmeltEvent> onFurnaceSmeltEvent, EventContainer<BlockCookEvent> onCampfireCook, EventContainer<InventoryClickEvent> onSmithingFinishOrStoneCuttingFinish) {
+    public CraftingType(Context context, TriggerCheck<CraftingData<?>> triggerCheck, Trigger<CraftingData<?>> whenTriggered, EventContainer<CraftItemEvent> onCraftItem, EventContainer<FurnaceSmeltEvent> onFurnaceSmeltEvent, EventContainer<BlockCookEvent> onCampfireCook, EventContainer<InventoryClickEvent> onSmithingFinishOrStoneCuttingFinish) {
         super(context,
               triggerCheck,
               whenTriggered,
@@ -82,12 +83,12 @@ public class CraftingType extends Type<CraftingData> {
         logger.fine("Registered listeners for %s.".formatted(getClass().getSimpleName()));
     }
 
-    public CraftingData constructCraftingData(Keyed keyedRecipe, UUID playerUUID, boolean internallyCrafted) {
+    public <E extends Event> CraftingData<E> constructCraftingData(E event, Keyed keyedRecipe, UUID playerUUID, boolean internallyCrafted) {
         String code = "challenges-" + keyedRecipe.key().value(); // the datasource has a 'challenges-' prefix here
         CraftingTypeJSON craftingTypeJSON = DataSourceJSON.fromCode(context.dataSourceContext().craftingTypeJSONList(),
                                                                     code
         );
-        return new CraftingData(playerUUID, craftingTypeJSON, internallyCrafted);
+        return new CraftingData<>(event, playerUUID, craftingTypeJSON, internallyCrafted);
     }
 
     public void markLastOpenedByOn(TileState tileState, Player player) {
@@ -135,7 +136,7 @@ public class CraftingType extends Type<CraftingData> {
             return;
         }
         UUID markedPlayer = getLastMarked(tileState);
-        CraftingData craftingData = constructCraftingData(event.getRecipe(), markedPlayer, false);
+        CraftingData<?> craftingData = constructCraftingData(event, event.getRecipe(), markedPlayer, false);
         triggerIfCheckPasses(craftingData, event);
     }
 }

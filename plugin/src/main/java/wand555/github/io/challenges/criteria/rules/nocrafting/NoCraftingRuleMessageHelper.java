@@ -7,13 +7,14 @@ import wand555.github.io.challenges.types.crafting.CraftingData;
 
 import java.util.Map;
 
-public class NoCraftingRuleMessageHelper extends RuleMessageHelper<CraftingData> {
+public class NoCraftingRuleMessageHelper extends RuleMessageHelper<CraftingData<?>> {
     public NoCraftingRuleMessageHelper(Context context) {
         super(context);
     }
 
+
     @Override
-    public Map<String, Component> additionalViolationPlaceholders(CraftingData data) {
+    public Map<String, Component> additionalViolationPlaceholders(CraftingData<?> data) {
         return Map.of(
                 "player", Component.text(data.playerName()),
                 "item", Component.translatable(data.mainDataInvolved().getCraftingResult())

@@ -18,7 +18,7 @@ import wand555.github.io.challenges.utils.ResourcePackHelper;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<ItemGoalConfig>, Skippable {
+public class ItemGoal extends MapGoal<ItemData<?>, Material> implements Storable<ItemGoalConfig>, Skippable {
 
     private final ItemType itemType;
 
@@ -53,8 +53,8 @@ public class ItemGoal extends MapGoal<ItemData, Material> implements Storable<It
     }
 
     @Override
-    protected ItemData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new ItemData(new ItemStack(toSkip.getKey()), toSkip.getValue().getRemainingToCollect(), player);
+    protected ItemData<?> createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
+        return new ItemData<>(null, new ItemStack(toSkip.getKey()), toSkip.getValue().getRemainingToCollect(), player);
     }
 
     @Override

@@ -25,8 +25,8 @@ public abstract class CraftingDetectorTest {
 
     protected CraftingType craftingType;
 
-    protected TriggerCheck<CraftingData> mockedTriggerCheck;
-    protected Trigger<CraftingData> mockedTrigger;
+    protected TriggerCheck<CraftingData<?>> mockedTriggerCheck;
+    protected Trigger<CraftingData<?>> mockedTrigger;
     protected static List<CraftingTypeJSON> craftingTypeJSONList;
 
     @BeforeAll

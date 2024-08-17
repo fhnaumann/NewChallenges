@@ -4,6 +4,7 @@ import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.ServerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,7 @@ public class DeathGoalTest {
     private static Context context;
     private static DeathGoalMessageHelper messageHelper;
     private static DeathGoalCollectedInventory collectedInventory;
+    private static PlayerDeathEvent emptyMockEvent;
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -52,6 +54,8 @@ public class DeathGoalTest {
         when(context.challengeManager()).thenReturn(manager);
         messageHelper = spy(new DeathGoalMessageHelper(context));
         collectedInventory = mock(DeathGoalCollectedInventory.class);
+
+        emptyMockEvent = mock(PlayerDeathEvent.class);
     }
 
     @BeforeEach
@@ -146,6 +150,7 @@ public class DeathGoalTest {
 
     private static DeathData dummyDeathData(Player player, boolean usedTotem) {
         return new DeathData(
+                emptyMockEvent,
                 player,
                 1,
                 new DeathMessage("death.attack.cactus",
@@ -157,6 +162,7 @@ public class DeathGoalTest {
 
     private static DeathData dummyCactusData(Player player, boolean usedTotem) {
         return new DeathData(
+                emptyMockEvent,
                 player,
                 1,
                 new DeathMessage("death.attack.cactus",

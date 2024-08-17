@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Stream;
 
-public abstract class PunishableRule<T extends Data<K>, K> extends Rule implements Triggable<T> {
+public abstract class PunishableRule<T extends Data<?, K>, K> extends Rule implements Triggable<T> {
 
     protected @NotNull List<Punishment> punishments;
 
@@ -41,29 +41,19 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         this.messageHelper = messageHelper;
     }
 
-    protected final  <E extends Event & Cancellable> EventContainer<E> cancelIfCancelPunishmentActive() {
-        return event -> {
-            boolean cancel = Stream.of(context.challengeManager().getGlobalPunishments(), getPunishments())
-                                   .flatMap(Collection::stream)
-                                   .anyMatch(punishment -> punishment instanceof CancelPunishment);
-            event.setCancelled(cancel);
-        };
-
-    }
-
     @Override
     public Trigger<T> trigger() {
         return data -> {
             messageHelper.sendViolationAction(data);
-            enforcePunishments(data.playerUUID());
+            enforcePunishments(data);
         };
     }
 
-    public void enforcePunishments(UUID causer) {
+    private void enforcePunishments(Data<?, K> data) {
         // enforce local punishments
-        getPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
+        getPunishments().forEach(punishment -> punishment.enforcePunishment(data));
         // enforce global punishments
-        context.challengeManager().getGlobalPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
+        context.challengeManager().getGlobalPunishments().forEach(punishment -> punishment.enforcePunishment(data));
     }
 
     protected final @Nullable PunishmentsConfig toPunishmentsConfig() {
@@ -83,6 +73,7 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         this.punishments = punishments;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if(this == o) {
@@ -91,7 +82,7 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         if(o == null || getClass() != o.getClass()) {
             return false;
         }
-        PunishableRule that = (PunishableRule) o;
+        PunishableRule<?, ?> that = (PunishableRule<?, ?>) o;
         return Objects.equals(punishments, that.punishments);
     }
 

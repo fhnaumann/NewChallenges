@@ -19,7 +19,7 @@ import wand555.github.io.challenges.types.crafting.CraftingType;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class CraftingGoal extends MapGoal<CraftingData, CraftingTypeJSON> implements Storable<CraftingGoalConfig> {
+public class CraftingGoal extends MapGoal<CraftingData<?>, CraftingTypeJSON> implements Storable<CraftingGoalConfig> {
 
     public static final String NAME_IN_RB = "craftinggoal";
 
@@ -73,7 +73,7 @@ public class CraftingGoal extends MapGoal<CraftingData, CraftingTypeJSON> implem
     }
 
     @Override
-    protected CraftingData createSkipData(Map.Entry<CraftingTypeJSON, Collect> toSkip, Player player) {
-        return new CraftingData(player.getUniqueId(), toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
+    protected CraftingData<?> createSkipData(Map.Entry<CraftingTypeJSON, Collect> toSkip, Player player) {
+        return new CraftingData<>(null, player.getUniqueId(), toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
     }
 }

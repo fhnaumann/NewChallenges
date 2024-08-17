@@ -45,6 +45,8 @@ public class BlockBreakRuleTest {
     private static Context context;
     private BlockBreakRuleMessageHelper messageHelper;
 
+    private static BlockBreakEvent emptyMockEvent;
+
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -60,6 +62,8 @@ public class BlockBreakRuleTest {
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
+
+        emptyMockEvent = mock(BlockBreakEvent.class);
     }
 
     @BeforeEach
@@ -91,14 +95,14 @@ public class BlockBreakRuleTest {
 
     @Test
     public void testNoBlockBreakTriggerCheck() {
-        assertTrue(rule.triggerCheck().applies(new BlockBreakData(Material.DIRT, player)));
-        assertFalse(rule.triggerCheck().applies(new BlockBreakData(Material.STONE, player)));
+        assertTrue(rule.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.DIRT, player)));
+        assertFalse(rule.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.STONE, player)));
     }
 
     @Test
     public void testNoBlockBreakTrigger() {
-        rule.trigger().actOnTriggered(new BlockBreakData(Material.DIRT, player));
-        verify(messageHelper, times(1)).sendViolationAction(new BlockBreakData(Material.DIRT, player));
+        rule.trigger().actOnTriggered(new BlockBreakData(emptyMockEvent, Material.DIRT, player));
+        verify(messageHelper, times(1)).sendViolationAction(new BlockBreakData(emptyMockEvent, Material.DIRT, player));
     }
 
     @Test
@@ -114,12 +118,5 @@ public class BlockBreakRuleTest {
         rule.setPunishments(List.of(mock(HealthPunishment.class)));
         BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
         assertFalse(event.isCancelled());
-    }
-
-    @Test
-    public void testIsDisallowedIfCancelPunishment() {
-        rule.setPunishments(List.of(mock(CancelPunishment.class)));
-        BlockBreakEvent event = player.simulateBlockBreak(toBeBroken);
-        assertTrue(event.isCancelled());
     }
 }

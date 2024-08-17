@@ -69,6 +69,6 @@ public class BlockPlaceGoal extends MapGoal<BlockPlaceData, Material> implements
 
     @Override
     protected BlockPlaceData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new BlockPlaceData(toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
+        return new BlockPlaceData(null, toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }
 }

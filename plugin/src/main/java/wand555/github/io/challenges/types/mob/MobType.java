@@ -32,7 +32,7 @@ public class MobType extends Type<MobData> {
         if(killer == null) {
             return;
         }
-        MobData mobData = new MobData(event.getEntityType(), killer);
+        MobData mobData = new MobData(event, event.getEntityType(), killer);
         triggerIfCheckPasses(mobData, event);
     }
 }

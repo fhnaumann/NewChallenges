@@ -50,7 +50,7 @@ public class StoneCuttingDetector implements Listener {
         if(!selectedStonecuttingRecipes.containsKey(player)) {
             return;
         }
-        CraftingData craftingData = craftingType.constructCraftingData(selectedStonecuttingRecipes.get(player), player.getUniqueId(), false);
+        CraftingData<InventoryClickEvent> craftingData = craftingType.constructCraftingData(event, selectedStonecuttingRecipes.get(player), player.getUniqueId(), false);
         craftingType.triggerIfCheckPasses(craftingData, event);
     }
 

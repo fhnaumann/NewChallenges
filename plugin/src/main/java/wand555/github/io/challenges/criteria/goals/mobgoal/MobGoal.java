@@ -86,7 +86,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     @Override
     protected MobData createSkipData(Map.Entry<EntityType, Collect> toSkip, Player player) {
-        return new MobData(toSkip.getKey(), player);
+        return new MobData(null, toSkip.getKey(), player);
     }
 
     @Override

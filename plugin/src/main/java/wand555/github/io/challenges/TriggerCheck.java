@@ -3,6 +3,7 @@ package wand555.github.io.challenges;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wand555.github.io.challenges.types.Data;
 
 import java.util.Collection;
@@ -21,11 +22,11 @@ public interface TriggerCheck<T> {
         return (t) -> this.applies(t) && other.applies(t);
     }
 
-    static <T extends Data<K>, K extends Keyed> TriggerCheck<T> handleIfContains(Collection<K> collection) {
+    static <T extends Data<E, K>, K extends Keyed, E extends Event> TriggerCheck<T> handleIfContains(Collection<K> collection) {
         return data -> collection.contains(data.mainDataInvolved());
     }
 
-    static <T extends Data<K>, K extends Keyed> TriggerCheck<T> ignoreIfContains(Collection<K> collection) {
+    static <T extends Data<E, K>, K extends Keyed, E extends Event> TriggerCheck<T> ignoreIfContains(Collection<K> collection) {
         return data -> !collection.contains(data.mainDataInvolved());
     }
 

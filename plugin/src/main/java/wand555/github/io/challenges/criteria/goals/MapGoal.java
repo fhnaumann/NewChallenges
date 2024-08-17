@@ -3,6 +3,7 @@ package wand555.github.io.challenges.criteria.goals;
 import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.Keyed;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.bossbar.*;
@@ -25,12 +26,12 @@ import java.util.Map;
  * @param <D>
  *         Any data object (BlockBreakData, MobData, ItemData, ...)
  */
-public abstract class MapGoal<D extends Data<K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, Progressable, BossBarDisplay {
+public abstract class MapGoal<D extends Data<?, K>, K extends Keyed> extends BaseGoal implements Triggable<D>, Skippable, Progressable, BossBarDisplay {
     protected final GoalCollector<K> goalCollector;
     protected final GoalMessageHelper<D, K> messageHelper;
-    protected final CollectedInventory<D, K> collectedInventory;
+    protected final CollectedInventory<K> collectedInventory;
 
-    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, CollectedInventory<D, K> collectedInventory, Timer timer) {
+    public MapGoal(Context context, boolean complete, GoalCollector<K> goalCollector, GoalMessageHelper<D, K> messageHelper, CollectedInventory<K> collectedInventory, Timer timer) {
         super(context, complete, timer);
         this.goalCollector = goalCollector;
         this.messageHelper = messageHelper;

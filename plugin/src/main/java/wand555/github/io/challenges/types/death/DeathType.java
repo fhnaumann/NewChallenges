@@ -56,7 +56,7 @@ public class DeathType extends Type<DeathData> {
         // The data source is already prepared to expect everything in lower case.
         deathMessage = DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), deathMessageKey.toLowerCase());
 
-        triggerIfCheckPasses(new DeathData(event.getPlayer(), 1, deathMessage, usedTotem.get(event.getPlayer())),
+        triggerIfCheckPasses(new DeathData(event, event.getPlayer(), 1, deathMessage, usedTotem.get(event.getPlayer())),
                              event
         );
         usedTotem.remove(event.getPlayer());

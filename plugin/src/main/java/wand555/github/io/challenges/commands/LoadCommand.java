@@ -1,5 +1,7 @@
 package wand555.github.io.challenges.commands;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.IStringTooltip;
@@ -13,6 +15,18 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.classic.methods.HttpPut;
+import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.HttpResponse;
+import org.apache.hc.core5.http.io.entity.InputStreamEntity;
+import org.apache.hc.core5.net.URIBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -23,13 +37,21 @@ import wand555.github.io.challenges.commands.team.TeamOverviewPrinter;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.files.ProgressListener;
+import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.utils.AWSHelper;
 import wand555.github.io.challenges.utils.ActionHelper;
+import wand555.github.io.challenges.utils.ParameterStringBuilder;
 import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -261,33 +283,38 @@ public class LoadCommand {
         sendLoadingStarted(context);
         resetScoreboard();
         loadingFuture = FileManager.readFromFile(toLoad, context, progress -> handleProgress(context, progress))
-                   .exceptionally(throwable -> {
-                       if(throwable instanceof LoadValidationException loadValidationException) {
-                           sendLoadingFailed(context, loadValidationException);
-                           return context;
-                       } else {
-                           logger.severe("Loading failed: %s".formatted(throwable.getMessage()));
-                           return null;
-                       }
-                   })
+                                   .exceptionally(throwable -> {
+                                       if(throwable instanceof LoadValidationException loadValidationException) {
+                                           sendLoadingFailed(context, loadValidationException);
+                                           return context;
+                                       } else {
+                                           logger.severe("Loading failed: %s".formatted(throwable.getMessage()));
+                                           return null;
+                                       }
+                                   })
+                                   .whenComplete((newContext, throwable) -> {
+                                       if(newContext == null) {
+                                           return;
+                                       }
+                                       reassignContext(context, newContext);
+                                       challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
 
-                   .whenComplete((newContext, throwable) -> {
-                       if(newContext == null) {
-                           return;
-                       }
-                       reassignContext(context, newContext);
-                       challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
+                                       // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
+                                       // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
+                                       // restarting the server
+                                       if(context.plugin().urlReminder != null) {
+                                           context.plugin().urlReminder.stop();
+                                           context.plugin().urlReminder = null;
+                                       }
+                                       sendLoadingSuccess(context);
 
-                       // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
-                       // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
-                       // restarting the server
-                       if(context.plugin().urlReminder != null) {
-                           context.plugin().urlReminder.stop();
-                           context.plugin().urlReminder = null;
-                       }
-                       sendLoadingSuccess(context);
-                   });
+                                       // upload to s3
+                                       AWSHelper.uploadToS3(context.challengeManager().getChallengeMetadata(), toLoad);
+
+                                   });
     }
+
+
 
     private static @Nullable ChallengeFilesHandler.ChallengeLoadStatus challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
         return statuses.stream()

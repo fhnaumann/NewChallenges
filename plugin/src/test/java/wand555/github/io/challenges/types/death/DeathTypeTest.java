@@ -36,6 +36,8 @@ public class DeathTypeTest {
     private Trigger<DeathData> mockedTrigger;
     private static List<DeathMessage> deathMessages;
 
+    private static PlayerDeathEvent emptyMockEvent;
+
     @BeforeAll
     public static void beforeAll() throws IOException {
         deathMessages = CriteriaUtil.loadDeathMessages().getData();
@@ -59,6 +61,8 @@ public class DeathTypeTest {
         when(mockedDataSourceContext.deathMessageList()).thenReturn(deathMessages);
         when(mockedContext.dataSourceContext()).thenReturn(mockedDataSourceContext);
         deathType = spy(new DeathType(mockedContext, mockedTriggerCheck, mockedTrigger));
+
+        emptyMockEvent = mock(PlayerDeathEvent.class);
     }
 
     @AfterEach
@@ -71,7 +75,7 @@ public class DeathTypeTest {
     public void testPlaceholdersMapped(DeathMessage expectedDeathMessage, PlayerDeathEvent event) {
         deathType.onPlayerResurrectEvent(noTotem(event.getPlayer()));
         deathType.onPlayerDeathEvent(event);
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(event.getPlayer(), expectedDeathMessage));
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(emptyMockEvent, event.getPlayer(), expectedDeathMessage));
         //assertEquals(expectedDeathMessage, event.getDeathMessage());
     }
 
@@ -113,7 +117,7 @@ public class DeathTypeTest {
         PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
         deathType.onPlayerResurrectEvent(noTotem(player));
         deathType.onPlayerDeathEvent(deathEvent);
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(deathEvent.getPlayer(), expectedDeathMessage));
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(emptyMockEvent, deathEvent.getPlayer(), expectedDeathMessage));
     }
 
     @Test
@@ -130,7 +134,7 @@ public class DeathTypeTest {
         PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
         deathType.onPlayerResurrectEvent(totem(player));
         deathType.onPlayerDeathEvent(deathEvent);
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(deathEvent.getPlayer(),
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(emptyMockEvent, deathEvent.getPlayer(),
                                                                      1,
                                                                      expectedDeathMessage,
                                                                      true

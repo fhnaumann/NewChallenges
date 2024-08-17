@@ -37,7 +37,7 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
         ))
                           : new HashSet<>();
 
-        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger(), cancelIfCancelPunishmentActive());
+        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger());
         logger.fine("Created %s instance.".formatted(blockPlaceType.getClass().getSimpleName()));
     }
 
@@ -87,5 +87,12 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), exemptions);
+    }
+
+    @Override
+    public String toString() {
+        return "NoBlockPlaceRule{" +
+                "exemptions=" + exemptions +
+                '}';
     }
 }

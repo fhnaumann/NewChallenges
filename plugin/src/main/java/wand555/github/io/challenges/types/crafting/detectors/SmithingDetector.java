@@ -47,7 +47,7 @@ public class SmithingDetector implements Listener {
             // Only works with netherite upgrade template (for now)
             return;
         }
-        CraftingData craftingData = craftingType.constructCraftingData(keyedSmithingRecipe, player.getUniqueId(), false);
+        CraftingData<InventoryClickEvent> craftingData = craftingType.constructCraftingData(event, keyedSmithingRecipe, player.getUniqueId(), false);
         craftingType.triggerIfCheckPasses(craftingData, event);
     }
 }

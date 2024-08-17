@@ -41,7 +41,7 @@ public class BlockBreakType extends Type<BlockBreakData> {
         logger.fine("Initial check for %s passes.".formatted(eventClassName));
         Player player = event.getPlayer();
         Material broken = event.getBlock().getType();
-        BlockBreakData blockBreakData = new BlockBreakData(broken, player);
+        BlockBreakData blockBreakData = new BlockBreakData(event, broken, player);
         logger.fine("Construct data '%s'.".formatted(blockBreakData));
         triggerIfCheckPasses(blockBreakData, event);
     }
