@@ -1,0 +1,15 @@
+{
+  "test": "{player} killed the Enderdragon with {item}!",
+  "events": {
+    "blockPlace": "{player} placed {block}!",
+    "blockBreak": "{player} broke {block}!",
+
+    "collectable": "{amount}/{totalAmount} collected!",
+
+    "healthPunishment": {
+      "causer": "{player} lost {hearts} {heartImg}!",
+      "all": "All players lost {hearts} {heartImg}!",
+      "team": "All players in {team} lost {hearts} {heartImg}!"
+    }
+  }
+}

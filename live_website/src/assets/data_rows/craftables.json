@@ -1,0 +1,5842 @@
+{
+  "version": "1.20.4",
+  "data": [
+    {
+      "code": "challenges-diorite_wall_from_diorite_stonecutting",
+      "result": "diorite_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_slab_from_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_from_weathered_copper_stonecutting",
+      "result": "weathered_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_wall_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_sandstone_slab_from_cut_sandstone_stonecutting",
+      "result": "cut_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-nether_brick_slab_from_nether_bricks_stonecutting",
+      "result": "nether_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_slab_from_waxed_cut_copper_stonecutting",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_copper_slab_from_copper_block_stonecutting",
+      "result": "cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_granite_from_granite_stonecutting",
+      "result": "polished_granite",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_stone_bricks_from_stone_bricks_stonecutting",
+      "result": "chiseled_stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_bricks_from_blackstone_stonecutting",
+      "result": "polished_blackstone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_stairs_from_oxidized_copper_stonecutting",
+      "result": "oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_brick_slab_from_end_stone_brick_stonecutting",
+      "result": "end_stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_wall_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-sandstone_slab_from_sandstone_stonecutting",
+      "result": "sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_sandstone_from_sandstone_stonecutting",
+      "result": "chiseled_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_brick_stairs_from_stone_bricks_stonecutting",
+      "result": "stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_copper_stairs_from_cut_copper_stonecutting",
+      "result": "cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-prismarine_brick_stairs_from_prismarine_stonecutting",
+      "result": "prismarine_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_wall_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-andesite_wall_from_andesite_stonecutting",
+      "result": "andesite_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_slab_from_exposed_copper_stonecutting",
+      "result": "exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-nether_brick_wall_from_nether_bricks_stonecutting",
+      "result": "nether_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_slab_from_oxidized_cut_copper_stonecutting",
+      "result": "oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_red_sandstone_slab_from_smooth_red_sandstone_stonecutting",
+      "result": "smooth_red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_copper_stairs_from_copper_block_stonecutting",
+      "result": "cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_stairs_from_polished_deepslate_stonecutting",
+      "result": "polished_deepslate_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_basalt_from_basalt_stonecutting",
+      "result": "polished_basalt",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_sandstone_stairs_from_smooth_sandstone_stonecutting",
+      "result": "smooth_sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-granite_wall_from_granite_stonecutting",
+      "result": "granite_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_granite_slab_from_polished_granite_stonecutting",
+      "result": "polished_granite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-red_nether_brick_wall_from_red_nether_bricks_stonecutting",
+      "result": "red_nether_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_stairs_from_waxed_weathered_cut_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-andesite_slab_from_andesite_stonecutting",
+      "result": "andesite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_stairs_from_polished_deepslate_stonecutting",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_slab_from_exposed_cut_copper_stonecutting",
+      "result": "exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cobblestone_wall_from_cobblestone_stonecutting",
+      "result": "cobblestone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_andesite_from_andesite_stonecutting",
+      "result": "polished_andesite",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mud_brick_slab_from_mud_bricks_stonecutting",
+      "result": "mud_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_red_sandstone_from_red_sandstone_stonecutting",
+      "result": "cut_red_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_slab_from_waxed_weathered_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_wall_from_blackstone_stonecutting",
+      "result": "polished_blackstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_stone_slab_from_smooth_stone_stonecutting",
+      "result": "smooth_stone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-blackstone_wall_from_blackstone_stonecutting",
+      "result": "blackstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_slab_from_polished_deepslate_stonecutting",
+      "result": "polished_deepslate_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-granite_slab_from_granite_stonecutting",
+      "result": "granite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-granite_stairs_from_granite_stonecutting",
+      "result": "granite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_slab_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_stairs_from_oxidized_cut_copper_stonecutting",
+      "result": "oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_andesite_slab_from_andesite_stonecutting",
+      "result": "polished_andesite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_diorite_slab_from_diorite_stonecutting",
+      "result": "polished_diorite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_nether_bricks_from_nether_bricks_stonecutting",
+      "result": "chiseled_nether_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-sandstone_wall_from_sandstone_stonecutting",
+      "result": "sandstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-brick_slab_from_bricks_stonecutting",
+      "result": "brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_bricks_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-quartz_slab_from_stonecutting",
+      "result": "quartz_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_slab_from_blackstone_stonecutting",
+      "result": "polished_blackstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-red_nether_brick_slab_from_red_nether_bricks_stonecutting",
+      "result": "red_nether_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-dark_prismarine_slab_from_dark_prismarine_stonecutting",
+      "result": "dark_prismarine_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_slab_from_polished_deepslate_stonecutting",
+      "result": "deepslate_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_stone_bricks_stone_from_stonecutting",
+      "result": "chiseled_stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_wall_from_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_slab_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_granite_stairs_from_granite_stonecutting",
+      "result": "polished_granite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-red_sandstone_slab_from_red_sandstone_stonecutting",
+      "result": "red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_stairs_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-red_nether_brick_stairs_from_red_nether_bricks_stonecutting",
+      "result": "red_nether_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tiles_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tiles",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_slab_from_deepslate_tiles_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-prismarine_brick_slab_from_prismarine_stonecutting",
+      "result": "prismarine_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_stairs_from_waxed_oxidized_cut_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_slab_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_wall_from_deepslate_tiles_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_bricks_from_end_stone_stonecutting",
+      "result": "end_stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mossy_stone_brick_slab_from_mossy_stone_brick_stonecutting",
+      "result": "mossy_stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_bricks_from_stone_stonecutting",
+      "result": "stone_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_quartz_slab_from_smooth_quartz_stonecutting",
+      "result": "smooth_quartz_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-purpur_stairs_from_purpur_block_stonecutting",
+      "result": "purpur_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_bricks_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_slab_from_waxed_oxidized_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_slab_from_oxidized_copper_stonecutting",
+      "result": "oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-brick_wall_from_bricks_stonecutting",
+      "result": "brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_brick_slab_from_end_stone_stonecutting",
+      "result": "end_stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_slab_from_waxed_exposed_cut_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_from_blackstone_stonecutting",
+      "result": "polished_blackstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_deepslate_from_cobbled_deepslate_stonecutting",
+      "result": "chiseled_deepslate",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_stairs_from_polished_blackstone_bricks_stonecutting",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-prismarine_stairs_from_prismarine_stonecutting",
+      "result": "prismarine_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-quartz_stairs_from_quartz_block_stonecutting",
+      "result": "quartz_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_stairs_from_exposed_copper_stonecutting",
+      "result": "exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-red_sandstone_stairs_from_red_sandstone_stonecutting",
+      "result": "red_sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_slab_from_polished_blackstone_bricks_stonecutting",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_sandstone_slab_from_smooth_sandstone_stonecutting",
+      "result": "smooth_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_red_sandstone_slab_from_red_sandstone_stonecutting",
+      "result": "cut_red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_wall_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-prismarine_slab_from_prismarine_stonecutting",
+      "result": "prismarine_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_slab_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_wall_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_from_waxed_oxidized_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mud_brick_stairs_from_mud_bricks_stonecutting",
+      "result": "mud_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_stairs_from_weathered_cut_copper_stonecutting",
+      "result": "weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_diorite_slab_from_polished_diorite_stonecutting",
+      "result": "polished_diorite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_stairs_from_waxed_weathered_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-blackstone_stairs_from_blackstone_stonecutting",
+      "result": "blackstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_from_waxed_weathered_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_slab_from_weathered_copper_stonecutting",
+      "result": "weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_red_sandstone_slab_from_cut_red_sandstone_stonecutting",
+      "result": "cut_red_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_stairs_from_mossy_cobblestone_stonecutting",
+      "result": "mossy_cobblestone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_polished_blackstone_from_blackstone_stonecutting",
+      "result": "chiseled_polished_blackstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-diorite_stairs_from_diorite_stonecutting",
+      "result": "diorite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_sandstone_from_sandstone_stonecutting",
+      "result": "cut_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_stairs_from_stone_stonecutting",
+      "result": "stone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_slab_from_waxed_copper_block_stonecutting",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_andesite_stairs_from_andesite_stonecutting",
+      "result": "polished_andesite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-blackstone_slab_from_blackstone_stonecutting",
+      "result": "blackstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-brick_stairs_from_bricks_stonecutting",
+      "result": "brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_stairs_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_andesite_slab_from_polished_andesite_stonecutting",
+      "result": "polished_andesite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-red_sandstone_wall_from_red_sandstone_stonecutting",
+      "result": "red_sandstone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mud_brick_wall_from_mud_bricks_stonecutting",
+      "result": "mud_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_stairs_from_waxed_exposed_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tiles_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tiles",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_brick_wall_from_end_stone_brick_stonecutting",
+      "result": "end_stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_wall_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_copper_from_copper_block_stonecutting",
+      "result": "cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-diorite_slab_from_diorite_stonecutting",
+      "result": "diorite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_andesite_stairs_from_polished_andesite_stonecutting",
+      "result": "polished_andesite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_stairs_from_deepslate_tiles_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mossy_stone_brick_wall_from_mossy_stone_brick_stonecutting",
+      "result": "mossy_stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_from_oxidized_copper_stonecutting",
+      "result": "oxidized_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_brick_wall_from_end_stone_stonecutting",
+      "result": "end_stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cobbled_deepslate_slab_from_cobbled_deepslate_stonecutting",
+      "result": "cobbled_deepslate_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_slab_from_waxed_exposed_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_slab_from_stone_stonecutting",
+      "result": "stone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_brick_slab_from_stone_stonecutting",
+      "result": "stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_quartz_stairs_from_smooth_quartz_stonecutting",
+      "result": "smooth_quartz_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_polished_blackstone_from_polished_blackstone_stonecutting",
+      "result": "chiseled_polished_blackstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_brick_stairs_from_stone_stonecutting",
+      "result": "stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_diorite_stairs_from_diorite_stonecutting",
+      "result": "polished_diorite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_stairs_from_weathered_copper_stonecutting",
+      "result": "weathered_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_diorite_from_diorite_stonecutting",
+      "result": "polished_diorite",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_stairs_from_waxed_exposed_cut_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-prismarine_wall_from_prismarine_stonecutting",
+      "result": "prismarine_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_slab_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_slab_from_waxed_oxidized_cut_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_wall_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_slab_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_from_exposed_copper_stonecutting",
+      "result": "exposed_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_slab_from_mossy_cobblestone_stonecutting",
+      "result": "mossy_cobblestone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-andesite_stairs_from_andesite_stonecutting",
+      "result": "andesite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_brick_slab_from_stone_bricks_stonecutting",
+      "result": "stone_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_slab_from_waxed_weathered_cut_copper_stonecutting",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_granite_stairs_from_polished_granite_stonecutting",
+      "result": "polished_granite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_stairs_from_blackstone_stonecutting",
+      "result": "polished_blackstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-sandstone_stairs_from_sandstone_stonecutting",
+      "result": "sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_wall_from_polished_blackstone_bricks_stonecutting",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-smooth_red_sandstone_stairs_from_smooth_red_sandstone_stonecutting",
+      "result": "smooth_red_sandstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cobbled_deepslate_wall_from_cobbled_deepslate_stonecutting",
+      "result": "cobbled_deepslate_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_slab_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tile_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_stairs_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_stairs_from_waxed_oxidized_copper_stonecutting",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-purpur_slab_from_purpur_block_stonecutting",
+      "result": "purpur_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_stairs_from_blackstone_stonecutting",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cobbled_deepslate_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "cobbled_deepslate_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "polished_deepslate_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_granite_slab_from_granite_stonecutting",
+      "result": "polished_granite_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_deepslate_wall_from_polished_deepslate_stonecutting",
+      "result": "polished_deepslate_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_stairs_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cobblestone_slab_from_cobblestone_stonecutting",
+      "result": "cobblestone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mossy_stone_brick_stairs_from_mossy_stone_brick_stonecutting",
+      "result": "mossy_stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-quartz_bricks_from_quartz_block_stonecutting",
+      "result": "quartz_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_stairs_from_exposed_cut_copper_stonecutting",
+      "result": "exposed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_bricks_from_polished_deepslate_stonecutting",
+      "result": "deepslate_bricks",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_slab_from_deepslate_bricks_stonecutting",
+      "result": "deepslate_brick_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cobblestone_stairs_from_cobblestone_stonecutting",
+      "result": "cobblestone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_brick_stairs_from_end_stone_brick_stonecutting",
+      "result": "end_stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_quartz_block_from_quartz_block_stonecutting",
+      "result": "chiseled_quartz_block",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_brick_wall_from_stone_bricks_stonecutting",
+      "result": "stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_stairs_from_waxed_copper_block_stonecutting",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_copper_slab_from_cut_copper_stonecutting",
+      "result": "cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-dark_prismarine_stairs_from_dark_prismarine_stonecutting",
+      "result": "dark_prismarine_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-purpur_pillar_from_purpur_block_stonecutting",
+      "result": "purpur_pillar",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_diorite_stairs_from_polished_diorite_stonecutting",
+      "result": "polished_diorite_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_brick_wall_from_polished_deepslate_stonecutting",
+      "result": "deepslate_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_slab_from_weathered_cut_copper_stonecutting",
+      "result": "weathered_cut_copper_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_from_waxed_exposed_copper_stonecutting",
+      "result": "waxed_exposed_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-end_stone_brick_stairs_from_end_stone_stonecutting",
+      "result": "end_stone_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_wall_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tile_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-quartz_pillar_from_quartz_block_stonecutting",
+      "result": "quartz_pillar",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_stairs_from_waxed_cut_copper_stonecutting",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tile_stairs_from_polished_deepslate_stonecutting",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-deepslate_tiles_from_cobbled_deepslate_stonecutting",
+      "result": "deepslate_tiles",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_wall_from_mossy_cobblestone_stonecutting",
+      "result": "mossy_cobblestone_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-nether_brick_stairs_from_nether_bricks_stonecutting",
+      "result": "nether_brick_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-cut_sandstone_slab_from_sandstone_stonecutting",
+      "result": "cut_sandstone_slab",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-polished_blackstone_stairs_from_polished_blackstone_stonecutting",
+      "result": "polished_blackstone_stairs",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-stone_brick_walls_from_stone_stonecutting",
+      "result": "stone_brick_wall",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_from_waxed_copper_block_stonecutting",
+      "result": "waxed_cut_copper",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-chiseled_red_sandstone_from_red_sandstone_stonecutting",
+      "result": "chiseled_red_sandstone",
+      "recipeType": "stonecutting"
+    },
+    {
+      "code": "challenges-gold_nugget_from_blasting",
+      "source": "golden_pickaxe",
+      "result": "gold_nugget",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-copper_ingot_from_blasting_deepslate_copper_ore",
+      "source": "deepslate_copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-coal_from_blasting_coal_ore",
+      "source": "coal_ore",
+      "result": "coal",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-diamond_from_blasting_diamond_ore",
+      "source": "diamond_ore",
+      "result": "diamond",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-redstone_from_blasting_redstone_ore",
+      "source": "redstone_ore",
+      "result": "redstone",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-lapis_lazuli_from_blasting_deepslate_lapis_ore",
+      "source": "deepslate_lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-diamond_from_blasting_deepslate_diamond_ore",
+      "source": "deepslate_diamond_ore",
+      "result": "diamond",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-redstone_from_blasting_deepslate_redstone_ore",
+      "source": "deepslate_redstone_ore",
+      "result": "redstone",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-netherite_scrap_from_blasting",
+      "source": "ancient_debris",
+      "result": "netherite_scrap",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-iron_ingot_from_blasting_deepslate_iron_ore",
+      "source": "deepslate_iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-copper_ingot_from_blasting_copper_ore",
+      "source": "copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-emerald_from_blasting_deepslate_emerald_ore",
+      "source": "deepslate_emerald_ore",
+      "result": "emerald",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-gold_ingot_from_blasting_raw_gold",
+      "source": "raw_gold",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-iron_nugget_from_blasting",
+      "source": "iron_pickaxe",
+      "result": "iron_nugget",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-gold_ingot_from_blasting_gold_ore",
+      "source": "gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-quartz_from_blasting",
+      "source": "nether_quartz_ore",
+      "result": "quartz",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-iron_ingot_from_blasting_iron_ore",
+      "source": "iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-gold_ingot_from_blasting_nether_gold_ore",
+      "source": "nether_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-gold_ingot_from_blasting_deepslate_gold_ore",
+      "source": "deepslate_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-emerald_from_blasting_emerald_ore",
+      "source": "emerald_ore",
+      "result": "emerald",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-iron_ingot_from_blasting_raw_iron",
+      "source": "raw_iron",
+      "result": "iron_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-lapis_lazuli_from_blasting_lapis_ore",
+      "source": "lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-copper_ingot_from_blasting_raw_copper",
+      "source": "raw_copper",
+      "result": "copper_ingot",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-coal_from_blasting_deepslate_coal_ore",
+      "source": "deepslate_coal_ore",
+      "result": "coal",
+      "recipeType": "blasting"
+    },
+    {
+      "code": "challenges-netherite_shovel_smithing",
+      "result": "netherite_shovel",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_boots_smithing",
+      "result": "netherite_boots",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_axe_smithing",
+      "result": "netherite_axe",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_sword_smithing",
+      "result": "netherite_sword",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_hoe_smithing",
+      "result": "netherite_hoe",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_chestplate_smithing",
+      "result": "netherite_chestplate",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_pickaxe_smithing",
+      "result": "netherite_pickaxe",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_leggings_smithing",
+      "result": "netherite_leggings",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-netherite_helmet_smithing",
+      "result": "netherite_helmet",
+      "recipeType": "smithing"
+    },
+    {
+      "code": "challenges-yellow_dye_from_dandelion",
+      "result": "yellow_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_button",
+      "result": "dark_oak_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_slab",
+      "result": "polished_blackstone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_deepslate",
+      "result": "chiseled_deepslate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_candle",
+      "result": "gray_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-rabbit_stew_from_brown_mushroom",
+      "result": "rabbit_stew",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_dark_oak_wood",
+      "result": "stripped_dark_oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stonecutter",
+      "result": "stonecutter",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-soul_torch",
+      "result": "soul_torch",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bone_block",
+      "result": "bone_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raw_iron",
+      "result": "raw_iron",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-eye_armor_trim_smithing_template",
+      "result": "eye_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_nugget",
+      "result": "iron_nugget",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-melon",
+      "result": "melon",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_fence",
+      "result": "birch_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_nether_brick_slab",
+      "result": "red_nether_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_from_honeycomb",
+      "result": "waxed_oxidized_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_fence_gate",
+      "result": "warped_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-nether_wart_block",
+      "result": "nether_wart_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_fence_gate",
+      "result": "bamboo_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_banner",
+      "result": "magenta_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cobblestone_wall",
+      "result": "cobblestone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_dye",
+      "result": "gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_stained_glass_pane",
+      "result": "lime_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_fence_gate",
+      "result": "mangrove_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_pressure_plate",
+      "result": "warped_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_slab",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-coal_block",
+      "result": "coal_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raw_copper",
+      "result": "raw_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sugar_from_honey_bottle",
+      "result": "sugar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_button",
+      "result": "mangrove_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-slime_ball",
+      "result": "slime_ball",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_fence_gate",
+      "result": "spruce_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-leather_chestplate",
+      "result": "leather_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_bed",
+      "result": "yellow_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_block",
+      "result": "iron_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-beehive",
+      "result": "beehive",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-map_extending",
+      "result": "map",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_sign",
+      "result": "spruce_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_stained_glass_pane_from_glass_pane",
+      "result": "white_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_door",
+      "result": "dark_oak_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_light_gray_wool",
+      "result": "light_gray_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-writable_book",
+      "result": "writable_book",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_wood",
+      "result": "birch_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_dye_from_pitcher_plant",
+      "result": "cyan_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-glow_item_frame",
+      "result": "glow_item_frame",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-leather_helmet",
+      "result": "leather_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_bed",
+      "result": "light_blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_mosaic",
+      "result": "bamboo_mosaic",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_wood",
+      "result": "oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-scaffolding",
+      "result": "scaffolding",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-emerald_block",
+      "result": "emerald_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_apple",
+      "result": "golden_apple",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_nether_bricks",
+      "result": "chiseled_nether_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_pickaxe",
+      "result": "diamond_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-flower_pot",
+      "result": "flower_pot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_button",
+      "result": "acacia_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_dye_from_oxeye_daisy",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_stained_glass_pane",
+      "result": "magenta_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-copper_block",
+      "result": "copper_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-nether_brick_stairs",
+      "result": "nether_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_candle",
+      "result": "purple_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-recovery_compass",
+      "result": "recovery_compass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_bed",
+      "result": "magenta_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_sword",
+      "result": "iron_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_wood",
+      "result": "spruce_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_stained_glass",
+      "result": "green_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_dye_from_blue_red_white_dye",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_fence",
+      "result": "spruce_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_fence",
+      "result": "cherry_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_stone_brick_slab",
+      "result": "mossy_stone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-andesite_slab",
+      "result": "andesite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_chest_raft",
+      "result": "bamboo_chest_raft",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_prismarine_slab",
+      "result": "dark_prismarine_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-honey_block",
+      "result": "honey_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_planks",
+      "result": "bamboo_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_terracotta",
+      "result": "pink_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_stairs",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_stained_glass",
+      "result": "orange_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_slab",
+      "result": "exposed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_wall",
+      "result": "polished_blackstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cobblestone_stairs",
+      "result": "cobblestone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_sandstone_slab",
+      "result": "cut_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_red_sandstone_slab",
+      "result": "smooth_red_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_pressure_plate",
+      "result": "bamboo_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_door",
+      "result": "cherry_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_trapdoor",
+      "result": "birch_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_slab",
+      "result": "weathered_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_copper_from_honeycomb",
+      "result": "waxed_weathered_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_boots",
+      "result": "golden_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_dye_from_red_white_dye",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_door",
+      "result": "acacia_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_wood",
+      "result": "mangrove_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_basalt",
+      "result": "polished_basalt",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine_stairs",
+      "result": "prismarine_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_concrete_powder",
+      "result": "cyan_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-conduit",
+      "result": "conduit",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_green_carpet",
+      "result": "green_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mojang_banner_pattern",
+      "result": "mojang_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_granite_slab",
+      "result": "polished_granite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_pink_wool",
+      "result": "pink_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-fire_charge",
+      "result": "fire_charge",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_hoe",
+      "result": "golden_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sticky_piston",
+      "result": "sticky_piston",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sentry_armor_trim_smithing_template",
+      "result": "sentry_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_dye",
+      "result": "white_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-redstone",
+      "result": "redstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-emerald",
+      "result": "emerald",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_andesite_slab",
+      "result": "polished_andesite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_green_bed",
+      "result": "green_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wooden_pickaxe",
+      "result": "wooden_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_planks",
+      "result": "cherry_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-powered_rail",
+      "result": "powered_rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_hanging_sign",
+      "result": "warped_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_concrete_powder",
+      "result": "green_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_stairs",
+      "result": "oak_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-silence_armor_trim_smithing_template",
+      "result": "silence_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_dye_from_torchflower",
+      "result": "orange_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_white_bed",
+      "result": "white_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_button",
+      "result": "stone_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_stairs",
+      "result": "polished_blackstone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_stained_glass",
+      "result": "brown_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stick_from_bamboo_item",
+      "result": "stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-tinted_glass",
+      "result": "tinted_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_terracotta",
+      "result": "blue_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_candle",
+      "result": "yellow_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_oak_wood",
+      "result": "stripped_oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sandstone",
+      "result": "sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_concrete_powder",
+      "result": "yellow_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_terracotta",
+      "result": "gray_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_fence_gate",
+      "result": "jungle_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-comparator",
+      "result": "comparator",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lodestone",
+      "result": "lodestone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-repeater",
+      "result": "repeater",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_concrete_powder",
+      "result": "red_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purpur_block",
+      "result": "purpur_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_slab",
+      "result": "polished_blackstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_stairs",
+      "result": "stone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-fishing_rod",
+      "result": "fishing_rod",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dried_kelp_block",
+      "result": "dried_kelp_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-end_stone_brick_stairs",
+      "result": "end_stone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_leggings",
+      "result": "iron_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_crimson_hyphae",
+      "result": "stripped_crimson_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_carpet",
+      "result": "cyan_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-nether_brick_wall",
+      "result": "nether_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_concrete_powder",
+      "result": "gray_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_concrete_powder",
+      "result": "light_blue_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wayfinder_armor_trim_smithing_template",
+      "result": "wayfinder_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_light_blue_bed",
+      "result": "light_blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-granite_stairs",
+      "result": "granite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_terracotta",
+      "result": "cyan_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_red_sandstone",
+      "result": "cut_red_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mushroom_stew",
+      "result": "mushroom_stew",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_fence",
+      "result": "mangrove_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_dye_from_tulip",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_planks",
+      "result": "warped_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_candle",
+      "result": "lime_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_dye_from_beetroot",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-beacon",
+      "result": "beacon",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-tnt",
+      "result": "tnt",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_stone_bricks_from_vine",
+      "result": "mossy_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_white_carpet",
+      "result": "white_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_yellow_bed",
+      "result": "yellow_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_bed",
+      "result": "light_gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-flint_and_steel",
+      "result": "flint_and_steel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_candle",
+      "result": "red_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_dye_from_orange_tulip",
+      "result": "orange_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_carpet",
+      "result": "brown_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_door",
+      "result": "jungle_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_dye",
+      "result": "black_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_stained_glass_pane",
+      "result": "black_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine_brick_slab",
+      "result": "prismarine_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine_bricks",
+      "result": "prismarine_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-nether_bricks",
+      "result": "nether_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_carpet",
+      "result": "blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_door",
+      "result": "bamboo_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_chestplate",
+      "result": "iron_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_fence",
+      "result": "crimson_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_bricks",
+      "result": "stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_slab",
+      "result": "oxidized_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_stairs",
+      "result": "birch_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-vex_armor_trim_smithing_template",
+      "result": "vex_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_orange_wool",
+      "result": "orange_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_stained_glass",
+      "result": "light_gray_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_wool_from_string",
+      "result": "white_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_chest_boat",
+      "result": "spruce_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_stained_glass_pane",
+      "result": "white_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_axe",
+      "result": "golden_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_stairs",
+      "result": "crimson_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_light_blue_wool",
+      "result": "light_blue_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-decorated_pot_simple",
+      "result": "decorated_pot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_stained_glass_pane",
+      "result": "light_blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_concrete_powder",
+      "result": "brown_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_stained_glass",
+      "result": "cyan_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_pressure_plate",
+      "result": "oak_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_brick_stairs",
+      "result": "stone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_sword",
+      "result": "stone_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_dye_from_sunflower",
+      "result": "yellow_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diorite",
+      "result": "diorite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_fence",
+      "result": "acacia_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_hyphae",
+      "result": "crimson_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_slab",
+      "result": "oak_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_banner",
+      "result": "cyan_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dripstone_block",
+      "result": "dripstone_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-glistering_melon_slice",
+      "result": "glistering_melon_slice",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_chest_boat",
+      "result": "mangrove_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_button",
+      "result": "crimson_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_door",
+      "result": "warped_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_hoe",
+      "result": "iron_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_ingot_from_iron_block",
+      "result": "iron_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_hanging_sign",
+      "result": "jungle_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_planks",
+      "result": "jungle_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-snow",
+      "result": "snow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_fence_gate",
+      "result": "acacia_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-clock",
+      "result": "clock",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_sign",
+      "result": "mangrove_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_yellow_wool",
+      "result": "yellow_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_carpet",
+      "result": "magenta_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_stained_glass_pane_from_glass_pane",
+      "result": "orange_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_trapdoor",
+      "result": "jungle_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-grindstone",
+      "result": "grindstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_ice",
+      "result": "blue_ice",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_nether_bricks",
+      "result": "red_nether_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_brown_carpet",
+      "result": "brown_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-glass_pane",
+      "result": "glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_leggings",
+      "result": "diamond_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_slab",
+      "result": "warped_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lectern",
+      "result": "lectern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_stairs",
+      "result": "mangrove_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine",
+      "result": "prismarine",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_sword",
+      "result": "golden_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_stained_glass",
+      "result": "purple_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_ingot_from_nuggets",
+      "result": "iron_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_sandstone",
+      "result": "chiseled_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-clay",
+      "result": "clay",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_pickaxe",
+      "result": "golden_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_copper_stairs",
+      "result": "cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_raft",
+      "result": "bamboo_raft",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_bookshelf",
+      "result": "chiseled_bookshelf",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_dye_from_allium",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_stone_slab",
+      "result": "smooth_stone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-ladder",
+      "result": "ladder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_lime_wool",
+      "result": "lime_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-redstone_torch",
+      "result": "redstone_torch",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-moss_carpet",
+      "result": "moss_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_slab",
+      "result": "mossy_cobblestone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_black_bed",
+      "result": "black_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-furnace_minecart",
+      "result": "furnace_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_from_vine",
+      "result": "mossy_cobblestone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-target",
+      "result": "target",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_concrete_powder",
+      "result": "white_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_terracotta",
+      "result": "yellow_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_carpet",
+      "result": "orange_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_stone_bricks_from_moss_block",
+      "result": "mossy_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper",
+      "result": "waxed_weathered_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cake",
+      "result": "cake",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_bed",
+      "result": "gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_banner",
+      "result": "orange_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_sign",
+      "result": "dark_oak_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-granite_slab",
+      "result": "granite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_boat",
+      "result": "cherry_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mud_brick_stairs",
+      "result": "mud_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_terracotta",
+      "result": "white_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-leather_boots",
+      "result": "leather_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-netherite_ingot_from_netherite_block",
+      "result": "netherite_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_hanging_sign",
+      "result": "oak_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-armor_stand",
+      "result": "armor_stand",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_stained_glass_pane",
+      "result": "pink_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_concrete_powder",
+      "result": "lime_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_slab",
+      "result": "mangrove_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-leather_leggings",
+      "result": "leather_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_dye_from_cornflower",
+      "result": "blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_cherry_wood",
+      "result": "stripped_cherry_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_banner",
+      "result": "brown_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-barrel",
+      "result": "barrel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_pressure_plate",
+      "result": "cherry_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_button",
+      "result": "polished_blackstone_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_hyphae",
+      "result": "warped_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_chest_boat",
+      "result": "jungle_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_stained_glass_pane_from_glass_pane",
+      "result": "lime_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_black_carpet",
+      "result": "black_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-book",
+      "result": "book",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_stone_bricks",
+      "result": "chiseled_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wooden_shovel",
+      "result": "wooden_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-end_stone_brick_slab",
+      "result": "end_stone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smithing_table",
+      "result": "smithing_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_bed",
+      "result": "green_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_gray_carpet",
+      "result": "gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magma_block",
+      "result": "magma_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-shaper_armor_trim_smithing_template",
+      "result": "shaper_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_pressure_plate",
+      "result": "spruce_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_terracotta",
+      "result": "purple_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cauldron",
+      "result": "cauldron",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_concrete_powder",
+      "result": "pink_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_trapdoor",
+      "result": "bamboo_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_copper_block_from_honeycomb",
+      "result": "waxed_copper_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brush",
+      "result": "brush",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_concrete_powder",
+      "result": "magenta_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_dye_from_poppy",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_shovel",
+      "result": "diamond_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_fungus_on_a_stick",
+      "result": "warped_fungus_on_a_stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_slab_from_honeycomb",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-andesite_wall",
+      "result": "andesite_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sandstone_slab",
+      "result": "sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-hay_block",
+      "result": "hay_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_candle",
+      "result": "light_blue_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cobblestone_slab",
+      "result": "cobblestone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_banner",
+      "result": "gray_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_stairs",
+      "result": "warped_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_hanging_sign",
+      "result": "spruce_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wild_armor_trim_smithing_template",
+      "result": "wild_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-snout_armor_trim_smithing_template",
+      "result": "snout_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-minecart",
+      "result": "minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_sandstone_slab",
+      "result": "smooth_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chest",
+      "result": "chest",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_stained_glass",
+      "result": "gray_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-rail",
+      "result": "rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_candle",
+      "result": "pink_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_sword",
+      "result": "diamond_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_terracotta",
+      "result": "red_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_banner",
+      "result": "yellow_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-creeper_banner_pattern",
+      "result": "creeper_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_slab",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_bed",
+      "result": "red_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_fence",
+      "result": "dark_oak_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_shovel",
+      "result": "golden_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_copper",
+      "result": "cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_tile_stairs",
+      "result": "deepslate_tile_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_gray_wool",
+      "result": "gray_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-soul_lantern",
+      "result": "soul_lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-copper_ingot",
+      "result": "copper_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_slab",
+      "result": "waxed_weathered_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_dye_from_lily_of_the_valley",
+      "result": "white_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_trapdoor",
+      "result": "crimson_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_dye_from_pink_petals",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_gray_bed",
+      "result": "gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-end_stone_brick_wall",
+      "result": "end_stone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_diorite_slab",
+      "result": "polished_diorite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_light_gray_bed",
+      "result": "light_gray_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_stairs",
+      "result": "bamboo_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_sandstone_stairs",
+      "result": "smooth_sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blaze_powder",
+      "result": "blaze_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chain",
+      "result": "chain",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_concrete_powder",
+      "result": "blue_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_stained_glass",
+      "result": "blue_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_fence",
+      "result": "oak_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_trapdoor",
+      "result": "warped_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-rabbit_stew_from_red_mushroom",
+      "result": "rabbit_stew",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_boots",
+      "result": "iron_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine_brick_stairs",
+      "result": "prismarine_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_chestplate",
+      "result": "diamond_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_chestplate",
+      "result": "golden_chestplate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_planks",
+      "result": "crimson_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_sign",
+      "result": "oak_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_candle",
+      "result": "blue_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-netherite_ingot",
+      "result": "netherite_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_sign",
+      "result": "birch_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_pressure_plate",
+      "result": "birch_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-flower_banner_pattern",
+      "result": "flower_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-netherite_block",
+      "result": "netherite_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_terracotta",
+      "result": "light_blue_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_dye_from_red_yellow",
+      "result": "orange_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_stairs",
+      "result": "spruce_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_planks",
+      "result": "mangrove_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_bed",
+      "result": "black_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_sign",
+      "result": "jungle_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_candle",
+      "result": "cyan_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crossbow",
+      "result": "crossbow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_dye_from_azure_bluet",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_dye_from_white_tulip",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-calibrated_sculk_sensor",
+      "result": "calibrated_sculk_sensor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bowl",
+      "result": "bowl",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond",
+      "result": "diamond",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_candle",
+      "result": "magenta_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_stained_glass_pane",
+      "result": "green_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_slab",
+      "result": "crimson_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_dye_from_blue_red_pink",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_concrete_powder",
+      "result": "black_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_carpet",
+      "result": "lime_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_banner",
+      "result": "purple_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_concrete_powder",
+      "result": "purple_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sugar_from_sugar_cane",
+      "result": "sugar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_planks",
+      "result": "birch_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_dye_from_black_white_dye",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_stained_glass_pane",
+      "result": "light_gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spectral_arrow",
+      "result": "spectral_arrow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_terracotta",
+      "result": "green_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-tnt_minecart",
+      "result": "tnt_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_carpet",
+      "result": "red_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_stained_glass",
+      "result": "white_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_planks",
+      "result": "acacia_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-slime_block",
+      "result": "slime_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wooden_hoe",
+      "result": "wooden_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-quartz_pillar",
+      "result": "quartz_pillar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_red_wool",
+      "result": "red_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_button",
+      "result": "cherry_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mud_bricks",
+      "result": "mud_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_magenta_bed",
+      "result": "magenta_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-netherite_upgrade_smithing_template",
+      "result": "netherite_upgrade_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_from_honeycomb",
+      "result": "waxed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_magenta_carpet",
+      "result": "magenta_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purpur_stairs",
+      "result": "purpur_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_terracotta",
+      "result": "brown_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_stairs",
+      "result": "waxed_oxidized_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_block",
+      "result": "bamboo_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_stairs",
+      "result": "mossy_cobblestone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-note_block",
+      "result": "note_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_orange_bed",
+      "result": "orange_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_dye",
+      "result": "blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_hanging_sign",
+      "result": "acacia_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-muddy_mangrove_roots",
+      "result": "muddy_mangrove_roots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-piston",
+      "result": "piston",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_bed",
+      "result": "brown_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_bed",
+      "result": "blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-ward_armor_trim_smithing_template",
+      "result": "ward_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_carpet",
+      "result": "light_gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_banner",
+      "result": "white_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-end_crystal",
+      "result": "end_crystal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_stained_glass_pane_from_glass_pane",
+      "result": "magenta_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_red_sandstone_stairs",
+      "result": "smooth_red_sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_banner",
+      "result": "light_gray_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_pickaxe",
+      "result": "stone_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-shulker_box",
+      "result": "shulker_box",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dispenser",
+      "result": "dispenser",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wooden_axe",
+      "result": "wooden_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_stained_glass_pane",
+      "result": "cyan_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-daylight_detector",
+      "result": "daylight_detector",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-quartz_stairs",
+      "result": "quartz_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diorite_wall",
+      "result": "diorite_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_carpet",
+      "result": "white_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_planks",
+      "result": "spruce_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_stained_glass",
+      "result": "red_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_stained_glass_pane_from_glass_pane",
+      "result": "light_gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_carpet",
+      "result": "green_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_bricks",
+      "result": "polished_blackstone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purpur_slab",
+      "result": "purpur_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_from_honeycomb",
+      "result": "waxed_exposed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_from_moss_block",
+      "result": "mossy_cobblestone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jack_o_lantern",
+      "result": "jack_o_lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-tripwire_hook",
+      "result": "tripwire_hook",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-trapped_chest",
+      "result": "trapped_chest",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-hopper",
+      "result": "hopper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lantern",
+      "result": "lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raw_gold",
+      "result": "raw_gold",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_banner",
+      "result": "green_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dried_kelp",
+      "result": "dried_kelp",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-ender_chest",
+      "result": "ender_chest",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_stained_glass",
+      "result": "magenta_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gold_nugget",
+      "result": "gold_nugget",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_bars",
+      "result": "iron_bars",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-beetroot_soup",
+      "result": "beetroot_soup",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_trapdoor",
+      "result": "iron_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_candle",
+      "result": "brown_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_brick_wall",
+      "result": "deepslate_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_terracotta",
+      "result": "lime_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_axe",
+      "result": "diamond_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_helmet",
+      "result": "iron_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_wood",
+      "result": "jungle_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper",
+      "result": "waxed_oxidized_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cartography_table",
+      "result": "cartography_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_stained_glass_pane_from_glass_pane",
+      "result": "gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_diorite",
+      "result": "polished_diorite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_slab",
+      "result": "stone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_pressure_plate",
+      "result": "acacia_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_bed",
+      "result": "lime_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_pressure_plate",
+      "result": "dark_oak_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_blue_wool",
+      "result": "blue_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_slab",
+      "result": "acacia_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_stairs",
+      "result": "jungle_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blast_furnace",
+      "result": "blast_furnace",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_andesite_stairs",
+      "result": "polished_andesite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_stained_glass_pane_from_glass_pane",
+      "result": "light_blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_dye_from_lilac",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_from_honeycomb",
+      "result": "waxed_weathered_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_red_bed",
+      "result": "red_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_chest_boat",
+      "result": "cherry_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper",
+      "result": "waxed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_stained_glass_pane_from_glass_pane",
+      "result": "blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_carpet",
+      "result": "light_blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_polished_blackstone",
+      "result": "chiseled_polished_blackstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-turtle_helmet",
+      "result": "turtle_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cobbled_deepslate_stairs",
+      "result": "cobbled_deepslate_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-fletching_table",
+      "result": "fletching_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_banner",
+      "result": "light_blue_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_lime_bed",
+      "result": "lime_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_dye_from_gray_white_dye",
+      "result": "light_gray_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_cobblestone_wall",
+      "result": "mossy_cobblestone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spyglass",
+      "result": "spyglass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_dye_from_purple_and_pink",
+      "result": "magenta_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_banner",
+      "result": "red_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purpur_pillar",
+      "result": "purpur_pillar",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-heavy_weighted_pressure_plate",
+      "result": "heavy_weighted_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_tile_slab",
+      "result": "deepslate_tile_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_stained_glass",
+      "result": "pink_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_shovel",
+      "result": "stone_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_leggings",
+      "result": "golden_leggings",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_chest_boat",
+      "result": "oak_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_birch_wood",
+      "result": "stripped_birch_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_slab",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_stairs",
+      "result": "polished_blackstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_banner",
+      "result": "lime_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_brick_stairs",
+      "result": "deepslate_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_pressure_plate",
+      "result": "stone_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dropper",
+      "result": "dropper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-redstone_lamp",
+      "result": "redstone_lamp",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_stained_glass_pane",
+      "result": "yellow_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_carpet",
+      "result": "black_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-end_rod",
+      "result": "end_rod",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_magenta_wool",
+      "result": "magenta_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raiser_armor_trim_smithing_template",
+      "result": "raiser_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_mosaic_stairs",
+      "result": "bamboo_mosaic_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_helmet",
+      "result": "golden_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_dye_from_blue_orchid",
+      "result": "light_blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper_stairs",
+      "result": "weathered_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_button",
+      "result": "warped_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_cut_copper_slab_from_honeycomb",
+      "result": "waxed_oxidized_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_deepslate",
+      "result": "polished_deepslate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bone_meal_from_bone_block",
+      "result": "bone_meal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bread",
+      "result": "bread",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_boat",
+      "result": "mangrove_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-torch",
+      "result": "torch",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_granite_stairs",
+      "result": "polished_granite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_boat",
+      "result": "acacia_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lever",
+      "result": "lever",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_blue_bed",
+      "result": "blue_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-map",
+      "result": "map",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-detector_rail",
+      "result": "detector_rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_bed",
+      "result": "pink_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-shield",
+      "result": "shield",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blackstone_slab",
+      "result": "blackstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_light_blue_carpet",
+      "result": "light_blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_slab",
+      "result": "bamboo_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_sign",
+      "result": "crimson_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_stained_glass_pane_from_glass_pane",
+      "result": "cyan_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_chest_boat",
+      "result": "dark_oak_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_trapdoor",
+      "result": "dark_oak_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_banner",
+      "result": "black_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-painting",
+      "result": "painting",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_shovel",
+      "result": "iron_shovel",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_red_carpet",
+      "result": "red_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_brick_slab",
+      "result": "stone_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_pressure_plate",
+      "result": "polished_blackstone_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-quartz_bricks",
+      "result": "quartz_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crafting_table",
+      "result": "crafting_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sandstone_wall",
+      "result": "sandstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_stained_glass_pane_from_glass_pane",
+      "result": "green_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_deepslate_slab",
+      "result": "polished_deepslate_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_sandstone_wall",
+      "result": "red_sandstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_chest_boat",
+      "result": "acacia_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_copper_slab",
+      "result": "cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_wood",
+      "result": "dark_oak_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_hanging_sign",
+      "result": "birch_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_carpet",
+      "result": "pink_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_stairs",
+      "result": "acacia_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_slab",
+      "result": "cherry_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_bricks",
+      "result": "deepslate_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raw_gold_block",
+      "result": "raw_gold_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_door",
+      "result": "birch_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_copper_from_honeycomb",
+      "result": "waxed_exposed_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-anvil",
+      "result": "anvil",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_acacia_wood",
+      "result": "stripped_acacia_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_stairs",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gold_ingot_from_nuggets",
+      "result": "gold_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_stone_brick_stairs",
+      "result": "mossy_stone_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_trapdoor",
+      "result": "oak_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-amethyst_block",
+      "result": "amethyst_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_door",
+      "result": "oak_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_slab_from_honeycomb",
+      "result": "waxed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_bed",
+      "result": "orange_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_button",
+      "result": "birch_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wooden_sword",
+      "result": "wooden_sword",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_fence_gate",
+      "result": "birch_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bone_meal",
+      "result": "bone_meal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-honey_bottle",
+      "result": "honey_bottle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_bed",
+      "result": "cyan_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_quartz_slab",
+      "result": "smooth_quartz_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_door",
+      "result": "spruce_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-carrot_on_a_stick",
+      "result": "carrot_on_a_stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_stained_glass_pane",
+      "result": "red_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brick_wall",
+      "result": "brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raw_copper_block",
+      "result": "raw_copper_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_bed",
+      "result": "purple_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mud_brick_wall",
+      "result": "mud_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_prismarine",
+      "result": "dark_prismarine",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_stained_glass_pane_from_glass_pane",
+      "result": "purple_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-leather_horse_armor",
+      "result": "leather_horse_armor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cookie",
+      "result": "cookie",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-raw_iron_block",
+      "result": "raw_iron_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_planks",
+      "result": "dark_oak_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lapis_lazuli",
+      "result": "lapis_lazuli",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-candle",
+      "result": "candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lightning_rod",
+      "result": "lightning_rod",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_stained_glass_pane_from_glass_pane",
+      "result": "brown_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_button",
+      "result": "oak_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-granite_wall",
+      "result": "granite_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_concrete_powder",
+      "result": "orange_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_hanging_sign",
+      "result": "dark_oak_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-redstone_block",
+      "result": "redstone_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-shears",
+      "result": "shears",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-wheat",
+      "result": "wheat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-honeycomb_block",
+      "result": "honeycomb_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_stained_glass_pane",
+      "result": "orange_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-quartz_block",
+      "result": "quartz_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_stained_glass_pane_from_glass_pane",
+      "result": "yellow_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-music_disc_5",
+      "result": "music_disc_5",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_helmet",
+      "result": "diamond_helmet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_fence",
+      "result": "warped_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bow",
+      "result": "bow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_fence_gate",
+      "result": "dark_oak_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper",
+      "result": "waxed_exposed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-coal",
+      "result": "coal",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-compass",
+      "result": "compass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_pink_bed",
+      "result": "pink_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-andesite_stairs",
+      "result": "andesite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-item_frame",
+      "result": "item_frame",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_slab",
+      "result": "jungle_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-loom",
+      "result": "loom",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smoker",
+      "result": "smoker",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-skull_banner_pattern",
+      "result": "skull_banner_pattern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_boat",
+      "result": "dark_oak_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-coast_armor_trim_smithing_template",
+      "result": "coast_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_dye_from_pink_tulip",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-arrow",
+      "result": "arrow",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dune_armor_trim_smithing_template",
+      "result": "dune_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_fence_gate",
+      "result": "oak_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mossy_stone_brick_wall",
+      "result": "mossy_stone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_dye",
+      "result": "brown_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-granite",
+      "result": "granite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-melon_seeds",
+      "result": "melon_seeds",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_exposed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_cyan_carpet",
+      "result": "cyan_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brick_slab",
+      "result": "brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-firework_rocket_simple",
+      "result": "firework_rocket",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_dye_from_wither_rose",
+      "result": "black_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_sandstone_stairs",
+      "result": "red_sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bricks",
+      "result": "bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_sandstone_slab",
+      "result": "red_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_stained_glass_pane",
+      "result": "gray_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gray_carpet",
+      "result": "gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper_stairs",
+      "result": "oxidized_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_trapdoor",
+      "result": "mangrove_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-andesite",
+      "result": "andesite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_boots",
+      "result": "diamond_boots",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_hanging_sign",
+      "result": "crimson_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_tile_wall",
+      "result": "deepslate_tile_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_deepslate_stairs",
+      "result": "polished_deepslate_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper",
+      "result": "exposed_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone",
+      "result": "polished_blackstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_hanging_sign",
+      "result": "mangrove_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_exposed_cut_copper_slab_from_honeycomb",
+      "result": "waxed_exposed_cut_copper_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stick",
+      "result": "stick",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_nether_brick_stairs",
+      "result": "red_nether_brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_stairs",
+      "result": "dark_oak_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_pressure_plate",
+      "result": "jungle_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brewing_stand",
+      "result": "brewing_stand",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_yellow_carpet",
+      "result": "yellow_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_candle",
+      "result": "white_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_mosaic_slab",
+      "result": "bamboo_mosaic_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-host_armor_trim_smithing_template",
+      "result": "host_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_white_wool",
+      "result": "white_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_light_gray_carpet",
+      "result": "light_gray_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spire_armor_trim_smithing_template",
+      "result": "spire_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_blackstone_brick_wall",
+      "result": "polished_blackstone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_axe",
+      "result": "stone_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_button",
+      "result": "jungle_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-packed_ice",
+      "result": "packed_ice",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-golden_carrot",
+      "result": "golden_carrot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blackstone_stairs",
+      "result": "blackstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_banner",
+      "result": "blue_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_purple_carpet",
+      "result": "purple_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_orange_carpet",
+      "result": "orange_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine_wall",
+      "result": "prismarine_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_block",
+      "result": "diamond_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_cyan_bed",
+      "result": "cyan_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_oxidized_copper_from_honeycomb",
+      "result": "waxed_oxidized_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diorite_slab",
+      "result": "diorite_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_trapdoor",
+      "result": "spruce_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_stained_glass",
+      "result": "yellow_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_stained_glass",
+      "result": "light_blue_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-glowstone",
+      "result": "glowstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-respawn_anchor",
+      "result": "respawn_anchor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pumpkin_seeds",
+      "result": "pumpkin_seeds",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cobbled_deepslate_wall",
+      "result": "cobbled_deepslate_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_brick_slab",
+      "result": "deepslate_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_nether_brick_wall",
+      "result": "red_nether_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_red_sandstone",
+      "result": "chiseled_red_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-nether_brick_fence",
+      "result": "nether_brick_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magma_cream",
+      "result": "magma_cream",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blackstone_wall",
+      "result": "blackstone_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bookshelf",
+      "result": "bookshelf",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_prismarine_stairs",
+      "result": "dark_prismarine_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_candle",
+      "result": "light_gray_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lapis_block",
+      "result": "lapis_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_carpet",
+      "result": "purple_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_chest_boat",
+      "result": "birch_chest_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brown_stained_glass_pane",
+      "result": "brown_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_terracotta",
+      "result": "black_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-snow_block",
+      "result": "snow_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_sign",
+      "result": "cherry_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_axe",
+      "result": "iron_axe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_lime_carpet",
+      "result": "lime_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-composter",
+      "result": "composter",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-ender_eye",
+      "result": "ender_eye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sandstone_stairs",
+      "result": "sandstone_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jukebox",
+      "result": "jukebox",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_terracotta",
+      "result": "light_gray_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-white_bed",
+      "result": "white_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_slab",
+      "result": "birch_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_slab",
+      "result": "spruce_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_sign",
+      "result": "acacia_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-coarse_dirt",
+      "result": "coarse_dirt",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chest_minecart",
+      "result": "chest_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_boat",
+      "result": "oak_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_stairs",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-sea_lantern",
+      "result": "sea_lantern",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-yellow_carpet",
+      "result": "yellow_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-green_candle",
+      "result": "green_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_blue_carpet",
+      "result": "blue_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_weathered_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_weathered_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_stained_glass_pane_from_glass_pane",
+      "result": "pink_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-prismarine_slab",
+      "result": "prismarine_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_dye_from_rose_bush",
+      "result": "red_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-exposed_cut_copper_stairs",
+      "result": "exposed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-fermented_spider_eye",
+      "result": "fermented_spider_eye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-magenta_terracotta",
+      "result": "magenta_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_hoe",
+      "result": "stone_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diamond_hoe",
+      "result": "diamond_hoe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_boat",
+      "result": "jungle_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_cyan_wool",
+      "result": "cyan_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pumpkin_pie",
+      "result": "pumpkin_pie",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_mangrove_wood",
+      "result": "stripped_mangrove_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gold_ingot_from_gold_block",
+      "result": "gold_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-jungle_fence",
+      "result": "jungle_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_weighted_pressure_plate",
+      "result": "light_weighted_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cobbled_deepslate_slab",
+      "result": "cobbled_deepslate_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-tide_armor_trim_smithing_template",
+      "result": "tide_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-glass_bottle",
+      "result": "glass_bottle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-weathered_cut_copper",
+      "result": "weathered_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_black_wool",
+      "result": "black_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_green_wool",
+      "result": "green_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_door",
+      "result": "iron_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_stained_glass_pane",
+      "result": "purple_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_granite",
+      "result": "polished_granite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mud_brick_slab",
+      "result": "mud_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-hopper_minecart",
+      "result": "hopper_minecart",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-blue_stained_glass_pane",
+      "result": "blue_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_stained_glass_pane_from_glass_pane",
+      "result": "black_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oxidized_cut_copper",
+      "result": "oxidized_cut_copper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_banner",
+      "result": "pink_banner",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-chiseled_quartz_block",
+      "result": "chiseled_quartz_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-soul_campfire",
+      "result": "soul_campfire",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_warped_hyphae",
+      "result": "stripped_warped_hyphae",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_button",
+      "result": "bamboo_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_door",
+      "result": "crimson_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-copper_ingot_from_waxed_copper_block",
+      "result": "copper_ingot",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_pink_carpet",
+      "result": "pink_carpet",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-leather",
+      "result": "leather",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_hanging_sign",
+      "result": "cherry_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_trapdoor",
+      "result": "cherry_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-end_stone_bricks",
+      "result": "end_stone_bricks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-waxed_cut_copper_stairs_from_honeycomb",
+      "result": "waxed_cut_copper_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_brown_bed",
+      "result": "brown_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_stained_glass_pane_from_glass_pane",
+      "result": "red_stained_glass_pane",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_trapdoor",
+      "result": "acacia_trapdoor",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_candle",
+      "result": "black_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_gray_concrete_powder",
+      "result": "light_gray_concrete_powder",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-smooth_quartz_stairs",
+      "result": "smooth_quartz_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-furnace",
+      "result": "furnace",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-diorite_stairs",
+      "result": "diorite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_pressure_plate",
+      "result": "mangrove_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_fence_gate",
+      "result": "crimson_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_brown_wool",
+      "result": "brown_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-activator_rail",
+      "result": "activator_rail",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_dye",
+      "result": "lime_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_hanging_sign",
+      "result": "bamboo_hanging_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-crimson_pressure_plate",
+      "result": "crimson_pressure_plate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-oak_planks",
+      "result": "oak_planks",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_candle",
+      "result": "orange_candle",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-warped_sign",
+      "result": "warped_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-rib_armor_trim_smithing_template",
+      "result": "rib_armor_trim_smithing_template",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-mangrove_door",
+      "result": "mangrove_door",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_stairs",
+      "result": "cherry_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-purple_dye",
+      "result": "purple_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-red_sandstone",
+      "result": "red_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stone_brick_wall",
+      "result": "stone_brick_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-iron_pickaxe",
+      "result": "iron_pickaxe",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-quartz_slab",
+      "result": "quartz_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_sandstone",
+      "result": "cut_sandstone",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_sign",
+      "result": "bamboo_sign",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_button",
+      "result": "spruce_button",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-light_blue_dye_from_blue_white_dye",
+      "result": "light_blue_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-nether_brick_slab",
+      "result": "nether_brick_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cyan_dye",
+      "result": "cyan_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-deepslate_tiles",
+      "result": "deepslate_tiles",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-orange_terracotta",
+      "result": "orange_terracotta",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bamboo_fence",
+      "result": "bamboo_fence",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-enchanting_table",
+      "result": "enchanting_table",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lead",
+      "result": "lead",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-birch_boat",
+      "result": "birch_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-gold_block",
+      "result": "gold_block",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-spruce_boat",
+      "result": "spruce_boat",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_diorite_stairs",
+      "result": "polished_diorite_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-observer",
+      "result": "observer",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-campfire",
+      "result": "campfire",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-paper",
+      "result": "paper",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_deepslate_wall",
+      "result": "polished_deepslate_wall",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_wood",
+      "result": "cherry_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dark_oak_slab",
+      "result": "dark_oak_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-packed_mud",
+      "result": "packed_mud",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-brick_stairs",
+      "result": "brick_stairs",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_purple_bed",
+      "result": "purple_bed",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-lime_stained_glass",
+      "result": "lime_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_spruce_wood",
+      "result": "stripped_spruce_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-acacia_wood",
+      "result": "acacia_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cherry_fence_gate",
+      "result": "cherry_fence_gate",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-stripped_jungle_wood",
+      "result": "stripped_jungle_wood",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-pink_dye_from_peony",
+      "result": "pink_dye",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-bucket",
+      "result": "bucket",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cut_red_sandstone_slab",
+      "result": "cut_red_sandstone_slab",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-black_stained_glass",
+      "result": "black_stained_glass",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-dye_purple_wool",
+      "result": "purple_wool",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-polished_andesite",
+      "result": "polished_andesite",
+      "recipeType": "crafting"
+    },
+    {
+      "code": "challenges-cooked_salmon_from_campfire_cooking",
+      "source": "salmon",
+      "result": "cooked_salmon",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-cooked_beef_from_campfire_cooking",
+      "source": "beef",
+      "result": "cooked_beef",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-cooked_rabbit_from_campfire_cooking",
+      "source": "rabbit",
+      "result": "cooked_rabbit",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-cooked_porkchop_from_campfire_cooking",
+      "source": "porkchop",
+      "result": "cooked_porkchop",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-dried_kelp_from_campfire_cooking",
+      "source": "kelp",
+      "result": "dried_kelp",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-baked_potato_from_campfire_cooking",
+      "source": "potato",
+      "result": "baked_potato",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-cooked_mutton_from_campfire_cooking",
+      "source": "mutton",
+      "result": "cooked_mutton",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-cooked_chicken_from_campfire_cooking",
+      "source": "chicken",
+      "result": "cooked_chicken",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-cooked_cod_from_campfire_cooking",
+      "source": "cod",
+      "result": "cooked_cod",
+      "recipeType": "campfire"
+    },
+    {
+      "code": "challenges-charcoal",
+      "source": "dark_oak_log",
+      "result": "charcoal",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-emerald_from_smelting_deepslate_emerald_ore",
+      "source": "deepslate_emerald_ore",
+      "result": "emerald",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cracked_deepslate_tiles",
+      "source": "deepslate_tiles",
+      "result": "cracked_deepslate_tiles",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_rabbit",
+      "source": "rabbit",
+      "result": "cooked_rabbit",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_porkchop",
+      "source": "porkchop",
+      "result": "cooked_porkchop",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-lapis_lazuli_from_smelting_deepslate_lapis_ore",
+      "source": "deepslate_lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-green_dye",
+      "source": "cactus",
+      "result": "green_dye",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-pink_glazed_terracotta",
+      "source": "pink_terracotta",
+      "result": "pink_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-redstone_from_smelting_redstone_ore",
+      "source": "redstone_ore",
+      "result": "redstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-blue_glazed_terracotta",
+      "source": "blue_terracotta",
+      "result": "blue_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cracked_deepslate_bricks",
+      "source": "deepslate_bricks",
+      "result": "cracked_deepslate_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-glass",
+      "source": "sand",
+      "result": "glass",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-terracotta",
+      "source": "clay",
+      "result": "terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-quartz",
+      "source": "nether_quartz_ore",
+      "result": "quartz",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cyan_glazed_terracotta",
+      "source": "cyan_terracotta",
+      "result": "cyan_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-coal_from_smelting_coal_ore",
+      "source": "coal_ore",
+      "result": "coal",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-emerald_from_smelting_emerald_ore",
+      "source": "emerald_ore",
+      "result": "emerald",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-magenta_glazed_terracotta",
+      "source": "magenta_terracotta",
+      "result": "magenta_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-redstone_from_smelting_deepslate_redstone_ore",
+      "source": "deepslate_redstone_ore",
+      "result": "redstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-gold_ingot_from_smelting_raw_gold",
+      "source": "raw_gold",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-gold_ingot_from_smelting_gold_ore",
+      "source": "gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cracked_polished_blackstone_bricks",
+      "source": "polished_blackstone_bricks",
+      "result": "cracked_polished_blackstone_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-popped_chorus_fruit",
+      "source": "chorus_fruit",
+      "result": "popped_chorus_fruit",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-brown_glazed_terracotta",
+      "source": "brown_terracotta",
+      "result": "brown_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-smooth_basalt",
+      "source": "basalt",
+      "result": "smooth_basalt",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-iron_ingot_from_smelting_deepslate_iron_ore",
+      "source": "deepslate_iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-copper_ingot_from_smelting_raw_copper",
+      "source": "raw_copper",
+      "result": "copper_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-smooth_red_sandstone",
+      "source": "red_sandstone",
+      "result": "smooth_red_sandstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-diamond_from_smelting_deepslate_diamond_ore",
+      "source": "deepslate_diamond_ore",
+      "result": "diamond",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-deepslate",
+      "source": "cobbled_deepslate",
+      "result": "deepslate",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-diamond_from_smelting_diamond_ore",
+      "source": "diamond_ore",
+      "result": "diamond",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-smooth_quartz",
+      "source": "quartz_block",
+      "result": "smooth_quartz",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-smooth_sandstone",
+      "source": "sandstone",
+      "result": "smooth_sandstone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-light_blue_glazed_terracotta",
+      "source": "light_blue_terracotta",
+      "result": "light_blue_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-sponge",
+      "source": "wet_sponge",
+      "result": "sponge",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-purple_glazed_terracotta",
+      "source": "purple_terracotta",
+      "result": "purple_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cracked_stone_bricks",
+      "source": "stone_bricks",
+      "result": "cracked_stone_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-green_glazed_terracotta",
+      "source": "green_terracotta",
+      "result": "green_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_cod",
+      "source": "cod",
+      "result": "cooked_cod",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-gold_ingot_from_smelting_deepslate_gold_ore",
+      "source": "deepslate_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-baked_potato",
+      "source": "potato",
+      "result": "baked_potato",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_salmon",
+      "source": "salmon",
+      "result": "cooked_salmon",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-lime_dye_from_smelting",
+      "source": "sea_pickle",
+      "result": "lime_dye",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-orange_glazed_terracotta",
+      "source": "orange_terracotta",
+      "result": "orange_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-gray_glazed_terracotta",
+      "source": "gray_terracotta",
+      "result": "gray_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-iron_nugget_from_smelting",
+      "source": "iron_pickaxe",
+      "result": "iron_nugget",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_chicken",
+      "source": "chicken",
+      "result": "cooked_chicken",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-nether_brick",
+      "source": "netherrack",
+      "result": "nether_brick",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-black_glazed_terracotta",
+      "source": "black_terracotta",
+      "result": "black_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-lapis_lazuli_from_smelting_lapis_ore",
+      "source": "lapis_ore",
+      "result": "lapis_lazuli",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-brick",
+      "source": "clay_ball",
+      "result": "brick",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-iron_ingot_from_smelting_iron_ore",
+      "source": "iron_ore",
+      "result": "iron_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-copper_ingot_from_smelting_deepslate_copper_ore",
+      "source": "deepslate_copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-yellow_glazed_terracotta",
+      "source": "yellow_terracotta",
+      "result": "yellow_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-stone",
+      "source": "cobblestone",
+      "result": "stone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-smooth_stone",
+      "source": "stone",
+      "result": "smooth_stone",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_mutton",
+      "source": "mutton",
+      "result": "cooked_mutton",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-dried_kelp_from_smelting",
+      "source": "kelp",
+      "result": "dried_kelp",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-light_gray_glazed_terracotta",
+      "source": "light_gray_terracotta",
+      "result": "light_gray_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-coal_from_smelting_deepslate_coal_ore",
+      "source": "deepslate_coal_ore",
+      "result": "coal",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-iron_ingot_from_smelting_raw_iron",
+      "source": "raw_iron",
+      "result": "iron_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_beef",
+      "source": "beef",
+      "result": "cooked_beef",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-gold_ingot_from_smelting_nether_gold_ore",
+      "source": "nether_gold_ore",
+      "result": "gold_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-gold_nugget_from_smelting",
+      "source": "golden_pickaxe",
+      "result": "gold_nugget",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cracked_nether_bricks",
+      "source": "nether_bricks",
+      "result": "cracked_nether_bricks",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-copper_ingot_from_smelting_copper_ore",
+      "source": "copper_ore",
+      "result": "copper_ingot",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-netherite_scrap",
+      "source": "ancient_debris",
+      "result": "netherite_scrap",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-red_glazed_terracotta",
+      "source": "red_terracotta",
+      "result": "red_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-white_glazed_terracotta",
+      "source": "white_terracotta",
+      "result": "white_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-lime_glazed_terracotta",
+      "source": "lime_terracotta",
+      "result": "lime_glazed_terracotta",
+      "recipeType": "furnace"
+    },
+    {
+      "code": "challenges-cooked_salmon_from_smoking",
+      "source": "salmon",
+      "result": "cooked_salmon",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-dried_kelp_from_smoking",
+      "source": "kelp",
+      "result": "dried_kelp",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-cooked_beef_from_smoking",
+      "source": "beef",
+      "result": "cooked_beef",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-cooked_chicken_from_smoking",
+      "source": "chicken",
+      "result": "cooked_chicken",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-baked_potato_from_smoking",
+      "source": "potato",
+      "result": "baked_potato",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-cooked_cod_from_smoking",
+      "source": "cod",
+      "result": "cooked_cod",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-cooked_porkchop_from_smoking",
+      "source": "porkchop",
+      "result": "cooked_porkchop",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-cooked_rabbit_from_smoking",
+      "source": "rabbit",
+      "result": "cooked_rabbit",
+      "recipeType": "smoking"
+    },
+    {
+      "code": "challenges-cooked_mutton_from_smoking",
+      "source": "mutton",
+      "result": "cooked_mutton",
+      "recipeType": "smoking"
+    }
+  ]
+}
