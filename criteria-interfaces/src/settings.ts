@@ -1,4 +1,5 @@
 import type { MinMaxRangeConfig } from './model'
+import {DataConfig, PlayerConfig} from "./live";
 
 export type SettingName = keyof SettingsConfig
 
@@ -90,6 +91,18 @@ export interface MLGSettingConfig extends BaseSettingConfig, MinMaxRangeConfig {
    * @TSJ-type integer
    */
   height?: number
+}
+
+export interface MLGSettingDataConfig {
+  /**
+   * Indicates if all players beat the MLG.
+   */
+  success: boolean
+
+  /**
+   * List of players that failed the MLG
+   */
+  failedMLG: PlayerConfig[]
 }
 
 export interface FloorIsLavaSettingConfig extends BaseSettingConfig {

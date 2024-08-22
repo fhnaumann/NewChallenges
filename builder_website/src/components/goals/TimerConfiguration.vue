@@ -29,7 +29,7 @@
 
   import { useJSONSchemaConfig } from '@/stores/default_model'
   import type { ModelAccess } from '@/main'
-  import type { Timeable } from '@/models/goals'
+  import type { Timeable } from 'criteria-interfaces'
   import { useModelStore } from '@/stores/model'
   import Slider from 'primevue/slider'
   import InputNumber from 'primevue/inputnumber'

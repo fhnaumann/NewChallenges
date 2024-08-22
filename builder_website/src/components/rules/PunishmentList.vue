@@ -2,6 +2,7 @@
   <div :class="globalVar ? 'customized-rule' : ''">
     <div class="flex flex-col space-y-4 mx-2 w-[32rem]">
       <CancelPunishment :model-access="createModelAccess('cancelPunishment')" />
+      <SuppressPunishment v-if="suppressableRules.includes((criteriaKey as any)!)" :model-access="createModelAccess('suppressPunishment')" />
       <EndPunishment :model-access="createModelAccess('endPunishment')" />
       <HealthPunishment class="shrink" :model-access="createModelAccess('healthPunishment')" />
       <RandomEffectPunishment :model-access="createModelAccess('randomEffectPunishment')" />
@@ -13,15 +14,16 @@
 <script setup lang="ts">
   import Checkbox from 'primevue/checkbox'
   import HealthPunishment from '@/components/rules/punishments/HealthPunishment.vue'
-  import type { CriteriaKey, CriteriaType } from '@/models/model'
+  import type { CriteriaKey, CriteriaType, RuleName } from 'criteria-interfaces'
   import type { ModelAccess } from '@/main'
-  import type { PunishableRuleConfig } from '@/models/rules'
-  import type { BasePunishmentConfig, PunishmentName } from '@/models/punishments'
+  import type { PunishableRuleConfig } from 'criteria-interfaces'
+  import type { BasePunishmentConfig, PunishmentName } from 'criteria-interfaces'
   import RandomEffectPunishment from '@/components/rules/punishments/RandomEffectPunishment.vue'
   import EndPunishment from '@/components/rules/punishments/EndPunishment.vue'
   import { inject, onMounted, ref } from 'vue'
   import MLGPunishment from '@/components/rules/punishments/MLGPunishment.vue'
   import CancelPunishment from '@/components/rules/punishments/CancelPunishment.vue'
+  import SuppressPunishment from '@/components/rules/punishments/SuppressPunishment.vue'
 
   /*
   PunishmentList can be instantiated from two places:
@@ -42,6 +44,11 @@
     console.log("set globalVar to", globalVar.value)
   })
   const globalVar = ref<boolean>(props.global) // assume local punishment (if global, it will be overridden in onMounted)
+
+  const suppressableRules: RuleName[] = [
+    'noBlockBreak',
+    'noMobKill'
+  ]
 
   function createModelAccess(punishmentType: PunishmentName): ModelAccess<BasePunishmentConfig> {
     if (globalVar.value) {

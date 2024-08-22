@@ -17,7 +17,7 @@
   import BasePunishment from '@/components/rules/punishments/BasePunishment.vue'
   import type { ModelAccess } from '@/main'
   import InputNumber from 'primevue/inputnumber'
-  import type { MLGPunishmentConfig } from '@/models/punishments'
+  import type { MLGPunishmentConfig } from 'criteria-interfaces'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
   import { useJSONSchemaConfig } from '@/stores/default_model'

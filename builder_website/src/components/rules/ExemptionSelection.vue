@@ -50,11 +50,12 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import MultiSelect, { type MultiSelectAllChangeEvent } from 'primevue/multiselect'
-  import { type DataRow, fromCodeArray2DataRowArray, fromDataRowArray2CodeArray } from '@/models/data_row'
+  import type { DataRow } from 'criteria-interfaces'
   import DataRowVisual from '@/components/DataRowVisual.vue'
   import type { ModelAccess } from '@/main'
   import { useModelStore } from '@/stores/model'
   import { useTranslation } from '@/language'
+  import { fromCodeArray2DataRowArray, fromDataRowArray2CodeArray } from '@/models/data_row_loaded'
 
   const { translate, translateDataRow } = useTranslation()
 

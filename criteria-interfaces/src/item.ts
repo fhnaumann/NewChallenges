@@ -1,5 +1,6 @@
 import type { PunishableRuleConfig } from './rules'
 import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from './goals'
+import {DataConfig} from "./live";
 
 export interface NoItemCollectRuleConfig extends PunishableRuleConfig {
   /**
@@ -16,4 +17,11 @@ export interface ItemGoalConfig extends BaseGoalConfig, Orderable {
    * @default []
    */
   items?: CollectableEntryConfig[]
+}
+
+export interface ItemDataConfig extends DataConfig {
+  /**
+   * The item (as a material code) that was interacted with.
+   */
+  item: string
 }

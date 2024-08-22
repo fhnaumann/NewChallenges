@@ -18,9 +18,9 @@
 
   import BasePunishment from '@/components/rules/punishments/BasePunishment.vue'
   import type { ModelAccess } from '@/main'
-  import type { RandomEffectPunishmentConfig } from '@/models/punishments'
+  import type { RandomEffectPunishmentConfig } from 'criteria-interfaces'
   import { useJSONSchemaConfig } from '@/stores/default_model'
-  import type { Model } from '@/models/model'
+  import type { Model } from 'criteria-interfaces'
   import { useModelStore } from '@/stores/model'
   import RandomizeValue from '@/components/wrappers/RandomizeValue.vue'
   import { useI18n } from 'vue-i18n'

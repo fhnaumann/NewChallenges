@@ -64,21 +64,19 @@
   import { useJSONSchemaConfig } from '@/stores/default_model'
   import { useI18n } from 'vue-i18n'
   import type { ModelAccess } from '@/main'
-  import type { DeathGoalConfig } from '@/models/death'
-  import CraftingGoal from '@/components/goals/types/CraftingGoal.vue'
-  import type { CraftingGoalConfig } from '@/models/crafting'
+  import type { CraftingGoalConfig } from 'criteria-interfaces'
   import { useTranslation } from '@/language'
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
+  import type { DataRow, CraftingTypeDataRow } from 'criteria-interfaces'
   import {
-    ALL_RECIPES, type CraftingTypeDataRow,
-    type DataRow,
+    ALL_RECIPES,
     fromCode2DataRow,
     fromDataRowArray2CollectableEntryArray,
-  } from '@/models/data_row'
+  } from '@/models/data_row_loaded'
   import { storeToRefs } from 'pinia'
   import { useVarHelperStore } from '@/stores/var_helper'
-  import type { CollectableEntryConfig } from '@/models/goals'
+  import type { CollectableEntryConfig } from 'criteria-interfaces'
   import { watch } from 'vue'
   import { BASE_IMG_URL } from '@/constants'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'

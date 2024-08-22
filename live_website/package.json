@@ -18,18 +18,20 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.11.1",
+    "aws-sdk": "^2.1676.0",
     "criteria-interfaces": "file:../criteria-interfaces",
     "pinia": "^2.1.7",
     "primevue": "^4.0.4",
     "tailwindcss-primeui": "^0.3.4",
     "vue": "^3.4.29",
+    "vue-i18n": "^9.14.0",
     "vue-router": "^4.3.3",
     "ws": "^8.18.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.14.5",
+    "@types/node": "^20.16.1",
     "@types/ws": "^8.5.12",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/eslint-config-prettier": "^9.0.0",

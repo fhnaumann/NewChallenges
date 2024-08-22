@@ -38,17 +38,17 @@
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import { useRoute } from 'vue-router'
   import { computed, ref, watch } from 'vue'
-  import type { BlockBreakGoalConfig } from '@/models/blockbreak'
+  import type { BlockBreakGoalConfig } from 'criteria-interfaces'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
-  import { ALL_IS_BLOCK_MATERIAL_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row'
   import Checkbox from 'primevue/checkbox'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import type { ModelAccess } from '@/main'
   import { useVarHelperStore } from '@/stores/var_helper'
   import { storeToRefs } from 'pinia'
-  import type { CollectableEntryConfig } from '@/models/goals'
+  import type { CollectableEntryConfig } from 'criteria-interfaces'
+  import { ALL_IS_BLOCK_MATERIAL_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row_loaded'
 
   const { t } = useI18n()
 

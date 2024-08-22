@@ -16,7 +16,7 @@
 
 import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'
 import ExemptionSelection from '@/components/rules/ExemptionSelection.vue'
-import { ALL_IS_BLOCK_MATERIAL_DATA } from '@/models/data_row'
+import { ALL_IS_BLOCK_MATERIAL_DATA } from '@/models/data_row_loaded'
 import { useModelStore } from '@/stores/model'
 
 const { set, model } = useModelStore()

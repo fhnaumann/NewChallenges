@@ -15,22 +15,22 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import type { RuleName } from '../../src/models/rules'
-import type { Affects } from '../../src/models/punishments'
-import type { GoalName } from '../../src/models/goals'
-import type { MobGoalConfig } from '../../src/models/mob'
-import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
-import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
-import type { ItemGoalConfig, NoItemCollectRuleConfig } from '../../src/models/item'
-import type { DeathGoalConfig } from '../../src/models/death'
+import type { RuleName } from 'criteria-interfaces'
+import type { Affects } from 'criteria-interfaces'
+import type { GoalName } from 'criteria-interfaces'
+import type { MobGoalConfig } from 'criteria-interfaces'
+import type { BlockPlaceGoalConfig } from 'criteria-interfaces'
+import type { BlockBreakGoalConfig } from 'criteria-interfaces'
+import type { ItemGoalConfig, NoItemCollectRuleConfig } from 'criteria-interfaces'
+import type { DeathGoalConfig } from 'criteria-interfaces'
 import CustomHealthSetting from '../../src/components/settings/CustomHealthSetting.vue'
 import type {
   CustomHealthSettingConfig, FloorIsLavaSettingConfig,
   MLGSettingConfig,
   SettingName,
   UltraHardcoreSettingConfig,
-} from '../../src/models/settings'
-import type { CraftingGoalConfig, NoCraftingRuleConfig } from '../../src/models/crafting'
+} from 'criteria-interfaces'
+import type { CraftingGoalConfig, NoCraftingRuleConfig } from 'criteria-interfaces'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

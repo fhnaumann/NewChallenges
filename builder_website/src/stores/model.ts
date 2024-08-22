@@ -1,10 +1,11 @@
-import type { Model } from '@/models/model'
+import type { Model } from 'criteria-interfaces'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useModelStore = defineStore('stateModel', () => {
   const model = ref<Model>({
     metadata: {
+      challengeID: generateRandomChallengeID(),
       name: 'my-challenge',
       whenCreated: new Date().toISOString(),
       lastModified: new Date().toISOString(),
@@ -90,6 +91,16 @@ export const useModelStore = defineStore('stateModel', () => {
       }
     })
     return object
+  }
+
+  function generateRandomChallengeID(): string {
+    const length = 12
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    let result = ""
+    for(let i=0; i<length; i++) {
+      result += charset[Math.floor(Math.random() * charset.length)]
+    }
+    return result
   }
 
   return { model, set, add }

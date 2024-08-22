@@ -17,7 +17,7 @@
 <script setup lang="ts">
 
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
-  import { ALL_ENTITY_TYPE_DATA } from '@/models/data_row'
+  import { ALL_ENTITY_TYPE_DATA } from '@/models/data_row_loaded'
   import ExemptionSelection from '@/components/rules/ExemptionSelection.vue'
   import { useModelStore } from '@/stores/model'
   import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'

@@ -1,5 +1,6 @@
 import type { PunishableRuleConfig } from './rules'
 import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from './goals'
+import {DataConfig} from "./live";
 
 export interface NoCraftingRuleConfig extends PunishableRuleConfig {
   /**
@@ -60,4 +61,17 @@ export interface CraftingGoalConfig extends BaseGoalConfig, Orderable {
    * @default []
    */
   crafted?: CollectableEntryConfig[]
+}
+
+export interface CraftingDataConfig extends DataConfig {
+  /**
+   * The recipe that was crafted
+   */
+  recipeCrafted: string
+
+  /**
+   * Flag to distinguish when a crafting recipe has been crafted. From the recipes perspective there's no difference
+   * between crafting in a 3x3 crafting table or the 2x2 internal player crafting grid.
+   */
+  internallyCrafted: boolean
 }

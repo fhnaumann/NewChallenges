@@ -53,15 +53,14 @@
 <script setup lang="ts">
   import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'
   import ExemptionSelection from '@/components/rules/ExemptionSelection.vue'
+  import type { CraftingTypeDataRow } from 'criteria-interfaces'
   import {
     ALL_MATERIAL_DATA,
     ALL_RECIPES,
-    type CraftingTypeDataRow,
-    type DataRow,
     fromCode2DataRow,
-  } from '@/models/data_row'
+  } from '@/models/data_row_loaded'
   import type { ModelAccess } from '@/main'
-  import type { NoCraftingRuleConfig } from '@/models/crafting'
+  import type { NoCraftingRuleConfig } from 'criteria-interfaces'
   import Checkbox from 'primevue/checkbox'
   import { useModelStore } from '@/stores/model'
   import { useJSONSchemaConfig } from '@/stores/default_model'

@@ -19,6 +19,7 @@ builder_website/cypress/downloads/
 live_website/node_modules
 live_website/src/assets/aura
 live_website/src/assets/lara
+live_website/public/rendered_images
 
 criteria-interfaces/build
 criteria-interfaces/node_modules

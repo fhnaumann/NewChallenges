@@ -9,7 +9,7 @@
 
 import { useI18n } from 'vue-i18n'
 import Button from 'primevue/button'
-import type { CriteriaKey } from '@/models/model'
+import type { CriteriaKey } from 'criteria-interfaces'
 import { useRouter } from 'vue-router'
 
 const { t } = useI18n()

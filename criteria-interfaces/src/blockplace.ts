@@ -1,5 +1,6 @@
 import type { PunishableRuleConfig } from './rules'
 import type { BaseGoalConfig, CollectableEntryConfig, Orderable } from './goals'
+import {DataConfig} from "./live";
 
 export interface NoBlockPlaceRuleConfig extends PunishableRuleConfig {
   /**
@@ -16,4 +17,12 @@ export interface BlockPlaceGoalConfig extends BaseGoalConfig, Orderable {
    * @default []
    */
   placed?: CollectableEntryConfig[]
+}
+
+export interface BlockPlaceDataConfig extends DataConfig {
+
+  /**
+   * The block (as a material code) that was placed.
+   */
+  placed: string
 }

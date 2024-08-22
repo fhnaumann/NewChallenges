@@ -1,6 +1,19 @@
 import type { GoalName, GoalsConfig } from './goals'
 import type { RuleName, RulesConfig } from './rules'
-import type { SettingName, SettingsConfig } from './settings'
+import type {MLGSettingDataConfig, SettingName, SettingsConfig} from './settings'
+import {MCEvent, TeamDataConfig} from "./live";
+import {BlockBreakDataConfig, NoBlockBreakRuleDataConfig} from "./blockbreak";
+import {BlockPlaceDataConfig} from "./blockplace";
+import {CraftingDataConfig} from "./crafting";
+import {DeathDataConfig} from "./death";
+import {ItemDataConfig} from "./item";
+import {MobDataConfig} from "./mob";
+import {
+  CancelPunishmentDataConfig,
+  DeathPunishmentDataConfig,
+  EndPunishmentDataConfig,
+  HealthPunishmentDataConfig, RandomEffectPunishmentDataConfig
+} from "./punishments";
 
 // running the command:
 // typescript-json-schema src/models/model.ts Model > "src/assets/challenges_schema.json" --noExtraProps --strictNullChecks --required --defaultNumberType=integer
@@ -58,6 +71,8 @@ export interface Model {
   metadata: ChallengeMetadata
 
   nextChallenge?: Model
+
+  _ignore?: LiveInterfaces
 }
 
 export interface ChallengeMetadata {
@@ -165,36 +180,29 @@ export interface TeamConfig {
   currentOrder?: number
 }
 
-export interface MCEvent<T> {
+export type MCEventAlias = MCEvent<any>
 
-  /**
-   * The unique ID to identify the challenge this event originated from.
-   */
-  challengeID: string,
+export interface LiveInterfaces {
+  mcEvent?: MCEventAlias
 
-  /**
-   * The unique ID to identify the event in this challenge.
-   */
-  eventID: string,
+  noBlockBreakRuleData?: NoBlockBreakRuleDataConfig
 
-  /**
-   * @TSJ-type integer
-   */
-  timestamp: number,
+  blockBreakData?: BlockBreakDataConfig
+  blockPlaceData?: BlockPlaceDataConfig
+  craftingData?: CraftingDataConfig
+  deathData?: DeathDataConfig
+  itemData?: ItemDataConfig
+  mobData?: MobDataConfig
 
-  /**
-   * The event type. Depending on the type, additional data may be transmitted.
-   */
-  eventType: CriteriaKey
+  cancelPunishmentData?: CancelPunishmentDataConfig
+  endPunishmentData?: EndPunishmentDataConfig
+  healthPunishmentData?: HealthPunishmentDataConfig
+  deathPunishmentData?: DeathPunishmentDataConfig
+  randomEffectPunishmentData?: RandomEffectPunishmentDataConfig
 
-  /**
-   * Potential additional data involved.
-   */
-  data?: T
-}
+  mlgSettingData?: MLGSettingDataConfig
 
-export interface Data {
-  playerUUID: string
+  teamData?: TeamDataConfig
 }
 
 

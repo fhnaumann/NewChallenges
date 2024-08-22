@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
   import type { ModelAccess } from '@/main'
-  import type { Orderable, Timeable } from '@/models/goals'
+  import type { Orderable, Timeable } from 'criteria-interfaces'
   import { useModelStore } from '@/stores/model'
   import { useJSONSchemaConfig } from '@/stores/default_model'
   import { useI18n } from 'vue-i18n'

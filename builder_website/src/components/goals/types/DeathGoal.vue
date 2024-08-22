@@ -56,17 +56,15 @@
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import {
     ALL_DEATH_MESSAGES_DATA,
-    type DeathMessageDataRow,
     fromDataRowArray2CollectableEntryArray,
-  } from '@/models/data_row'
+  } from '@/models/data_row_loaded'
   import { storeToRefs } from 'pinia'
   import { useVarHelperStore } from '@/stores/var_helper'
   import type { ModelAccess } from '@/main'
   import DeathGoal from '@/components/goals/types/DeathGoal.vue'
-  import type { DeathGoalConfig } from '@/models/death'
+  import type { DeathGoalConfig } from 'criteria-interfaces'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
-  import type { BlockBreakGoalConfig } from '@/models/blockbreak'
   import { useTranslation } from '@/language'
 
   const { model, set } = useModelStore()

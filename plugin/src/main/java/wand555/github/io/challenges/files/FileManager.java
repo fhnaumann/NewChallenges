@@ -3,6 +3,7 @@ package wand555.github.io.challenges.files;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
+import org.apache.commons.lang3.RandomStringUtils;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.ModelMapper;
@@ -39,10 +40,12 @@ public class FileManager {
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model model = new Model(Team.getGlobalCurrentOrder(),
+        Model model = new Model(
+                null, // Only exists so the Live Interfaces are available ("Bug" in jsonschema2pojo generator)
+                Team.getGlobalCurrentOrder(),
                                 goalsConfig,
                                 challengeManager.getChallengeMetadata(),
-                                null,
+                                null, // unsupported for now
                                 rulesConfig,
                                 settingsConfig,
                                 challengeManager.getTeams().stream().map(Team::toGeneratedJSONClass).toList(),
@@ -93,6 +96,9 @@ public class FileManager {
                 Model challengesSchema = null;
                 try {
                     challengesSchema = objectMapper.readValue(json, Model.class);
+
+                    // Change the challengeID in case the user has downloaded the file from the docs
+                    assignUniqueChallengeIDIfDownloadedFromDocs(challengesSchema.getMetadata());
 
                     Context newContext = new Context.Builder()
                             .withPlugin(context.plugin())
@@ -152,5 +158,16 @@ public class FileManager {
                 throw new LoadValidationException(validationResult);
             }
         });
+    }
+
+    private static void assignUniqueChallengeIDIfDownloadedFromDocs(ChallengeMetadata metadata) {
+        if(metadata.getChallengeID().equals("from-examples")) {
+            metadata.setChallengeID(generateChallengeID());
+        }
+    }
+
+    private static String generateChallengeID() {
+        int length = 10;
+        return RandomStringUtils.randomAlphanumeric(length);
     }
 }

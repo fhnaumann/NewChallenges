@@ -30,8 +30,7 @@
   import InputNumber from 'primevue/inputnumber'
   import type { ModelAccess } from '@/main'
   import MLGSetting from '@/components/settings/MLGSetting.vue'
-  import type { MLGSettingConfig } from '@/models/settings'
-  import type { MinMaxRangeConfig } from '@/models/model'
+  import type { MinMaxRangeConfig } from 'criteria-interfaces'
 
   const { set, model } = useModelStore()
   const { t } = useI18n()

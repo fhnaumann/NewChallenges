@@ -21,11 +21,10 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import type { CriteriaKey, CriteriaType } from '@/models/model'
+  import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
   import { useRoute } from 'vue-router'
   import { computed, ref, watch } from 'vue'
   import Button from 'primevue/button'
-  import type { GoalName } from '@/models/goals'
   import { useModelStore } from '@/stores/model'
   import { deleteCriteria, getBgColor } from '@/util'
 

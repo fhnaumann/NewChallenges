@@ -2,6 +2,63 @@
     "$ref": "#/definitions/Model",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
+        "Affects": {
+            "enum": [
+                "all",
+                "causer"
+            ],
+            "type": "string"
+        },
+        "BasePunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "required": [
+                "affects"
+            ],
+            "type": "object"
+        },
+        "BlockBreakDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "broken": {
+                    "description": "The block (as a material code) that was broken.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "broken",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "broken",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
         "BlockBreakGoalConfig": {
             "additionalProperties": false,
             "properties": {
@@ -38,6 +95,40 @@
                 "goalTimer",
                 "fixedOrder",
                 "shuffled"
+            ],
+            "type": "object"
+        },
+        "BlockPlaceDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "placed": {
+                    "description": "The block (as a material code) that was placed.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "placed",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "placed",
+                "player",
+                "timestamp"
             ],
             "type": "object"
         },
@@ -81,6 +172,11 @@
             "type": "object"
         },
         "CancelPunishmentConfig": {
+            "additionalProperties": false,
+            "propertyOrder": [],
+            "type": "object"
+        },
+        "CancelPunishmentDataConfig": {
             "additionalProperties": false,
             "propertyOrder": [],
             "type": "object"
@@ -229,6 +325,46 @@
             "propertyOrder": [],
             "type": "object"
         },
+        "CraftingDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "internallyCrafted": {
+                    "description": "Flag to distinguish when a crafting recipe has been crafted. From the recipes perspective there's no difference\nbetween crafting in a 3x3 crafting table or the 2x2 internal player crafting grid.",
+                    "type": "boolean"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "recipeCrafted": {
+                    "description": "The recipe that was crafted",
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "recipeCrafted",
+                "internallyCrafted",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "internallyCrafted",
+                "player",
+                "recipeCrafted",
+                "timestamp"
+            ],
+            "type": "object"
+        },
         "CraftingGoalConfig": {
             "additionalProperties": false,
             "properties": {
@@ -281,6 +417,40 @@
             },
             "propertyOrder": [
                 "hearts"
+            ],
+            "type": "object"
+        },
+        "DeathDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "deathMessageKey": {
+                    "description": "Key to identify the death message.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "deathMessageKey",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "deathMessageKey",
+                "player",
+                "timestamp"
             ],
             "type": "object"
         },
@@ -353,6 +523,22 @@
             ],
             "type": "object"
         },
+        "DeathPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "required": [
+                "affects"
+            ],
+            "type": "object"
+        },
         "EnabledRules": {
             "additionalProperties": false,
             "properties": {
@@ -399,6 +585,22 @@
                 }
             },
             "propertyOrder": [
+                "affects"
+            ],
+            "type": "object"
+        },
+        "EndPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "required": [
                 "affects"
             ],
             "type": "object"
@@ -533,6 +735,62 @@
             ],
             "type": "object"
         },
+        "HealthPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "actualHeartsLost": {
+                    "description": "The actual amount of hearts that were lost. Is either the 'heartsLost' or a random value.",
+                    "type": "integer"
+                },
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                }
+            },
+            "propertyOrder": [
+                "actualHeartsLost",
+                "affects"
+            ],
+            "required": [
+                "actualHeartsLost",
+                "affects"
+            ],
+            "type": "object"
+        },
+        "ItemDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "item": {
+                    "description": "The item (as a material code) that was interacted with.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "item",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "item",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
         "ItemGoalConfig": {
             "additionalProperties": false,
             "properties": {
@@ -569,6 +827,140 @@
                 "goalTimer",
                 "fixedOrder",
                 "shuffled"
+            ],
+            "type": "object"
+        },
+        "LiveInterfaces": {
+            "additionalProperties": false,
+            "properties": {
+                "blockBreakData": {
+                    "$ref": "#/definitions/BlockBreakDataConfig"
+                },
+                "blockPlaceData": {
+                    "$ref": "#/definitions/BlockPlaceDataConfig"
+                },
+                "cancelPunishmentData": {
+                    "$ref": "#/definitions/CancelPunishmentDataConfig"
+                },
+                "craftingData": {
+                    "$ref": "#/definitions/CraftingDataConfig"
+                },
+                "deathData": {
+                    "$ref": "#/definitions/DeathDataConfig"
+                },
+                "deathPunishmentData": {
+                    "$ref": "#/definitions/DeathPunishmentDataConfig"
+                },
+                "endPunishmentData": {
+                    "$ref": "#/definitions/EndPunishmentDataConfig"
+                },
+                "healthPunishmentData": {
+                    "$ref": "#/definitions/HealthPunishmentDataConfig"
+                },
+                "itemData": {
+                    "$ref": "#/definitions/ItemDataConfig"
+                },
+                "mcEvent": {
+                    "$ref": "#/definitions/MCEventAlias"
+                },
+                "mlgSettingData": {
+                    "$ref": "#/definitions/MLGSettingDataConfig"
+                },
+                "mobData": {
+                    "$ref": "#/definitions/MobDataConfig"
+                },
+                "noBlockBreakRuleData": {
+                    "$ref": "#/definitions/NoBlockBreakRuleDataConfig"
+                },
+                "randomEffectPunishmentData": {
+                    "$ref": "#/definitions/RandomEffectPunishmentDataConfig"
+                },
+                "teamData": {
+                    "$ref": "#/definitions/TeamDataConfig"
+                }
+            },
+            "propertyOrder": [
+                "mcEvent",
+                "noBlockBreakRuleData",
+                "blockBreakData",
+                "blockPlaceData",
+                "craftingData",
+                "deathData",
+                "itemData",
+                "mobData",
+                "cancelPunishmentData",
+                "endPunishmentData",
+                "healthPunishmentData",
+                "deathPunishmentData",
+                "randomEffectPunishmentData",
+                "mlgSettingData",
+                "teamData"
+            ],
+            "type": "object"
+        },
+        "MCEventAlias": {
+            "additionalProperties": false,
+            "properties": {
+                "action": {
+                    "const": "event",
+                    "description": "The action type",
+                    "type": "string"
+                },
+                "challengeID": {
+                    "description": "The unique ID to identify the challenge this event originated from.",
+                    "type": "string"
+                },
+                "data": {
+                    "description": "Potential additional data involved."
+                },
+                "eventID": {
+                    "description": "The unique ID to identify the event in this challenge.",
+                    "type": "string"
+                },
+                "eventType": {
+                    "description": "The event type. Depending on the type, additional data may be transmitted.",
+                    "enum": [
+                        "blockBreakGoal",
+                        "blockPlaceGoal",
+                        "craftingGoal",
+                        "customHealthSetting",
+                        "deathGoal",
+                        "end",
+                        "floorIsLavaSetting",
+                        "itemGoal",
+                        "mlgSetting",
+                        "mobGoal",
+                        "noBlockBreak",
+                        "noBlockPlace",
+                        "noCrafting",
+                        "noDeath",
+                        "noItem",
+                        "noMobKill",
+                        "pause",
+                        "resume",
+                        "start",
+                        "ultraHardcoreSetting"
+                    ],
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "action",
+                "challengeID",
+                "eventID",
+                "timestamp",
+                "eventType",
+                "data"
+            ],
+            "required": [
+                "action",
+                "challengeID",
+                "eventID",
+                "eventType",
+                "timestamp"
             ],
             "type": "object"
         },
@@ -630,6 +1022,65 @@
             ],
             "type": "object"
         },
+        "MLGSettingDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "failedMLG": {
+                    "description": "List of players that failed the MLG",
+                    "items": {
+                        "$ref": "#/definitions/PlayerConfig"
+                    },
+                    "type": "array"
+                },
+                "success": {
+                    "description": "Indicates if all players beat the MLG.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "success",
+                "failedMLG"
+            ],
+            "required": [
+                "failedMLG",
+                "success"
+            ],
+            "type": "object"
+        },
+        "MobDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "mob": {
+                    "description": "The entity (as an entity type code) that was interacted with.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "mob",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "mob",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
         "MobGoalConfig": {
             "additionalProperties": false,
             "properties": {
@@ -672,6 +1123,9 @@
         "Model": {
             "additionalProperties": false,
             "properties": {
+                "_ignore": {
+                    "$ref": "#/definitions/LiveInterfaces"
+                },
                 "currentOrder": {
                     "default": -1,
                     "description": "ONLY RELEVANT IF THERE ARE NO TEAMS! Otherwise, look for the same property in an individual team.\n\nThe number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
@@ -716,7 +1170,8 @@
                 "currentOrder",
                 "timer",
                 "metadata",
-                "nextChallenge"
+                "nextChallenge",
+                "_ignore"
             ],
             "required": [
                 "metadata"
@@ -741,6 +1196,48 @@
             "propertyOrder": [
                 "exemptions",
                 "punishments"
+            ],
+            "type": "object"
+        },
+        "NoBlockBreakRuleDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "appliedPunishments": {
+                    "items": {
+                        "$ref": "#/definitions/BasePunishmentDataConfig"
+                    },
+                    "type": "array"
+                },
+                "broken": {
+                    "description": "The block (as a material code) that was broken.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "broken",
+                "player",
+                "amount",
+                "timestamp",
+                "appliedPunishments"
+            ],
+            "required": [
+                "amount",
+                "appliedPunishments",
+                "broken",
+                "player",
+                "timestamp"
             ],
             "type": "object"
         },
@@ -882,6 +1379,59 @@
             ],
             "type": "object"
         },
+        "PlayerConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "playerName": {
+                    "type": "string"
+                },
+                "playerUUID": {
+                    "type": "string"
+                },
+                "skinTextureURL": {
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "playerUUID",
+                "playerName",
+                "skinTextureURL"
+            ],
+            "required": [
+                "playerName",
+                "playerUUID",
+                "skinTextureURL"
+            ],
+            "type": "object"
+        },
+        "PotionEffect": {
+            "additionalProperties": false,
+            "properties": {
+                "amplifier": {
+                    "description": "The amplifier of the effect.",
+                    "type": "integer"
+                },
+                "code": {
+                    "description": "The code to identify the potion effect type.",
+                    "type": "string"
+                },
+                "duration": {
+                    "description": "The duration of the effect (in ticks).",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "code",
+                "amplifier",
+                "duration"
+            ],
+            "required": [
+                "amplifier",
+                "code",
+                "duration"
+            ],
+            "type": "object"
+        },
         "PunishmentsConfig": {
             "additionalProperties": false,
             "properties": {
@@ -905,10 +1455,14 @@
                 },
                 "randomItemPunishment": {
                     "$ref": "#/definitions/RandomItemPunishmentConfig"
+                },
+                "suppressPunishment": {
+                    "$ref": "#/definitions/SuppressPunishmentConfig"
                 }
             },
             "propertyOrder": [
                 "cancelPunishment",
+                "suppressPunishment",
                 "endPunishment",
                 "healthPunishment",
                 "deathPunishment",
@@ -947,6 +1501,31 @@
                 "effectsAtOnce",
                 "randomizeEffectsAtOnce",
                 "affects"
+            ],
+            "type": "object"
+        },
+        "RandomEffectPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "appliedPotionEffects": {
+                    "description": "The potion effects that were applied.",
+                    "items": {
+                        "$ref": "#/definitions/PotionEffect"
+                    },
+                    "type": "array"
+                }
+            },
+            "propertyOrder": [
+                "appliedPotionEffects",
+                "affects"
+            ],
+            "required": [
+                "affects",
+                "appliedPotionEffects"
             ],
             "type": "object"
         },
@@ -1028,6 +1607,11 @@
             ],
             "type": "object"
         },
+        "SuppressPunishmentConfig": {
+            "additionalProperties": false,
+            "propertyOrder": [],
+            "type": "object"
+        },
         "TeamConfig": {
             "additionalProperties": false,
             "properties": {
@@ -1059,6 +1643,38 @@
             ],
             "required": [
                 "goals",
+                "teamName"
+            ],
+            "type": "object"
+        },
+        "TeamDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "action": {
+                    "description": "The action on the team (join or leave).",
+                    "enum": [
+                        "join",
+                        "leave"
+                    ],
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player who interacted with the team."
+                },
+                "teamName": {
+                    "description": "The team the acted with.",
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "teamName",
+                "player",
+                "action"
+            ],
+            "required": [
+                "action",
+                "player",
                 "teamName"
             ],
             "type": "object"

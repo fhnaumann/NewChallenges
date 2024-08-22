@@ -27,16 +27,16 @@
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
-  import { ALL_ENTITY_TYPE_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row'
+  import { ALL_ENTITY_TYPE_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row_loaded'
   import { ref } from 'vue'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
   import Checkbox from 'primevue/checkbox'
   import type { ModelAccess } from '@/main'
-  import type { MobGoalConfig } from '@/models/mob'
+  import type { MobGoalConfig } from 'criteria-interfaces'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import { useVarHelperStore } from '@/stores/var_helper'
   import { storeToRefs } from 'pinia'
-  import type { CollectableEntryConfig } from '@/models/goals'
+  import type { CollectableEntryConfig } from 'criteria-interfaces'
 
   const { t } = useI18n()
   const { model, set } = useModelStore()

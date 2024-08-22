@@ -1,4 +1,4 @@
-import type { CriteriaKey, CriteriaType } from '@/models/model'
+import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
 import { useModelStore } from '@/stores/model'
 
 export function getBgColor(criteriaType: CriteriaType, hover: boolean): string {

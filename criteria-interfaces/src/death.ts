@@ -1,5 +1,6 @@
 import type { PunishableRuleConfig } from './rules'
 import type { BaseGoalConfig, CollectableDataConfig, CollectableEntryConfig, Orderable } from './goals'
+import {DataConfig} from "./live";
 
 export interface NoDeathRuleConfig extends PunishableRuleConfig {
 
@@ -35,4 +36,12 @@ export interface DeathGoalConfig extends BaseGoalConfig, Orderable {
    * @default []
    */
   deathMessages?: CollectableEntryConfig[]
+}
+
+export interface DeathDataConfig extends DataConfig {
+
+  /**
+   * Key to identify the death message.
+   */
+  deathMessageKey: string
 }

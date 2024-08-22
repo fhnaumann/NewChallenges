@@ -3,6 +3,7 @@ export type Affects = "causer" | "all"
 
 export interface PunishmentsConfig {
   cancelPunishment?: CancelPunishmentConfig
+  suppressPunishment?: SuppressPunishmentConfig
   endPunishment?: EndPunishmentConfig,
   healthPunishment?: HealthPunishmentConfig,
   deathPunishment?: DeathPunishmentConfig,
@@ -19,12 +20,31 @@ export interface BasePunishmentConfig {
    */
   affects?: Affects
 }
+export interface BasePunishmentDataConfig {
+  /**
+   * Who is affected by the punishment.
+   */
+  affects: Affects
+}
 
 export interface CancelPunishmentConfig {
 
 }
+export interface CancelPunishmentDataConfig {
+
+}
+
+export interface SuppressPunishmentConfig {
+
+}
+export interface SuppressPunishmentDataConfig {
+
+}
 
 export interface EndPunishmentConfig extends BasePunishmentConfig {
+
+}
+export interface EndPunishmentDataConfig extends BasePunishmentDataConfig {
 
 }
 export interface HealthPunishmentConfig extends BasePunishmentConfig {
@@ -45,7 +65,19 @@ export interface HealthPunishmentConfig extends BasePunishmentConfig {
    */
   randomizeHeartsLost?: boolean
 }
+export interface HealthPunishmentDataConfig extends BasePunishmentDataConfig {
+  /**
+   * The actual amount of hearts that were lost. Is either the 'heartsLost' or a random value.
+   *
+   * @TJS-type integer
+   */
+  actualHeartsLost: number
+}
+
 export interface DeathPunishmentConfig extends BasePunishmentConfig {
+
+}
+export interface DeathPunishmentDataConfig extends BasePunishmentDataConfig {
 
 }
 
@@ -66,6 +98,33 @@ export interface RandomEffectPunishmentConfig extends BasePunishmentConfig {
    * @default false
    */
   randomizeEffectsAtOnce?: boolean
+}
+export interface RandomEffectPunishmentDataConfig extends BasePunishmentDataConfig {
+  /**
+   * The potion effects that were applied.
+   */
+  appliedPotionEffects: PotionEffect[]
+}
+export interface PotionEffect {
+
+  /**
+   * The code to identify the potion effect type.
+   */
+  code: string
+
+  /**
+   * The amplifier of the effect.
+   *
+   * @TJS-type integer
+   */
+  amplifier: number
+
+  /**
+   * The duration of the effect (in ticks).
+   *
+   * @TJS-type integer
+   */
+  duration: number
 }
 
 export interface RandomItemPunishmentConfig extends BasePunishmentConfig {
@@ -107,11 +166,4 @@ export interface MLGPunishmentConfig extends BasePunishmentConfig {
    * @TSJ-type integer
    */
   height?: number
-}
-
-export interface PunishmentData {
-  /**
-   * List of
-   */
-  affected: string[]
 }

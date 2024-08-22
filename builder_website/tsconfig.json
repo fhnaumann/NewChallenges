@@ -1,5 +1,6 @@
 {
   "files": [],
+  "include": ["../criteria-interfaces/*"],
   "references": [
     {
       "path": "./tsconfig.node.json"

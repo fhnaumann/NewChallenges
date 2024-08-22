@@ -39,12 +39,12 @@
 </template>
 
 <script setup lang="ts">
-
+  import type { DataRow } from 'criteria-interfaces'
   import {
     ALL_ENTITY_TYPE_DATA, ALL_IS_BLOCK_MATERIAL_DATA,
-    ALL_IS_ITEM_MATERIAL_DATA, type DataRow,
+    ALL_IS_ITEM_MATERIAL_DATA,
     fromDataRowArray2CollectableEntryArray,
-  } from '@/models/data_row'
+  } from '@/models/data_row_loaded'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import Checkbox from 'primevue/checkbox'
@@ -54,8 +54,8 @@
   import { storeToRefs } from 'pinia'
   import { useVarHelperStore } from '@/stores/var_helper'
   import type { ModelAccess } from '@/main'
-  import type { ItemGoalConfig } from '@/models/item'
-  import type { CollectableEntryConfig } from '@/models/goals'
+  import type { ItemGoalConfig } from 'criteria-interfaces'
+  import type { CollectableEntryConfig } from 'criteria-interfaces'
   import { useI18n } from 'vue-i18n'
   import { watch } from 'vue'
 

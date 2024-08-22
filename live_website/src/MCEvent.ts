@@ -27,14 +27,28 @@ export interface MCEvent<T> {
    */
   eventType: CriteriaKey
 
-  data: T
+  data?: T
 }
 
 export interface Data {
   playerUUID: string
 }
 
+export interface PunishmentData {
+  punishmentType: PunishmentName
+}
+export interface HealthPunishmentData extends PunishmentData {
+  health: number
+}
+
 export interface BlockBreakData extends Data {
   blockBroken: string,
+
+}
+export interface NoBlockBreakRuleData extends BlockBreakData {
+  punishmentData: PunishmentData
+}
+export interface BlockBreakGoalData extends BlockBreakData {
   amount: number
+  skip: boolean
 }

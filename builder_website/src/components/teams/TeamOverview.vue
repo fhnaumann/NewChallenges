@@ -24,7 +24,7 @@
   import { useModelStore } from '@/stores/model'
   import { useI18n } from 'vue-i18n'
   import { computed, onMounted, ref, toRaw } from 'vue'
-  import type { TeamConfig } from '@/models/model'
+  import type { TeamConfig } from 'criteria-interfaces'
   import TeamEntry from '@/components/teams/TeamEntry.vue'
 
   const { t } = useI18n()

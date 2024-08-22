@@ -18,8 +18,6 @@
   import Checkbox from 'primevue/checkbox'
   import { ref } from 'vue'
   import type { ModelAccess } from '@/main'
-  import type { PunishableRuleConfig } from '@/models/rules'
-  import type { PunishmentName } from '@/models/punishments'
   import { useModelStore } from '@/stores/model'
   import { useI18n } from 'vue-i18n'
 

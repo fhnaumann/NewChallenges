@@ -12,13 +12,13 @@
 <script setup lang="ts">
 
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
-  import type { CriteriaKey, CriteriaType } from '@/models/model'
+  import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
   import Checkbox from 'primevue/checkbox'
   import { computed, ref, watch } from 'vue'
   import PunishmentList from '@/components/rules/PunishmentList.vue'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
-  import type { EndPunishmentConfig } from '@/models/punishments'
+  import type { EndPunishmentConfig } from 'criteria-interfaces'
 
   const props = defineProps<{
     criteriaType: CriteriaType,

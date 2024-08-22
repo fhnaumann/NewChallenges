@@ -1,7 +1,7 @@
 import { useModelStore } from '@/stores/model'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { CriteriaKey, CriteriaType } from '@/models/model'
+import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
 
 export interface Searchable {
   criteriaType: CriteriaType

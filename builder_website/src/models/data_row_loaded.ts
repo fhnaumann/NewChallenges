@@ -2,42 +2,14 @@ import materials from '@/assets/data_rows/materials.json'
 import entity_types from '@/assets/data_rows/entity_types.json'
 import death_messages from '@/assets/data_rows/death_messages_with_dummy_data_data_source_JSON.json'
 import craftables from '@/assets/data_rows/craftables.json'
-import type { CollectableDataConfig, CollectableEntryConfig } from '@/models/goals'
-
-/**
- * A "data row" containing the necessary information for a "single point of information".
- * For example a data row could be a single block, mob, item, etc.
- */
-export interface DataRow {
-  /** The internal code that is used for building and accessing paths in the configuration store/file. */
-  code: string
-
-  /** The path to the associated image. */
-  img_name: string
-  /** The minecraft translation key that is used to get the actual display label from a language json file. */
-  translation_key: string
-}
-
-export interface MaterialDataRow extends DataRow {
-  /** Whether this element is considered an item (by Spigot's 'Material#isItem' method). */
-  is_item: boolean
-  /** Whether this element is considered a block (by Spigot's 'Material#isBlock' method). */
-  is_block: boolean
-}
-
-export interface EntityTypeDataRow extends DataRow {
-  /* Nothing to add for now */
-}
-
-export interface DeathMessageDataRow extends DataRow {
-  deathMessage: string
-}
-
-export interface CraftingTypeDataRow extends DataRow {
-  result: string,
-  recipeType: string
-  source?: string
-}
+import type { CollectableDataConfig, CollectableEntryConfig } from 'criteria-interfaces'
+import type {
+  CraftingTypeDataRow,
+  DataRow,
+  DeathMessageDataRow,
+  EntityTypeDataRow,
+  MaterialDataRow,
+} from 'criteria-interfaces'
 
 export const ALL_MATERIAL_DATA: MaterialDataRow[] = materials.data
 export const ALL_IS_ITEM_MATERIAL_DATA: MaterialDataRow[] = ALL_MATERIAL_DATA.filter(value => value.is_item)

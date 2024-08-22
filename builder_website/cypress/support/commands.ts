@@ -36,21 +36,21 @@
 //   }
 // }
 
-import type { Affects, PunishmentName } from '../../src/models/punishments'
-import type { RuleName } from '../../src/models/rules'
-import type { CollectableEntryConfig, GoalName } from '../../src/models/goals'
-import type { MobGoalConfig } from '../../src/models/mob'
-import type { BlockPlaceGoalConfig } from '../../src/models/blockplace'
-import type { BlockBreakGoalConfig } from '../../src/models/blockbreak'
-import type { ItemGoalConfig, NoItemCollectRuleConfig } from '../../src/models/item'
-import type { DeathGoalConfig } from '../../src/models/death'
+import type { Affects, Model, PunishmentName } from 'criteria-interfaces'
+import type { RuleName } from 'criteria-interfaces'
+import type { CollectableEntryConfig, GoalName } from 'criteria-interfaces'
+import type { MobGoalConfig } from 'criteria-interfaces'
+import type { BlockPlaceGoalConfig } from 'criteria-interfaces'
+import type { BlockBreakGoalConfig } from 'criteria-interfaces'
+import type { ItemGoalConfig, NoItemCollectRuleConfig } from 'criteria-interfaces'
+import type { DeathGoalConfig } from 'criteria-interfaces'
 import type {
   CustomHealthSettingConfig, FloorIsLavaSettingConfig,
   MLGSettingConfig,
   SettingName,
   UltraHardcoreSettingConfig,
-} from '../../src/models/settings'
-import type { CraftingGoalConfig, NoCraftingRuleConfig } from '../../src/models/crafting'
+} from 'criteria-interfaces'
+import type { CraftingGoalConfig, NoCraftingRuleConfig } from 'criteria-interfaces'
 
 Cypress.Commands.add('emptySelection', () => {
   cy.visit('/')
@@ -340,6 +340,8 @@ function handleTextfield(selector: string, configValue: number | string | undefi
 }
 
 Cypress.Commands.add('addMetadata', (challengeName: string) => {
+  // TODO: The challenge ID will be different every team, which means the example files will be overridden on every commit just with a different challenge ID
+  // This causes Amplify to build the docs on every commit, even when they were not changed.
   cy.get('[aria-label="Modify metadata"] > .duration-200').click()
   cy.get('#challenge-name').clear()
   cy.get('#challenge-name').type(challengeName)
@@ -361,7 +363,11 @@ Cypress.Commands.add('downloadFile', () => {
 Cypress.Commands.add('generateJSON', (filename) => {
   //cy.get('#code > pre').invoke("text").as("settings")
   //cy.get("@settings").then((text) => cy.writeFile(`path/to/${filename}.json`, text))
-  cy.readFile(`${Cypress.config('downloadsFolder')}/${filename}.json`).then((file) => cy.writeFile(`path/to/${filename}.json`, file))
+  cy.readFile(`${Cypress.config('downloadsFolder')}/${filename}.json`).then((model: Model) => {
+    model.metadata.challengeID = 'from-examples' // Marker, will be changed by the plugin if a user downloaded the file
+    cy.log(JSON.stringify(model.metadata))
+    cy.writeFile(`path/to/${filename}.json`, model)
+  })
 })
 
 Cypress.Commands.add('afterConfiguration', (challengeAndFileName: string) => {
