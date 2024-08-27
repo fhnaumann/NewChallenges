@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import DynamicDialog from 'primevue/dynamicdialog'
 </script>
 
 <template>
   <router-view></router-view>
+  <DynamicDialog />
 </template>
 
 <style scoped>

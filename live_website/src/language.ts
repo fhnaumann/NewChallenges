@@ -4,6 +4,7 @@ import craftables_en from '@/assets/data_rows/craftables.json'
 import type { DataRow } from 'criteria-interfaces'
 import { useI18n } from 'vue-i18n'
 import { ALL_MATERIAL_DATA, fromCode2DataRow } from '@/composables/data_row_loaded'
+import { defineStore } from 'pinia'
 
 export type Language = 'en' | 'de'
 
@@ -15,10 +16,7 @@ interface Translations {
 
 let selectedLanguage: Language = 'en'
 
-export function useTranslation() {
-
-  const { t } = useI18n()
-
+export const useTranslation = defineStore('translation', () => {
   const language_data = {
     'en': Object.assign({},
       lang_en,
@@ -70,4 +68,4 @@ export function useTranslation() {
   }
 
   return { translate, translateDataRow, craftingType2DataRow }
-}
+})

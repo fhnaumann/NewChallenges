@@ -17,6 +17,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@floating-ui/vue": "^1.1.4",
     "@vueuse/core": "^10.11.1",
     "aws-sdk": "^2.1676.0",
     "criteria-interfaces": "file:../criteria-interfaces",

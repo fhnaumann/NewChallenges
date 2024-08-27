@@ -11,5 +11,23 @@
       "all": "All players lost {hearts} {heartImg}!",
       "team": "All players in {team} lost {hearts} {heartImg}!"
     }
+  },
+  "goals": {
+    "collectables": {
+      "search": "Search individuals",
+      "show_completed": "Show completed",
+      "entry": {
+        "completion": "Completion",
+        "collected_incomplete": "Not yet completed!",
+        "collected_once_complete": "Collected by {player} after {time}!",
+        "collected_multiple": "{player} collected {amount}!",
+        "collected_multiple_complete": "Completed after {time}!"
+      }
+    },
+    "types": {
+      "blockPlaceGoal": {
+        "name": "BlockPlaceGoal"
+      }
+    }
   }
 }

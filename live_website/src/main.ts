@@ -8,12 +8,14 @@ import Aura from '@/assets/aura/'
 import router from './router'
 import i18n from '@/i18n'
 import Tooltip from 'primevue/tooltip'
+import DialogService from 'primevue/dialogservice';
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(i18n)
 app.use(router)
+app.use(DialogService)
 app.use(PrimeVue, {
   unstyled: true,
   pt: Aura
