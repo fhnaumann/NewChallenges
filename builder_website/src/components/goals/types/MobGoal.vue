@@ -11,7 +11,7 @@
                                         testSchematron: false
                                         }"
         :collectable-text-prefix="t('goals.types.mobGoal.settings.dropdown.mobPrefix')"
-        :show-image="false" :disabled="killAllMobsOnce"
+        :show-image="true" :disabled="killAllMobsOnce"
         :collectable-amount-prefix="t('goals.types.mobGoal.settings.dropdown.amountPrefix')" />
       <Checkbox v-model="killAllMobsOnce" @update:model-value="updateKillAllMobsOnce" input-id="killAllMobsOnce"
                 binary />

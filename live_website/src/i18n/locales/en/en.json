@@ -1,8 +1,14 @@
 {
   "test": "{player} killed the Enderdragon with {item}!",
+  "misc": {
+    "not_started": "Waiting for the challenge to start!",
+    "paused": "{time} - The challenge is paused!",
+    "finished": "The challenge has finished!"
+  },
   "events": {
     "blockPlace": "{player} placed {block}!",
     "blockBreak": "{player} broke {block}!",
+    "mobKill": "{player} killed {mob}!",
 
     "collectable": "{amount}/{totalAmount} collected!",
 
@@ -17,6 +23,7 @@
       "search": "Search individuals",
       "show_completed": "Show completed",
       "entry": {
+        "nothing_selected": "Nothing selected",
         "completion": "Completion",
         "collected_incomplete": "Not yet completed!",
         "collected_once_complete": "Collected by {player} after {time}!",
@@ -27,6 +34,9 @@
     "types": {
       "blockPlaceGoal": {
         "name": "BlockPlaceGoal"
+      },
+      "blockBreakGoal": {
+        "name": "BlockBreakGoal"
       }
     }
   }

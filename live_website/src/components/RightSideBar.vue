@@ -1,9 +1,11 @@
 <template>
-  <div v-if="computedGoalEntries.length === 0">
-    <p>No goals to show</p>
-  </div>
-  <div v-for="(goalEntry, index) in computedGoalEntries" :key="index">
-    <Button :label="t(`goals.types.${goalEntry.key}.name`)" @click="() => showGoal(goalEntry.key as GoalName)"/>
+  <div class="customized-goal bg-goal-300 p-2">
+    <div v-if="computedGoalEntries.length === 0">
+      <p>No goals to show</p>
+    </div>
+    <div v-for="(goalEntry, index) in computedGoalEntries" :key="index">
+      <Button :label="t(`goals.types.${goalEntry.key}.name`)" @click="() => showGoal(goalEntry.key as GoalName)" />
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,7 @@ import type { MapGoalProps } from '@/components/goals/MapGoal.vue'
 import type { CraftingDataConfig } from '@criteria-interfaces/crafting'
 import type { DeathDataConfig } from '@criteria-interfaces/death'
 import type { ItemDataConfig } from '@criteria-interfaces/item'
-import type { BlockBreakDataConfig } from '../../../criteria-interfaces'
+import type { BlockBreakDataConfig, MobDataConfig } from '../../../criteria-interfaces'
 
 const router = useRouter()
 const { t } = useI18n()
@@ -45,6 +47,8 @@ const showGoal = (goalName: GoalName) => {
       modal: true,
       showHeader: false,
       draggable: false,
+      blockScroll: true,
+      position: 'top',
       pt: {
         root: {
           class: 'border-0 pt-5 px-12 w-[120rem]'
@@ -73,6 +77,7 @@ function assumeCollectableEntryConfigAccessFrom(goalName: GoalName): Collectable
     case 'deathGoal': return goals.deathGoal!.deathMessages!
     case 'itemGoal': return goals.itemGoal!.items!
     case 'blockBreakGoal': return goals.blockBreakGoal!.broken!
+    case 'mobGoal': return goals.mobGoal!.mobs!
   }
 }
 
@@ -82,6 +87,7 @@ function assumeCodeAccessFromMCEventFrom(goalName: GoalName): (mcEvent: MCEvent<
     case 'deathGoal': return mcEvent => (mcEvent.data as DeathDataConfig).deathMessageKey
     case 'itemGoal': return mcEvent => (mcEvent.data as ItemDataConfig).item
     case 'blockBreakGoal': return mcEvent => (mcEvent.data as BlockBreakDataConfig).broken
+    case 'mobGoal': return mcEvent => (mcEvent.data as MobDataConfig).mob
   }
 }
 

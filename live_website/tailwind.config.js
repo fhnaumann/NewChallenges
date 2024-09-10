@@ -6,6 +6,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      backgroundImage: {
+        'main-img': "url('@/assets/initial_bg.png')"
+      },
       colors: {
         rule: colors.rose,
         goal: colors.amber,

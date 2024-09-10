@@ -9,18 +9,18 @@ export function useTimeable() {
     const timeParts: string[] = []
     let remainingTime = time
     if(remainingTime >= day_in_sec) {
-      timeParts.push(`${remainingTime / day_in_sec}d`)
+      timeParts.push(`${Math.floor(remainingTime / day_in_sec)}d`)
       remainingTime %= day_in_sec
     }
     if(remainingTime >= hour_in_sec) {
-      timeParts.push(`${remainingTime / hour_in_sec}h`)
+      timeParts.push(`${Math.floor(remainingTime / hour_in_sec)}h`)
       remainingTime %= hour_in_sec
     }
     if(remainingTime >= minute_in_sec) {
-      timeParts.push(`${remainingTime / minute_in_sec}m`)
+      timeParts.push(`${Math.floor(remainingTime / minute_in_sec)}m`)
       remainingTime %= minute_in_sec
     }
-    timeParts.push(`${remainingTime}s`)
+    timeParts.push(`${Math.floor(remainingTime)}s`)
 
     return timeParts.join(" ")
 

@@ -29,20 +29,6 @@ import type { PlayerConfig } from '@criteria-interfaces/live'
 import { type NoBlockBreakRuleDataConfig } from '@criteria-interfaces/blockbreak'
 
 const { t } = useI18n()
-
-const renderProps: RenderProps[] = [
-  {
-    key: 'player',
-    type: 'player',
-    props: {
-      skinTextureURL: 'http://textures.minecraft.net/texture/7fd9ba42a7c81eeea22f1524271ae85a8e045ce0af5a6ae16c6406ae917e68b5',
-      playerName: 'wand555',
-      size: 32
-    }
-
-  }
-]
-
 export interface EventProps {
   player: PlayerConfig
 }

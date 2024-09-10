@@ -1,6 +1,7 @@
 <template>
   <img v-if="dataSource === 'material'" :class="imgClass" v-tooltip.top="translateDataRow(asDataRow)" :src="BASE_IMG_URL + '/rendered_images/' + asDataRow.img_name"
        @error="($event.target as HTMLInputElement).src = '/unknown.png'" :alt="code" />
+  <img v-if="dataSource === 'entity_type'" :class="imgClass" v-tooltip.top="translateDataRow(asDataRow)" :src="BASE_IMG_URL + '/rendered_images/' + asDataRow.img_name" />
 </template>
 
 <script setup lang="ts">

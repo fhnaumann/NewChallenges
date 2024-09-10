@@ -1,0 +1,18 @@
+<template>
+  <EventBox :time="data.timestamp">
+    <template #eventTrigger>
+      <p class="flex items-center text-xl">UNKNOWN EVENT BOX</p>
+      <p>Did you forget to add its type to the EventContainer?</p>
+    </template>
+  </EventBox>
+</template>
+
+<script setup lang="ts">
+import EventBox from '@/components/events/EventBox.vue'
+import type { DataConfig } from '@criteria-interfaces/live'
+
+const props = defineProps<{
+  data: DataConfig
+}>()
+
+</script>

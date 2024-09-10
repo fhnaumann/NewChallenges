@@ -3,20 +3,25 @@ import type { Model } from '@criteria-interfaces/model'
 import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
 import { ALL_MATERIAL_DATA } from '@/composables/data_row_loaded'
 import { BASE_IMG_URL } from '@/constants'
+import { useChallengeState } from '@/stores/challenge_state'
 
 export function useFetcher(challengeID: string) {
 
-  const challengeFileJSON = ref<Model>()
-  const events = ref<MCEvent<DataConfig>[]>([])
+  const challenge_state = useChallengeState()
+
   const loaded = ref(false)
   const error = ref<string | null>(null)
+
+  const ws = new WebSocket(
+    `wss://oaxuru4o1c.execute-api.eu-central-1.amazonaws.com/production/?client_type=live-website&challenge_ID=${challengeID}`
+  )
 
   async function fetchEvents(challengeID: string) {
     const localStorageEvents = localStorage.getItem(`challenge-events-${challengeID}`)
     if (localStorageEvents) {
       console.log('Fetched events from local storage')
       try {
-        events.value = JSON.parse(localStorageEvents!)
+        challenge_state.events = JSON.parse(localStorageEvents!)
         return
       } catch (error) {
         console.log('Unknown challenge events. Fetching from DynamoDB instead...')
@@ -24,15 +29,15 @@ export function useFetcher(challengeID: string) {
       console.log('LocalStorage events empty or outdated. Fetching from DynamoDB...')
     }
     console.log('LocalStorage challenge file empty or outdated. Fetching from S3...')
-    const eventsFromDynamoDB = await fetchEventsFromDynamoDB(challengeID)
-
+    let eventsFromDynamoDB = await fetchEventsFromDynamoDB(challengeID)
+    eventsFromDynamoDB = eventsFromDynamoDB.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))
     console.log(eventsFromDynamoDB)
     console.log('Storing in localstorage', eventsFromDynamoDB)
     localStorage.setItem(`challenge-events-${challengeID}`, JSON.stringify(eventsFromDynamoDB))
-    events.value = eventsFromDynamoDB
+    challenge_state.events = eventsFromDynamoDB
   }
 
-  async function fetchEventsFromDynamoDB(challengeID: string) {
+  async function fetchEventsFromDynamoDB(challengeID: string): Promise<MCEvent<any>[]> {
     return fetch(`https://ffh0phd3l8.execute-api.eu-central-1.amazonaws.com/events?challenge_ID=${challengeID}`)
       .then(value => value.json())
   }
@@ -58,7 +63,7 @@ export function useFetcher(challengeID: string) {
         try {
           const challengeJSON = JSON.parse(challenge)
           if (challengeJSON.etag === responseETag) {
-            challengeFileJSON.value = challengeJSON.data
+            challenge_state.challengeFileJSON = challengeJSON.data
             return
           }
         } catch (error) {
@@ -74,7 +79,7 @@ export function useFetcher(challengeID: string) {
       const toStore = { etag: responseETag, data: challengeJSON }
       console.log('Storing in localstorage', toStore)
       localStorage.setItem(`challenge-${challengeID}`, JSON.stringify(toStore))
-      challengeFileJSON.value = challengeJSON
+      challenge_state.challengeFileJSON = challengeJSON
 
     } catch (error) {
       console.error('Error fetching challenge file:', error)
@@ -99,15 +104,24 @@ export function useFetcher(challengeID: string) {
         image.onerror = event => {
           image.src = '/unknown.png'
         }
-        console.log("prerendering ", image.src)
         resolve()
       })
     })).then(value => console.log("after promise"))
   }
 
-  onMounted(async () => {
+  async function fetchData() {
     await fetchChallengeFile(challengeID)
     await fetchEvents(challengeID)
+  }
+
+  async function reFetchData() {
+    localStorage.removeItem(`challenge-${challengeID}`)
+    localStorage.removeItem(`challenge-events-${challengeID}`)
+    await fetchData()
+  }
+
+  onMounted(async () => {
+    await fetchData()
     await preloadImages()
     loaded.value = true
     console.log("finished")
@@ -117,9 +131,9 @@ export function useFetcher(challengeID: string) {
   })
 
   return {
-    challengeFileJSON,
-    events,
+    reFetchData,
     loaded,
-    error
+    error,
+    ws
   }
 }

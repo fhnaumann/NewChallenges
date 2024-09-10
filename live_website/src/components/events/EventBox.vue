@@ -20,14 +20,8 @@ import PlayerHead from '@/components/PlayerHead.vue'
 import { useTimeable } from '@/composables/timable'
 
 const props = defineProps<{
-  criteriaType: CriteriaType
-  criteriaKey: CriteriaKey
   time: number
 }>()
-
-const { t } = useI18n()
-
-const translationKey = `event.${props.criteriaKey}`
 
 const { formatTime } = useTimeable()
 
