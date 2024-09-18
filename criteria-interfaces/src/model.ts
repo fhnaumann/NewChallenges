@@ -12,7 +12,7 @@ import {
   CancelPunishmentDataConfig,
   DeathPunishmentDataConfig,
   EndPunishmentDataConfig,
-  HealthPunishmentDataConfig, RandomEffectPunishmentDataConfig
+  HealthPunishmentDataConfig, RandomEffectPunishmentDataConfig, SuppressPunishmentDataConfig
 } from "./punishments";
 
 // running the command:
@@ -195,6 +195,7 @@ export interface LiveInterfaces {
   mobData?: MobDataConfig
 
   cancelPunishmentData?: CancelPunishmentDataConfig
+  suppressPunishmentDataConfig?: SuppressPunishmentDataConfig
   endPunishmentData?: EndPunishmentDataConfig
   healthPunishmentData?: HealthPunishmentDataConfig
   deathPunishmentData?: DeathPunishmentDataConfig

@@ -2,8 +2,11 @@
   <div v-if="!loaded" class="flex h-screen">
     <ProgressSpinner class="m-auto" />
   </div>
-  <div v-else-if="error" class="flex h-screen">
-    <h1 class="m-auto text-4xl">{{ error }}</h1>
+  <div v-else-if="error" class="flex flex-col items-center justify-center space-y-4 min-h-screen">
+    <h1 class="text-4xl text-center">{{ t(error, {challenge: challengeID}) }}</h1>
+    <RouterLink to="/">
+      <Button class="customized-setting w-96 h-24 text-4xl" :label="t('loading.back_to_main_page')" />
+    </RouterLink>
   </div>
   <div v-else class="flex min-h-screen flex-col customized-setting bg-main-img bg-cover">
     <div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 border-2 border-black">
@@ -263,7 +266,7 @@ const {
 
 const { challengeFileJSON, events } = storeToRefs(useChallengeState())
 
-const { reFetchData, loaded, error, ws } = useFetcher(route.params.challenge_id as string)
+const { challengeID, reFetchData, loaded, error, ws } = useFetcher(route.params.challenge_id as string)
 
 ws.onopen = (ev) => {
   console.log('Connected to server!')

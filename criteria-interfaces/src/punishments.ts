@@ -25,19 +25,21 @@ export interface BasePunishmentDataConfig {
    * Who is affected by the punishment.
    */
   affects: Affects
+
+  punishmentName: PunishmentName
 }
 
 export interface CancelPunishmentConfig {
 
 }
-export interface CancelPunishmentDataConfig {
+export interface CancelPunishmentDataConfig extends BasePunishmentDataConfig{
 
 }
 
-export interface SuppressPunishmentConfig {
+export interface SuppressPunishmentConfig extends BasePunishmentConfig {
 
 }
-export interface SuppressPunishmentDataConfig {
+export interface SuppressPunishmentDataConfig extends BasePunishmentDataConfig {
 
 }
 

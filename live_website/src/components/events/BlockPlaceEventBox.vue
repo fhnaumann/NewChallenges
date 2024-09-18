@@ -1,5 +1,5 @@
 <template>
-  <EventBox :time="data.timestamp">
+  <EventBox :data="data">
     <template #eventTrigger>
       <i18n-t keypath="events.blockPlace" tag="div" class="flex items-center text-2xl">
         <template #player>

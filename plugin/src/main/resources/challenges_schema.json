@@ -15,13 +15,18 @@
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "required": [
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "type": "object"
         },
@@ -178,7 +183,23 @@
         },
         "CancelPunishmentDataConfig": {
             "additionalProperties": false,
-            "propertyOrder": [],
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
             "type": "object"
         },
         "ChallengeMetadata": {
@@ -529,13 +550,18 @@
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "required": [
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "type": "object"
         },
@@ -595,13 +621,18 @@
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "required": [
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "type": "object"
         },
@@ -745,15 +776,20 @@
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
                 "actualHeartsLost",
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "required": [
                 "actualHeartsLost",
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "type": "object"
         },
@@ -875,6 +911,9 @@
                 "randomEffectPunishmentData": {
                     "$ref": "#/definitions/RandomEffectPunishmentDataConfig"
                 },
+                "suppressPunishmentDataConfig": {
+                    "$ref": "#/definitions/SuppressPunishmentDataConfig"
+                },
                 "teamData": {
                     "$ref": "#/definitions/TeamDataConfig"
                 }
@@ -889,6 +928,7 @@
                 "itemData",
                 "mobData",
                 "cancelPunishmentData",
+                "suppressPunishmentDataConfig",
                 "endPunishmentData",
                 "healthPunishmentData",
                 "deathPunishmentData",
@@ -1425,6 +1465,19 @@
             ],
             "type": "object"
         },
+        "PunishmentName": {
+            "enum": [
+                "cancelPunishment",
+                "deathPunishment",
+                "endPunishment",
+                "healthPunishment",
+                "mlgPunishment",
+                "randomEffectPunishment",
+                "randomItemPunishment",
+                "suppressPunishment"
+            ],
+            "type": "string"
+        },
         "PunishmentsConfig": {
             "additionalProperties": false,
             "properties": {
@@ -1510,15 +1563,20 @@
                         "$ref": "#/definitions/PotionEffect"
                     },
                     "type": "array"
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
                 "appliedPotionEffects",
-                "affects"
+                "affects",
+                "punishmentName"
             ],
             "required": [
                 "affects",
-                "appliedPotionEffects"
+                "appliedPotionEffects",
+                "punishmentName"
             ],
             "type": "object"
         },
@@ -1602,7 +1660,41 @@
         },
         "SuppressPunishmentConfig": {
             "additionalProperties": false,
-            "propertyOrder": [],
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "type": "object"
+        },
+        "SuppressPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
             "type": "object"
         },
         "TeamConfig": {

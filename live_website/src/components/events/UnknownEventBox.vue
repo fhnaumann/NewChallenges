@@ -1,5 +1,5 @@
 <template>
-  <EventBox :time="data.timestamp">
+  <EventBox :data="data">
     <template #eventTrigger>
       <p class="flex items-center text-xl">UNKNOWN EVENT BOX</p>
       <p>Did you forget to add its type to the EventContainer?</p>

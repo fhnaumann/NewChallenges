@@ -1,4 +1,4 @@
-import type { MCEvent } from '@criteria-interfaces/live'
+import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
 
 export function useUtil() {
 
@@ -13,9 +13,13 @@ export function useUtil() {
       return 'customized-setting'
     }
   }
-
+  
+  function hasAppliedPunishments(data: any): boolean {
+    return data && typeof data.appliedPunishments !== "undefined"
+  }
 
   return {
-    getCriteriaColorFrom
+    getCriteriaColorFrom,
+    hasAppliedPunishments
   }
 }

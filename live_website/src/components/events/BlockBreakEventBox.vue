@@ -1,5 +1,5 @@
 <template>
-  <EventBox :time="data.timestamp">
+  <EventBox :data="data">
     <template #eventTrigger>
       <i18n-t keypath="events.blockBreak" tag="div" class="flex items-center text-2xl">
         <template #player>
@@ -21,9 +21,14 @@ import EventBox from '@/components/events/EventBox.vue'
 import PlayerHead from '@/components/PlayerHead.vue'
 import type { BlockBreakDataConfig, NoBlockBreakRuleDataConfig } from '@criteria-interfaces/blockbreak'
 import MaterialItem from '@/components/MaterialItem.vue'
+import { useUtil } from '@/composables/util'
+import type { RuleDataConfig } from '@criteria-interfaces/rules'
+import PunishmentEventContainer from '@/components/events/punishments/PunishmentEventContainer.vue'
 
 const props = defineProps<{
-  data: BlockBreakDataConfig
+  data: BlockBreakDataConfig | NoBlockBreakRuleDataConfig
 }>()
+
+const { hasAppliedPunishments } = useUtil()
 
 </script>

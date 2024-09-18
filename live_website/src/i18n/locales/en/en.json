@@ -1,5 +1,44 @@
 {
   "test": "{player} killed the Enderdragon with {item}!",
+  "loading": {
+    "challenge_not_exist": "The challenge {challenge} does not exist. Make sure to upload the challenge with /live.",
+    "back_to_main_page": "Back to main page"
+  },
+  "homeview": {
+    "slogan": "Watch your challenge progress while you play!",
+    "challengeIDEnterPlaceholder": "Enter your challenge ID",
+    "confirm_btn": "View Challenge",
+    "mini-tutorial": {
+      "title": "Unsure how to get started?",
+      "step1-title": "1) Download the {plugin_cap}",
+      "step1-text": "Download the {plugin} from {modrinth} and start your server. Ensure that the plugin is enabled by entering {plugins_cmd}. You should also see a generated plugins/Challenges/ folder.",
+      "step2-title": "2) Create your {challenge_cap}",
+      "step2-text": "Head over to the {challenges_builder} and configure your {challenge}. You can use the search bar at the top to search for anything by keyword.",
+      "step3-title": "3) Export your {challenge_cap}",
+      "step3-text": "Click on {download_settings_file}. Click on {download} to download your {challenge} configuration. Put the file in the {settings_folder} folder. Create the folder if it does not exist.",
+      "step4-title": "4) Verify your {challenge_cap}",
+      "step4-text": "The plugin has to verify that the provided {challenge} is valid. You can type {challenge_list} to get a list of all challenges on the server. Enter /load <challenge-name> to verify and load your {challenge}.",
+      "step5-title": "5) Start as {live_challenge_cap}",
+      "step5-text": "Enter {live_cmd} and click on the link or copy the challenge ID and paste it here.",
+      "step6-title": "6) Play your {live_challenge_cap}",
+      "step6-text": "Enter /start to start your challenge. Anyone with access to the link (or the challenge ID) can view your challenge progress.",
+      "highlights": {
+        "plugin": "plugin",
+        "plugin_cap": "Plugin",
+        "modrinth": "Modrinth",
+        "challenges_builder": "Challenges Builder",
+        "plugins_cmd": "/plugins",
+        "download_settings_file": "\"Download Settings File\"",
+        "download": "\"Download\"",
+        "settings_folder": "plugins/Challenges/settings/",
+        "challenge": "challenge",
+        "challenge_cap": "Challenge",
+        "challenge_list": "/challenges list",
+        "live_challenge_cap": "Live Challenge",
+        "live_cmd": "/live"
+      }
+    }
+  },
   "misc": {
     "not_started": "Waiting for the challenge to start!",
     "paused": "{time} - The challenge is paused!",
@@ -9,13 +48,39 @@
     "blockPlace": "{player} placed {block}!",
     "blockBreak": "{player} broke {block}!",
     "mobKill": "{player} killed {mob}!",
-
+    "itemCollect": "{player} collected {item}!",
+    "death": "{player} died!",
+    "recipeCrafting": {
+      "crafting_table": "{player} crafted {item}!",
+      "smelted": "{player} smelted/cooked {item}!",
+      "smithing": "{player} upgraded {item} to netherite!"
+    },
     "collectable": "{amount}/{totalAmount} collected!",
 
+    "cancelPunishment": {
+      "causer": "The action has been canceled!"
+    },
+    "suppressPunishment": {
+      "causer": "The result has been nullified!"
+    },
+    "endPunishment": {
+      "causer": "{player} is out of the challenge!",
+      "all": "The challenge is failed!",
+      "team": "All players in {team} have failed the challenge!"
+    },
+    "randomEffectPunishment": {
+      "causer": "{player} received {effect}!",
+      "all": "All players received {effect}!",
+      "team": "All players in {team} received {effect}!"
+    },
+    "mlgPunishment": {
+      "success": "All players beat the MLG!",
+      "fail": "{players} failed the MLG!"
+    },
     "healthPunishment": {
-      "causer": "{player} lost {hearts} {heartImg}!",
-      "all": "All players lost {hearts} {heartImg}!",
-      "team": "All players in {team} lost {hearts} {heartImg}!"
+      "causer": "{player} lost {hearts}!",
+      "all": "All players lost {hearts}!",
+      "team": "All players in {team} lost {hearts}!"
     }
   },
   "goals": {
@@ -39,5 +104,8 @@
         "name": "BlockBreakGoal"
       }
     }
+  },
+  "recipes": {
+    "view": "{target} from {source} in {recipeType}"
   }
 }

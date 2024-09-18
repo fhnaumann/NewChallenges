@@ -5,7 +5,9 @@ import { ALL_MATERIAL_DATA } from '@/composables/data_row_loaded'
 import { BASE_IMG_URL } from '@/constants'
 import { useChallengeState } from '@/stores/challenge_state'
 
-export function useFetcher(challengeID: string) {
+export function useFetcher(initialChallengeID: string) {
+
+  const challengeID: string = initialChallengeID
 
   const challenge_state = useChallengeState()
 
@@ -28,8 +30,9 @@ export function useFetcher(challengeID: string) {
       }
       console.log('LocalStorage events empty or outdated. Fetching from DynamoDB...')
     }
-    console.log('LocalStorage challenge file empty or outdated. Fetching from S3...')
+    console.log('LocalStorage events empty or outdated. Fetching from S3...')
     let eventsFromDynamoDB = await fetchEventsFromDynamoDB(challengeID)
+    console.log(eventsFromDynamoDB)
     eventsFromDynamoDB = eventsFromDynamoDB.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))
     console.log(eventsFromDynamoDB)
     console.log('Storing in localstorage', eventsFromDynamoDB)
@@ -50,7 +53,7 @@ export function useFetcher(challengeID: string) {
       })
 
       if (!headResponse.ok) {
-        error.value = 'Challenge does not exist. Make sure that the challenge is uploaded!'
+        error.value = 'loading.challenge_not_exist'
         throw new Error('Failed to fetch HEAD request')
       }
 
@@ -131,6 +134,7 @@ export function useFetcher(challengeID: string) {
   })
 
   return {
+    challengeID,
     reFetchData,
     loaded,
     error,

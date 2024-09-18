@@ -14,6 +14,12 @@ import BlockPlaceEventBox from '@/components/events/BlockPlaceEventBox.vue'
 import { useUtil } from '@/composables/util'
 import type { MobDataConfig } from '@criteria-interfaces/mob'
 import MobKillEventBox from '@/components/events/MobKillEventBox.vue'
+import type { ItemDataConfig } from '@criteria-interfaces/item'
+import type { DeathDataConfig } from '@criteria-interfaces/death'
+import type { CraftingDataConfig } from '@criteria-interfaces/crafting'
+import ItemCollectEventBox from '@/components/events/ItemCollectEventBox.vue'
+import DeathEventBox from '@/components/events/DeathEventBox.vue'
+import RecipeCraftingEventBox from '@/components/events/RecipeCraftingEventBox.vue'
 
 const props = defineProps<{
   mcEvent: MCEvent<any>
@@ -21,7 +27,7 @@ const props = defineProps<{
 
 const { getCriteriaColorFrom } = useUtil()
 
-function getMatchingComponentFrom(mcEvent: MCEvent<MCEvent<any>>): Component {
+function getMatchingComponentFrom(mcEvent: MCEvent<any>): Component {
   const data = mcEvent.data
   if(isBlockBreak(data)) {
     return BlockBreakEventBox
@@ -31,6 +37,15 @@ function getMatchingComponentFrom(mcEvent: MCEvent<MCEvent<any>>): Component {
   }
   if(isMobKill(data)) {
     return MobKillEventBox
+  }
+  if(isItemCollect(data)) {
+    return ItemCollectEventBox
+  }
+  if(isDeath(data)) {
+    return DeathEventBox
+  }
+  if(isRecipeCrafting(data)) {
+    return RecipeCraftingEventBox
   }
   else {
     return UnknownEventBox
@@ -48,5 +63,18 @@ function isBlockPlace(data: any): data is BlockPlaceDataConfig {
 function isMobKill(data: any): data is MobDataConfig {
   return data && typeof data.mob === 'string'
 }
+
+function isItemCollect(data: any): data is ItemDataConfig {
+  return data && typeof data.item === 'string'
+}
+
+function isDeath(data: any): data is DeathDataConfig {
+  return data && typeof data.deathMessageKey === 'string'
+}
+
+function isRecipeCrafting(data: any): data is CraftingDataConfig {
+  return data && typeof data.recipeCrafted === 'string'
+}
+
 
 </script>
