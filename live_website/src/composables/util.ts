@@ -6,7 +6,7 @@ export function useUtil() {
     if (mcEvent.eventType.endsWith('Goal')) {
       return 'customized-goal'
     }
-    if (mcEvent.eventType.endsWith('Rule')) {
+    if (mcEvent.eventType.startsWith('no') || mcEvent.eventType.endsWith('Rule')) {
       return 'customized-rule'
     }
     if (mcEvent.eventType.endsWith('Setting')) {

@@ -87,6 +87,8 @@
     "collectables": {
       "search": "Search individuals",
       "show_completed": "Show completed",
+      "no_match": "No collectable matches your search.",
+      "completionStatusTip": "Tip: You can click on the elements below to see who contributed to what.",
       "entry": {
         "nothing_selected": "Nothing selected",
         "completion": "Completion",
@@ -102,6 +104,12 @@
       },
       "blockBreakGoal": {
         "name": "BlockBreakGoal"
+      },
+      "mobGoal": {
+        "name": "MobGoal"
+      },
+      "itemGoal": {
+        "name": "ItemGoal"
       }
     }
   },

@@ -1,0 +1,18 @@
+[
+  {
+    "challengeID": "m-mob",
+    "eventID": "{{$guid}}",
+    "timestamp": 80,
+    "eventType": "mobGoal",
+    "data": {
+      "mob": "ender_dragon",
+      "player": {
+        "playerUUID": "c41c9dcf-20cb-406d-aacd-bde2320283c6",
+        "playerName": "wand555",
+        "skinTextureURL": "http://textures.minecraft.net/texture/78c0ae51af17c299a4cff889054f04db731f490483614fa14588c45822fb6970"
+      },
+      "amount": 1,
+      "timestamp": 80
+    }
+  }
+]

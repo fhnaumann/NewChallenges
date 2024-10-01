@@ -37,7 +37,7 @@ jobs:
           # project: ./builder_website
           config: defaultCommandTimeout=30000,baseUrl=http://localhost:4173
           build: npm run build
-          start: npm run preview
+          start: npm run preview --mode testing
       - name: Upload generated JSON files
         uses: actions/upload-artifact@v4
         with:

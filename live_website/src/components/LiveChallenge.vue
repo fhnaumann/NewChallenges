@@ -3,39 +3,42 @@
     <ProgressSpinner class="m-auto" />
   </div>
   <div v-else-if="error" class="flex flex-col items-center justify-center space-y-4 min-h-screen">
-    <h1 class="text-4xl text-center">{{ t(error, {challenge: challengeID}) }}</h1>
+    <h1 class="text-4xl text-center">{{ t(error, { challenge: challengeID }) }}</h1>
     <RouterLink to="/">
-      <Button class="customized-setting w-96 h-24 text-4xl" :label="t('loading.back_to_main_page')" />
+      <Button
+        class="w-96 h-24 text-4xl"
+        :label="t('loading.back_to_main_page')"
+      />
     </RouterLink>
   </div>
-  <div v-else class="flex min-h-screen flex-col customized-setting bg-main-img bg-cover">
+  <div v-else class="flex min-h-screen flex-col bg-background-color">
+    <HeaderBar />
     <div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 border-2 border-black">
       <div>
         <Button label="Add latest event" @click="addEvent" />
         <Button label="Delete latest event" @click="deleteEvent" />
         <Button label="Refetch" @click="reFetchData" />
         <p v-if="!started">{{ t('misc.not_started') }}</p>
-        <p v-else-if="paused">{{ t('misc.paused', {time: formatTime(timeEstimation)}) }}</p>
+        <p v-else-if="paused">{{ t('misc.paused', { time: formatTime(timeEstimation) }) }}</p>
         <p v-else-if="finished">{{ t('misc.finished') }}</p>
-        <p v-else>{{ timeEstimation }}</p></div>
+        <p v-else>{{ timeEstimation }}</p>
+      </div>
     </div>
-    <div class="fixed top-0 right-0 border-2 z-10 border-black">
+    <div class="fixed top-0 right-0 translate-y-10 border-2 z-10 border-black">
       <RightSideBar :challenge="challengeFileJSON!" :events="events" />
     </div>
     <div class="mt-20 relative flex-1 min-h-screen z-5" ref="scrollContainer">
       <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
         <svg class="drop-shadow-2xl" width="50" :height="svgHeight">
           <g ref="lines" class="pointer-events-none"></g>
-          <circle class="fill-setting-800" :cx="startX" :cy="startY" r="8" />
+          <circle class="fill-primary" :cx="startX" :cy="startY" r="8" />
           <circle
-            v-for="event in events"
-            :class="`${getCriteriaColorFrom(event)} fill-primary-800`"
+            v-for="(event, index) in events"
+            :class="`${getCriteriaColorFrom(event)} ease-in-out duration-300 ${eventIndexBeingHovered === index ? 'fill-accent' : 'fill-primary'}`"
             :key="event.eventID"
             :cx="startX"
             :cy="startY + lineLengthPerSecond * event.timestamp"
             r="8"
-            @mouseover="console.log('MOUSE ENTER')"
-            @mouseleave="console.log('MOUSE LEAVE')"
           />
         </svg>
         <div ref="bottomOfSVG"></div>
@@ -44,6 +47,7 @@
         <div class="z-5">
           <EventContainer
             class="absolute z-5 drop-shadow-2xl"
+            :id="event.eventID"
             v-for="(event, index) in events"
             :key="'textbox-' + event.eventID"
             :style="{
@@ -51,28 +55,10 @@
               top: `${startY - 13 + lineLengthPerSecond * event.timestamp}px`
             }"
             :mc-event="event"
+            :event-index="index"
+            @myMouseEnter="eventIndexBeingHovered = index"
+            @myMouseLeave="eventIndexBeingHovered = null"
           />
-          <!--BlockBreakEventBox
-            class="absolute z-5"
-            v-for="event in events"
-            :key="'textbox-' + event.eventID"
-            :style="{
-              left: `${startX}px`,
-              top: `${startY + lineLengthPerSecond * event.timestamp}px`
-            }"
-            :data="{
-              broken: 'stone',
-              player: {
-                playerName: 'wand555',
-                playerUUID: 'c41c9dcf-20cb-406d-aacd-bde2320283c6',
-                skinTextureURL:
-                  'http://textures.minecraft.net/texture/78c0ae51af17c299a4cff889054f04db731f490483614fa14588c45822fb6970'
-              },
-              amount: 1,
-              appliedPunishments: [],
-              timestamp: 5
-            }"
-          /-->
         </div>
       </div>
     </div>
@@ -143,6 +129,7 @@ import { useChallengeState } from '@/stores/challenge_state'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useTimeable } from '@/composables/timable'
+import HeaderBar from '@/components/HeaderBar.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -162,6 +149,8 @@ const started = ref(false)
 const paused = ref(false)
 const finished = ref(false)
 
+const eventIndexBeingHovered = ref<number | null>(null)
+
 function addLine(index: number, skipAnimation = false) {
   index = index - 1
   const newLine = document.createElementNS('http://www.w3.org/2000/svg', 'line')
@@ -169,7 +158,7 @@ function addLine(index: number, skipAnimation = false) {
   newLine.setAttribute('y1', (startY + lineLengthPerSecond * index) as unknown as string)
   newLine.setAttribute('x2', startX)
   newLine.setAttribute('y2', startY + lineLengthPerSecond * (index + 1))
-  newLine.setAttribute('stroke', '#1e293b') // customized-setting-800
+  newLine.setAttribute('stroke', '#9153F2') // primary
   newLine.setAttribute('stroke-width', '6')
   if (!skipAnimation) {
     newLine.classList.add('animate-draw-line')
@@ -179,7 +168,7 @@ function addLine(index: number, skipAnimation = false) {
 
 function setLineTo(index: number) {
   if (index < lines.value.length) {
-    console.log("set line to", index)
+    console.log('set line to', index)
 
     const result = lines.value.splice(index)
     console.log(result)
@@ -196,7 +185,10 @@ function determineXPositionForEventContainer(index: number): number {
   let xPos: number
 
   const heightThreshold = 20 // just a guess, needs tweaking
-  const amountOfEventsThatOccupySameSpace = getEventsThatAreInRangeFrom(index, heightThreshold).length
+  const amountOfEventsThatOccupySameSpace = getEventsThatAreInRangeFrom(
+    index,
+    heightThreshold
+  ).length
   const widthPerEventContainer = 250
   if (index % 2 == 0) {
     xPos = amountOfEventsThatOccupySameSpace * widthPerEventContainer // position even events on the right
@@ -249,8 +241,6 @@ const svgHeight = computed(() => {
   return 100 + lineLengthPerSecond * timeEstimation.value
 })
 
-
-
 const {
   counter: timeEstimation,
   reset,
@@ -266,7 +256,9 @@ const {
 
 const { challengeFileJSON, events } = storeToRefs(useChallengeState())
 
-const { challengeID, reFetchData, loaded, error, ws } = useFetcher(route.params.challenge_id as string)
+const { challengeID, reFetchData, loaded, error, ws } = useFetcher(
+  route.params.challenge_id as string
+)
 
 ws.onopen = (ev) => {
   console.log('Connected to server!')
@@ -286,26 +278,21 @@ ws.onmessage = (ev) => {
 }
 
 function handleIncomingEvent(mcEvent: MCEvent<any>) {
-  if(mcEvent.eventType === 'start') {
+  if (mcEvent.eventType === 'start') {
     started.value = true
     resume()
-  }
-  else if(mcEvent.eventType === 'pause') {
+  } else if (mcEvent.eventType === 'pause') {
     paused.value = true
     pause()
-  }
-  else if(mcEvent.eventType === 'resume') {
+  } else if (mcEvent.eventType === 'resume') {
     paused.value = false
     resume()
-  }
-  else if(mcEvent.eventType === 'end') {
+  } else if (mcEvent.eventType === 'end') {
     finished.value = true
     pause()
-  }
-  else {
+  } else {
     events.value.push(mcEvent)
   }
-
 }
 
 watch(loaded, (newValue) => {

@@ -2,7 +2,12 @@ import { onMounted, ref } from 'vue'
 import type { Model } from '@criteria-interfaces/model'
 import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
 import { ALL_MATERIAL_DATA } from '@/composables/data_row_loaded'
-import { BASE_IMG_URL } from '@/constants'
+import {
+  BASE_CHALLENGE_EVENTS_URL,
+  BASE_EXISTING_CHALLENGES_S3_URL,
+  BASE_IMG_URL,
+  BASE_WEBSOCKET_URL
+} from '@/constants'
 import { useChallengeState } from '@/stores/challenge_state'
 
 export function useFetcher(initialChallengeID: string) {
@@ -14,9 +19,7 @@ export function useFetcher(initialChallengeID: string) {
   const loaded = ref(false)
   const error = ref<string | null>(null)
 
-  const ws = new WebSocket(
-    `wss://oaxuru4o1c.execute-api.eu-central-1.amazonaws.com/production/?client_type=live-website&challenge_ID=${challengeID}`
-  )
+  const ws = new WebSocket(`${BASE_WEBSOCKET_URL}&challenge_ID=${challengeID}`)
 
   async function fetchEvents(challengeID: string) {
     const localStorageEvents = localStorage.getItem(`challenge-events-${challengeID}`)
@@ -41,14 +44,15 @@ export function useFetcher(initialChallengeID: string) {
   }
 
   async function fetchEventsFromDynamoDB(challengeID: string): Promise<MCEvent<any>[]> {
-    return fetch(`https://ffh0phd3l8.execute-api.eu-central-1.amazonaws.com/events?challenge_ID=${challengeID}`)
+    console.log("fetching", `${BASE_CHALLENGE_EVENTS_URL}?challenge_ID=${challengeID}`)
+    return fetch(`${BASE_CHALLENGE_EVENTS_URL}?challenge_ID=${challengeID}`)
       .then(value => value.json())
   }
 
   async function fetchChallengeFile(challengeID: string) {
     try {
       // Step 1: Fetch the HEAD request to get ETag
-      const headResponse = await fetch(`https://existing-challenges-s3uploadbucket-rlhqqq6a5mfn.s3.eu-central-1.amazonaws.com/${challengeID}.json`, {
+      const headResponse = await fetch(`${BASE_EXISTING_CHALLENGES_S3_URL}/${challengeID}.json`, {
         method: 'HEAD'
       })
 
@@ -90,7 +94,7 @@ export function useFetcher(initialChallengeID: string) {
   }
 
   async function fetchChallengeFileFromS3(challengeID: string) {
-    const response = await fetch(`https://existing-challenges-s3uploadbucket-rlhqqq6a5mfn.s3.eu-central-1.amazonaws.com/${challengeID}.json`)
+    const response = await fetch(`${BASE_EXISTING_CHALLENGES_S3_URL}/${challengeID}.json`)
 
     if (!response.ok) {
       throw new Error('Failed to fetch challenge file from S3')

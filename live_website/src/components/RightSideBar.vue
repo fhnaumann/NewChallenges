@@ -17,7 +17,7 @@ const props = defineProps<{
   challenge: Model
   events: MCEvent<DataConfig>[]
 }>()
-
+import Paginator from 'primevue/paginator'
 import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
@@ -56,9 +56,6 @@ const showGoal = (goalName: GoalName) => {
         content: {
           class: 'rounded-none'
         },
-        mask: {
-          class: 'backdrop-blur-[2px]'
-        }
       }
     },
     data: {

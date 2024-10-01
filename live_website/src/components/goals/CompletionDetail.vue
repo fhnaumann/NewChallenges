@@ -1,39 +1,41 @@
 <template>
-  <div v-if="!isSingleCompletionType(collectable.collectableData)">
-    <div v-if="isCompletedBasedOffEvents(events, collectable.collectableData.amountNeeded)">
-      <p>{{ t('goals.collectables.entry.collected_multiple_complete', {time: formatTime(events.at(-1))}) }}</p>
+  <div class="flex flex-col items-center text-color">
+    <div v-if="!isSingleCompletionType(collectable.collectableData)" class="space-y-4">
+      <div v-if="isCompletedBasedOffEvents(events, collectable.collectableData.amountNeeded)">
+        <p>{{ t('goals.collectables.entry.collected_multiple_complete', { time: formatTime(events.at(-1)) }) }}</p>
+      </div>
+      <div v-else>
+        <p>{{ t('goals.collectables.entry.collected_incomplete') }}</p>
+      </div>
+      <div v-for="contributor in getUniquePlayersThatContributed()" :key="contributor.player.playerUUID">
+        <i18n-t keypath="goals.collectables.entry.collected_multiple" tag="div" class="flex items-center">
+          <template #player>
+            <div class="mx-2">
+              <PlayerHead v-bind="contributor.player" :size=32 />
+            </div>
+          </template>
+          <template #amount>
+            <p class="ml-2">{{ contributor.totalAmount }}</p>
+          </template>
+        </i18n-t>
+      </div>
     </div>
-    <div v-else>
-      <p>{{ t('goals.collectables.entry.collected_incomplete') }}</p>
-    </div>
-    <div v-for="contributor in getUniquePlayersThatContributed()" :key="contributor.player.playerUUID">
-      <i18n-t keypath="goals.collectables.entry.collected_multiple" tag="div" class="flex items-center">
-        <template #player>
-          <div class="mx-2">
-            <PlayerHead v-bind="contributor.player" :size=32 />
-          </div>
-        </template>
-        <template #amount>
-          <p class="ml-2">{{ contributor.totalAmount }}</p>
-        </template>
-      </i18n-t>
-    </div>
-  </div>
-  <div v-else>
-    <div v-if="isCompletedBasedOffEvents(events, collectable.collectableData.amountNeeded)">
-      <i18n-t keypath="goals.collectables.entry.collected_once_complete" tag="div" class="flex items-center" >
-        <template #player>
-          <div class="mx-2">
-            <PlayerHead v-bind="events[0].data?.player" :size=32 />
-          </div>
-        </template>
-        <template #time>
-          <p class="ml-2">{{ formatTime(events[0].timestamp) }}</p>
-        </template>
-      </i18n-t>
-    </div>
-    <div v-else>
-      <p>{{ t('goals.collectables.entry.collected_incomplete') }}</p>
+    <div v-else class="space-y-4">
+      <div v-if="isCompletedBasedOffEvents(events, collectable.collectableData.amountNeeded)">
+        <i18n-t keypath="goals.collectables.entry.collected_once_complete" tag="div" class="flex items-center">
+          <template #player>
+            <div class="mx-2">
+              <PlayerHead v-bind="events[0].data?.player" :size=32 />
+            </div>
+          </template>
+          <template #time>
+            <p class="ml-2">{{ formatTime(events[0].timestamp) }}</p>
+          </template>
+        </i18n-t>
+      </div>
+      <div v-else>
+        <p>{{ t('goals.collectables.entry.collected_incomplete') }}</p>
+      </div>
     </div>
   </div>
 </template>

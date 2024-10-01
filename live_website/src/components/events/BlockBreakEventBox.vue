@@ -1,5 +1,5 @@
 <template>
-  <EventBox :data="data">
+  <EventBox v-bind="props" :class="`${type === 'noBlockBreak' ? 'customized-rule' : 'customized-goal'}`">
     <template #eventTrigger>
       <i18n-t keypath="events.blockBreak" tag="div" class="flex items-center text-2xl">
         <template #player>
@@ -24,9 +24,12 @@ import MaterialItem from '@/components/MaterialItem.vue'
 import { useUtil } from '@/composables/util'
 import type { RuleDataConfig } from '@criteria-interfaces/rules'
 import PunishmentEventContainer from '@/components/events/punishments/PunishmentEventContainer.vue'
+import type { CriteriaKey } from '@criteria-interfaces/model'
 
 const props = defineProps<{
   data: BlockBreakDataConfig | NoBlockBreakRuleDataConfig
+  eventIndex: number
+  type: CriteriaKey
 }>()
 
 const { hasAppliedPunishments } = useUtil()

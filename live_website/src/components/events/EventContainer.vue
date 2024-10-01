@@ -1,5 +1,5 @@
 <template>
-  <component :class="getCriteriaColorFrom(mcEvent)" :is="getMatchingComponentFrom(mcEvent)" :data="mcEvent.data" />
+  <component :class="getCriteriaColorFrom(mcEvent)" :is="getMatchingComponentFrom(mcEvent)" :data="mcEvent.data" :type="mcEvent.eventType" :eventIndex="eventIndex"/>
 </template>
 
 <script setup lang="ts">
@@ -22,7 +22,8 @@ import DeathEventBox from '@/components/events/DeathEventBox.vue'
 import RecipeCraftingEventBox from '@/components/events/RecipeCraftingEventBox.vue'
 
 const props = defineProps<{
-  mcEvent: MCEvent<any>
+  mcEvent: MCEvent<any>,
+  eventIndex: number
 }>()
 
 const { getCriteriaColorFrom } = useUtil()
