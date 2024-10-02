@@ -1,20 +1,20 @@
 <template>
-  <div class="bg-background-color h-screen">
+  <div class="bg-background-color min-h-screen">
     <HeaderBar />
     <div class="flex flex-col items-center space-y-20">
       <p
         class="text-7xl text-center font-extrabold bg-gradient-to-r from-primary to-pink-500 text-transparent bg-clip-text py-4">
         {{ t('homeview.slogan') }}</p>
-      <div class="flex space-x-4">
-        <InputText class="w-96 h-16 text-2xl" v-model="challengeID" size="large"
+      <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+        <InputText class="w-full sm:w-96 h-16 text-2xl" v-model="challengeID" size="large"
                    :placeholder="t('homeview.challengeIDEnterPlaceholder')" />
-        <Button class="h-16 text-2xl" :label="t('homeview.confirm_btn')" raised size="large" @click="handleViewChallenge" />
+        <Button class="h-16 text-2xl w-full sm:w-auto" :label="t('homeview.confirm_btn')" raised size="large" @click="handleViewChallenge" />
       </div>
       <div class="flex flex-col space-y-12">
         <div>
           <p class="text-5xl font-bold text-center text-color">{{ t('homeview.mini-tutorial.title') }}</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-6 sm:grid-rows-3 lg:grid-rows-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-rows-6 sm:grid-rows-3 xl:grid-rows-2 gap-8 place-items-center">
           <div
             class="group ease-in-out duration-300 flex flex-col w-[26rem] min-h-52 h-52 space-y-2 rounded-xl px-2 pt-2 bg-card border border-content-border hover:border-goal-accent">
             <div class="text-3xl font-semibold text-color">

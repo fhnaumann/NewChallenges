@@ -8,28 +8,28 @@
         <p>{{ t('goals.collectables.entry.collected_incomplete') }}</p>
       </div>
       <div v-for="contributor in getUniquePlayersThatContributed()" :key="contributor.player.playerUUID">
-        <i18n-t keypath="goals.collectables.entry.collected_multiple" tag="div" class="flex items-center">
+        <i18n-t keypath="goals.collectables.entry.collected_multiple" tag="div">
           <template #player>
-            <div class="mx-2">
+            <div class="mx-2 inline-flex align-middle">
               <PlayerHead v-bind="contributor.player" :size=32 />
             </div>
           </template>
           <template #amount>
-            <p class="ml-2">{{ contributor.totalAmount }}</p>
+            <p class="ml-2 inline-flex">{{ contributor.totalAmount }}</p>
           </template>
         </i18n-t>
       </div>
     </div>
     <div v-else class="space-y-4">
       <div v-if="isCompletedBasedOffEvents(events, collectable.collectableData.amountNeeded)">
-        <i18n-t keypath="goals.collectables.entry.collected_once_complete" tag="div" class="flex items-center">
+        <i18n-t keypath="goals.collectables.entry.collected_once_complete" tag="div">
           <template #player>
-            <div class="mx-2">
+            <div class="mx-2 inline-flex align-middle">
               <PlayerHead v-bind="events[0].data?.player" :size=32 />
             </div>
           </template>
           <template #time>
-            <p class="ml-2">{{ formatTime(events[0].timestamp) }}</p>
+            <p class="ml-2 inline-flex">{{ formatTime(events[0].timestamp) }}</p>
           </template>
         </i18n-t>
       </div>

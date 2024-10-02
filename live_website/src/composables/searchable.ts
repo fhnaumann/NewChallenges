@@ -15,9 +15,6 @@ export interface CodeSearchable {
 
 export function useSearchable<T>(options: Searchable[] | CriteriaType | CodeSearchable[] | T[] | undefined, accessor: (value: T) => string) {
 
-  const i18n = useI18n()
-
-  const { translateDataRow } = useTranslation()
 
   const searchFieldValue = ref<string>('')
 

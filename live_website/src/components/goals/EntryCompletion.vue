@@ -1,7 +1,10 @@
 <template>
   <div class="cursor-pointer w-full h-full" @click="toggle">
     <div
-      :class="{ 'bg-card rounded-lg': isCompletedBasedOffEvents(events, collectable.collectableData?.amountNeeded), 'bg-card rounded-lg': !isCompletedBasedOffEvents(events, collectable.collectableData?.amountNeeded) }">
+      :class="[
+        'bg-card rounded-lg',
+        isCompletedBasedOffEvents(events, collectable.collectableData?.amountNeeded) ? '' : ''
+      ]">
       <div ref="reference"
            :class="{
              'flex flex-col items-center justify-between rounded-lg border border-content-border w-40 h-40': !clicked,

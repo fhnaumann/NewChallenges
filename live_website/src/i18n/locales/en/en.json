@@ -83,11 +83,24 @@
       "team": "All players in {team} lost {hearts}!"
     }
   },
+  "sidebar": {
+    "stats": {
+      "title": "Statistics",
+      "goal": {
+        "title": "{goal} ({percentage}% complete)",
+        "progress": "View Progress"
+      },
+      "timers": {
+        "time_remaining": "{time} remaining",
+        "waiting_for": "Waiting for {goals} to finish..."
+      }
+    }
+  },
   "goals": {
     "collectables": {
       "search": "Search individuals",
       "show_completed": "Show completed",
-      "no_match": "No collectable matches your search.",
+      "no_match": "No collectables match your search. You can show completed entries in the top right corner.",
       "completionStatusTip": "Tip: You can click on the elements below to see who contributed to what.",
       "entry": {
         "nothing_selected": "Nothing selected",

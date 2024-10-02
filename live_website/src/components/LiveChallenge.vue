@@ -24,8 +24,8 @@
         <p v-else>{{ timeEstimation }}</p>
       </div>
     </div>
-    <div class="fixed top-0 right-0 translate-y-10 border-2 z-10 border-black">
-      <RightSideBar :challenge="challengeFileJSON!" :events="events" />
+    <div class="fixed top-0 left-0 translate-y-10 border-2 z-10 border-content-border bg-card rounded-xl mx-4">
+      <RightSideBar :challenge="challengeFileJSON!" :events="events" :current-time="timeEstimation" />
     </div>
     <div class="mt-20 relative flex-1 min-h-screen z-5" ref="scrollContainer">
       <div class="absolute left-1/2 top-0 transform -translate-x-1/2">

@@ -45,7 +45,7 @@
               :key="collectable.collectableName"
               class="w-40 max-w-40 h-40 max-h-40 min-w-40 min-h-40 flex-none"
             >
-              <EntryCompletion class="w-full h-full"
+              <EntryCompletion
                 :collectable="collectable"
                 :data-source="assumeDataSourceFrom(goalName!)"
                 :events="filterEventsFor(collectable.collectableName, codeAccess!, events!)"
@@ -58,22 +58,6 @@
         </template>
       </DataView>
     </div>
-    <!--div class="col-start-2 row-start-2 mt-4">
-      <div class="flex flex-col items-center justify-center h-full">
-        <p class="text-3xl font-bold">{{ t('goals.collectables.entry.completion') }}</p>
-        <div v-if="beingHovered" class="flex-grow flex items-start justify-center">
-          <CompletionDetail
-            :collectable="beingHovered"
-            :events="filterEventsFor(beingHovered.collectableName, codeAccess!, events!)"
-          />
-        </div>
-        <div v-else class="flex-grow flex items-center justify-center">
-          <p>
-            {{ t('goals.collectables.entry.nothing_selected') }}
-          </p>
-        </div>
-      </div>
-    </div-->
   </div>
 </template>
 
@@ -86,7 +70,7 @@ import { type CollectableEntryConfig, type GoalName } from '@criteria-interfaces
 import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
 import EntryCompletion from '@/components/goals/EntryCompletion.vue'
 import type { DataSource } from '@/components/MaterialItem.vue'
-import { computed, inject, onMounted, ref, toRaw, toRef } from 'vue'
+import { computed, inject, onMounted, ref, toRaw, toRef, watch } from 'vue'
 import { useCompletable } from '@/composables/completable'
 import { useI18n } from 'vue-i18n'
 import CompletionDetail from '@/components/goals/CompletionDetail.vue'
@@ -103,7 +87,31 @@ export interface MapGoalProps {
 
 const dialogRef = inject('dialogRef')
 
+const searchableAccessor = (value: CollectableEntryConfig) => translateDataRow(fromCode2DataRow(value.collectableName))
+let searchable = ref(null)
+
 const showCompleted = ref(false)
+watch(showCompleted,(newValue) => {
+  if(newValue) {
+    searchable.value = useSearchable(collectables.value!, searchableAccessor)
+    // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
+    // between the ref in the composable (searchable) and this ref here.
+    // eslint-disable-next-line
+    searchFieldValue = searchable.value.searchFieldValue
+    getPartialMatches.value = searchable.value.getPartialMatches
+    console.log(collectables.value!)
+    console.log(searchable)
+  }
+  else {
+    searchable.value = useSearchable(keepNotYetComplete(collectables.value!, codeAccess.value!, events.value!), searchableAccessor)
+    // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
+    // between the ref in the composable (searchable) and this ref here.
+    // eslint-disable-next-line
+    searchFieldValue = searchable.value.searchFieldValue
+    getPartialMatches.value = searchable.value.getPartialMatches
+  }
+  console.log(shownCollectablesBasedOffCheckbox.value)
+})
 
 const goalName = ref<GoalName | null>(null)
 const collectables = ref<CollectableEntryConfig[] | null>(null)
@@ -118,14 +126,7 @@ const first = ref(0)
 const computedPartialMatches = computed(() => {
   return ((getPartialMatches.value !== undefined ? getPartialMatches.value() : []))
 })
-
-const shownCollectablesBasedOffCheckbox = computed(() => {
-  if (showCompleted.value) {
-    return collectables.value
-  } else {
-    return keepNotYetComplete(collectables.value!, codeAccess.value!, events.value!)
-  }
-})
+const shownCollectablesBasedOffCheckbox = ref<CollectableEntryConfig[]>([])
 
 const { t } = useI18n()
 const { keepNotYetComplete, filterEventsFor } = useCompletable()
@@ -146,8 +147,8 @@ onMounted(() => {
 
 
 
-  const searchable = useSearchable(
-    collectables.value, value => translateDataRow(fromCode2DataRow(value.collectableName))
+  searchable.value = useSearchable(
+    shownCollectablesBasedOffCheckbox.value, searchableAccessor
   )
 
   // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
