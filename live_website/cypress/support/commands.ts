@@ -37,3 +37,10 @@
 // }
 
 export {}
+
+Cypress.Commands.add('visitLiveChallenge', (challengeID: string) => {
+  cy.intercept(`${Cypress.env('BASE_EXISTING_CHALLENGES_S3_URL')}/*`, { fixture: `${challengeID}.c.json` }).as('challenge-file')
+  cy.intercept(`${Cypress.env('BASE_CHALLENGE_EVENTS_URL')}?challenge_ID=*`, { fixture: `${challengeID}-events.json` }).as('mc-events')
+
+  cy.visit(`/challenge/${challengeID}`)
+})

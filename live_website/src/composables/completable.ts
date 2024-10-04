@@ -18,6 +18,10 @@ export function useCompletable() {
     return mcEvents.map(value => value.data?.amount).reduce((previousValue, currentValue) => previousValue + currentValue, defaultConfig.properties.currentAmount.default)
   }
 
+  function completionPercentage(collectableEntryConfigs: CollectableEntryConfig[], mcEvents: MCEvent<any>[]): number {
+
+  }
+
   function isSingleCompletionType(collectableData: CollectableDataConfig): boolean {
     return collectableData.amountNeeded === 1 || collectableData.amountNeeded === defaultConfig.properties.amountNeeded.default;
   }

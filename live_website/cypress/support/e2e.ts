@@ -15,6 +15,26 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import { GoalName } from '../../../criteria-interfaces'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+declare global {
+  namespace Cypress {
+    interface Chainable<Subject> {
+
+      /**
+       * Visit a live challenge webpage.
+       * @param challengeID Uniquely identifies a challenges
+       */
+      visitLiveChallenge(challengeID: string): Chainable<Subject>
+
+      /**
+       * Open a dialog that shows detailed progress information about the given goal.
+       * @param goalName
+       */
+      openGoalDetails(goalName: GoalName): Chainable<Subject>
+    }
+  }
+}

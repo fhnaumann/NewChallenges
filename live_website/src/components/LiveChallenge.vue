@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loaded" class="flex h-screen">
+  <div v-if="!loaded" class="flex min-h-screen bg-background-color">
     <ProgressSpinner class="m-auto" />
   </div>
   <div v-else-if="error" class="flex flex-col items-center justify-center space-y-4 min-h-screen">
@@ -11,9 +11,9 @@
       />
     </RouterLink>
   </div>
-  <div v-else class="flex min-h-screen flex-col bg-background-color">
+  <div v-else class="flex min-h-screen flex-col bg-background-color overflow-y-auto">
     <HeaderBar />
-    <div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 border-2 border-black">
+    <!--div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 border-2 border-black">
       <div>
         <Button label="Add latest event" @click="addEvent" />
         <Button label="Delete latest event" @click="deleteEvent" />
@@ -23,11 +23,14 @@
         <p v-else-if="finished">{{ t('misc.finished') }}</p>
         <p v-else>{{ timeEstimation }}</p>
       </div>
-    </div>
+    </div-->
     <div class="fixed top-0 left-0 translate-y-10 border-2 z-10 border-content-border bg-card rounded-xl mx-4">
       <RightSideBar :challenge="challengeFileJSON!" :events="events" :current-time="timeEstimation" />
     </div>
-    <div class="mt-20 relative flex-1 min-h-screen z-5" ref="scrollContainer">
+    <div class="flex items-center justify-center">
+      <p class="text-color text-6xl font-bold">{{ challengeFileJSON?.metadata.name }}</p>
+    </div>
+    <div class="mt-20 relative flex-1 z-5 translate-x-1/4" ref="scrollContainer">
       <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
         <svg class="drop-shadow-2xl" width="50" :height="svgHeight">
           <g ref="lines" class="pointer-events-none"></g>

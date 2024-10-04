@@ -148,14 +148,14 @@ onMounted(() => {
 
 
   searchable.value = useSearchable(
-    shownCollectablesBasedOffCheckbox.value, searchableAccessor
+    props.collectables, searchableAccessor
   )
 
   // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
   // between the ref in the composable (searchable) and this ref here.
   // eslint-disable-next-line
-  searchFieldValue = searchable.searchFieldValue
-  getPartialMatches.value = searchable.getPartialMatches
+  searchFieldValue = searchable.value.searchFieldValue
+  getPartialMatches.value = searchable.value.getPartialMatches
 })
 
 function assumeDataSourceFrom(goalName: GoalName): DataSource {

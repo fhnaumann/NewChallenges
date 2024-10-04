@@ -9,6 +9,8 @@ import {
   BASE_WEBSOCKET_URL
 } from '@/constants'
 import { useChallengeState } from '@/stores/challenge_state'
+import { useGoalAccess } from '@/composables/goal_access'
+import { useSanitizer } from '@/composables/sanitizer'
 
 export function useFetcher(initialChallengeID: string) {
 
@@ -22,6 +24,8 @@ export function useFetcher(initialChallengeID: string) {
   const ws = new WebSocket(`${BASE_WEBSOCKET_URL}&challenge_ID=${challengeID}`)
 
   async function fetchEvents(challengeID: string) {
+    // update no caching for events, just always fetch from dynamodb
+    /*
     const localStorageEvents = localStorage.getItem(`challenge-events-${challengeID}`)
     if (localStorageEvents) {
       console.log('Fetched events from local storage')
@@ -33,6 +37,8 @@ export function useFetcher(initialChallengeID: string) {
       }
       console.log('LocalStorage events empty or outdated. Fetching from DynamoDB...')
     }
+
+     */
     console.log('LocalStorage events empty or outdated. Fetching from S3...')
     let eventsFromDynamoDB = await fetchEventsFromDynamoDB(challengeID)
     console.log(eventsFromDynamoDB)
@@ -127,9 +133,16 @@ export function useFetcher(initialChallengeID: string) {
     await fetchData()
   }
 
+  async function performSanityCheck() {
+    const { addMissingEvents } = useSanitizer()
+    addMissingEvents()
+
+  }
+
   onMounted(async () => {
     await fetchData()
     await preloadImages()
+    await performSanityCheck()
     loaded.value = true
     console.log("finished")
     //timeEstimation.value = events.value.length !== 0 ? events.value[events.value.length - 1].timestamp : 0

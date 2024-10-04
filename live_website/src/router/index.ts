@@ -12,7 +12,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/challenges/:challenge_id',
+      path: '/challenge/:challenge_id',
       component: LiveChallenge
     }
   ]

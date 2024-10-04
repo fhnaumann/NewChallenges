@@ -39,13 +39,13 @@
               {{
                 t('sidebar.stats.goal.title', {
                   goal: t(`goals.types.${goalEntry.key}.name`),
-                  percentage: '82'
+                  percentage: filterEventsFor(goalEntry.key)
                 })
               }}
             </p>
             <div v-if="hasGoalTimer(goalEntry.key as GoalName)">
               <div>
-                <ProgressBar class="border-2 border-green-500" :value="asPercentage(goalEntry.key as GoalName)">{{}}</ProgressBar>
+                <ProgressBar :value="asPercentage(goalEntry.key as GoalName)">{{}}</ProgressBar>
               </div>
               <p class="flex justify-center text-sm">{{ formatTime(calculateRemainingTime(goalEntry.key as GoalName)) }}</p>
             </div>
@@ -125,12 +125,6 @@ const computedGoalEntries = computed(() => {
   return Object.entries(props.challenge.goals!)
     .filter(([_, value]) => value !== undefined)
     .map(([key, value]) => ({ key, value }))
-})
-
-const computedGoalTimeProperties = computedGoalEntries.value.map((value) => {
-  return computed(() => {
-    return calculateProgressBarValueFor(value.key as GoalName)
-  })
 })
 
 const showGoal = (goalName: GoalName) => {
