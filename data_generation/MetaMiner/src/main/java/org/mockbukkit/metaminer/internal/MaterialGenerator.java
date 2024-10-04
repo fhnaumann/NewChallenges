@@ -35,6 +35,7 @@ public class MaterialGenerator implements DataGenerator
 			entry.addProperty("is_item", material.isItem());
 			entry.addProperty("translation_key", material.translationKey());
 			entry.addProperty("img_name", material.getKey().value() + ".png");
+			entry.addProperty("weight", asWeight(material));
 			data.add(entry);
 		}
 		jsonObject.add("data", data);
@@ -45,6 +46,15 @@ public class MaterialGenerator implements DataGenerator
 	public String getFileName()
 	{
 		return "materials";
+	}
+
+	private int asWeight(Material material) {
+		return switch (material.getItemRarity()) {
+			case COMMON -> 1;
+			case UNCOMMON -> 3;
+			case RARE -> 5;
+			case EPIC -> 10;
+		};
 	}
 
 	private static final Set<Material> ignore = Set.of(
