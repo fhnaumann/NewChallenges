@@ -9,6 +9,12 @@
 📖 [Documentation](https://www.wiki.mc-challenges.com/)
 
 
+# For Developers
+
+This diagram contains the basic overview. An [interactive C4 graph](https://s.icepanel.io/qSFYjsT1eKkVw5/CPKx) is also available (recommended).
+
+![C4 Level 1 Diagram](images/level1_diagram.png)
+
 ## Testing
 
 ### Unit Test: Challenges Plugin
