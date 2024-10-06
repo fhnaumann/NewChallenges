@@ -27,7 +27,7 @@ Verify correct behaviour inside the Builder Frontend. Cypress is used.
 
 ### "Unit" Test: Live Frontend
 
-Verify correct behaviour inside the Live Frontend. Cypress is used and all the data is mocked. No request to AWS is made.
+Verify correct behaviour inside the Live Frontend. Cypress is used and all data (challenge file, existing challenge events, live events from websocket) is mocked. No request to AWS is made.
 
 ### Unit Test: AWS Lambdas
 
@@ -43,6 +43,8 @@ The test data that was stored is explicitly not cleared after, because it is use
 ### Integration Test: AWS -> Live Frontend
 
 Reuse the test data from the previous Integration Test. This test verifies that the data from AWS is correctly displayed.
+Reusing the data means that only challenge file and event data fetching is tested. Integration testing the live data flow is **not** done as it's just too complicated. The Live Fronted Unit Tests with mocked websockets should be sufficient.
+
 The test data is now cleared.
 
 ### E2E Test
