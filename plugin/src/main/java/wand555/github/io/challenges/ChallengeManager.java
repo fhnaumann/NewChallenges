@@ -278,10 +278,10 @@ public class ChallengeManager implements StatusInfo {
 
     }
 
-    public long getTime() {
+    public int getTime() {
         // Shouldn't have made Context a singleton...
         // Some challenge data (progress) require the current time
-        return timerRunnable != null ? timerRunnable.getTimer() : 0L;
+        return (int) (timerRunnable != null ? timerRunnable.getTimer() : 0L);
     }
 
     public void setTimerRunnable(TimerRunnable timerRunnable) {

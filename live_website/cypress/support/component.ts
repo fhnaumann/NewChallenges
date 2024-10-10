@@ -21,7 +21,7 @@ import './commands'
 
 // Import global styles
 import '@/assets/main.css'
-
+import { createI18n } from 'vue-i18n'
 import { mount } from 'cypress/vue'
 
 // Augment the Cypress namespace to include type definitions for
@@ -29,15 +29,14 @@ import { mount } from 'cypress/vue'
 // Alternatively, can be defined in cypress/support/component.d.ts
 // with a <reference path="./component" /> at the top of your spec.
 /* eslint-disable @typescript-eslint/no-namespace */
+
 declare global {
   namespace Cypress {
     interface Chainable {
-      mount: typeof mount
+      mount: typeof mount;
     }
   }
 }
-
-Cypress.Commands.add('mount', mount)
-
+Cypress.Commands.add("mount", mount);
 // Example use:
 // cy.mount(MyComponent)

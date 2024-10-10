@@ -8,9 +8,9 @@ import { onMounted, ref } from 'vue'
 import { useMinecraftHead } from '@/composables/head_composable'
 
 const {
-  playerUUID = '31f477eb-1a7b-eee6-31c2-ca64d06f8f68',
+  playerUUID = 'faf9d2ac-82c1-3a56-917a-327f0a09893b',
   playerName = '?',
-  skinTextureURL = 'http://textures.minecraft.net/texture/31f477eb1a7beee631c2ca64d06f8f68',
+  skinTextureURL = "http://textures.minecraft.net/texture/5163dafac1d91a8c91db576caac784336791a6e18d8f7f62778fc47bf146b6",
   size
 } = defineProps<{
   playerUUID?: string

@@ -1,8 +1,5 @@
 <template>
-  <div v-if="!loaded" class="flex min-h-screen bg-background-color">
-    <ProgressSpinner class="m-auto" />
-  </div>
-  <div v-else-if="error" class="flex flex-col items-center justify-center space-y-4 min-h-screen">
+  <div v-if="error" class="flex flex-col items-center justify-center space-y-4 min-h-screen">
     <h1 class="text-4xl text-center">{{ t(error, { challenge: challengeID }) }}</h1>
     <RouterLink to="/">
       <Button
@@ -11,6 +8,10 @@
       />
     </RouterLink>
   </div>
+  <div v-else-if="!loaded" class="flex min-h-screen bg-background-color">
+    <ProgressSpinner class="m-auto" />
+  </div>
+
   <div v-else class="flex min-h-screen flex-col bg-background-color overflow-y-auto">
     <HeaderBar />
     <!--div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 border-2 border-black">
@@ -28,7 +29,15 @@
       <RightSideBar :challenge="challengeFileJSON!" :events="events" :current-time="timeEstimation" />
     </div>
     <div class="flex items-center justify-center">
-      <p class="text-color text-6xl font-bold">{{ challengeFileJSON?.metadata.name }}</p>
+      <div class="flex flex-col items-center space-y-10">
+        <p class="text-color text-6xl font-bold">{{ challengeFileJSON?.metadata.name }}</p>
+        <div class="text-primary font-semibold text-xl">
+          <p v-if="!started && !running" data-cy="not-started-text">{{ t('misc.not_started') }}</p>
+          <p v-else-if="running" data-cy="running-text">{{ formatTime(timeEstimation) }}</p>
+          <p v-else-if="paused" data-cy="paused-text">{{ t('misc.paused', { time: formatTime(timeEstimation) }) }}</p>
+          <p v-else-if="finished" data-cy="finished-text">{{ t('misc.finished') }}</p>
+        </div>
+      </div>
     </div>
     <div class="mt-20 relative flex-1 z-5 translate-x-1/4" ref="scrollContainer">
       <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
@@ -36,7 +45,7 @@
           <g ref="lines" class="pointer-events-none"></g>
           <circle class="fill-primary" :cx="startX" :cy="startY" r="8" />
           <circle
-            v-for="(event, index) in events"
+            v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
             :class="`${getCriteriaColorFrom(event)} ease-in-out duration-300 ${eventIndexBeingHovered === index ? 'fill-accent' : 'fill-primary'}`"
             :key="event.eventID"
             :cx="startX"
@@ -51,7 +60,7 @@
           <EventContainer
             class="absolute z-5 drop-shadow-2xl"
             :id="event.eventID"
-            v-for="(event, index) in events"
+            v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
             :key="'textbox-' + event.eventID"
             :style="{
               left: `${determineXPositionForEventContainer(index)}px`,
@@ -61,6 +70,7 @@
             :event-index="index"
             @myMouseEnter="eventIndexBeingHovered = index"
             @myMouseLeave="eventIndexBeingHovered = null"
+            :data-cy="event.eventID"
           />
         </div>
       </div>
@@ -148,10 +158,6 @@ const lines = ref()
 
 const { getCriteriaColorFrom } = useUtil()
 
-const started = ref(false)
-const paused = ref(false)
-const finished = ref(false)
-
 const eventIndexBeingHovered = ref<number | null>(null)
 
 function addLine(index: number, skipAnimation = false) {
@@ -170,13 +176,15 @@ function addLine(index: number, skipAnimation = false) {
 }
 
 function setLineTo(index: number) {
-  if (index < lines.value.length) {
+  console.log('lines', lines)
+  if (index < lines.value?.length) {
     console.log('set line to', index)
 
-    const result = lines.value.splice(index)
+    const result = lines.value?.splice(index)
     console.log(result)
   } else {
-    const diff = index - lines.value.length
+    console.log('jumping line to', index)
+    const diff = index - lines.value?.length
     for (let i = 0; i < diff; i++) {
       addLine(index + i, false)
     }
@@ -257,7 +265,7 @@ const {
   }
 })
 
-const { challengeFileJSON, events } = storeToRefs(useChallengeState())
+const { challengeFileJSON, events, started, paused, finished, running } = storeToRefs(useChallengeState())
 
 const { challengeID, reFetchData, loaded, error, ws } = useFetcher(
   route.params.challenge_id as string
@@ -272,6 +280,7 @@ ws.onclose = (ev) => {
   console.log('Disconnected from server!')
 }
 ws.onmessage = (ev) => {
+  console.log(1)
   console.log('Received message:', ev.data)
   const mcEvent = JSON.parse(ev.data) as MCEvent<any>
   setLineTo(mcEvent.timestamp)
@@ -283,17 +292,20 @@ ws.onmessage = (ev) => {
 function handleIncomingEvent(mcEvent: MCEvent<any>) {
   if (mcEvent.eventType === 'start') {
     started.value = true
+    running.value = true
     resume()
   } else if (mcEvent.eventType === 'pause') {
     paused.value = true
     pause()
   } else if (mcEvent.eventType === 'resume') {
     paused.value = false
+    running.value = true
     resume()
   } else if (mcEvent.eventType === 'end') {
     finished.value = true
     pause()
   } else {
+
     events.value.push(mcEvent)
   }
 }
@@ -303,10 +315,9 @@ watch(loaded, (newValue) => {
     console.log('Successfully loaded')
     timeEstimation.value =
       events.value.length !== 0 ? events.value[events.value.length - 1].timestamp : 0
-
-    started.value = timeEstimation.value > 0
-    paused.value = events.value!.at(-1)?.eventType === 'pause'
-    finished.value = events.value!.at(-1)?.eventType === 'end'
+    if(running.value) {
+      resume()
+    }
   }
 })
 

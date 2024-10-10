@@ -10,6 +10,7 @@ import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.GoalsConfig;
 import wand555.github.io.challenges.generated.ItemGoalConfig;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.types.item.ItemData;
 import wand555.github.io.challenges.types.item.ItemType;
 import wand555.github.io.challenges.utils.RandomUtil;
@@ -24,7 +25,7 @@ public class ItemGoal extends MapGoal<ItemData<?>, Material> implements Storable
 
     public ItemGoal(Context context, ItemGoalConfig config, GoalCollector<Material> goalCollector, ItemGoalMessageHelper messageHelper, ItemGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
         super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
-        this.itemType = new ItemType(context, triggerCheck(), trigger());
+        this.itemType = new ItemType(context, triggerCheck(), trigger(), MCEventAlias.EventType.ITEM_GOAL);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ItemGoal extends MapGoal<ItemData<?>, Material> implements Storable
 
     @Override
     protected ItemData<?> createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new ItemData<>(null, new ItemStack(toSkip.getKey()), toSkip.getValue().getRemainingToCollect(), player);
+        return new ItemData<>(null, context.challengeManager().getTime(), new ItemStack(toSkip.getKey()), toSkip.getValue().getRemainingToCollect(), player);
     }
 
     @Override

@@ -68,7 +68,8 @@ public class FileManagerTest {
                               schemaRoot,
                               challengeManager,
                               new Random(),
-                              new OfflineTempData(plugin)
+                              new OfflineTempData(plugin),
+                              CriteriaUtil.mockLiveService()
         );
         mapper = new ModelMapper(context);
 

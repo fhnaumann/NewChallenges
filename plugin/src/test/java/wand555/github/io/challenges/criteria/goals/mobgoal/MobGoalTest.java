@@ -23,6 +23,7 @@ import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.mapping.EntityTypeDataSource;
 import wand555.github.io.challenges.mapping.EntityTypeJSON;
 import wand555.github.io.challenges.mapping.MaterialDataSource;
@@ -66,6 +67,8 @@ public class MobGoalTest {
         when(manager.isRunning()).thenReturn(true);
         when(manager.getGoals()).thenReturn(List.of());
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
@@ -131,16 +134,16 @@ public class MobGoalTest {
 
     @Test
     public void testMobGoalTriggerCheck() {
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.PIG, player)));
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.WITHER_SKELETON, player)));
-        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, EntityType.ENDER_DRAGON, player)));
+        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, 0, EntityType.PIG, player)));
+        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, 0, EntityType.WITHER_SKELETON, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, 0, EntityType.ENDER_DRAGON, player)));
     }
 
     @Test
     public void testMobGoalTrigger() {
-        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, 0, EntityType.PIG, player));
         assertEquals(1, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
-        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, 0, EntityType.PIG, player));
         assertEquals(2, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
     }
 
@@ -158,7 +161,7 @@ public class MobGoalTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(emptyMockEvent, EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(emptyMockEvent, 0, EntityType.PIG, player)),
                                                              argThat(argument -> argument.getCurrentAmount() == 1)
         );
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
@@ -168,7 +171,7 @@ public class MobGoalTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(emptyMockEvent, EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(emptyMockEvent, 0, EntityType.PIG, player)),
                                                                 argThat(argument -> argument.getCurrentAmount() == 2)
         );
         verify(messageHelper, never()).sendAllReachedAction();

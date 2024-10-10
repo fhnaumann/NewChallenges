@@ -168,12 +168,7 @@
 
 import { useI18n } from 'vue-i18n'
 import Button from 'primevue/button'
-import PlayerHead from './PlayerHead.vue'
-import TranslateMessageWithHeadOnly from '@/components/TranslateMessageWithHeadOnly.vue'
 import TranslateMessage, { type RenderProps } from '@/components/TranslateMessage.vue'
-import MaterialItem from '@/components/MaterialItem.vue'
-import type { PlayerConfig } from '@criteria-interfaces/live'
-import { type NoBlockBreakRuleDataConfig } from '@criteria-interfaces/blockbreak'
 import InputText from 'primevue/inputtext'
 import { ref, watch } from 'vue'
 import { CHALLENGE_BUILDER_URL, PLUGIN_MODRINTH_URL } from '@/constants'
@@ -191,7 +186,7 @@ function handleViewChallenge() {
     return
   }
 
-  router.push(`/challenges/${challengeID.value}`)
+  router.push(`/challenge/${challengeID.value}`)
 }
 
 </script>

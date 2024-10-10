@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
@@ -33,7 +34,7 @@ public class BlockBreakRule extends PunishableRule<BlockBreakData, Material> imp
         ))
                           : new HashSet<>();
 
-        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
+        blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), MCEventAlias.EventType.NO_BLOCK_BREAK);
         logger.fine("Created %s instance.".formatted(blockBreakType.getClass().getSimpleName()));
     }
 

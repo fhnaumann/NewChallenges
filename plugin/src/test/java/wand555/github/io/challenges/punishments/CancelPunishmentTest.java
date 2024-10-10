@@ -73,7 +73,8 @@ public class CancelPunishmentTest {
                               schemaRoot,
                               challengeManager,
                               randomMock,
-                              new OfflineTempData(plugin)
+                              new OfflineTempData(plugin),
+                              CriteriaUtil.mockLiveService()
         );
         Team.initAllTeam(context, -1);
     }

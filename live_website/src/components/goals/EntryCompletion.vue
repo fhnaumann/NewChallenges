@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-pointer w-full h-full" @click="toggle">
+  <div class="cursor-pointer w-full h-full" @click="toggle" :data-cy="collectable.collectableName">
     <div
       :class="[
         'bg-card rounded-lg',
@@ -9,12 +9,11 @@
            :class="{
              'flex flex-col items-center justify-between rounded-lg border border-content-border w-40 h-40': !clicked,
              'flex flex-col items-center justify-between rounded-lg border border-content-border w-40 h-40 bg-primary-400 text-color-emphasis': clicked
-           }"
-           @mouseenter="hover = true" @mouseleave="hover = false">
+           }">
         <p class="font-semibold line-clamp-1 text-color">{{ translateDataRow(fromCode2DataRow(props.collectable.collectableName))
           }}</p>
         <MaterialItem :code="collectable.collectableName" :data-source="dataSource" img-class="w-12" />
-        <p class="text-color">{{ `${currentAmountOrDefault()}/${amountNeededOrDefault()}` }}</p>
+        <p class="text-color" :data-cy="`${collectable.collectableName}-completionStatus`">{{ `${currentAmountOrDefault()}/${amountNeededOrDefault()}` }}</p>
       </div>
     </div>
   </div>
@@ -59,7 +58,6 @@ const reference = ref(null)
 const floating = ref(null)
 const {floatingStyles} = useFloating(reference, floating);
 
-const hover = ref(false)
 
 const op = ref(null)
 const clicked = ref(false)

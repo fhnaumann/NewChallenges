@@ -6,6 +6,7 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.NoDeathRuleConfig;
 import wand555.github.io.challenges.types.death.DeathData;
 import wand555.github.io.challenges.mapping.DeathMessage;
@@ -21,7 +22,7 @@ public class NoDeathRule extends PunishableRule<DeathData, DeathMessage> impleme
               config.getPunishments(),
               messageHelper
         );
-        this.deathType = new DeathType(context, triggerCheck(), trigger());
+        this.deathType = new DeathType(context, triggerCheck(), trigger(), MCEventAlias.EventType.NO_DEATH);
         this.ignoreTotem = config.isIgnoreTotem();
     }
 

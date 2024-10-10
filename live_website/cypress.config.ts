@@ -9,7 +9,7 @@ export default defineConfig({
     specPattern: 'src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}',
     devServer: {
       framework: 'vue',
-      bundler: 'vite'
+      bundler: 'vite',
     },
   }
 })

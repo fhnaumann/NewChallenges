@@ -19,6 +19,7 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRuleMessageHelper;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
@@ -59,6 +60,8 @@ public class BlockBreakRuleTest {
         when(manager.canTakeEffect(any(), any())).thenReturn(true);
 
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
@@ -95,14 +98,14 @@ public class BlockBreakRuleTest {
 
     @Test
     public void testNoBlockBreakTriggerCheck() {
-        assertTrue(rule.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.DIRT, player)));
-        assertFalse(rule.triggerCheck().applies(new BlockBreakData(emptyMockEvent, Material.STONE, player)));
+        assertTrue(rule.triggerCheck().applies(new BlockBreakData(emptyMockEvent, 0, Material.DIRT, player)));
+        assertFalse(rule.triggerCheck().applies(new BlockBreakData(emptyMockEvent, 0, Material.STONE, player)));
     }
 
     @Test
     public void testNoBlockBreakTrigger() {
-        rule.trigger().actOnTriggered(new BlockBreakData(emptyMockEvent, Material.DIRT, player));
-        verify(messageHelper, times(1)).sendViolationAction(new BlockBreakData(emptyMockEvent, Material.DIRT, player));
+        rule.trigger().actOnTriggered(new BlockBreakData(emptyMockEvent, 0, Material.DIRT, player));
+        verify(messageHelper, times(1)).sendViolationAction(new BlockBreakData(emptyMockEvent, 0, Material.DIRT, player));
     }
 
     @Test

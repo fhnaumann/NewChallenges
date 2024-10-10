@@ -12,6 +12,7 @@ import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.BlockPlaceGoalConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.types.blockplace.BlockPlaceData;
 import wand555.github.io.challenges.types.blockplace.BlockPlaceType;
@@ -28,7 +29,7 @@ public class BlockPlaceGoal extends MapGoal<BlockPlaceData, Material> implements
 
     public BlockPlaceGoal(Context context, BlockPlaceGoalConfig config, GoalCollector<Material> goalCollector, BlockPlaceGoalMessageHelper messageHelper, BlockPlaceGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
         super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
-        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger());
+        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger(), MCEventAlias.EventType.BLOCK_PLACE_GOAL);
     }
 
     @Override
@@ -69,6 +70,6 @@ public class BlockPlaceGoal extends MapGoal<BlockPlaceData, Material> implements
 
     @Override
     protected BlockPlaceData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new BlockPlaceData(null, toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
+        return new BlockPlaceData(null, context.challengeManager().getTime(), toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }
 }

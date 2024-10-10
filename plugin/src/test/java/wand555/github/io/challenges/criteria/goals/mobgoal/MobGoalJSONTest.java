@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.*;
+import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.files.FileManager;
@@ -68,7 +69,8 @@ public class MobGoalJSONTest {
                               schemaRootMock,
                               managerMock,
                               new Random(),
-                              new OfflineTempData(plugin)
+                              new OfflineTempData(plugin),
+                              CriteriaUtil.mockLiveService()
         );
 
         messageHelper = new MobGoalMessageHelper(context);

@@ -1,39 +1,26 @@
 package wand555.github.io.challenges.types.crafting;
 
 import com.google.common.base.Preconditions;
-import io.papermc.paper.event.player.PlayerStonecutterRecipeSelectEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Campfire;
-import org.bukkit.block.Furnace;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.*;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.*;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
-import wand555.github.io.challenges.types.EmptyEvent;
 import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 import wand555.github.io.challenges.types.crafting.detectors.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -50,24 +37,8 @@ public class CraftingType extends Type<CraftingData<?>> {
     private final StoneCuttingDetector stoneCuttingDetector;
 
 
-    public CraftingType(Context context, TriggerCheck<CraftingData<?>> triggerCheck, Trigger<CraftingData<?>> whenTriggered) {
-        this(context, triggerCheck, whenTriggered, event -> {}, event -> {}, event -> {}, event -> {});
-    }
-
-    public CraftingType(Context context, TriggerCheck<CraftingData<?>> triggerCheck, Trigger<CraftingData<?>> whenTriggered, EventContainer<CraftItemEvent> onCraftItem, EventContainer<FurnaceSmeltEvent> onFurnaceSmeltEvent, EventContainer<BlockCookEvent> onCampfireCook, EventContainer<InventoryClickEvent> onSmithingFinishOrStoneCuttingFinish) {
-        super(context,
-              triggerCheck,
-              whenTriggered,
-              Map.of(CraftItemEvent.class,
-                     onCraftItem,
-                     FurnaceSmeltEvent.class,
-                     onFurnaceSmeltEvent,
-                     BlockCookEvent.class,
-                     onCampfireCook,
-                     InventoryClickEvent.class,
-                     onSmithingFinishOrStoneCuttingFinish
-              )
-        );
+    public CraftingType(Context context, TriggerCheck<CraftingData<?>> triggerCheck, Trigger<CraftingData<?>> whenTriggered, MCEventAlias.EventType eventType) {
+        super(context, triggerCheck, whenTriggered, eventType);
         this.markedKey = new NamespacedKey(context.plugin(), "lastOpenedBy");
         this.itemCraftingDetector = new ItemCraftingDetector(context, this);
         context.plugin().getServer().getPluginManager().registerEvents(itemCraftingDetector, context.plugin());
@@ -88,7 +59,7 @@ public class CraftingType extends Type<CraftingData<?>> {
         CraftingTypeJSON craftingTypeJSON = DataSourceJSON.fromCode(context.dataSourceContext().craftingTypeJSONList(),
                                                                     code
         );
-        return new CraftingData<>(event, playerUUID, craftingTypeJSON, internallyCrafted);
+        return new CraftingData<>(event, playerUUID, context.challengeManager().getTime(),craftingTypeJSON, internallyCrafted);
     }
 
     public void markLastOpenedByOn(TileState tileState, Player player) {

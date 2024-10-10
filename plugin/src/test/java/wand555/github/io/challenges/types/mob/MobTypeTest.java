@@ -14,6 +14,9 @@ import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.generated.MCEventAlias;
+import wand555.github.io.challenges.live.LiveService;
 
 import java.util.List;
 import java.util.UUID;
@@ -44,9 +47,11 @@ public class MobTypeTest {
         ChallengeManager manager = mock(ChallengeManager.class);
         when(manager.isRunning()).thenReturn(true);
         Context mockedContext = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(mockedContext.liveService()).thenReturn(mockLiveService);
         when(mockedContext.plugin()).thenReturn(plugin);
         when(mockedContext.challengeManager()).thenReturn(manager);
-        mobType = spy(new MobType(mockedContext, mockedTriggerCheck, mockedTrigger));
+        mobType = spy(new MobType(mockedContext, mockedTriggerCheck, mockedTrigger, MCEventAlias.EventType.MOB_GOAL));
     }
 
     @AfterEach

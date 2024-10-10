@@ -3,15 +3,18 @@ package wand555.github.io.challenges.types.mob;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
+import wand555.github.io.challenges.generated.MobDataConfig;
+import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.types.Data;
+import wand555.github.io.challenges.utils.LiveUtil;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public record MobData(EntityDeathEvent event, EntityType entityInteractedWith, int amount, Player player) implements Data<EntityDeathEvent, EntityType> {
+public record MobData(EntityDeathEvent event, int timestamp, EntityType entityInteractedWith, int amount, Player player) implements Data<EntityDeathEvent, EntityType> {
 
-    public MobData(EntityDeathEvent event, EntityType entityInteractedWith, Player player) {
-        this(event, entityInteractedWith, 1, player);
+    public MobData(EntityDeathEvent event, int timestamp, EntityType entityInteractedWith, Player player) {
+        this(event, timestamp, entityInteractedWith, 1, player);
     }
 
     @Override
@@ -22,6 +25,16 @@ public record MobData(EntityDeathEvent event, EntityType entityInteractedWith, i
     @Override
     public EntityType mainDataInvolved() {
         return entityInteractedWith;
+    }
+
+    @Override
+    public Object constructMCEventData() {
+        return new MobDataConfig(
+                amount(),
+                DataSourceJSON.toCode(mainDataInvolved()),
+                LiveUtil.constructPlayerConfig(playerUUID()),
+                timestamp()
+        );
     }
 
     @Override

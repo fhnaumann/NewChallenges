@@ -7,6 +7,7 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.NoMobKillRuleConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
@@ -24,7 +25,7 @@ public class NoMobKillRule extends PunishableRule<MobData, EntityType> implement
 
     public NoMobKillRule(Context context, NoMobKillRuleConfig config, NoMobKillRuleMessageHelper messageHelper) {
         super(context, config.getPunishments(), messageHelper);
-        this.mobType = new MobType(context, triggerCheck(), trigger());
+        this.mobType = new MobType(context, triggerCheck(), trigger(), MCEventAlias.EventType.NO_MOB_KILL);
         this.exemptions = config.getExemptions() != null
                           ? new HashSet<>(ModelMapper.str2EntityType(context.dataSourceContext().entityTypeJSONList(),
                                                                      config.getExemptions()

@@ -22,6 +22,7 @@ import wand555.github.io.challenges.criteria.goals.blockplace.BlockPlaceGoalMess
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.BlockPlaceGoalConfig;
 import wand555.github.io.challenges.generated.ContributorsConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockplace.BlockPlaceData;
 
@@ -56,6 +57,8 @@ public class BlockPlaceGoalTest {
         when(manager.isRunning()).thenReturn(true);
 
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
@@ -115,7 +118,7 @@ public class BlockPlaceGoalTest {
 
     @Test
     public void testContributionTracked() {
-        blockPlaceGoal.trigger().actOnTriggered(new BlockPlaceData(emptyMockEvent, Material.STONE, player));
+        blockPlaceGoal.trigger().actOnTriggered(new BlockPlaceData(emptyMockEvent, 0, Material.STONE, player));
         ContributorsConfig contributorsConfig = blockPlaceGoal.getGoalCollector().getToCollect().get(Material.STONE).getCompletionConfig().getContributors();
         assertTrue(contributorsConfig.getAdditionalProperties().containsKey(player.getName()));
         assertEquals(1, contributorsConfig.getAdditionalProperties().get(player.getName()));

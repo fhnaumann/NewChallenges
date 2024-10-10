@@ -59,7 +59,8 @@ public class ItemGoalJSONTest {
                               null,
                               managerMock,
                               new Random(),
-                              new OfflineTempData(plugin)
+                              new OfflineTempData(plugin),
+                              CriteriaUtil.mockLiveService()
         );
 
         messageHelper = mock(ItemGoalMessageHelper.class);

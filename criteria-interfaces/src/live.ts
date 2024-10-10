@@ -3,6 +3,11 @@ import {CriteriaKey} from "./model";
 export interface MCEvent<T> {
 
     /**
+     * The action (always event).
+     */
+    action: "event"
+
+    /**
      * The unique ID to identify the challenge this event originated from.
      */
     challengeID: string,

@@ -59,7 +59,8 @@ public class BlockBreakGoalJSONTest {
                               null,
                               managerMock,
                               new Random(),
-                              new OfflineTempData(plugin)
+                              new OfflineTempData(plugin),
+                              CriteriaUtil.mockLiveService()
         );
 
         messageHelper = new BlockBreakGoalMessageHelper(context);

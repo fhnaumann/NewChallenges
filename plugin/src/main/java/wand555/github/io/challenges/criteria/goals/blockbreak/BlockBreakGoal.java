@@ -12,6 +12,7 @@ import wand555.github.io.challenges.criteria.goals.Timer;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 import wand555.github.io.challenges.utils.RandomUtil;
@@ -26,7 +27,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     public BlockBreakGoal(Context context, BlockBreakGoalConfig config, GoalCollector<Material> goalCollector, BlockBreakGoalMessageHelper messageHelper, BlockBreakCollectedInventory collectedInventory, @Nullable Timer timer) {
         super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
-        this.blockBreakType = new BlockBreakType(context, triggerCheck(), trigger());
+        this.blockBreakType = new BlockBreakType(context, triggerCheck(), trigger(), MCEventAlias.EventType.BLOCK_BREAK_GOAL);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class BlockBreakGoal extends MapGoal<BlockBreakData, Material> implements
 
     @Override
     protected BlockBreakData createSkipData(Map.Entry<Material, Collect> toSkip, Player player) {
-        return new BlockBreakData(null, toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
+        return new BlockBreakData(null, context.challengeManager().getTime(), toSkip.getKey(), toSkip.getValue().getRemainingToCollect(), player);
     }
 
     @Override

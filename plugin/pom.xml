@@ -18,7 +18,17 @@
     <profiles>
         <profile>
             <id>plugin</id>
+            <properties>
+                <!-- TODO change to prod stage when releasing -->
+                <stage>development</stage>
+                <!--stage>production</stage-->
+            </properties>
             <dependencies>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>s3</artifactId>
+                    <version>2.28.18</version>
+                </dependency>
                 <dependency>
                     <groupId>dev.jorel</groupId>
                     <artifactId>commandapi-bukkit-shade</artifactId>
@@ -93,7 +103,15 @@
         </profile>
         <profile>
             <id>e2e</id>
+            <properties>
+                <stage>testing</stage>
+            </properties>
             <dependencies>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>s3</artifactId>
+                    <version>2.28.18</version>
+                </dependency>
                 <dependency>
                     <groupId>dev.jorel</groupId>
                     <artifactId>commandapi-bukkit-shade</artifactId>

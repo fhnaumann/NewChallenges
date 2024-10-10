@@ -13,6 +13,9 @@ import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.generated.EnabledRules;
 import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.RulesConfig;
+import wand555.github.io.challenges.live.ChallengeUploader;
+import wand555.github.io.challenges.live.EventProvider;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.mapping.*;
 
 import java.io.IOException;
@@ -28,6 +31,13 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 public class CriteriaUtil {
+
+    public static LiveService mockLiveService() {
+        LiveService liveService = mock(LiveService.class);
+        when(liveService.challengeUploader()).thenReturn(mock(ChallengeUploader.class));
+        when(liveService.eventProvider()).thenReturn(mock(EventProvider.class));
+        return liveService;
+    }
 
     public static Model mockModel(Function<Model, Object> test, Class<?> mockedPart) {
         Model mockedModel = mock(Model.class);

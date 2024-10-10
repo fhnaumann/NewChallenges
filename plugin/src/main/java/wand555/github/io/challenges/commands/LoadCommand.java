@@ -39,7 +39,6 @@ import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.files.ProgressListener;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.teams.Team;
-import wand555.github.io.challenges.utils.AWSHelper;
 import wand555.github.io.challenges.utils.ActionHelper;
 import wand555.github.io.challenges.utils.ParameterStringBuilder;
 import wand555.github.io.challenges.utils.ResourceBundleHelper;
@@ -56,6 +55,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -284,7 +284,7 @@ public class LoadCommand {
         resetScoreboard();
         loadingFuture = FileManager.readFromFile(toLoad, context, progress -> handleProgress(context, progress))
                                    .exceptionally(throwable -> {
-                                       if(throwable instanceof LoadValidationException loadValidationException) {
+                                       if(throwable instanceof CompletionException completionException && completionException.getCause() instanceof LoadValidationException loadValidationException) {
                                            sendLoadingFailed(context, loadValidationException);
                                            return context;
                                        } else {
@@ -308,9 +308,8 @@ public class LoadCommand {
                                        }
                                        sendLoadingSuccess(context);
 
-                                       // upload to s3
-                                       AWSHelper.uploadToS3(context.challengeManager().getChallengeMetadata(), toLoad);
-
+                                       // Set challenge ID for live events
+                                       context.liveService().eventProvider().setChallengeID(context.challengeManager().getChallengeMetadata().getChallengeID());
                                    });
     }
 

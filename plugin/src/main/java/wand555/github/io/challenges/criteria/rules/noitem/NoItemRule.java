@@ -8,6 +8,7 @@ import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.NoItemCollectRuleConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.mapping.ModelMapper;
@@ -28,7 +29,7 @@ public class NoItemRule extends PunishableRule<ItemData<?>, Material> implements
               config.getPunishments(),
               messageHelper
         );
-        this.itemType = new ItemType(context, triggerCheck(), trigger());
+        this.itemType = new ItemType(context, triggerCheck(), trigger(), MCEventAlias.EventType.NO_ITEM);
         this.exemptions = config.getExemptions() != null
                           ? new HashSet<>(ModelMapper.str2Materials(context.dataSourceContext().materialJSONList(),
                                                                     config.getExemptions()

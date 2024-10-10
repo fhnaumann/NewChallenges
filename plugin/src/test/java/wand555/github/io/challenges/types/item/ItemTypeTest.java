@@ -27,6 +27,7 @@ import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
 
@@ -65,7 +66,7 @@ public class ItemTypeTest {
         ChallengeManager mockedManager = mock(ChallengeManager.class);
         when(mockedManager.isRunning()).thenReturn(true);
         when(mockedContext.challengeManager()).thenReturn(mockedManager);
-        itemType = spy(new ItemType(mockedContext, mockedTriggerCheck, mockedTrigger));
+        itemType = spy(new ItemType(mockedContext, mockedTriggerCheck, mockedTrigger, MCEventAlias.EventType.ITEM_GOAL));
 
         emptyMockEvent = mock(Event.class);
 
@@ -83,6 +84,7 @@ public class ItemTypeTest {
         InventoryClickEvent event = player.simulateInventoryClick(player.getOpenInventory(), clickType, slot);
         verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(
                 emptyMockEvent,
+                0,
                 createMockMarkedItemStack(changedMaterial, expectedCurrentAmount),
                 expectedCurrentAmount,
                 player
@@ -100,6 +102,7 @@ public class ItemTypeTest {
         assertEquals(createMockMarkedItemStack(changedMaterial, expectedCurrentAmount), inventory.getResult());
         verify(mockedTrigger, expectedCurrentAmount != 0 ? times(1) : never()).actOnTriggered(new ItemData(
                 emptyMockEvent,
+                0,
                 createMockMarkedItemStack(changedMaterial, expectedCurrentAmount),
                 player
         ));

@@ -941,6 +941,11 @@
         "MCEventAlias": {
             "additionalProperties": false,
             "properties": {
+                "action": {
+                    "const": "event",
+                    "description": "The action (always event).",
+                    "type": "string"
+                },
                 "challengeID": {
                     "description": "The unique ID to identify the challenge this event originated from.",
                     "type": "string"
@@ -983,6 +988,7 @@
                 }
             },
             "propertyOrder": [
+                "action",
                 "challengeID",
                 "eventID",
                 "timestamp",
@@ -990,6 +996,7 @@
                 "data"
             ],
             "required": [
+                "action",
                 "challengeID",
                 "eventID",
                 "eventType",

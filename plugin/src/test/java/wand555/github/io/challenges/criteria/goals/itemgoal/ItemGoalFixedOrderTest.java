@@ -135,18 +135,18 @@ public class ItemGoalFixedOrderTest {
 
     @Test
     public void testItemGoalTriggerCheck() {
-        assertTrue(itemGoal.triggerCheck().applies(new ItemData(emptyMockPickupEvent, new ItemStack(Material.CARROT), player)));
-        assertFalse(itemGoal.triggerCheck().applies(new ItemData(emptyMockPickupEvent, new ItemStack(Material.STONE), player)));
-        assertFalse(itemGoal.triggerCheck().applies(new ItemData(emptyMockPickupEvent, new ItemStack(Material.DIRT), player)));
+        assertTrue(itemGoal.triggerCheck().applies(new ItemData(emptyMockPickupEvent, 0, new ItemStack(Material.CARROT), player)));
+        assertFalse(itemGoal.triggerCheck().applies(new ItemData(emptyMockPickupEvent, 0, new ItemStack(Material.STONE), player)));
+        assertFalse(itemGoal.triggerCheck().applies(new ItemData(emptyMockPickupEvent, 0, new ItemStack(Material.DIRT), player)));
     }
 
     @Test
     public void testItemCollectedTracked() {
-        itemGoal.trigger().actOnTriggered(new ItemData(emptyMockPickupEvent, new ItemStack(Material.CARROT), player));
+        itemGoal.trigger().actOnTriggered(new ItemData<>(emptyMockPickupEvent, 0, new ItemStack(Material.CARROT), player));
         assertEquals(1, itemGoal.getToCollect().get(Material.CARROT).getCurrentAmount());
         assertEquals(0, itemGoal.getToCollect().get(Material.STONE).getCurrentAmount());
 
-        itemGoal.trigger().actOnTriggered(new ItemData(emptyMockPickupEvent, new ItemStack(Material.CARROT), player));
+        itemGoal.trigger().actOnTriggered(new ItemData<>(emptyMockPickupEvent, 0, new ItemStack(Material.CARROT), player));
 
         assertEquals(2, itemGoal.getToCollect().get(Material.CARROT).getCurrentAmount());
         assertEquals(0, itemGoal.getToCollect().get(Material.STONE).getCurrentAmount());

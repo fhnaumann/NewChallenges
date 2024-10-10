@@ -1,0 +1,19 @@
+[
+  {
+    "action": "event",
+    "eventType": "blockBreakGoal",
+    "timestamp": 5,
+    "challengeID": "mocked",
+    "eventID": "mock1",
+    "data": {
+      "amount": 1,
+      "player": {
+        "playerName": "",
+        "playerUUID": "",
+        "skinTextureURL": ""
+      },
+      "timestamp": 5,
+      "broken": "stone"
+    }
+  }
+]

@@ -6,7 +6,12 @@ import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import wand555.github.io.challenges.generated.ItemDataConfig;
+import wand555.github.io.challenges.mapping.DataSourceJSON;
+import wand555.github.io.challenges.mapping.MaterialDataSource;
+import wand555.github.io.challenges.mapping.MaterialJSON;
 import wand555.github.io.challenges.types.Data;
+import wand555.github.io.challenges.utils.LiveUtil;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -19,10 +24,10 @@ import java.util.UUID;
  * @param amount
  * @param player
  */
-public record ItemData<E extends Event>(E event, ItemStack itemStackInteractedWith, int amount, Player player) implements Data<E, Material> {
+public record ItemData<E extends Event>(E event, int timestamp, ItemStack itemStackInteractedWith, int amount, Player player) implements Data<E, Material> {
 
-    public ItemData(E event, ItemStack itemStackInteractedWith, Player player) {
-        this(event, itemStackInteractedWith, 1, player);
+    public ItemData(E event, int timestamp, ItemStack itemStackInteractedWith, Player player) {
+        this(event, timestamp, itemStackInteractedWith, 1, player);
     }
 
     @Override
@@ -33,6 +38,16 @@ public record ItemData<E extends Event>(E event, ItemStack itemStackInteractedWi
     @Override
     public Material mainDataInvolved() {
         return itemStackInteractedWith.getType();
+    }
+
+    @Override
+    public Object constructMCEventData() {
+        return new ItemDataConfig(
+                amount(),
+                DataSourceJSON.toCode(mainDataInvolved()),
+                LiveUtil.constructPlayerConfig(playerUUID()),
+                timestamp()
+        );
     }
 
     @Override

@@ -22,6 +22,7 @@ import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRule;
 import wand555.github.io.challenges.criteria.rules.nodeath.NoDeathRuleMessageHelper;
 import wand555.github.io.challenges.generated.NoDeathRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.punishments.HealthPunishment;
 import wand555.github.io.challenges.types.death.DeathData;
@@ -66,6 +67,8 @@ public class NoDeathRuleTest {
         when(manager.isRunning()).thenReturn(true);
 
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
@@ -129,6 +132,6 @@ public class NoDeathRuleTest {
     }
 
     private static Function<Player, DeathData> dummyDeathData(boolean usedTotem) {
-        return player1 -> new DeathData(emptyMockEvent, player1, 1, mock(DeathMessage.class), usedTotem);
+        return player1 -> new DeathData(emptyMockEvent, 0, player1, 1, mock(DeathMessage.class), usedTotem);
     }
 }

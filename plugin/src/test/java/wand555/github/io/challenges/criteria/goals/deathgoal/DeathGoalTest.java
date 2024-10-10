@@ -151,6 +151,7 @@ public class DeathGoalTest {
     private static DeathData dummyDeathData(Player player, boolean usedTotem) {
         return new DeathData(
                 emptyMockEvent,
+                0,
                 player,
                 1,
                 new DeathMessage("death.attack.cactus",
@@ -163,6 +164,7 @@ public class DeathGoalTest {
     private static DeathData dummyCactusData(Player player, boolean usedTotem) {
         return new DeathData(
                 emptyMockEvent,
+                0,
                 player,
                 1,
                 new DeathMessage("death.attack.cactus",

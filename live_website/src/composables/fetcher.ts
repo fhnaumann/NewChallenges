@@ -42,8 +42,8 @@ export function useFetcher(initialChallengeID: string) {
     console.log('LocalStorage events empty or outdated. Fetching from S3...')
     let eventsFromDynamoDB = await fetchEventsFromDynamoDB(challengeID)
     console.log(eventsFromDynamoDB)
-    eventsFromDynamoDB = eventsFromDynamoDB.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))
-    console.log(eventsFromDynamoDB)
+    //eventsFromDynamoDB = eventsFromDynamoDB.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))
+    //console.log(eventsFromDynamoDB)
     console.log('Storing in localstorage', eventsFromDynamoDB)
     localStorage.setItem(`challenge-events-${challengeID}`, JSON.stringify(eventsFromDynamoDB))
     challenge_state.events = eventsFromDynamoDB
@@ -133,18 +133,16 @@ export function useFetcher(initialChallengeID: string) {
     await fetchData()
   }
 
-  async function performSanityCheck() {
-    const { addMissingEvents } = useSanitizer()
-    addMissingEvents()
-
-  }
-
   onMounted(async () => {
-    await fetchData()
-    await preloadImages()
-    await performSanityCheck()
-    loaded.value = true
-    console.log("finished")
+
+    fetchData().then(value => {
+      loaded.value = true
+    }).catch(reason => {
+      error.value = reason.message
+      console.error(reason)
+    })
+
+    //await preloadImages()
     //timeEstimation.value = events.value.length !== 0 ? events.value[events.value.length - 1].timestamp : 0
     //resume()
 

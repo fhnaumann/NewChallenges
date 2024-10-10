@@ -7,6 +7,7 @@ import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.NoBlockPlaceRuleConfig;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
@@ -37,7 +38,7 @@ public class NoBlockPlaceRule extends PunishableRule<BlockPlaceData, Material> i
         ))
                           : new HashSet<>();
 
-        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger());
+        this.blockPlaceType = new BlockPlaceType(context, triggerCheck(), trigger(), MCEventAlias.EventType.NO_BLOCK_PLACE);
         logger.fine("Created %s instance.".formatted(blockPlaceType.getClass().getSimpleName()));
     }
 

@@ -8,6 +8,7 @@ import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.goals.*;
 import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.generated.GoalsConfig;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.MobGoalConfig;
 import wand555.github.io.challenges.types.mob.MobData;
 import wand555.github.io.challenges.types.mob.MobType;
@@ -23,7 +24,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     public MobGoal(Context context, MobGoalConfig config, GoalCollector<EntityType> goalCollector, MobGoalMessageHelper messageHelper, MobGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
         super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
-        this.mobType = new MobType(context, triggerCheck(), trigger());
+        this.mobType = new MobType(context, triggerCheck(), trigger(), MCEventAlias.EventType.MOB_GOAL);
     }
 
     @Override
@@ -86,7 +87,7 @@ public class MobGoal extends MapGoal<MobData, EntityType> implements Storable<Mo
 
     @Override
     protected MobData createSkipData(Map.Entry<EntityType, Collect> toSkip, Player player) {
-        return new MobData(null, toSkip.getKey(), player);
+        return new MobData(null, context.challengeManager().getTime(), toSkip.getKey(), player);
     }
 
     @Override

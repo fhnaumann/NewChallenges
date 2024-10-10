@@ -3,15 +3,18 @@ package wand555.github.io.challenges.types.blockplace;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockPlaceEvent;
+import wand555.github.io.challenges.generated.BlockPlaceDataConfig;
+import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.types.Data;
+import wand555.github.io.challenges.utils.LiveUtil;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public record BlockPlaceData(BlockPlaceEvent event, Material placed, int amount, Player player) implements Data<BlockPlaceEvent, Material> {
+public record BlockPlaceData(BlockPlaceEvent event, int timestamp, Material placed, int amount, Player player) implements Data<BlockPlaceEvent, Material> {
 
-    public BlockPlaceData(BlockPlaceEvent event, Material placed, Player player) {
-        this(event, placed, 1, player);
+    public BlockPlaceData(BlockPlaceEvent event, int timestamp, Material placed, Player player) {
+        this(event, timestamp, placed, 1, player);
     }
 
     @Override
@@ -22,6 +25,16 @@ public record BlockPlaceData(BlockPlaceEvent event, Material placed, int amount,
     @Override
     public Material mainDataInvolved() {
         return placed;
+    }
+
+    @Override
+    public Object constructMCEventData() {
+        return new BlockPlaceDataConfig(
+                amount(),
+                DataSourceJSON.toCode(mainDataInvolved()),
+                LiveUtil.constructPlayerConfig(playerUUID()),
+                timestamp()
+        );
     }
 
     @Override

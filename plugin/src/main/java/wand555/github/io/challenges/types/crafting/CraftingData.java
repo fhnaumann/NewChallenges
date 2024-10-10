@@ -4,14 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
+import wand555.github.io.challenges.ChallengeManager;
+import wand555.github.io.challenges.generated.CraftingDataConfig;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.types.Data;
 import wand555.github.io.challenges.types.TriggableWithoutPlayerOnline;
+import wand555.github.io.challenges.utils.LiveUtil;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public record CraftingData<E extends Event>(E event, UUID playerUUID, int amount, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted) implements Data<E, CraftingTypeJSON>, TriggableWithoutPlayerOnline {
+public record CraftingData<E extends Event>(E event, UUID playerUUID, int timestamp, int amount, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted) implements Data<E, CraftingTypeJSON>, TriggableWithoutPlayerOnline {
 
     /*
     There is no way to distinguish between internal crafting and workbench crafting in CraftingTypeJSON, because both
@@ -20,16 +23,16 @@ public record CraftingData<E extends Event>(E event, UUID playerUUID, int amount
     between internal crafting and workbench crafting
      */
 
-    public CraftingData(E event, Player player, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted) {
-        this(event, player.getUniqueId(), craftingTypeJSON, internallyCrafted);
+    public CraftingData(E event, Player player, int timestamp, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted) {
+        this(event, player.getUniqueId(), timestamp, craftingTypeJSON, internallyCrafted);
     }
 
-    public CraftingData(E event, UUID playerUUID, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted) {
-        this(event, playerUUID, 1, craftingTypeJSON, internallyCrafted);
+    public CraftingData(E event, UUID playerUUID, int timestamp, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted) {
+        this(event, playerUUID, 1, timestamp, craftingTypeJSON, internallyCrafted);
     }
 
-    public CraftingData(E event, Player player, CraftingTypeJSON craftingTypeJSON) {
-        this(event, player, craftingTypeJSON, false);
+    public CraftingData(E event, Player player, int timestamp, CraftingTypeJSON craftingTypeJSON) {
+        this(event, player, timestamp, craftingTypeJSON, false);
     }
 
     @Override
@@ -41,6 +44,17 @@ public record CraftingData<E extends Event>(E event, UUID playerUUID, int amount
     @Override
     public CraftingTypeJSON mainDataInvolved() {
         return craftingTypeJSON;
+    }
+
+    @Override
+    public Object constructMCEventData() {
+        return new CraftingDataConfig(
+                amount(),
+                internallyCrafted(),
+                LiveUtil.constructPlayerConfig(playerUUID()),
+                craftingTypeJSON().getCode(),
+                timestamp()
+        );
     }
 
     @Override

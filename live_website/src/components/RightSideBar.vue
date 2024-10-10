@@ -34,12 +34,14 @@
           <div
             class="flex flex-col cursor-pointer ease-in-out duration-300 hover:bg-content-hover-background w-full py-2 px-8 text-xl rounded-xl border border-content-border hover:border-goal-accent"
             @click="() => showGoal(goalEntry.key as GoalName)"
+            :data-cy="goalEntry.key"
           >
             <p>
               {{
                 t('sidebar.stats.goal.title', {
                   goal: t(`goals.types.${goalEntry.key}.name`),
-                  percentage: filterEventsFor(goalEntry.key)
+                  percentage: '82 dummy'
+
                 })
               }}
             </p>
@@ -59,7 +61,7 @@
 <script setup lang="ts">
 import ProgressBar from 'primevue/progressbar'
 import type { Model } from '@criteria-interfaces/model'
-import { computed, ref } from 'vue'
+import { computed, provide, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
 import { useRouter } from 'vue-router'
@@ -127,6 +129,8 @@ const computedGoalEntries = computed(() => {
     .map(([key, value]) => ({ key, value }))
 })
 
+provide('events', props.events)
+
 const showGoal = (goalName: GoalName) => {
   dialog.open(MapGoal, {
     props: {
@@ -144,12 +148,12 @@ const showGoal = (goalName: GoalName) => {
         }
       }
     },
-    data: {
+    data: reactive({
       goalName: goalName,
       collectables: assumeCollectableEntryConfigAccessFrom(goalName),
-      events: filterEventsFor(goalName),
+      events: props.events,
       codeAccess: assumeCodeAccessFromMCEventFrom(goalName)
-    } as MapGoalProps
+    }) as MapGoalProps
   })
 }
 
@@ -184,9 +188,5 @@ function assumeCodeAccessFromMCEventFrom(
     case 'mobGoal':
       return (mcEvent) => (mcEvent.data as MobDataConfig).mob
   }
-}
-
-function filterEventsFor(goalName: GoalName): MCEvent<DataConfig>[] {
-  return props.events.filter((value) => value.eventType === goalName)
 }
 </script>

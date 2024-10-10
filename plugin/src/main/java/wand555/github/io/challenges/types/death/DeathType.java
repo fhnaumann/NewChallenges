@@ -11,6 +11,7 @@ import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.mapping.DeathMessage;
 import wand555.github.io.challenges.types.EventContainer;
@@ -32,22 +33,25 @@ public class DeathType extends Type<DeathData> {
 
     private final Map<Player, Boolean> usedTotem = new HashMap<>();
 
-    public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered) {
-        this(context, triggerCheck, whenTriggered, event -> {});
-    }
-
-    public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered, EventContainer<PlayerDeathEvent> onPlayerDeath) {
-        super(context, triggerCheck, whenTriggered, Map.of(PlayerDeathEvent.class, onPlayerDeath));
+    public DeathType(Context context, TriggerCheck<DeathData> triggerCheck, Trigger<DeathData> whenTriggered, MCEventAlias.EventType eventType) {
+        super(context, triggerCheck, whenTriggered, eventType);
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
         logger.fine("Registered listeners for %s.".formatted(getClass().getSimpleName()));
     }
 
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent event) {
+        /*
         Preconditions.checkArgument(usedTotem.containsKey(event.getPlayer()),
                                     "PlayerDeathEvent called before EntityResurrectEvent was called for player '%s'.".formatted(
                                             event.getPlayer().getName())
         );
+
+         */
+        if(!usedTotem.containsKey(event.getPlayer())) {
+            return;
+        }
+
         String plainDeathMessage = PlainTextComponentSerializer.plainText().serializeOrNull(event.deathMessage());
         String deathMessageKey = ((TranslatableComponent) event.deathMessage()).key();
         logger.info("Received death message '%s'.".formatted(deathMessageKey));
@@ -56,7 +60,7 @@ public class DeathType extends Type<DeathData> {
         // The data source is already prepared to expect everything in lower case.
         deathMessage = DataSourceJSON.fromCode(context.dataSourceContext().deathMessageList(), deathMessageKey.toLowerCase());
 
-        triggerIfCheckPasses(new DeathData(event, event.getPlayer(), 1, deathMessage, usedTotem.get(event.getPlayer())),
+        triggerIfCheckPasses(new DeathData(event, context.challengeManager().getTime(), event.getPlayer(), 1, deathMessage, usedTotem.get(event.getPlayer())),
                              event
         );
         usedTotem.remove(event.getPlayer());

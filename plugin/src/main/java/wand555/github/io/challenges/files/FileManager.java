@@ -6,6 +6,9 @@ import net.kyori.adventure.util.UTF8ResourceBundleControl;
 import org.apache.commons.lang3.RandomStringUtils;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.*;
+import wand555.github.io.challenges.live.AWSEventProvider;
+import wand555.github.io.challenges.live.LiveService;
+import wand555.github.io.challenges.live.S3ChallengeUploader;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.teams.Team;
@@ -135,6 +138,7 @@ public class FileManager {
                             .withChallengeManager(new ChallengeManager())
                             .withRandom(new Random())
                             .withOfflineTempData(new OfflineTempData(context.plugin()))
+                            .withLiveService(new LiveService(new S3ChallengeUploader(), new AWSEventProvider()))
                             .build();
                     context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                     context.challengeManager().setValid(true);

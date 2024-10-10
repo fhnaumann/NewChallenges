@@ -7,20 +7,15 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
-import java.util.Map;
-
 public class BlockPlaceType extends Type<BlockPlaceData> {
 
-    public BlockPlaceType(Context context, TriggerCheck<BlockPlaceData> triggerCheck, Trigger<BlockPlaceData> whenTriggered) {
-        this(context, triggerCheck, whenTriggered, event -> {});
-    }
-
-    public BlockPlaceType(Context context, TriggerCheck<BlockPlaceData> triggerCheck, Trigger<BlockPlaceData> whenTriggered, EventContainer<BlockPlaceEvent> onBlockPlace) {
-        super(context, triggerCheck, whenTriggered, Map.of(BlockPlaceEvent.class, onBlockPlace));
+    public BlockPlaceType(Context context, TriggerCheck<BlockPlaceData> triggerCheck, Trigger<BlockPlaceData> whenTriggered, MCEventAlias.EventType eventType) {
+        super(context, triggerCheck, whenTriggered, eventType);
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
@@ -35,7 +30,7 @@ public class BlockPlaceType extends Type<BlockPlaceData> {
         }
         Player player = event.getPlayer();
         Material placed = event.getBlockPlaced().getType();
-        BlockPlaceData blockPlaceData = new BlockPlaceData(event, placed, player);
+        BlockPlaceData blockPlaceData = new BlockPlaceData(event, context.challengeManager().getTime(), placed, player);
         triggerIfCheckPasses(blockPlaceData, event);
     }
 }

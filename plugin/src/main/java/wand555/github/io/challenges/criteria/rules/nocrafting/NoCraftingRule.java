@@ -7,6 +7,7 @@ import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.criteria.rules.RuleMessageHelper;
 import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.NoCraftingRuleConfig;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
@@ -34,7 +35,8 @@ public class NoCraftingRule extends PunishableRule<CraftingData<?>, CraftingType
                           : new HashSet<>();
         this.craftingType = new CraftingType(context,
                                              triggerCheck(),
-                                             trigger()
+                                             trigger(),
+                                             MCEventAlias.EventType.NO_CRAFTING
         );
     }
 
