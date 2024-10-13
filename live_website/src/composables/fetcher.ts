@@ -50,13 +50,14 @@ export function useFetcher(initialChallengeID: string) {
   }
 
   async function fetchEventsFromDynamoDB(challengeID: string): Promise<MCEvent<any>[]> {
-    console.log("fetching", `${BASE_CHALLENGE_EVENTS_URL}?challenge_ID=${challengeID}`)
+    console.log("Fetching", `${BASE_CHALLENGE_EVENTS_URL}?challenge_ID=${challengeID}`)
     return fetch(`${BASE_CHALLENGE_EVENTS_URL}?challenge_ID=${challengeID}`)
       .then(value => value.json())
   }
 
   async function fetchChallengeFile(challengeID: string) {
     try {
+      console.log("Fetching", `${BASE_EXISTING_CHALLENGES_S3_URL}/${challengeID}.json`)
       // Step 1: Fetch the HEAD request to get ETag
       const headResponse = await fetch(`${BASE_EXISTING_CHALLENGES_S3_URL}/${challengeID}.json`, {
         method: 'HEAD'
@@ -94,14 +95,15 @@ export function useFetcher(initialChallengeID: string) {
       localStorage.setItem(`challenge-${challengeID}`, JSON.stringify(toStore))
       challenge_state.challengeFileJSON = challengeJSON
 
-    } catch (error) {
-      console.error('Error fetching challenge file:', error)
+    } catch (error2) {
+      error.value = (error2 as any).message
+      console.error('Error fetching challenge file:', error2)
     }
   }
 
   async function fetchChallengeFileFromS3(challengeID: string) {
     const response = await fetch(`${BASE_EXISTING_CHALLENGES_S3_URL}/${challengeID}.json`)
-
+    console.log("response", response)
     if (!response.ok) {
       throw new Error('Failed to fetch challenge file from S3')
     }
