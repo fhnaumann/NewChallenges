@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "challengeID": "lambda_fetch_events_block_break_goal",
+    "name": "block_break_goal",
+    "whenCreated": "2024-10-04T17:47:11.586Z",
+    "lastModified": "2024-10-04T17:47:11.586Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {}
+  },
+  "goals": {
+    "blockBreakGoal": {
+      "broken": [
+        {
+          "collectableName": "stone",
+          "collectableData": {
+            "currentAmount": 1,
+            "amountNeeded": 3
+          }
+        }
+      ]
+    }
+  }
+}

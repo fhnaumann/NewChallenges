@@ -59,11 +59,13 @@ def lambda_handler(event, context):
     try:
 
         as_json_items = fetch_events_from_dynamodb(table, challengeID)
+        as_json_items = sorted(as_json_items, key=lambda event: event['timestamp'])
         if as_json_items and as_json_items[-1].get('modifierType', '') == 'artificial' and as_json_items[-1].get("lastModified", 0) - time.time_ns() < int(5e9):
             # The last write for the given challenge ID was to sync them back up. Prevent race condition by waiting 5 seconds.
             time.sleep(5)
-        
-        if stage != 'production': # not yet prod ready, requires testing
+
+        if True:
+        #if stage != 'production': # not yet prod ready, requires testing
             # Perform sync check by verifying that challenge file matches the event. Otherwise handle the desync by adding artificial events.
             # 1 create lookup map from s3 file
             # 2 create lookup map from dynamodb events
@@ -80,7 +82,7 @@ def lambda_handler(event, context):
             #  }
             #}
             challenge_file_response = s3_client.get_object(Bucket=f"existing-challenges-{stage}", Key=f"{challengeID}.json")
-            model = json.load(challenge_file_response['Body'].read())
+            model = json.load(challenge_file_response['Body'])
                     
             challenge_file_lookup_map = create_lookup_map_from_challenge_file(model)
             mc_events_lookup_map = create_lookup_map_from_mc_events(as_json_items)
@@ -128,16 +130,13 @@ def fetch_events_from_dynamodb(table, challengeID):
     # fetch events from dynamodb
     response = table.query(
         KeyConditionExpression=Key('challenge_ID').eq(challengeID))
-    print("response from DynamoDB", response)
     items = response.get('Items', [])
     # convert to JSON
     as_json_items = []
     for item in items:
         del item["timestamp#eventID"]
-        print("item", item)
         as_json = deserialize(item)
         as_json_items.append(as_json)
-        print("deserialized", as_json)
     return as_json_items
 
 def handle_diff_between_challenge_file_and_mc_events(diff, challenge_ID, mc_events):
@@ -150,7 +149,7 @@ def handle_diff_between_challenge_file_and_mc_events(diff, challenge_ID, mc_even
                 artificial_events.append(create_artificial_event_for(goal_name, challenge_ID, code, amount))
             else:
                 # too many events -> remove latest matching events
-                events_to_remove, tooManyRemoved = remove_latest_matching_event_for(goal_name, code, amount, mc_events)
+                events_to_remove, tooManyRemoved = remove_latest_matching_event_for(goal_name, code, abs(amount), mc_events)
                 if tooManyRemoved < 0:
                     artificial_events.append(create_artificial_event_for(goal_name, challenge_ID, code, abs(tooManyRemoved)))
     return events_to_remove, artificial_events
@@ -159,7 +158,7 @@ def handle_diff_between_challenge_file_and_mc_events(diff, challenge_ID, mc_even
 def create_artificial_event_for(goal_name, challenge_ID, code, amount):
     # It's not reconstructable when the missing event occurred
     timestamp = 0
-    return {
+    artificial_event = {
         "challengeID": challenge_ID,
         "eventID": str(uuid.uuid4()),
         "timestamp": timestamp,
@@ -169,17 +168,20 @@ def create_artificial_event_for(goal_name, challenge_ID, code, amount):
             "timestamp": timestamp,
             "player": {
                 "playerUUID": "",
-                "playerName": "",
+                "playerName": "?",
                 "skinTextureURL": "http://textures.minecraft.net/texture/d34e063cafb467a5c8de43ec78619399f369f4a52434da8017a983cdd92516a0" # questionmark head
             }
         },
         "lastModified": time.time_ns(),
         "modifierType": 'artificial'
     }
+    artificial_event["data"][access_event_data[goal_name]] = code
+    return artificial_event
 
 def remove_latest_matching_event_for(goal_name, code, amount, mc_events):
     indicies_to_delete = []
     for index, mc_event in enumerate(reversed(mc_events)):
+        actual_index = len(mc_events)-1-index
         event_type = mc_event.get('eventType', '')
         if event_type != goal_name:
             continue
@@ -189,7 +191,7 @@ def remove_latest_matching_event_for(goal_name, code, amount, mc_events):
             continue
         removing_amount = event_data["amount"]
         amount = amount - removing_amount
-        indicies_to_delete.append(index)
+        indicies_to_delete.append(actual_index)
         if amount <= 0:
             return indicies_to_delete, amount
     
@@ -230,7 +232,10 @@ def create_lookup_map_from_mc_events(mc_events):
         if code == '':
             print(f"ERROR; Missing code at {event_type}")
             return None
-        lookup_map[event_type][code] = event_data.get('amount', 1)
+        if code not in lookup_map[event_type]:
+            lookup_map[event_type][code] = event_data.get('amount', 1)
+        else:
+            lookup_map[event_type][code] += event_data.get('amount', 1)
         
     return lookup_map
         
@@ -242,7 +247,7 @@ def create_lookup_map_from_challenge_file(challenge_file):
     for goal_name, goal_config in goals_config.items():
         lookup_map[goal_name] = {}
         key_for_coll_entry_access = access_coll_entry_config_in_goals.get(goal_name, "")
-        collectable_entry_configs = goals_config.get(key_for_coll_entry_access, [])
+        collectable_entry_configs = goal_config.get(key_for_coll_entry_access, [])
         for coll_entry_config in collectable_entry_configs:
             if 'collectableName' not in coll_entry_config:
                 print(f'ERROR; Missing code at {key_for_coll_entry_access}')
