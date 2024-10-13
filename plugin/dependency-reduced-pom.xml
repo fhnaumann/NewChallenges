@@ -34,7 +34,29 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
         <configuration>
+          <argLine>--enable-preview</argLine>
           <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <argLine>--enable-preview</argLine>
+          <includes>
+            <include>**/IntegrationTestSuite.class</include>
+          </includes>
+          <excludes>
+            <exclude>**/*IT.class</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -117,9 +139,32 @@
       <dependencies>
         <dependency>
           <groupId>software.amazon.awssdk</groupId>
+          <artifactId>dynamodb-enhanced</artifactId>
+          <version>2.20.33</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>dynamodb</artifactId>
+          <version>2.20.32</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>auth</artifactId>
+          <version>2.20.32</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>sdk-core</artifactId>
+          <version>2.20.32</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
           <artifactId>s3</artifactId>
-          <version>2.28.18</version>
-          <scope>compile</scope>
+          <version>2.20.32</version>
         </dependency>
         <dependency>
           <groupId>dev.jorel</groupId>
@@ -143,7 +188,6 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>3.1.1</version>
-          <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>com.github.erosb</groupId>
@@ -167,7 +211,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.3.0</version>
-          <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>com.github.seeseemelk</groupId>
@@ -191,6 +234,18 @@
           <groupId>org.mockito</groupId>
           <artifactId>mockito-core</artifactId>
           <version>5.9.0</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.1.2</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-suite</artifactId>
+          <version>1.11.2</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -221,9 +276,40 @@
       </build>
       <dependencies>
         <dependency>
+          <groupId>org.apache.httpcomponents.client5</groupId>
+          <artifactId>httpclient5</artifactId>
+          <version>5.1.3</version>
+          <scope>compile</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>dynamodb-enhanced</artifactId>
+          <version>2.20.33</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>dynamodb</artifactId>
+          <version>2.20.32</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>auth</artifactId>
+          <version>2.20.32</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>software.amazon.awssdk</groupId>
+          <artifactId>sdk-core</artifactId>
+          <version>2.20.32</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
           <groupId>software.amazon.awssdk</groupId>
           <artifactId>s3</artifactId>
-          <version>2.28.18</version>
+          <version>2.20.32</version>
+          <scope>compile</scope>
         </dependency>
         <dependency>
           <groupId>dev.jorel</groupId>
@@ -285,6 +371,18 @@
           <version>5.9.0</version>
           <scope>test</scope>
         </dependency>
+        <dependency>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.1.2</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-suite</artifactId>
+          <version>1.11.2</version>
+          <scope>test</scope>
+        </dependency>
       </dependencies>
       <properties>
         <stage>testing</stage>
@@ -308,40 +406,34 @@
   </repositories>
   <dependencies>
     <dependency>
-      <groupId>dev.jorel</groupId>
-      <artifactId>commandapi-bukkit-shade</artifactId>
-      <version>9.4.0</version>
-      <scope>provided</scope>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>dynamodb-enhanced</artifactId>
+      <version>2.20.33</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.papermc.paper</groupId>
-      <artifactId>paper-api</artifactId>
-      <version>1.20.4-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>dynamodb</artifactId>
+      <version>2.20.32</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>aws-json-protocol</artifactId>
+          <groupId>software.amazon.awssdk</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.jsonschema2pojo</groupId>
-      <artifactId>jsonschema2pojo-core</artifactId>
-      <version>1.2.1</version>
-      <scope>provided</scope>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>auth</artifactId>
+      <version>2.20.32</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.erosb</groupId>
-      <artifactId>everit-json-schema</artifactId>
-      <version>1.14.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.16.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.helger.schematron</groupId>
-      <artifactId>ph-schematron-pure</artifactId>
-      <version>7.1.3</version>
-      <scope>provided</scope>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>sdk-core</artifactId>
+      <version>2.20.32</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.github.seeseemelk</groupId>
@@ -416,6 +508,34 @@
         <exclusion>
           <artifactId>objenesis</artifactId>
           <groupId>org.objenesis</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-failsafe-plugin</artifactId>
+      <version>3.1.2</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>maven-surefire-common</artifactId>
+          <groupId>org.apache.maven.surefire</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <version>1.11.2</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>junit-platform-suite-api</artifactId>
+          <groupId>org.junit.platform</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit-platform-suite-engine</artifactId>
+          <groupId>org.junit.platform</groupId>
         </exclusion>
       </exclusions>
     </dependency>

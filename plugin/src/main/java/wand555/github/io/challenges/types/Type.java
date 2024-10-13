@@ -13,6 +13,7 @@ import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.teams.Team;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
 public abstract class Type<T extends Data<?, ?>> implements Listener {
@@ -49,8 +50,8 @@ public abstract class Type<T extends Data<?, ?>> implements Listener {
         }
     }
 
-    private void sendEventNotification(T data) {
+    private CompletableFuture<Void> sendEventNotification(T data) {
         int timestamp = (int) context.challengeManager().getTime();
-        context.liveService().eventProvider().sendEvent(timestamp, eventType, data.constructMCEventData());
+        return context.liveService().eventProvider().sendEvent(timestamp, eventType, data.constructMCEventData());
     }
 }

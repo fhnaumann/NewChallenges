@@ -9,6 +9,7 @@ import dev.jorel.commandapi.arguments.CustomArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
+import org.bukkit.command.CommandSender;
 import wand555.github.io.challenges.ChallengesDebugLogger;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
@@ -50,45 +51,7 @@ public class LiveCommand {
                                                                                               "live.uploading"
                     );
                     sender.sendMessage(uploadingComp);
-                    ChallengeFilesHandler.ChallengeLoadStatus finalPrepareForLive = prepareForLive;
-                    context.liveService().challengeUploader().uploadChallenge(prepareForLive.challengeMetadata(), prepareForLive.file())
-                             .exceptionally(throwable -> {
-                                 logger.severe(throwable.toString());
-                                 Component errorComp = ComponentUtil.formatChallengesPrefixChatMessage(context.plugin(),
-                                                                                                       context.resourceBundleContext().commandsResourceBundle(),
-                                                                                                       "live.uploading_error"
-                                 );
-                                 sender.sendMessage(errorComp);
-                                 return null;
-                             })
-                             .whenComplete((unused, throwable) -> {
-                                 if(throwable != null) {
-                                     return;
-                                 }
-                                 String challengeID = finalPrepareForLive.challengeMetadata().getChallengeID();
-                                 String url_text = ResourceBundleHelper.getFromBundle(context.plugin(),
-                                                                                      context.resourceBundleContext().commandsResourceBundle(),
-                                                                                      "live.url_text"
-                                 );
-
-                                 Component uploadSuccess = ComponentUtil.formatChallengesPrefixChatMessage(
-                                         context.plugin(),
-                                         context.resourceBundleContext().commandsResourceBundle(),
-                                         "live.uploading_done",
-                                         Map.of(
-                                                 "url",
-                                                 Component.text(url_text).clickEvent(ClickEvent.openUrl(
-                                                         "%s/challenge/%s".formatted(ComponentUtil.LIVE_ACTUAL_URL,
-                                                                                     challengeID
-                                                         ))),
-                                                 "live_website_url",
-                                                 ComponentUtil.LIVE_LINK,
-                                                 "challenge_id",
-                                                 Component.text(challengeID)
-                                         )
-                                 );
-                                 sender.sendMessage(uploadSuccess);
-                             });
+                    uploadChallenge(context, prepareForLive, sender);
                 }).register();
     }
 
@@ -113,6 +76,47 @@ public class LiveCommand {
         return CompletableFuture.supplyAsync(() -> challengeFilesHandler.getChallengesInFolderStatus().stream()
                                                                         .map(challengeLoadStatus -> challengeLoadStatus.challengeMetadata().getName()
                                                                         ).toArray(String[]::new));
+    }
+
+    public static CompletableFuture<Void> uploadChallenge(Context context, ChallengeFilesHandler.ChallengeLoadStatus prepareForLive, CommandSender sender) {
+        return context.liveService().challengeUploader().uploadChallenge(prepareForLive.challengeMetadata(), prepareForLive.file())
+               .exceptionally(throwable -> {
+                   logger.severe(throwable.toString());
+                   Component errorComp = ComponentUtil.formatChallengesPrefixChatMessage(context.plugin(),
+                                                                                         context.resourceBundleContext().commandsResourceBundle(),
+                                                                                         "live.uploading_error"
+                   );
+                   sender.sendMessage(errorComp);
+                   return null;
+               })
+               .whenComplete((unused, throwable) -> {
+                   if(throwable != null) {
+                       return;
+                   }
+                   String challengeID = prepareForLive.challengeMetadata().getChallengeID();
+                   String url_text = ResourceBundleHelper.getFromBundle(context.plugin(),
+                                                                        context.resourceBundleContext().commandsResourceBundle(),
+                                                                        "live.url_text"
+                   );
+
+                   Component uploadSuccess = ComponentUtil.formatChallengesPrefixChatMessage(
+                           context.plugin(),
+                           context.resourceBundleContext().commandsResourceBundle(),
+                           "live.uploading_done",
+                           Map.of(
+                                   "url",
+                                   Component.text(url_text).clickEvent(ClickEvent.openUrl(
+                                           "%s/challenge/%s".formatted(ComponentUtil.LIVE_ACTUAL_URL,
+                                                                       challengeID
+                                           ))),
+                                   "live_website_url",
+                                   ComponentUtil.LIVE_LINK,
+                                   "challenge_id",
+                                   Component.text(challengeID)
+                           )
+                   );
+                   sender.sendMessage(uploadSuccess);
+               });
     }
 
 }

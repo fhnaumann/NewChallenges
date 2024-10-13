@@ -15,18 +15,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
-import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
-import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.HttpResponse;
-import org.apache.hc.core5.http.io.entity.InputStreamEntity;
-import org.apache.hc.core5.net.URIBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -279,7 +267,7 @@ public class LoadCommand {
         return completed.append(missing);
     }
 
-    public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) {
+    public static CompletableFuture<Context> loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) {
         sendLoadingStarted(context);
         resetScoreboard();
         loadingFuture = FileManager.readFromFile(toLoad, context, progress -> handleProgress(context, progress))
@@ -309,8 +297,9 @@ public class LoadCommand {
                                        sendLoadingSuccess(context);
 
                                        // Set challenge ID for live events
-                                       context.liveService().eventProvider().setChallengeID(context.challengeManager().getChallengeMetadata().getChallengeID());
+                                       context.liveService().eventProvider().setChallengeID(context.challengeManager().getChallengeMetadata().getChallengeID()).join();
                                    });
+        return loadingFuture;
     }
 
 

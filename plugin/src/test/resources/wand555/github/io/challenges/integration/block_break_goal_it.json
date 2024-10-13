@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "challengeID": "block_break_goal_it",
+    "name": "block_break_goal_it",
+    "whenCreated": "2024-10-11T13:13:26.959Z",
+    "lastModified": "2024-10-11T13:13:26.959Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {},
+  "goals": {
+    "blockBreakGoal": {
+      "broken": [
+        {
+          "collectableName": "dragon_egg",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        },
+        {
+          "collectableName": "stone",
+          "collectableData": {}
+        }
+      ],
+      "fixedOrder": false
+    }
+  },
+  "settings": {}
+}

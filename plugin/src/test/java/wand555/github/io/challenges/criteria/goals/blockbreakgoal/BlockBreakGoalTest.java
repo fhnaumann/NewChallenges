@@ -9,10 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import wand555.github.io.challenges.ChallengeManager;
 import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
@@ -23,15 +20,20 @@ import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakCollectedInventory;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoalMessageHelper;
+import wand555.github.io.challenges.generated.BlockBreakDataConfig;
 import wand555.github.io.challenges.generated.BlockBreakGoalConfig;
 import wand555.github.io.challenges.generated.ContributorsConfig;
+import wand555.github.io.challenges.generated.MCEventAlias;
+import wand555.github.io.challenges.live.EventProvider;
 import wand555.github.io.challenges.live.LiveService;
+import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.teams.TeamTest;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -70,6 +72,8 @@ public class BlockBreakGoalTest {
         collectedInventory = mock(BlockBreakCollectedInventory.class);
 
         emptyMockEvent = mock(BlockBreakEvent.class);
+
+        Team.initAllTeam(context, 1);
     }
 
     @BeforeEach
@@ -126,9 +130,17 @@ public class BlockBreakGoalTest {
 
     @Test
     public void testBlockBreakGoalTriggerCheck() {
-        assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent, 0, Material.STONE, player)));
+        assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent,
+                                                                            0,
+                                                                            Material.STONE,
+                                                                            player
+        )));
         assertTrue(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent, 0, Material.DIRT, player)));
-        assertFalse(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent, 0, Material.ANDESITE, player)));
+        assertFalse(blockBreakGoal.triggerCheck().applies(new BlockBreakData(emptyMockEvent,
+                                                                             0,
+                                                                             Material.ANDESITE,
+                                                                             player
+        )));
     }
 
     @Test
@@ -210,16 +222,16 @@ public class BlockBreakGoalTest {
                 """;
         BlockBreakGoalConfig config = new ObjectMapper().readValue(blockBreakGoalJSON, BlockBreakGoalConfig.class);
         BlockBreakGoal blockBreakGoal2 = new BlockBreakGoal(context,
-                                            config,
-                                            new GoalCollector<>(context,
-                                                                config.getBroken(),
-                                                                Material.class,
-                                                                config.isFixedOrder(),
-                                                                config.isShuffled()
-                                            ),
-                                            messageHelper,
-                                            collectedInventory,
-                                            null
+                                                            config,
+                                                            new GoalCollector<>(context,
+                                                                                config.getBroken(),
+                                                                                Material.class,
+                                                                                config.isFixedOrder(),
+                                                                                config.isShuffled()
+                                                            ),
+                                                            messageHelper,
+                                                            collectedInventory,
+                                                            null
         );
 
         Team team1 = new Team("team1", List.of(blockBreakGoal), List.of(player), -1);
@@ -228,5 +240,19 @@ public class BlockBreakGoalTest {
         player.simulateBlockBreak(new BlockMock(Material.STONE));
         assertEquals(1, blockBreakGoal.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
         assertEquals(0, blockBreakGoal2.getGoalCollector().getToCollect().get(Material.STONE).getCurrentAmount());
+    }
+
+    @Test
+    public void testEventIsSent() {
+        EventProvider eventProvider = mock(EventProvider.class);
+        when(context.liveService().eventProvider()).thenReturn(eventProvider);
+        player.simulateBlockBreak(new BlockMock(Material.STONE));
+        verify(eventProvider).sendEvent(anyInt(),
+                                        eq(MCEventAlias.EventType.BLOCK_BREAK_GOAL),
+                                        argThat(argument -> argument instanceof BlockBreakDataConfig blockBreakDataConfig &&
+                                                Objects.equals(blockBreakDataConfig.getBroken(),
+                                                               DataSourceJSON.toCode(Material.STONE)
+                                                ))
+        );
     }
 }
