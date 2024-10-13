@@ -33,7 +33,7 @@ jobs:
       - name: List criteria-interfaces folder
         run: ls -al builder_website/../criteria-interfaces
 
-        
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
@@ -41,7 +41,7 @@ jobs:
           # project: ./builder_website
           config: defaultCommandTimeout=30000,baseUrl=http://localhost:4173
           build: npm run build
-          start: npm run preview --mode testing
+          start: npm run preview
       - name: Upload generated JSON files
         uses: actions/upload-artifact@v4
         with:
