@@ -1,6 +1,6 @@
-import type { Model } from 'criteria-interfaces'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { Model } from '../../../criteria-interfaces'
 
 export const useModelStore = defineStore('stateModel', () => {
   const model = ref<Model>({
