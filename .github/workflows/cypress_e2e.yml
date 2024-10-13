@@ -40,7 +40,7 @@ jobs:
           working-directory: builder_website/
           # project: ./builder_website
           config: defaultCommandTimeout=30000,baseUrl=http://localhost:4173
-          build: npm run build
+          build: cd .. && ls && cd builder_website/ npm run build
           start: npm run preview
       - name: Upload generated JSON files
         uses: actions/upload-artifact@v4
