@@ -17,6 +17,11 @@
     "allowJs": true,
     "noImplicitAny": false,
     "lib": ["ESNext.Array", "DOM", "ESNext"],
-    "target": "ESNext"
+    "target": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "criteria-interfaces": ["../criteria-interfaces"],
+      "criteria-interfaces/*": ["../criteria-interfaces/*"]
+    }
   }
 }
