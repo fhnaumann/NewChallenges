@@ -32,11 +32,11 @@
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
   import Checkbox from 'primevue/checkbox'
   import type { ModelAccess } from '@/main'
-  import type { MobGoalConfig } from 'criteria-interfaces'
+  import type { MobGoalConfig } from '@fhnaumann/criteria-interfaces'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import { useVarHelperStore } from '@/stores/var_helper'
   import { storeToRefs } from 'pinia'
-  import type { CollectableEntryConfig } from 'criteria-interfaces'
+  import type { CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 
   const { t } = useI18n()
   const { model, set } = useModelStore()

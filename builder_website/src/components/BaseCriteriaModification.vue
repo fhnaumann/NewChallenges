@@ -34,7 +34,7 @@
 <script setup lang="ts">
 
 import { useI18n } from 'vue-i18n'
-import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
+import type { CriteriaKey, CriteriaType } from '@fhnaumann/criteria-interfaces'
 import SaveOrRemoveChanges from '@/components/SaveOrRemoveChanges.vue'
 import i18n from '@/i18n'
 import { BASE_WIKI_URL } from '@/constants'

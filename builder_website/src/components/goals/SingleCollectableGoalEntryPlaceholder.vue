@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { DataRow } from 'criteria-interfaces'
+  import type { DataRow } from '@fhnaumann/criteria-interfaces'
   import { ref } from 'vue'
   import { useTranslation } from '@/language'
   import DataRowVisual from '@/components/DataRowVisual.vue'

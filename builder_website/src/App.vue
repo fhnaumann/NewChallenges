@@ -3,8 +3,7 @@
   import { useModelStore } from '@/stores/model'
   import { useI18n } from 'vue-i18n'
   import DynamicDialog from 'primevue/dynamicdialog'
-  import type { MobGoalConfig } from 'criteria-interfaces'
-  import type { NoDeathRuleConfig } from 'criteria-interfaces'
+  import type { MobGoalConfig, NoDeathRuleConfig } from '@fhnaumann/criteria-interfaces'
 
   const { model, set } = useModelStore()
 

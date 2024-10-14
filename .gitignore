@@ -23,6 +23,7 @@ live_website/public/rendered_images
 
 criteria-interfaces/build
 criteria-interfaces/node_modules
+criteria-interfaces/*.tgz
 
 homepage/
 

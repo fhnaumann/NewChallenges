@@ -2,14 +2,14 @@ import materials from '@/assets/data_rows/materials.json'
 import entity_types from '@/assets/data_rows/entity_types.json'
 import death_messages from '@/assets/data_rows/death_messages_with_dummy_data_data_source_JSON.json'
 import craftables from '@/assets/data_rows/craftables.json'
-import type { CollectableDataConfig, CollectableEntryConfig } from 'criteria-interfaces'
+import type { CollectableDataConfig, CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 import type {
   CraftingTypeDataRow,
   DataRow,
   DeathMessageDataRow,
   EntityTypeDataRow,
   MaterialDataRow,
-} from 'criteria-interfaces'
+} from '@fhnaumann/criteria-interfaces'
 
 export const ALL_MATERIAL_DATA: MaterialDataRow[] = materials.data
 export const ALL_IS_ITEM_MATERIAL_DATA: MaterialDataRow[] = ALL_MATERIAL_DATA.filter(value => value.is_item)

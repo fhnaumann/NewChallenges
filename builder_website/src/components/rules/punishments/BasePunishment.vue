@@ -30,7 +30,7 @@
 <script setup lang="ts">
 
   import type { ModelAccess } from '@/main'
-  import type { Affects, BasePunishmentConfig, PunishmentName } from 'criteria-interfaces'
+  import type { Affects, BasePunishmentConfig, PunishmentName } from '@fhnaumann/criteria-interfaces'
   import Checkbox from 'primevue/checkbox'
   import { computed, ref } from 'vue'
   import { useModelStore } from '@/stores/model'

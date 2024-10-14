@@ -62,7 +62,7 @@
   import { useVarHelperStore } from '@/stores/var_helper'
   import type { ModelAccess } from '@/main'
   import DeathGoal from '@/components/goals/types/DeathGoal.vue'
-  import type { DeathGoalConfig } from 'criteria-interfaces'
+  import type { DeathGoalConfig } from '@fhnaumann/criteria-interfaces'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
   import { useTranslation } from '@/language'

@@ -14,10 +14,9 @@
 <script setup lang="ts">
   import Checkbox from 'primevue/checkbox'
   import HealthPunishment from '@/components/rules/punishments/HealthPunishment.vue'
-  import type { CriteriaKey, CriteriaType, RuleName } from 'criteria-interfaces'
+  import type { CriteriaKey, CriteriaType, RuleName } from '@fhnaumann/criteria-interfaces'
   import type { ModelAccess } from '@/main'
-  import type { PunishableRuleConfig } from 'criteria-interfaces'
-  import type { BasePunishmentConfig, PunishmentName } from 'criteria-interfaces'
+  import type { BasePunishmentConfig, PunishmentName } from '@fhnaumann/criteria-interfaces'
   import RandomEffectPunishment from '@/components/rules/punishments/RandomEffectPunishment.vue'
   import EndPunishment from '@/components/rules/punishments/EndPunishment.vue'
   import { inject, onMounted, ref } from 'vue'

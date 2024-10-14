@@ -16,7 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "criteria-interfaces": "file:../criteria-interfaces",
+    "@fhnaumann/criteria-interfaces": "1.0.0",
     "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "primeicons": "^7.0.0",

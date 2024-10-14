@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { DataRow } from 'criteria-interfaces'
+  import type { DataRow } from '@fhnaumann/criteria-interfaces'
   import {
     ALL_ENTITY_TYPE_DATA, ALL_IS_BLOCK_MATERIAL_DATA,
     ALL_IS_ITEM_MATERIAL_DATA,
@@ -54,8 +54,8 @@
   import { storeToRefs } from 'pinia'
   import { useVarHelperStore } from '@/stores/var_helper'
   import type { ModelAccess } from '@/main'
-  import type { ItemGoalConfig } from 'criteria-interfaces'
-  import type { CollectableEntryConfig } from 'criteria-interfaces'
+  import type { ItemGoalConfig } from '@fhnaumann/criteria-interfaces'
+  import type { CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
   import { useI18n } from 'vue-i18n'
   import { watch } from 'vue'
 

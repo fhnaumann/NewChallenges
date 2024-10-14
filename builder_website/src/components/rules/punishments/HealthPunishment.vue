@@ -21,8 +21,7 @@
 
   import BasePunishment from '@/components/rules/punishments/BasePunishment.vue'
   import type { ModelAccess } from '@/main'
-  import type { HealthPunishmentConfig, PunishmentName } from 'criteria-interfaces'
-  import type { PunishableRuleConfig } from 'criteria-interfaces'
+  import type { HealthPunishmentConfig, PunishmentName } from '@fhnaumann/criteria-interfaces'
   import { useModelStore } from '@/stores/model'
   import InputNumber from 'primevue/inputnumber'
   import Checkbox from 'primevue/checkbox'

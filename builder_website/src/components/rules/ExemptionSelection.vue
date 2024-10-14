@@ -50,7 +50,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import MultiSelect, { type MultiSelectAllChangeEvent } from 'primevue/multiselect'
-  import type { DataRow } from 'criteria-interfaces'
+  import type { DataRow } from '@fhnaumann/criteria-interfaces'
   import DataRowVisual from '@/components/DataRowVisual.vue'
   import type { ModelAccess } from '@/main'
   import { useModelStore } from '@/stores/model'

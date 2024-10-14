@@ -34,7 +34,7 @@
   import CodeDisplay from '@/components/CodeDisplay.vue'
   import { useModelStore } from '@/stores/model'
   import MetadataOverview from '@/components/MetadataOverview.vue'
-  import type { Model } from 'criteria-interfaces'
+  import type { Model } from '@fhnaumann/criteria-interfaces'
   import TeamOverview from '@/components/teams/TeamOverview.vue'
 
 

@@ -76,7 +76,7 @@
   import { useModelStore } from '@/stores/model'
   import Ajv from 'ajv'
   import { inject, onMounted, ref } from 'vue'
-  import type { Model } from 'criteria-interfaces'
+  import type { Model } from '@fhnaumann/criteria-interfaces'
 
   const toast = useToast()
 

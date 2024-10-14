@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 
-  import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
+  import type { CriteriaKey, CriteriaType } from '@fhnaumann/criteria-interfaces'
   import { useI18n } from 'vue-i18n'
   import { computed, inject, nextTick } from 'vue'
   import { getBgColor, pathToCriteria } from '@/util'

@@ -20,8 +20,7 @@
     "target": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "criteria-interfaces": ["../criteria-interfaces"],
-      "criteria-interfaces/*": ["../criteria-interfaces/*"]
+      "criteria-interfaces": ["./node_modules/@fhnaumann/criteria-interfaces"]
     }
   }
 }

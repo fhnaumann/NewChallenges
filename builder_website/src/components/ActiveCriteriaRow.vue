@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import type { CriteriaKey, CriteriaType } from 'criteria-interfaces'
+  import type { CriteriaKey, CriteriaType } from '@fhnaumann/criteria-interfaces'
   import { useRoute } from 'vue-router'
   import { computed, ref, watch } from 'vue'
   import Button from 'primevue/button'

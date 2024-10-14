@@ -31,13 +31,13 @@
   import { storeToRefs } from 'pinia'
   import { useVarHelperStore } from '@/stores/var_helper'
   import type { ModelAccess } from '@/main'
-  import type { BlockPlaceGoalConfig } from 'criteria-interfaces'
+  import type { BlockPlaceGoalConfig } from '@fhnaumann/criteria-interfaces'
   import { ALL_IS_BLOCK_MATERIAL_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row_loaded'
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
   import Checkbox from 'primevue/checkbox'
-  import type { CollectableEntryConfig } from 'criteria-interfaces'
+  import type { CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 
   const { t } = useI18n()
   const { model, set } = useModelStore()

@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
   import type { ModelAccess } from '@/main'
-  import type { MinMaxRangeConfig } from 'criteria-interfaces'
+  import type { MinMaxRangeConfig } from '@fhnaumann/criteria-interfaces'
   import { useModelStore } from '@/stores/model'
   import { useJSONSchemaConfig } from '@/stores/default_model'
   import { useI18n } from 'vue-i18n'

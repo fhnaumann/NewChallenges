@@ -18,7 +18,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@public': fileURLToPath(new URL('./public', import.meta.url)),
-      'criteria-interfaces': path.resolve(__dirname, '../criteria-interfaces')
+      'criteria-interfaces': path.resolve(__dirname, "node_modules/@fhnaumann/criteria-interfaces")
     }
   }
 })

@@ -41,8 +41,8 @@
 
 <script setup lang="ts">
   
-  import type { DataRow } from 'criteria-interfaces'
-  import type { CollectableDataConfig, CollectableEntryConfig } from 'criteria-interfaces'
+  import type { DataRow } from '@fhnaumann/criteria-interfaces'
+  import type { CollectableDataConfig, CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
   import SingleCollectableGoalEntryPlaceholder from '@/components/goals/SingleCollectableGoalEntryPlaceholder.vue'
   import SingleCollectableGoalEntry from '@/components/goals/SingleCollectableGoalEntry.vue'
   import { ref, useModel } from 'vue'
