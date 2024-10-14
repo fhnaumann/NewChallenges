@@ -30,6 +30,8 @@ jobs:
           aws s3 cp s3://challenges-builder/themes/aura/ ${GITHUB_WORKSPACE}/builder_website/src/assets/aura/ --recursive --no-sign-request --region eu-central-1
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           working-directory: builder_website/
           # project: ./builder_website
