@@ -28,28 +28,6 @@ jobs:
           cd builder_website/src/assets/ && ls && cd aura/ && ls && pwd
           echo ${GITHUB_WORKSPACE}
           aws s3 cp s3://challenges-builder/themes/aura/ ${GITHUB_WORKSPACE}/builder_website/src/assets/aura/ --recursive --no-sign-request --region eu-central-1
-
-      # Optional: List the directory to confirm criteria-interfaces exists
-      - name: List criteria-interfaces folder
-        run: ls -al builder_website/../criteria-interfaces
-      
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies in builder_website
-        working-directory: builder_website
-        run: npm install
-
-      - name: Type-check (separate step)
-        working-directory: builder_website
-        run: npm run type-check
-
-      - name: Build the project
-        working-directory: builder_website
-        run: npm run build-only
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
