@@ -22,7 +22,7 @@ describe('Challenge State is correctly fetched', () => {
 
     cy.get('[data-cy="not-started-text"]').should('exist')
   })
-  it('state is (assumed to be) running with time from last event', () => {
+  it('state is (assumed to be) paused with time from last event', () => {
     intercept([{
       action: 'event',
       eventType: 'blockBreakGoal',
@@ -55,8 +55,8 @@ describe('Challenge State is correctly fetched', () => {
         timestamp: 10
       }
     }], undefined)
-    cy.get('[data-cy="running-text"]').should('exist')
-    cy.get('[data-cy="running-text"]').contains('10')
+    cy.get('[data-cy="paused-text"]').should('exist')
+    cy.get('[data-cy="paused-text"]').contains('10')
   })
 
   it('state is finished when last event is finished event', () => {

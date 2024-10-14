@@ -130,7 +130,7 @@ import Button from 'primevue/button'
 import { useRoute, useRouter } from 'vue-router'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useInterval } from '@vueuse/core'
-import type { DataConfig, MCEvent, Model, NoBlockBreakRuleDataConfig } from 'criteria-interfaces'
+import type { DataConfig, MCEvent, Model, NoBlockBreakRuleDataConfig } from '@fhnaumann/criteria-interfaces'
 import ProgressSpinner from 'primevue/progressspinner'
 import BlockBreakEventBox from '@/components/events/BlockBreakEventBox.vue'
 import PlayerHead from '@/components/PlayerHead.vue'
@@ -143,6 +143,7 @@ import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useTimeable } from '@/composables/timable'
 import HeaderBar from '@/components/HeaderBar.vue'
+import useConfetti from '@/composables/useConfetti'
 
 const router = useRouter()
 const route = useRoute()
@@ -163,10 +164,10 @@ const eventIndexBeingHovered = ref<number | null>(null)
 function addLine(index: number, skipAnimation = false) {
   index = index - 1
   const newLine = document.createElementNS('http://www.w3.org/2000/svg', 'line')
-  newLine.setAttribute('x1', startX)
+  newLine.setAttribute('x1', startX as unknown as string)
   newLine.setAttribute('y1', (startY + lineLengthPerSecond * index) as unknown as string)
-  newLine.setAttribute('x2', startX)
-  newLine.setAttribute('y2', startY + lineLengthPerSecond * (index + 1))
+  newLine.setAttribute('x2', startX as unknown as string)
+  newLine.setAttribute('y2', (startY + lineLengthPerSecond * (index + 1) as unknown as string))
   newLine.setAttribute('stroke', '#9153F2') // primary
   newLine.setAttribute('stroke-width', '6')
   if (!skipAnimation) {
@@ -237,15 +238,44 @@ function addEvent() {
     eventType: 'noBlockPlace',
     data: { playerUUID: 'wand555', timestamp: timeEstimation.value }
   } as MCEvent<any>
+  // events.value.push(fakeEvent)
 
-  events.value.push(fakeEvent)
-
-  bottomOfSVG.value.scrollIntoView({ behavior: 'smooth' })
+  (bottomOfSVG.value as any).scrollIntoView({ behavior: 'smooth' })
   //window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})
 }
 
 function deleteEvent() {
   events.value.splice(events.value.length - 1, 1)
+}
+
+const triggerConfetti = () => {
+  const duration = 5 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  const interval = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    // since particles fall down, start a bit higher than random
+    useConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+    });
+    useConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+    });
+  }, 250);
+};
+
+function randomInRange(min: number, max: number) {
+  return Math.random() * (max - min) + min;
 }
 
 const svgHeight = computed(() => {
@@ -318,6 +348,12 @@ watch(loaded, (newValue) => {
     if(running.value) {
       resume()
     }
+  }
+})
+
+watch(finished, (newFinished) => {
+  if(newFinished) {
+    triggerConfetti()
   }
 })
 

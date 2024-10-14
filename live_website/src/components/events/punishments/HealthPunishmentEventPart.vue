@@ -16,9 +16,9 @@
 
 <script setup lang="ts">
 
-import type { HealthPunishmentDataConfig } from '@criteria-interfaces/punishments'
+import type { HealthPunishmentDataConfig } from '@fhnaumann/criteria-interfaces'
 import PlayerHead from '@/components/PlayerHead.vue'
-import type { PlayerConfig } from '@criteria-interfaces/live'
+import type { PlayerConfig } from '@fhnaumann/criteria-interfaces'
 
 defineProps<{
   causer: PlayerConfig

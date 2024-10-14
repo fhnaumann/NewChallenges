@@ -15,22 +15,22 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import type { RuleName } from 'criteria-interfaces'
-import type { Affects } from 'criteria-interfaces'
-import type { GoalName } from 'criteria-interfaces'
-import type { MobGoalConfig } from 'criteria-interfaces'
-import type { BlockPlaceGoalConfig } from 'criteria-interfaces'
-import type { BlockBreakGoalConfig } from 'criteria-interfaces'
-import type { ItemGoalConfig, NoItemCollectRuleConfig } from 'criteria-interfaces'
-import type { DeathGoalConfig } from 'criteria-interfaces'
+import type { RuleName } from '@fhnaumann/criteria-interfaces'
+import type { Affects } from '@fhnaumann/criteria-interfaces'
+import type { GoalName } from '@fhnaumann/criteria-interfaces'
+import type { MobGoalConfig } from '@fhnaumann/criteria-interfaces'
+import type { BlockPlaceGoalConfig } from '@fhnaumann/criteria-interfaces'
+import type { BlockBreakGoalConfig } from '@fhnaumann/criteria-interfaces'
+import type { ItemGoalConfig, NoItemCollectRuleConfig } from '@fhnaumann/criteria-interfaces'
+import type { DeathGoalConfig } from '@fhnaumann/criteria-interfaces'
 import CustomHealthSetting from '../../src/components/settings/CustomHealthSetting.vue'
 import type {
   CustomHealthSettingConfig, FloorIsLavaSettingConfig,
   MLGSettingConfig,
   SettingName,
   UltraHardcoreSettingConfig,
-} from 'criteria-interfaces'
-import type { CraftingGoalConfig, NoCraftingRuleConfig } from 'criteria-interfaces'
+} from '@fhnaumann/criteria-interfaces'
+import type { CraftingGoalConfig, NoCraftingRuleConfig } from '@fhnaumann/criteria-interfaces'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

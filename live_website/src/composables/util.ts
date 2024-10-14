@@ -1,4 +1,4 @@
-import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
+import type { DataConfig, MCEvent } from '@fhnaumann/criteria-interfaces'
 
 export function useUtil() {
 
@@ -12,6 +12,7 @@ export function useUtil() {
     if (mcEvent.eventType.endsWith('Setting')) {
       return 'customized-setting'
     }
+    return ''
   }
   
   function hasAppliedPunishments(data: any): boolean {

@@ -15,7 +15,7 @@
 <script setup lang="ts">
   import { useTranslation } from '@/composables/language'
   import MaterialItem from '@/components/MaterialItem.vue'
-  import type { CraftingTypeDataRow } from '@criteria-interfaces/data_row'
+  import type { CraftingTypeDataRow } from '@fhnaumann/criteria-interfaces'
 
   const props = defineProps<{
     craftinTypeDataRow: CraftingTypeDataRow

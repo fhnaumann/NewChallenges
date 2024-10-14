@@ -168,7 +168,6 @@
 
 import { useI18n } from 'vue-i18n'
 import Button from 'primevue/button'
-import TranslateMessage, { type RenderProps } from '@/components/TranslateMessage.vue'
 import InputText from 'primevue/inputtext'
 import { ref, watch } from 'vue'
 import { CHALLENGE_BUILDER_URL, PLUGIN_MODRINTH_URL } from '@/constants'

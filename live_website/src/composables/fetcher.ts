@@ -1,6 +1,5 @@
 import { onMounted, ref } from 'vue'
-import type { Model } from '@criteria-interfaces/model'
-import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
+import type { DataConfig, MCEvent } from '@fhnaumann/criteria-interfaces'
 import { ALL_MATERIAL_DATA } from '@/composables/data_row_loaded'
 import {
   BASE_CHALLENGE_EVENTS_URL,

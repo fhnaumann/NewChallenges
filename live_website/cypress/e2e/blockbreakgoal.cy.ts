@@ -1,5 +1,6 @@
 import type { DataConfig, MCEvent } from '../../../criteria-interfaces/src'
 import { WebSocket } from 'mock-socket'
+// @ts-ignore
 import { getServer } from '../support/server.js'
 import type { BlockBreakDataConfig } from '../../../criteria-interfaces'
 
@@ -23,7 +24,7 @@ describe('Testing BlockBreakGoal Challenge with Events', () => {
     cy.get('body').type('{esc}')
     cy.wrap(socketPromise).then((mockSocket) => {
       // Use the `mockSocket` variable to send a message to client
-      mockSocket.send(JSON.stringify({
+      (mockSocket as any).send(JSON.stringify({
         eventType: 'blockBreakGoal',
         eventID: "mock-live-1",
         challengeID: "mocked",

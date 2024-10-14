@@ -60,18 +60,18 @@
 
 <script setup lang="ts">
 import ProgressBar from 'primevue/progressbar'
-import type { Model } from '@criteria-interfaces/model'
+import type { Model } from '@fhnaumann/criteria-interfaces'
 import { computed, provide, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
+import type { DataConfig, MCEvent } from '@fhnaumann/criteria-interfaces'
 import { useRouter } from 'vue-router'
-import type { CollectableEntryConfig, GoalName, GoalsConfig } from '@criteria-interfaces/goals'
+import type { CollectableEntryConfig, GoalName, GoalsConfig } from '@fhnaumann/criteria-interfaces'
 import { useDialog } from 'primevue/usedialog'
 import MapGoal from './goals/MapGoal.vue'
 import type { MapGoalProps } from '@/components/goals/MapGoal.vue'
-import type { CraftingDataConfig } from '@criteria-interfaces/crafting'
-import type { DeathDataConfig } from '@criteria-interfaces/death'
-import type { ItemDataConfig } from '@criteria-interfaces/item'
+import type { CraftingDataConfig } from '@fhnaumann/criteria-interfaces'
+import type { DeathDataConfig } from '@fhnaumann/criteria-interfaces'
+import type { ItemDataConfig } from '@fhnaumann/criteria-interfaces'
 import type { BlockBreakDataConfig, MobDataConfig } from '../../../criteria-interfaces'
 import { useTimeable } from '@/composables/timable'
 
@@ -93,7 +93,7 @@ function toggleSidebar() {
 }
 
 function hasGoalTimer(goalName: GoalName): boolean {
-  return props.challenge?.goals[goalName]?.goalTimer !== undefined
+  return props.challenge?.goals![goalName]?.goalTimer !== undefined
 }
 
 function calculateRemainingTime(goalName: GoalName): number {
@@ -170,6 +170,8 @@ function assumeCollectableEntryConfigAccessFrom(goalName: GoalName): Collectable
       return goals.blockBreakGoal!.broken!
     case 'mobGoal':
       return goals.mobGoal!.mobs!
+    default:
+      throw new Error(`No case for goal ${goalName}`)
   }
 }
 
@@ -187,6 +189,8 @@ function assumeCodeAccessFromMCEventFrom(
       return (mcEvent) => (mcEvent.data as BlockBreakDataConfig).broken
     case 'mobGoal':
       return (mcEvent) => (mcEvent.data as MobDataConfig).mob
+    default:
+      throw new Error(`No case for ${goalName}`)
   }
 }
 </script>

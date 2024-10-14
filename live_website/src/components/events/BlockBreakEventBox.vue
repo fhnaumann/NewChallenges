@@ -19,12 +19,12 @@
 
 import EventBox from '@/components/events/EventBox.vue'
 import PlayerHead from '@/components/PlayerHead.vue'
-import type { BlockBreakDataConfig, NoBlockBreakRuleDataConfig } from '@criteria-interfaces/blockbreak'
+import type { BlockBreakDataConfig, NoBlockBreakRuleDataConfig } from '@fhnaumann/criteria-interfaces'
 import MaterialItem from '@/components/MaterialItem.vue'
 import { useUtil } from '@/composables/util'
-import type { RuleDataConfig } from '@criteria-interfaces/rules'
+import type { RuleDataConfig } from '@fhnaumann/criteria-interfaces'
 import PunishmentEventContainer from '@/components/events/punishments/PunishmentEventContainer.vue'
-import type { CriteriaKey } from '@criteria-interfaces/model'
+import type { CriteriaKey } from '@fhnaumann/criteria-interfaces'
 
 const props = defineProps<{
   data: BlockBreakDataConfig | NoBlockBreakRuleDataConfig

@@ -1,6 +1,6 @@
-import type { CollectableDataConfig, CollectableEntryConfig } from '@criteria-interfaces/goals'
+import type { CollectableDataConfig, CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 import { useJSONSchemaConfig } from '@/stores/default_model'
-import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
+import type { DataConfig, MCEvent } from '@fhnaumann/criteria-interfaces'
 
 export function useCompletable() {
 
@@ -18,7 +18,7 @@ export function useCompletable() {
     return mcEvents.map(value => value.data?.amount).reduce((previousValue, currentValue) => previousValue + currentValue, defaultConfig.properties.currentAmount.default)
   }
 
-  function completionPercentage(collectableEntryConfigs: CollectableEntryConfig[], mcEvents: MCEvent<any>[]): number {
+  function completionPercentage(collectableEntryConfigs: CollectableEntryConfig[], mcEvents: MCEvent<any>[]) {
 
   }
 

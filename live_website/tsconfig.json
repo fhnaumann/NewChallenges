@@ -13,6 +13,8 @@
     }
   ],
   "compilerOptions": {
-    "module": "NodeNext",
+    "target": "ES2022",
+    "lib": ["es2022", "DOM"],
+    "module": "NodeNext"
   }
 }

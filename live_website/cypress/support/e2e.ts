@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import { GoalName } from '../../../criteria-interfaces'
+import type { GoalName } from '@fhnaumann/criteria-interfaces'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

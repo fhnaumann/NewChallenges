@@ -67,8 +67,8 @@ import Paginator from 'primevue/paginator'
 import DataView from 'primevue/dataview'
 import InputText from 'primevue/inputtext'
 import Checkbox from 'primevue/checkbox'
-import type { CollectableEntryConfig, GoalName } from '@criteria-interfaces/goals'
-import type { DataConfig, MCEvent } from '@criteria-interfaces/live'
+import type { CollectableEntryConfig, GoalName } from '@fhnaumann/criteria-interfaces'
+import type { DataConfig, MCEvent } from '@fhnaumann/criteria-interfaces'
 import EntryCompletion from '@/components/goals/EntryCompletion.vue'
 import type { DataSource } from '@/components/MaterialItem.vue'
 import { computed, inject, onBeforeUnmount, onMounted, reactive, ref, toRaw, toRef, watch, watchEffect } from 'vue'
@@ -110,7 +110,7 @@ const itemsPerPage = ref(30); // Default value
 
 const calculateItemsPerPage = () => {
   const w = window.innerWidth
-  const containerWidth = dialogContainer.value.clientWidth
+  const containerWidth = (dialogContainer.value as any).clientWidth
   console.log(dialogRef)
   const itemWidth = 160 + 8 // w-40 gap-4/2
   const itemsPerRow = Math.floor(containerWidth / itemWidth)
@@ -149,38 +149,40 @@ onMounted(() => {
   }
 
 
-
+  // eslint-disable-next-line
   searchable.value = useSearchable(
     props.collectables, searchableAccessor
-  )
+  ) as unknown as null
 
   // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
   // between the ref in the composable (searchable) and this ref here.
   // eslint-disable-next-line
-  searchFieldValue = searchable.value.searchFieldValue
-  getPartialMatches.value = searchable.value.getPartialMatches
+  searchFieldValue = (searchable.value! as any).searchFieldValue
+  getPartialMatches.value = (searchable.value! as any).getPartialMatches
 
   calculateItemsPerPage();
   window.addEventListener('resize', calculateItemsPerPage);
 
   watch(showCompleted,(newValue) => {
     if(newValue) {
-      searchable.value = useSearchable(collectables.value!, searchableAccessor)
+      // eslint-disable-next-line
+      searchable.value = useSearchable(collectables.value!, searchableAccessor) as unknown as null
       // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
       // between the ref in the composable (searchable) and this ref here.
       // eslint-disable-next-line
-      searchFieldValue = searchable.value.searchFieldValue
-      getPartialMatches.value = searchable.value.getPartialMatches
+      searchFieldValue = (searchable.value! as any).searchFieldValue
+      getPartialMatches.value = (searchable.value! as any).getPartialMatches
       console.log(collectables.value!)
       console.log(searchable)
     }
     else {
-      searchable.value = useSearchable(keepNotYetComplete(collectables.value!, codeAccess.value!, filteredEvents.value), searchableAccessor)
+      // eslint-disable-next-line
+      searchable.value = useSearchable(keepNotYetComplete(collectables.value!, codeAccess.value!, filteredEvents.value), searchableAccessor) as unknown as null
       // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
       // between the ref in the composable (searchable) and this ref here.
       // eslint-disable-next-line
-      searchFieldValue = searchable.value.searchFieldValue
-      getPartialMatches.value = searchable.value.getPartialMatches
+      searchFieldValue = (searchable.value! as any).searchFieldValue
+      getPartialMatches.value = (searchable.value! as any).getPartialMatches
     }
     console.log(shownCollectablesBasedOffCheckbox.value)
   }, {immediate: true})

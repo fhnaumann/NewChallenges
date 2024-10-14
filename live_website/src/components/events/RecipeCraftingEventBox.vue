@@ -1,5 +1,5 @@
 <template>
-  <EventBox :data="data">
+  <EventBox v-bind="props" :class="`${type === 'noBlockBreak' ? 'customized-rule' : 'customized-goal'}`">
     <template #eventTrigger>
       <i18n-t :keypath="computedRecipeType" tag="div" class="flex items-center text-2xl" >
         <template #player>
@@ -17,19 +17,22 @@
 
 <script setup lang="ts">
 
-import type { ItemDataConfig } from '@criteria-interfaces/item'
+import type { ItemDataConfig } from '@fhnaumann/criteria-interfaces'
 import EventBox from '@/components/events/EventBox.vue'
 import PlayerHead from '@/components/PlayerHead.vue'
 import MaterialItem from '@/components/MaterialItem.vue'
-import type { CraftingDataConfig } from '@criteria-interfaces/crafting'
+import type { CraftingDataConfig } from '@fhnaumann/criteria-interfaces'
 import { useTranslation } from '@/composables/language'
 import RecipeView from '@/components/events/RecipeView.vue'
 import { fromCode2DataRow } from '@/composables/data_row_loaded'
-import type { CraftingTypeDataRow } from '@criteria-interfaces/data_row'
+import type { CraftingTypeDataRow } from '@fhnaumann/criteria-interfaces'
 import { computed } from 'vue'
+import type { CriteriaKey } from '@fhnaumann/criteria-interfaces'
 
 const props = defineProps<{
-  data: CraftingDataConfig
+  data: CraftingDataConfig,
+  eventIndex: number
+  type: CriteriaKey
 }>()
 
 const { craftingType2DataRow } = useTranslation()

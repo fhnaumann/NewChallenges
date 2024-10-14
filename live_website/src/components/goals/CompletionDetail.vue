@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center text-color">
     <div v-if="!isSingleCompletionType(collectable.collectableData)" class="space-y-4">
       <div v-if="isCompletedBasedOffEvents(events, collectable.collectableData.amountNeeded)">
-        <p>{{ t('goals.collectables.entry.collected_multiple_complete', { time: formatTime(events.at(-1)) }) }}</p>
+        <p>{{ t('goals.collectables.entry.collected_multiple_complete', { time: formatTime(events.at(-1)!.timestamp) }) }}</p>
       </div>
       <div v-else>
         <p>{{ t('goals.collectables.entry.collected_incomplete') }}</p>
@@ -41,11 +41,11 @@
 </template>
 
 <script setup lang="ts">
-import type { CollectableEntryConfig } from '@criteria-interfaces/goals'
+import type { CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 import { useCompletable } from '@/composables/completable'
 import { useI18n } from 'vue-i18n'
 import PlayerHead from '@/components/PlayerHead.vue'
-import type { DataConfig, MCEvent, PlayerConfig } from '@criteria-interfaces/live'
+import type { DataConfig, MCEvent, PlayerConfig } from '@fhnaumann/criteria-interfaces'
 import { useTimeable } from '@/composables/timable'
 
 const props = defineProps<{

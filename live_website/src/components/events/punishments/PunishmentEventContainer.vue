@@ -12,17 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import type { RuleDataConfig } from '@criteria-interfaces/rules'
-import type {
-  BlockBreakDataConfig,
-  NoBlockBreakRuleDataConfig
-} from '@criteria-interfaces/blockbreak'
+import type { RuleDataConfig } from '@fhnaumann/criteria-interfaces'
 import { useUtil } from '@/composables/util'
 import type { Component } from 'vue'
 import type {
   BasePunishmentDataConfig,
   HealthPunishmentDataConfig
-} from '@criteria-interfaces/punishments'
+} from '@fhnaumann/criteria-interfaces'
 import HealthPunishmentEventPart from '@/components/events/punishments/HealthPunishmentEventPart.vue'
 import UnknownEventBox from '@/components/events/UnknownEventBox.vue'
 

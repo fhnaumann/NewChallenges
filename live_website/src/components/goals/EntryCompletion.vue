@@ -1,5 +1,5 @@
 <template>
-  <div class="cursor-pointer w-full h-full" @click="toggle" :data-cy="collectable.collectableName">
+  <div class="cursor-pointer w-full h-full" @click="toggleCompletionDetail" :data-cy="collectable.collectableName">
     <div
       :class="[
         'bg-card rounded-lg',
@@ -27,8 +27,8 @@ import InputText from 'primevue/inputtext'
 import InputGroup from 'primevue/inputgroup'
 import InputGroupAddon from 'primevue/inputgroupaddon'
 import Popover from 'primevue/popover'
-import type { CollectableEntryConfig } from '@criteria-interfaces/goals'
-import type { DataConfig, MCEvent, PlayerConfig } from '@criteria-interfaces/live'
+import type { CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
+import type { DataConfig, MCEvent, PlayerConfig } from '@fhnaumann/criteria-interfaces'
 import MaterialItem from '@/components/MaterialItem.vue'
 import type { DataSource } from '@/components/MaterialItem.vue'
 import { useTranslation } from '@/composables/language'
@@ -62,8 +62,8 @@ const {floatingStyles} = useFloating(reference, floating);
 const op = ref(null)
 const clicked = ref(false)
 
-const toggle = (event) => {
-  op.value!.toggle(event);
+const toggleCompletionDetail = (event) => {
+  (op.value! as any).toggle(event);
   clicked.value = !clicked.value
 }
 

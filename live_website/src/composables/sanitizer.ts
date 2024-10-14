@@ -1,8 +1,6 @@
-import type { MCEvent } from '@criteria-interfaces/live'
-import type { Model } from '@criteria-interfaces/model'
 import { useChallengeState } from '@/stores/challenge_state'
 import { useGoalAccess } from '@/composables/goal_access'
-import type { BaseGoalConfig, CollectableEntryConfig, GoalName } from '@criteria-interfaces/goals'
+import type { BaseGoalConfig, CollectableEntryConfig, GoalName } from '@fhnaumann/criteria-interfaces'
 
 export function useSanitizer() {
 

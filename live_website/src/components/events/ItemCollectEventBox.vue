@@ -1,5 +1,5 @@
 <template>
-  <EventBox :data="data">
+  <EventBox v-bind="props" :class="`${type === 'noBlockBreak' ? 'customized-rule' : 'customized-goal'}`">
     <template #eventTrigger>
       <i18n-t keypath="events.itemCollect" tag="div" class="flex items-center text-2xl" >
         <template #player>
@@ -17,13 +17,15 @@
 
 <script setup lang="ts">
 
-import type { ItemDataConfig } from '@criteria-interfaces/item'
+import type { CriteriaKey, ItemDataConfig } from '@fhnaumann/criteria-interfaces'
 import EventBox from '@/components/events/EventBox.vue'
 import PlayerHead from '@/components/PlayerHead.vue'
 import MaterialItem from '@/components/MaterialItem.vue'
 
-defineProps<{
+const props = defineProps<{
   data: ItemDataConfig
+  eventIndex: number
+  type: CriteriaKey
 }>()
 
 </script>

@@ -7,8 +7,8 @@ import type {
   DeathMessageDataRow,
   EntityTypeDataRow,
   MaterialDataRow
-} from '@criteria-interfaces/data_row'
-import type { CollectableDataConfig, CollectableEntryConfig } from '@criteria-interfaces/goals'
+} from '@fhnaumann/criteria-interfaces'
+import type { CollectableDataConfig, CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 
 export const ALL_MATERIAL_DATA: MaterialDataRow[] = materials.data
 export const ALL_IS_ITEM_MATERIAL_DATA: MaterialDataRow[] = ALL_MATERIAL_DATA.filter(value => value.is_item)

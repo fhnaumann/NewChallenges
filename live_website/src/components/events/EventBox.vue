@@ -22,13 +22,13 @@
 
 <script setup lang="ts">
 
-import type { CriteriaKey, CriteriaType } from '@criteria-interfaces/model'
+import type { CriteriaKey, CriteriaType } from '@fhnaumann/criteria-interfaces'
 import { useI18n } from 'vue-i18n'
 import PlayerHead from '@/components/PlayerHead.vue'
 import { useTimeable } from '@/composables/timable'
 import PunishmentEventContainer from '@/components/events/punishments/PunishmentEventContainer.vue'
-import type { DataConfig } from '@criteria-interfaces/live'
-import type { RuleDataConfig } from '@criteria-interfaces/rules'
+import type { DataConfig } from '@fhnaumann/criteria-interfaces'
+import type { RuleDataConfig } from '@fhnaumann/criteria-interfaces'
 
 const props = defineProps<{
   data: DataConfig
