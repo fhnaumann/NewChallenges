@@ -44,6 +44,10 @@ jobs:
           distribution: 'adopt'
       - name: Run Integration Tests
         working-directory: plugin
+        env:
+          AWS_REGION: eu-central-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.PLUGIN_INTEGRATION_TEST_AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PLUGIN_INTEGRATION_TEST_AWS_SECRET_KEY }}
         run: mvn clean test-compile failsafe:integration-test failsafe:verify -P plugin -Dstage=testing
       - name: Report Integration Tests
         uses: dorny/test-reporter@v1
