@@ -54,7 +54,7 @@ jobs:
         if: always()
         with:
           name: Maven Tests
-          path : plugin/target/failsafe-reports/*.xml
+          path : plugin/target/failsafe-reports/TEST-*.xml
           reporter: java-junit
           fail-on-error: true
 
