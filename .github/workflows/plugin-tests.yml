@@ -62,6 +62,8 @@ jobs:
           reporter: java-junit
           fail-on-error: true
   call-live-workflow:
+    needs: [integration-tests]
     uses: ./.github/workflows/live-tests.yml
+    secrets: inherit
 
 

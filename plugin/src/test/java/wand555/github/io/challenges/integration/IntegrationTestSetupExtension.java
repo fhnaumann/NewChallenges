@@ -12,7 +12,7 @@ public class IntegrationTestSetupExtension implements BeforeAllCallback {
             Assertions.fail("Stage variable not set to 'testing' when running the test suite. Aborting!");
         }
         DynamoDBHelper.clearDynamoDBTestingTable();
-        // A comment 5
+        // A comment 6
         // TODO: clear s3
 
         DynamoDBHelper.setUpEmptyDynamoDBTestingTable();
