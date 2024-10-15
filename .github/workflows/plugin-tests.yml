@@ -64,6 +64,7 @@ jobs:
   call-live-workflow:
     needs: [integration-tests]
     uses: ./.github/workflows/live-tests.yml
-    secrets: inherit
+    secrets:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
