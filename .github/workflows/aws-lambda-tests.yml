@@ -24,4 +24,6 @@ jobs:
         env:
           AWS_REGION: eu-central-1
           AWS_DEFAULT_REGION: eu-central-1
+          AWS_ACCESS_KEY_ID: fake_access_key
+          AWS_SECRET_ACCESS_KEY: fake_secret_key
         run: poetry run pytest -v
