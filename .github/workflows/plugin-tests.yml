@@ -4,8 +4,6 @@ on:
   push:
     paths:
       - 'plugin/**'
-    paths-ignore:
-      - 'docs/**'
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
