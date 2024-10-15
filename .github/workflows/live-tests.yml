@@ -1,8 +1,6 @@
 on:
-  workflow_run:
-    workflows: ["Plugin Unit and Integration Tests"]
-    types:
-      - completed
+  workflow_call: 
+    
 
 jobs:
   unit-and-integration-tests:

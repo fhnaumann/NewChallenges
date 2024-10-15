@@ -61,4 +61,7 @@ jobs:
           path : plugin/target/failsafe-reports/TEST-*.xml
           reporter: java-junit
           fail-on-error: true
+  call-live-workflow:
+    uses: ./.github/workflows/live-tests.yml
+
 
