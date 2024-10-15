@@ -27,9 +27,6 @@ jobs:
         uses: cypress-io/github-action@v6
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          AWS_REGION: eu-central-1
-          AWS_ACCESS_KEY_ID: ${{ secrets.PLUGIN_INTEGRATION_TEST_AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PLUGIN_INTEGRATION_TEST_AWS_SECRET_KEY }}
         with:
           working-directory: live_website/
           config: defaultCommandTimeout=30000,baseUrl=http://localhost:4173
