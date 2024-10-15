@@ -1,4 +1,4 @@
-name: Cypress E2E
+name: Verify Builder to Plugin Compatibility and Deply Docs
 permissions:
   id-token: write
   contents: read

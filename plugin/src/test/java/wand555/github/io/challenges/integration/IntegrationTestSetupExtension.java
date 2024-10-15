@@ -13,6 +13,8 @@ public class IntegrationTestSetupExtension implements BeforeAllCallback {
         }
         DynamoDBHelper.clearDynamoDBTestingTable();
 
+        // TODO: clear s3
+
         DynamoDBHelper.setUpEmptyDynamoDBTestingTable();
     }
 }

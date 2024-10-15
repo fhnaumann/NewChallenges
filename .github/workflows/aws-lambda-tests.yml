@@ -1,0 +1,25 @@
+name: AWS Lambda Unit Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  aws-lambda-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Run Poetry Image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.8.3"
+      - name: Install Project Dependencies
+        working-directory: aws_resources/lambda-tests
+        run: poetry install
+      - name: Run pytests
+        working-directory: aws_resources/lambda-tests
+        run: poetry run pytest -v

@@ -1,0 +1,36 @@
+on:
+  workflow_run:
+    workflows: ["Plugin Unit and Integration Tests"]
+    types:
+      - completed
+
+jobs:
+  unit-and-integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache theme files
+        id: cache-themes
+        uses: actions/cache@v4
+        with:
+          path: live_website/src/assets/aura/
+          key: ${{ runner.os }}-themes-${{ hashFiles('live_website/src/assets/aura/*') }}
+          restore-keys: |
+            ${{ runner.os }}-themes-
+      - name: Download theme files from S3
+        if: steps.cache-themes.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p live_website/src/assets/aura/
+          cd live_website/src/assets/ && ls && cd aura/ && ls && pwd
+          echo ${GITHUB_WORKSPACE}
+          aws s3 cp s3://challenges-builder/themes/aura/ ${GITHUB_WORKSPACE}/live_website/src/assets/aura/ --recursive --no-sign-request --region eu-central-1
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          working-directory: live_website/
+          config: defaultCommandTimeout=30000,baseUrl=http://localhost:4173
+          build: npm run build
+          start: npm run preview

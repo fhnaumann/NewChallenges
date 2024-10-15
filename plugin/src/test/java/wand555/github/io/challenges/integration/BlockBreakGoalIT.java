@@ -42,7 +42,7 @@ public class BlockBreakGoalIT {
     Run unit test and then integration test:
     mvn verify -P e2e -Dstage=testing
     Run only integration test and not unit test:
-    mvn clean test-compile failsafe:integration-test failsafe:verify -P e2e -Dstage=testing
+    mvn clean test-compile failsafe:integration-test failsafe:verify -P plugin -Dstage=testing
      */
 
     private static Context context;

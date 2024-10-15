@@ -13,6 +13,7 @@ import wand555.github.io.challenges.criteria.rules.Rule;
 import wand555.github.io.challenges.criteria.settings.BaseSetting;
 import wand555.github.io.challenges.exceptions.UnskippableException;
 import wand555.github.io.challenges.generated.ChallengeMetadata;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.punishments.InteractionManager;
 import wand555.github.io.challenges.teams.Team;
@@ -86,6 +87,8 @@ public class ChallengeManager implements StatusInfo {
         //goals.stream().filter(goal -> goal instanceof BossBarDisplay).forEach(goal -> ((BossBarDisplay) goal).showBossBar(context.plugin().getServer().getOnlinePlayers()));
 
         settings.forEach(baseSetting -> baseSetting.onStart(Team.ALL_TEAM));
+
+        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.START, null);
     }
 
 
@@ -96,6 +99,7 @@ public class ChallengeManager implements StatusInfo {
         });
         gameState = GameState.PAUSED;
         allCriterias().forEach(Criteria::onPause);
+        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.PAUSE, null);
     }
 
     public void resume() {
@@ -112,6 +116,7 @@ public class ChallengeManager implements StatusInfo {
         }
         gameState = GameState.RUNNING;
         allCriterias().forEach(Criteria::onResume);
+        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.RESUME, null);
     }
 
     public void onProgress(Player player, Progressable progressable) {
@@ -217,6 +222,7 @@ public class ChallengeManager implements StatusInfo {
             player.getActivePotionEffects().clear();
         });
         gameState = GameState.ENDED;
+        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.END, null);
         if(success) {
             if(winnerTeam != null) {
                 Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(
