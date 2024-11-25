@@ -1,8 +1,10 @@
 import lang_en from '../public/language/en_us.json'
 import death_messages_en from '@/assets/data_rows/death_messages_with_dummy_data_data_source_JSON.json'
 import craftables_en from '@/assets/data_rows/craftables.json'
-import { ALL_MATERIAL_DATA, type DataRow, fromCode2DataRow } from '@/models/data_row'
+import type { DataRow } from '@fhnaumann/criteria-interfaces'
+import { ALL_MATERIAL_DATA, fromCode2DataRow } from '@/models/data_row_loaded'
 import { useI18n } from 'vue-i18n'
+import {defineStore} from "pinia";
 
 export type Language = 'en' | 'de'
 
@@ -14,7 +16,7 @@ interface Translations {
 
 let selectedLanguage: Language = 'en'
 
-export function useTranslation() {
+export const useTranslation = defineStore('translation', () => {
 
   const { t } = useI18n()
 
@@ -69,4 +71,4 @@ export function useTranslation() {
   }
 
   return { translate, translateDataRow, craftingType2DataRow }
-}
+})

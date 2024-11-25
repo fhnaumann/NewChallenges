@@ -12,6 +12,7 @@ import wand555.github.io.challenges.criteria.goals.bossbar.BossBarPart;
 import wand555.github.io.challenges.criteria.goals.bossbar.FixedOrderBossBarPart;
 import wand555.github.io.challenges.generated.CraftingGoalConfig;
 import wand555.github.io.challenges.generated.GoalsConfig;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.types.crafting.CraftingData;
 import wand555.github.io.challenges.types.crafting.CraftingType;
@@ -19,7 +20,7 @@ import wand555.github.io.challenges.types.crafting.CraftingType;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class CraftingGoal extends MapGoal<CraftingData, CraftingTypeJSON> implements Storable<CraftingGoalConfig> {
+public class CraftingGoal extends MapGoal<CraftingData<?>, CraftingTypeJSON> implements Storable<CraftingGoalConfig> {
 
     public static final String NAME_IN_RB = "craftinggoal";
 
@@ -27,7 +28,7 @@ public class CraftingGoal extends MapGoal<CraftingData, CraftingTypeJSON> implem
 
     public CraftingGoal(Context context, CraftingGoalConfig config, GoalCollector<CraftingTypeJSON> goalCollector, CraftingGoalMessageHelper messageHelper, CraftingGoalCollectedInventory collectedInventory, @Nullable Timer timer) {
         super(context, config.isComplete(), goalCollector, messageHelper, collectedInventory, timer);
-        this.craftingType = new CraftingType(context, triggerCheck(), trigger());
+        this.craftingType = new CraftingType(context, triggerCheck(), trigger(), MCEventAlias.EventType.CRAFTING_GOAL);
     }
 
 
@@ -73,7 +74,7 @@ public class CraftingGoal extends MapGoal<CraftingData, CraftingTypeJSON> implem
     }
 
     @Override
-    protected CraftingData createSkipData(Map.Entry<CraftingTypeJSON, Collect> toSkip, Player player) {
-        return new CraftingData(player.getUniqueId(), toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
+    protected CraftingData<?> createSkipData(Map.Entry<CraftingTypeJSON, Collect> toSkip, Player player) {
+        return new CraftingData<>(null, player.getUniqueId(), toSkip.getValue().getRemainingToCollect(), toSkip.getKey(), false);
     }
 }

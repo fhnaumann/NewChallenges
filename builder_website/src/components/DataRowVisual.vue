@@ -24,7 +24,6 @@
 
   import { BASE_IMG_URL } from '@/constants'
   import { useTranslation } from '@/language'
-  import type { DataRow } from '@/models/data_row'
 
   const props = defineProps<{
     /**

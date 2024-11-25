@@ -25,6 +25,10 @@
                 "name": "Cancel",
                 "tooltip": "The action that caused this punishment is cancelled!"
             },
+            "suppressPunishment": {
+                "name": "Suppress",
+                "tooltip": "The action is permitted but any result (e.g. drop) is cancelled!"
+            },
             "endPunishment": {
                 "name": "End",
                 "tooltip": "The challenge ends!"

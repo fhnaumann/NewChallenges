@@ -1,28 +1,21 @@
 package wand555.github.io.challenges.criteria.rules;
 
 
-import org.bukkit.Keyed;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.generated.PunishmentsDataConfig;
 import wand555.github.io.challenges.mapping.CriteriaMapper;
-import wand555.github.io.challenges.mapping.ModelMapper;
-import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.types.Data;
-import wand555.github.io.challenges.types.EventContainer;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import java.util.*;
-import java.util.stream.Stream;
 
-public abstract class PunishableRule<T extends Data<K>, K> extends Rule implements Triggable<T> {
+public abstract class PunishableRule<T extends Data<?, K>, K> extends Rule implements Triggable<T> {
 
     protected @NotNull List<Punishment> punishments;
 
@@ -41,29 +34,29 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         this.messageHelper = messageHelper;
     }
 
-    protected final  <E extends Event & Cancellable> EventContainer<E> cancelIfCancelPunishmentActive() {
-        return event -> {
-            boolean cancel = Stream.of(context.challengeManager().getGlobalPunishments(), getPunishments())
-                                   .flatMap(Collection::stream)
-                                   .anyMatch(punishment -> punishment instanceof CancelPunishment);
-            event.setCancelled(cancel);
-        };
-
-    }
-
     @Override
     public Trigger<T> trigger() {
         return data -> {
             messageHelper.sendViolationAction(data);
-            enforcePunishments(data.playerUUID());
+            List<Object> punishmentLiveData = enforcePunishments(data); // Type 'Object' is really 'BasePunishmentDataConfig'
+            //Object mcEventData = constructMCEventData(data, punishmentLiveData);
+            return;
         };
     }
 
-    public void enforcePunishments(UUID causer) {
+    private List<Object> enforcePunishments(Data<?, K> data) {
+        List<Object> appliedPunishments = new ArrayList<>();
         // enforce local punishments
-        getPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
+        for(Punishment localPunishment : getPunishments()) {
+            Object result = localPunishment.enforcePunishment(data);
+            appliedPunishments.add(result);
+        }
         // enforce global punishments
-        context.challengeManager().getGlobalPunishments().forEach(punishment -> punishment.enforcePunishment(causer));
+        for(Punishment globalPunishment : context.challengeManager().getGlobalPunishments()) {
+            Object result = globalPunishment.enforcePunishment(data);
+            appliedPunishments.add(result);
+        }
+        return appliedPunishments;
     }
 
     protected final @Nullable PunishmentsConfig toPunishmentsConfig() {
@@ -75,6 +68,12 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         return punishmentsConfig;
     }
 
+    protected final PunishmentsDataConfig toPunishmentsDataConfig() {
+        PunishmentsDataConfig punishmentsDataConfig = new PunishmentsDataConfig();
+        //punishments.forEach(punishment -> punishment.add);
+        return punishmentsDataConfig;
+    }
+
     public @NotNull List<Punishment> getPunishments() {
         return punishments;
     }
@@ -82,6 +81,7 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
     public void setPunishments(@NotNull List<Punishment> punishments) {
         this.punishments = punishments;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -91,7 +91,7 @@ public abstract class PunishableRule<T extends Data<K>, K> extends Rule implemen
         if(o == null || getClass() != o.getClass()) {
             return false;
         }
-        PunishableRule that = (PunishableRule) o;
+        PunishableRule<?, ?> that = (PunishableRule<?, ?>) o;
         return Objects.equals(punishments, that.punishments);
     }
 

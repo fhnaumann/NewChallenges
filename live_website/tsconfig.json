@@ -1,0 +1,20 @@
+{
+  "files": [],
+  "include": ["../criteria-interfaces/*"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.cypress-ct.json"
+    }
+  ],
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["es2022", "DOM"],
+    "module": "NodeNext"
+  }
+}

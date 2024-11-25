@@ -1,0 +1,70 @@
+name: Plugin Unit and Integration Tests
+
+on:
+  push:
+    paths:
+      - 'plugin/**'
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'adopt'
+      - name: Run Unit Tests
+        working-directory: plugin
+        run: mvn clean test-compile -B test -P plugin
+        
+      - name: Report Unit Tests
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path : plugin/target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: true
+  integration-tests:
+    needs: [unit-tests]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+    
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'adopt'
+      - name: Run Integration Tests
+        working-directory: plugin
+        env:
+          AWS_REGION: eu-central-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.PLUGIN_INTEGRATION_TEST_AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PLUGIN_INTEGRATION_TEST_AWS_SECRET_KEY }}
+        run: mvn clean test-compile failsafe:integration-test failsafe:verify -P plugin -Dstage=testing
+      - name: Report Integration Tests
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path : plugin/target/failsafe-reports/TEST-*.xml
+          reporter: java-junit
+          fail-on-error: true
+  # call-live-workflow:
+  #   needs: [integration-tests]
+  #   uses: ./.github/workflows/live-tests.yml
+  #   secrets:
+  #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+

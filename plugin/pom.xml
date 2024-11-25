@@ -18,7 +18,41 @@
     <profiles>
         <profile>
             <id>plugin</id>
+            <properties>
+                <!-- TODO change to prod stage when releasing -->
+                <stage>development</stage>
+                <!--stage>production</stage-->
+            </properties>
             <dependencies>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>dynamodb-enhanced</artifactId>
+                    <version>2.20.33</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>dynamodb</artifactId>
+                    <version>2.20.32</version> <!-- Use the latest version -->
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>auth</artifactId>
+                    <version>2.20.32</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>sdk-core</artifactId>
+                    <version>2.20.32</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>s3</artifactId>
+                    <version>2.20.32</version>
+                </dependency>
                 <dependency>
                     <groupId>dev.jorel</groupId>
                     <artifactId>commandapi-bukkit-shade</artifactId>
@@ -89,11 +123,83 @@
                     <version>5.9.0</version>
                     <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-suite</artifactId>
+                    <version>1.11.2</version>
+                    <scope>test</scope>
+                </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.8.12</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>e2e</id>
+            <properties>
+                <stage>testing</stage>
+            </properties>
             <dependencies>
+                <dependency>
+                    <groupId>org.apache.httpcomponents.client5</groupId>
+                    <artifactId>httpclient5</artifactId>
+                    <version>5.1.3</version>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>dynamodb-enhanced</artifactId>
+                    <version>2.20.33</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>dynamodb</artifactId>
+                    <version>2.20.32</version> <!-- Use the latest version -->
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>auth</artifactId>
+                    <version>2.20.32</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>sdk-core</artifactId>
+                    <version>2.20.32</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>s3</artifactId>
+                    <version>2.20.32</version>
+                </dependency>
                 <dependency>
                     <groupId>dev.jorel</groupId>
                     <artifactId>commandapi-bukkit-shade</artifactId>
@@ -154,6 +260,19 @@
                     <version>5.9.0</version>
                     <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-suite</artifactId>
+                    <version>1.11.2</version>
+                    <scope>test</scope>
+                </dependency>
+
             </dependencies>
 
             <build>
@@ -204,7 +323,24 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.1.2</version>
             <configuration>
+                <argLine>@{argLine} --enable-preview</argLine>
                 <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>3.5.1</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>integration-test</goal>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <argLine>--enable-preview</argLine>
             </configuration>
         </plugin>
       <plugin>

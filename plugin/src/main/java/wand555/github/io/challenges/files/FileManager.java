@@ -3,8 +3,12 @@ package wand555.github.io.challenges.files;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
+import org.apache.commons.lang3.RandomStringUtils;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.generated.*;
+import wand555.github.io.challenges.live.AWSEventProvider;
+import wand555.github.io.challenges.live.LiveService;
+import wand555.github.io.challenges.live.S3ChallengeUploader;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.teams.Team;
@@ -19,9 +23,11 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 public class FileManager {
 
+    public static final Logger logger = ChallengesDebugLogger.getLogger(FileManager.class);
 
     public static void writeToFile(ChallengeManager challengeManager, Writer writer) {
         EnabledRules enabledRulesConfig = new EnabledRules();
@@ -39,10 +45,12 @@ public class FileManager {
 
         // casting time from long to int could be problematic...
         // on the other hand ~24000 days fit into an int, no one will reach that (hopefully)
-        Model model = new Model(Team.getGlobalCurrentOrder(),
+        Model model = new Model(
+                null, // Only exists so the Live Interfaces are available ("Bug" in jsonschema2pojo generator)
+                Team.getGlobalCurrentOrder(),
                                 goalsConfig,
                                 challengeManager.getChallengeMetadata(),
-                                null,
+                                null, // unsupported for now
                                 rulesConfig,
                                 settingsConfig,
                                 challengeManager.getTeams().stream().map(Team::toGeneratedJSONClass).toList(),
@@ -51,6 +59,7 @@ public class FileManager {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, model);
+            logger.fine("Wrote to challenge '%s' to file".formatted(model.getMetadata().getName()));
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
@@ -94,6 +103,9 @@ public class FileManager {
                 try {
                     challengesSchema = objectMapper.readValue(json, Model.class);
 
+                    // Change the challengeID in case the user has downloaded the file from the docs
+                    assignUniqueChallengeIDIfDownloadedFromDocs(challengesSchema.getMetadata());
+
                     Context newContext = new Context.Builder()
                             .withPlugin(context.plugin())
                             .withRuleResourceBundle(ResourceBundle.getBundle("rules",
@@ -129,6 +141,7 @@ public class FileManager {
                             .withChallengeManager(new ChallengeManager())
                             .withRandom(new Random())
                             .withOfflineTempData(new OfflineTempData(context.plugin()))
+                            .withLiveService(new LiveService(new S3ChallengeUploader(), new AWSEventProvider()))
                             .build();
                     context.challengeManager().setContext(context); // immediately set context so it is available in the manager
                     context.challengeManager().setValid(true);
@@ -152,5 +165,16 @@ public class FileManager {
                 throw new LoadValidationException(validationResult);
             }
         });
+    }
+
+    private static void assignUniqueChallengeIDIfDownloadedFromDocs(ChallengeMetadata metadata) {
+        if(metadata.getChallengeID().equals("from-examples")) {
+            metadata.setChallengeID(generateChallengeID());
+        }
+    }
+
+    private static String generateChallengeID() {
+        int length = 10;
+        return RandomStringUtils.randomAlphanumeric(length);
     }
 }

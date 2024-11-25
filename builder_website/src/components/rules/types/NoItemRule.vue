@@ -18,7 +18,7 @@
 
   import { useRouter } from 'vue-router'
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
-  import { ALL_IS_BLOCK_MATERIAL_DATA, ALL_IS_ITEM_MATERIAL_DATA } from '@/models/data_row'
+  import { ALL_IS_BLOCK_MATERIAL_DATA, ALL_IS_ITEM_MATERIAL_DATA } from '@/models/data_row_loaded'
   import ExemptionSelection from '@/components/rules/ExemptionSelection.vue'
   import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'
 </script>

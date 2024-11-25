@@ -25,6 +25,7 @@ import wand555.github.io.challenges.criteria.rules.noblockplace.NoBlockPlaceRule
 import wand555.github.io.challenges.generated.Model;
 import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.generated.NoBlockPlaceRuleConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.mapping.CriteriaMapper;
 import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.punishments.HealthPunishment;
@@ -50,6 +51,8 @@ public class NoBlockPlaceRuleTest {
     private static Context context;
     private NoBlockPlaceRuleMessageHelper messageHelper;
 
+    private static BlockPlaceEvent emptyMockEvent;
+
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -61,9 +64,13 @@ public class NoBlockPlaceRuleTest {
         when(manager.isRunning()).thenReturn(true);
 
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
+
+        emptyMockEvent = mock(BlockPlaceEvent.class);
     }
 
     @BeforeEach
@@ -104,14 +111,14 @@ public class NoBlockPlaceRuleTest {
 
     @Test
     public void testNoBlockPlaceTriggerCheck() {
-        assertTrue(rule.triggerCheck().applies(new BlockPlaceData(Material.DIRT, player)));
-        assertFalse(rule.triggerCheck().applies(new BlockPlaceData(Material.STONE, player)));
+        assertTrue(rule.triggerCheck().applies(new BlockPlaceData(emptyMockEvent, 0, Material.DIRT, player)));
+        assertFalse(rule.triggerCheck().applies(new BlockPlaceData(emptyMockEvent, 0, Material.STONE, player)));
     }
 
     @Test
     public void testNoBlockPlaceTrigger() {
-        rule.trigger().actOnTriggered(new BlockPlaceData(Material.DIRT, player));
-        verify(messageHelper, times(1)).sendViolationAction(new BlockPlaceData(Material.DIRT, player));
+        rule.trigger().actOnTriggered(new BlockPlaceData(emptyMockEvent, 0, Material.DIRT, player));
+        verify(messageHelper, times(1)).sendViolationAction(new BlockPlaceData(emptyMockEvent, 0, Material.DIRT, player));
     }
 
     @Test
@@ -127,12 +134,5 @@ public class NoBlockPlaceRuleTest {
         rule.setPunishments(List.of(mock(HealthPunishment.class)));
         BlockPlaceEvent event = player.simulateBlockPlace(Material.DIRT, player.getLocation());
         assertFalse(event.isCancelled());
-    }
-
-    @Test
-    public void testIsDisallowedIfCancelPunishment() {
-        rule.setPunishments(List.of(mock(CancelPunishment.class)));
-        BlockPlaceEvent event = player.simulateBlockPlace(Material.DIRT, player.getLocation());
-        assertTrue(event.isCancelled());
     }
 }

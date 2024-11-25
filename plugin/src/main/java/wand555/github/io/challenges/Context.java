@@ -1,6 +1,7 @@
 package wand555.github.io.challenges;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 
 import java.io.InputStream;
@@ -9,7 +10,7 @@ import java.util.ResourceBundle;
 
 public record Context(
         Challenges plugin, ResourceBundleContext resourceBundleContext, DataSourceContext dataSourceContext,
-        JsonNode schemaRoot, ChallengeManager challengeManager, Random random, OfflineTempData offlineTempData
+        JsonNode schemaRoot, ChallengeManager challengeManager, Random random, OfflineTempData offlineTempData, LiveService liveService
 ) {
 
     public static final class Builder {
@@ -18,9 +19,9 @@ public record Context(
         private DataSourceContext.Builder dataSourceContextBuilder;
         private JsonNode schemaRoot;
         private ChallengeManager manager;
-
         private Random random;
         private OfflineTempData offlineTempData;
+        private LiveService liveService;
 
         public Builder() {
             this.resourceBundleContextBuilder = new ResourceBundleContext.Builder();
@@ -102,6 +103,11 @@ public record Context(
             return this;
         }
 
+        public Builder withLiveService(LiveService liveService) {
+            this.liveService = liveService;
+            return this;
+        }
+
         public Context build() {
             return new Context(plugin,
                                resourceBundleContextBuilder.build(),
@@ -109,7 +115,8 @@ public record Context(
                                schemaRoot,
                                manager,
                                random,
-                               offlineTempData
+                               offlineTempData,
+                               liveService
             );
         }
     }

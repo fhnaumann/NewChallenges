@@ -34,7 +34,7 @@
   import CodeDisplay from '@/components/CodeDisplay.vue'
   import { useModelStore } from '@/stores/model'
   import MetadataOverview from '@/components/MetadataOverview.vue'
-  import type { Model } from '@/models/model'
+  import type { Model } from '@fhnaumann/criteria-interfaces'
   import TeamOverview from '@/components/teams/TeamOverview.vue'
 
 
@@ -103,6 +103,8 @@
   }
 
   function mapGoals2PerTeamBasis(model: Model): Model {
+    console.log(toRaw(model))
+    console.log(structuredClone(toRaw(model)))
     const copy = structuredClone(toRaw(model))
     if(copy.teams !== undefined && copy.teams!.length > 0) {
       copy.teams?.forEach(team => {

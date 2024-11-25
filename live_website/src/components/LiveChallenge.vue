@@ -1,0 +1,424 @@
+<template>
+  <div v-if="error" class="flex flex-col items-center justify-center space-y-4 min-h-screen">
+    <h1 class="text-4xl text-center">{{ t(error, { challenge: challengeID }) }}</h1>
+    <RouterLink to="/">
+      <Button
+        class="w-96 h-24 text-4xl"
+        :label="t('loading.back_to_main_page')"
+      />
+    </RouterLink>
+  </div>
+  <div v-else-if="!loaded" class="flex min-h-screen bg-background-color">
+    <ProgressSpinner class="m-auto" />
+  </div>
+
+  <div v-else class="flex min-h-screen flex-col bg-background-color overflow-y-auto">
+    <HeaderBar />
+    <!--div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 border-2 border-black">
+      <div>
+        <Button label="Add latest event" @click="addEvent" />
+        <Button label="Delete latest event" @click="deleteEvent" />
+        <Button label="Refetch" @click="reFetchData" />
+        <p v-if="!started">{{ t('misc.not_started') }}</p>
+        <p v-else-if="paused">{{ t('misc.paused', { time: formatTime(timeEstimation) }) }}</p>
+        <p v-else-if="finished">{{ t('misc.finished') }}</p>
+        <p v-else>{{ timeEstimation }}</p>
+      </div>
+    </div-->
+    <!--div class="fixed top-0 left-0 translate-y-10 border-2 z-10 border-content-border bg-card rounded-xl mx-4"-->
+    <div class="flex items-center justify-center border-2 border-content-border bg-card rounded-xl mx-20">
+      <RightSideBar :challenge="challengeFileJSON!" :events="events" :current-time="timeEstimation" />
+    </div>
+    <!--div>
+      <div class="flex items-center justify-center">
+        <div class="flex flex-col items-center space-y-10">
+          <p class="text-color text-6xl font-bold">{{ challengeFileJSON?.metadata.name }}</p>
+          <div class="text-primary font-semibold text-xl">
+            <p v-if="!started && !running" data-cy="not-started-text">{{ t('misc.not_started') }}</p>
+            <p v-else-if="running" data-cy="running-text">{{ formatTime(timeEstimation) }}</p>
+            <p v-else-if="paused" data-cy="paused-text">{{ t('misc.paused', { time: formatTime(timeEstimation) }) }}</p>
+            <p v-else-if="finished" data-cy="finished-text">{{ t('misc.finished') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-20 relative flex-1 z-5 translate-x-1/4" ref="scrollContainer">
+        <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
+          <svg class="drop-shadow-2xl" width="50" :height="svgHeight">
+            <g ref="lines" class="pointer-events-none"></g>
+            <circle class="fill-primary" :cx="startX" :cy="startY" r="8" />
+            <circle
+              v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
+              :class="`${getCriteriaColorFrom(event)} ease-in-out duration-300 ${eventIndexBeingHovered === index ? 'fill-accent' : 'fill-primary'}`"
+              :key="event.eventID"
+              :cx="startX"
+              :cy="startY + lineLengthPerSecond * event.timestamp"
+              r="8"
+            />
+          </svg>
+          <div ref="bottomOfSVG"></div>
+        </div>
+        <div class="absolute left-1/2 top-0 z-5">
+          <div class="z-5">
+            <EventContainer
+              class="absolute z-5 drop-shadow-2xl"
+              :id="event.eventID"
+              v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
+              :key="'textbox-' + event.eventID"
+              :style="{
+              left: `${determineXPositionForEventContainer(index)}px`,
+              top: `${startY - 13 + lineLengthPerSecond * event.timestamp}px`
+            }"
+              :mc-event="event"
+              :event-index="index"
+              @myMouseEnter="eventIndexBeingHovered = index"
+              @myMouseLeave="eventIndexBeingHovered = null"
+              :data-cy="event.eventID"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="fixed bottom-0 left-0 w-full">
+        <p>FOOTER</p>
+      </div>
+    <div-->
+  </div>
+</template>
+
+<style>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @keyframes draw {
+    0% {
+      stroke-dashoffset: 2;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .animate-draw-line {
+    stroke-dasharray: 2; /* Length of the line */
+    stroke-dashoffset: 0; /* Start with the line hidden */
+    animation: draw 1s forwards;
+    animation-timing-function: linear;
+  }
+
+  .animate-fade-circle-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+}
+</style>
+
+<script setup lang="ts">
+import Button from 'primevue/button'
+import { useRoute, useRouter } from 'vue-router'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { useInterval } from '@vueuse/core'
+import type {
+  CriteriaKey,
+  DataConfig,
+  MCEvent,
+  Model,
+  NoBlockBreakRuleDataConfig
+} from '@fhnaumann/criteria-interfaces'
+import ProgressSpinner from 'primevue/progressspinner'
+import BlockBreakEventBox from '@/components/events/BlockBreakEventBox.vue'
+import PlayerHead from '@/components/PlayerHead.vue'
+import RightSideBar from '@/components/RightSideBar.vue'
+import { useFetcher } from '@/composables/fetcher'
+import EventContainer from '@/components/events/EventContainer.vue'
+import { useUtil } from '@/composables/util'
+import { useChallengeState } from '@/stores/challenge_state'
+import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
+import { useTimeable } from '@/composables/timable'
+import HeaderBar from '@/components/HeaderBar.vue'
+import useConfetti from '@/composables/useConfetti'
+
+const router = useRouter()
+const route = useRoute()
+const { formatTime } = useTimeable()
+const { t } = useI18n()
+
+const startX = 25
+const startY = 20
+const lineLength = 100
+const lineLengthPerSecond = 2
+
+const lines = ref()
+
+const { getCriteriaColorFrom } = useUtil()
+
+const eventIndexBeingHovered = ref<number | null>(null)
+
+function addLine(index: number, skipAnimation = false) {
+  index = index - 1
+  const newLine = document.createElementNS('http://www.w3.org/2000/svg', 'line')
+  newLine.setAttribute('x1', startX as unknown as string)
+  newLine.setAttribute('y1', (startY + lineLengthPerSecond * index) as unknown as string)
+  newLine.setAttribute('x2', startX as unknown as string)
+  newLine.setAttribute('y2', (startY + lineLengthPerSecond * (index + 1) as unknown as string))
+  newLine.setAttribute('stroke', '#9153F2') // primary
+  newLine.setAttribute('stroke-width', '6')
+  if (!skipAnimation) {
+    newLine.classList.add('animate-draw-line')
+  }
+  lines.value.appendChild(newLine)
+}
+
+function setLineTo(index: number) {
+  console.log('lines', lines)
+  if (index < lines.value?.length) {
+    console.log('set line to', index)
+
+    const result = lines.value?.splice(index)
+    console.log(result)
+  } else {
+    console.log('jumping line to', index)
+    const diff = index - lines.value?.length
+    for (let i = 0; i < diff; i++) {
+      addLine(index + i, false)
+    }
+  }
+}
+
+function determineXPositionForEventContainer(index: number): number {
+  // index % 2 == 0 ? startX : (startX - 250)
+  let xPos: number
+
+  const heightThreshold = 20 // just a guess, needs tweaking
+  const amountOfEventsThatOccupySameSpace = getEventsThatAreInRangeFrom(
+    index,
+    heightThreshold
+  ).length
+  const widthPerEventContainer = 250
+  if (index % 2 == 0) {
+    xPos = amountOfEventsThatOccupySameSpace * widthPerEventContainer // position even events on the right
+  } else {
+    xPos = -256 - amountOfEventsThatOccupySameSpace * widthPerEventContainer // position odd events on the left
+  }
+
+  return xPos
+}
+
+function getEventsThatAreInRangeFrom(
+  sourceIndex: number,
+  rangeAsTimestampSeconds: number
+): MCEvent<any>[] {
+  const sourceTimestamp = events.value[sourceIndex].timestamp
+  const timestampRangeEnd = Math.max(sourceTimestamp - rangeAsTimestampSeconds, 0)
+  return events.value.filter(
+    (value, index) =>
+      sourceIndex !== index &&
+      sourceIndex % 2 === index % 2 &&
+      value.timestamp >= timestampRangeEnd &&
+      value.timestamp <= sourceTimestamp
+  )
+}
+
+const bottomOfSVG = ref(null)
+
+function addEvent() {
+  console.log('add Event')
+
+  const fakeEvent = {
+    challengeID: route.params.challenge_id as string,
+    eventID: 'myEvent',
+    timestamp: timeEstimation.value,
+    eventType: 'noBlockPlace',
+    data: { playerUUID: 'wand555', timestamp: timeEstimation.value }
+  } as MCEvent<any>
+  // events.value.push(fakeEvent)
+
+  (bottomOfSVG.value as any).scrollIntoView({ behavior: 'smooth' })
+  //window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})
+}
+
+function deleteEvent() {
+  events.value.splice(events.value.length - 1, 1)
+}
+
+const triggerConfetti = () => {
+  const duration = 5 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+  const interval = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    // since particles fall down, start a bit higher than random
+    useConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+    });
+    useConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+    });
+  }, 250);
+};
+
+function randomInRange(min: number, max: number) {
+  return Math.random() * (max - min) + min;
+}
+
+const svgHeight = computed(() => {
+  return 100 + lineLengthPerSecond * timeEstimation.value
+})
+
+const {
+  counter: timeEstimation,
+  reset,
+  pause,
+  resume
+} = useInterval(1000, {
+  controls: true,
+  immediate: false,
+  callback(count) {
+    addLine(count)
+  }
+})
+
+const { challengeFileJSON, events, started, paused, finished, running } = storeToRefs(useChallengeState())
+
+const { challengeID, reFetchData, loaded, error, ws } = useFetcher(
+  route.params.challenge_id as string
+)
+
+ws.onopen = (ev) => {
+  console.log('Connected to server!')
+  console.log(ev)
+}
+
+ws.onclose = (ev) => {
+  console.log('Disconnected from server!')
+}
+ws.onmessage = (ev) => {
+  console.log(1)
+  console.log('Received message:', ev.data)
+  const mcEvent = JSON.parse(ev.data) as MCEvent<any>
+  if(false) {
+  // if (mcEvent.action === 'statusRequest') {
+    handleStatusRequestAnswer(mcEvent)
+  }
+  else {
+    setLineTo(mcEvent.timestamp)
+    timeEstimation.value = mcEvent.timestamp // account for any drift that may have occurred on the MC server
+    handleIncomingEvent(mcEvent)
+  }
+
+}
+
+function handleStatusRequestAnswer(answer: any) {
+  const status = answer.status
+  if(status === 'setup') {
+    started.value = false
+  }
+  if(status === 'running') {
+    running.value = true
+    challengeFileJSON.value!.timer = answer.time
+    resume()
+  }
+  if(status === 'paused') {
+    paused.value = true
+    running.value = false
+    challengeFileJSON.value!.timer = answer.time
+    pause()
+  }
+  if(status === 'end') {
+    finished.value = true
+    running.value = false
+    pause()
+  }
+  if(status === 'canceled') {
+    // nothing for now
+  }
+}
+
+function handleIncomingEvent(mcEvent: MCEvent<any>) {
+  let explicitPause = false
+  if (mcEvent.eventType === 'start') {
+    //challengeFileJSON.value!.currentOrder = mcEvent.data.currentOrder
+
+    started.value = true
+    running.value = true
+    resume()
+  } else if (mcEvent.eventType === 'pause') {
+    paused.value = true
+    running.value = false
+    pause()
+
+    explicitPause = true
+  } else if (mcEvent.eventType === 'resume') {
+    //challengeFileJSON.value!.currentOrder = mcEvent.data.currentOrder
+
+    paused.value = false
+    running.value = true
+    resume()
+  } else if (mcEvent.eventType === 'end') {
+    finished.value = true
+    paused.value = false
+    running.value = false
+    pause()
+
+    explicitPause = true
+  } else {
+    events.value.push(mcEvent)
+  }
+  if(!explicitPause) {
+    paused.value = false
+    running.value = true
+    resume()
+  }
+}
+
+watch(loaded, (newValue) => {
+  if (newValue) {
+    console.log('Successfully loaded')
+    timeEstimation.value =
+      events.value.length !== 0 ? events.value[events.value.length - 1].timestamp : 0
+    if(running.value) {
+      resume()
+    }
+  }
+})
+
+watch(finished, (newFinished) => {
+  if(newFinished) {
+    triggerConfetti()
+  }
+})
+
+watch(lines, (newLines) => {
+  if (newLines) {
+    for (let i = 0; i < timeEstimation.value; i++) {
+      addLine(i, true)
+    }
+  }
+})
+</script>

@@ -1,10 +1,14 @@
 package wand555.github.io.challenges.punishments;
 
+import org.bukkit.event.Event;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.JSONConfigGroup;
 import wand555.github.io.challenges.StatusInfo;
+import wand555.github.io.challenges.generated.HealthPunishmentDataConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.generated.PunishmentsDataConfig;
 import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.types.Data;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -19,16 +23,18 @@ public abstract class Punishment implements JSONConfigGroup<PunishmentsConfig>, 
         this.affects = affects;
     }
 
-    public void enforcePunishment(UUID causer) {
+    public <E extends Event, K> Object enforcePunishment(Data<E, K> data) {
         switch(affects) {
-            case CAUSER -> enforceCauserPunishment(causer);
-            case ALL -> enforceAllPunishment(Team.getTeamPlayerIn(context, causer));
-        }
+            case CAUSER -> enforceCauserPunishment(data);
+            case ALL -> enforceAllPunishment(data, Team.getTeamPlayerIn(context, data.playerUUID()));
+        };
+        // insufficient solution... ignore for now
+        return null;
     }
 
-    public abstract void enforceCauserPunishment(UUID causer);
+    public abstract <E extends Event, K> void enforceCauserPunishment(Data<E, K> data);
 
-    public abstract void enforceAllPunishment(Team team);
+    public abstract <E extends Event, K> void enforceAllPunishment(Data<E, K> data, Team team);
 
     public Affects getAffects() {
         return affects;

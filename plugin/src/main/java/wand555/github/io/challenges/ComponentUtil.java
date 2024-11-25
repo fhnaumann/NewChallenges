@@ -24,6 +24,11 @@ public class ComponentUtil {
     public static final String DISPLAY_URL = "builder.mc-challenges.com";
     public static final String ACTUAL_URL = "https://www.%s/".formatted(DISPLAY_URL);
     public static final Component BUILDER_LINK = Component.text(DISPLAY_URL).clickEvent(ClickEvent.openUrl(ACTUAL_URL));
+
+    public static final String LIVE_DISPLAY_URL = "live.mc-challenges.com";
+    public static final String LIVE_ACTUAL_URL = "https://www.%s".formatted(LIVE_DISPLAY_URL);
+    public static final Component LIVE_LINK = Component.text(LIVE_DISPLAY_URL).clickEvent(ClickEvent.openUrl(LIVE_ACTUAL_URL));
+
     public static final Component COLON = Component.text(":");
 
     public static final Function<Component, BinaryOperator<Component>> ACCUMULATOR = spacer -> (component1, component2) -> component1.append(

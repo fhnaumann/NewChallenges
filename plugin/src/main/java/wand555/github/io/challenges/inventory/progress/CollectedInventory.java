@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> implements Listener, ResourceBundleNarrowable {
+public abstract class CollectedInventory<K extends Keyed> implements Listener, ResourceBundleNarrowable {
 
     protected final Context context;
 
@@ -75,7 +75,7 @@ public abstract class CollectedInventory<S extends Data<K>, K extends Keyed> imp
 
         for(int i = 0; i < USABLE_INV_SPACE; i++) {
             int globalIndex = (USABLE_INV_SPACE * page) + i;
-            BaseCollectedItemStack baseCollectedItemStack;
+            BaseCollectedItemStack<?> baseCollectedItemStack;
             if(globalIndex < collectedItemStacks.size()) {
                 baseCollectedItemStack = collectedItemStacks.get(globalIndex);
             } else {

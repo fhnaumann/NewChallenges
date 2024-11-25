@@ -24,12 +24,16 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import wand555.github.io.challenges.commands.ChallengesCommand;
+import wand555.github.io.challenges.commands.LiveCommand;
 import wand555.github.io.challenges.commands.LoadCommand;
 import wand555.github.io.challenges.commands.SkipCommand;
 import wand555.github.io.challenges.commands.team.TeamCommand;
 import wand555.github.io.challenges.criteria.goals.Progressable;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.files.FileManager;
+import wand555.github.io.challenges.live.AWSEventProvider;
+import wand555.github.io.challenges.live.LiveService;
+import wand555.github.io.challenges.live.S3ChallengeUploader;
 import wand555.github.io.challenges.mlg.MLGHandler;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.punishments.InteractionManager;
@@ -139,6 +143,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
                     .withChallengeManager(new ChallengeManager())
                     .withRandom(new Random())
                     .withOfflineTempData(offlineTempData)
+                    .withLiveService(new LiveService(new S3ChallengeUploader(), new AWSEventProvider()))
                     .build();
 
         } catch(IOException e) {
@@ -166,6 +171,7 @@ public class Challenges extends JavaPlugin implements CommandExecutor, Listener 
             ChallengesCommand.registerChallengesCommand(tempContext, challengeFilesHandler);
             TeamCommand.registerTeamCommand(tempContext);
             SkipCommand.registerSkipCommand(tempContext);
+            LiveCommand.registerLiveCommand(tempContext, challengeFilesHandler);
         }
 
 

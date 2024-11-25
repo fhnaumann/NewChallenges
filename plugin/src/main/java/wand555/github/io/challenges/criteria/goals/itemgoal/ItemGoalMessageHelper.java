@@ -10,7 +10,7 @@ import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.Map;
 
-public class ItemGoalMessageHelper extends GoalMessageHelper<ItemData, Material> {
+public class ItemGoalMessageHelper extends GoalMessageHelper<ItemData<?>, Material> {
     public ItemGoalMessageHelper(Context context) {
         super(context);
     }

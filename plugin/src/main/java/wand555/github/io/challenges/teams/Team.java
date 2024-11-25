@@ -135,13 +135,19 @@ public class Team implements Storable<TeamConfig> {
     }
 
     public static Map<Team, List<Goal>> goalsWithSameOrderNumberAcrossAllTeams(ChallengeManager manager) {
-        return manager.getTeams()
-                      .stream()
-                      .collect(Collectors.toMap(Function.identity(),
-                                                team -> Team.goalsWithSameOrderNumber(team.getGoals(),
-                                                                                      team.getCurrentOrder()
-                                                )
-                      ));
+        if(manager.getTeams().isEmpty()) {
+            return Map.of(ALL_TEAM, Team.goalsWithSameOrderNumber(manager.getGoals(), Team.getGlobalCurrentOrder()));
+        }
+        else {
+            return manager.getTeams()
+                          .stream()
+                          .collect(Collectors.toMap(Function.identity(),
+                                                    team -> Team.goalsWithSameOrderNumber(team.getGoals(),
+                                                                                          team.getCurrentOrder()
+                                                    )
+                          ));
+        }
+
     }
 
     private int nextOrderNumber() {
@@ -217,8 +223,13 @@ public class Team implements Storable<TeamConfig> {
 
     public static void setCurrentOrderIfNotYetSetToMinOrderValueThatExistsIn(Team team) {
         team.getGoals().stream().filter(BaseGoal::hasTimer).mapToInt(baseGoal -> baseGoal.getTimer().getOrder()).min().ifPresentOrElse(
-                team::setCurrentOrder,
-                () -> team.setCurrentOrder(-1)
+                orderValue -> {
+                    team.setCurrentOrder(orderValue);
+
+                },
+                () -> {
+                    team.setCurrentOrder(-1);
+                }
         );
     }
 

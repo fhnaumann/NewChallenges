@@ -1,5 +1,7 @@
 package wand555.github.io.challenges.commands;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.IStringTooltip;
@@ -23,17 +25,25 @@ import wand555.github.io.challenges.commands.team.TeamOverviewPrinter;
 import wand555.github.io.challenges.files.ChallengeFilesHandler;
 import wand555.github.io.challenges.files.FileManager;
 import wand555.github.io.challenges.files.ProgressListener;
+import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.utils.ActionHelper;
+import wand555.github.io.challenges.utils.ParameterStringBuilder;
 import wand555.github.io.challenges.utils.ResourceBundleHelper;
 
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -51,18 +61,17 @@ public class LoadCommand {
     private static CompletableFuture<Context> loadingFuture;
 
     public static void registerLoadCommand(Context context, ChallengeFilesHandler challengeFilesHandler) {
-        new CommandAPICommand("load")
-                .withOptionalArguments(customLoadArgument(context, challengeFilesHandler))
-                .executesPlayer((sender, args) -> {
-                    if(loadingFuture != null && !loadingFuture.isDone()) {
-                        throw failWrapperWith(context, "load.already_loading");
-                    }
-                    ChallengeFilesHandler.ChallengeLoadStatus toLoad = args.getByClass(CMD_NODE_NAME,
-                                                                                       ChallengeFilesHandler.ChallengeLoadStatus.class
-                    );
-                    handleLoading(context, challengeFilesHandler, toLoad);
-                })
-                .register();
+        new CommandAPICommand("load").withOptionalArguments(customLoadArgument(context,
+                                                                               challengeFilesHandler
+        )).executesPlayer((sender, args) -> {
+            if(loadingFuture != null && !loadingFuture.isDone()) {
+                throw failWrapperWith(context, "load.already_loading");
+            }
+            ChallengeFilesHandler.ChallengeLoadStatus toLoad = args.getByClass(CMD_NODE_NAME,
+                                                                               ChallengeFilesHandler.ChallengeLoadStatus.class
+            );
+            handleLoading(context, challengeFilesHandler, toLoad);
+        }).register();
 
     }
 
@@ -83,11 +92,10 @@ public class LoadCommand {
     }
 
     private static CompletableFuture<IStringTooltip[]> loadToolTips(ChallengeFilesHandler challengeFilesHandler) {
-        return CompletableFuture.supplyAsync(() -> challengeFilesHandler.getChallengesInFolderStatus().stream()
-                                                                        .map(challengeLoadStatus -> StringTooltip.ofString(
-                                                                                challengeLoadStatus.challengeMetadata().getName(),
-                                                                                challengeLoadStatus.file().getPath()
-                                                                        )).toArray(IStringTooltip[]::new));
+        return CompletableFuture.supplyAsync(() -> challengeFilesHandler.getChallengesInFolderStatus().stream().map(
+                challengeLoadStatus -> StringTooltip.ofString(challengeLoadStatus.challengeMetadata().getName(),
+                                                              challengeLoadStatus.file().getPath()
+                )).toArray(IStringTooltip[]::new));
     }
 
     public static void handleLoading(Context context, ChallengeFilesHandler challengeFilesHandler, @Nullable ChallengeFilesHandler.ChallengeLoadStatus toLoad) throws WrapperCommandSyntaxException {
@@ -131,10 +139,9 @@ public class LoadCommand {
 
     private static void sendLoadingStarted(Context context) {
         // attempt to load the specified challenge
-        ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.start.title"
+        ActionHelper.showAllTitle(ComponentUtil.formatTitleMessage(context.plugin(),
+                                                                   context.resourceBundleContext().miscResourceBundle(),
+                                                                   "challenges.validation.start.title"
         ));
     }
 
@@ -156,22 +163,19 @@ public class LoadCommand {
     }
 
     private static void sendLoadingSuccess(Context context) {
-        Component successTitle = ComponentUtil.formatTitleMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.success.title"
+        Component successTitle = ComponentUtil.formatTitleMessage(context.plugin(),
+                                                                  context.resourceBundleContext().miscResourceBundle(),
+                                                                  "challenges.validation.success.title"
         );
-        Component successSubtitle = ComponentUtil.formatSubTitleMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.success.subtitle"
+        Component successSubtitle = ComponentUtil.formatSubTitleMessage(context.plugin(),
+                                                                        context.resourceBundleContext().miscResourceBundle(),
+                                                                        "challenges.validation.success.subtitle"
         );
         ActionHelper.showAllTitle(successTitle, successSubtitle);
 
-        Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.success.chat"
+        Component successChat = ComponentUtil.formatChallengesPrefixChatMessage(context.plugin(),
+                                                                                context.resourceBundleContext().miscResourceBundle(),
+                                                                                "challenges.validation.success.chat"
         );
         Bukkit.broadcast(successChat);
         if(context.challengeManager().hasTeams()) {
@@ -189,15 +193,13 @@ public class LoadCommand {
     }
 
     private static void sendLoadingFailed(Context context, LoadValidationException e) {
-        Component failureTitle = ComponentUtil.formatSubTitleMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.failure.title"
+        Component failureTitle = ComponentUtil.formatSubTitleMessage(context.plugin(),
+                                                                     context.resourceBundleContext().miscResourceBundle(),
+                                                                     "challenges.validation.failure.title"
         );
-        Component failureSubtitle = ComponentUtil.formatSubTitleMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.failure.subtitle"
+        Component failureSubtitle = ComponentUtil.formatSubTitleMessage(context.plugin(),
+                                                                        context.resourceBundleContext().miscResourceBundle(),
+                                                                        "challenges.validation.failure.subtitle"
         );
         ActionHelper.showAllTitle(failureTitle,
                                   failureSubtitle,
@@ -206,12 +208,11 @@ public class LoadCommand {
                                                     Duration.ofSeconds(1)
                                   )
         );
-        Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.failure.chat",
-                Map.of(),
-                false
+        Component failureChat = ComponentUtil.formatChallengesPrefixChatMessage(context.plugin(),
+                                                                                context.resourceBundleContext().miscResourceBundle(),
+                                                                                "challenges.validation.failure.chat",
+                                                                                Map.of(),
+                                                                                false
         );
         Bukkit.broadcast(failureChat);
         Bukkit.broadcast(e.getValidationResult().asFormattedComponent(context));
@@ -224,10 +225,9 @@ public class LoadCommand {
 
     private static void handleProgress(Context context, double progress) {
         logger.fine("Loading progress: %s".formatted(progress));
-        Component title = ComponentUtil.formatTitleMessage(
-                context.plugin(),
-                context.resourceBundleContext().miscResourceBundle(),
-                "challenges.validation.start.title"
+        Component title = ComponentUtil.formatTitleMessage(context.plugin(),
+                                                           context.resourceBundleContext().miscResourceBundle(),
+                                                           "challenges.validation.start.title"
         );
         Component subtitle = progressBar(context, progress);
         ActionHelper.showAllTitle(title,
@@ -257,44 +257,58 @@ public class LoadCommand {
         return completed.append(missing);
     }
 
-    public static void loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) {
+    public static CompletableFuture<Context> loadFile(Context context, ChallengeFilesHandler challengeFilesHandler, File toLoad) {
         sendLoadingStarted(context);
         resetScoreboard();
-        loadingFuture = FileManager.readFromFile(toLoad, context, progress -> handleProgress(context, progress))
-                   .exceptionally(throwable -> {
-                       if(throwable instanceof LoadValidationException loadValidationException) {
-                           sendLoadingFailed(context, loadValidationException);
-                           return context;
-                       } else {
-                           logger.severe("Loading failed: %s".formatted(throwable.getMessage()));
-                           return null;
-                       }
-                   })
+        loadingFuture = FileManager.readFromFile(toLoad,
+                                                 context,
+                                                 progress -> handleProgress(context, progress)
+        ).exceptionally(throwable -> {
+            if(throwable instanceof CompletionException completionException && completionException.getCause() instanceof LoadValidationException loadValidationException) {
+                sendLoadingFailed(context, loadValidationException);
+                return context;
+            } else {
+                logger.severe("Loading failed: %s".formatted(throwable.getMessage()));
+                return null;
+            }
+        }).whenComplete((newContext, throwable) -> {
+            if(newContext == null) {
+                return;
+            }
+            reassignContext(context, newContext);
+            challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
 
-                   .whenComplete((newContext, throwable) -> {
-                       if(newContext == null) {
-                           return;
-                       }
-                       reassignContext(context, newContext);
-                       challengeFilesHandler.setFileNameBeingPlayed(toLoad.getName());
+            // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
+            // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
+            // restarting the server
+            if(context.plugin().urlReminder != null) {
+                context.plugin().urlReminder.stop();
+                context.plugin().urlReminder = null;
+            }
 
-                       // URL Reminder no longer used. Setting it to null causes the main timer runnable to run.
-                       // It may already be null if this is the second time a challenge is unloaded and another one is loaded without
-                       // restarting the server
-                       if(context.plugin().urlReminder != null) {
-                           context.plugin().urlReminder.stop();
-                           context.plugin().urlReminder = null;
-                       }
-                       sendLoadingSuccess(context);
-                   });
+            /*
+            Immediately writing the loaded file again is necessary, because the server may set some values when the file
+            is loaded for the first time. When using a live challenge, ideally only the challenge file after loading should
+            be uploaded as it contains the necessary values.
+             */
+            try {
+                FileManager.writeToFile(context.challengeManager(), challengeFilesHandler.createWriter());
+            } catch(IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            sendLoadingSuccess(context);
+
+            // Set challenge ID for live events
+            context.liveService().eventProvider().setChallengeID(context.challengeManager().getChallengeMetadata().getChallengeID()).join();
+        });
+        return loadingFuture;
     }
 
+
     private static @Nullable ChallengeFilesHandler.ChallengeLoadStatus challengeName2Filename(String challengeName, List<ChallengeFilesHandler.ChallengeLoadStatus> statuses) {
-        return statuses.stream()
-                       .filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(
-                               challengeName))
-                       .findAny()
-                       .orElse(null);
+        return statuses.stream().filter(challengeLoadStatus -> challengeLoadStatus.challengeMetadata() != null && challengeLoadStatus.challengeMetadata().getName().equals(
+                challengeName)).findAny().orElse(null);
     }
 
     private static boolean anotherChallengeIsOngoing(ChallengeManager manager) {
