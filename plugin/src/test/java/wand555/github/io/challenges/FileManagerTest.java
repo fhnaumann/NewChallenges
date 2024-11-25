@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.files.FileManager;
+import wand555.github.io.challenges.generated.ChallengeMetadata;
 import wand555.github.io.challenges.mapping.*;
 import wand555.github.io.challenges.criteria.rules.noblockbreak.BlockBreakRule;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
@@ -61,6 +62,7 @@ public class FileManagerTest {
         challengeManager = mock(ChallengeManager.class);
         when(challengeManager.getGoals()).thenReturn(List.of());
         when(challengeManager.getTeams()).thenReturn(List.of());
+        when(challengeManager.getChallengeMetadata()).thenReturn(new ChallengeMetadata());
 
         context = new Context(plugin,
                               new ResourceBundleContext(bundle, CriteriaUtil.loadGoalResourceBundle(), null, null, null, null),
@@ -93,7 +95,7 @@ public class FileManagerTest {
                 "integration/full1.json"), Object.class));
         File file = Paths.get(FileManagerTest.class.getResource("integration/full1.json").toURI()).toFile();
         assertDoesNotThrow(() -> FileManager.readFromFile(file, context, progress -> {}));
-        FileManager.readFromFile(file, context, progress -> {});
+        FileManager.readFromFile(file, context, progress -> {}).join();
         // TODO create expectations programmatically and compare
         assertDoesNotThrow(() -> FileManager.writeToFile(challengeManager, new StringWriter()));
     }
