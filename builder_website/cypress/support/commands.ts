@@ -185,7 +185,7 @@ function setKillAllMobs(killAllMobs: boolean): void {
 
 Cypress.Commands.add('configureMobGoal', (mobGoalConfig?: MobGoalConfig, allMobs?: boolean) => {
   cy.configureGoal('mobGoal')
-  clearCollectableSelection()
+  //clearCollectableSelection()
   mobGoalConfig?.mobs?.forEach(value => addCollectable(value))
   if (mobGoalConfig?.fixedOrder !== undefined) {
     setFixedOrder(mobGoalConfig.fixedOrder)
@@ -216,7 +216,6 @@ Cypress.Commands.add('configureBlockPlaceGoal', (blockPlaceGoalConfig?: BlockPla
 
 Cypress.Commands.add('configureBlockBreakGoal', (blockBreakGoalConfig?: BlockBreakGoalConfig, allBlocks?: boolean) => {
   cy.configureGoal('blockBreakGoal')
-  clearCollectableSelection()
   blockBreakGoalConfig?.broken?.forEach(value => addCollectable(value))
   if (blockBreakGoalConfig?.fixedOrder !== undefined) {
     setFixedOrder(blockBreakGoalConfig.fixedOrder)
