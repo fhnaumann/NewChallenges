@@ -1,0 +1,36 @@
+[
+	{
+		"action": "event",
+		"challenge_ID": "lambda_fetch_events_block_break_goal",
+		"eventID": "e66f7265-ca5c-48d7-bfbb-c7720da1d4b0",
+		"timestamp": 80,
+		"eventType": "blockBreakGoal",
+		"data": {
+			"broken": "stone",
+			"player": {
+				"playerUUID": "c41c9dcf-20cb-406d-aacd-bde2320283c6",
+				"playerName": "wand555",
+				"skinTextureURL": "http://textures.minecraft.net/texture/78c0ae51af17c299a4cff889054f04db731f490483614fa14588c45822fb6970"
+			},
+			"amount": 4,
+			"timestamp": 80
+		}
+	},
+		{
+		"action": "event",
+		"challenge_ID": "lambda_fetch_events_block_break_goal",
+		"eventID": "e66f7265-ca5c-48d7-bfbb-c7720da1d4b0",
+		"timestamp": 100,
+		"eventType": "blockBreakGoal",
+		"data": {
+			"broken": "dirt",
+			"player": {
+				"playerUUID": "c41c9dcf-20cb-406d-aacd-bde2320283c6",
+				"playerName": "wand555",
+				"skinTextureURL": "http://textures.minecraft.net/texture/78c0ae51af17c299a4cff889054f04db731f490483614fa14588c45822fb6970"
+			},
+			"amount": 1,
+			"timestamp": 100
+		}
+	}
+]

@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "challengeID": "from-examples",
     "name": "no_death_end_challenge_mob_goal_every_mob_once_fixed_order",
     "whenCreated": "2024-06-23T14:17:48.131Z",
     "lastModified": "2024-06-23T14:17:48.131Z",
@@ -22,6 +23,7 @@
   },
   "goals": {
     "mobGoal": {
+      "fixedOrder": true,
       "mobs": [
         {
           "collectableName": "elder_guardian",
@@ -351,8 +353,7 @@
           "collectableName": "player",
           "collectableData": {}
         }
-      ],
-      "fixedOrder": true
+      ]
     }
   },
   "settings": {}

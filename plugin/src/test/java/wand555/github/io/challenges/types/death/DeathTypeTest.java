@@ -16,6 +16,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.generated.MCEventAlias;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.mapping.DeathMessage;
 
 import java.io.IOException;
@@ -36,6 +38,8 @@ public class DeathTypeTest {
     private Trigger<DeathData> mockedTrigger;
     private static List<DeathMessage> deathMessages;
 
+    private static PlayerDeathEvent emptyMockEvent;
+
     @BeforeAll
     public static void beforeAll() throws IOException {
         deathMessages = CriteriaUtil.loadDeathMessages().getData();
@@ -55,10 +59,14 @@ public class DeathTypeTest {
         Context mockedContext = mock(Context.class);
         when(mockedContext.plugin()).thenReturn(plugin);
         when(mockedContext.challengeManager()).thenReturn(manager);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(mockedContext.liveService()).thenReturn(mockLiveService);
         DataSourceContext mockedDataSourceContext = mock(DataSourceContext.class);
         when(mockedDataSourceContext.deathMessageList()).thenReturn(deathMessages);
         when(mockedContext.dataSourceContext()).thenReturn(mockedDataSourceContext);
-        deathType = spy(new DeathType(mockedContext, mockedTriggerCheck, mockedTrigger));
+        deathType = spy(new DeathType(mockedContext, mockedTriggerCheck, mockedTrigger, MCEventAlias.EventType.NO_DEATH));
+
+        emptyMockEvent = mock(PlayerDeathEvent.class);
     }
 
     @AfterEach
@@ -71,7 +79,7 @@ public class DeathTypeTest {
     public void testPlaceholdersMapped(DeathMessage expectedDeathMessage, PlayerDeathEvent event) {
         deathType.onPlayerResurrectEvent(noTotem(event.getPlayer()));
         deathType.onPlayerDeathEvent(event);
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(event.getPlayer(), expectedDeathMessage));
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(emptyMockEvent, 0, event.getPlayer(), expectedDeathMessage));
         //assertEquals(expectedDeathMessage, event.getDeathMessage());
     }
 
@@ -113,7 +121,7 @@ public class DeathTypeTest {
         PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
         deathType.onPlayerResurrectEvent(noTotem(player));
         deathType.onPlayerDeathEvent(deathEvent);
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(deathEvent.getPlayer(), expectedDeathMessage));
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(emptyMockEvent, 0, deathEvent.getPlayer(), expectedDeathMessage));
     }
 
     @Test
@@ -130,7 +138,7 @@ public class DeathTypeTest {
         PlayerDeathEvent deathEvent = wrap(player, Component.translatable(expectedKey));
         deathType.onPlayerResurrectEvent(totem(player));
         deathType.onPlayerDeathEvent(deathEvent);
-        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(deathEvent.getPlayer(),
+        verify(mockedTrigger, times(1)).actOnTriggered(new DeathData(emptyMockEvent, 0, deathEvent.getPlayer(),
                                                                      1,
                                                                      expectedDeathMessage,
                                                                      true

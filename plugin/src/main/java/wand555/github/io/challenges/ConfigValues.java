@@ -8,12 +8,15 @@ import java.util.List;
 public class ConfigValues {
 
     public static final Value<Boolean> DEBUG = of("debug", false);
+
+    public static final Value<Boolean> LIVE_WEBSITE = of("live_website", false);
     public static final Value<List<String>> WORLDS = of("worlds", List.of("world", "world_nether", "world_the_end"));
 
     public static final Value<String> MLG_WORLD = of("mlgWorld", "mlgWorld");
 
     public static void addDefaults(FileConfiguration fileConfiguration) {
         addDefault(fileConfiguration, DEBUG);
+        addDefault(fileConfiguration, LIVE_WEBSITE);
         addDefault(fileConfiguration, WORLDS);
         addDefault(fileConfiguration, MLG_WORLD);
     }

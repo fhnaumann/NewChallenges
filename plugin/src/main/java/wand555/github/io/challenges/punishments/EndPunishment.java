@@ -3,12 +3,15 @@ package wand555.github.io.challenges.punishments;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
 import wand555.github.io.challenges.generated.EndPunishmentConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.types.Data;
 
 import java.util.Map;
 import java.util.UUID;
@@ -29,7 +32,13 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
     }
 
     @Override
-    public void enforceCauserPunishment(UUID causer) {
+    public Component getCurrentStatus() {
+        return null;
+    }
+
+    @Override
+    public <E extends Event, K> void enforceCauserPunishment(Data<E, K> data) {
+        UUID causer = data.playerUUID();
         if(Bukkit.getPlayer(causer) != null) {
             Bukkit.getPlayer(causer).setGameMode(GameMode.SPECTATOR);
             Component toSend = ComponentUtil.formatChatMessage(
@@ -40,17 +49,11 @@ public class EndPunishment extends Punishment implements Storable<EndPunishmentC
             );
             context.plugin().getServer().broadcast(toSend);
         }
-
     }
 
     @Override
-    public void enforceAllPunishment(Team team) {
+    public <E extends Event, K> void enforceAllPunishment(Data<E, K> data, Team team) {
         context.challengeManager().failChallengeFor(team);
         // no own message, because the messages about the challenge failure will be sent anyway.
-    }
-
-    @Override
-    public Component getCurrentStatus() {
-        return null;
     }
 }

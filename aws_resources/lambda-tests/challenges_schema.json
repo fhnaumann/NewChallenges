@@ -1,0 +1,1819 @@
+{
+    "$ref": "#/definitions/Model",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Affects": {
+            "enum": [
+                "all",
+                "causer"
+            ],
+            "type": "string"
+        },
+        "BasePunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "BlockBreakDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "broken": {
+                    "description": "The block (as a material code) that was broken.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "broken",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "broken",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "BlockBreakGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "broken": {
+                    "default": [],
+                    "description": "The blocks (more specifically materials) that need to be broken to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "broken",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
+            "type": "object"
+        },
+        "BlockPlaceDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "placed": {
+                    "description": "The block (as a material code) that was placed.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "placed",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "placed",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "BlockPlaceGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "placed": {
+                    "default": [],
+                    "description": "The blocks (more specifically materials) that need to be placed to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "placed",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
+            "type": "object"
+        },
+        "CancelPunishmentConfig": {
+            "additionalProperties": false,
+            "propertyOrder": [],
+            "type": "object"
+        },
+        "CancelPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "ChallengeMetadata": {
+            "additionalProperties": false,
+            "properties": {
+                "builderMCVersion": {
+                    "description": "MC Version the challenge builder targets at the time of creation.",
+                    "type": "string"
+                },
+                "builderVersion": {
+                    "description": "Version of the challenge builder used at the time of creation.",
+                    "type": "string"
+                },
+                "challengeID": {
+                    "description": "Unique identifies the challenge across all challenges.",
+                    "type": "string"
+                },
+                "createdBy": {
+                    "default": "-",
+                    "description": "Author of the challenge. The user who configured and built the challenge.",
+                    "type": "string"
+                },
+                "lastModified": {
+                    "description": "When the challenge was last modified. Is always set by the challenge builder.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the challenge. Can be set by the user. Used to differentiate between challenges and to load a specific challenge.",
+                    "type": "string"
+                },
+                "pluginMCVersion": {
+                    "description": "MC Version the minecraft plugin targets at the time of loading the first time.",
+                    "type": "string"
+                },
+                "pluginVersion": {
+                    "description": "Version of the minecraft plugin used at the time of loading the first time.",
+                    "type": "string"
+                },
+                "whenCreated": {
+                    "description": "When the challenge was first initially created. Is always set by the challenge builder.",
+                    "format": "date-time",
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "challengeID",
+                "name",
+                "whenCreated",
+                "lastModified",
+                "createdBy",
+                "builderVersion",
+                "pluginVersion",
+                "builderMCVersion",
+                "pluginMCVersion"
+            ],
+            "required": [
+                "builderMCVersion",
+                "builderVersion",
+                "challengeID",
+                "createdBy",
+                "name",
+                "pluginMCVersion",
+                "pluginVersion"
+            ],
+            "type": "object"
+        },
+        "CollectableDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amountNeeded": {
+                    "default": 1,
+                    "description": "The amount that needs to be collected.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "completion": {
+                    "$ref": "#/definitions/CompletionConfig",
+                    "description": "Contains information about the completion progress. This includes player names and the amount each player has contributed to the completion of this collectable."
+                },
+                "currentAmount": {
+                    "default": 0,
+                    "description": "The amount that is currently collected.",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "amountNeeded",
+                "currentAmount",
+                "completion"
+            ],
+            "type": "object"
+        },
+        "CollectableEntryConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "collectableData": {
+                    "$ref": "#/definitions/CollectableDataConfig",
+                    "default": {},
+                    "description": "The data that is meant to be collected for this specific collectable"
+                },
+                "collectableName": {
+                    "description": "The name of the collectable. This could, for example, be \"PIG\" (entity), \"STONE\" (material).",
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "collectableName",
+                "collectableData"
+            ],
+            "required": [
+                "collectableData",
+                "collectableName"
+            ],
+            "type": "object"
+        },
+        "CompletionConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "contributors": {
+                    "$ref": "#/definitions/ContributorsConfig",
+                    "description": "The player (names) that contributed to completing this collectable."
+                },
+                "whenCollectedSeconds": {
+                    "default": -1,
+                    "description": "The time in seconds (since the start) that it took to complete this collectable. -1 indicates that is has not been collected (e.g. 'complete' is false).",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "whenCollectedSeconds",
+                "contributors"
+            ],
+            "required": [
+                "whenCollectedSeconds"
+            ],
+            "type": "object"
+        },
+        "ContributorsConfig": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "propertyOrder": [],
+            "type": "object"
+        },
+        "CraftingDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "internallyCrafted": {
+                    "description": "Flag to distinguish when a crafting recipe has been crafted. From the recipes perspective there's no difference\nbetween crafting in a 3x3 crafting table or the 2x2 internal player crafting grid.",
+                    "type": "boolean"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "recipeCrafted": {
+                    "description": "The recipe that was crafted",
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "recipeCrafted",
+                "internallyCrafted",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "internallyCrafted",
+                "player",
+                "recipeCrafted",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "CraftingGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "crafted": {
+                    "default": [],
+                    "description": "The crafting recipes that need to be crafted to beat this goal. This also includes smelting, cooking over a campfire, etc.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "crafted",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
+            "type": "object"
+        },
+        "CustomHealthSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "hearts": {
+                    "default": 20,
+                    "description": "The maximum number of hearts the players play with.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "hearts"
+            ],
+            "type": "object"
+        },
+        "DeathDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "deathMessageKey": {
+                    "description": "Key to identify the death message.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "deathMessageKey",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "deathMessageKey",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "DeathGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "countTotem": {
+                    "default": false,
+                    "description": "Determines if the usage of a totem counts towards the deathAmount.",
+                    "type": "boolean"
+                },
+                "deathAmount": {
+                    "$ref": "#/definitions/CollectableDataConfig",
+                    "default": {},
+                    "description": "The amount of deaths required to complete the goal."
+                },
+                "deathMessages": {
+                    "default": [],
+                    "description": "The death messages that need to be reached to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "deathAmount",
+                "countTotem",
+                "deathMessages",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
+            "type": "object"
+        },
+        "DeathPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "type": "object"
+        },
+        "DeathPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "EnabledRules": {
+            "additionalProperties": false,
+            "properties": {
+                "noBlockBreak": {
+                    "$ref": "#/definitions/NoBlockBreakRuleConfig"
+                },
+                "noBlockPlace": {
+                    "$ref": "#/definitions/NoBlockPlaceRuleConfig"
+                },
+                "noCrafting": {
+                    "$ref": "#/definitions/NoCraftingRuleConfig"
+                },
+                "noDeath": {
+                    "$ref": "#/definitions/NoDeathRuleConfig"
+                },
+                "noItem": {
+                    "$ref": "#/definitions/NoItemCollectRuleConfig"
+                },
+                "noMobKill": {
+                    "$ref": "#/definitions/NoMobKillRuleConfig"
+                }
+            },
+            "propertyOrder": [
+                "noBlockPlace",
+                "noBlockBreak",
+                "noMobKill",
+                "noItem",
+                "noDeath",
+                "noCrafting"
+            ],
+            "type": "object"
+        },
+        "EndPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "type": "object"
+        },
+        "EndPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "FloorIsLavaSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "lavaRemainsPermanently": {
+                    "default": false,
+                    "description": "Determines if lava remains permanently or is transformed back to the original block.",
+                    "type": "boolean"
+                },
+                "timeToNextBlockChangeInTicks": {
+                    "default": 30,
+                    "description": "The time until regular block -> magma block OR magma block -> lava in ticks.",
+                    "maximum": 200,
+                    "minimum": 10,
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "timeToNextBlockChangeInTicks",
+                "lavaRemainsPermanently"
+            ],
+            "type": "object"
+        },
+        "GoalTimer": {
+            "additionalProperties": false,
+            "properties": {
+                "maxTimeSeconds": {
+                    "default": 600,
+                    "description": "The upper bound.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "minTimeSeconds": {
+                    "default": 180,
+                    "description": "The lower bound.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "order": {
+                    "default": -1,
+                    "description": "Defines the ordering of other timeable goals within the same challenge.\nGoals with smaller order values are required to be completed before goals with\nlarger ones. Equal order value means that they have to be completed simultaneously.\nThe order number (= the progress in the challenge) is incremented when\nall goals for the \"current\" order number are completed. If multiple goals are currently\nrunning simultaneously, then it only increases if all of these are completed.\nGoals with no order number (= order number is -1) don't have a time limit and can be\ncompleted at any time during the active challenge.",
+                    "type": "integer"
+                },
+                "startingTime": {
+                    "description": "The time that was determined by the server as the starting point. It is chosen randomly between minSecondsTime and maxSecondsTime.\n-1 is the default value set by the builder website.\nThis indicates that the server did not calculate the actual time yet and will do so on the next server start.",
+                    "type": "integer"
+                },
+                "time": {
+                    "description": "The actual timer decrementing every second when the challenge is running. -1 is the default value set by the builder website.\nThis indicates that the server did not calculate the actual time yet and will do so on the next server start.",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "time",
+                "startingTime",
+                "order",
+                "minTimeSeconds",
+                "maxTimeSeconds"
+            ],
+            "required": [
+                "startingTime",
+                "time"
+            ],
+            "type": "object"
+        },
+        "GoalsConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "blockBreakGoal": {
+                    "$ref": "#/definitions/BlockBreakGoalConfig"
+                },
+                "blockPlaceGoal": {
+                    "$ref": "#/definitions/BlockPlaceGoalConfig"
+                },
+                "craftingGoal": {
+                    "$ref": "#/definitions/CraftingGoalConfig"
+                },
+                "deathGoal": {
+                    "$ref": "#/definitions/DeathGoalConfig"
+                },
+                "itemGoal": {
+                    "$ref": "#/definitions/ItemGoalConfig"
+                },
+                "mobGoal": {
+                    "$ref": "#/definitions/MobGoalConfig"
+                }
+            },
+            "propertyOrder": [
+                "blockPlaceGoal",
+                "blockBreakGoal",
+                "mobGoal",
+                "itemGoal",
+                "deathGoal",
+                "craftingGoal"
+            ],
+            "type": "object"
+        },
+        "HealthPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                },
+                "heartsLost": {
+                    "default": 1,
+                    "description": "The amount of hearts (half hearts) that are subtracted.",
+                    "maximum": 10,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "randomizeHeartsLost": {
+                    "default": false,
+                    "description": "If true, the amount of hearts (half hearts) that are subtracted per punishment are\nrandomized every time.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "heartsLost",
+                "randomizeHeartsLost",
+                "affects"
+            ],
+            "type": "object"
+        },
+        "HealthPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "actualHeartsLost": {
+                    "description": "The actual amount of hearts that were lost. Is either the 'heartsLost' or a random value.",
+                    "type": "integer"
+                },
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "actualHeartsLost",
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "actualHeartsLost",
+                "affects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "ItemDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "item": {
+                    "description": "The item (as a material code) that was interacted with.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "item",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "item",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "ItemGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "items": {
+                    "default": [],
+                    "description": "The items that need to be collected to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "items",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
+            "type": "object"
+        },
+        "LiveInterfaces": {
+            "additionalProperties": false,
+            "properties": {
+                "blockBreakData": {
+                    "$ref": "#/definitions/BlockBreakDataConfig"
+                },
+                "blockPlaceData": {
+                    "$ref": "#/definitions/BlockPlaceDataConfig"
+                },
+                "cancelPunishmentData": {
+                    "$ref": "#/definitions/CancelPunishmentDataConfig"
+                },
+                "craftingData": {
+                    "$ref": "#/definitions/CraftingDataConfig"
+                },
+                "deathData": {
+                    "$ref": "#/definitions/DeathDataConfig"
+                },
+                "deathPunishmentData": {
+                    "$ref": "#/definitions/DeathPunishmentDataConfig"
+                },
+                "endPunishmentData": {
+                    "$ref": "#/definitions/EndPunishmentDataConfig"
+                },
+                "healthPunishmentData": {
+                    "$ref": "#/definitions/HealthPunishmentDataConfig"
+                },
+                "itemData": {
+                    "$ref": "#/definitions/ItemDataConfig"
+                },
+                "mcEvent": {
+                    "$ref": "#/definitions/MCEventAlias"
+                },
+                "mlgSettingData": {
+                    "$ref": "#/definitions/MLGSettingDataConfig"
+                },
+                "mobData": {
+                    "$ref": "#/definitions/MobDataConfig"
+                },
+                "noBlockBreakRuleData": {
+                    "$ref": "#/definitions/NoBlockBreakRuleDataConfig"
+                },
+                "randomEffectPunishmentData": {
+                    "$ref": "#/definitions/RandomEffectPunishmentDataConfig"
+                },
+                "suppressPunishmentDataConfig": {
+                    "$ref": "#/definitions/SuppressPunishmentDataConfig"
+                },
+                "teamData": {
+                    "$ref": "#/definitions/TeamDataConfig"
+                }
+            },
+            "propertyOrder": [
+                "mcEvent",
+                "noBlockBreakRuleData",
+                "blockBreakData",
+                "blockPlaceData",
+                "craftingData",
+                "deathData",
+                "itemData",
+                "mobData",
+                "cancelPunishmentData",
+                "suppressPunishmentDataConfig",
+                "endPunishmentData",
+                "healthPunishmentData",
+                "deathPunishmentData",
+                "randomEffectPunishmentData",
+                "mlgSettingData",
+                "teamData"
+            ],
+            "type": "object"
+        },
+        "MCEventAlias": {
+            "additionalProperties": false,
+            "properties": {
+                "challengeID": {
+                    "description": "The unique ID to identify the challenge this event originated from.",
+                    "type": "string"
+                },
+                "data": {
+                    "description": "Potential additional data involved."
+                },
+                "eventID": {
+                    "description": "The unique ID to identify the event in this challenge.",
+                    "type": "string"
+                },
+                "eventType": {
+                    "description": "The event type. Depending on the type, additional data may be transmitted.",
+                    "enum": [
+                        "blockBreakGoal",
+                        "blockPlaceGoal",
+                        "craftingGoal",
+                        "customHealthSetting",
+                        "deathGoal",
+                        "end",
+                        "floorIsLavaSetting",
+                        "itemGoal",
+                        "mlgSetting",
+                        "mobGoal",
+                        "noBlockBreak",
+                        "noBlockPlace",
+                        "noCrafting",
+                        "noDeath",
+                        "noItem",
+                        "noMobKill",
+                        "pause",
+                        "resume",
+                        "start",
+                        "ultraHardcoreSetting"
+                    ],
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "challengeID",
+                "eventID",
+                "timestamp",
+                "eventType",
+                "data"
+            ],
+            "required": [
+                "challengeID",
+                "eventID",
+                "eventType",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "MLGPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                },
+                "height": {
+                    "default": 50,
+                    "description": "The height the MLG takes place.",
+                    "maximum": 100,
+                    "minimum": 10,
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "height",
+                "affects"
+            ],
+            "type": "object"
+        },
+        "MLGSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "height": {
+                    "default": 50,
+                    "description": "The height the MLG takes place.",
+                    "maximum": 100,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "maxTimeSeconds": {
+                    "default": 600,
+                    "description": "The upper bound.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "minTimeSeconds": {
+                    "default": 180,
+                    "description": "The lower bound.",
+                    "maximum": 86400,
+                    "minimum": 10,
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "height",
+                "minTimeSeconds",
+                "maxTimeSeconds"
+            ],
+            "type": "object"
+        },
+        "MLGSettingDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "failedMLG": {
+                    "description": "List of players that failed the MLG",
+                    "items": {
+                        "$ref": "#/definitions/PlayerConfig"
+                    },
+                    "type": "array"
+                },
+                "success": {
+                    "description": "Indicates if all players beat the MLG.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "success",
+                "failedMLG"
+            ],
+            "required": [
+                "failedMLG",
+                "success"
+            ],
+            "type": "object"
+        },
+        "MobDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "mob": {
+                    "description": "The entity (as an entity type code) that was interacted with.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "mob",
+                "player",
+                "amount",
+                "timestamp"
+            ],
+            "required": [
+                "amount",
+                "mob",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "MobGoalConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "complete": {
+                    "default": false,
+                    "description": "If the goal is completed.",
+                    "type": "boolean"
+                },
+                "fixedOrder": {
+                    "default": false,
+                    "description": "If true, all selected elements have to be collected/killed in a specific order.",
+                    "type": "boolean"
+                },
+                "goalTimer": {
+                    "$ref": "#/definitions/GoalTimer"
+                },
+                "mobs": {
+                    "default": [],
+                    "description": "The mobs that need to be killed to beat this goal.",
+                    "items": {
+                        "$ref": "#/definitions/CollectableEntryConfig"
+                    },
+                    "type": "array"
+                },
+                "shuffled": {
+                    "default": false,
+                    "description": "Flag to remember whether the collectables have been shuffled or not.\nCan only ever be true if 'fixedOrder' is set to true.\nThe builder website will always set this value to false (or leave it as default).\nComing from the builder website to the minecraft server for the first time, then 'shuffled'\nwill be false, which indicates to the server to shuffle the collectables once, set 'shuffled'\nto true and therefore never re-shuffle it again (on subsequent server starts).",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "mobs",
+                "complete",
+                "goalTimer",
+                "fixedOrder",
+                "shuffled"
+            ],
+            "type": "object"
+        },
+        "Model": {
+            "additionalProperties": false,
+            "properties": {
+                "_ignore": {
+                    "$ref": "#/definitions/LiveInterfaces"
+                },
+                "currentOrder": {
+                    "default": -1,
+                    "description": "ONLY RELEVANT IF THERE ARE NO TEAMS! Otherwise, look for the same property in an individual team.\n\nThe number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
+                    "type": "integer"
+                },
+                "goals": {
+                    "$ref": "#/definitions/GoalsConfig"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/ChallengeMetadata",
+                    "description": "Metadata about the challenge itself and how it was configured and built."
+                },
+                "nextChallenge": {
+                    "$ref": "#/definitions/Model"
+                },
+                "rules": {
+                    "$ref": "#/definitions/RulesConfig"
+                },
+                "settings": {
+                    "$ref": "#/definitions/SettingsConfig"
+                },
+                "teams": {
+                    "default": [],
+                    "description": "Contains the team names for this challenge. If at least one team exists, then the goals from the goals config\nwill be moved to here, where each team has their own goals' config.\nIn a way this list may be used check if this challenge has teams:\nList is empty     -> No teams, everything goal related is in the goals property\nList is not empty -> Teams, everything goal related is in the goals property for the individual teams. The \"global\"\n                     goals property is empty/undefined.",
+                    "items": {
+                        "$ref": "#/definitions/TeamConfig"
+                    },
+                    "type": "array"
+                },
+                "timer": {
+                    "default": 0,
+                    "description": "The time (in seconds) that has passed since the challenge was started.",
+                    "minimum": 0,
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "rules",
+                "goals",
+                "settings",
+                "teams",
+                "currentOrder",
+                "timer",
+                "metadata",
+                "nextChallenge",
+                "_ignore"
+            ],
+            "required": [
+                "metadata"
+            ],
+            "type": "object"
+        },
+        "NoBlockBreakRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "NoBlockBreakRuleDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "default": 1,
+                    "description": "The number of \"events\" this data represents. For example, some goals allow to skip parts of it. In this case the\nnumber will be different from 1",
+                    "type": "integer"
+                },
+                "appliedPunishments": {
+                    "items": {
+                        "$ref": "#/definitions/BasePunishmentDataConfig"
+                    },
+                    "type": "array"
+                },
+                "broken": {
+                    "description": "The block (as a material code) that was broken.",
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player involved in the event (the \"causer\")."
+                },
+                "timestamp": {
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "broken",
+                "player",
+                "amount",
+                "timestamp",
+                "appliedPunishments"
+            ],
+            "required": [
+                "amount",
+                "appliedPunishments",
+                "broken",
+                "player",
+                "timestamp"
+            ],
+            "type": "object"
+        },
+        "NoBlockPlaceRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "NoCraftingRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "campfireCooking": {
+                    "default": true,
+                    "description": "Determines if cooking an item in a campfire is allowed or not.",
+                    "type": "boolean"
+                },
+                "exemptions": {
+                    "default": [],
+                    "description": "List of crafting results (materials) that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "furnaceSmelting": {
+                    "default": true,
+                    "description": "Determines if smelting an item in a furnace (furnace, blast-furnace, smoker) is allowed or not.",
+                    "type": "boolean"
+                },
+                "internalCrafting": {
+                    "default": false,
+                    "description": "Determines if crafting in the internal 2x2 crafting grid is allowed or not.",
+                    "type": "boolean"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "smithing": {
+                    "default": true,
+                    "description": "Determines if using a smithing table is allowed or not.",
+                    "type": "boolean"
+                },
+                "stonecutter": {
+                    "default": false,
+                    "description": "Determines if using a stonecutter is allowed or not.",
+                    "type": "boolean"
+                },
+                "workbenchCrafting": {
+                    "default": false,
+                    "description": "Determines if crafting in the 3x3 crafting grid is allowed or not.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "exemptions",
+                "internalCrafting",
+                "workbenchCrafting",
+                "furnaceSmelting",
+                "campfireCooking",
+                "smithing",
+                "stonecutter",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "NoDeathRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "ignoreTotem": {
+                    "default": true,
+                    "description": "Determines if the usage of a totem triggers the punishments or not.\ntrue = no punishments are triggered\nfalse = punishments are triggered",
+                    "type": "boolean"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "propertyOrder": [
+                "ignoreTotem",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "NoItemCollectRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of materials that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "NoMobKillRuleConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "exemptions": {
+                    "default": [],
+                    "description": "List of entity types that are exempted from the rule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "punishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                }
+            },
+            "propertyOrder": [
+                "exemptions",
+                "punishments"
+            ],
+            "type": "object"
+        },
+        "PlayerConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "playerName": {
+                    "type": "string"
+                },
+                "playerUUID": {
+                    "type": "string"
+                },
+                "skinTextureURL": {
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "playerUUID",
+                "playerName",
+                "skinTextureURL"
+            ],
+            "required": [
+                "playerName",
+                "playerUUID",
+                "skinTextureURL"
+            ],
+            "type": "object"
+        },
+        "PotionEffect": {
+            "additionalProperties": false,
+            "properties": {
+                "amplifier": {
+                    "description": "The amplifier of the effect.",
+                    "type": "integer"
+                },
+                "code": {
+                    "description": "The code to identify the potion effect type.",
+                    "type": "string"
+                },
+                "duration": {
+                    "description": "The duration of the effect (in ticks).",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "code",
+                "amplifier",
+                "duration"
+            ],
+            "required": [
+                "amplifier",
+                "code",
+                "duration"
+            ],
+            "type": "object"
+        },
+        "PunishmentName": {
+            "enum": [
+                "cancelPunishment",
+                "deathPunishment",
+                "endPunishment",
+                "healthPunishment",
+                "mlgPunishment",
+                "randomEffectPunishment",
+                "randomItemPunishment",
+                "suppressPunishment"
+            ],
+            "type": "string"
+        },
+        "PunishmentsConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "cancelPunishment": {
+                    "$ref": "#/definitions/CancelPunishmentConfig"
+                },
+                "deathPunishment": {
+                    "$ref": "#/definitions/DeathPunishmentConfig"
+                },
+                "endPunishment": {
+                    "$ref": "#/definitions/EndPunishmentConfig"
+                },
+                "healthPunishment": {
+                    "$ref": "#/definitions/HealthPunishmentConfig"
+                },
+                "mlgPunishment": {
+                    "$ref": "#/definitions/MLGPunishmentConfig"
+                },
+                "randomEffectPunishment": {
+                    "$ref": "#/definitions/RandomEffectPunishmentConfig"
+                },
+                "randomItemPunishment": {
+                    "$ref": "#/definitions/RandomItemPunishmentConfig"
+                },
+                "suppressPunishment": {
+                    "$ref": "#/definitions/SuppressPunishmentConfig"
+                }
+            },
+            "propertyOrder": [
+                "cancelPunishment",
+                "suppressPunishment",
+                "endPunishment",
+                "healthPunishment",
+                "deathPunishment",
+                "randomEffectPunishment",
+                "randomItemPunishment",
+                "mlgPunishment"
+            ],
+            "type": "object"
+        },
+        "RandomEffectPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                },
+                "effectsAtOnce": {
+                    "default": 1,
+                    "description": "The number of effects that are applied at once.",
+                    "maximum": 10,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "randomizeEffectsAtOnce": {
+                    "default": false,
+                    "description": "If true, the number of effects that are applied per punishment is randomized every time.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "effectsAtOnce",
+                "randomizeEffectsAtOnce",
+                "affects"
+            ],
+            "type": "object"
+        },
+        "RandomEffectPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "appliedPotionEffects": {
+                    "description": "The potion effects that were applied.",
+                    "items": {
+                        "$ref": "#/definitions/PotionEffect"
+                    },
+                    "type": "array"
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "appliedPotionEffects",
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "appliedPotionEffects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "RandomItemPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                },
+                "entireInventoryRemoved": {
+                    "default": false,
+                    "description": "Flag that, if true, clears the entire inventory. This is preferred over\n\"itemsRemovedAtOnce\" with the maximum value, since inventory size may vary\ndepending on other active rules/settings. Although, fundamentally it should not make\na difference.",
+                    "type": "boolean"
+                },
+                "itemsRemovedAtOnce": {
+                    "default": 1,
+                    "description": "The number of items that are removed from the players inventory at once.\nInventory includes armor slots and the off-hand slot.",
+                    "maximum": 10,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "randomizeItemsRemovedAtOnce": {
+                    "default": false,
+                    "description": "If true, the number of items that are removed from the players inventory per punishment is randomized every time.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "itemsRemovedAtOnce",
+                "randomizeItemsRemovedAtOnce",
+                "entireInventoryRemoved",
+                "affects"
+            ],
+            "type": "object"
+        },
+        "RulesConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "enabledGlobalPunishments": {
+                    "$ref": "#/definitions/PunishmentsConfig"
+                },
+                "enabledRules": {
+                    "$ref": "#/definitions/EnabledRules"
+                }
+            },
+            "propertyOrder": [
+                "enabledRules",
+                "enabledGlobalPunishments"
+            ],
+            "type": "object"
+        },
+        "SettingsConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "customHealthSetting": {
+                    "$ref": "#/definitions/CustomHealthSettingConfig"
+                },
+                "floorIsLavaSetting": {
+                    "$ref": "#/definitions/FloorIsLavaSettingConfig"
+                },
+                "mlgSetting": {
+                    "$ref": "#/definitions/MLGSettingConfig"
+                },
+                "ultraHardcoreSetting": {
+                    "$ref": "#/definitions/UltraHardcoreSettingConfig"
+                }
+            },
+            "propertyOrder": [
+                "customHealthSetting",
+                "ultraHardcoreSetting",
+                "mlgSetting",
+                "floorIsLavaSetting"
+            ],
+            "type": "object"
+        },
+        "SuppressPunishmentConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "default": "all",
+                    "description": "Who is affected by the punishment.",
+                    "enum": [
+                        "all",
+                        "causer"
+                    ],
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "affects"
+            ],
+            "type": "object"
+        },
+        "SuppressPunishmentDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "affects": {
+                    "$ref": "#/definitions/Affects",
+                    "description": "Who is affected by the punishment."
+                },
+                "punishmentName": {
+                    "$ref": "#/definitions/PunishmentName"
+                }
+            },
+            "propertyOrder": [
+                "affects",
+                "punishmentName"
+            ],
+            "required": [
+                "affects",
+                "punishmentName"
+            ],
+            "type": "object"
+        },
+        "TeamConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "currentOrder": {
+                    "default": -1,
+                    "description": "ONLY RELEVANT IF THERE ARE TEAMS! Otherwise, look for the same property in the \"global\" goals config.\n\nThe number that represents the current order progress. Starts at 0 and increases as\ngoals with their order number are completed.\nStart: Complete all goals with order number 0.\nNext: Increase currentOrder if all goals with order number 0 are completed.\nNext: Increase currentOrder if all goals with order number 1 are completed.\nEnd: There are no challenges with a higher orderNumber left to complete.\ncurrentOrder is only relevant if not -1. -1 indicates that the challenge has no time limit\nand goals can be completed whenever (the challenge is over if all goals are completed).",
+                    "type": "integer"
+                },
+                "goals": {
+                    "$ref": "#/definitions/GoalsConfig"
+                },
+                "playerUUIDs": {
+                    "default": [],
+                    "description": "The UUIDs of the players that are in this team.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "teamName": {
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "teamName",
+                "playerUUIDs",
+                "goals",
+                "currentOrder"
+            ],
+            "required": [
+                "goals",
+                "teamName"
+            ],
+            "type": "object"
+        },
+        "TeamDataConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "action": {
+                    "description": "The action on the team (join or leave).",
+                    "enum": [
+                        "join",
+                        "leave"
+                    ],
+                    "type": "string"
+                },
+                "player": {
+                    "$ref": "#/definitions/PlayerConfig",
+                    "description": "The player who interacted with the team."
+                },
+                "teamName": {
+                    "description": "The team the acted with.",
+                    "type": "string"
+                }
+            },
+            "propertyOrder": [
+                "teamName",
+                "player",
+                "action"
+            ],
+            "required": [
+                "action",
+                "player",
+                "teamName"
+            ],
+            "type": "object"
+        },
+        "UltraHardcoreSettingConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "allowAbsorptionHearts": {
+                    "default": true,
+                    "description": "Determines if absorption hearts (yellow) should be allowed or immediately removed. They can be gained most noticeably\nby eating a golden apple, an enchanted golden apple or by activating a totem.",
+                    "type": "boolean"
+                },
+                "allowTotems": {
+                    "default": true,
+                    "description": "Determines if totems work.",
+                    "type": "boolean"
+                },
+                "naturalRegeneration": {
+                    "default": false,
+                    "description": "Determines if natural regeneration is enabled. This flag essentially controls the NATURAL_REGENERATION gamerule.",
+                    "type": "boolean"
+                },
+                "regWithEnchantedGoldenApples": {
+                    "default": true,
+                    "description": "Determines if eating an enchanted golden apple provides regeneration.",
+                    "type": "boolean"
+                },
+                "regWithGoldenApples": {
+                    "default": true,
+                    "description": "Determines if eating a golden apple provides regeneration.",
+                    "type": "boolean"
+                },
+                "regWithPotions": {
+                    "default": true,
+                    "description": "Determines if using a healing/instant-health (splash-)potion provides regeneration.",
+                    "type": "boolean"
+                },
+                "regWithSuspiciousStew": {
+                    "default": true,
+                    "description": "Determines if eating a suspicious stew (crafted with an oxeye daisy) provided regeneration.",
+                    "type": "boolean"
+                }
+            },
+            "propertyOrder": [
+                "naturalRegeneration",
+                "regWithGoldenApples",
+                "regWithEnchantedGoldenApples",
+                "regWithSuspiciousStew",
+                "regWithPotions",
+                "allowAbsorptionHearts",
+                "allowTotems"
+            ],
+            "type": "object"
+        }
+    }
+}
+

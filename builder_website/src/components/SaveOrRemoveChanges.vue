@@ -9,7 +9,6 @@
 
 import { useI18n } from 'vue-i18n'
 import Button from 'primevue/button'
-import type { CriteriaKey } from '@/models/model'
 import { useRouter } from 'vue-router'
 
 const { t } = useI18n()

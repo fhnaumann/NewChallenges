@@ -8,6 +8,7 @@ import be.seeseemelk.mockbukkit.entity.WitherSkeletonMock;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,6 +23,7 @@ import wand555.github.io.challenges.criteria.CriteriaUtil;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.criteria.goals.GoalCollector;
 import wand555.github.io.challenges.generated.MobGoalConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.teams.Team;
 import wand555.github.io.challenges.types.mob.MobData;
 
@@ -50,6 +52,8 @@ public class MobGoalFixedOrderTest {
 
     private EntityDeathEvent pigDeathEvent;
 
+    private static EntityDeathEvent emptyMockEvent;
+
     @BeforeAll
     public static void setUpIOData() throws IOException {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
@@ -60,12 +64,16 @@ public class MobGoalFixedOrderTest {
         when(manager.isRunning()).thenReturn(true);
         when(manager.getTeams()).thenReturn(List.of());
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
         Team.initAllTeam(context, -1);
         messageHelper = spy(new MobGoalMessageHelper(context));
         collectedInventory = mock(MobGoalCollectedInventory.class);
+
+        emptyMockEvent = mock(EntityDeathEvent.class);
     }
 
     @BeforeEach
@@ -124,16 +132,16 @@ public class MobGoalFixedOrderTest {
 
     @Test
     public void testMobGoalTriggerCheck() {
-        assertTrue(mobGoal.triggerCheck().applies(new MobData(EntityType.PIG, player)));
-        assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.WITHER_SKELETON, player)));
-        assertFalse(mobGoal.triggerCheck().applies(new MobData(EntityType.ENDER_DRAGON, player)));
+        assertTrue(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, 0, EntityType.PIG, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, 0, EntityType.WITHER_SKELETON, player)));
+        assertFalse(mobGoal.triggerCheck().applies(new MobData(emptyMockEvent, 0, EntityType.ENDER_DRAGON, player)));
     }
 
     @Test
     public void testMobGoalTrigger() {
-        mobGoal.trigger().actOnTriggered(new MobData(EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, 0, EntityType.PIG, player));
         assertEquals(1, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
-        mobGoal.trigger().actOnTriggered(new MobData(EntityType.PIG, player));
+        mobGoal.trigger().actOnTriggered(new MobData(emptyMockEvent, 0, EntityType.PIG, player));
         assertEquals(2, mobGoal.getToKill().get(EntityType.PIG).getCurrentAmount());
     }
 
@@ -168,7 +176,7 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleStepComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 1);
-        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleStepAction(eq(new MobData(emptyMockEvent, 0, EntityType.PIG, player)),
                                                              argThat(argument -> argument.getCurrentAmount() == 1)
         );
         verify(messageHelper, never()).sendSingleReachedAction(any(), any());
@@ -178,7 +186,7 @@ public class MobGoalFixedOrderTest {
     @Test
     public void testSingleReachedComplete() {
         CriteriaUtil.callEvent(server, pigDeathEvent, 2);
-        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(EntityType.PIG, player)),
+        verify(messageHelper, times(1)).sendSingleReachedAction(eq(new MobData(emptyMockEvent, 0, EntityType.PIG, player)),
                                                                 argThat(argument -> argument.getCurrentAmount() == 2)
         );
         verify(messageHelper, never()).sendAllReachedAction();

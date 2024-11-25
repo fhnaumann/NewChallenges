@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 
 import java.io.IOException;
@@ -25,8 +26,8 @@ public abstract class CraftingDetectorTest {
 
     protected CraftingType craftingType;
 
-    protected TriggerCheck<CraftingData> mockedTriggerCheck;
-    protected Trigger<CraftingData> mockedTrigger;
+    protected TriggerCheck<CraftingData<?>> mockedTriggerCheck;
+    protected Trigger<CraftingData<?>> mockedTrigger;
     protected static List<CraftingTypeJSON> craftingTypeJSONList;
 
     @BeforeAll
@@ -53,7 +54,7 @@ public abstract class CraftingDetectorTest {
         when(mockedDataSourceContext.craftingTypeJSONList()).thenReturn(craftingTypeJSONList);
         when(mockedContext.dataSourceContext()).thenReturn(mockedDataSourceContext);
 
-        craftingType = spy(new CraftingType(mockedContext, mockedTriggerCheck, mockedTrigger));
+        craftingType = spy(new CraftingType(mockedContext, mockedTriggerCheck, mockedTrigger, MCEventAlias.EventType.CRAFTING_GOAL));
     }
 
     @AfterEach

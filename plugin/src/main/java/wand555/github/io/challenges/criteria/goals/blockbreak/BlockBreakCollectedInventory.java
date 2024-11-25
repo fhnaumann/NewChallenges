@@ -9,12 +9,11 @@ import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.inventory.progress.CollectedInventoryHelper;
 import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
 import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
-import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
 
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BlockBreakCollectedInventory extends CollectedInventory<BlockBreakData, Material> {
+public class BlockBreakCollectedInventory extends CollectedInventory<Material> {
 
     public BlockBreakCollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<Material> enumType) {
         super(context, collectables, enumType);

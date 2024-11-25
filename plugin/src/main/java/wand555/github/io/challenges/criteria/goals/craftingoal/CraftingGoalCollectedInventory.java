@@ -3,7 +3,6 @@ package wand555.github.io.challenges.criteria.goals.craftingoal;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
@@ -12,14 +11,12 @@ import wand555.github.io.challenges.inventory.progress.CollectedInventoryHelper;
 import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
 import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
-import wand555.github.io.challenges.types.crafting.CraftingData;
 import wand555.github.io.challenges.utils.ResourcePackHelper;
 
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.BiFunction;
 
-public class CraftingGoalCollectedInventory extends CollectedInventory<CraftingData, CraftingTypeJSON> {
+public class CraftingGoalCollectedInventory extends CollectedInventory<CraftingTypeJSON> {
     public CraftingGoalCollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<CraftingTypeJSON> enumType) {
         super(context, collectables, enumType);
     }

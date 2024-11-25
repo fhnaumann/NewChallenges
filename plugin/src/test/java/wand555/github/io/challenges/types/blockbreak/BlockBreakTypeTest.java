@@ -14,6 +14,9 @@ import wand555.github.io.challenges.Challenges;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.criteria.CriteriaUtil;
+import wand555.github.io.challenges.generated.MCEventAlias;
+import wand555.github.io.challenges.live.LiveService;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -45,9 +48,11 @@ public class BlockBreakTypeTest {
         when(manager.isRunning()).thenReturn(true);
         when(manager.canTakeEffect(any(), any())).thenReturn(true);
         Context mockedContext = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(mockedContext.liveService()).thenReturn(mockLiveService);
         when(mockedContext.plugin()).thenReturn(plugin);
         when(mockedContext.challengeManager()).thenReturn(manager);
-        blockBreakType = spy(new BlockBreakType(mockedContext, mockedTriggerCheck, mockedTrigger));
+        blockBreakType = spy(new BlockBreakType(mockedContext, mockedTriggerCheck, mockedTrigger, MCEventAlias.EventType.BLOCK_BREAK_GOAL));
     }
 
     @AfterEach

@@ -24,9 +24,9 @@
   import Button from 'primevue/button'
   import { useModelStore } from '@/stores/model'
   import ExemptionSelection from '@/components/rules/ExemptionSelection.vue'
-  import { ALL_IS_BLOCK_MATERIAL_DATA } from '@/models/data_row'
   import SaveOrRemoveChanges from '@/components/SaveOrRemoveChanges.vue'
   import BaseCriteriaModification from '@/components/BaseCriteriaModification.vue'
   import BaseRuleModification from '@/components/rules/BaseRuleModification.vue'
+  import { ALL_IS_BLOCK_MATERIAL_DATA } from '@/models/data_row_loaded'
 
 </script>

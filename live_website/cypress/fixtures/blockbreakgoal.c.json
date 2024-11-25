@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "challengeID": "timer-1",
+    "name": "timer-1",
+    "whenCreated": "2024-10-02T12:15:30.770Z",
+    "lastModified": "2024-10-02T12:15:30.770Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "currentOrder": 1,
+  "rules": {
+    "enabledRules": {}
+  },
+  "goals": {
+    "blockBreakGoal": {
+      "broken": [
+        {
+          "collectableName": "dragon_egg",
+          "collectableData": {
+            "amountNeeded": 2
+          }
+        },
+        {
+          "collectableName": "stone",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        }
+      ]
+    }
+  }
+}

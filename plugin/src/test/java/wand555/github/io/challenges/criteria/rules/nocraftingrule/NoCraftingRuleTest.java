@@ -6,6 +6,7 @@ import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.event.Event;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryAction;
@@ -24,6 +25,7 @@ import wand555.github.io.challenges.criteria.rules.nocrafting.NoCraftingRuleMess
 import wand555.github.io.challenges.generated.CancelPunishmentConfig;
 import wand555.github.io.challenges.generated.NoCraftingRuleConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.types.crafting.CraftingData;
@@ -44,6 +46,8 @@ public class NoCraftingRuleTest {
     private static Context context;
     private static NoCraftingRuleMessageHelper messageHelper;
 
+    private static Event emptyMockEvent;
+
 
     @BeforeAll
     public static void setUpIOData() throws IOException {
@@ -56,11 +60,15 @@ public class NoCraftingRuleTest {
         when(manager.canTakeEffect(any(), any())).thenReturn(true);
 
         context = mock(Context.class);
+        LiveService mockLiveService = CriteriaUtil.mockLiveService();
+        when(context.liveService()).thenReturn(mockLiveService);
         when(context.dataSourceContext()).thenReturn(dataSourceContext);
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
         when(context.challengeManager()).thenReturn(manager);
 
         messageHelper = spy(new NoCraftingRuleMessageHelper(context));
+
+        emptyMockEvent = mock(Event.class);
     }
 
     @BeforeEach
@@ -82,7 +90,7 @@ public class NoCraftingRuleTest {
     @MethodSource("provideNoCraftingTriggerChecks")
     public void testNoCraftingTriggerCheck(boolean expected, CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted, NoCraftingRuleConfig config) {
         NoCraftingRule rule = new NoCraftingRule(context, config, messageHelper);
-        CraftingData craftingData = new CraftingData(player, craftingTypeJSON, internallyCrafted);
+        CraftingData<?> craftingData = new CraftingData<>(emptyMockEvent, player, 0, craftingTypeJSON, internallyCrafted);
         assertEquals(expected, rule.triggerCheck().applies(craftingData));
     }
 
@@ -106,14 +114,14 @@ public class NoCraftingRuleTest {
     @Test
     public void testIsInExemptions() {
         NoCraftingRule rule = new NoCraftingRule(context, noCraftingRule(List.of(stickCraftingCraftingTypeJSON().getCode()), true, false, true, true, true, true), messageHelper);
-        CraftingData craftingData = new CraftingData(player, stickCraftingCraftingTypeJSON(), false);
+        CraftingData<?> craftingData = new CraftingData<>(emptyMockEvent, player, 0, stickCraftingCraftingTypeJSON(), false);
         assertFalse(rule.triggerCheck().applies(craftingData));
     }
 
     @Test
     public void testIsNotInExemptions() {
         NoCraftingRule rule = new NoCraftingRule(context, noCraftingRule(List.of(stickCraftingCraftingTypeJSON().getCode()), true, true, false, true, true, true), messageHelper);
-        CraftingData craftingData = new CraftingData(player, charcoalFurnaceCraftingTypeJSON(), false);
+        CraftingData<?> craftingData = new CraftingData<>(emptyMockEvent, player, 0, charcoalFurnaceCraftingTypeJSON(), false);
         assertTrue(rule.triggerCheck().applies(craftingData));
     }
 
@@ -122,14 +130,14 @@ public class NoCraftingRuleTest {
     public void testExemptionsAlwaysOverruleOtherSetting(CraftingTypeJSON craftingTypeJSON, boolean internallyCrafted, NoCraftingRuleConfig config) {
         config.setExemptions(List.of(craftingTypeJSON.getCode()));
         NoCraftingRule rule = new NoCraftingRule(context, config, messageHelper);
-        CraftingData craftingData = new CraftingData(player, craftingTypeJSON, internallyCrafted);
+        CraftingData<?> craftingData = new CraftingData<>(emptyMockEvent, player, 0, craftingTypeJSON, internallyCrafted);
         assertFalse(rule.triggerCheck().applies(craftingData));
     }
 
     @Test
     public void testViolationMessageSentIfViolated() {
         NoCraftingRule rule = new NoCraftingRule(context, noCraftingRuleWorkbenchCrafting(false), messageHelper);
-        CraftingData craftingData = new CraftingData(player, stickCraftingCraftingTypeJSON(), false);
+        CraftingData<?> craftingData = new CraftingData<>(emptyMockEvent, player, 0, stickCraftingCraftingTypeJSON(), false);
         rule.trigger().actOnTriggered(craftingData);
         verify(messageHelper).sendViolationAction(craftingData);
     }

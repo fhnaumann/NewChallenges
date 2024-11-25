@@ -3,13 +3,10 @@ package wand555.github.io.challenges.types.item;
 import com.destroystokyo.paper.event.player.PlayerRecipeBookClickEvent;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -21,34 +18,26 @@ import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.TriggerCheck;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.types.EventContainer;
 import wand555.github.io.challenges.types.Type;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Set;
 
-public class ItemType extends Type<ItemData> {
+public class ItemType extends Type<ItemData<?>> {
 
     private final NamespacedKey markedKey;
 
-    public ItemType(Context context, TriggerCheck<ItemData> triggerCheck, Trigger<ItemData> whenTriggered) {
-        this(context, triggerCheck, whenTriggered, event -> {}, event -> {});
-    }
-
-    public ItemType(Context context, TriggerCheck<ItemData> triggerCheck, Trigger<ItemData> whenTriggered, EventContainer<EntityPickupItemEvent> entityPickUpItem, EventContainer<InventoryClickEvent> inventoryClick) {
-        super(context, triggerCheck, whenTriggered, Map.of(
-                EntityPickupItemEvent.class, entityPickUpItem,
-                InventoryClickEvent.class, inventoryClick
-        ));
+    public ItemType(Context context, TriggerCheck<ItemData<?>> triggerCheck, Trigger<ItemData<?>> whenTriggered, MCEventAlias.EventType eventType) {
+        super(context, triggerCheck, whenTriggered, eventType);
         this.markedKey = new NamespacedKey(context.plugin(), "marked");
         context.plugin().getServer().getPluginManager().registerEvents(this, context.plugin());
     }
 
     @Override
-    public <E extends Event & Cancellable> void triggerIfCheckPasses(ItemData data, E event) {
+    public <E extends Event> void triggerIfCheckPasses(ItemData<?> data, E event) {
         if(triggerCheck.applies(data) && !isMarked(data.itemStackInteractedWith())) {
-            callEventInContainer(event);
             markItemStack(data.itemStackInteractedWith());
             whenTriggered.actOnTriggered(data);
         }
@@ -80,9 +69,9 @@ public class ItemType extends Type<ItemData> {
             return;
         }
 
-        triggerIfCheckPasses(new ItemData(event.getItem().getItemStack(),
-                                          event.getItem().getItemStack().getAmount(),
-                                          player
+        triggerIfCheckPasses(new ItemData<>(event, context.challengeManager().getTime(), event.getItem().getItemStack(),
+                                            event.getItem().getItemStack().getAmount(),
+                                            player
         ), event);
     }
 
@@ -110,6 +99,7 @@ public class ItemType extends Type<ItemData> {
         if(event.getClickedInventory() == null) {
             return;
         }
+        int time = context.challengeManager().getTime();
         // If a player clicked in the result slot of a crafting inventory (3x3 or 2x2)
         if(event.getClickedInventory() instanceof CraftingInventory craftingInventory && event.getSlot() == 0) {
             // handle shift clicks
@@ -121,11 +111,11 @@ public class ItemType extends Type<ItemData> {
                 craftingInventory.setMatrix(fakeMatrix);
 
                 ItemStack fakeResult = new ItemStack(currentItem.getType(), totalResultAmount);
-                triggerIfCheckPasses(new ItemData(fakeResult, totalResultAmount, player), event);
+                triggerIfCheckPasses(new ItemData<>(event, time, fakeResult, totalResultAmount, player), event);
 
                 craftingInventory.setResult(fakeResult);
             } else {
-                triggerIfCheckPasses(new ItemData(currentItem, currentItem.getAmount(), player), event);
+                triggerIfCheckPasses(new ItemData<>(event, time, currentItem, currentItem.getAmount(), player), event);
             }
 
         } else {
@@ -137,7 +127,7 @@ public class ItemType extends Type<ItemData> {
                                             (int) Math.ceil((double) currentItem.getAmount() / 2)
                 );
             }
-            triggerIfCheckPasses(new ItemData(currentItem, currentItem.getAmount(), player), event);
+            triggerIfCheckPasses(new ItemData<>(event, time, currentItem, currentItem.getAmount(), player), event);
 
         }
     }

@@ -1,7 +1,6 @@
 package wand555.github.io.challenges.criteria.goals.blockplace;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.criteria.goals.Collect;
 import wand555.github.io.challenges.generated.CollectableEntryConfig;
@@ -9,12 +8,11 @@ import wand555.github.io.challenges.inventory.progress.CollectedInventory;
 import wand555.github.io.challenges.inventory.progress.CollectedInventoryHelper;
 import wand555.github.io.challenges.inventory.progress.MultipleCollectedItemStack;
 import wand555.github.io.challenges.inventory.progress.SingleCollectedItemStack;
-import wand555.github.io.challenges.types.blockplace.BlockPlaceData;
 
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BlockPlaceGoalCollectedInventory extends CollectedInventory<BlockPlaceData, Material> {
+public class BlockPlaceGoalCollectedInventory extends CollectedInventory<Material> {
 
 
     public BlockPlaceGoalCollectedInventory(Context context, List<CollectableEntryConfig> collectables, Class<Material> enumType) {

@@ -15,6 +15,8 @@ import wand555.github.io.challenges.criteria.goals.blockbreak.BlockBreakGoal;
 import wand555.github.io.challenges.criteria.goals.itemgoal.ItemGoal;
 import wand555.github.io.challenges.criteria.goals.mobgoal.MobGoal;
 import wand555.github.io.challenges.generated.GoalTimer;
+import wand555.github.io.challenges.live.EventProvider;
+import wand555.github.io.challenges.live.LiveService;
 import wand555.github.io.challenges.offline_temp.OfflineTempData;
 import wand555.github.io.challenges.teams.Team;
 
@@ -39,7 +41,9 @@ public class GlobalGoalTimerTest {
         ResourceBundleContext resourceBundleContext = mock(ResourceBundleContext.class);
         when(resourceBundleContext.miscResourceBundle()).thenReturn(CriteriaUtil.loadMiscResourceBundle());
         when(context.resourceBundleContext()).thenReturn(resourceBundleContext);
-
+        LiveService liveService = mock(LiveService.class);
+        when(liveService.eventProvider()).thenReturn(mock(EventProvider.class));
+        when(context.liveService()).thenReturn(liveService);
         server = MockBukkit.getOrCreateMock();
         plugin = MockBukkit.load(Challenges.class);
         when(context.plugin()).thenReturn(plugin);

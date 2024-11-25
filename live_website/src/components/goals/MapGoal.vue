@@ -1,0 +1,214 @@
+<template>
+  <div
+    class="max-h-[50rem] rounded-lg justify-items-stretch bg-background-color border-2 border-content-border text-color customized-goal"
+    ref="dialogContainer"
+  >
+    <div>
+      <div class="flex items-center space-x-12 col-span-full row-start-1 max-h-12 mx-2 mt-2">
+        <div class="flex-1">
+          <InputText
+            class="w-full customized-goal"
+            type="text"
+            :placeholder="t('goals.collectables.search')"
+            v-model="searchFieldValue"
+          />
+
+        </div>
+        <div class="flex items-center">
+          <Checkbox v-model="showCompleted" binary input-id="show_completed"/>
+          <label class="ml-2" for="show_completed" data-cy="show_completed-test">{{
+              t('goals.collectables.show_completed')
+            }}</label>
+        </div>
+      </div>
+      <div class="flex justify-center mt-2"><p>{{ t('goals.collectables.completionStatusTip') }}</p></div>
+    </div>
+    <div v-if="goalName" class="row-start-2 overflow-y-auto max-h-[42rem]">
+      <!--div class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] gap-4 p-4">
+        <div
+          v-for="collectable in shownCollectablesBasedOffCheckbox"
+          :key="collectable.collectableName"
+          class="w-40 max-w-40 h-40 max-h-40 min-w-40 min-h-40 flex-none"
+        >
+          <EntryCompletion
+            :collectable="collectable"
+            :data-source="assumeDataSourceFrom(goalName!)"
+            :events="filterEventsFor(collectable.collectableName, codeAccess!, events!)"
+          />
+        </div>
+      </div-->
+      <Paginator :pt="{root: '!bg-background-color flex items-center justify-center flex-wrap px-4 py-2 border-0 rounded-md text-color'}" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" :total-records="computedPartialMatches.length" :rows="itemsPerPage" v-model:first="first"/>
+      <DataView :pt="{content: '!bg-background-color'}" :value=" computedPartialMatches.slice(first, first+itemsPerPage)" layout="grid">
+        <template #grid="slotProps">
+          <div class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] gap-4 p-4">
+            <div
+              v-for="collectable in slotProps.items"
+              :key="collectable.collectableName"
+              class="w-40 max-w-40 h-40 max-h-40 min-w-40 min-h-40 flex-none"
+            >
+              <EntryCompletion
+                :collectable="collectable"
+                :data-source="assumeDataSourceFrom(goalName!)"
+                :events="filterEventsFor(collectable.collectableName, codeAccess!, filteredEvents)"
+              />
+            </div>
+          </div>
+        </template>
+        <template #empty>
+          <div class="flex items-center justify-center"><p class="text-2xl text-color">{{ t('goals.collectables.no_match') }}</p></div>
+        </template>
+      </DataView>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Paginator from 'primevue/paginator'
+import DataView from 'primevue/dataview'
+import InputText from 'primevue/inputtext'
+import Checkbox from 'primevue/checkbox'
+import type { CollectableEntryConfig, GoalName } from '@fhnaumann/criteria-interfaces'
+import type { DataConfig, MCEvent } from '@fhnaumann/criteria-interfaces'
+import EntryCompletion from '@/components/goals/EntryCompletion.vue'
+import type { DataSource } from '@/components/MaterialItem.vue'
+import { computed, inject, onBeforeUnmount, onMounted, reactive, ref, toRaw, toRef, watch, watchEffect } from 'vue'
+import { useCompletable } from '@/composables/completable'
+import { useI18n } from 'vue-i18n'
+import { useSearchable } from '@/composables/searchable'
+import { useTranslation } from '@/composables/language'
+import { fromCode2DataRow } from '@/composables/data_row_loaded'
+
+export interface MapGoalProps {
+  goalName: GoalName
+  collectables: CollectableEntryConfig[]
+  events: MCEvent<any>[]
+  codeAccess: (mcEvent: MCEvent<any>) => string
+}
+
+const dialogRef = inject('dialogRef')
+const dialogContainer = ref(null)
+const searchableAccessor = (value: CollectableEntryConfig) => translateDataRow(fromCode2DataRow(value.collectableName))
+let searchable = ref(null)
+
+const showCompleted = ref(false)
+
+const goalName = ref<GoalName | null>(null)
+const collectables = ref<CollectableEntryConfig[] | null>(null)
+let events = ref<MCEvent<DataConfig>[] | null>(null)
+const codeAccess = ref<((mcEvent: MCEvent<DataConfig>) => string) | null>(null)
+
+let searchFieldValue = ref()
+const getPartialMatches = ref()
+
+const first = ref(0)
+
+const computedPartialMatches = computed(() => {
+  return ((getPartialMatches.value !== undefined ? getPartialMatches.value() : []))
+})
+
+const itemsPerPage = ref(30); // Default value
+
+const calculateItemsPerPage = () => {
+  const w = window.innerWidth
+  const containerWidth = (dialogContainer.value as any).clientWidth
+  console.log(dialogRef)
+  const itemWidth = 160 + 8 // w-40 gap-4/2
+  const itemsPerRow = Math.floor(containerWidth / itemWidth)
+  const maxRowsPerPage = 3;
+  const elementAmountOnPage = itemsPerRow * maxRowsPerPage
+
+  itemsPerPage.value = elementAmountOnPage
+}
+
+
+const shownCollectablesBasedOffCheckbox = ref<CollectableEntryConfig[]>([])
+
+const { t } = useI18n()
+const { keepNotYetComplete, filterEventsFor } = useCompletable()
+
+const { translateDataRow } = useTranslation()
+
+const filteredEvents = computed(() => {
+  return filterEventsForGoalName(goalName?.value)
+})
+
+onMounted(() => {
+  const props = (dialogRef as any).value.data as MapGoalProps
+  goalName.value = props.goalName
+  collectables.value = props.collectables
+  // eslint-disable-next-line
+  //events.value = props.events
+  //events = toRef(reactive(props), 'events')
+  watchEffect(() => {
+    events.value = props.events
+  })
+  codeAccess.value = props.codeAccess
+
+  if (collectables.value === null || codeAccess.value === null) {
+    throw Error(`Did you forget to add mappings for ${goalName.value} in MapGoal.vue?`)
+  }
+
+
+  // eslint-disable-next-line
+  searchable.value = useSearchable(
+    props.collectables, searchableAccessor
+  ) as unknown as null
+
+  // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
+  // between the ref in the composable (searchable) and this ref here.
+  // eslint-disable-next-line
+  searchFieldValue = (searchable.value! as any).searchFieldValue
+  getPartialMatches.value = (searchable.value! as any).getPartialMatches
+
+  calculateItemsPerPage();
+  window.addEventListener('resize', calculateItemsPerPage);
+
+  watch(showCompleted,(newValue) => {
+    if(newValue) {
+      // eslint-disable-next-line
+      searchable.value = useSearchable(collectables.value!, searchableAccessor) as unknown as null
+      // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
+      // between the ref in the composable (searchable) and this ref here.
+      // eslint-disable-next-line
+      searchFieldValue = (searchable.value! as any).searchFieldValue
+      getPartialMatches.value = (searchable.value! as any).getPartialMatches
+      console.log(collectables.value!)
+      console.log(searchable)
+    }
+    else {
+      // eslint-disable-next-line
+      searchable.value = useSearchable(keepNotYetComplete(collectables.value!, codeAccess.value!, filteredEvents.value), searchableAccessor) as unknown as null
+      // Ugly but necessary: I need to reassign the actual ref variable (not the variable within the ref) to keep reactivity
+      // between the ref in the composable (searchable) and this ref here.
+      // eslint-disable-next-line
+      searchFieldValue = (searchable.value! as any).searchFieldValue
+      getPartialMatches.value = (searchable.value! as any).getPartialMatches
+    }
+    console.log(shownCollectablesBasedOffCheckbox.value)
+  }, {immediate: true})
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', calculateItemsPerPage);
+});
+
+
+function assumeDataSourceFrom(goalName: GoalName): DataSource {
+  switch (goalName) {
+    case 'blockBreakGoal':
+    case 'blockPlaceGoal':
+    case 'itemGoal':
+      return 'material'
+    case 'mobGoal':
+      return 'entity_type'
+    case 'deathGoal':
+      return 'death_message'
+    case 'craftingGoal':
+      return 'crafting_recipe'
+  }
+}
+
+function filterEventsForGoalName(goalName: GoalName | null): MCEvent<DataConfig>[] {
+  return events?.value?.filter((value) => value.eventType === goalName) ?? []
+}
+</script>

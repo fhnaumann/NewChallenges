@@ -39,7 +39,6 @@
   import gsap from 'gsap'
   import { computed, inject, onMounted, ref, watch } from 'vue'
   import { useToast } from 'primevue/usetoast'
-  import type { CriteriaType } from '@/models/model'
 
   let searchFieldValue = ref()
   const getPartialMatches = ref()

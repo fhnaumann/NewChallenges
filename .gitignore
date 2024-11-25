@@ -2,8 +2,6 @@
 
 legacy_builder_website/
 
-builder_website/package.json
-builder_website/package-lock.json
 builder_website/.idea/
 builder_website/node_modules/
 builder_website/public/minecraft/
@@ -17,6 +15,22 @@ builder_website/src/assets/aura
 builder_website/src/assets/lara
 builder_website/path/to/
 builder_website/cypress/downloads/
+
+live_website/node_modules
+live_website/src/assets/aura
+live_website/src/assets/lara
+live_website/public/rendered_images
+
+criteria-interfaces/build
+criteria-interfaces/node_modules
+criteria-interfaces/*.tgz
+
+homepage/
+
+live_triggers/
+
+flow.md
+test.json
 
 docs/.retype
 docs/node_modules
@@ -36,6 +50,8 @@ plugin/unicode_mapping
 data_generation/unicode_mapping/textures
 data_generation/Challenges Plugin RP/
 data_generation/Challenges Plugin RP.zip
+data_generation/MetaMiner/.idea
+data_generation/MetaMiner/target
 
 homepage/node_modules
 

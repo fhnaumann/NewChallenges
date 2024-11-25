@@ -173,6 +173,9 @@ public class CriteriaMapper {
         if(punishmentsConfig.getCancelPunishment() != null) {
             punishments.add(new CancelPunishment(context, punishmentsConfig.getCancelPunishment()));
         }
+        if(punishmentsConfig.getSuppressPunishment() != null) {
+            punishments.add(new SuppressPunishment(context, punishmentsConfig.getSuppressPunishment()));
+        }
         if(punishmentsConfig.getEndPunishment() != null) {
             punishments.add(new EndPunishment(context, punishmentsConfig.getEndPunishment()));
         }

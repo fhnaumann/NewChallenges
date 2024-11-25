@@ -11,7 +11,7 @@
                                         testSchematron: false
                                         }"
         :collectable-text-prefix="t('goals.types.mobGoal.settings.dropdown.mobPrefix')"
-        :show-image="false" :disabled="killAllMobsOnce"
+        :show-image="true" :disabled="killAllMobsOnce"
         :collectable-amount-prefix="t('goals.types.mobGoal.settings.dropdown.amountPrefix')" />
       <Checkbox v-model="killAllMobsOnce" @update:model-value="updateKillAllMobsOnce" input-id="killAllMobsOnce"
                 binary />
@@ -27,16 +27,16 @@
   import CollectableDropdownConfiguration from '@/components/goals/CollectableDropdownConfiguration.vue'
   import { useI18n } from 'vue-i18n'
   import { useModelStore } from '@/stores/model'
-  import { ALL_ENTITY_TYPE_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row'
+  import { ALL_ENTITY_TYPE_DATA, fromDataRowArray2CollectableEntryArray } from '@/models/data_row_loaded'
   import { ref } from 'vue'
   import TimerConfiguration from '@/components/goals/TimerConfiguration.vue'
   import Checkbox from 'primevue/checkbox'
   import type { ModelAccess } from '@/main'
-  import type { MobGoalConfig } from '@/models/mob'
+  import type { MobGoalConfig } from '@fhnaumann/criteria-interfaces'
   import FixedOrderConfiguration from '@/components/goals/FixedOrderConfiguration.vue'
   import { useVarHelperStore } from '@/stores/var_helper'
   import { storeToRefs } from 'pinia'
-  import type { CollectableEntryConfig } from '@/models/goals'
+  import type { CollectableEntryConfig } from '@fhnaumann/criteria-interfaces'
 
   const { t } = useI18n()
   const { model, set } = useModelStore()
@@ -48,12 +48,15 @@
     testSchematron: false,
   }
 
+  /*
   set('goals.mobGoal.mobs', [{
     collectableName: 'ender_dragon',
     collectableData: {
       amountNeeded: 1,
     },
   }] as CollectableEntryConfig[], false)
+
+   */
 
   function updateKillAllMobsOnce(killAllMobsOnce: boolean) {
     set('goals.mobGoal.mobs', killAllMobsOnce ? fromDataRowArray2CollectableEntryArray(ALL_ENTITY_TYPE_DATA) : undefined, true)

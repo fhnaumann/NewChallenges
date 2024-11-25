@@ -38,7 +38,7 @@ public class CollectedInventoryTest {
     private PlayerMock player1;
     private PlayerMock player2;
 
-    private CollectedInventory<?, ?> collectedInventory;
+    private CollectedInventory<?> collectedInventory;
 
     private static Context context;
 

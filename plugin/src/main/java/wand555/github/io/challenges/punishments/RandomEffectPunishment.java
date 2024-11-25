@@ -3,6 +3,7 @@ package wand555.github.io.challenges.punishments;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import wand555.github.io.challenges.ComponentUtil;
@@ -12,6 +13,7 @@ import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.generated.RandomEffectPunishmentConfig;
 import wand555.github.io.challenges.mapping.NullHelper;
 import wand555.github.io.challenges.teams.Team;
+import wand555.github.io.challenges.types.Data;
 import wand555.github.io.challenges.utils.CollectionUtil;
 
 import java.util.Arrays;
@@ -38,39 +40,6 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
                                                         "RandomEffectPunishmentConfig",
                                                         "effectsAtOnce"
         );
-    }
-
-    @Override
-    public void enforceCauserPunishment(UUID causer) {
-        List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
-        enforceOnReceiver(causer, calculatedEffectsAtOnce);
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                "randomeffect.enforced.causer",
-                Map.of("player", Component.text(Bukkit.getOfflinePlayer(causer).getName()),
-                       "amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size()))
-                )
-        );
-        context.plugin().getServer().broadcast(toSend);
-    }
-
-    @Override
-    public void enforceAllPunishment(Team team) {
-        List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
-        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
-                                                                                        samePlayer -> enforceOnReceiver(
-                                                                                                samePlayer.getUniqueId(),
-                                                                                                calculatedEffectsAtOnce
-                                                                                        )
-        ));
-        Component toSend = ComponentUtil.formatChatMessage(
-                context.plugin(),
-                context.resourceBundleContext().punishmentResourceBundle(),
-                "randomeffect.enforced.all",
-                Map.of("amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())))
-        );
-        context.plugin().getServer().broadcast(toSend);
     }
 
     private void enforceOnReceiver(UUID receiver, List<PotionEffect> effects) {
@@ -121,5 +90,39 @@ public class RandomEffectPunishment extends Punishment implements Storable<Rando
     @Override
     public Component getCurrentStatus() {
         return null;
+    }
+
+    @Override
+    public <E extends Event, K> void enforceCauserPunishment(Data<E, K> data) {
+        UUID causer = data.playerUUID();
+        List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
+        enforceOnReceiver(causer, calculatedEffectsAtOnce);
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "randomeffect.enforced.causer",
+                Map.of("player", Component.text(Bukkit.getOfflinePlayer(causer).getName()),
+                       "amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size()))
+                )
+        );
+        context.plugin().getServer().broadcast(toSend);
+    }
+
+    @Override
+    public <E extends Event, K> void enforceAllPunishment(Data<E, K> data, Team team) {
+        List<PotionEffect> calculatedEffectsAtOnce = getCalculatedEffectsAtOnce();
+        team.getAllOnlinePlayers().forEach(player -> InteractionManager.applyInteraction(player,
+                                                                                         samePlayer -> enforceOnReceiver(
+                                                                                                 samePlayer.getUniqueId(),
+                                                                                                 calculatedEffectsAtOnce
+                                                                                         )
+        ));
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "randomeffect.enforced.all",
+                Map.of("amount", Component.text(Integer.toString(calculatedEffectsAtOnce.size())))
+        );
+        context.plugin().getServer().broadcast(toSend);
     }
 }

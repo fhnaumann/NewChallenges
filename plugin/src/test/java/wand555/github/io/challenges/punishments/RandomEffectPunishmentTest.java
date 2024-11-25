@@ -70,7 +70,7 @@ public class RandomEffectPunishmentTest {
         RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
                                                                                    randomEffectPunishmentConfig
         );
-        randomEffectPunishment.enforcePunishment(causer.getUniqueId());
+        randomEffectPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
         // expect the causer to have one random effect
         assertEquals(1, causer.getActivePotionEffects().size());
         assertTrue(other.getActivePotionEffects().isEmpty());
@@ -87,7 +87,7 @@ public class RandomEffectPunishmentTest {
         RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
                                                                                    randomEffectPunishmentConfig
         );
-        randomEffectPunishment.enforcePunishment(causer.getUniqueId());
+        randomEffectPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
         assertEquals(2, causer.getActivePotionEffects().size());
         assertEquals(0, other.getActivePotionEffects().size());
         //assertEquals(causer.getActivePotionEffects().stream().findFirst().get(), other.getActivePotionEffects().stream().findFirst().get());
@@ -103,7 +103,7 @@ public class RandomEffectPunishmentTest {
         RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
                                                                                    randomEffectPunishmentConfig
         );
-        randomEffectPunishment.enforcePunishment(causer.getUniqueId());
+        randomEffectPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
         assertEquals(3, causer.getActivePotionEffects().size());
         assertEquals(3, other.getActivePotionEffects().size());
         assertEquals(causer.getActivePotionEffects(), other.getActivePotionEffects());
@@ -120,7 +120,7 @@ public class RandomEffectPunishmentTest {
         RandomEffectPunishment randomEffectPunishment = new RandomEffectPunishment(context,
                                                                                    randomEffectPunishmentConfig
         );
-        randomEffectPunishment.enforcePunishment(causer.getUniqueId());
+        randomEffectPunishment.enforcePunishment(PunishmentUtil.mockData(causer));
         assertEquals(2, causer.getActivePotionEffects().size());
         assertEquals(2, other.getActivePotionEffects().size());
         assertEquals(causer.getActivePotionEffects(), other.getActivePotionEffects());

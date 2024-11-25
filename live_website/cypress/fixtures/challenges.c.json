@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "challengeID": "m-mob",
+    "name": "m-mob",
+    "whenCreated": "2024-09-07T13:28:11.435Z",
+    "lastModified": "2024-09-07T13:28:11.435Z",
+    "createdBy": "-",
+    "builderVersion": "0.0.1",
+    "builderMCVersion": "1.20.4",
+    "pluginVersion": "0.0.1",
+    "pluginMCVersion": "1.20.4"
+  },
+  "rules": {
+    "enabledRules": {
+      "noDeath": {
+        "punishments": {
+          "endPunishment": {
+            "affects": "all"
+          }
+        }
+      }
+    }
+  },
+  "goals": {
+    "mobGoal": {
+      "mobs": [
+        {
+          "collectableName": "ender_dragon",
+          "collectableData": {
+            "amountNeeded": 3
+          }
+        },
+        {
+          "collectableName": "husk",
+          "collectableData": {
+            "amountNeeded": 2
+          }
+        },
+        {
+          "collectableName": "skeleton",
+          "collectableData": {
+            "amountNeeded": 1
+          }
+        }
+      ],
+      "fixedOrder": true
+    }
+  }
+}

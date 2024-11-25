@@ -7,6 +7,7 @@ import wand555.github.io.challenges.TriggerCheck;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 import wand555.github.io.challenges.criteria.rules.RuleMessageHelper;
 import wand555.github.io.challenges.generated.EnabledRules;
+import wand555.github.io.challenges.generated.MCEventAlias;
 import wand555.github.io.challenges.generated.NoCraftingRuleConfig;
 import wand555.github.io.challenges.mapping.CraftingTypeJSON;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
@@ -17,7 +18,7 @@ import wand555.github.io.challenges.types.crafting.CraftingType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSON> implements Storable<NoCraftingRuleConfig> {
+public class NoCraftingRule extends PunishableRule<CraftingData<?>, CraftingTypeJSON> implements Storable<NoCraftingRuleConfig> {
 
     private final CraftingType craftingType;
 
@@ -35,10 +36,7 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
         this.craftingType = new CraftingType(context,
                                              triggerCheck(),
                                              trigger(),
-                                             cancelIfCancelPunishmentActive(),
-                                             cancelIfCancelPunishmentActive(),
-                                             cancelIfCancelPunishmentActive(),
-                                             cancelIfCancelPunishmentActive()
+                                             MCEventAlias.EventType.NO_CRAFTING
         );
     }
 
@@ -58,7 +56,7 @@ public class NoCraftingRule extends PunishableRule<CraftingData, CraftingTypeJSO
     }
 
     @Override
-    public TriggerCheck<CraftingData> triggerCheck() {
+    public TriggerCheck<CraftingData<?>> triggerCheck() {
         return data -> {
             if(exemptions.contains(data.mainDataInvolved())) {
                 return false;
