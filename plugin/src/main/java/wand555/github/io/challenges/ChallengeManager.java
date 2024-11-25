@@ -99,7 +99,7 @@ public class ChallengeManager implements StatusInfo {
         });
         gameState = GameState.PAUSED;
         allCriterias().forEach(Criteria::onPause);
-        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.PAUSE, null);
+        context.liveService().eventProvider().sendEvent(getTime(), MCEventAlias.EventType.PAUSE, null);
     }
 
     public void resume() {
@@ -116,7 +116,7 @@ public class ChallengeManager implements StatusInfo {
         }
         gameState = GameState.RUNNING;
         allCriterias().forEach(Criteria::onResume);
-        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.RESUME, null);
+        context.liveService().eventProvider().sendEvent(getTime(), MCEventAlias.EventType.RESUME, null);
     }
 
     public void onProgress(Player player, Progressable progressable) {
@@ -222,7 +222,7 @@ public class ChallengeManager implements StatusInfo {
             player.getActivePotionEffects().clear();
         });
         gameState = GameState.ENDED;
-        context.liveService().eventProvider().sendEvent(0, MCEventAlias.EventType.END, null);
+        context.liveService().eventProvider().sendEvent(getTime(), MCEventAlias.EventType.END, null);
         if(success) {
             if(winnerTeam != null) {
                 Component toSend = ComponentUtil.formatChallengesPrefixChatMessage(

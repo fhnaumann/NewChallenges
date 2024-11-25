@@ -25,59 +25,62 @@
         <p v-else>{{ timeEstimation }}</p>
       </div>
     </div-->
-    <div class="fixed top-0 left-0 translate-y-10 border-2 z-10 border-content-border bg-card rounded-xl mx-4">
+    <!--div class="fixed top-0 left-0 translate-y-10 border-2 z-10 border-content-border bg-card rounded-xl mx-4"-->
+    <div class="flex items-center justify-center border-2 border-content-border bg-card rounded-xl mx-20">
       <RightSideBar :challenge="challengeFileJSON!" :events="events" :current-time="timeEstimation" />
     </div>
-    <div class="flex items-center justify-center">
-      <div class="flex flex-col items-center space-y-10">
-        <p class="text-color text-6xl font-bold">{{ challengeFileJSON?.metadata.name }}</p>
-        <div class="text-primary font-semibold text-xl">
-          <p v-if="!started && !running" data-cy="not-started-text">{{ t('misc.not_started') }}</p>
-          <p v-else-if="running" data-cy="running-text">{{ formatTime(timeEstimation) }}</p>
-          <p v-else-if="paused" data-cy="paused-text">{{ t('misc.paused', { time: formatTime(timeEstimation) }) }}</p>
-          <p v-else-if="finished" data-cy="finished-text">{{ t('misc.finished') }}</p>
+    <!--div>
+      <div class="flex items-center justify-center">
+        <div class="flex flex-col items-center space-y-10">
+          <p class="text-color text-6xl font-bold">{{ challengeFileJSON?.metadata.name }}</p>
+          <div class="text-primary font-semibold text-xl">
+            <p v-if="!started && !running" data-cy="not-started-text">{{ t('misc.not_started') }}</p>
+            <p v-else-if="running" data-cy="running-text">{{ formatTime(timeEstimation) }}</p>
+            <p v-else-if="paused" data-cy="paused-text">{{ t('misc.paused', { time: formatTime(timeEstimation) }) }}</p>
+            <p v-else-if="finished" data-cy="finished-text">{{ t('misc.finished') }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="mt-20 relative flex-1 z-5 translate-x-1/4" ref="scrollContainer">
-      <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
-        <svg class="drop-shadow-2xl" width="50" :height="svgHeight">
-          <g ref="lines" class="pointer-events-none"></g>
-          <circle class="fill-primary" :cx="startX" :cy="startY" r="8" />
-          <circle
-            v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
-            :class="`${getCriteriaColorFrom(event)} ease-in-out duration-300 ${eventIndexBeingHovered === index ? 'fill-accent' : 'fill-primary'}`"
-            :key="event.eventID"
-            :cx="startX"
-            :cy="startY + lineLengthPerSecond * event.timestamp"
-            r="8"
-          />
-        </svg>
-        <div ref="bottomOfSVG"></div>
-      </div>
-      <div class="absolute left-1/2 top-0 z-5">
-        <div class="z-5">
-          <EventContainer
-            class="absolute z-5 drop-shadow-2xl"
-            :id="event.eventID"
-            v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
-            :key="'textbox-' + event.eventID"
-            :style="{
+      <div class="mt-20 relative flex-1 z-5 translate-x-1/4" ref="scrollContainer">
+        <div class="absolute left-1/2 top-0 transform -translate-x-1/2">
+          <svg class="drop-shadow-2xl" width="50" :height="svgHeight">
+            <g ref="lines" class="pointer-events-none"></g>
+            <circle class="fill-primary" :cx="startX" :cy="startY" r="8" />
+            <circle
+              v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
+              :class="`${getCriteriaColorFrom(event)} ease-in-out duration-300 ${eventIndexBeingHovered === index ? 'fill-accent' : 'fill-primary'}`"
+              :key="event.eventID"
+              :cx="startX"
+              :cy="startY + lineLengthPerSecond * event.timestamp"
+              r="8"
+            />
+          </svg>
+          <div ref="bottomOfSVG"></div>
+        </div>
+        <div class="absolute left-1/2 top-0 z-5">
+          <div class="z-5">
+            <EventContainer
+              class="absolute z-5 drop-shadow-2xl"
+              :id="event.eventID"
+              v-for="(event, index) in events.filter(value => !['start', 'resume', 'pause', 'end'].includes(value.eventType))"
+              :key="'textbox-' + event.eventID"
+              :style="{
               left: `${determineXPositionForEventContainer(index)}px`,
               top: `${startY - 13 + lineLengthPerSecond * event.timestamp}px`
             }"
-            :mc-event="event"
-            :event-index="index"
-            @myMouseEnter="eventIndexBeingHovered = index"
-            @myMouseLeave="eventIndexBeingHovered = null"
-            :data-cy="event.eventID"
-          />
+              :mc-event="event"
+              :event-index="index"
+              @myMouseEnter="eventIndexBeingHovered = index"
+              @myMouseLeave="eventIndexBeingHovered = null"
+              :data-cy="event.eventID"
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div class="fixed bottom-0 left-0 w-full">
-      <p>FOOTER</p>
-    </div>
+      <div class="fixed bottom-0 left-0 w-full">
+        <p>FOOTER</p>
+      </div>
+    <div-->
   </div>
 </template>
 
@@ -130,7 +133,13 @@ import Button from 'primevue/button'
 import { useRoute, useRouter } from 'vue-router'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useInterval } from '@vueuse/core'
-import type { DataConfig, MCEvent, Model, NoBlockBreakRuleDataConfig } from '@fhnaumann/criteria-interfaces'
+import type {
+  CriteriaKey,
+  DataConfig,
+  MCEvent,
+  Model,
+  NoBlockBreakRuleDataConfig
+} from '@fhnaumann/criteria-interfaces'
 import ProgressSpinner from 'primevue/progressspinner'
 import BlockBreakEventBox from '@/components/events/BlockBreakEventBox.vue'
 import PlayerHead from '@/components/PlayerHead.vue'
@@ -313,30 +322,78 @@ ws.onmessage = (ev) => {
   console.log(1)
   console.log('Received message:', ev.data)
   const mcEvent = JSON.parse(ev.data) as MCEvent<any>
-  setLineTo(mcEvent.timestamp)
-  timeEstimation.value = mcEvent.timestamp // account for any drift that may have occurred on the MC server
+  if(false) {
+  // if (mcEvent.action === 'statusRequest') {
+    handleStatusRequestAnswer(mcEvent)
+  }
+  else {
+    setLineTo(mcEvent.timestamp)
+    timeEstimation.value = mcEvent.timestamp // account for any drift that may have occurred on the MC server
+    handleIncomingEvent(mcEvent)
+  }
 
-  handleIncomingEvent(mcEvent)
+}
+
+function handleStatusRequestAnswer(answer: any) {
+  const status = answer.status
+  if(status === 'setup') {
+    started.value = false
+  }
+  if(status === 'running') {
+    running.value = true
+    challengeFileJSON.value!.timer = answer.time
+    resume()
+  }
+  if(status === 'paused') {
+    paused.value = true
+    running.value = false
+    challengeFileJSON.value!.timer = answer.time
+    pause()
+  }
+  if(status === 'end') {
+    finished.value = true
+    running.value = false
+    pause()
+  }
+  if(status === 'canceled') {
+    // nothing for now
+  }
 }
 
 function handleIncomingEvent(mcEvent: MCEvent<any>) {
+  let explicitPause = false
   if (mcEvent.eventType === 'start') {
+    //challengeFileJSON.value!.currentOrder = mcEvent.data.currentOrder
+
     started.value = true
     running.value = true
     resume()
   } else if (mcEvent.eventType === 'pause') {
     paused.value = true
+    running.value = false
     pause()
+
+    explicitPause = true
   } else if (mcEvent.eventType === 'resume') {
+    //challengeFileJSON.value!.currentOrder = mcEvent.data.currentOrder
+
     paused.value = false
     running.value = true
     resume()
   } else if (mcEvent.eventType === 'end') {
     finished.value = true
+    paused.value = false
+    running.value = false
     pause()
-  } else {
 
+    explicitPause = true
+  } else {
     events.value.push(mcEvent)
+  }
+  if(!explicitPause) {
+    paused.value = false
+    running.value = true
+    resume()
   }
 }
 

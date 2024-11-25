@@ -4,12 +4,10 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
-import wand555.github.io.challenges.generated.MCEventAlias;
+import wand555.github.io.challenges.generated.*;
 import wand555.github.io.challenges.mapping.DataSourceJSON;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakType;
 import wand555.github.io.challenges.types.blockbreak.BlockBreakData;
-import wand555.github.io.challenges.generated.EnabledRules;
-import wand555.github.io.challenges.generated.NoBlockBreakRuleConfig;
 import wand555.github.io.challenges.mapping.ModelMapper;
 import wand555.github.io.challenges.criteria.rules.PunishableRule;
 

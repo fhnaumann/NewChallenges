@@ -24,7 +24,7 @@
     "@vueuse/core": "^10.11.1",
     "aws-sdk": "^2.1676.0",
     "canvas-confetti": "^1.9.3",
-    "@fhnaumann/criteria-interfaces": "1.0.0",
+    "@fhnaumann/criteria-interfaces": "1.0.1",
     "pinia": "^2.1.7",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.4",

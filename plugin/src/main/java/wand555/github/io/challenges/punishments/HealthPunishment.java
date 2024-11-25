@@ -2,12 +2,13 @@ package wand555.github.io.challenges.punishments;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import wand555.github.io.challenges.ComponentUtil;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Storable;
+import wand555.github.io.challenges.generated.CancelPunishmentDataConfig;
 import wand555.github.io.challenges.generated.HealthPunishmentConfig;
+import wand555.github.io.challenges.generated.HealthPunishmentDataConfig;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
 import wand555.github.io.challenges.mapping.NullHelper;
 import wand555.github.io.challenges.teams.Team;
@@ -85,6 +86,31 @@ public class HealthPunishment extends Punishment implements Storable<HealthPunis
         );
         context.plugin().getServer().broadcast(toSend);
     }
+
+    /*
+    public <E extends Event, K> HealthPunishmentDataConfig enforceCauserPunishment(Data<E, K> data) {
+        UUID causer = data.playerUUID();
+        int damageAmount = getCalculatedHeartsLost();
+        enforceOnReceiver(causer, damageAmount);
+        Component toSend = ComponentUtil.formatChatMessage(
+                context.plugin(),
+                context.resourceBundleContext().punishmentResourceBundle(),
+                "health.enforced.causer",
+                Map.of("player", Component.text(Bukkit.getOfflinePlayer(causer).getName()),
+                       "amount", Component.text(Integer.toString(damageAmount))
+                )
+        );
+        context.plugin().getServer().broadcast(toSend);
+        return null;
+    }
+
+     */
+
+    /*
+    @Override
+    public <E extends Event, K> void enforceAllPunishment(Data<E, K> data, Team team) {
+
+    }*/
 
     @Override
     public boolean equals(Object o) {

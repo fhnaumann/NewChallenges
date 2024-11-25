@@ -9,29 +9,7 @@
             ],
             "type": "string"
         },
-        "BasePunishmentDataConfig": {
-            "additionalProperties": false,
-            "properties": {
-                "affects": {
-                    "$ref": "#/definitions/Affects",
-                    "description": "Who is affected by the punishment."
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
-                }
-            },
-            "propertyOrder": [
-                "affects",
-                "punishmentName"
-            ],
-            "required": [
-                "affects",
-                "punishmentName"
-            ],
-            "type": "object"
-        },
         "BlockBreakDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -65,7 +43,6 @@
             "type": "object"
         },
         "BlockBreakGoalConfig": {
-            "additionalProperties": false,
             "properties": {
                 "broken": {
                     "default": [],
@@ -104,7 +81,6 @@
             "type": "object"
         },
         "BlockPlaceDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -138,7 +114,6 @@
             "type": "object"
         },
         "BlockPlaceGoalConfig": {
-            "additionalProperties": false,
             "properties": {
                 "complete": {
                     "default": false,
@@ -177,33 +152,25 @@
             "type": "object"
         },
         "CancelPunishmentConfig": {
-            "additionalProperties": false,
             "propertyOrder": [],
             "type": "object"
         },
         "CancelPunishmentDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "required": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "type": "object"
         },
         "ChallengeMetadata": {
-            "additionalProperties": false,
             "properties": {
                 "builderMCVersion": {
                     "description": "MC Version the challenge builder targets at the time of creation.",
@@ -268,7 +235,6 @@
             "type": "object"
         },
         "CollectableDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amountNeeded": {
                     "default": 1,
@@ -295,7 +261,6 @@
             "type": "object"
         },
         "CollectableEntryConfig": {
-            "additionalProperties": false,
             "properties": {
                 "collectableData": {
                     "$ref": "#/definitions/CollectableDataConfig",
@@ -318,7 +283,6 @@
             "type": "object"
         },
         "CompletionConfig": {
-            "additionalProperties": false,
             "properties": {
                 "contributors": {
                     "$ref": "#/definitions/ContributorsConfig",
@@ -347,7 +311,6 @@
             "type": "object"
         },
         "CraftingDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -387,7 +350,6 @@
             "type": "object"
         },
         "CraftingGoalConfig": {
-            "additionalProperties": false,
             "properties": {
                 "complete": {
                     "default": false,
@@ -426,7 +388,6 @@
             "type": "object"
         },
         "CustomHealthSettingConfig": {
-            "additionalProperties": false,
             "properties": {
                 "hearts": {
                     "default": 20,
@@ -442,7 +403,6 @@
             "type": "object"
         },
         "DeathDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -476,7 +436,6 @@
             "type": "object"
         },
         "DeathGoalConfig": {
-            "additionalProperties": false,
             "properties": {
                 "complete": {
                     "default": false,
@@ -527,7 +486,6 @@
             "type": "object"
         },
         "DeathPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -545,28 +503,21 @@
             "type": "object"
         },
         "DeathPunishmentDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "required": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "type": "object"
         },
         "EnabledRules": {
-            "additionalProperties": false,
             "properties": {
                 "noBlockBreak": {
                     "$ref": "#/definitions/NoBlockBreakRuleConfig"
@@ -598,7 +549,6 @@
             "type": "object"
         },
         "EndPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -616,28 +566,21 @@
             "type": "object"
         },
         "EndPunishmentDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "required": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "type": "object"
         },
         "FloorIsLavaSettingConfig": {
-            "additionalProperties": false,
             "properties": {
                 "lavaRemainsPermanently": {
                     "default": false,
@@ -659,7 +602,6 @@
             "type": "object"
         },
         "GoalTimer": {
-            "additionalProperties": false,
             "properties": {
                 "maxTimeSeconds": {
                     "default": 600,
@@ -703,7 +645,6 @@
             "type": "object"
         },
         "GoalsConfig": {
-            "additionalProperties": false,
             "properties": {
                 "blockBreakGoal": {
                     "$ref": "#/definitions/BlockBreakGoalConfig"
@@ -735,7 +676,6 @@
             "type": "object"
         },
         "HealthPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -767,7 +707,6 @@
             "type": "object"
         },
         "HealthPunishmentDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "actualHeartsLost": {
                     "description": "The actual amount of hearts that were lost. Is either the 'heartsLost' or a random value.",
@@ -776,25 +715,19 @@
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
                 "actualHeartsLost",
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "required": [
                 "actualHeartsLost",
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "type": "object"
         },
         "ItemDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -828,7 +761,6 @@
             "type": "object"
         },
         "ItemGoalConfig": {
-            "additionalProperties": false,
             "properties": {
                 "complete": {
                     "default": false,
@@ -867,7 +799,6 @@
             "type": "object"
         },
         "LiveInterfaces": {
-            "additionalProperties": false,
             "properties": {
                 "blockBreakData": {
                     "$ref": "#/definitions/BlockBreakDataConfig"
@@ -911,6 +842,12 @@
                 "randomEffectPunishmentData": {
                     "$ref": "#/definitions/RandomEffectPunishmentDataConfig"
                 },
+                "startOrResumeData": {
+                    "$ref": "#/definitions/StartOrResumeDataConfig"
+                },
+                "statusRequest": {
+                    "$ref": "#/definitions/StatusRequest"
+                },
                 "suppressPunishmentDataConfig": {
                     "$ref": "#/definitions/SuppressPunishmentDataConfig"
                 },
@@ -934,12 +871,13 @@
                 "deathPunishmentData",
                 "randomEffectPunishmentData",
                 "mlgSettingData",
-                "teamData"
+                "teamData",
+                "startOrResumeData",
+                "statusRequest"
             ],
             "type": "object"
         },
         "MCEventAlias": {
-            "additionalProperties": false,
             "properties": {
                 "action": {
                     "const": "event",
@@ -1005,7 +943,6 @@
             "type": "object"
         },
         "MLGPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -1031,7 +968,6 @@
             "type": "object"
         },
         "MLGSettingConfig": {
-            "additionalProperties": false,
             "properties": {
                 "height": {
                     "default": 50,
@@ -1063,7 +999,6 @@
             "type": "object"
         },
         "MLGSettingDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "failedMLG": {
                     "description": "List of players that failed the MLG",
@@ -1088,7 +1023,6 @@
             "type": "object"
         },
         "MobDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -1122,7 +1056,6 @@
             "type": "object"
         },
         "MobGoalConfig": {
-            "additionalProperties": false,
             "properties": {
                 "complete": {
                     "default": false,
@@ -1161,7 +1094,6 @@
             "type": "object"
         },
         "Model": {
-            "additionalProperties": false,
             "properties": {
                 "_ignore": {
                     "$ref": "#/definitions/LiveInterfaces"
@@ -1219,7 +1151,6 @@
             "type": "object"
         },
         "NoBlockBreakRuleConfig": {
-            "additionalProperties": false,
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -1240,7 +1171,6 @@
             "type": "object"
         },
         "NoBlockBreakRuleDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "amount": {
                     "default": 1,
@@ -1248,10 +1178,7 @@
                     "type": "integer"
                 },
                 "appliedPunishments": {
-                    "items": {
-                        "$ref": "#/definitions/BasePunishmentDataConfig"
-                    },
-                    "type": "array"
+                    "$ref": "#/definitions/PunishmentsDataConfig"
                 },
                 "broken": {
                     "description": "The block (as a material code) that was broken.",
@@ -1282,7 +1209,6 @@
             "type": "object"
         },
         "NoBlockPlaceRuleConfig": {
-            "additionalProperties": false,
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -1303,7 +1229,6 @@
             "type": "object"
         },
         "NoCraftingRuleConfig": {
-            "additionalProperties": false,
             "properties": {
                 "campfireCooking": {
                     "default": true,
@@ -1360,7 +1285,6 @@
             "type": "object"
         },
         "NoDeathRuleConfig": {
-            "additionalProperties": false,
             "properties": {
                 "ignoreTotem": {
                     "default": true,
@@ -1378,7 +1302,6 @@
             "type": "object"
         },
         "NoItemCollectRuleConfig": {
-            "additionalProperties": false,
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -1399,7 +1322,6 @@
             "type": "object"
         },
         "NoMobKillRuleConfig": {
-            "additionalProperties": false,
             "properties": {
                 "exemptions": {
                     "default": [],
@@ -1420,7 +1342,6 @@
             "type": "object"
         },
         "PlayerConfig": {
-            "additionalProperties": false,
             "properties": {
                 "playerName": {
                     "type": "string"
@@ -1445,7 +1366,6 @@
             "type": "object"
         },
         "PotionEffect": {
-            "additionalProperties": false,
             "properties": {
                 "amplifier": {
                     "description": "The amplifier of the effect.",
@@ -1472,21 +1392,7 @@
             ],
             "type": "object"
         },
-        "PunishmentName": {
-            "enum": [
-                "cancelPunishment",
-                "deathPunishment",
-                "endPunishment",
-                "healthPunishment",
-                "mlgPunishment",
-                "randomEffectPunishment",
-                "randomItemPunishment",
-                "suppressPunishment"
-            ],
-            "type": "string"
-        },
         "PunishmentsConfig": {
-            "additionalProperties": false,
             "properties": {
                 "cancelPunishment": {
                     "$ref": "#/definitions/CancelPunishmentConfig"
@@ -1525,8 +1431,18 @@
             ],
             "type": "object"
         },
+        "PunishmentsDataConfig": {
+            "properties": {
+                "healthPunishment": {
+                    "$ref": "#/definitions/HealthPunishmentDataConfig"
+                }
+            },
+            "propertyOrder": [
+                "healthPunishment"
+            ],
+            "type": "object"
+        },
         "RandomEffectPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -1558,7 +1474,6 @@
             "type": "object"
         },
         "RandomEffectPunishmentDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "$ref": "#/definitions/Affects",
@@ -1570,25 +1485,19 @@
                         "$ref": "#/definitions/PotionEffect"
                     },
                     "type": "array"
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
                 "appliedPotionEffects",
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "required": [
                 "affects",
-                "appliedPotionEffects",
-                "punishmentName"
+                "appliedPotionEffects"
             ],
             "type": "object"
         },
         "RandomItemPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -1626,7 +1535,6 @@
             "type": "object"
         },
         "RulesConfig": {
-            "additionalProperties": false,
             "properties": {
                 "enabledGlobalPunishments": {
                     "$ref": "#/definitions/PunishmentsConfig"
@@ -1642,7 +1550,6 @@
             "type": "object"
         },
         "SettingsConfig": {
-            "additionalProperties": false,
             "properties": {
                 "customHealthSetting": {
                     "$ref": "#/definitions/CustomHealthSettingConfig"
@@ -1665,8 +1572,49 @@
             ],
             "type": "object"
         },
+        "StartOrResumeDataConfig": {
+            "properties": {
+                "currentOrder": {
+                    "description": "The active current order number (used to align goal timers)",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "currentOrder"
+            ],
+            "required": [
+                "currentOrder"
+            ],
+            "type": "object"
+        },
+        "StatusRequest": {
+            "properties": {
+                "status": {
+                    "enum": [
+                        "canceled",
+                        "end",
+                        "paused",
+                        "running",
+                        "setup"
+                    ],
+                    "type": "string"
+                },
+                "time": {
+                    "default": -1,
+                    "description": "The current time.\nIs -1 if status is 'setup' or 'canceled'.",
+                    "type": "integer"
+                }
+            },
+            "propertyOrder": [
+                "status",
+                "time"
+            ],
+            "required": [
+                "status"
+            ],
+            "type": "object"
+        },
         "SuppressPunishmentConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "default": "all",
@@ -1684,28 +1632,21 @@
             "type": "object"
         },
         "SuppressPunishmentDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "affects": {
                     "$ref": "#/definitions/Affects",
                     "description": "Who is affected by the punishment."
-                },
-                "punishmentName": {
-                    "$ref": "#/definitions/PunishmentName"
                 }
             },
             "propertyOrder": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "required": [
-                "affects",
-                "punishmentName"
+                "affects"
             ],
             "type": "object"
         },
         "TeamConfig": {
-            "additionalProperties": false,
             "properties": {
                 "currentOrder": {
                     "default": -1,
@@ -1740,7 +1681,6 @@
             "type": "object"
         },
         "TeamDataConfig": {
-            "additionalProperties": false,
             "properties": {
                 "action": {
                     "description": "The action on the team (join or leave).",
@@ -1772,7 +1712,6 @@
             "type": "object"
         },
         "UltraHardcoreSettingConfig": {
-            "additionalProperties": false,
             "properties": {
                 "allowAbsorptionHearts": {
                     "default": true,

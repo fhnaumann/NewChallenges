@@ -52,6 +52,8 @@ public class LiveCommand {
                     );
                     sender.sendMessage(uploadingComp);
                     uploadChallenge(context, prepareForLive, sender);
+                    // Set challenge ID for live events
+                    context.liveService().eventProvider().setChallengeID(context.challengeManager().getChallengeMetadata().getChallengeID()).join();
                 }).register();
     }
 

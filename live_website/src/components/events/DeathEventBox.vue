@@ -1,5 +1,5 @@
 <template>
-  <EventBox v-bind="props" :class="`${type === 'noBlockBreak' ? 'customized-rule' : 'customized-goal'}`">
+  <EventBox v-bind="props" >
     <template #eventTrigger>
       <i18n-t keypath="events.death" tag="div" class="flex items-center text-2xl" >
         <template #player>

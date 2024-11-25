@@ -23,9 +23,11 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 public class FileManager {
 
+    public static final Logger logger = ChallengesDebugLogger.getLogger(FileManager.class);
 
     public static void writeToFile(ChallengeManager challengeManager, Writer writer) {
         EnabledRules enabledRulesConfig = new EnabledRules();
@@ -57,6 +59,7 @@ public class FileManager {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(writer, model);
+            logger.fine("Wrote to challenge '%s' to file".formatted(model.getMetadata().getName()));
         } catch(IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,5 +1,6 @@
 <template>
   <div v-if="hasAppliedPunishments(data)">
+    <p>123</p>
     <component
       class="customized-rule"
       v-for="punishment in data.appliedPunishments"
@@ -21,6 +22,7 @@ import type {
 } from '@fhnaumann/criteria-interfaces'
 import HealthPunishmentEventPart from '@/components/events/punishments/HealthPunishmentEventPart.vue'
 import UnknownEventBox from '@/components/events/UnknownEventBox.vue'
+import RandomEffectPunishmentEventPart from './RandomEffectPunishmentEventPart.vue'
 
 const props = defineProps<{
   data: RuleDataConfig
@@ -32,7 +34,9 @@ function getMatchingPunishmentComponentFrom(data: BasePunishmentDataConfig): Com
   if (data.punishmentName === 'healthPunishment') {
     return HealthPunishmentEventPart
   }
-
+  if (data.punishmentName === 'randomEffectPunishment') {
+    return RandomEffectPunishmentEventPart
+  }
   return UnknownEventBox
 }
 </script>

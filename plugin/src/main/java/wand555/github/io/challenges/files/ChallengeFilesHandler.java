@@ -10,7 +10,9 @@ import wand555.github.io.challenges.generated.ChallengeMetadata;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Objects;
@@ -98,6 +100,12 @@ public class ChallengeFilesHandler {
 
     public File getFolderContainingChallenges() {
         return folderContainingChallenges;
+    }
+
+    public Writer createWriter() throws IOException {
+        return new FileWriter(new File(getFolderContainingChallenges(),
+                                getFileNameBeingPlayed()
+        ));
     }
 
     public record ChallengeLoadStatus(@NotNull File file, @Nullable ChallengeMetadata challengeMetadata) {}

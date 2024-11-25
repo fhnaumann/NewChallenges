@@ -1,5 +1,5 @@
 <template>
-  <EventBox v-bind="props" :class="`${type === 'noBlockBreak' ? 'customized-rule' : 'customized-goal'}`">
+  <EventBox v-bind="props" :class="`${type === 'noMobKill' ? 'customized-rule' : 'customized-goal'}`">
     <template #eventTrigger>
       <i18n-t keypath="events.mobKill" tag="div" class="flex items-center text-2xl">
         <template #player>
@@ -8,7 +8,7 @@
           </div>
         </template>
         <template #mob>
-          <MaterialItem class="mx-2" :code="data.mob" :data-source="'entity_type'" img-class="w-8" />
+          <MaterialItem class="mx-2" :code="data.mob" data-source="entity_type" img-class="w-8" />
         </template>
       </i18n-t>
     </template>
@@ -27,5 +27,7 @@ const props = defineProps<{
   eventIndex: number
   type: CriteriaKey
 }>()
+
+console.log("MOBKILLBOX")
 
 </script>

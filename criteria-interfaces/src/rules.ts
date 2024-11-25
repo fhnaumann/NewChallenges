@@ -1,4 +1,4 @@
-import {BasePunishmentDataConfig, PunishmentsConfig} from './punishments'
+import {BasePunishmentDataConfig, PunishmentsConfig, PunishmentsDataConfig} from './punishments'
 import type { NoBlockBreakRuleConfig } from './blockbreak'
 import type { NoMobKillRuleConfig } from './mob'
 import type { NoItemCollectRuleConfig } from './item'
@@ -28,5 +28,5 @@ export interface PunishableRuleConfig extends BaseRuleConfig {
   punishments?: PunishmentsConfig
 }
 export interface RuleDataConfig extends DataConfig {
-  appliedPunishments: BasePunishmentDataConfig[]
+  appliedPunishments: PunishmentsDataConfig
 }

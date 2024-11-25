@@ -103,6 +103,8 @@
   }
 
   function mapGoals2PerTeamBasis(model: Model): Model {
+    console.log(toRaw(model))
+    console.log(structuredClone(toRaw(model)))
     const copy = structuredClone(toRaw(model))
     if(copy.teams !== undefined && copy.teams!.length > 0) {
       copy.teams?.forEach(team => {

@@ -1,7 +1,7 @@
 import type { GoalName, GoalsConfig } from './goals'
 import type { RuleName, RulesConfig } from './rules'
 import type {MLGSettingDataConfig, SettingName, SettingsConfig} from './settings'
-import {MCEvent, TeamDataConfig} from "./live";
+import {MCEvent, StartOrResumeDataConfig, StatusRequest, TeamDataConfig} from "./live";
 import {BlockBreakDataConfig, NoBlockBreakRuleDataConfig} from "./blockbreak";
 import {BlockPlaceDataConfig} from "./blockplace";
 import {CraftingDataConfig} from "./crafting";
@@ -204,6 +204,8 @@ export interface LiveInterfaces {
   mlgSettingData?: MLGSettingDataConfig
 
   teamData?: TeamDataConfig
+  startOrResumeData?: StartOrResumeDataConfig
+  statusRequest?: StatusRequest
 }
 
 

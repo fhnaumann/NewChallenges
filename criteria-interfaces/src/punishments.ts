@@ -12,6 +12,10 @@ export interface PunishmentsConfig {
   mlgPunishment?: MLGPunishmentConfig
 }
 
+export interface PunishmentsDataConfig {
+  healthPunishment?: HealthPunishmentDataConfig
+}
+
 export interface BasePunishmentConfig {
   /**
    * Who is affected by the punishment.
@@ -25,8 +29,6 @@ export interface BasePunishmentDataConfig {
    * Who is affected by the punishment.
    */
   affects: Affects
-
-  punishmentName: PunishmentName
 }
 
 export interface CancelPunishmentConfig {

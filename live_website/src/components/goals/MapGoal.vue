@@ -1,13 +1,13 @@
 <template>
   <div
-    class="max-h-[50rem] rounded-lg justify-items-stretch bg-background-color border-2 border-content-border text-color"
+    class="max-h-[50rem] rounded-lg justify-items-stretch bg-background-color border-2 border-content-border text-color customized-goal"
     ref="dialogContainer"
   >
     <div>
       <div class="flex items-center space-x-12 col-span-full row-start-1 max-h-12 mx-2 mt-2">
         <div class="flex-1">
           <InputText
-            class="w-full"
+            class="w-full customized-goal"
             type="text"
             :placeholder="t('goals.collectables.search')"
             v-model="searchFieldValue"

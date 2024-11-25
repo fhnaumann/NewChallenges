@@ -72,3 +72,21 @@ export interface TeamDataConfig {
      */
     action: "join" | "leave"
 }
+export interface StartOrResumeDataConfig {
+    /**
+     * The active current order number (used to align goal timers)
+     */
+    currentOrder: number
+}
+export interface StatusRequest {
+    status: "setup" | "running" | "paused" | "end" | "canceled"
+
+    /**
+     * The current time.
+     * Is -1 if status is 'setup' or 'canceled'.
+     *
+     * @default -1
+     * @TSJ-type integer
+     */
+    time?: number
+}

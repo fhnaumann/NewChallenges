@@ -3,7 +3,6 @@ package wand555.github.io.challenges.criteria.goals;
 import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.Keyed;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import wand555.github.io.challenges.*;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.criteria.goals.bossbar.*;

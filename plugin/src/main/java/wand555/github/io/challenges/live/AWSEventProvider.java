@@ -43,6 +43,10 @@ public class AWSEventProvider implements EventProvider {
         lastSentEventFuture = CompletableFuture.runAsync(() -> {
             Preconditions.checkNotNull(webSocket, "WebSocket client is null!");
             Preconditions.checkArgument(!challengeIDUsedInWebSocket.isBlank(), "ChallengeID in WebSocket is empty!");
+            if(webSocket.isOutputClosed() || webSocket.isInputClosed()) {
+                logger.fine("Websocket was previously closed. Opening a new connection...");
+                webSocket = openNewConnection(challengeIDUsedInWebSocket).join();
+            }
             MCEventAlias mcEventAlias = constructMCEventFrom(challengeIDUsedInWebSocket, timestamp, eventType, additionalData);
             try {
                 String serializedMCEvent = objectMapper.writeValueAsString(mcEventAlias);

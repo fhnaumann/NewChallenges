@@ -16,6 +16,8 @@ export function useUtil() {
   }
   
   function hasAppliedPunishments(data: any): boolean {
+    console.log("HAS PUNISHMENT:")
+    console.log(data)
     return data && typeof data.appliedPunishments !== "undefined"
   }
 

@@ -18,7 +18,7 @@
         <div class="flex items-center justify-center w-full">
           <p
             :class="[
-              'delay-100 animate-fadein text-color text-3xl font-semi-bold',
+              'delay-100 animate-fadein text-color text-5xl font-semi-bold',
               sidebarOpen ? 'visible' : 'invisible'
             ]"
           >
@@ -32,15 +32,14 @@
         </div>
         <div v-for="(goalEntry, index) in computedGoalEntries" :key="index" class="space-y-2">
           <div
-            class="flex flex-col cursor-pointer ease-in-out duration-300 hover:bg-content-hover-background w-full py-2 px-8 text-xl rounded-xl border border-content-border hover:border-goal-accent"
+            class="flex flex-col cursor-pointer ease-in-out duration-300 hover:bg-content-hover-background w-full py-2 px-8 text-3xl rounded-xl border border-content-border hover:border-goal-accent"
             @click="() => showGoal(goalEntry.key as GoalName)"
             :data-cy="goalEntry.key"
           >
             <p>
               {{
                 t('sidebar.stats.goal.title', {
-                  goal: t(`goals.types.${goalEntry.key}.name`),
-                  percentage: '82 dummy'
+                  goal: t(`goals.types.${goalEntry.key}.name`)
 
                 })
               }}
@@ -49,7 +48,8 @@
               <div>
                 <ProgressBar :value="asPercentage(goalEntry.key as GoalName)">{{}}</ProgressBar>
               </div>
-              <p class="flex justify-center text-sm">{{ formatTime(calculateRemainingTime(goalEntry.key as GoalName)) }}</p>
+              <p class="flex justify-center text-sm" v-if="calculateRemainingTime(goalEntry.key as GoalName)">{{ t('sidebar.stats.timers.time_remaining', { time: formatTime(calculateRemainingTime(goalEntry.key as GoalName)) }) }}</p>
+              <p class="flex justify-center text-sm" v-else>{{ t('sidebar.stats.timers.waiting_for_start') }}</p>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ function hasGoalTimer(goalName: GoalName): boolean {
   return props.challenge?.goals![goalName]?.goalTimer !== undefined
 }
 
-function calculateRemainingTime(goalName: GoalName): number {
+function calculateRemainingTime(goalName: GoalName): number | undefined {
   /*
   In theory the remaining time is stored inside the goalTimer, but the JSON file is not sent every second. It is only sent
   at specific "sync-spots" like challenge start/pause events. Therefore, the live frontend will calculate the remaining
@@ -108,18 +108,22 @@ function calculateRemainingTime(goalName: GoalName): number {
   const goalTimer = props.challenge!.goals![goalName]!.goalTimer!
   if (goalTimer.order !== props.challenge.currentOrder) {
     console.log(1)
-    return goalTimer.startingTime // shouldn't really happen in practise
+    // happens when a challenge was uploaded (and visited), but it wasn't yet started and therefore no time was determined
+    // by the server
+    return undefined
   }
   if (goalTimer.time === -1) {
     console.log(2)
-    return goalTimer.startingTime // shouldn't really happen in practise
+    // happens when a challenge was uploaded (and visited), but it wasn't yet started and therefore no time was determined
+    // by the server
+    return undefined
   }
   return Math.max(goalTimer.startingTime - props.currentTime, 0)
 }
 
 function asPercentage(goalName: GoalName): number {
   const goalTimer = props.challenge!.goals![goalName]!.goalTimer!
-  const remainingTime = calculateRemainingTime(goalName)
+  const remainingTime = calculateRemainingTime(goalName) ?? goalTimer.startingTime // if undefined, assume it hasn't started yet
   return (remainingTime / goalTimer.startingTime) * 100
 }
 

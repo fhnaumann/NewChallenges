@@ -1,6 +1,9 @@
 export function useTimeable() {
 
-  function formatTime(time: number): string {
+  function formatTime(time: number | undefined): string {
+    if(time === undefined) {
+      return ""
+    }
     const one_second = 1
     const minute_in_sec = 60 * one_second
     const hour_in_sec = 60 * minute_in_sec

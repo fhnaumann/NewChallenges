@@ -1,26 +1,19 @@
 package wand555.github.io.challenges.criteria.rules;
 
 
-import org.bukkit.Keyed;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import wand555.github.io.challenges.Context;
 import wand555.github.io.challenges.Trigger;
 import wand555.github.io.challenges.criteria.Triggable;
 import wand555.github.io.challenges.generated.PunishmentsConfig;
+import wand555.github.io.challenges.generated.PunishmentsDataConfig;
 import wand555.github.io.challenges.mapping.CriteriaMapper;
-import wand555.github.io.challenges.mapping.ModelMapper;
-import wand555.github.io.challenges.punishments.CancelPunishment;
 import wand555.github.io.challenges.punishments.Punishment;
 import wand555.github.io.challenges.types.Data;
-import wand555.github.io.challenges.types.EventContainer;
 
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public abstract class PunishableRule<T extends Data<?, K>, K> extends Rule implements Triggable<T> {
 
@@ -45,15 +38,25 @@ public abstract class PunishableRule<T extends Data<?, K>, K> extends Rule imple
     public Trigger<T> trigger() {
         return data -> {
             messageHelper.sendViolationAction(data);
-            enforcePunishments(data);
+            List<Object> punishmentLiveData = enforcePunishments(data); // Type 'Object' is really 'BasePunishmentDataConfig'
+            //Object mcEventData = constructMCEventData(data, punishmentLiveData);
+            return;
         };
     }
 
-    private void enforcePunishments(Data<?, K> data) {
+    private List<Object> enforcePunishments(Data<?, K> data) {
+        List<Object> appliedPunishments = new ArrayList<>();
         // enforce local punishments
-        getPunishments().forEach(punishment -> punishment.enforcePunishment(data));
+        for(Punishment localPunishment : getPunishments()) {
+            Object result = localPunishment.enforcePunishment(data);
+            appliedPunishments.add(result);
+        }
         // enforce global punishments
-        context.challengeManager().getGlobalPunishments().forEach(punishment -> punishment.enforcePunishment(data));
+        for(Punishment globalPunishment : context.challengeManager().getGlobalPunishments()) {
+            Object result = globalPunishment.enforcePunishment(data);
+            appliedPunishments.add(result);
+        }
+        return appliedPunishments;
     }
 
     protected final @Nullable PunishmentsConfig toPunishmentsConfig() {
@@ -63,6 +66,12 @@ public abstract class PunishableRule<T extends Data<?, K>, K> extends Rule imple
         PunishmentsConfig punishmentsConfig = new PunishmentsConfig();
         punishments.forEach(punishment -> punishment.addToGeneratedConfig(punishmentsConfig));
         return punishmentsConfig;
+    }
+
+    protected final PunishmentsDataConfig toPunishmentsDataConfig() {
+        PunishmentsDataConfig punishmentsDataConfig = new PunishmentsDataConfig();
+        //punishments.forEach(punishment -> punishment.add);
+        return punishmentsDataConfig;
     }
 
     public @NotNull List<Punishment> getPunishments() {

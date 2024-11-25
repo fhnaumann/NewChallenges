@@ -69,6 +69,7 @@
     testSchematron: false
   }
   // set defaults if nothing is set so far
+  /*
   if(brokenModelAccess.get(model) === undefined) {
     console.log("set default because it was empty")
     set(brokenModelAccess.where, [{
@@ -78,6 +79,7 @@
       }
     } as CollectableEntryConfig], false)
   }
+  */
 
   function updateBreakAllBlocksOnce(breakAllBlocksOnce: boolean) {
     set(brokenModelAccess.where, breakAllBlocksOnce ? fromDataRowArray2CollectableEntryArray(ALL_IS_BLOCK_MATERIAL_DATA) : undefined, true)

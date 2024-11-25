@@ -126,6 +126,11 @@ export function useFetcher(initialChallengeID: string) {
   async function fetchData() {
     await fetchChallengeFile(challengeID)
     await fetchEvents(challengeID)
+    // await fetchChallengeTimeStatus()
+  }
+
+  async function fetchChallengeTimeStatus() {
+    ws.send(JSON.stringify({action: 'requestStatus'}))
   }
 
   async function reFetchData() {

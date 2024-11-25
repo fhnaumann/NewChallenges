@@ -48,12 +48,15 @@
     testSchematron: false,
   }
 
+  /*
   set('goals.mobGoal.mobs', [{
     collectableName: 'ender_dragon',
     collectableData: {
       amountNeeded: 1,
     },
   }] as CollectableEntryConfig[], false)
+
+   */
 
   function updateKillAllMobsOnce(killAllMobsOnce: boolean) {
     set('goals.mobGoal.mobs', killAllMobsOnce ? fromDataRowArray2CollectableEntryArray(ALL_ENTITY_TYPE_DATA) : undefined, true)

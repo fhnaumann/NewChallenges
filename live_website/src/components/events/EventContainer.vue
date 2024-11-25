@@ -36,7 +36,7 @@ function getMatchingComponentFrom(mcEvent: MCEvent<any>): Component {
   if(isBlockPlace(data)) {
     return BlockPlaceEventBox
   }
-  if(isMobKill(data)) {
+  if(mcEvent.eventType == 'mobGoal' || mcEvent.eventType == 'noMobKill') {
     return MobKillEventBox
   }
   if(isItemCollect(data)) {

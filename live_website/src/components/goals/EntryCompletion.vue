@@ -7,8 +7,8 @@
       ]">
       <div ref="reference"
            :class="{
-             'flex flex-col items-center justify-between rounded-lg border border-content-border w-40 h-40': !clicked,
-             'flex flex-col items-center justify-between rounded-lg border border-content-border w-40 h-40 bg-primary-400 text-color-emphasis': clicked
+             'flex flex-col items-center justify-between rounded-lg border border-content-border w-40 h-40 hover:bg-content-hover-background ease-in-out duration-300 hover:border-accent': !clicked,
+             'flex flex-col items-center justify-between rounded-lg border w-40 h-40 text-color-emphasis hover:bg-content-hover-background ease-in-out duration-300 border-accent': clicked
            }">
         <p class="font-semibold line-clamp-1 text-color">{{ translateDataRow(fromCode2DataRow(props.collectable.collectableName))
           }}</p>

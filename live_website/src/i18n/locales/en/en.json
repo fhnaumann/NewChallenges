@@ -87,12 +87,13 @@
     "stats": {
       "title": "Statistics",
       "goal": {
-        "title": "{goal} ({percentage}% complete)",
+        "title": "{goal}",
         "progress": "View Progress"
       },
       "timers": {
         "time_remaining": "{time} remaining",
-        "waiting_for": "Waiting for {goals} to finish..."
+        "waiting_for": "Waiting for {goals} to finish...",
+        "waiting_for_start": "Waiting for challenge start..."
       }
     }
   },
