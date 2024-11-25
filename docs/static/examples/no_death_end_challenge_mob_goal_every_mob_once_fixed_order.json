@@ -23,6 +23,7 @@
   },
   "goals": {
     "mobGoal": {
+      "fixedOrder": true,
       "mobs": [
         {
           "collectableName": "elder_guardian",
@@ -352,8 +353,7 @@
           "collectableName": "player",
           "collectableData": {}
         }
-      ],
-      "fixedOrder": true
+      ]
     }
   },
   "settings": {}

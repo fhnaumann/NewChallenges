@@ -23,6 +23,7 @@
   },
   "goals": {
     "blockBreakGoal": {
+      "fixedOrder": true,
       "broken": [
         {
           "collectableName": "stone",
@@ -4236,8 +4237,7 @@
           "collectableName": "potted_flowering_azalea_bush",
           "collectableData": {}
         }
-      ],
-      "fixedOrder": true
+      ]
     }
   },
   "settings": {}
