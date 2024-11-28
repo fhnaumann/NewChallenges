@@ -72,7 +72,7 @@ import type { MapGoalProps } from '@/components/goals/MapGoal.vue'
 import type { CraftingDataConfig } from '@fhnaumann/criteria-interfaces'
 import type { DeathDataConfig } from '@fhnaumann/criteria-interfaces'
 import type { ItemDataConfig } from '@fhnaumann/criteria-interfaces'
-import type { BlockBreakDataConfig, MobDataConfig } from '../../../criteria-interfaces'
+import type { BlockBreakDataConfig, MobDataConfig } from '@fhnaumann/criteria-interfaces'
 import { useTimeable } from '@/composables/timable'
 
 const props = defineProps<{
